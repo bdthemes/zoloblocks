@@ -1,11 +1,8 @@
-import { __experimentalNumberControl as NumberControl, RangeControl } from '@wordpress/components';
-// import WithResDeviceBtn from './res-device-btn';
-
+import { ZoloRangeControl, ZoloNumberControl } from '../core-controls';
 import { prefix } from '../../global/constants';
 import ResetBtn from '../reset-btn';
 import UnitsBtn from '../units-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
-import { ZoloRangeControl } from '../core-controls';
 
 const ResRangeControl = ({
     label,
@@ -94,7 +91,7 @@ const ResRangeControl = ({
                                         step={step || 1}
                                         withInputField={false}
                                     />
-                                    <NumberControl
+                                    <ZoloNumberControl
                                         value={desktopRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -158,7 +155,7 @@ const ResRangeControl = ({
                                         step={step || 1}
                                         withInputField={false}
                                     />
-                                    <NumberControl
+                                    <ZoloNumberControl
                                         value={tabRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -222,7 +219,7 @@ const ResRangeControl = ({
                                         step={step || 1}
                                         withInputField={false}
                                     />
-                                    <NumberControl
+                                    <ZoloNumberControl
                                         value={mobRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -318,7 +315,7 @@ const ResRangeControl = ({
                                         step={step || 1}
                                         withInputField={false}
                                     />
-                                    <NumberControl
+                                    <ZoloNumberControl
                                         value={desktopRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -412,7 +409,7 @@ const ResRangeControl = ({
                                         step={step || 1}
                                         withInputField={false}
                                     />
-                                    <NumberControl
+                                    <ZoloNumberControl
                                         value={tabRange}
                                         onChange={(val) => {
                                             if (object) {
@@ -506,7 +503,7 @@ const ResRangeControl = ({
                                         step={step || 1}
                                         withInputField={false}
                                     />
-                                    <NumberControl
+                                    <ZoloNumberControl
                                         value={mobRange}
                                         onChange={(val) => {
                                             if (object) {

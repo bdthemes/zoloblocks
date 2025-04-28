@@ -1,7 +1,15 @@
 /**
+ * WordPress depencencies
+ */
+import { InspectorControls } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
+/**
  * Internal depencencies
  */
 const {
+    ZoloCardDivider,
+    ZoloSelectControl,
+    ZoloToggleControl,
     ResRangeControl,
     ColorControl,
     TabPanelControl,
@@ -22,13 +30,6 @@ const {
 } = window.zoloModule;
 
 import Sortable from './sortable';
-
-/**
- * WordPress depencencies
- */
-import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
 
@@ -70,7 +71,6 @@ import {
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
-
 import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -161,14 +161,14 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.list.presets', PRESETS)}
                                 onChange={(value) => changePremade(value)}
                             />
 
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Enable Link', 'zoloblocks')}
                                 checked={isLinkable}
                                 onChange={() => setAttributes({ isLinkable: !isLinkable })}
@@ -177,17 +177,17 @@ function Inspector(props) {
                             {preset !== 'zolo-list-style-1' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Icon', 'zoloblocks')}
                                         checked={iconToggle}
                                         onChange={() => setAttributes({ iconToggle: !iconToggle })}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Title', 'zoloblocks')}
                                         checked={titleToggle}
                                         onChange={() => setAttributes({ titleToggle: !titleToggle })}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Description', 'zoloblocks')}
                                         checked={DscToggle}
                                         onChange={() => setAttributes({ DscToggle: !DscToggle })}
@@ -210,7 +210,7 @@ function Inspector(props) {
                                             options={CONTENT_LAYOUT}
                                         />
                                     </div>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                 </>
                             )}
 
@@ -224,7 +224,7 @@ function Inspector(props) {
                                         max={100}
                                         unit="%"
                                     />
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                 </>
                             )}
 
@@ -321,7 +321,7 @@ function Inspector(props) {
                             />
                             {contentLayout !== 'horizontal' && preset !== 'zolo-list-style-1' && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     {(preset == 'zolo-list-style-1' || (preset == 'zolo-list-style-2' && layout == 'grid')) && (
                                         <ResAlignmentControl
                                             label={__('Item Alignment', 'zoloblocks')}
@@ -384,7 +384,7 @@ function Inspector(props) {
 
                             {preset !== 'zolo-list-style-1' && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <ZoloIconPicker
                                         label={__('Global Icon', 'zoloblocks')}
                                         value={globalIcon}
@@ -432,7 +432,7 @@ function Inspector(props) {
                                                 forBorderRadius={false}
                                                 max={100}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={LIST_BORDER}
@@ -528,7 +528,7 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 max={36}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ResDimensionsControl
                                                 label={__('Margin', 'zoloblocks')}
                                                 controlName={DSC_MARGIN}
@@ -573,7 +573,7 @@ function Inspector(props) {
                                                 max={100}
                                                 step={1}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <NormalBGControl
                                                 requiredProps={requiredProps}
                                                 controlName={ICON_LIST_BG}
@@ -592,7 +592,7 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={false}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
 
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
@@ -615,7 +615,7 @@ function Inspector(props) {
 
                                             {(preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && (
                                                 <>
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <ResAlignmentControl
                                                         label={__('Vertical Alignment', 'zoloblocks')}
                                                         controlName={ICON_VERTICAL_ALIGN}
@@ -643,7 +643,7 @@ function Inspector(props) {
                                                 noOverlay={true}
                                                 noMainBGImg={true}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Border Color', 'zoloblocks')}
                                                 color={listIconBorderHover}
@@ -682,14 +682,14 @@ function Inspector(props) {
                                     max={100}
                                     step={1}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={ICON_HOVER_LIST_MARGIN}
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResAlignmentControl
                                     label={__('Vertical Alignment', 'zoloblocks')}
                                     controlName={ICON_LINKVERTICAL_ALIGN}

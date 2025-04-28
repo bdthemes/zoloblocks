@@ -3,10 +3,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import {
-    __experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
-} from '@wordpress/components';
+import { ZoloToggleGroupControl, ZoloToggleGroupControlOption } from '../core-controls';
 import { applyFilters } from '@wordpress/hooks';
 import { useEffect } from '@wordpress/element';
 import ProNotice from '../pro-notice';
@@ -24,7 +21,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
     return (
         <>
             <div className="zolo-panel-control">
-                <ToggleGroupControl
+                <ZoloToggleGroupControl
                     className="zolo-tab-group"
                     value={selectedTab}
                     onChange={(value) => setAttributes({ selectedTab: value })}
@@ -33,7 +30,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
             __next40pxDefaultSize
                 >
                     {generalTab && (
-                        <ToggleGroupControlOption
+                        <ZoloToggleGroupControlOption
                             value="basic"
                             label={
                                 <>
@@ -58,7 +55,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
                         />
                     )}
                     {styleTab && (
-                        <ToggleGroupControlOption
+                        <ZoloToggleGroupControlOption
                             value="style"
                             label={
                                 <>
@@ -82,7 +79,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
                             }
                         />
                     )}
-                    <ToggleGroupControlOption
+                    <ZoloToggleGroupControlOption
                         value="extra"
                         label={
                             <>
@@ -105,7 +102,7 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
                             </>
                         }
                     />
-                </ToggleGroupControl>
+                </ZoloToggleGroupControl>
                 <div className="zolo-tab-controls">
                     {selectedTab === 'basic' && <>{applyFilters('zolo.blocks.generalTab', generalTab, block, panelProps)}</>}
                     {selectedTab === 'style' && <>{applyFilters('zolo.blocks.styleTab', styleTab, block, panelProps)}</>}

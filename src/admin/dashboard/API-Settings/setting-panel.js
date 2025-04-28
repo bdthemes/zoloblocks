@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useState, RawHTML } from '@wordpress/element';
-import { Modal } from '@wordpress/components';
+import { ZoloModal } from '../../../controls/core-controls';
 
 const SettingPanel = ({ icon = null, title = '', description = '', docLink = '', children, onSave, released = true, note }) => {
     const [settingsPanel, setSettingsPanel] = useState(false);
@@ -22,9 +22,11 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
 
     return (
         <div className={`zolo-single-setting${released ? '' : ' upcoming'}`}>
-            {!released && <div className={`zolo-badge-upcoming ${note ? 'warning' : ''}`}>
-                {note ? __(note, 'zoloblocks') : __('Coming Soon', 'zoloblocks')}
-                </div>}
+            {!released && (
+                <div className={`zolo-badge-upcoming ${note ? 'warning' : ''}`}>
+                    {note ? __(note, 'zoloblocks') : __('Coming Soon', 'zoloblocks')}
+                </div>
+            )}
             {icon && (
                 <div className="zolo-setting-icon">
                     <img src={zoloBlocks[icon]} alt={title} />
@@ -91,7 +93,7 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
             </div>
 
             {settingsPanel && (
-                <Modal onRequestClose={closeSettingsPanel}>
+                <ZoloModal onRequestClose={closeSettingsPanel}>
                     <div className="settings-popup">
                         <h4 className="modal-title">{title}</h4>
                         <div className="modal-description">
@@ -108,7 +110,7 @@ const SettingPanel = ({ icon = null, title = '', description = '', docLink = '',
                             </button>
                         )}
                     </div>
-                </Modal>
+                </ZoloModal>
             )}
         </div>
     );

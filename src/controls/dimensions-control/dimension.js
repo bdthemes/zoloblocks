@@ -2,7 +2,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
-import { RangeControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { ZoloRangeControl, ZoloNumberControl } from '../core-controls';
 
 const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min = null, max = null }) => {
     const { label, setAttributes, forBorderRadius, controlName, isLinked } = neededProps;
@@ -76,14 +76,14 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
                 <div className={`input-container ${isLinked ? 'input-grouped' : 'input-separated'}`}>
                     {isLinked && (
                         <div className="zolo-input-range-wrapper">
-                            <RangeControl
+                            <ZoloRangeControl
                                 value={getLinkedValue()}
                                 onChange={(value) => setLinkedDimensions(value?.toString() || '')}
                                 max={max || 100}
                                 min={min || 0}
                                 withInputField={false}
                             />
-                            <NumberControl
+                            <ZoloNumberControl
                                 value={getLinkedValue()}
                                 onChange={(value) => setLinkedDimensions(value?.toString() || '')}
                                 min={min || 0}

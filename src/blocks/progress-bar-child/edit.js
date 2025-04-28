@@ -65,10 +65,11 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-
                 {barpercentToggle && preset === 'style-5' && (
                     <div className="zolo-progress-bar_counter">
-                        <span className="zolo-progress-bar_value" data-value={progressH}>{progressH}</span>
+                        <span className="zolo-progress-bar_value" data-value={progressH}>
+                            {progressH}
+                        </span>
                         <span className="zolo-progress-bar_percent">%</span>
                     </div>
                 )}
@@ -83,31 +84,27 @@ export default function Edit(props) {
                             placeholder={__('Bar title..', 'zoloblocks')}
                         />
                     )}
-                    
+
                     {barpercentToggle && preset !== 'style-5' && (
                         <div className="zolo-progress-bar_counter">
-                            <span className="zolo-progress-bar_value" data-value={progressH}>{progressH}</span>
+                            <span className="zolo-progress-bar_value" data-value={progressH}>
+                                {progressH}
+                            </span>
                             <span className="zolo-progress-bar_percent">%</span>
                         </div>
                     )}
 
-                    {
-                        preset === 'style-5' && (
-                            <div className="zolo-progress-bar__progress">
-                            <div className="zolo-progress-bar__progress-bar active" />
-                        </div>
-                        )
-                    }
-
-                </div>
-                {
-                    preset !== 'style-5' && (
+                    {preset === 'style-5' && (
                         <div className="zolo-progress-bar__progress">
                             <div className="zolo-progress-bar__progress-bar active" />
                         </div>
-                    )
-                }
-               
+                    )}
+                </div>
+                {preset !== 'style-5' && (
+                    <div className="zolo-progress-bar__progress">
+                        <div className="zolo-progress-bar__progress-bar active" />
+                    </div>
+                )}
             </div>
         </>
     );

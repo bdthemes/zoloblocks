@@ -171,17 +171,12 @@ const Style = ({ props }) => {
         attributes,
         noMainBGImg: false,
     });
-    const {
-        boxShadowStyle: frontItemsShadow,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: frontItemsShadow } = generateBoxShadowStyles({
         controlName: FRONT_ITEMS_SHADOW,
         attributes,
     });
 
-
-    const {
-        boxShadowStyle: backItemsShadow,
-    } = generateBoxShadowStyles({
+    const { boxShadowStyle: backItemsShadow } = generateBoxShadowStyles({
         controlName: BACK_ITEMS_SHADOW,
         attributes,
     });

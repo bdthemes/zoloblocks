@@ -1,6 +1,3 @@
-const Context = [
-    'zolo/showFieldIcon',
-    'zolo/preset',
-];
+const Context = ['zolo/showFieldIcon', 'zolo/preset'];
 
 export default Context;

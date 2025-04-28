@@ -2,7 +2,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
-import { RangeControl } from '@wordpress/components';
+import { ZoloRangeControl } from '../core-controls';
 
 const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) => {
     const { label, setAttributes, controlName, isLinked } = neededProps;
@@ -57,7 +57,7 @@ const Borders = ({ top, right, bottom, left, onChange, neededProps, children }) 
                 {children}
                 <div className={`input-container ${isLinked ? 'input-grouped' : 'input-separated'}`}>
                     {isLinked && (
-                        <RangeControl
+                        <ZoloRangeControl
                             value={parseInt(borders.top) || parseInt(borders.right) || parseInt(borders.bottom) || parseInt(borders.left)}
                             onChange={(value) => setLinkedBorders(value.toString())}
                             min={0}

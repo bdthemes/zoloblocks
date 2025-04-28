@@ -1,12 +1,12 @@
+import { ZoloModal, ZoloTooltip } from '../controls/core-controls';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Modal, Tooltip } from '@wordpress/components';
 
 const ProPopup = () => {
     const [proModal, setProModal] = useState(false);
     return (
         <>
-            <Tooltip text={__('Import Demo', 'zoloblocks')} placement="top">
+            <ZoloTooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                 <button className="zolo-pro-modal-btn demo-btn import-btn" onClick={() => setProModal(true)}>
                     {__('Import', 'zoloblocks')}
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill="none" viewBox="0 0 24 24">
@@ -19,11 +19,14 @@ const ProPopup = () => {
                         />
                     </svg>
                 </button>
-            </Tooltip>
+            </ZoloTooltip>
             {
                 // Pro Modal
                 proModal && (
-                    <Modal className="zolo-pro-modal" onRequestClose={() => setProModal(false)}>
+                    <ZoloModal
+                        title={__('Upgrade to Pro', 'zoloblocks')}
+                        onRequestClose={() => setProModal(false)}
+                    >
                         <svg
                             className="zolo-pro-modal-icon"
                             xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +81,7 @@ const ProPopup = () => {
                                 />
                             </svg>
                         </a>
-                    </Modal>
+                    </ZoloModal>
                 )
             }
         </>

@@ -2,9 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Dropdown, Button, ColorPicker, ColorIndicator } from '@wordpress/components';
-
-
+import { ZoloDropdown, ZoloButton, ZoloColorPicker, ZoloColorIndicator } from '../core-controls';
 import { getContrastRatio } from '../../helpers/helper';
 
 const ColorBtn = ({ color, onChange }) => {
@@ -23,24 +21,24 @@ const ColorBtn = ({ color, onChange }) => {
     ];
 
     return (
-        <Dropdown
+        <ZoloDropdown
             className="zolo-color-picker-btn"
             position="bottom right"
             renderToggle={({ isOpen, onToggle }) => (
-                <Button onClick={onToggle} aria-expanded={isOpen} className="color-ball-btn">
-                    <ColorIndicator colorValue={color} className="color-ball" />
-                </Button>
+                <ZoloButton onClick={onToggle} aria-expanded={isOpen} className="color-ball-btn">
+                    <ZoloColorIndicator colorValue={color} className="color-ball" />
+                </ZoloButton>
             )}
             renderContent={() => (
                 <div className="zolo-color-picker">
-                    <ColorPicker color={color} disableAlpha={false} onChangeComplete={(value) => onChange(value.hex)} />
+                    <ZoloColorPicker color={color} disableAlpha={false} onChangeComplete={(value) => onChange(value.hex)} />
                     {COLORS && (
                         <>
                             <p className="zolo-theme-color-label">{__('Theme Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
                                 {COLORS.map((paletteColor) => (
                                     <div className="components-circular-option-picker__option-wrapper">
-                                        <Button
+                                        <ZoloButton
                                             className={`components-button components-circular-option-picker__option ${
                                                 paletteColor.color === color ? 'is-pressed' : ''
                                             }`}
@@ -82,7 +80,7 @@ const ColorBtn = ({ color, onChange }) => {
                             <div className="zolo-color-circular-option-grid">
                                 {DEFAULTCOLORS.map((paletteColor) => (
                                     <div className="components-circular-option-picker__option-wrapper">
-                                        <Button
+                                        <ZoloButton
                                             className={`components-button components-circular-option-picker__option ${paletteColor.color === color ? 'is-pressed' : ''}`}
                                             style={{
                                                 backgroundColor: paletteColor.color,

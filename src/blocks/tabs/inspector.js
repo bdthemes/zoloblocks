@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, __experimentalInputControl as InputControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -10,6 +9,10 @@ import { applyFilters } from '@wordpress/hooks';
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloInputControl,
+    ZoloCardDivider,
     ResAlignmentControl,
     ResRangeControl,
     ColorControl,
@@ -132,7 +135,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <InputControl
+                            <ZoloInputControl
                                 label={__('Initial open item', 'zoloblocks')}
                                 value={tabActiveItemNo}
                                 onChange={(nextValue) =>
@@ -160,7 +163,7 @@ function Inspector(props) {
                                 />
                             </div>
                             {tabsLayout === 'vertical' && (
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Verticle Style', 'zoloblocks')}
                                     value={verticalPreset}
                                     options={applyFilters('zoloblocks.tabs.verticalPreset', VERTICAL_PRESETS) || []}
@@ -168,7 +171,7 @@ function Inspector(props) {
                                 />
                             )}
                             {showIcon && (
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Content Style', 'zoloblocks')}
                                     value={tabContentStyle}
                                     options={CONTENT_STYLES}
@@ -195,29 +198,29 @@ function Inspector(props) {
                                 </div>
                             )}
                             <div className="zolo-custom-heading">{__('Show/hide elements')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Icon', 'zoloblocks')}
                                 checked={showIcon}
                                 onChange={(newShowIcon) => setAttributes({ showIcon: newShowIcon })}
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Title', 'zoloblocks')}
                                 checked={showTitle}
                                 onChange={(newShowTitle) => setAttributes({ showTitle: newShowTitle })}
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Description', 'zoloblocks')}
                                 checked={showDesc}
                                 onChange={(newShowDesc) => setAttributes({ showDesc: newShowDesc })}
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Active Indicator', 'zoloblocks')}
                                 checked={showIndicator}
                                 onChange={(newIndicator) => setAttributes({ showIndicator: newIndicator })}
                             />
 
                             {showIndicator && (
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Indicator Style', 'zoloblocks')}
                                     value={tabIndicatorStyle}
                                     options={INDICATOR_STYLES}
@@ -324,7 +327,7 @@ function Inspector(props) {
                                             ]}
                                         />
                                     </div>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                 </>
                             )}
 
@@ -334,7 +337,7 @@ function Inspector(props) {
                                 controlName={TAB_WRAP_PADDING}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={TAB_WRAP_BORDER} requiredProps={requiredProps} />
                             <BoxShadowControl controlName={TAB_WRAP_BSHADOW} requiredProps={requiredProps} />
                             <ResDimensionsControl
@@ -365,7 +368,7 @@ function Inspector(props) {
                                                     </div>
                                                 </>
                                             )}
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <NormalBGControl
                                                 requiredProps={requiredProps}
                                                 controlName={TAB_NORMAL_BGCOLOR}
@@ -376,7 +379,7 @@ function Inspector(props) {
                                                 controlName={TAB_ITEM_PADDING}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={TAB_ITEM_BORDER}
@@ -397,7 +400,7 @@ function Inspector(props) {
                                                 controlName={TAB_HOVER_BGCOLOR}
                                                 noMainBGImg={false}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Border Color', 'zoloblocks')}
                                                 color={itemBorderColors?.hover}
@@ -420,7 +423,7 @@ function Inspector(props) {
                                                 controlName={TAB_ACTIVE_BGCOLOR}
                                                 noMainBGImg={false}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Border Color', 'zoloblocks')}
                                                 color={itemBorderColors?.active}
@@ -467,7 +470,7 @@ function Inspector(props) {
                                                     max={100}
                                                     step={1}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <NormalBGControl requiredProps={requiredProps} controlName={ICON_BG} noMainBGImg={true} />
                                                 <ResDimensionsControl
                                                     label={__('Padding', 'zoloblocks')}
@@ -479,7 +482,7 @@ function Inspector(props) {
                                                     controlName={ICON_MARGIN}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={ICON_BORDER}
@@ -554,7 +557,7 @@ function Inspector(props) {
                                                 typoPrefixConstant={TITLE_TYPO}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ResDimensionsControl
                                                 label={__('Margin', 'zoloblocks')}
                                                 controlName={TITLE_MARGIN}
@@ -621,7 +624,7 @@ function Inspector(props) {
                                                 typoPrefixConstant={DESC_TYPOGRAPHY}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ResDimensionsControl
                                                 label={__('Margin', 'zoloblocks')}
                                                 controlName={DESC_MARGIN}

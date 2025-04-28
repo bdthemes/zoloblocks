@@ -4,7 +4,7 @@ import WithResDeviceBtnRaw from '../with-res-device-btn-raw';
 import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
 
-import { RangeControl } from '@wordpress/components';
+import { ZoloRangeControl } from '../core-controls';
 
 const ResRangeControlRaw = ({
     label,
@@ -42,7 +42,7 @@ const ResRangeControlRaw = ({
                     </UnitsBtn>
 
                     <WithResDeviceBtnRaw label={label}>
-                        <RangeControl
+                        <ZoloRangeControl
                             value={deskVal}
                             onChange={(val) => onDeskChange(val)}
                             min={50}
@@ -59,7 +59,7 @@ const ResRangeControlRaw = ({
                         {hasTabVal && <ResetBtn onReset={onReset} />}
                     </UnitsBtn>
                     <WithResDeviceBtnRaw label={label}>
-                        <RangeControl
+                        <ZoloRangeControl
                             value={tabVal}
                             onChange={(val) => onTabChange(val)}
                             min={50}
@@ -76,7 +76,7 @@ const ResRangeControlRaw = ({
                         {hasMobVal && <ResetBtn onReset={onReset} />}
                     </UnitsBtn>
                     <WithResDeviceBtnRaw label={label}>
-                        <RangeControl
+                        <ZoloRangeControl
                             value={mobVal}
                             onChange={(val) => onMobChange(val)}
                             min={50}

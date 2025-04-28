@@ -1,25 +1,18 @@
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, CardDivider } from '@wordpress/components';
+
 const {
+    ZoloCardDivider,
     HeaderTabs,
-    ResAlignmentControl,
     ResRangeControl,
-    ColorControl,
     BorderControl,
     ResDimensionsControl,
-    TypographyDropdown,
-    TabPanelControl,
     NormalBGControl,
     BoxShadowControl,
-    LinkControl,
     IconicBtnGroup,
     AdvancedOptions,
-    ZoloIconPicker,
     ZoloPanelBody,
-    ToggleGroup,
-    ResSelectControl,
 } = window.zoloModule;
 
 import {
@@ -120,7 +113,7 @@ const Inspector = (props) => {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             /> */}
-                            <CardDivider />
+                            <ZoloCardDivider />
 
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}

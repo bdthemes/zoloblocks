@@ -1,11 +1,8 @@
-import {
-    __experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
-} from '@wordpress/components';
+import { ZoloToggleGroupControl, ZoloToggleGroupControlOption } from '../core-controls';
 
 const UnitBtn = ({ selectedUnit, unitTypes, onClick }) => {
     return (
-        <ToggleGroupControl
+        <ZoloToggleGroupControl
             // label="Units"
             value={selectedUnit}
             onChange={(value) => onClick(value)}
@@ -15,9 +12,15 @@ const UnitBtn = ({ selectedUnit, unitTypes, onClick }) => {
             __next40pxDefaultSize
         >
             {unitTypes.map((unit) => (
-                <ToggleGroupControlOption showTooltip={true} key={unit.value} value={unit.value} label={unit.label} className="zb-unit-control-btn" />
+                <ZoloToggleGroupControlOption
+                    showTooltip={true}
+                    key={unit.value}
+                    value={unit.value}
+                    label={unit.label}
+                    className="zb-unit-control-btn"
+                />
             ))}
-        </ToggleGroupControl>
+        </ZoloToggleGroupControl>
     );
 };
 

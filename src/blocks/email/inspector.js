@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import {ToggleControl, TextareaControl, CardDivider} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -10,6 +9,9 @@ import { __ } from '@wordpress/i18n';
  */
 
 const {
+    ZoloToggleControl,
+    ZoloTextareaControl,
+    ZoloCardDivider,
     ResRangeControl,
     ColorControl,
     TypographyDropdown,
@@ -58,7 +60,7 @@ function Inspector(props) {
         showRequiredSymbol,
         requiredColor,
         defaultValue,
-        customNameAttribute
+        customNameAttribute,
     } = attributes;
 
     const requiredProps = {
@@ -77,25 +79,25 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Show Label', 'zoloblocks')}
                                 checked={showLabel}
                                 onChange={() => setAttributes({ showLabel: !showLabel })}
                             />
                             {preset !== 'style-3' && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Show Field Icon', 'zoloblocks')}
                                     checked={showIcon}
                                     onChange={() => setAttributes({ showIcon: !showIcon })}
                                 />
                             )}
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Is It Required Field?', 'zoloblocks')}
                                 checked={isRequired}
                                 onChange={() => setAttributes({ isRequired: !isRequired })}
                             />
                             {isRequired && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Show Required Symbol', 'zoloblocks')}
                                     checked={showRequiredSymbol}
                                     onChange={() => setAttributes({ showRequiredSymbol: !showRequiredSymbol })}
@@ -119,7 +121,7 @@ function Inspector(props) {
                                     onChange={(v) => setAttributes({ placeholder: v })}
                                 />
                             )}
-                            <div className='zolo-flex-col-control'>
+                            <div className="zolo-flex-col-control">
                                 <TextControl
                                     label={__('Email Validation Message', 'zoloblocks')}
                                     value={emailValidationMsg}
@@ -129,8 +131,8 @@ function Inspector(props) {
                                 />
                             </div>
                             {isRequired && (
-                                <div className='zolo-flex-col-control'>
-                                    <TextareaControl
+                                <div className="zolo-flex-col-control">
+                                    <ZoloTextareaControl
                                         label={__('Required Message', 'zoloblocks')}
                                         help={__('This message will be shown when the field is required', 'zoloblocks')}
                                         value={requiredMsg}
@@ -154,28 +156,28 @@ function Inspector(props) {
                                     }}
                                 />
                             )}
-                          <CardDivider />
-                          <TextControl
-                            label={__('Default Value', 'zoloblocks')}
-                            value={defaultValue || ''}
-                            onChange={(v) => setAttributes({ defaultValue: v })}
-                            help={__('Leave empty if no default value is needed.', 'zoloblocks')}
-                          />
-                          <CardDivider />
-                          <div className="zolo-flex-col-control">
+                            <ZoloCardDivider />
                             <TextControl
-                              label={__('Custom Name Attribute', 'zoloblocks')}
-                              value={customNameAttribute || ''}
-                              onChange={(v) => {
-                                const val = v?.replace(/[^a-zA-Z0-9]/g, '_').replace(/\s+/g, '_')
-                                setAttributes({customNameAttribute: val});
-                              }}
-                              help={__(
-                                'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
-                                'zoloblocks'
-                              )}
+                                label={__('Default Value', 'zoloblocks')}
+                                value={defaultValue || ''}
+                                onChange={(v) => setAttributes({ defaultValue: v })}
+                                help={__('Leave empty if no default value is needed.', 'zoloblocks')}
                             />
-                          </div>
+                            <ZoloCardDivider />
+                            <div className="zolo-flex-col-control">
+                                <TextControl
+                                    label={__('Custom Name Attribute', 'zoloblocks')}
+                                    value={customNameAttribute || ''}
+                                    onChange={(v) => {
+                                        const val = v?.replace(/[^a-zA-Z0-9]/g, '_').replace(/\s+/g, '_');
+                                        setAttributes({ customNameAttribute: val });
+                                    }}
+                                    help={__(
+                                        'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
+                                        'zoloblocks'
+                                    )}
+                                />
+                            </div>
                         </ZoloPanelBody>
                     </>
                 }

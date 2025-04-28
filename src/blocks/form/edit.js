@@ -76,7 +76,6 @@ export default function Edit(props) {
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
-    
 
     return (
         <>
@@ -86,16 +85,9 @@ export default function Edit(props) {
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
                 <form className="zolo-contact-form zolo-contact-form-style-1 zolo-field-icon-style-1" id={formId}>
-                    <InnerBlocks
-                        template={[['zolo/text-field'], ['zolo/email'], ['zolo/textarea']]}
-                        renderAppender={() => null}
-                    />
+                    <InnerBlocks template={[['zolo/text-field'], ['zolo/email'], ['zolo/textarea']]} renderAppender={() => null} />
 
-                    {
-                        (isSelected || hasSelectedInnerBlock) && (
-                            <ButtonBlockAppender rootClientId={clientId} />
-                        )
-                    }
+                    {(isSelected || hasSelectedInnerBlock) && <ButtonBlockAppender rootClientId={clientId} />}
 
                     <div className="zolo-field-item zolo-field-icon zolo-field-icon-style-1">
                         <div className="zolo-submit-btn">

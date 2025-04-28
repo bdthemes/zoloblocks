@@ -4,11 +4,11 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import {SelectControl} from "@wordpress/components";
 /**
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
     ResRangeControl,
     HeaderTabs,
     IconicBtnGroup,
@@ -16,7 +16,7 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ResGapControl,
-    LinkControl
+    LinkControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -29,7 +29,7 @@ import {
     FLEX_JUSTIFY,
     FLEX_WRAP,
     MIN_HEIGHT,
-    TAG_LIST
+    TAG_LIST,
 } from './constants';
 
 import {
@@ -56,7 +56,7 @@ function Inspector(props) {
         TABFlexDirectionZRPAlign,
         MOBFlexDirectionZRPAlign,
         tagName,
-        link
+        link,
     } = attributes;
 
     const requiredProps = {
@@ -82,7 +82,6 @@ function Inspector(props) {
     else if (resMode === 'Tablet') justifyContentOptions = isRowDirectionTab;
     else if (resMode === 'Mobile') justifyContentOptions = isRowDirectionMob;
     justifyContentOptions ? (justifyContentOptions = FLEX_JUSTIFIES_ROW) : (justifyContentOptions = FLEX_JUSTIFIES);
-
 
     return (
         <InspectorControls key="controls">
@@ -179,21 +178,21 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         {isBlockRootParent && (
-                          <ZoloPanelBody title={__('Additional Options', 'zoloblocks')} panelProps={props}>
-                             <SelectControl
-                                label={__('HTML Tag', 'zoloblocks')}
-                                value={tagName}
-                                options={TAG_LIST}
-                                onChange={(tagName) => setAttributes({tagName})}
-                             />
-                            {tagName==='a'&&(
-                              <LinkControl
-                                label={__('URL', 'zoloblocks')}
-                                value={link}
-                                onChange={(value) => setAttributes({ link: value })}
-                              />
-                            )}
-                          </ZoloPanelBody>
+                            <ZoloPanelBody title={__('Additional Options', 'zoloblocks')} panelProps={props}>
+                                <ZoloSelectControl
+                                    label={__('HTML Tag', 'zoloblocks')}
+                                    value={tagName}
+                                    options={TAG_LIST}
+                                    onChange={(tagName) => setAttributes({ tagName })}
+                                />
+                                {tagName === 'a' && (
+                                    <LinkControl
+                                        label={__('URL', 'zoloblocks')}
+                                        value={link}
+                                        onChange={(value) => setAttributes({ link: value })}
+                                    />
+                                )}
+                            </ZoloPanelBody>
                         )}
                     </>
                 }

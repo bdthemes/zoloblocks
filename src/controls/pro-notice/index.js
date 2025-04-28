@@ -9,7 +9,7 @@ const ProNotice = ({ title = '', btnLabel = '', btnUrl = '' }) => {
                 height={100}
                 viewBox="0 0 100 100"
                 fill="none"
-                >
+            >
                 <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -17,17 +17,10 @@ const ProNotice = ({ title = '', btnLabel = '', btnUrl = '' }) => {
                     fill="url(#paint0_linear_1914_4408)"
                 />
                 <defs>
-                    <linearGradient
-                    id="paint0_linear_1914_4408"
-                    x1={15}
-                    y1="45.5"
-                    x2="87.5"
-                    y2={46}
-                    gradientUnits="userSpaceOnUse"
-                    >
-                    <stop stopColor="#B47A1A" />
-                    <stop offset="0.465234" stopColor="#FADD55" />
-                    <stop offset={1} stopColor="#B47A1A" />
+                    <linearGradient id="paint0_linear_1914_4408" x1={15} y1="45.5" x2="87.5" y2={46} gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#B47A1A" />
+                        <stop offset="0.465234" stopColor="#FADD55" />
+                        <stop offset={1} stopColor="#B47A1A" />
                     </linearGradient>
                 </defs>
             </svg>

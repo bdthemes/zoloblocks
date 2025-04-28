@@ -1,8 +1,24 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, CardDivider, SelectControl, TextControl } from '@wordpress/components';
 import objAttributes from './attributes';
 import { applyFilters } from '@wordpress/hooks';
+
+const {
+    ZoloToggleControl,
+    ZoloCardDivider,
+    ZoloSelectControl,
+    ZoloTextControl,
+    ResDimensionsControl,
+    BorderControl,
+    BoxShadowControl,
+    ColorControl,
+    HeaderTabs,
+    AdvancedOptions,
+    ZoloPanelBody,
+    TabPanelControl,
+    ResRangeControl,
+    ResAlignmentControl,
+} = window.zoloModule;
 
 import {
     //thumbnail
@@ -17,18 +33,6 @@ import {
 
 import { DEFAULT_ALIGNS, THUMBNAIL_SIZE } from '@/global/constants';
 
-const {
-    ResDimensionsControl,
-    BorderControl,
-    BoxShadowControl,
-    ColorControl,
-    HeaderTabs,
-    AdvancedOptions,
-    ZoloPanelBody,
-    TabPanelControl,
-    ResRangeControl,
-    ResAlignmentControl,
-} = window.zoloModule;
 export default function Inspector(props) {
     const { attributes, setAttributes, block } = props;
     const {
@@ -65,34 +69,34 @@ export default function Inspector(props) {
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Show/hide elements', 'zoloblocks')}
                             </div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Link to Post', 'zoloblocks')}
                                 checked={isLink}
                                 onChange={(isLink) => setAttributes({ isLink })}
                             />
                             {isLink && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Open in new tab', 'zoloblocks')}
                                         onChange={(value) => setAttributes({ linkTarget: value ? '_blank' : '_self' })}
                                         checked={linkTarget === '_blank'}
                                     />
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Link rel', 'zoloblocks')}
                                         value={linkRel}
                                         onChange={(linkRel) => setAttributes({ linkRel })}
                                     />
                                 </>
                             )}
-                            <CardDivider />
-                            <ToggleControl
+                            <ZoloCardDivider />
+                            <ZoloToggleControl
                                 label={__('Image From Post Content', 'zoloblocks')}
                                 checked={useFirstImageFromPost}
                                 onChange={(useFirstImageFromPost) => setAttributes({ useFirstImageFromPost })}
                                 help={__("Enable 'Use first image from post content' if no featured image is set.", 'zoloblocks')}
                             />
-                            <CardDivider />
-                            <SelectControl
+                            <ZoloCardDivider />
+                            <ZoloSelectControl
                                 label={__('Resolution', 'zoloblocks')}
                                 value={thumbnailSize}
                                 options={THUMBNAIL_SIZE}
@@ -104,7 +108,7 @@ export default function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={DEFAULT_ALIGNS}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Custom Class', 'zoloblocks')}
                                 value={customClass}
                                 onChange={(value) => setAttributes({ customClass: value })}
@@ -136,7 +140,7 @@ export default function Inspector(props) {
                                             max={1000}
                                             step={1}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={THUMBNAIL_BORDER}
@@ -153,7 +157,7 @@ export default function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         {cssFilters && cssFilters.length > 0 && cssFilters}
                                     </>
                                 }
@@ -173,7 +177,7 @@ export default function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         {cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}
                                     </>
                                 }

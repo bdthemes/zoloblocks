@@ -1,16 +1,8 @@
 import { escapeHTML } from '@wordpress/escape-html';
 import { safeDecodeURI } from '@wordpress/url';
 
-export const updateAttributes = (
-    updatedValue = {},
-    setAttributes,
-    blockAttributes = {}
-) => {
-    const {
-        label: originalLabel = '',
-        kind: originalKind = '',
-        type: originalType = '',
-    } = blockAttributes;
+export const updateAttributes = (updatedValue = {}, setAttributes, blockAttributes = {}) => {
+    const { label: originalLabel = '', kind: originalKind = '', type: originalType = '' } = blockAttributes;
 
     const {
         title: newLabel = '', // the title of any provided Post.
@@ -24,21 +16,14 @@ export const updateAttributes = (
     const newLabelWithoutHttp = newLabel.replace(/http(s?):\/\//gi, '');
     const newUrlWithoutHttp = newUrl.replace(/http(s?):\/\//gi, '');
 
-    const useNewLabel =
-        newLabel &&
-        newLabel !== originalLabel &&
-        newLabelWithoutHttp !== newUrlWithoutHttp;
-    const label = useNewLabel
-        ? escapeHTML(newLabel)
-        : originalLabel || escapeHTML(newUrlWithoutHttp);
+    const useNewLabel = newLabel && newLabel !== originalLabel && newLabelWithoutHttp !== newUrlWithoutHttp;
+    const label = useNewLabel ? escapeHTML(newLabel) : originalLabel || escapeHTML(newUrlWithoutHttp);
 
     const type = newType === 'post_tag' ? 'tag' : newType.replace('-', '_');
 
-    const isBuiltInType =
-        ['post', 'page', 'tag', 'category'].indexOf(type) > -1;
+    const isBuiltInType = ['post', 'page', 'tag', 'category'].indexOf(type) > -1;
 
-    const isCustomLink =
-        (!newKind && !isBuiltInType) || newKind === 'custom';
+    const isCustomLink = (!newKind && !isBuiltInType) || newKind === 'custom';
     const kind = isCustomLink ? 'custom' : newKind;
 
     setAttributes({

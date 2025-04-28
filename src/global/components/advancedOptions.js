@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, SelectControl, TextControl } from '@wordpress/components';
+import { ZoloToggleControl, ZoloSelectControl, ZoloTextControl } from '../../controls/core-controls';
 
 /**
  * Internal dependencies
@@ -222,7 +222,7 @@ export const AdvancedOptions = (props) => {
                     }
                 >
                     <div className="zolo-flex-row-control">
-                        <SelectControl
+                        <ZoloSelectControl
                             label={__('Position', 'zoloblocks')}
                             options={CONTENT_POSITIONS}
                             onChange={(v) =>
@@ -322,7 +322,7 @@ export const AdvancedOptions = (props) => {
                     )}
                 </PopoverControl>
                 <div className="zolo-inline-control-wrapper">
-                    <TextControl
+                    <ZoloTextControl
                         label={__('CSS ID', 'zoloblocks')}
                         className="zolo-css-id"
                         onChange={(value) => {
@@ -429,17 +429,17 @@ export const AdvancedOptions = (props) => {
             {globalConfig?.responsiveControls && (
                 <>
                     <ZoloPanelBody title={__('Display Condition', 'zoloblocks')} panelProps={props} extraPanel={true}>
-                        <ToggleControl
+                        <ZoloToggleControl
                             label={__('Hide on Desktop', 'zoloblocks')}
                             checked={responsiveness?.hideDesktop || false}
                             onChange={() => handleResponsiveness('hideDesktop', !responsiveness.hideDesktop, 'zolo-hide-desktop')}
                         />
-                        <ToggleControl
+                        <ZoloToggleControl
                             label={__('Hide on Tablet', 'zoloblocks')}
                             checked={responsiveness?.hideTab || false}
                             onChange={() => handleResponsiveness('hideTab', !responsiveness.hideTab, 'zolo-hide-tab')}
                         />
-                        <ToggleControl
+                        <ZoloToggleControl
                             label={__('Hide on Mobile', 'zoloblocks')}
                             checked={responsiveness?.hideMobile || false}
                             onChange={() => handleResponsiveness('hideMobile', !responsiveness.hideMobile, 'zolo-hide-mobile')}
@@ -453,7 +453,7 @@ export const AdvancedOptions = (props) => {
             {interactions && interactions.length > 0 && interactions}
 
             <ZoloPanelBody title={__('Transform', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
-                <ToggleControl
+                <ZoloToggleControl
                     label={__('Transform', 'zoloblocks')}
                     checked={transformAnimationActive}
                     onChange={() => {
@@ -532,7 +532,7 @@ export const AdvancedOptions = (props) => {
                                             noUnits={true}
                                         />
                                     )}
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Rotate 3D', 'zoloblocks')}
                                         checked={transformRotate3DActive}
                                         onChange={() => {
@@ -580,7 +580,7 @@ export const AdvancedOptions = (props) => {
                                         hasValCheck('transformScale', attributes)
                                     }
                                 >
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Keep Proportions', 'zoloblocks')}
                                         checked={scaleProportionally}
                                         onChange={() => {
@@ -654,7 +654,7 @@ export const AdvancedOptions = (props) => {
                                     onReset={() => resetAtt(['transformOriginX', 'transformOriginY'], setAttributes)}
                                     hasValue={hasValCheck('transformOriginX', attributes) || hasValCheck('transformOriginY', attributes)}
                                 >
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Flip Horizontal', 'zoloblocks')}
                                         checked={transformFlipHorizontal}
                                         onChange={() => {
@@ -663,7 +663,7 @@ export const AdvancedOptions = (props) => {
                                             });
                                         }}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Flip Vertical', 'zoloblocks')}
                                         checked={transformFlipVertical}
                                         onChange={() => {
@@ -753,7 +753,7 @@ export const AdvancedOptions = (props) => {
                                             noUnits={true}
                                         />
                                     )}
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Rotate 3D', 'zoloblocks')}
                                         checked={transformRotate3DActiveHover}
                                         onChange={() => {
@@ -792,7 +792,7 @@ export const AdvancedOptions = (props) => {
                                     )}
                                 </PopoverControl>
                                 <PopoverControl label={__('Scale', 'zoloblocks')} icon={SCALE_ICON}>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Keep Proportions', 'zoloblocks')}
                                         checked={scaleProportionallyHover}
                                         onChange={() => {
@@ -856,7 +856,7 @@ export const AdvancedOptions = (props) => {
                                     />
                                 </PopoverControl>
                                 <PopoverControl label={__('Flip', 'zoloblocks')} icon={FLIP_ICON}>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Flip Horizontal', 'zoloblocks')}
                                         checked={transformFlipHorizontalHover}
                                         onChange={() => {
@@ -865,7 +865,7 @@ export const AdvancedOptions = (props) => {
                                             });
                                         }}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Flip Vertical', 'zoloblocks')}
                                         checked={transformFlipVerticalHover}
                                         onChange={() => {

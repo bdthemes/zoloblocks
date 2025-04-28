@@ -1,4 +1,13 @@
-const { generateResRangeAttributies,generateResAlignmentAttributies, generateBorderAttributies, generateResCounterAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateTypographyAttributes, generateGapAttributes } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateResAlignmentAttributies,
+    generateBorderAttributies,
+    generateResCounterAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+    generateTypographyAttributes,
+    generateGapAttributes,
+} = window.zoloModule;
 
 import {
     BUTTON_PADDING,

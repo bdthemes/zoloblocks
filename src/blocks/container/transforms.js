@@ -10,16 +10,14 @@ const transforms = {
                 const conatinerInnerBlocks = blocks.map((block) => {
                     function getInnerBlocks(innerBlocks) {
                         if (innerBlocks) {
-                            return innerBlocks.map((innerBlock) => createBlock(innerBlock.name, innerBlock.attributes, getInnerBlocks(innerBlock.innerBlocks)));
+                            return innerBlocks.map((innerBlock) =>
+                                createBlock(innerBlock.name, innerBlock.attributes, getInnerBlocks(innerBlock.innerBlocks))
+                            );
                         }
                         return [];
                     }
-                    
-                    return createBlock(
-                        block.name,
-                        block.attributes,
-                        getInnerBlocks(block.innerBlocks)
-                    );
+
+                    return createBlock(block.name, block.attributes, getInnerBlocks(block.innerBlocks));
                 });
 
                 return createBlock(
@@ -33,41 +31,33 @@ const transforms = {
             },
         },
     ],
-    ungroup: ( attributes, innerBlocks ) => innerBlocks,
+    ungroup: (attributes, innerBlocks) => innerBlocks,
     to: [
-		{
-			type: 'block',
-			isMultiBlock: true,
-			blocks: [ BLOCK_NAME, ],
-			__experimentalConvert(blocks) {
+        {
+            type: 'block',
+            isMultiBlock: true,
+            blocks: [BLOCK_NAME],
+            __experimentalConvert(blocks) {
                 const conatinerInnerBlocks = blocks.map((block) => {
                     function getInnerBlocks(innerBlocks) {
                         if (innerBlocks) {
                             return innerBlocks.map((innerBlock) => {
                                 let innerBlockAttributes = innerBlock.attributes;
-                                if (innerBlockAttributes?.isBlockRootParent){
+                                if (innerBlockAttributes?.isBlockRootParent) {
                                     innerBlockAttributes.isBlockRootParent = false;
                                 }
-                                return createBlock(
-                                    innerBlock.name,
-                                    innerBlockAttributes,
-                                    getInnerBlocks(innerBlock.innerBlocks)
-                                );
+                                return createBlock(innerBlock.name, innerBlockAttributes, getInnerBlocks(innerBlock.innerBlocks));
                             });
                         }
                         return [];
                     }
 
                     let blockAttributes = block.attributes;
-                    if (blockAttributes?.isBlockRootParent){
+                    if (blockAttributes?.isBlockRootParent) {
                         blockAttributes.isBlockRootParent = false;
                     }
-                    
-                    return createBlock(
-                        block.name,
-                        blockAttributes,
-                        getInnerBlocks(block.innerBlocks)
-                    );
+
+                    return createBlock(block.name, blockAttributes, getInnerBlocks(block.innerBlocks));
                 });
 
                 return createBlock(
@@ -78,9 +68,8 @@ const transforms = {
                     conatinerInnerBlocks
                 );
             },
-		},
-	],
+        },
+    ],
 };
-
 
 export default transforms;

@@ -1,4 +1,4 @@
-import { Modal, ToggleControl } from '@wordpress/components';
+import { ZoloModal, ZoloToggleControl } from '../../../controls/core-controls';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
@@ -11,7 +11,7 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
     return (
         <>
             {proPanel && (
-                <Modal className="zolo-pro-modal" onRequestClose={() => setProPanel(false)}>
+                <ZoloModal className="zolo-pro-modal" onRequestClose={() => setProPanel(false)}>
                     <svg
                         className="zolo-pro-modal-icon"
                         xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
                             />
                         </svg>
                     </a>
-                </Modal>
+                </ZoloModal>
             )}
             <div
                 className={classNames('zolo-single-block', {
@@ -141,9 +141,9 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
                                 {isPro ? (
                                     <>
                                         {zoloBlocks?.has_pro === '1' ? (
-                                            <ToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
+                                            <ZoloToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
                                         ) : (
-                                            <ToggleControl
+                                            <ZoloToggleControl
                                                 checked={false}
                                                 onChange={() => setProPanel(true)}
                                                 __nextHasNoMarginBottom={true}
@@ -151,7 +151,7 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
                                         )}
                                     </>
                                 ) : (
-                                    <ToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
+                                    <ZoloToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
                                 )}
                             </>
                         ) : (

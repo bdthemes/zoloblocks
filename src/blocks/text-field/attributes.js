@@ -116,10 +116,10 @@ const attributes = {
         type: 'string',
     },
     defaultValue: {
-      type: 'string',
+        type: 'string',
     },
     customNameAttribute: {
-      type: 'string',
+        type: 'string',
     },
 };
 

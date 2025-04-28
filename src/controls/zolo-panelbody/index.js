@@ -1,4 +1,4 @@
-import { PanelBody } from '@wordpress/components';
+import { ZoloCorePanelBody } from '../core-controls';
 import classNames from 'classnames';
 
 const ZoloPanelBody = ({
@@ -37,7 +37,7 @@ const ZoloPanelBody = ({
     const isOpened = panelName === title.replace(' ', '_').toLowerCase() || (firstOpen && panelName === 'first');
 
     return (
-        <PanelBody
+        <ZoloCorePanelBody
             title={title}
             onToggle={handleToggle}
             opened={isOpened}
@@ -50,7 +50,7 @@ const ZoloPanelBody = ({
             buttonProps={isDisabled ? { disabled: true } : {}}
         >
             {children}
-        </PanelBody>
+        </ZoloCorePanelBody>
     );
 };
 

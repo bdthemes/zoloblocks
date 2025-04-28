@@ -1,8 +1,8 @@
+import { ZoloNotice, ZoloModal, ZoloFormFileUpload } from '../../controls/core-controls';
 import { PluginBlockSettingsMenuItem } from '@wordpress/editor';
 import { registerPlugin } from '@wordpress/plugins';
 import { select, dispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { Notice, Modal, FormFileUpload } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 
 // import style
@@ -47,13 +47,13 @@ const ZoloExportBlock = ({ clientId }) => {
                 onClick={() => setImportPanel(true)}
             />
             {importPanel && (
-                <Modal
+                <ZoloModal
                     className="zolo-import-block-modal"
                     title={__('Import Pattern', 'zoloblocks')}
                     onRequestClose={() => setImportPanel(false)}
                 >
                     <div className="zolo-export-block-modal__content">
-                        <FormFileUpload accept=".json" onChange={(e) => handleFileUpload(e.currentTarget.files)}>
+                        <ZoloFormFileUpload accept=".json" onChange={(e) => handleFileUpload(e.currentTarget.files)}>
                             {patternName ? (
                                 patternName
                             ) : (
@@ -85,7 +85,7 @@ const ZoloExportBlock = ({ clientId }) => {
                                     </svg>
                                 </>
                             )}
-                        </FormFileUpload>
+                        </ZoloFormFileUpload>
 
                         <button
                             className="zolo-export-pattern-btn"
@@ -116,7 +116,7 @@ const ZoloExportBlock = ({ clientId }) => {
                             {__('Import Pattern', 'zoloblocks')}
                         </button>
                     </div>
-                </Modal>
+                </ZoloModal>
             )}
         </>
     );

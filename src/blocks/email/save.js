@@ -1,7 +1,7 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon,generateUniqueName } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, generateUniqueName } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -19,7 +19,7 @@ const Save = ({ attributes }) => {
         emailValidationMsg,
         showRequiredSymbol,
         defaultValue,
-        customNameAttribute
+        customNameAttribute,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -51,9 +51,9 @@ const Save = ({ attributes }) => {
                     <input
                         type="email"
                         value={defaultValue || ''}
-                        name={generateUniqueName(uniqueId,customNameAttribute,"email")}
+                        name={generateUniqueName(uniqueId, customNameAttribute, 'email')}
                         required={isRequired}
-                        placeholder={__(placeholder,'zoloblocks')}
+                        placeholder={__(placeholder, 'zoloblocks')}
                         {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
                         data-pristine-email-message={emailValidationMsg}
                     />

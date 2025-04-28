@@ -2,7 +2,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
-import { RangeControl } from '@wordpress/components';
+import { ZoloRangeControl } from '../core-controls';
 
 const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, neededProps, max = null }) => {
     const { label, setAttributes, controlName, isLinked } = neededProps;
@@ -18,7 +18,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
             <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName}>
                 <div className={`input-container ${isLinked ? 'input-grouped' : 'input-separated'}`}>
                     {isLinked && (
-                        <RangeControl
+                        <ZoloRangeControl
                             value={gap}
                             onChange={(value) =>
                                 setAttributes({
@@ -33,7 +33,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                     {!isLinked && (
                         <>
                             <div className="input-wrap">
-                                <RangeControl
+                                <ZoloRangeControl
                                   className="zolo-flex-col-control"
                                   label={__('Column', 'zoloblocks')}
                                   value={colGap}
@@ -46,7 +46,7 @@ const ResRange = ({ gap, gapAttr, rowGap, rowGapAttr, colGap, colGapAttr, needed
                                   min={0}
                                   max={max || 100}
                                 />
-                                <RangeControl
+                                <ZoloRangeControl
                                     className="zolo-flex-col-control"
                                     label={__('Row', 'zoloblocks')}
                                     value={rowGap}

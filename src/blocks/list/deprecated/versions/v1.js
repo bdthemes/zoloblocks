@@ -48,7 +48,11 @@ const v1 = {
                                     <div className="zolo-list-icon-and-content-wrap">
                                         {iconToggle && preset !== 'zolo-list-style-1' && (
                                             <div className="zolo-list-icon">
-                                                {profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}
+                                                {profile.icon ? (
+                                                    <DisplayZoloIcon icon={profile.icon} />
+                                                ) : (
+                                                    <DisplayZoloIcon icon={globalIcon} />
+                                                )}
                                             </div>
                                         )}
                                         {preset !== 'zolo-list-style-1' && (
@@ -70,7 +74,11 @@ const v1 = {
                                     <>
                                         {iconToggle && preset !== 'zolo-list-style-1' && (
                                             <div className="zolo-list-icon">
-                                                {profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}
+                                                {profile.icon ? (
+                                                    <DisplayZoloIcon icon={profile.icon} />
+                                                ) : (
+                                                    <DisplayZoloIcon icon={globalIcon} />
+                                                )}
                                             </div>
                                         )}
                                         {preset !== 'zolo-list-style-1' && (
@@ -100,7 +108,7 @@ const v1 = {
                 {renderHookAfter && renderHookAfter}
             </div>
         );
-    }
+    },
 };
 
 export default v1;

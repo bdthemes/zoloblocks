@@ -1,4 +1,4 @@
-import { BaseControl, SelectControl } from '@wordpress/components';
+import { ZoloBaseControl, ZoloSelectControl } from '../../../controls/core-controls';
 import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelect } from '@wordpress/data';
 import classNames from 'classnames';
@@ -7,6 +7,7 @@ import InnerPageTemplate from '../../page-templates/inner-page-template';
 import PreLoader from '../../preloader';
 import { STORE_NAME } from '../../store';
 import { useRecords, useTags } from '../../utils';
+
 const Content = ({ handleImportTemplate, isLoading }) => {
     const { setFilters } = useDispatch(STORE_NAME);
     const { activeTab, filters } = useSelect((select) => {
@@ -36,7 +37,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
                 <div className="zolo-secondary-head">
                     <div className="secondary-header-item">
                         <div className="secondary-item">
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Sort By :', 'zoloblocks')}
                                 options={[
                                     { label: __('Newest', 'zoloblocks'), value: 'DESC' },
@@ -52,7 +53,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
                         </div>
 
                         <div className="secondary-item zolo-tp-tags-item">
-                            <BaseControl label={__('Popular Tags :', 'zoloblocks')} className="zolo-tags">
+                            <ZoloBaseControl label={__('Popular Tags :', 'zoloblocks')} className="zolo-tags">
                                 <div className="tags-wrap">
                                     <div className="tags-btn-wrap">
                                         {tags &&
@@ -105,7 +106,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
                                         </svg>
                                     </button>
                                 </div>
-                            </BaseControl>
+                            </ZoloBaseControl>
                         </div>
                     </div>
                 </div>

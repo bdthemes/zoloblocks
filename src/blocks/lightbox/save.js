@@ -29,7 +29,6 @@ export default function Save(props) {
         className: classnames(uniqueId, classArrayToStr(parentClasses), `zolo-lightbox-${lightboxType}`),
     });
 
-
     return (
         <div {...blocksProps}>
             <a href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1" data-fslightbox={uniqueId} data-caption={contentCaption}>

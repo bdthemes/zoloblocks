@@ -1,4 +1,4 @@
-import { Button, Modal } from '@wordpress/components';
+import { ZoloButton, ZoloModal } from '../controls/core-controls';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { getTextContent } from '@wordpress/rich-text';
 import { useEffect, useState } from '@wordpress/element';
@@ -74,7 +74,7 @@ function ZoloBlocksTemplateLibraryButton() {
     }, [currentPostType, isPageEmpty]);
 
     const LibraryButton = () => (
-        <Button onClick={() => setIsOpen(true)} className="zolo-library-open-button">
+        <ZoloButton onClick={() => setIsOpen(true)} className="zolo-library-open-button">
             <svg width={24} height={24} viewBox="0 0 24 24" fill="none">
                 <path
                     fillRule="evenodd"
@@ -85,7 +85,7 @@ function ZoloBlocksTemplateLibraryButton() {
             </svg>
 
             <span className="zolo-template-label">{__('Template Library', 'zoloblocks')}</span>
-        </Button>
+        </ZoloButton>
     );
 
     const renderButton = (selector) => {
@@ -102,21 +102,21 @@ function ZoloBlocksTemplateLibraryButton() {
     const handleImportTemplate = async (content) => {
         try {
             setLoading(true);
-    
+
             // Early return if no content is provided
             if (!content) {
                 console.error('No content found in API response data.');
                 return;
             }
-    
+
             const blocks = parse(content);
-    
+
             // Early return if no blocks are parsed
             if (!blocks.length) {
                 console.warn('No blocks were parsed. Check your content format.');
                 return;
             }
-    
+
             // Function to recursively process blocks
             const processBlockContent = (block) => {
                 if (block.innerBlocks?.length > 0) {
@@ -125,10 +125,10 @@ function ZoloBlocksTemplateLibraryButton() {
                     block.attributes.content = processAdvancedParagraphContent(block.attributes.content);
                 }
             };
-    
+
             // Process each block
             blocks.forEach(processBlockContent);
-    
+
             // Handle insertion or replacement of blocks
             if (selectedBlock && selectedBlock.name === 'core/paragraph') {
                 await replaceBlocks(selectedBlock.clientId, blocks);
@@ -144,7 +144,7 @@ function ZoloBlocksTemplateLibraryButton() {
             }, 2000);
         }
     };
-    
+
     // Function to clean up the content for 'zolo/advanced-paragraph' block
     const processAdvancedParagraphContent = (content) => {
         if (typeof content === 'string') {
@@ -156,7 +156,7 @@ function ZoloBlocksTemplateLibraryButton() {
     return (
         <div className="zolo-demos-modal-wrapper">
             {isOpen && (
-                <Modal
+                <ZoloModal
                     className="zolo-demos-modal"
                     onRequestClose={() => setIsOpen(false)}
                     shouldCloseOnClickOutside={true}
@@ -172,7 +172,7 @@ function ZoloBlocksTemplateLibraryButton() {
                         </div>
                         {/* {loading && <PreLoader />} */}
                     </div>
-                </Modal>
+                </ZoloModal>
             )}
         </div>
     );

@@ -1,4 +1,4 @@
-import { RichText, useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { RichText, useBlockProps, Inner } from '@wordpress/block-editor';
 import classnames from 'classnames';
 const { classArrayToStr, DynamicTag, DisplayZoloIcon } = window.zoloModule;
 

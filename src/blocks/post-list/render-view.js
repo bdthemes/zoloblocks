@@ -1,6 +1,7 @@
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 const { DynamicTag } = window.zoloModule;
+
 function RenderView({ attributes, postResults }) {
     const {
         titleWords,

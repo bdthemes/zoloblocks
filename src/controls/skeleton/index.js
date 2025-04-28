@@ -5,7 +5,7 @@ const Skeleton = ({ count = 1 }) => {
                 <div key={i} className="skeleton-control"></div>
             ))}
         </div>
-    )
+    );
 };
 
 export default Skeleton;

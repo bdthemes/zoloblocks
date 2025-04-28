@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -67,6 +66,9 @@ import {
 import { applyFilters } from '@wordpress/hooks';
 
 const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloCardDivider,
     ResRangeControl,
     HeaderTabs,
     ResCounterControl,
@@ -181,7 +183,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Styles', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.teamGrid.presets', PRESETS)}
@@ -190,7 +192,7 @@ function Inspector(props) {
 
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             {preset !== 'style-4' && preset !== 'style-5' && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Add Detail Page Link', 'zoloblocks')}
                                     checked={addDetailPageLink}
                                     onChange={() =>
@@ -200,7 +202,7 @@ function Inspector(props) {
                                     }
                                 />
                             )}
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Short Bio', 'zoloblocks')}
                                 checked={showShortBio}
                                 onChange={() =>
@@ -209,7 +211,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Designation', 'zoloblocks')}
                                 checked={showDesignation}
                                 onChange={() =>
@@ -219,7 +221,7 @@ function Inspector(props) {
                                 }
                             />
                             {preset !== 'style-3' && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Social Profiles', 'zoloblocks')}
                                     checked={showSocialProfiles}
                                     onChange={() =>
@@ -231,7 +233,7 @@ function Inspector(props) {
                             )}
                             {preset !== 'style-4' && preset !== 'style-2' && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <ResAlignmentControl
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={CONTENT_ALIGNMENT}
@@ -274,7 +276,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={ITEM_BORDER} requiredProps={requiredProps} />
                             <BoxShadowControl controlName={ITEM_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
@@ -285,7 +287,7 @@ function Inspector(props) {
                             />
                             {preset === 'style-2' && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <NormalBGControl
                                         label={__('Overlay', 'zoloblocks')}
                                         requiredProps={requiredProps}
@@ -310,7 +312,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={CONTENT_BORDER} requiredProps={requiredProps} />
                             <BoxShadowControl controlName={CONTENT_BOX_SHADOW} requiredProps={requiredProps} enableTransition={false} />
                             <ResDimensionsControl
@@ -328,7 +330,7 @@ function Inspector(props) {
                                 min={10}
                                 max={1000}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <NormalBGControl requiredProps={requiredProps} controlName={PHOTO_BG} noMainBGImg={true} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
@@ -342,7 +344,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
 
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
@@ -358,7 +360,7 @@ function Inspector(props) {
                             />
                             {preset === 'style-5' && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <NormalBGControl
                                         label={__('Overlay', 'zoloblocks')}
                                         requiredProps={requiredProps}
@@ -401,7 +403,7 @@ function Inspector(props) {
                                 typoPrefixConstant={TEAM_MEMBER_NAME_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={TEAM_NAME_MARGIN}
@@ -426,7 +428,7 @@ function Inspector(props) {
                                     max={36}
                                 />
 
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={TEAM_DESIGNATION_MARGIN}
@@ -450,7 +452,7 @@ function Inspector(props) {
                                             controlName={SEPARATOR_TEAM_SIZE}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResGapControl
                                             label={__('Gap', 'zoloblocks')}
                                             controlName={SEPARATOR_SPACING_TEAM}
@@ -478,7 +480,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={TEAM_SHORT_BIO_MARGIN}
@@ -536,7 +538,7 @@ function Inspector(props) {
                                                     controlName={ICONS_SIZE}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
 
                                                 <NormalBGControl requiredProps={requiredProps} controlName={ICONS_BG} noMainBGImg={true} />
                                                 <ResDimensionsControl
@@ -551,7 +553,7 @@ function Inspector(props) {
                                                         requiredProps={requiredProps}
                                                     />
                                                 )}
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={ICONS_BORDER}
@@ -578,7 +580,7 @@ function Inspector(props) {
                                                     controlName={ICONS_BORDER_RADIUS}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <ResRangeControl
                                                     label={__('Spacing', 'zoloblocks')}
                                                     controlName={ICONS_SPACING}
@@ -632,7 +634,7 @@ function Inspector(props) {
                                                 controlName={DPL_ICON_SIZE}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <NormalBGControl
                                                 requiredProps={requiredProps}
                                                 controlName={DETAIL_PAGE_LINK_BG}
@@ -648,7 +650,7 @@ function Inspector(props) {
                                                 controlName={DPL_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={DPL_BORDER}

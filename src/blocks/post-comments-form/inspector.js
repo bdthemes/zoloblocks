@@ -1,7 +1,21 @@
-
-import { ToggleControl, CardDivider, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+
+const {
+    ZoloToggleControl,
+    ZoloCardDivider,
+    ZoloTextControl,
+    ResDimensionsControl,
+    BorderControl,
+    BoxShadowControl,
+    HeaderTabs,
+    ColorControl,
+    TypographyDropdown,
+    AdvancedOptions,
+    ZoloPanelBody,
+    TabPanelControl,
+    ResRangeControl,
+} = window.zoloModule;
 
 import {
     HEADING_TYPOGRAPHY,
@@ -47,20 +61,7 @@ import {
     SUBMITBTN_MARGIN,
     SUBMITBTN_BORDER,
 } from './constants';
-import { Card } from '@wordpress/components';
 
-const {
-    ResDimensionsControl,
-    BorderControl,
-    BoxShadowControl,
-    HeaderTabs,
-    ColorControl,
-    TypographyDropdown,
-    AdvancedOptions,
-    ZoloPanelBody,
-    TabPanelControl,
-    ResRangeControl,
-} = window.zoloModule;
 export default function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
@@ -124,46 +125,46 @@ export default function Inspector(props) {
                                 {__('Show/hide elements', 'zoloblocks')}
                             </div>
 
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Comment Title', 'zoloblocks')}
                                 checked={showCommentTitle}
                                 onChange={(showCommentTitle) => setAttributes({ showCommentTitle })}
                             />
                             {showCommentTitle && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Comment Count', 'zoloblocks')}
                                     checked={showCommentCount}
                                     onChange={(showCommentCount) => setAttributes({ showCommentCount })}
                                 />
                             )}
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Comment Form', 'zoloblocks')}
                                 checked={showForm}
                                 onChange={(showForm) => setAttributes({ showForm })}
                             />
 
-                            <CardDivider />
-                            <TextControl
+                            <ZoloCardDivider />
+                            <ZoloTextControl
                                 label={__('Form Title', 'zoloblocks')}
                                 value={commentFormTitle}
                                 onChange={(commentFormTitle) => setAttributes({ commentFormTitle })}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Cancel Reply', 'zoloblocks')}
                                 value={cancelReply}
                                 onChange={(cancelReply) => setAttributes({ cancelReply })}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Login Text', 'zoloblocks')}
                                 value={loginAsText}
                                 onChange={(loginAsText) => setAttributes({ loginAsText })}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Logout Text', 'zoloblocks')}
                                 value={logoutText}
                                 onChange={(logoutText) => setAttributes({ logoutText })}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Button Text', 'zoloblocks')}
                                 value={submitBtnText}
                                 onChange={(submitBtnText) => setAttributes({ submitBtnText })}
@@ -188,7 +189,7 @@ export default function Inspector(props) {
                                 typoPrefixConstant={HEADING_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResRangeControl
                                 label={__('Bottom Space', 'zoloblocks')}
                                 controlName={HEADINGB_SPACE}
@@ -222,13 +223,13 @@ export default function Inspector(props) {
                                 max={200}
                                 step={1}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
                                 controlName={AVATAR_PADDING}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={AVATAR_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
@@ -341,7 +342,7 @@ export default function Inspector(props) {
                                             typoPrefixConstant={REPLY_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ColorControl
                                             label={__('Background', 'zoloblocks')}
                                             color={replyBackground}
@@ -356,7 +357,7 @@ export default function Inspector(props) {
                                             controlName={REPLY_PADDING}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={REPLY_BORDER}
@@ -396,7 +397,7 @@ export default function Inspector(props) {
                                             }
                                         />
 
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ColorControl
                                             label={__('Border', 'zoloblocks')}
                                             color={replyHoverBorder}
@@ -432,7 +433,7 @@ export default function Inspector(props) {
                                 typoPrefixConstant={FORMH_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResRangeControl
                                 label={__('Bottom Space', 'zoloblocks')}
                                 controlName={FORM_HB_SPACE}
@@ -501,7 +502,7 @@ export default function Inspector(props) {
                                             typoPrefixConstant={FORMINFO_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResRangeControl
                                             label={__('Space Between', 'zoloblocks')}
                                             controlName={INPUT_SPACE}
@@ -549,7 +550,7 @@ export default function Inspector(props) {
                                             typoPrefixConstant={INPUT_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ColorControl
                                             label={__('Background', 'zoloblocks')}
                                             color={inputBgColor}
@@ -570,7 +571,7 @@ export default function Inspector(props) {
                                             controlName={INPUT_MARGIN}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={INPUT_BORDER}
@@ -628,7 +629,7 @@ export default function Inspector(props) {
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ColorControl
                                             label={__('Background', 'zoloblocks')}
                                             color={submitBtnBgColor}
@@ -648,7 +649,7 @@ export default function Inspector(props) {
                                             controlName={SUBMITBTN_MARGIN}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={SUBMITBTN_BORDER}

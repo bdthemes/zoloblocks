@@ -1,4 +1,4 @@
-import { Tooltip } from '@wordpress/components';
+import { ZoloTooltip } from '../../controls/core-controls';
 import { __ } from '@wordpress/i18n';
 
 import classNames from 'classnames';
@@ -79,7 +79,7 @@ const PageTemplateLoader = ({
                     <h2 className="category-title">{__('Categories', 'zoloblocks')}</h2>
                     <div className="demo-proFree-btn">
                         {type !== '' && (
-                            <Tooltip>
+                            <ZoloTooltip>
                                 <button
                                     className="demo-pro-free-reset"
                                     onClick={() => {
@@ -103,7 +103,7 @@ const PageTemplateLoader = ({
                                         />
                                     </svg>
                                 </button>
-                            </Tooltip>
+                            </ZoloTooltip>
                         )}
                         <button
                             className="demo-free-btn"
@@ -134,7 +134,7 @@ const PageTemplateLoader = ({
                                     active: activeCat === category?.value,
                                 })}
                                 onClick={() => {
-                                    setActiveCat(category?.value)
+                                    setActiveCat(category?.value);
                                 }}
                             >
                                 <span className="single-category-text">{category?.label}</span>
@@ -178,7 +178,7 @@ const PageTemplateLoader = ({
                             />
                         </div>
                         <div className="sync-btn">
-                            <Tooltip text={__('Sync Demos', 'zoloblocks')} placement="top">
+                            <ZoloTooltip text={__('Sync Demos', 'zoloblocks')} placement="top">
                                 <button
                                     className="sync-button"
                                     onClick={() => {
@@ -204,7 +204,7 @@ const PageTemplateLoader = ({
                                         />
                                     </svg>
                                 </button>
-                            </Tooltip>
+                            </ZoloTooltip>
                         </div>
                         <div className="close-btn">
                             <button onClick={() => setIsOpen(false)}>

@@ -1,5 +1,4 @@
-
-import { Button, SelectControl, RangeControl } from '@wordpress/components';
+import { ZoloButton, ZoloSelectControl, ZoloRangeControl } from '../core-controls';
 import { __ } from '@wordpress/i18n';
 import { TEXT_GRADIENT_TYPES } from '../../global/constants';
 import ImageAvatar from '../image-avatar';
@@ -8,8 +7,14 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import IconicBtnGroup from '../iconic-btn-group';
 import PopoverControl from '../popover-control';
 
-
-const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGImg = false, defaultColor="",onChangeDefault= null }) => {
+const TextGradientControl = ({
+    label = '',
+    controlName,
+    requiredProps,
+    noMainBGImg = false,
+    defaultColor = '',
+    onChangeDefault = null,
+}) => {
     const { setAttributes, attributes, resMode } = requiredProps;
     const {
         //attributes for background type normal start
@@ -104,7 +109,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                             render={({ open }) =>
                                 !bgImageURL && (
                                     <>
-                                        <Button
+                                        <ZoloButton
                                             className="zb-bg-control-img-btn components-button"
                                             label={__('Upload Image', 'zoloblocks')}
                                             icon="format-image"
@@ -137,7 +142,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                     <>
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Position" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={bgImgPos}
                                                     options={[
                                                         {
@@ -220,7 +225,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                                 />
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="X Position">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={bgImgcustomPosX}
                                                             min={-2000}
                                                             max={2000}
@@ -257,7 +262,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                                 />
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="Y Position">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={bgImgcustomPosY}
                                                             min={-2000}
                                                             max={2000}
@@ -273,7 +278,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                             </>
                                         )}
 
-                                        <SelectControl
+                                        <ZoloSelectControl
                                             className="zolo-flex-pop-row-control"
                                             label="Attachment"
                                             value={bgImgAttachment}
@@ -310,7 +315,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                         )}
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Repeat" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={bgImgRepeat}
                                                     options={[
                                                         {
@@ -345,7 +350,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
 
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Size" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={backgroundSize}
                                                     options={[
                                                         {
@@ -404,7 +409,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                                 />
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="Width">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={bgImgCustomSize}
                                                             min={0}
                                                             max={bgImgCustomSizeUnit === 'px' ? 2000 : 100}
@@ -426,7 +431,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                     <>
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Position" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={TABbgImgPos}
                                                     options={[
                                                         {
@@ -509,7 +514,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                                 />
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="X Position">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={TABbgImgcustomPosX}
                                                             min={0}
                                                             max={TABbgImgcustomPosXUnit === 'px' ? 2000 : 100}
@@ -546,7 +551,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                                 />
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="Y Position">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={TABbgImgcustomPosY}
                                                             min={0}
                                                             max={TABbgImgcustomPosYUnit === 'px' ? 2000 : 100}
@@ -562,7 +567,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                             </>
                                         )}
 
-                                        <SelectControl
+                                        <ZoloSelectControl
                                             className="zolo-flex-pop-row-control"
                                             label="Attachment"
                                             value={bgImgAttachment}
@@ -599,7 +604,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                         )}
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Repeat" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={TABbgImgRepeat}
                                                     options={[
                                                         {
@@ -633,7 +638,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                         </div>
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Size" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={TABbackgroundSize}
                                                     options={[
                                                         {
@@ -692,7 +697,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                                 />
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="Width">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={TABbgImgCustomSize}
                                                             min={0}
                                                             max={TABbgImgCustomSizeUnit === 'px' ? 2000 : 100}
@@ -714,7 +719,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                     <>
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Position" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={MOBbgImgPos}
                                                     options={[
                                                         {
@@ -798,7 +803,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
 
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="X Position">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={MOBbgImgcustomPosX}
                                                             min={0}
                                                             max={MOBbgImgcustomPosXUnit === 'px' ? 2000 : 100}
@@ -836,7 +841,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
 
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="Y Position">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={MOBbgImgcustomPosY}
                                                             min={0}
                                                             max={MOBbgImgcustomPosYUnit === 'px' ? 2000 : 100}
@@ -852,7 +857,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                             </>
                                         )}
 
-                                        <SelectControl
+                                        <ZoloSelectControl
                                             className="zolo-flex-pop-row-control"
                                             label="Attachment"
                                             value={bgImgAttachment}
@@ -889,7 +894,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                         )}
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Repeat" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={MOBbgImgRepeat}
                                                     options={[
                                                         {
@@ -924,7 +929,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
 
                                         <div className="zolo-popup-flex-row-control">
                                             <WithResDeviceBtn requiredProps={requiredProps} label="Size" noResetBtn={true}>
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={MOBbackgroundSize}
                                                     options={[
                                                         {
@@ -983,7 +988,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                                                 />
                                                 <div className="zolo-flex-col-control zolo-text-gradient-label">
                                                     <WithResDeviceBtn requiredProps={requiredProps} label="Width">
-                                                        <RangeControl
+                                                        <ZoloRangeControl
                                                             value={MOBbgImgCustomSize}
                                                             min={0}
                                                             max={MOBbgImgCustomSizeUnit === 'px' ? 2000 : 100}
@@ -1050,12 +1055,7 @@ const TextGradientControl = ({ label = '', controlName, requiredProps, noMainBGI
                     </>
                 )}
                 {backgroundType === 'classic' && (
-                    <ColorPalette
-                        label={__('Color', 'zoloblocks')}
-                        value={defaultColor}
-                        onChange={onChangeDefault}
-                        enableAlpha={true}
-                    />
+                    <ColorPalette label={__('Color', 'zoloblocks')} value={defaultColor} onChange={onChangeDefault} enableAlpha={true} />
                 )}
             </div>
         </PopoverControl>

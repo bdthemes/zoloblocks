@@ -1,4 +1,4 @@
-import { GradientPicker } from '@wordpress/components';
+import { ZoloGradientPicker } from '../core-controls';
 
 const defaultGradients = [
     {
@@ -63,7 +63,7 @@ function GradientControl({ label, value, onChange }) {
             )}
 
             <div className="zb-gradient-body">
-                <GradientPicker
+                <ZoloGradientPicker
                     value={gradientValue ? gradientValue : defaultGradients[1].gradient}
                     onChange={(val) => setSettings(val)}
                     gradients={gradientOptions.length > 0 ? gradientOptions : defaultGradients}

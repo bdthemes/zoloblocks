@@ -2,6 +2,8 @@
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
+    ZoloToggleControl,
     ResRangeControl,
     ColorControl,
     TabPanelControl,
@@ -24,7 +26,6 @@ import Sortable from './sortable';
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -47,7 +48,6 @@ import {
 } from './constants';
 
 import { ICON_STATUS, FLEX_HORIZONTAL_OPTIONS } from '../../../src/global/constants';
-
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -69,7 +69,7 @@ function Inspector(props) {
         iconHoverColor,
         iconBgColor,
         iconBgHoverColor,
-        dynamicLink
+        dynamicLink,
     } = attributes;
 
     const requiredProps = {
@@ -117,7 +117,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.socialShare.presets', PRESETS)}
@@ -192,7 +192,7 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Social Media', 'zoloblocks')} panelProps={props}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Current Page URL', 'zoloblocks')}
                                 checked={dynamicLink}
                                 onChange={(value) => {

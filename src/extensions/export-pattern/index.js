@@ -2,8 +2,9 @@ import { PluginBlockSettingsMenuItem } from '@wordpress/editor';
 import { registerPlugin } from '@wordpress/plugins';
 import { select } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { ToggleControl, Modal, TextControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
+
+import { ZoloToggleControl, ZoloModal, ZoloTextControl } from '../../controls/core-controls';
 
 // page export
 import '../page-export';
@@ -33,18 +34,18 @@ const ZoloExportBlock = ({ clientId }) => {
                 onClick={() => setExportPanel(true)}
             />
             {exportPanel && (
-                <Modal
+                <ZoloModal
                     className="zolo-export-block-modal"
                     title={__('Export Pattern', 'zoloblocks')}
                     onRequestClose={() => setExportPanel(false)}
                 >
                     <div className="zolo-export-block-modal__content">
-                        <TextControl
+                        <ZoloTextControl
                             label={__('Pattern Name', 'zoloblocks')}
                             value={patternName}
                             onChange={(value) => setPatternName(value)}
                         />
-                        <ToggleControl
+                        <ZoloToggleControl
                             help={__('Sync this pattern across multiple locations.', 'zoloblocks')}
                             label={__('Sync Pattern', 'zoloblocks')}
                             checked={syncPattern}
@@ -102,7 +103,7 @@ const ZoloExportBlock = ({ clientId }) => {
                             {__('Export Pattern', 'zoloblocks')}
                         </button>
                     </div>
-                </Modal>
+                </ZoloModal>
             )}
         </>
     );

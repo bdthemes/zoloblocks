@@ -1,17 +1,16 @@
 /**
  * WordPress dependencies
  */
-import { BaseControl, Button, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 
-import { ZoloTextControl } from '../core-controls';
+import { ZoloBaseControl, ZoloTextControl, ZoloButton, ZoloToggleControl } from '../core-controls';
 
 const LinkControl = ({ label, value, onChange }) => {
     const [isExternal, setIsExternal] = useState(false);
     return (
         <div className="zb-link-control-wrapper">
-            <BaseControl label={label}>
+            <ZoloBaseControl label={label}>
                 <div className="zb-link-flex">
                     <ZoloTextControl
                         value={value && value.url}
@@ -23,7 +22,7 @@ const LinkControl = ({ label, value, onChange }) => {
                         }}
                         placeholder={__('https://', 'zoloblocks')}
                     />
-                    <Button
+                    <ZoloButton
                         onClick={() => setIsExternal(!isExternal)}
                         className={`zb-link-extra-btn ${isExternal ? 'zb-extra-active' : ''}`}
                     >
@@ -57,13 +56,13 @@ const LinkControl = ({ label, value, onChange }) => {
                                 />
                             </svg>
                         )}
-                    </Button>
+                    </ZoloButton>
                 </div>
-            </BaseControl>
+            </ZoloBaseControl>
 
             {isExternal && (
                 <div className="zb-link-popover">
-                    <ToggleControl
+                    <ZoloToggleControl
                         label={__('Open in new tab', 'zoloblocks')}
                         checked={value && value.openInNewTab}
                         onChange={() => {

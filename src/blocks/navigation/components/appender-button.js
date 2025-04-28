@@ -1,8 +1,9 @@
 import { Inserter } from '@wordpress/block-editor';
-import { Button } from '@wordpress/components';
 import { plusCircleFilled } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { select } from '@wordpress/data';
+const { ZoloButton } = window.zoloModule;
+
 const NavigationAppenderButton = ({ rootClientId }) => {
     const { getBlockNamesByClientId, getBlockRootClientId } = select('core/block-editor');
     const blockRootClientId = getBlockRootClientId(rootClientId);
@@ -14,23 +15,22 @@ const NavigationAppenderButton = ({ rootClientId }) => {
         <Inserter
             rootClientId={rootClientId}
             renderToggle={({ onToggle }) => (
-                <Button
+                <ZoloButton
                     className="zolo-navigation-item-appender-button"
                     onClick={() => {
                         onToggle();
                     }}
                     icon={plusCircleFilled}
-                    iconPosition='right'
+                    iconPosition="right"
                     showTooltip
                     aria-label={buttonLabel}
                     label={buttonLabel}
-                    variant='secondary'
-                >
-                </Button>
+                    variant="secondary"
+                ></ZoloButton>
             )}
             isAppender
         />
     );
-}
+};
 
 export default NavigationAppenderButton;

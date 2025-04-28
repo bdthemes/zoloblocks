@@ -3,7 +3,6 @@
  */
 import { useBlockProps, RichText, BlockControls, MediaPlaceholder, MediaUpload } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
@@ -17,7 +16,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { StarRating, classArrayToStr } = window.zoloModule;
+const { StarRating, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -114,7 +113,7 @@ export default function Edit(props) {
             <BlockControls>
                 {memberPhoto && (
                     <>
-                        <ToolbarGroup>
+                        <ZoloToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
                                     setAttributes({
@@ -130,7 +129,7 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                                 value={memberPhoto && memberPhoto.id}
                                 render={({ open }) => (
-                                    <ToolbarButton
+                                    <ZoloToolbarButton
                                         className="components-toolbar__control"
                                         label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
@@ -138,7 +137,7 @@ export default function Edit(props) {
                                     />
                                 )}
                             />
-                        </ToolbarGroup>
+                        </ZoloToolbarGroup>
                     </>
                 )}
             </BlockControls>

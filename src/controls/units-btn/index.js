@@ -3,7 +3,7 @@
  */
 import { useState, useRef, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
+import { ZoloButton } from '../core-controls';
 
 /**
  * Internal dependencies
@@ -28,7 +28,7 @@ const UnitsBtn = ({ selectedUnit = 'px', unitTypes, onClick, children }) => {
             >
                 <div className="zb-units-switchers-wrap">
                     {unitTypes.map((unit, index) => (
-                        <Button
+                        <ZoloButton
                             className={classNames('zb-unit-switcher', `${unit.value === selectedUnit && 'active'}`)}
                             key={index}
                             onClick={() => {
@@ -37,7 +37,7 @@ const UnitsBtn = ({ selectedUnit = 'px', unitTypes, onClick, children }) => {
                             }}
                         >
                             {unit.label}
-                        </Button>
+                        </ZoloButton>
                     ))}
                 </div>
             </div>

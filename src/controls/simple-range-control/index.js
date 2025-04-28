@@ -1,4 +1,4 @@
-import {BaseControl, __experimentalNumberControl as NumberControl, RangeControl } from '@wordpress/components';
+import { ZoloBaseControl, ZoloNumberControl, ZoloRangeControl } from '../core-controls';
 import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
 
@@ -20,9 +20,9 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
                         <div className="zb-units-wrapper">
                             {value !== undefined && value !== '' && value !== 0 && <ResetBtn onReset={() => onReset()} />}
                         </div>
-                        <BaseControl label={label}>
+                        <ZoloBaseControl label={label}>
                             <div className="zolo-input-range-wrapper">
-                                <RangeControl
+                                <ZoloRangeControl
                                     value={value}
                                     onChange={(val) => onChange(val)}
                                     min={min || 0}
@@ -31,9 +31,9 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
                                     withInputField={false}
                                 />
 
-                                <NumberControl value={value} onChange={(val) => onChange(val ? Number(val) : undefined)} />
+                                <ZoloNumberControl value={value} onChange={(val) => onChange(val ? Number(val) : undefined)} />
                             </div>
-                        </BaseControl>
+                        </ZoloBaseControl>
                     </>
                 ) : (
                     <>
@@ -41,9 +41,9 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
                             {value !== undefined && value !== '' && value !== 0 && <ResetBtn onReset={() => onReset()} />}
                         </UnitsBtn>
 
-                        <BaseControl label={label}>
+                        <ZoloBaseControl label={label}>
                             <div className="zolo-input-range-wrapper">
-                                <RangeControl
+                                <ZoloRangeControl
                                     value={value}
                                     onChange={(val) => onChange(val)}
                                     min={min || 0}
@@ -51,9 +51,9 @@ const SimpleRangeControl = ({ label, onChange, onUnitChange, value, unit, onRese
                                     step={step || 1}
                                     withInputField={false}
                                 />
-                                <NumberControl value={value} onChange={(val) => onChange(val ? Number(val) : undefined)} />
+                                <ZoloNumberControl value={value} onChange={(val) => onChange(val ? Number(val) : undefined)} />
                             </div>
-                        </BaseControl>
+                        </ZoloBaseControl>
                     </>
                 )}
             </div>

@@ -1,10 +1,19 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, ToggleControl, Button, PanelBody } from '@wordpress/components';
-
-const { ZoloIconPicker, SortableControl, SortableItem, IconicBtnGroup, LinkControl } = window.zoloModule;
 import { cloneDeep } from 'lodash';
 import { META_TYPE, GET_TAXONOMIEX, ICON_TYPE } from './constants';
 import { MetaIcon } from './meta-icon';
+
+const {
+    ZoloIconPicker,
+    SortableControl,
+    SortableItem,
+    IconicBtnGroup,
+    LinkControl,
+    ZoloToggleControl,
+    ZoloSelectControl,
+    ZoloButton,
+    ZoloCorePanelBody,
+} = window.zoloModule;
 
 const taxonomiesArray = GET_TAXONOMIEX(zoloParams.get_taxonomies);
 
@@ -15,7 +24,7 @@ const Sortable = ({ metaData, setAttributes }) => {
         <div className="sortable">
             <div className="zb-repeater-flex">
                 <div className="repeater-label">{__('Add a Meta Data', 'zoloblocks')}</div>
-                <Button
+                <ZoloButton
                     onClick={() =>
                         setAttributes({
                             metaData: [
@@ -35,14 +44,14 @@ const Sortable = ({ metaData, setAttributes }) => {
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
             {deepCloneMetaData &&
                 deepCloneMetaData.map((meta, index) => {
                     return (
                         <SortableControl defaultItems={metaData} attributeName="metaData" setAttributes={setAttributes}>
                             <div className="dnd-container" key={index}>
-                                <Button
+                                <ZoloButton
                                     className="dnd-trash"
                                     icon="trash"
                                     onClick={() => {
@@ -52,11 +61,11 @@ const Sortable = ({ metaData, setAttributes }) => {
                                     }}
                                 />
                                 <SortableItem key={meta.id} id={meta.id}>
-                                    <PanelBody
+                                    <ZoloCorePanelBody
                                         title={meta?.type ? meta.type.charAt(0).toUpperCase() + meta.type.slice(1) : 'Title'}
                                         initialOpen={false}
                                     >
-                                        <SelectControl
+                                        <ZoloSelectControl
                                             label={__('Type', 'zoloblocks')}
                                             value={meta?.type}
                                             options={META_TYPE}
@@ -70,7 +79,7 @@ const Sortable = ({ metaData, setAttributes }) => {
                                             }}
                                         />
                                         {meta?.type === 'date' && (
-                                            <SelectControl
+                                            <ZoloSelectControl
                                                 label={__('Date Type', 'zoloblocks')}
                                                 value={meta?.dateType || 'post_published'}
                                                 onChange={(v) => {
@@ -87,7 +96,7 @@ const Sortable = ({ metaData, setAttributes }) => {
                                             />
                                         )}
                                         {meta?.type === 'terms' && (
-                                            <SelectControl
+                                            <ZoloSelectControl
                                                 label={__('Taxonomy', 'zoloblocks')}
                                                 value={meta?.taxonomy || 'category'}
                                                 onChange={(v) => {
@@ -102,7 +111,7 @@ const Sortable = ({ metaData, setAttributes }) => {
                                         )}
 
                                         {meta?.type !== 'time' && meta?.type !== 'readingTime' && (
-                                            <ToggleControl
+                                            <ZoloToggleControl
                                                 label={__('Link', 'zoloblocks')}
                                                 checked={meta?.link || false}
                                                 onChange={(v) => {
@@ -114,7 +123,7 @@ const Sortable = ({ metaData, setAttributes }) => {
                                                 }}
                                             />
                                         )}
-                                    </PanelBody>
+                                    </ZoloCorePanelBody>
                                 </SortableItem>
                             </div>
                         </SortableControl>
