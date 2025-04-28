@@ -207,16 +207,16 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                 <path
                                     d="M22 2L2 22"
                                     stroke="#4D4D4D"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                 ></path>
                                 <path
                                     d="M2 2L22 22"
                                     stroke="#4D4D4D"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                 ></path>
                             </svg>
                         </ZoloButton>
