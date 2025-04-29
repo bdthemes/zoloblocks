@@ -102,7 +102,7 @@ export const ZoloPopover = (props) => {
 };
 
 export const ZoloDropdown = (props) => {
-    return <Dropdown {...props} popoverProps={{ placement: 'top' }} />;
+    return <Dropdown {...props} />;
 };
 
 export const ZoloColorPicker = (props) => {
