@@ -13,7 +13,7 @@ const {
   generateBorderStyle,
   generateDimensionStyle,
   generateBoxShadowStyles,
-
+  generateTypographyStyles
 } = window.zoloModule;
 
 import {
@@ -26,25 +26,12 @@ import {
   CHART_BOX_SHADOW,
   SUB_TITLE_ALIGNMENT,
 } from "./constants";
-import { TITLE_TYPO } from "./constants/typoPrefixConstant";
+import { TITLE_TYPO, SUB_TITLE_TYPO } from "./constants/typoPrefixConstant";
 
 const Style = ({ props }) => {
   const { attributes, setAttributes } = props;
-  const { uniqueId } = attributes;
-  const {} = attributes;
-
-  // styles
-
-  // const {
-  //   desktopRangeStyle: deskHeight,
-  //   tabRangeStyle: tabHeight,
-  //   mobRangeStyle: mobHeight,
-  // } = generateResRangeStyle({
-  //   controlName: STAR_SIZE,
-  //   property: "height",
-  //   attributes,
-  // });
-  // accordion container
+  const {  uniqueId, preset } = attributes;
+  
   const {
     desktopBorderStyle: chartBorderStyles,
     tabBorderStyle: chartBorderStylesTab,
@@ -99,6 +86,39 @@ const Style = ({ props }) => {
     noMainBGImg: false,
   });
 
+  const addImportant = (cssText) => 
+    cssText.split(';')
+      .map(rule => {
+        const trimmed = rule.trim();
+        if (!trimmed) return '';
+        return trimmed.includes('!important') ? trimmed : trimmed + ' !important';
+      })
+      .join(';');  
+
+  const {
+    typoStylesDesktop: titleDeskTypoo,
+    typoStylesTab: titleTabTypoo,
+    typoStylesMobile: titleMobTypoo,
+  } = generateTypographyStyles({
+      prefixConstant: TITLE_TYPO,
+      attributes,
+  });
+ 
+  const titleDeskTypo = addImportant(titleDeskTypoo);
+  const titleTabTypo = addImportant(titleTabTypoo);
+  const titleMobTypo = addImportant(titleMobTypoo);
+
+  const {
+    typoStylesDesktop: subtitleDeskTypoo,
+    typoStylesTab: subtitleTabTypoo,
+    typoStylesMobile: subtitleMobTypoo,
+  } = generateTypographyStyles({
+      prefixConstant: SUB_TITLE_TYPO,
+      attributes,
+  });
+  const subtitleDeskTypo = addImportant(subtitleDeskTypoo);
+  const subtitleTabTypo = addImportant(subtitleTabTypoo);
+  const subtitleMobTypo = addImportant(subtitleMobTypoo);
   /**
    * All Style Combination
    */
@@ -111,14 +131,52 @@ const Style = ({ props }) => {
         ${chartPaddingDesk}
         ${chartMarginDesk}
         }
+
+        .${uniqueId} text.apexcharts-title-text{
+          ${titleDeskTypo}
+        }
+          
+        .${uniqueId} text.apexcharts-subtitle-text{
+          ${subtitleDeskTypo}
+        }       
     `;
 
   const tabletAllStyle = `
+       .${uniqueId} {
+        ${chartTabBg}
+        ${chartBorderStylesTab}
+        ${chartBorderRadiusTab}
+        ${chartBoxShadow}
+        ${chartPaddingTab}
+        ${chartMarginTab}
+        }
 
+        .${uniqueId} text.apexcharts-title-text{
+          ${titleTabTypo}
+        }
+          
+        .${uniqueId} text.apexcharts-subtitle-text{
+          ${subtitleTabTypo}
+        }       
     `;
 
   const mobileAllStyle = `
+       .${uniqueId} {
+        ${chartMobBg}
+        ${chartBorderStylesMob}
+        ${chartBorderRadiusMob}
+        ${chartBoxShadow}
+        ${chartPaddingMob}
+        ${chartMarginMob}
+        }
 
+        .${uniqueId} text.apexcharts-title-text{
+          ${titleMobTypo}
+        }
+          
+        .${uniqueId} text.apexcharts-subtitle-text{
+          ${subtitleMobTypo}
+        }       
     `;
 
   return (
