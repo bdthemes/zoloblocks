@@ -57,6 +57,7 @@ const Inspector = (props) => {
     const { attributes, setAttributes, hasInnerBlocks, isNested } = props;
     const requiredProps = { attributes, setAttributes, resMode: attributes?.resMode, objAttributes };
     const {
+        addSubmenuEffect,
         resMode,
         subMenuTextColor,
         subMenuTextHoverColor,
@@ -86,7 +87,21 @@ const Inspector = (props) => {
                                 checked={attributes?.addSubmenu}
                                 onChange={(value) => setAttributes({ addSubmenu: value })}
                             />
-
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Event Type', 'zoloblocks')}
+                                    value={addSubmenuEffect}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            addSubmenuEffect: value,
+                                        })
+                                    }
+                                    options={[
+                                        { label: 'Hover', value: 'hover' },
+                                        { label: 'Click', value: 'click' },
+                                    ]}
+                                />
+                            </div>
                             {attributes?.addSubmenu && !hasInnerBlocks && !isNested && (
                                 <IconicBtnGroup
                                     label={__('Submenu Type', 'zoloblocks')}

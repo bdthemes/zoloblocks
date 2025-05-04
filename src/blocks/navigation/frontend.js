@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
            }, 500);
        });
 
-       const submenuArrow = navigation.querySelectorAll('.zolo-submenu-arrow');
+       const zoloNavigationLink = navigation.querySelectorAll('.zolo-navigation-link');
        const navigationItems = navigation.querySelectorAll('.zolo-navigation-item');
        navigationOverlay.addEventListener('click', () => {
            navigationWrapper.classList.remove('zolo-navigation-open');
@@ -29,13 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
            }, 700);
        });
 
-       submenuArrow.forEach((arrow) => {
-           arrow.addEventListener('click', function (e) {
-               e.preventDefault();
-               const currentItem = this.closest('.zolo-navigation-item');
-               currentItem.classList.toggle('zolo-navigation-submenu-open');
-           })
-       });
+    zoloNavigationLink.forEach((link) => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const currentItem = this.closest('.zolo-navigation-item');
+            currentItem.classList.toggle('zolo-navigation-submenu-open');
+            currentItem.classList.toggle('submenu-open');
+        })
+    });
 
        sidebarClose.addEventListener('click', () => {
            navigationWrapper.classList.remove('zolo-navigation-open');

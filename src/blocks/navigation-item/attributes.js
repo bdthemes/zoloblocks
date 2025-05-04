@@ -145,6 +145,10 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    addSubmenuEffect: {
+        type: 'string',
+        default: 'hover',
+    },
     submenuType: {
         type: 'string',
         default: 'dropdown',
