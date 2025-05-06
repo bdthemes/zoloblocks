@@ -6,8 +6,8 @@ import { NAME_TYPOGRAPHY, COUNT_TYPOGRAPHY } from './constants/typoPrefixConstan
 import QuerySettings from './query-settings';
 
 const {
-    ZoloToggleControl,
     ZoloCardDivider,
+    ZoloToggleControl,
     ZoloTextControl,
     ZoloRangeControl,
     ResDimensionsControl,
@@ -109,7 +109,7 @@ export default function Inspector(props) {
                                             controlName={ITEM_PADDING}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={ITEM_BORDER}
@@ -138,7 +138,7 @@ export default function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ZoloRangeControl
                                             className="zolo-flex-col-control"
                                             label={__('Opacity', 'zoloblocks')}

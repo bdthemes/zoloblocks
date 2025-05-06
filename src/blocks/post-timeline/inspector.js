@@ -1,6 +1,7 @@
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+import { InspectorControls } from '@wordpress/block-editor';
 
 const {
     ZoloSelectControl,
