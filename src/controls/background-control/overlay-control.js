@@ -1,3 +1,4 @@
+import { MediaUpload } from '@wordpress/block-editor';
 import {
     ZoloBaseControl,
     ZoloButton,
