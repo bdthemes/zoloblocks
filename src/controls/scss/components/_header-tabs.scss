@@ -1,37 +1,42 @@
-.zolo-panel-control {
+.zolo-panel-control-header-tabs {
+    .components-base-control__field {
+        gap: 0 !important;
+    }
     .zolo-tab-group {
         display: flex;
         position: relative;
         background: #fff;
         z-index: 9;
+        border: 0 !important;
+        outline: none !important;
+        box-shadow: unset !important;
+        padding: 0;
 
-        .zolo-tab {
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 80px;
-            gap: 5px;
+        &::before {
+            display: none;
+        }
+
+        .zolo-header-tab-group-option {
             width: 100%;
             color: #1a1a1a;
-            border-top: 1px solid #e0e0e0 !important;
-            box-shadow: none !important;
-            &.next__tab {
-                border-radius: 0 0 0 8px;
-                border-left: 1px solid #e0e0e0;
-                border-right: 1px solid #e0e0e0;
+            border: 1px solid #e6e6e6;
+            // transition: border 0.2s ease-in-out !important;
+            box-shadow: unset !important;
+            outline: none !important;
+
+            .zolo-tab-button-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 80px;
+                gap: 5px;
             }
-            &.prev__tab {
-                border-right: 1px solid #e0e0e0;
-                border-radius: 0 0 8px 0;
-            }
-            &.sup_prev__tab {
-                border-left: 1px solid #e0e0e0;
-                border-right: 1px solid #e0e0e0;
-                border-radius: 0 0 8px 0;
-            }
-            &.active__tab {
+
+            &[data-active-item='true'] {
                 background: #fff;
                 color: #001feb;
+                border: 0 !important;
                 border-top: 2px solid #001feb !important;
                 svg {
                     path {
@@ -39,9 +44,7 @@
                     }
                 }
             }
-
-            &:not(.active__tab) {
-                // border-bottom: 1px solid #e0e0e0 !important;
+            &:not([data-active-item='true']) {
                 background: #f2f2f2;
             }
 
@@ -55,6 +58,31 @@
                 font-size: 13px;
                 font-weight: 400;
             }
+        }
+    }
+
+    &.zolo-basic {
+        .zolo-style-tab {
+            border-bottom-left-radius: 8px;
+            border-right: 0 !important;
+        }
+    }
+
+    &.zolo-style {
+        .zolo-basic-tab {
+            border-bottom-right-radius: 8px;
+            border-left: 0 !important;
+        }
+        .zolo-extra-tab {
+            border-bottom-left-radius: 8px;
+            border-right: 0 !important;
+        }
+    }
+
+    &.zolo-extra {
+        .zolo-style-tab {
+            border-bottom-right-radius: 8px;
+            border-left: 0 !important;
         }
     }
 
@@ -87,4 +115,3 @@
         box-sizing: border-box;
     }
 }
-
