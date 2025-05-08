@@ -108,18 +108,22 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                             <>
                                 <ZoloToggleGroupControl
                                     label={__('Background Type', 'zoloblocks')}
-                                    value={backgroundType}
-                                    isBlock={false}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            [`${controlName}backgroundType`]: value,
-                                        })
-                                    }
-                                    __nextHasNoMarginBottom
-                                    __next40pxDefaultSize
+                                   className="zolo-toggle-box-custom-css"
                                 >
-                                    {BACKGROUND_TYPES.map(({ value, label }) => (
-                                        <ZoloToggleGroupControlOption key={value} value={value} label={label} showTooltip={true} />
+                                     {BACKGROUND_TYPES.map(( type, index ) => (
+                                        <ZoloToggleGroupControlOption 
+                                        key={index}
+                                        value={type.value}
+                                        label={type.label}
+                                        isSelected={backgroundType === type.value}
+                                        className={backgroundType === type.value ? 'active' : ''}
+                                        showTooltip={true} 
+                                        onClick={() =>
+                                            setAttributes({
+                                                [`${controlName}backgroundType`]: type.value,
+                                            })
+                                        }
+                                        />
                                     ))}
                                 </ZoloToggleGroupControl>
 
