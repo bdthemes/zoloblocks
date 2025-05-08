@@ -1023,3 +1023,27 @@ textarea[readonly] {
         }
     }
 }
+
+.zolo-toggle-box-custom-css{
+    width: 100% !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+    margin: 8px 0 !important;
+    border-radius: 6px !important;
+    border: 0 !important;
+    background-color: #f2f2f2 !important;
+    box-shadow: none !important;
+     .components-toggle-group-control-option-base{
+            border-radius: 6px !important;
+            border: 1px solid #f2f2f2 !important;
+        }.active{
+            background: #fff !important;
+            color: #001feb !important;
+            border-color: #e8e8ea !important;
+        }
+        .components-toggle-group-control-option-base[aria-checked="true"]{
+            background: #fff !important;
+            color: #001feb !important;
+            border-color: #e8e8ea !important;
+        }
+}

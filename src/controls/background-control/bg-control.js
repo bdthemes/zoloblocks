@@ -124,11 +124,43 @@ const BGControl = (props) => {
                             return (
                                 <>
                                     <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ZoloToggleGroupControl className="background-type-group">
-                                            <ZoloToggleGroupControlOption value="none" label={__('None', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="color" label={__('Color', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="gradient" label={__('Gradient', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="image" label={__('Image', 'zoloblocks')} />
+                                        <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
+                                            <ZoloToggleGroupControlOption key={"none"} value="none" label={__('None', 'zoloblocks')} 
+                                            isSelected={backgroundType === 'none'}
+                                            className={backgroundType === 'none' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`${controlName}backgroundType`]: 'none',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"color"} value="color" label={__('Color', 'zoloblocks')} 
+                                            isSelected={backgroundType === 'color'}
+                                            className={backgroundType === 'color' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`${controlName}backgroundType`]: 'color',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"gradient"} value="gradient" label={__('Gradient', 'zoloblocks')} 
+                                            isSelected={backgroundType === 'gradient'}
+                                            className={backgroundType === 'gradient' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`${controlName}backgroundType`]: 'gradient',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"image"} value="image" label={__('Image', 'zoloblocks')} 
+                                            isSelected={backgroundType === 'image'}
+                                            className={backgroundType === 'image' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`${controlName}backgroundType`]: 'image',
+                                                })
+                                            }
+                                            />
                                         </ZoloToggleGroupControl>
                                     </ZoloBaseControl>
 
@@ -1376,11 +1408,43 @@ const BGControl = (props) => {
                             return (
                                 <>
                                     <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ZoloToggleGroupControl className="background-type-group">
-                                            <ZoloToggleGroupControlOption value="none" label={__('None', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="color" label={__('Color', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="gradient" label={__('Gradient', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="image" label={__('Image', 'zoloblocks')} />
+                                    <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
+                                            <ZoloToggleGroupControlOption key={"hov_none"} value="none" label={__('None', 'zoloblocks')} 
+                                            isSelected={hov_backgroundType === 'none'}
+                                            className={hov_backgroundType === 'none' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`hov_${controlName}backgroundType`]: 'none',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"hov_color"} value="color" label={__('Color', 'zoloblocks')} 
+                                            isSelected={hov_backgroundType === 'color'}
+                                            className={hov_backgroundType === 'color' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`hov_${controlName}backgroundType`]: 'color',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"hov_gradient"} value="gradient" label={__('Gradient', 'zoloblocks')} 
+                                            isSelected={hov_backgroundType === 'gradient'}
+                                            className={hov_backgroundType === 'gradient' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`hov_${controlName}backgroundType`]: 'gradient',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"hov_image"} value="image" label={__('Image', 'zoloblocks')} 
+                                            isSelected={hov_backgroundType === 'image'}
+                                            className={hov_backgroundType === 'image' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`hov_${controlName}backgroundType`]: 'image',
+                                                })
+                                            }
+                                            />
                                         </ZoloToggleGroupControl>
                                     </ZoloBaseControl>
 
