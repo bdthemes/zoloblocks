@@ -87,7 +87,7 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
                                 value={getLinkedValue()}
                                 onChange={(value) => setLinkedDimensions(value?.toString() || '')}
                                 min={min || 0}
-                                max={max}
+                                max={max || 100}
                             />
                         </div>
                     )}
