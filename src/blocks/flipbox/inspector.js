@@ -161,12 +161,13 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ZoloToggleGroupControl className="zolo-button-group">
+                                <ZoloToggleGroupControl className="zolo-button-group zolo-toggle-box-custom-css">
                                     {FLIPBLOX_SIDE.map((item) => (
                                         <ZoloToggleGroupControlOption
                                             value={item.value}
                                             label={item.label}
                                             isSelected={side === item.value}
+                                            className={item.value === side ? 'active' : ''}
                                             onClick={() => {
                                                 setSide(item.value);
 
@@ -259,12 +260,13 @@ function Inspector(props) {
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ZoloToggleGroupControl className="zolo-button-group">
+                                <ZoloToggleGroupControl className="zolo-button-group zolo-toggle-box-custom-css">
                                     {FLIPBLOX_SIDE.map((item) => (
                                         <ZoloToggleGroupControlOption
                                             value={item.value}
                                             label={item.label}
                                             isSelected={side === item.value}
+                                            className={item.value === side ? 'active' : ''}
                                             onClick={() => {
                                                 setSide(item.value);
 
@@ -632,12 +634,13 @@ function Inspector(props) {
                             />
                             <ZoloCardDivider />
                             <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ZoloToggleGroupControl className="zolo-button-group">
+                                <ZoloToggleGroupControl className="zolo-button-group zolo-toggle-box-custom-css">
                                     {FLIPBLOX_SIDE.map((item) => (
                                         <ZoloToggleGroupControlOption
                                             value={item.value}
                                             label={item.label}
                                             isSelected={side === item.value}
+                                            className={item.value === side ? 'active' : ''}
                                             onClick={() => {
                                                 setSide(item.value);
 
@@ -716,12 +719,13 @@ function Inspector(props) {
                         {(showFrontIcon || showBackIcon) && (
                             <ZoloPanelBody title={__('Icon/Image', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ZoloToggleGroupControl className="zolo-button-group">
+                                    <ZoloToggleGroupControl className="zolo-button-group zolo-toggle-box-custom-css">
                                         {FLIPBLOX_SIDE.map((item) => (
                                             <ZoloToggleGroupControlOption
                                                 value={item.value}
                                                 label={item.label}
                                                 isSelected={side === item.value}
+                                                className={item.value === side ? 'active' : ''}
                                                 onClick={() => {
                                                     setSide(item.value);
 
@@ -830,12 +834,13 @@ function Inspector(props) {
                         {(showFrontTitle || showBackTitle) && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ZoloToggleGroupControl className="zolo-button-group">
+                                    <ZoloToggleGroupControl className="zolo-button-group zolo-toggle-box-custom-css">
                                         {FLIPBLOX_SIDE.map((item) => (
                                             <ZoloToggleGroupControlOption
                                                 value={item.value}
                                                 label={item.label}
                                                 isSelected={side === item.value}
+                                                className={item.value === side ? 'active' : ''}
                                                 onClick={() => {
                                                     setSide(item.value);
 
@@ -906,12 +911,13 @@ function Inspector(props) {
                         {(showFrontContent || showBackContent) && (
                             <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ZoloToggleGroupControl className="zolo-button-group">
+                                    <ZoloToggleGroupControl className="zolo-button-group zolo-toggle-box-custom-css">
                                         {FLIPBLOX_SIDE.map((item) => (
                                             <ZoloToggleGroupControlOption
                                                 value={item.value}
                                                 label={item.label}
                                                 isSelected={side === item.value}
+                                                className={item.value === side ? 'active' : ''}
                                                 onClick={() => {
                                                     setSide(item.value);
 
@@ -966,12 +972,13 @@ function Inspector(props) {
                         {showBackLinkBtn && (
                             <ZoloPanelBody title={__('Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ZoloToggleGroupControl className="zolo-button-group">
+                                    <ZoloToggleGroupControl className="zolo-button-group zolo-toggle-box-custom-css">
                                         {FLIPBLOX_SIDE.map((item) => (
                                             <ZoloToggleGroupControlOption
                                                 value={item.value}
                                                 label={item.label}
                                                 isSelected={side === item.value}
+                                                className={item.value === side ? 'active' : ''}
                                                 onClick={() => {
                                                     setSide(item.value);
                                                     if (item.value === 'back') {
