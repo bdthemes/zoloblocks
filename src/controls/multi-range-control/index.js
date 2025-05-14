@@ -1,6 +1,6 @@
+import { ZoloBaseControl } from '../core-controls';
 import { useState, useEffect, useRef } from '@wordpress/element';
 
-import { BaseControl } from '../../components/Core';
 
 const MultiRangeControl = (props) => {
     const min = parseFloat(props.min || 0);
@@ -268,7 +268,7 @@ const MultiRangeControl = (props) => {
 
     //.zolo-multi-rangle-control
     return (
-        <BaseControl>
+        <ZoloBaseControl>
             <div className="zolo-control-container zolo-multi-rangle-control" onWheel={onMouseWheel} ref={refThis}>
                 <label className="zolo-control-label" htmlFor="zolo-control-label">
                     {label}
@@ -310,7 +310,7 @@ const MultiRangeControl = (props) => {
                     <div className="bar-right" style={{ width: barMax + '%' }} onClick={onBarRightClick}></div>
                 </div>
             </div>
-        </BaseControl>
+        </ZoloBaseControl>
     );
 };
 

@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Dashicon } from '@wordpress/components';
+import { ZoloDashicon } from '../../../controls/core-controls';
 
 // Block Prefix
 export const BLOCK_PREFIX = 'advanced-icon-box';
@@ -295,10 +295,10 @@ export const RIBBON_POSITIONS = [
 ];
 
 // export const RIBBON_ALIGN = [
-//     { label: __(<Dashicon icon={'editor-alignleft'} />), value: 'left' },
-//     { label: __(<Dashicon icon={'editor-aligncenter'} />), value: 'center' },
-//     { label: __(<Dashicon icon={'editor-alignright'} />), value: 'right' },
-//     { label: __(<Dashicon icon={'editor-justify'} />), value: 'justify' },
+//     { label: __(<ZoloDashicon icon={'editor-alignleft'} />), value: 'left' },
+//     { label: __(<ZoloDashicon icon={'editor-aligncenter'} />), value: 'center' },
+//     { label: __(<ZoloDashicon icon={'editor-alignright'} />), value: 'right' },
+//     { label: __(<ZoloDashicon icon={'editor-justify'} />), value: 'justify' },
 // ];
 
 //animation

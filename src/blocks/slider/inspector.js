@@ -3,13 +3,15 @@
  */
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, CardDivider } from '@wordpress/components';
-import { RangeControl } from '../../components/Core';
 /**
  * Internal dependencies
  */
 const {
     HeaderTabs,
+    ZoloToggleControl,
+    ZoloSelectControl,
+    ZoloRangeControl,
+    ZoloCardDivider,
     ResRangeControl,
     ColorControl,
     BorderControl,
@@ -153,7 +155,7 @@ const Inspector = (props) => {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Slider Options', 'zoloblocks')} panelProps={props}>
-                            <RangeControl
+                            <ZoloRangeControl
                                 className="zolo-flex-col-control"
                                 label={__('Speed', 'zoloblocks')}
                                 value={speed}
@@ -171,7 +173,7 @@ const Inspector = (props) => {
                                 help={__('Default Speed:', 'zoloblocks') + 8 * 100 + 'ms'}
                             />
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
                                 checked={loop}
                                 onChange={() =>
@@ -183,7 +185,7 @@ const Inspector = (props) => {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Autoplay', 'zoloblocks')}
                                 checked={autoplay}
                                 onChange={() =>
@@ -197,7 +199,7 @@ const Inspector = (props) => {
                             />
                             {autoplay && (
                                 <>
-                                    <RangeControl
+                                    <ZoloRangeControl
                                         className="zolo-flex-col-control"
                                         label={__('Autoplay Delay', 'zoloblocks')}
                                         value={autoplayDelay}
@@ -213,7 +215,7 @@ const Inspector = (props) => {
                                         max={100}
                                         help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Pause on Mouse Enter', 'zoloblocks')}
                                         checked={pauseOnMouseEnter}
                                         onChange={() =>
@@ -227,7 +229,7 @@ const Inspector = (props) => {
                                     />
                                 </>
                             )}
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Show Navigation', 'zoloblocks')}
                                 checked={navigation || false}
                                 onChange={() =>
@@ -239,7 +241,7 @@ const Inspector = (props) => {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Show Pagination', 'zoloblocks')}
                                 checked={pagination || false}
                                 onChange={() =>
@@ -254,7 +256,7 @@ const Inspector = (props) => {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Effects', 'zoloblocks')} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Select Effect', 'zoloblocks')}
                                 value={effect}
                                 options={SLIDER_EFFECTS}
@@ -274,7 +276,7 @@ const Inspector = (props) => {
 
                             {effect === 'cube' && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Shadow', 'zoloblocks')}
                                         checked={cubeEffect?.slideShadows || false}
                                         onChange={(value) =>
@@ -289,7 +291,7 @@ const Inspector = (props) => {
                                             })
                                         }
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Cube Shadow', 'zoloblocks')}
                                         checked={cubeEffect?.shadow || false}
                                         onChange={(value) =>
@@ -365,7 +367,7 @@ const Inspector = (props) => {
                             )}
                             {effect === 'fade' && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label="Crossfade"
                                         checked={fadeEffect?.crossfade || false}
                                         onChange={(value) =>
@@ -385,7 +387,7 @@ const Inspector = (props) => {
 
                             {effect === 'flip' && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Slide Shadows', 'zoloblocks')}
                                         checked={flipEffect?.slideShadows || false}
                                         onChange={(value) =>
@@ -461,7 +463,7 @@ const Inspector = (props) => {
                             )}
                             {effect === 'coverflow' && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Slide Shadows', 'zoloblocks')}
                                         checked={coverflowEffect?.slideShadows || false}
                                         onChange={(value) =>
@@ -632,7 +634,7 @@ const Inspector = (props) => {
                         {navigation && (
                             <>
                                 <ZoloPanelBody title={__('Navigation', 'zoloblocks')} panelProps={props}>
-                                    <SelectControl
+                                    <ZoloSelectControl
                                         label={__('Positions', 'zoloblocks')}
                                         value={navPosition || 'bullets'}
                                         options={NAV_POSITIONS}
@@ -645,8 +647,8 @@ const Inspector = (props) => {
                                             })
                                         }
                                     />
-                                    <CardDivider />
-                                    <ToggleControl
+                                    <ZoloCardDivider />
+                                    <ZoloToggleControl
                                         label={__('Custom Icons', 'zoloblocks')}
                                         checked={customNavIcon}
                                         onChange={() =>
@@ -683,7 +685,7 @@ const Inspector = (props) => {
                         {pagination && (
                             <>
                                 <ZoloPanelBody title={__('Pagination', 'zoloblocks')} panelProps={props}>
-                                    <SelectControl
+                                    <ZoloSelectControl
                                         label={__('Type', 'zoloblocks')}
                                         value={paginationType || 'bullets'}
                                         options={PAGINATION_TYPES}
@@ -697,7 +699,7 @@ const Inspector = (props) => {
                                         }
                                     />
                                     {paginationType !== 'progressbar' && (
-                                        <SelectControl
+                                        <ZoloSelectControl
                                             label={__('Positions', 'zoloblocks')}
                                             value={pagiPosition || 'center-center'}
                                             options={PAGI_POSITIONS}
@@ -736,7 +738,7 @@ const Inspector = (props) => {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Position', 'zoloblocks')}
                                 value={contentPosition}
                                 options={CONTENT_POSITIONS}
@@ -781,7 +783,7 @@ const Inspector = (props) => {
                                                 min={1}
                                                 max={100}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <NormalBGControl
                                                 label={__('Background', 'zoloblocks')}
                                                 controlName={NAV_BG}
@@ -800,7 +802,7 @@ const Inspector = (props) => {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={false}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={NAV_BORDER}
@@ -873,7 +875,7 @@ const Inspector = (props) => {
                                                             typoPrefixConstant={PAGI_FRACTIONS_TYPO}
                                                             requiredProps={requiredProps}
                                                         />
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                     </>
                                                 )}
 
@@ -893,7 +895,7 @@ const Inspector = (props) => {
                                                             min={1}
                                                             max={100}
                                                         />
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                         <NormalBGControl
                                                             label={__('Background', 'zoloblocks')}
                                                             controlName={PAG_BG}
@@ -913,7 +915,7 @@ const Inspector = (props) => {
 
                                                 {paginationType === 'bullets' && (
                                                     <>
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                         <BorderControl
                                                             label={__('Border', 'zoloblocks')}
                                                             controlName={PAG_BORDER}
@@ -929,7 +931,7 @@ const Inspector = (props) => {
                                                 )}
                                                 {paginationType !== 'progressbar' && (
                                                     <>
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                         <ResRangeControl
                                                             label={__('Space Between', 'zoloblocks')}
                                                             controlName={PAG_SPACING}
@@ -955,7 +957,7 @@ const Inspector = (props) => {
                                                             requiredProps={requiredProps}
                                                             noMainBGImg={true}
                                                         />
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                         <BorderControl
                                                             label={__('Border', 'zoloblocks')}
                                                             controlName={PAG_BORDER}
@@ -1003,14 +1005,14 @@ const Inspector = (props) => {
                                                             max={100}
                                                         />
 
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                         <NormalBGControl
                                                             label={__('Background', 'zoloblocks')}
                                                             controlName={APAG_BG}
                                                             requiredProps={requiredProps}
                                                             noMainBGImg={true}
                                                         />
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                         <BorderControl
                                                             label={__('Border', 'zoloblocks')}
                                                             controlName={APAG_BORDER}

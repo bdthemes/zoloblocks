@@ -2,18 +2,26 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-const { ResRangeControl, HeaderTabs, AdvancedOptions, ZoloPanelBody, ResAlignmentControl } = window.zoloModule;
+const {
+    ZoloCardDivider,
+    ResRangeControl,
+    HeaderTabs,
+    AdvancedOptions,
+    ZoloPanelBody,
+    ResAlignmentControl,
+    ZoloToggleControl,
+    ZoloSelectControl,
+    ZoloTextControl,
+} = window.zoloModule;
 
 import objAttributes from './attributes';
 
 import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
-import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -38,7 +46,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <div className="zolo-flex-col-control">
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Source URL', 'zoloblocks')}
                                     value={source}
                                     onChange={(v) => setAttributes({ source: v })}
@@ -125,7 +133,7 @@ function Inspector(props) {
                                 ]}
                             /> */}
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Hint', 'zoloblocks')}
                                 checked={hint}
                                 onChange={(v) =>
@@ -134,7 +142,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Loading', 'zoloblocks')}
                                 checked={loading || false}
                                 onChange={(v) =>
@@ -145,8 +153,8 @@ function Inspector(props) {
                             />
                             {loading && (
                                 <>
-                                    <CardDivider />
-                                    <SelectControl
+                                    <ZoloCardDivider />
+                                    <ZoloSelectControl
                                         label={__('Animation', 'zoloblocks')}
                                         value={loadingAnimType}
                                         options={[

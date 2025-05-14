@@ -1,4 +1,4 @@
-import { RangeControl } from '../../components/Core';
+import { ZoloRangeControl } from '../core-controls';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -67,7 +67,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                     >
                         <div className="zolo-box-shadow-options">
                             <div className="single-shadow-input">
-                                <RangeControl
+                                <ZoloRangeControl
                                     value={strokeWidthVal}
                                     onChange={(val) =>
                                         setAttributes({

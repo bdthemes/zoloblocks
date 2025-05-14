@@ -1,24 +1,20 @@
 const { classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
-import { useBlockProps,InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 const Save = (props) => {
     const { attributes, className } = props;
     const { uniqueId, parentClasses, preset, zoloId } = attributes;
 
-  return (
+    return (
         <div
             {...useBlockProps.save({
-                className: classnames(
-                    className,
-                    `${uniqueId} zolo-${preset}`,
-                    classArrayToStr(parentClasses)
-                ),
+                className: classnames(className, `${uniqueId} zolo-${preset}`, classArrayToStr(parentClasses)),
             })}
             {...(zoloId && {
                 id: zoloId,
             })}
         >
-          <InnerBlocks.Content />
+            <InnerBlocks.Content />
         </div>
     );
 };

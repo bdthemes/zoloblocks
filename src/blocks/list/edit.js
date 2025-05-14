@@ -3,7 +3,6 @@
  */
 
 import { useBlockProps, RichText, BlockControls } from '@wordpress/block-editor';
-import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -12,7 +11,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import classnames from 'classnames';
 
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, ZoloToolbarGroup, ZoloToolbarButton } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -80,9 +79,9 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <BlockControls>
-                <ToolbarGroup>
-                    <ToolbarButton onClick={handleButtonClick} icon="insert" />
-                </ToolbarGroup>
+                <ZoloToolbarGroup>
+                    <ZoloToolbarButton onClick={handleButtonClick} icon="insert" />
+                </ZoloToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
@@ -90,7 +89,7 @@ export default function Edit(props) {
                 {deepCloneProfiles &&
                     deepCloneProfiles.map((profile, index) => {
                         return (
-                            <React.Fragment  key={index}>
+                            <React.Fragment key={index}>
                                 {preset == 'zolo-list-style-1' && (
                                     <RichText
                                         href={profile.link && profile.link.url}

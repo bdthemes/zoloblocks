@@ -1,17 +1,17 @@
 /**
  * Internal depencencies
  */
-const { ZoloIconPicker, SortableControl, SortableItem } = window.zoloModule;
+const { ZoloIconPicker, SortableControl, SortableItem, ZoloButton, ZoloCorePanelBody, ZoloTextControl, ZoloTextareaControl } =
+    window.zoloModule;
 
 /**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Button, PanelBody, TextareaControl } from '@wordpress/components';
 import { select, dispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 import { cloneDeep } from 'lodash';
-import { TextControl } from '../../components/Core';
+
 const Sortable = ({
     tabTitles,
     setAttributes,
@@ -96,19 +96,19 @@ const Sortable = ({
         <div className="sortable">
             <div className="zb-repeater-flex">
                 <div className="repeater-label">{__('Add a Tab', 'zoloblocks')}</div>
-                <Button onClick={addNewTab}>
+                <ZoloButton onClick={addNewTab}>
                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
             <SortableControl defaultItems={tabTitles} attributeName="socialProfiles" setAttributes={setAttributes}>
                 {deepCloneTitles &&
                     deepCloneTitles.map((tab, index) => {
                         return (
                             <div className="dnd-container" key={index}>
-                                <Button
+                                <ZoloButton
                                     className="dnd-trash"
                                     icon="trash"
                                     onClick={() => {
@@ -116,8 +116,8 @@ const Sortable = ({
                                     }}
                                 />
                                 <SortableItem key={tab.id} id={tab.id}>
-                                    <PanelBody title={tab.title || 'Title'} initialOpen={false}>
-                                        <TextControl
+                                    <ZoloCorePanelBody title={tab.title || 'Title'} initialOpen={false}>
+                                        <ZoloTextControl
                                             label={__('Title', 'zoloblocks')}
                                             value={tab.title}
                                             onChange={(v) => {
@@ -133,7 +133,7 @@ const Sortable = ({
                                             )}
                                         />
                                         {tab.hasDescription && (
-                                            <TextareaControl
+                                            <ZoloTextareaControl
                                                 className="zolo-flex-col-control"
                                                 label={__('Description', 'zoloblocks')}
                                                 value={tab.description}
@@ -166,7 +166,7 @@ const Sortable = ({
                                                 }}
                                             />
                                         )}
-                                    </PanelBody>
+                                    </ZoloCorePanelBody>
                                 </SortableItem>
                             </div>
                         );

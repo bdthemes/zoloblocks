@@ -1,16 +1,14 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { CardDivider, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
-import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT, ICON_SIZE, TEXT_INDENT } from './constants';
 
-import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import Sortable from './sortable';
-import { TextControl } from '../../components/Core';
 
 const {
     HeaderTabs,
+    ZoloSelectControl,
+    ZoloTextControl,
+    ZoloCardDivider,
     ColorControl,
     TypographyDropdown,
     ResAlignmentControl,
@@ -19,6 +17,10 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
 } = window.zoloModule;
+
+import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT, ICON_SIZE, TEXT_INDENT } from './constants';
+import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -62,7 +64,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Separator', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Style', 'zoloblocks')}
                                 value={separatorStyle}
                                 options={[
@@ -73,7 +75,7 @@ function Inspector(props) {
                                 onChange={(separatorStyle) => setAttributes({ separatorStyle })}
                             />
                             {separatorStyle === 'separator-custom' && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Separator', 'zoloblocks')}
                                     value={customSeparator}
                                     onChange={(customSeparator) => setAttributes({ customSeparator })}
@@ -131,7 +133,7 @@ function Inspector(props) {
                                 typoPrefixConstant={TEXT_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResRangeControl
                                 label={__('Indent', 'zoloblocks')}
                                 controlName={TEXT_INDENT}

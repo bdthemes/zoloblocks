@@ -1,7 +1,27 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import objAttributes from './attributes';
+
+const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloTextControl,
+    ZoloCardDivider,
+    TextShadowControl,
+    TextStrokeControl,
+    ResDimensionsControl,
+    NormalBGControl,
+    BorderControl,
+    BoxShadowControl,
+    HeaderTabs,
+    TabPanelControl,
+    ColorControl,
+    TypographyDropdown,
+    ResAlignmentControl,
+    RangeResetControl,
+    AdvancedOptions,
+    ZoloPanelBody,
+} = window.zoloModule;
+
 import {
     TITLE_ALIGN,
     TITLE_PADDING,
@@ -18,27 +38,9 @@ import {
     TITLE_HOVER_SHADOW,
 } from './constants';
 
+import objAttributes from './attributes';
 import { TITLE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
-
-import { TextControl } from '../../components/Core';
-
-const {
-    TextShadowControl,
-    TextStrokeControl,
-    ResDimensionsControl,
-    NormalBGControl,
-    BorderControl,
-    BoxShadowControl,
-    HeaderTabs,
-    TabPanelControl,
-    ColorControl,
-    TypographyDropdown,
-    ResAlignmentControl,
-    RangeResetControl,
-    AdvancedOptions,
-    ZoloPanelBody,
-} = window.zoloModule;
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -62,27 +64,27 @@ function Inspector(props) {
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Show/hide elements', 'zoloblocks')}
                             </div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Enable Link', 'zoloblocks')}
                                 checked={isLink}
                                 onChange={(isLink) => setAttributes({ isLink })}
                             />
                             {isLink && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Open in new tab', 'zoloblocks')}
                                         onChange={(value) => setAttributes({ linkTarget: value ? '_blank' : '_self' })}
                                         checked={linkTarget === '_blank'}
                                     />
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Link rel', 'zoloblocks')}
                                         value={linkRel}
                                         onChange={(linkRel) => setAttributes({ linkRel })}
                                     />
                                 </>
                             )}
-                            <CardDivider />
-                            <SelectControl
+                            <ZoloCardDivider />
+                            <ZoloSelectControl
                                 label={__('Tag', 'zoloblocks')}
                                 value={titleTag}
                                 options={HEADING}
@@ -96,7 +98,7 @@ function Inspector(props) {
                                 max={100}
                                 step={1}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
                                 controlName={TITLE_ALIGN}
@@ -146,7 +148,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={TITLE_BG} noMainBGImg={true} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -158,7 +160,7 @@ function Inspector(props) {
                                             controlName={TITLE_MARGIN}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={TITLE_BORDER}
@@ -185,7 +187,7 @@ function Inspector(props) {
                                             }
                                         />
                                         <NormalBGControl requiredProps={requiredProps} controlName={TITLE_HOVER_BG} noMainBGImg={true} />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={TITLE_HOVER_BORDER}

@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
 import { __experimentalBlockVariationPicker as BlockVariationPicker } from '@wordpress/block-editor';
 import variations from '../utils/variations';
 import { closeSmall } from '@wordpress/icons';
+const { ZoloButton } = window.zoloModule;
+
 const VariationPicker = ({ setSelectedVariation, setTemplateType }) => {
     return (
         <div className="zolo-navigation-variation-picker">
@@ -11,7 +12,7 @@ const VariationPicker = ({ setSelectedVariation, setTemplateType }) => {
                 variations={variations}
                 onSelect={(variation) => setSelectedVariation(variation)}
             />
-            <Button icon={closeSmall} className="zolo-navigation-variation-picker-back" onClick={() => setTemplateType('')} />
+            <ZoloButton icon={closeSmall} className="zolo-navigation-variation-picker-back" onClick={() => setTemplateType('')} />
         </div>
     );
 };

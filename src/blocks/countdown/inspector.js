@@ -2,16 +2,19 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { DateTimePicker, BaseControl, ToggleControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 
-import { TextControl } from '../../components/Core';
-
 const {
+    ZoloDateTimePicker,
+    ZoloBaseControl,
+    ZoloToggleControl,
+    ZoloSelectControl,
+    ZoloTextControl,
+    ZoloCardDivider,
     ResAlignmentControl,
     ResRangeControl,
     ResDimensionsControl,
@@ -61,7 +64,6 @@ import {
 } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
-import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -131,23 +133,23 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={presets}
                                 options={applyFilters('zolo.countdown.presets', PRESETS)}
                                 onChange={(preset) => onPresetChange(preset)}
                             />
                             <div className="zolo-custom-heading">{__('Timer End Date-Time', 'zoloblocks')}</div>
-                            <BaseControl id="countdate-1" className="zolo-flex-col-control">
-                                <DateTimePicker
+                            <ZoloBaseControl id="countdate-1" className="zolo-flex-col-control">
+                                <ZoloDateTimePicker
                                     id="countdate-1"
                                     currentDate={CountDate}
                                     onChange={(newDate) => setAttributes({ CountDate: newDate })}
                                     is12Hour
                                 />
-                            </BaseControl>
+                            </ZoloBaseControl>
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Years', 'zoloblocks')}
                                 checked={itemsVisibility?.years}
                                 onChange={() =>
@@ -159,7 +161,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Months', 'zoloblocks')}
                                 checked={itemsVisibility?.months}
                                 onChange={() =>
@@ -171,7 +173,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Weeks', 'zoloblocks')}
                                 checked={itemsVisibility?.weeks}
                                 onChange={() =>
@@ -183,7 +185,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Days', 'zoloblocks')}
                                 checked={itemsVisibility?.days}
                                 onChange={() =>
@@ -195,7 +197,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Hours', 'zoloblocks')}
                                 checked={itemsVisibility?.hours}
                                 onChange={() =>
@@ -207,7 +209,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Minutes', 'zoloblocks')}
                                 checked={itemsVisibility?.minutes}
                                 onChange={() =>
@@ -267,7 +269,7 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Labels', 'zoloblocks')} panelProps={props}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Show Labels', 'zoloblocks')}
                                 checked={toggleLabels}
                                 onChange={() => setAttributes({ toggleLabels: !toggleLabels })}
@@ -275,7 +277,7 @@ function Inspector(props) {
                             {toggleLabels && (
                                 <>
                                     {itemsVisibility.years && (
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Years', 'zoloblocks')}
                                             value={itemsLabels?.years}
                                             onChange={(v) =>
@@ -289,7 +291,7 @@ function Inspector(props) {
                                         />
                                     )}
                                     {itemsVisibility.months && (
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Months', 'zoloblocks')}
                                             value={itemsLabels?.months}
                                             onChange={(v) =>
@@ -303,7 +305,7 @@ function Inspector(props) {
                                         />
                                     )}
                                     {itemsVisibility.weeks && (
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Weeks', 'zoloblocks')}
                                             value={itemsLabels?.weeks}
                                             onChange={(v) =>
@@ -317,7 +319,7 @@ function Inspector(props) {
                                         />
                                     )}
                                     {itemsVisibility.days && (
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Days', 'zoloblocks')}
                                             value={itemsLabels?.days}
                                             onChange={(v) =>
@@ -331,7 +333,7 @@ function Inspector(props) {
                                         />
                                     )}
                                     {itemsVisibility.hours && (
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Hours', 'zoloblocks')}
                                             value={itemsLabels?.hours}
                                             onChange={(v) =>
@@ -345,7 +347,7 @@ function Inspector(props) {
                                         />
                                     )}
                                     {itemsVisibility.minutes && (
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Minutes', 'zoloblocks')}
                                             value={itemsLabels?.minutes}
                                             onChange={(v) =>
@@ -358,7 +360,7 @@ function Inspector(props) {
                                             }
                                         />
                                     )}
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Second', 'zoloblocks')}
                                         value={itemsLabels?.seconds}
                                         onChange={(v) =>
@@ -375,7 +377,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {presets === 'zolo-countdown-style-2' || presets === 'zolo-countdown-style-3' || (
                             <ZoloPanelBody title={__('Separator', 'zoloblocks')} panelProps={props}>
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Show Separator', 'zoloblocks')}
                                     checked={toggleSeparator}
                                     onChange={() => setAttributes({ toggleSeparator: !toggleSeparator })}
@@ -393,7 +395,7 @@ function Inspector(props) {
                                     />
                                 )}
                                 {toggleSeparator && countSeparator === 'text' && (
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('custom', 'zoloblocks')}
                                         value={separatorItem}
                                         onChange={(v) => setAttributes({ separatorItem: v })}
@@ -429,7 +431,7 @@ function Inspector(props) {
                                     />
                                 )}
 
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <NormalBGControl requiredProps={requiredProps} controlName={COUNT_BG} noOverlay={true} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
@@ -438,7 +440,7 @@ function Inspector(props) {
                                     forBorderRadius={false}
                                     max={100}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={COUNT_BORDER}
@@ -456,7 +458,7 @@ function Inspector(props) {
                                     forBorderRadius={true}
                                     max={100}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResDimensionsControl
                                     label={__('Space Between', 'zoloblocks')}
                                     controlName={COUNTBOX_MARGIN}
@@ -477,7 +479,7 @@ function Inspector(props) {
                                 typoPrefixConstant={DIGIT_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <NormalBGControl requiredProps={requiredProps} controlName={COUNT_NUM_BG} noOverlay={true} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
@@ -486,7 +488,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                                 max={100}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={COUNTNUM_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius')}
@@ -502,7 +504,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={LABEL_POSITION_OPTION}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ColorControl
                                 label={__('Color', 'zoloblocks')}
                                 color={labelColor}
@@ -513,7 +515,7 @@ function Inspector(props) {
                                 typoPrefixConstant={LABEL_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <NormalBGControl requiredProps={requiredProps} controlName={COUNT_LABEL_BG} noOverlay={true} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
@@ -522,7 +524,7 @@ function Inspector(props) {
                                 forBorderRadius={false}
                                 max={100}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={COUNTLABEL_BORDER}
@@ -534,7 +536,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResDimensionsControl
                                 label={__('Space Between', 'zoloblocks')}
                                 controlName={COUNTLABEL_MARGIN}

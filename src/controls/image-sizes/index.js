@@ -1,6 +1,6 @@
+import { ZoloSelectControl } from '../core-controls';
 import { __ } from '@wordpress/i18n';
 
-import { SelectControl } from '../../components/Core';
 
 const ImageSizes = ({ label = '', value, onChange }) => {
     const Dimensions = wp.data.select('core/editor').getEditorSettings().imageDimensions || {
@@ -28,7 +28,7 @@ const ImageSizes = ({ label = '', value, onChange }) => {
 
     return (
         <div className="zolo-control-container zolo-image-resolutions">
-            <SelectControl
+            <ZoloSelectControl
                 label={label || __('Resolutions', 'zoloblocks')}
                 value={value}
                 options={

@@ -54,7 +54,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-
     const {
         desktopRangeStyle: deskGap,
         tabRangeStyle: tabGap,

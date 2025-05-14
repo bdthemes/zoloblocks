@@ -116,12 +116,12 @@ const attributes = {
     requiredColor: {
         type: 'string',
     },
-    defaultValue:{
-      type:'string',
+    defaultValue: {
+        type: 'string',
     },
-    customNameAttribute:{
-      type:'string'
-    }
+    customNameAttribute: {
+        type: 'string',
+    },
 };
 
 export default attributes;

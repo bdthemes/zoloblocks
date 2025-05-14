@@ -2,6 +2,7 @@
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
     ResRangeControl,
     ColorControl,
     TabPanelControl,
@@ -24,7 +25,6 @@ import Sortable from './sortable';
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -116,7 +116,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.socialLinks.presets', PRESETS)}

@@ -1,5 +1,5 @@
 //wordpress dependencies
-import { Button, Dropdown } from '@wordpress/components';
+import { ZoloButton, ZoloDropdown, ZoloSelectControl, ZoloRangeControl, ZoloBaseControl } from '../core-controls';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -11,8 +11,6 @@ import FontPicker from './fontPicker';
 import IconicBtnGroup from '../iconic-btn-group';
 
 import { prefix } from '../../global/constants';
-
-import { RangeControl, SelectControl, BaseControl } from '../../components/Core';
 
 //block constant
 import { fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDecorationOptions, textTransformOptions } from './constant';
@@ -71,7 +69,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
             : '';
 
     return (
-        <BaseControl label={label || __('Typography', 'zoloblocks')} className="zb-typography-control-wrapper">
+        <ZoloBaseControl label={label || __('Typography', 'zoloblocks')} className="zb-typography-control-wrapper">
             <div className="zolo-flex">
                 {hasValueClass && (
                     <ResetBtn
@@ -106,11 +104,11 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                         }}
                     />
                 )}
-                <Dropdown
+                <ZoloDropdown
                     className="zb-typography-dropdown"
                     popoverProps={{ placement: 'bottom-start' }}
                     renderToggle={({ isOpen, onToggle }) => (
-                        <Button onClick={onToggle} aria-expanded={isOpen} className={`zb-typography-dropdown-btn ${hasValueClass}`}>
+                        <ZoloButton onClick={onToggle} aria-expanded={isOpen} className={`zb-typography-dropdown-btn ${hasValueClass}`}>
                             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 20L19 20" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 <path
@@ -121,7 +119,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                        </Button>
+                        </ZoloButton>
                     )}
                     renderContent={() => (
                         <div className="zolo-panel-control zb-typography-component-panel">
@@ -139,7 +137,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                     />
                                 </div>
                                 <div className="zolo-flex-col-control zolo-font-weight-input">
-                                    <SelectControl
+                                    <ZoloSelectControl
                                         label={__('Weight', 'zoloblocks')}
                                         value={fontWeight}
                                         options={fontWeightOptions}
@@ -178,7 +176,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn label={__('Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={fontSize}
                                                 onChange={(FontSize) =>
                                                     setAttributes({
@@ -217,7 +215,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn label={__('Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={TABfontSize}
                                                 onChange={(FontSize) =>
                                                     setAttributes({
@@ -256,7 +254,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                         </UnitsBtn>
 
                                         <WithResDeviceBtn label={__(' Size', 'zoloblocks')} requiredProps={requiredProps} noResetBtn={true}>
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={MOBfontSize}
                                                 onChange={(FontSize) =>
                                                     setAttributes({
@@ -301,7 +299,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={letterSpacing}
                                                 onChange={(LetterSpacing) =>
                                                     setAttributes({
@@ -345,7 +343,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={TABletterSpacing}
                                                 onChange={(LetterSpacing) =>
                                                     setAttributes({
@@ -389,7 +387,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={MOBletterSpacing}
                                                 onChange={(LetterSpacing) =>
                                                     setAttributes({
@@ -434,7 +432,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={lineHeight}
                                                 onChange={(LineHeight) =>
                                                     setAttributes({
@@ -477,7 +475,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={TABlineHeight}
                                                 onChange={(LineHeight) =>
                                                     setAttributes({
@@ -520,7 +518,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                                             requiredProps={requiredProps}
                                             noResetBtn={true}
                                         >
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 value={MOBlineHeight}
                                                 onChange={(LineHeight) =>
                                                     setAttributes({
@@ -573,7 +571,7 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                     )}
                 />
             </div>
-        </BaseControl>
+        </ZoloBaseControl>
     );
 };
 export default TypographyDropdown;

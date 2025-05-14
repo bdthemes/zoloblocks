@@ -3,7 +3,6 @@
  */
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 
-
 import classnames from 'classnames';
 import { socialMediaInfo } from './constants';
 import { applyFilters } from '@wordpress/hooks';

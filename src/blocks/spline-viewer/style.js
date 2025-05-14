@@ -7,11 +7,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const {
-    generateResAlignmentStyle,
-    generateResRangeStyle,
-    GlobalStyleHanlder,
-} = window.zoloModule;
+const { generateResAlignmentStyle, generateResRangeStyle, GlobalStyleHanlder } = window.zoloModule;
 
 import { WIDTH, HEIGHT, ALIGNMENT } from './constants';
 

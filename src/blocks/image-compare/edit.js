@@ -3,7 +3,6 @@
  */
 
 import { useBlockProps, MediaUpload, MediaPlaceholder, BlockControls } from '@wordpress/block-editor';
-import { ToolbarGroup, ToolbarButton, Tooltip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useEffect, useRef } from '@wordpress/element';
 import { useMergeRefs } from '@wordpress/compose';
@@ -14,7 +13,7 @@ import { dispatch } from '@wordpress/data';
  */
 import classnames from 'classnames';
 
-const { classArrayToStr, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, SidebarOpener, ZoloToolbarGroup, ZoloToolbarButton, ZoloTooltip } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -68,7 +67,7 @@ export default function Edit(props) {
             <Style props={props} />
             <BlockControls>
                 {beforeImage && beforeImage.id && (
-                    <ToolbarGroup>
+                    <ZoloToolbarGroup>
                         <MediaUpload
                             onSelect={(media) => {
                                 setAttributes({
@@ -78,15 +77,15 @@ export default function Edit(props) {
                             allowedTypes={['image']}
                             value={beforeImage && beforeImage.id}
                             render={({ open }) => (
-                                <Tooltip text="Before Image">
-                                    <ToolbarButton icon="edit" onClick={open} />
-                                </Tooltip>
+                                <ZoloTooltip text="Before Image">
+                                    <ZoloToolbarButton icon="edit" onClick={open} />
+                                </ZoloTooltip>
                             )}
                         />
-                    </ToolbarGroup>
+                    </ZoloToolbarGroup>
                 )}
                 {afterImage && afterImage.id && (
-                    <ToolbarGroup>
+                    <ZoloToolbarGroup>
                         <MediaUpload
                             onSelect={(media) => {
                                 setAttributes({
@@ -96,12 +95,12 @@ export default function Edit(props) {
                             allowedTypes={['image']}
                             value={afterImage && afterImage.id}
                             render={({ open }) => (
-                                <Tooltip text="After Image">
-                                    <ToolbarButton icon="edit" onClick={open} />
-                                </Tooltip>
+                                <ZoloTooltip text="After Image">
+                                    <ZoloToolbarButton icon="edit" onClick={open} />
+                                </ZoloTooltip>
                             )}
                         />
-                    </ToolbarGroup>
+                    </ZoloToolbarGroup>
                 )}
             </BlockControls>
             <div {...blockProps}>

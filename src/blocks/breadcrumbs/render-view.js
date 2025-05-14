@@ -1,4 +1,5 @@
 const { DisplayZoloIcon } = window.zoloModule;
+
 export default function RenderView({ attributes }) {
     const { homeText, homeIcon, showSeparator, separatorIcon } = attributes;
 

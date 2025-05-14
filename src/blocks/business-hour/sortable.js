@@ -1,14 +1,11 @@
+import { __ } from '@wordpress/i18n';
+import { cloneDeep } from 'lodash';
+
 /**
  * Internal depencencies
  */
-const { SortableControl, SortableItem, ColorControl } = window.zoloModule;
-
-const { __ } = wp.i18n;
-const { Button, PanelBody, ToggleControl, TextareaControl } = wp.components;
-import { cloneDeep } from 'lodash';
-import { CardDivider } from '@wordpress/components';
-
-import { TextControl } from '../../components/Core';
+const { SortableControl, SortableItem, ZoloButton, ZoloCorePanelBody, ZoloTextControl, ZoloToggleControl, ZoloCardDivider } =
+    window.zoloModule;
 
 const Sortable = ({ businessList, setAttributes }) => {
     const deepCloneProfiles = cloneDeep(businessList);
@@ -17,7 +14,7 @@ const Sortable = ({ businessList, setAttributes }) => {
         <div className="sortable">
             <div className="zb-repeater-flex">
                 <div className="repeater-label">{__('Add Business Day', 'zoloblocks')}</div>
-                <Button
+                <ZoloButton
                     onClick={() =>
                         setAttributes({
                             businessList: [
@@ -38,14 +35,14 @@ const Sortable = ({ businessList, setAttributes }) => {
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
             <SortableControl defaultItems={businessList} attributeName="businessList" setAttributes={setAttributes}>
                 {deepCloneProfiles &&
                     deepCloneProfiles.map((profile, index) => {
                         return (
                             <div className="dnd-container" key={index}>
-                                <Button
+                                <ZoloButton
                                     className="dnd-trash"
                                     icon="trash"
                                     onClick={() => {
@@ -55,8 +52,8 @@ const Sortable = ({ businessList, setAttributes }) => {
                                     }}
                                 />
                                 <SortableItem key={profile.id} id={profile.id}>
-                                    <PanelBody title={profile.name || 'Day'} initialOpen={false}>
-                                        <TextControl
+                                    <ZoloCorePanelBody title={profile.name || 'Day'} initialOpen={false}>
+                                        <ZoloTextControl
                                             label={__('Day', 'zoloblocks')}
                                             value={profile.name}
                                             onChange={(v) => {
@@ -67,8 +64,8 @@ const Sortable = ({ businessList, setAttributes }) => {
                                                 });
                                             }}
                                         />
-                                        <CardDivider />
-                                        <ToggleControl
+                                        <ZoloCardDivider />
+                                        <ZoloToggleControl
                                             label={__('Working Day', 'zoloblocks')}
                                             checked={profile.toggleworkday}
                                             onChange={() => {
@@ -83,7 +80,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                         />
                                         {profile.toggleworkday ? (
                                             <>
-                                                <TextControl
+                                                <ZoloTextControl
                                                     label={__('Start Time', 'zoloblocks')}
                                                     value={profile.startDate}
                                                     onChange={(v) => {
@@ -93,7 +90,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                                     }}
                                                 />
 
-                                                <TextControl
+                                                <ZoloTextControl
                                                     label={__('End Time', 'zoloblocks')}
                                                     value={profile.endDate}
                                                     onChange={(v) => {
@@ -104,7 +101,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                                 />
                                             </>
                                         ) : (
-                                            <TextControl
+                                            <ZoloTextControl
                                                 label={__('Closed Day', 'zoloblocks')}
                                                 value={profile.closedDay}
                                                 onChange={(v) => {
@@ -114,7 +111,7 @@ const Sortable = ({ businessList, setAttributes }) => {
                                                 }}
                                             />
                                         )}
-                                    </PanelBody>
+                                    </ZoloCorePanelBody>
                                 </SortableItem>
                             </div>
                         );

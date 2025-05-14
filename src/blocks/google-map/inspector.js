@@ -2,16 +2,19 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, SelectControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
 /**
-* Internal depencencies
-*/
-import { TextControl, RangeControl } from '../../components/Core';
+ * Internal depencencies
+ */
 
 const {
+    ZoloToggleControl,
+    ZoloSelectControl,
+    ZoloTextareaControl,
+    ZoloTextControl,
+    ZoloRangeControl,
     TabPanelControl,
     ResRangeControl,
     ColorControl,
@@ -84,14 +87,14 @@ function Inspector(props) {
                                     });
                                 }}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Latitude', 'zoloblocks')}
                                 placeholder={__('24.8233495', 'zoloblocks')}
                                 value={latitude}
                                 readOnly={true}
                                 type="number"
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Longitude', 'zoloblocks')}
                                 placeholder={__('89.3841374', 'zoloblocks')}
                                 value={longitude}
@@ -99,7 +102,7 @@ function Inspector(props) {
                                 type="number"
                             />
                             <div className="zolo-flex-col-control">
-                                <TextareaControl
+                                <ZoloTextareaControl
                                     label={__('Marker Description')}
                                     value={
                                         infoWindow ||
@@ -119,12 +122,12 @@ function Inspector(props) {
                             <Repeater markers={markers} setAttributes={setAttributes} />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Map UI', 'zoloblocks')} panelProps={props}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Enable Draggable', 'zoloblocks')}
                                 checked={draggable === undefined ? true : draggable}
                                 onChange={(v) => setAttributes({ draggable: v })}
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Show UI Controls', 'zoloblocks')}
                                 checked={showUIControls === undefined ? true : showUIControls}
                                 onChange={(v) =>
@@ -136,7 +139,7 @@ function Inspector(props) {
 
                             {(showUIControls || showUIControls === undefined) && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Enable Fullscreen Control', 'zoloblocks')}
                                         checked={uiControls?.fullscreenControl === undefined ? true : uiControls?.fullscreenControl}
                                         onChange={(v) => {
@@ -148,7 +151,7 @@ function Inspector(props) {
                                             });
                                         }}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Enable Map Type Control', 'zoloblocks')}
                                         checked={uiControls?.mapTypeControl === undefined ? true : uiControls?.mapTypeControl}
                                         onChange={(v) =>
@@ -160,7 +163,7 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Enable Zoom Control', 'zoloblocks')}
                                         checked={uiControls?.zoomControl === undefined ? true : uiControls?.zoomControl}
                                         onChange={(v) =>
@@ -172,7 +175,7 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Enable Scale Control', 'zoloblocks')}
                                         checked={uiControls?.scaleControl === undefined ? true : uiControls?.scaleControl}
                                         onChange={(v) =>
@@ -184,7 +187,7 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Enable Street View Control', 'zoloblocks')}
                                         checked={uiControls?.streetViewControl === undefined ? true : uiControls?.streetViewControl}
                                         onChange={(v) =>
@@ -216,7 +219,7 @@ function Inspector(props) {
                                 />
                             </div>
                             {mapStyleType === 'default' && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Map ID', 'zoloblocks')}
                                     help={__('Enter your map ID', 'zoloblocks')}
                                     value={mapId}
@@ -226,7 +229,7 @@ function Inspector(props) {
                             )}
                             {mapStyleType === 'custom' && (
                                 <div className="zolo-flex-col-control">
-                                    <TextareaControl
+                                    <ZoloTextareaControl
                                         label={__('Paste Style Codes', 'zoloblocks')}
                                         help={
                                             <div className="components-base-control__help">
@@ -246,7 +249,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Settings', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-flex-col-control">
-                                <RangeControl
+                                <ZoloRangeControl
                                     label={__('Zoom Level', 'zoloblocks')}
                                     help={__(
                                         'Set the initial zoom level of the map. The higher the value will be the more zoomed in the map',
@@ -258,7 +261,7 @@ function Inspector(props) {
                                     max={21}
                                 />
                             </div>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Map View Type', 'zoloblocks')}
                                 help={__(
                                     'Set the type of map to be displayed, such as road map, satellite imagery, or terrain.',
@@ -270,7 +273,7 @@ function Inspector(props) {
                                     setAttributes({ mapType });
                                 }}
                             />
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Language', 'zoloblocks')}
                                 help={__(
                                     'Select the language of the map interface. such as for English select English or French select French',

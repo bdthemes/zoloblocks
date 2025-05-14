@@ -60,9 +60,7 @@ const Save = ({ attributes }) => {
                             </svg>
                         </div>
                         <div className="zb-brand-inner-content">
-                            {brandNameVisible && (
-                                <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />
-                            )}
+                            {brandNameVisible && <RichText.Content tagName={brandNameTag} className="zb-brand-title" value={brandTitle} />}
                             {brandLabelVisible && <RichText.Content tagName="span" className="zb-brand-label" value={brandLabel} />}
                         </div>
                     </div>

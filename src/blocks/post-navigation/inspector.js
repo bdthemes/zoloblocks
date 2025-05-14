@@ -1,10 +1,27 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, CardDivider, SelectControl } from '@wordpress/components';
 import objAttributes from './attributes';
-import { applyFilters } from '@wordpress/hooks';
-import { TextControl } from '../../components/Core';
 
+const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloTextControl,
+    ZoloCardDivider,
+    ResDimensionsControl,
+    BorderControl,
+    BoxShadowControl,
+    HeaderTabs,
+    ColorControl,
+    TypographyDropdown,
+    AdvancedOptions,
+    ZoloPanelBody,
+    TabPanelControl,
+    ResRangeControl,
+    NormalBGControl,
+    ZoloIconPicker,
+} = window.zoloModule;
+
+import { applyFilters } from '@wordpress/hooks';
 import { TITLE_TYPOGRAPHY, BTN_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 import {
@@ -26,20 +43,6 @@ import {
 
 import { THUMBNAIL_SIZE } from '@/global/constants';
 
-const {
-    ResDimensionsControl,
-    BorderControl,
-    BoxShadowControl,
-    HeaderTabs,
-    ColorControl,
-    TypographyDropdown,
-    AdvancedOptions,
-    ZoloPanelBody,
-    TabPanelControl,
-    ResRangeControl,
-    NormalBGControl,
-    ZoloIconPicker,
-} = window.zoloModule;
 export default function Inspector(props) {
     const { attributes, setAttributes, block } = props;
     const {
@@ -91,22 +94,22 @@ export default function Inspector(props) {
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Show/hide elements', 'zoloblocks')}
                             </div>
-                            {/* <ToggleControl
+                            {/* <ZoloToggleControl
                                 label={__('Post Image', 'zoloblocks')}
                                 checked={showImage}
                                 onChange={(showImage) => setAttributes({ showImage })}
                             /> */}
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Post Title', 'zoloblocks')}
                                 checked={showTitle}
                                 onChange={(showTitle) => setAttributes({ showTitle })}
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Prev/Next Button', 'zoloblocks')}
                                 checked={showBtn}
                                 onChange={(showBtn) => setAttributes({ showBtn })}
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Category Based', 'zoloblocks')}
                                 checked={showCategoryBased}
                                 onChange={(showCategoryBased) => setAttributes({ showCategoryBased })}
@@ -114,8 +117,8 @@ export default function Inspector(props) {
 
                             {showCategoryBased && (
                                 <>
-                                    <CardDivider />
-                                    <SelectControl
+                                    <ZoloCardDivider />
+                                    <ZoloSelectControl
                                         label={__('Taxonomies', 'zoloblocks')}
                                         value={selectedTaxonomy}
                                         options={taxonomiesArray}
@@ -130,7 +133,7 @@ export default function Inspector(props) {
                                 <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                     {__('Previous Button', 'zoloblocks')}
                                 </div>
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Text', 'zoloblocks')}
                                     value={previousPost}
                                     onChange={(previousPost) => setAttributes({ previousPost })}
@@ -141,7 +144,7 @@ export default function Inspector(props) {
                                     onChange={(previousPostIcon) => setAttributes({ previousPostIcon })}
                                 />
                                 <div className="zolo-custom-heading">{__('Next Button', 'zoloblocks')}</div>
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Text', 'zoloblocks')}
                                     value={nextPost}
                                     onChange={(nextPost) => setAttributes({ nextPost })}
@@ -168,14 +171,14 @@ export default function Inspector(props) {
                                     step={1}
                                 />
 
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Resolution', 'zoloblocks')}
                                     value={thumbnailSize}
                                     options={THUMBNAIL_SIZE}
                                     onChange={(thumbnailSize) => setAttributes({ thumbnailSize })}
                                 />
 
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={THUMBNAIL_BORDER}
@@ -232,7 +235,7 @@ export default function Inspector(props) {
                                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ResDimensionsControl
                                                 label={__('Margin', 'zoloblocks')}
                                                 controlName={TITLE_MARGIN}
@@ -242,7 +245,7 @@ export default function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
-                                            <SelectControl
+                                            <ZoloSelectControl
                                                 label={__('Animations', 'zoloblocks')}
                                                 value={postTitleAnimation}
                                                 options={applyFilters('zolo.postNavigation.titleAnimation', POST_TITLE_ANIMATION)}
@@ -297,7 +300,7 @@ export default function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 max={36}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Background', 'zoloblocks')}
                                                 color={btnBgColor}
@@ -317,7 +320,7 @@ export default function Inspector(props) {
                                                 controlName={BTN_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={BTN_BORDER}

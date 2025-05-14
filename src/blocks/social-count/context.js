@@ -1,5 +1,5 @@
-const Context={
-  'zolo/preset':'preset'
-}
+const Context = {
+    'zolo/preset': 'preset',
+};
 
 export default Context;

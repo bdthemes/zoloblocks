@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import { useState, useEffect } from '@wordpress/element';
@@ -14,6 +13,10 @@ import apiFetch from '@wordpress/api-fetch';
  */
 const {
     HeaderTabs,
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloCardDivider,
+    ZoloTextControl,
     ResRangeControl,
     ColorControl,
     BorderControl,
@@ -28,8 +31,6 @@ const {
     ZoloPanelBody,
     ResAlignmentControl,
 } = window.zoloModule;
-
-import { TextControl } from '../../components/Core';
 
 import objAttributes from './attributes';
 import {
@@ -177,7 +178,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Provider', 'zoloblocks')}
                                 value={provider}
                                 options={applyFilters('zolo.newsletter.providers', providers)}
@@ -192,7 +193,7 @@ function Inspector(props) {
                                     {!isLoading ? (
                                         <>
                                             {validLabels.length > 0 ? (
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     label={__('Select Webhook', 'zoloblocks')}
                                                     value={selectedWebhook}
                                                     options={validLabels.map((label) => ({ label, value: label }))}
@@ -214,7 +215,7 @@ function Inspector(props) {
                                     ) : null}
                                 </>
                             )}
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.advancedNewsletter.presets', PRESETS)}
@@ -255,7 +256,7 @@ function Inspector(props) {
 
                             {preset !== 'zolo-newsletter-4' && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <div className="zolo-flex-row-control-tab">
                                         <IconicBtnGroup
                                             label={__('Button Width', 'zoloblocks')}
@@ -289,7 +290,7 @@ function Inspector(props) {
                             )}
 
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Name Field', 'zoloblocks')}
                                 checked={showNameField}
                                 onChange={(value) =>
@@ -301,7 +302,7 @@ function Inspector(props) {
 
                             {preset === 'zolo-newsletter-5' && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Field Icon', 'zoloblocks')}
                                         checked={showFieldIcon}
                                         onChange={(value) =>
@@ -312,7 +313,7 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Button Text', 'zoloblocks')}
                                 checked={showButtonText}
                                 onChange={(value) =>
@@ -321,7 +322,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Icon', 'zoloblocks')}
                                 checked={showIcon}
                                 onChange={(value) =>
@@ -331,7 +332,7 @@ function Inspector(props) {
                                 }
                             />
                             {(preset === 'zolo-newsletter-1' || preset === 'zolo-newsletter-5') && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Labels', 'zoloblocks')}
                                     checked={showLabels}
                                     onChange={() =>
@@ -361,7 +362,7 @@ function Inspector(props) {
                             {showLabels && (
                                 <>
                                     {showNameField && (
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Name', 'zoloblocks')}
                                             value={labelName}
                                             onChange={(value) =>
@@ -372,7 +373,7 @@ function Inspector(props) {
                                         />
                                     )}
 
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Email', 'zoloblocks')}
                                         value={labelText}
                                         onChange={(value) =>
@@ -385,7 +386,7 @@ function Inspector(props) {
                             )}
 
                             {showButtonText && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Button', 'zoloblocks')}
                                     value={buttonText}
                                     onChange={(value) =>
@@ -400,13 +401,13 @@ function Inspector(props) {
                                 <>
                                     <div className="zolo-custom-heading">{__('Placeholders', 'zoloblocks')}</div>
                                     {showNameField && (
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Name', 'zoloblocks')}
                                             value={namePlaceholder}
                                             onChange={(value) => setAttributes({ namePlaceholder: value })}
                                         />
                                     )}
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Email', 'zoloblocks')}
                                         value={placeholder}
                                         onChange={(value) => setAttributes({ placeholder: value })}
@@ -415,24 +416,24 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Message', 'zoloblocks')} panelProps={props} firstOpen={false}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Show Message', 'zoloblocks')}
                                 checked={showMessage}
                                 onChange={(value) => setAttributes({ showMessage: value })}
                             />
                             {showMessage && (
                                 <>
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Success', 'newsletter-block-gutena')}
                                         value={textSuccess}
                                         onChange={(value) => setAttributes({ textSuccess: value })}
                                     />
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Warning', 'newsletter-block-gutena')}
                                         value={textSubscribed}
                                         onChange={(value) => setAttributes({ textSubscribed: value })}
                                     />
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Error', 'newsletter-block-gutena')}
                                         value={textError}
                                         onChange={(value) => setAttributes({ textError: value })}
@@ -475,7 +476,7 @@ function Inspector(props) {
                                                     requiredProps={requiredProps}
                                                 />
 
-                                                <CardDivider />
+                                                <ZoloCardDivider />
 
                                                 {preset !== 'zolo-newsletter-1' && preset !== 'zolo-newsletter-5' && (
                                                     <>
@@ -490,7 +491,7 @@ function Inspector(props) {
                                                             requiredProps={requiredProps}
                                                             forBorderRadius={false}
                                                         />
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                         <BorderControl
                                                             label={__('Border', 'zoloblocks')}
                                                             controlName={LABEL_BORDER}
@@ -513,7 +514,7 @@ function Inspector(props) {
                                                             requiredProps={requiredProps}
                                                             forBorderRadius={true}
                                                         />
-                                                        <CardDivider />
+                                                        <ZoloCardDivider />
                                                         <ResRangeControl
                                                             label={__('Spacing', 'zoloblocks')}
                                                             controlName={LABEL_SPACING}
@@ -596,7 +597,7 @@ function Inspector(props) {
                                             typoPrefixConstant={INPUT_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={INPUT_BG} noMainBGImg={false} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -604,7 +605,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={INPUT_BORDER}
@@ -634,7 +635,7 @@ function Inspector(props) {
                                                     max={100}
                                                     step={1}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <ResRangeControl
                                                     label={__('Spacing', 'zoloblocks')}
                                                     controlName={FIELD_ICON_SPACING}
@@ -647,7 +648,7 @@ function Inspector(props) {
                                 hoverComponents={
                                     <>
                                         {preset === 'zolo-newsletter-5' && (
-                                            <SelectControl
+                                            <ZoloSelectControl
                                                 label={__('Focus Style', 'zoloblocks')}
                                                 value={focusStyle}
                                                 options={applyFilters('zolo.advancedNewsletter.focusStyle', FOCUS_STYLE)}
@@ -712,7 +713,7 @@ function Inspector(props) {
                                                     requiredProps={requiredProps}
                                                     max={36}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 {/* {preset === 'zolo-newsletter-1' && (
                                                     <ResRangeControl
                                                         label={__('Width', 'zoloblocks')}
@@ -759,7 +760,7 @@ function Inspector(props) {
                                             forBorderRadius={false}
                                         />
 
-                                        <CardDivider />
+                                        <ZoloCardDivider />
 
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
@@ -787,7 +788,7 @@ function Inspector(props) {
 
                                         {btnLayoutType === 'zolo-newsletter-button-style-2' && (
                                             <>
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <ResRangeControl
                                                     label={__('Spacing', 'zoloblocks')}
                                                     controlName={BUTTON_SPACING}
@@ -817,7 +818,7 @@ function Inspector(props) {
                                                 onChange={(color) => setAttributes({ iconHoverColor: color })}
                                             />
                                         )}
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={BUTTON_HOVER_BG_COLOR}
@@ -856,7 +857,7 @@ function Inspector(props) {
                                     forBorderRadius={false}
                                 />
 
-                                <CardDivider />
+                                <ZoloCardDivider />
 
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}

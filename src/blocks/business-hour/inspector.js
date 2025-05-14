@@ -2,6 +2,8 @@
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
+    ZoloCardDivider,
     ColorControl,
     HeaderTabs,
     ResDimensionsControl,
@@ -13,13 +15,13 @@ const {
     TabPanelControl,
     ResRangeControl,
 } = window.zoloModule;
+
 import Sortable from './sortable';
 
 /**
  * WordPress depencencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import objAttributes from './attributes';
@@ -55,7 +57,6 @@ import {
 import {} from '../../../src/global/constants';
 
 import { DAYS_TYPO, TIMES_TYPO, CLOSED_DAYS_TYPO, CLOSED_TIMES_TYPO } from './constants/typoPrefixConstant';
-import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -80,7 +81,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Preset', 'zoloblocks')}
                                 value={preset}
                                 options={PRESETOPTION}
@@ -117,7 +118,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={BUSINESS_ITEM_BORDER}
@@ -130,7 +131,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResRangeControl label={__('Gap', 'zoloblocks')} controlName={ITEM_GAP} requiredProps={requiredProps} />
 
                             {preset === 'zolo-biz-hours-style-2' && (
@@ -178,7 +179,7 @@ function Inspector(props) {
                                             max={36}
                                         />
 
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={DAYS_BG}
@@ -192,7 +193,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
                                             controlName={DAYS_RADIUS}
@@ -218,7 +219,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={CLOSED_DAYS_BG}
@@ -231,7 +232,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
                                             controlName={CLOSED_DAYS_RADIUS}
@@ -271,7 +272,7 @@ function Inspector(props) {
                                             max={36}
                                         />
 
-                                        <CardDivider />
+                                        <ZoloCardDivider />
 
                                         <NormalBGControl
                                             requiredProps={requiredProps}
@@ -286,7 +287,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
                                             controlName={TIMES_RADIUS}
@@ -312,7 +313,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
 
                                         <NormalBGControl
                                             requiredProps={requiredProps}
@@ -326,7 +327,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
                                             controlName={CLOSED_TIMES_RADIUS}

@@ -2,8 +2,6 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload } from '@wordpress/block-editor';
-
-import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { cloneDeep } from 'lodash';
 import classnames from 'classnames';
@@ -12,7 +10,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, ZoloButton } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -68,7 +66,7 @@ export default function Edit(props) {
             <BlockControls>
                 {photo && (
                     <>
-                        <ToolbarGroup>
+                        <ZoloToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
                                     setAttributes({
@@ -84,7 +82,7 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                                 value={photo && photo.id}
                                 render={({ open }) => (
-                                    <ToolbarButton
+                                    <ZoloToolbarButton
                                         className="components-toolbar__control"
                                         label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
@@ -92,7 +90,7 @@ export default function Edit(props) {
                                     />
                                 )}
                             />
-                        </ToolbarGroup>
+                        </ZoloToolbarGroup>
                     </>
                 )}
             </BlockControls>
@@ -142,9 +140,9 @@ export default function Edit(props) {
                                             allowedTypes={['image']}
                                             value={photo && photo.id}
                                             render={({ open }) => (
-                                                <Button className="components-button button button-large" onClick={open}>
+                                                <ZoloButton className="components-button button button-large" onClick={open}>
                                                     {__('Upload Photo', 'zoloblocks')}
-                                                </Button>
+                                                </ZoloButton>
                                             )}
                                         />
                                     )}

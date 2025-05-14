@@ -4,7 +4,7 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import {applyFilters} from '@wordpress/hooks';
+import { applyFilters } from '@wordpress/hooks';
 /**
  * External dependencies
  */

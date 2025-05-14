@@ -7,10 +7,8 @@ import './style.scss';
 const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata.name, {
-  icon: BlockIcons['post-title'],
-  attributes,
-  edit: Edit,
-  save: () => null,
+    icon: BlockIcons['post-title'],
+    attributes,
+    edit: Edit,
+    save: () => null,
 });
-
-

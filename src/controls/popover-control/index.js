@@ -1,4 +1,4 @@
-import { Dropdown, Flex } from '@wordpress/components';
+import { ZoloDropdown, ZoloFlex } from '../core-controls';
 import { __ } from '@wordpress/i18n';
 import ResetBtn from '../reset-btn';
 import classNames from 'classnames';
@@ -26,12 +26,12 @@ const PopoverControl = ({
                         </label>
                     )}
 
-                    <Dropdown
+                    <ZoloDropdown
                         className="zolo-background-control-popover-dropdown"
                         contentClassName="zolo-background-control-popover"
                         popoverProps={{ placement: 'bottom-start' }}
                         renderToggle={({ isOpen, onToggle }) => (
-                            <Flex>
+                            <ZoloFlex>
                                 {hasValue && <ResetBtn onReset={onReset} />}
                                 <button
                                     onClick={() => {
@@ -78,7 +78,7 @@ const PopoverControl = ({
                                         </svg>
                                     )}
                                 </button>
-                            </Flex>
+                            </ZoloFlex>
                         )}
                         renderContent={() => <>{children}</>}
                     />

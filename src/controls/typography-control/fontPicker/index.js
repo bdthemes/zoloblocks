@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { Tooltip } from '@wordpress/components';
+import { ZoloBaseControl, ZoloTooltip } from '../../core-controls';
 import { withInstanceId } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import WebFont from 'webfontloader';
@@ -15,7 +15,6 @@ import Select2 from 'react-select';
  * Internal dependencies
  */
 import { googleFonts } from './googleFonts';
-import { BaseControl } from '../../../components/Core';
 
 const zoloThemeFonts = zoloSettings?.theme_fonts;
 const zoloAvailableFonts = [];
@@ -73,7 +72,7 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
     };
 
     return (
-        <BaseControl label={label} id={id} help={help} className={className}>
+        <ZoloBaseControl label={label} id={id} help={help} className={className}>
             {fontExists ? (
                 <Select2
                     name="zb-select-font"
@@ -85,8 +84,10 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                     onChange={onChangeValue}
                     options={allFonts}
                 />
-            ): (
-                <Tooltip text={__('The selected font is not available in the theme. Please add it from the theme settings.', 'zoloblocks')}>
+            ) : (
+                <ZoloTooltip
+                    text={__('The selected font is not available in the theme. Please add it from the theme settings.', 'zoloblocks')}
+                >
                     <span className="zolo-tooltip-icon zolo-font-missing">
                         <Select2
                             name="zb-select-font"
@@ -99,9 +100,9 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
                             options={allFonts}
                         />
                     </span>
-                </Tooltip>
+                </ZoloTooltip>
             )}
-        </BaseControl>
+        </ZoloBaseControl>
     );
 };
 

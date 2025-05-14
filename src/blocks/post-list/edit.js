@@ -2,13 +2,12 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { Spinner } from '@wordpress/components';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
 import './style.scss';
 
-const { Pagination, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { Pagination, classArrayToStr, SidebarOpener, ZoloSpinner } = window.zoloModule;
 
 import Style from './styles';
 
@@ -95,7 +94,7 @@ export default function Edit(props) {
             <>
                 {dataSuccess ? (
                     <div className="zolo-spinner">
-                        <Spinner />
+                        <ZoloSpinner />
                     </div>
                 ) : (
                     <p>{__('No posts found.', 'zoloblocks')}</p>

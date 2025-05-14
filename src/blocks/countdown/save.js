@@ -1,4 +1,4 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr } = window.zoloModule;

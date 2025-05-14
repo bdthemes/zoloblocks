@@ -2,13 +2,15 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
+    ZoloTextControl,
+    ZoloRangeControl,
     ResAlignmentControl,
     ResRangeControl,
     ColorControl,
@@ -21,8 +23,6 @@ const {
 } = window.zoloModule;
 
 import objAttributes from './attributes';
-
-import { TextControl, RangeControl } from '../../components/Core';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 import { STAR_SIZE, TITLE_GAP, ITEMS_ALIGN } from './constants';
@@ -55,7 +55,7 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Rating', 'zoloblocks')} panelProps={props}>
-                            <RangeControl
+                            <ZoloRangeControl
                                 label={__('Rating', 'zoloblocks')}
                                 value={rating}
                                 onChange={(v) => setAttributes({ rating: v })}
@@ -66,13 +66,13 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {showTitle && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Text', 'zoloblocks')}
                                     value={title}
                                     onChange={(v) => setAttributes({ title: v })}
                                     placeholder={__('Enter title', 'zoloblocks')}
                                 />
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Select Tag', 'zoloblocks')}
                                     value={titleTag}
                                     options={HEADING}

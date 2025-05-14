@@ -1,19 +1,16 @@
 import UnitsBtn from '../units-btn';
 import Borders from './border';
-import { prefix } from '../../global/constants';
-import { __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption, Button, Popover } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import classNames from 'classnames';
 import TabPanelControl from '../tabpanel-control';
 
-import { BORDER_TYPES, SEPERATOR_STYLES } from '../../global/constants';
+import { ZoloToggleGroupControl, ZoloToggleGroupControlOption, ZoloButton, ZoloSelectControl, ZoloPopover } from '../core-controls';
 
+import { BORDER_TYPES, SEPERATOR_STYLES, prefix } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
-
 import ColorBtn from '../color-btn';
 import LinkUnlink from '../link-unlink';
-import { SelectControl } from '../../components/Core';
 const BorderControl = ({ label, controlName, requiredProps, units, hoverControl = null }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
     const [displayPanel, setDisplayPanel] = useState(false);
@@ -177,7 +174,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                     </div>
                 </div>
                 {displayPanel && (
-                    <Popover
+                    <ZoloPopover
                         className="zolo-dimensions-control-popover"
                         position="bottom left"
                         onFocusOutside={() => setDisplayPanel(false)}
@@ -198,7 +195,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             })
                                                         }
                                                     >
-                                                        <Button
+                                                        <ZoloButton
                                                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                                                             icon={<LinkUnlink isLinked={isLinked} />}
                                                             onClick={onButtonClick}
@@ -241,15 +238,16 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             });
                                                         }}
                                                     >
-                                                        <ToggleGroupControl className="border-styles-group">
+                                                        <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
                                                             {BORDER_TYPES &&
                                                                 BORDER_TYPES.map((type, index) => {
                                                                     return (
-                                                                        <ToggleGroupControlOption
+                                                                        <ZoloToggleGroupControlOption
                                                                             key={index}
                                                                             value={type.value}
                                                                             label={type.label}
                                                                             isSelected={borderType === type.value}
+                                                                            className={borderType === type.value ? 'active' : ''}
                                                                             onClick={() =>
                                                                                 setAttributes({
                                                                                     [`${prefix}${controlName}BorderType`]: type.value,
@@ -258,9 +256,9 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                                         />
                                                                     );
                                                                 })}
-                                                        </ToggleGroupControl>
+                                                        </ZoloToggleGroupControl>
                                                         {borderType === 'custom' && (
-                                                            <SelectControl
+                                                            <ZoloSelectControl
                                                                 value={borderStyle}
                                                                 options={SEPERATOR_STYLES}
                                                                 onChange={(value) => {
@@ -285,7 +283,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             })
                                                         }
                                                     >
-                                                        <Button
+                                                        <ZoloButton
                                                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                                                             icon={<LinkUnlink isLinked={isLinked} />}
                                                             onClick={onButtonClick}
@@ -329,15 +327,16 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             })
                                                         }
                                                     >
-                                                        <ToggleGroupControl className="border-styles-group">
+                                                        <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
                                                             {BORDER_TYPES &&
                                                                 BORDER_TYPES.map((type, index) => {
                                                                     return (
-                                                                        <ToggleGroupControlOption
+                                                                        <ZoloToggleGroupControlOption
                                                                             key={index}
                                                                             value={type.value}
                                                                             label={type.label}
                                                                             isSelected={TABborderType === type.value}
+                                                                            className={TABborderType === type.value ? 'active' : ''}
                                                                             onClick={() =>
                                                                                 setAttributes({
                                                                                     [`${prefix}TAB${controlName}BorderType`]: type.value,
@@ -346,9 +345,9 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                                         />
                                                                     );
                                                                 })}
-                                                        </ToggleGroupControl>
+                                                        </ZoloToggleGroupControl>
                                                         {TABborderType === 'custom' && (
-                                                            <SelectControl
+                                                            <ZoloSelectControl
                                                                 value={TABborderStyle}
                                                                 options={SEPERATOR_STYLES}
                                                                 onChange={(value) => {
@@ -373,7 +372,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             })
                                                         }
                                                     >
-                                                        <Button
+                                                        <ZoloButton
                                                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                                                             icon={<LinkUnlink isLinked={isLinked} />}
                                                             onClick={onButtonClick}
@@ -417,15 +416,16 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             })
                                                         }
                                                     >
-                                                        <ToggleGroupControl className="border-styles-group">
+                                                        <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
                                                             {BORDER_TYPES &&
                                                                 BORDER_TYPES.map((type, index) => {
                                                                     return (
-                                                                        <ToggleGroupControlOption
+                                                                        <ZoloToggleGroupControlOption
                                                                             key={index}
                                                                             value={type.value}
                                                                             label={type.label}
                                                                             isSelected={MOBborderType === type.value}
+                                                                            className={MOBborderType === type.value ? 'active' : ''}
                                                                             onClick={() =>
                                                                                 setAttributes({
                                                                                     [`${prefix}MOB${controlName}BorderType`]: type.value,
@@ -434,9 +434,9 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                                         />
                                                                     );
                                                                 })}
-                                                        </ToggleGroupControl>
+                                                        </ZoloToggleGroupControl>
                                                         {MOBborderType === 'custom' && (
-                                                            <SelectControl
+                                                            <ZoloSelectControl
                                                                 value={MOBborderStyle}
                                                                 options={SEPERATOR_STYLES}
                                                                 onChange={(value) => {
@@ -467,7 +467,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 })
                                             }
                                         >
-                                            <Button
+                                            <ZoloButton
                                                 className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                                                 icon={<LinkUnlink isLinked={isLinked} />}
                                                 onClick={onButtonClick}
@@ -510,26 +510,27 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 });
                                             }}
                                         >
-                                            <ToggleGroupControl className="border-styles-group">
-                                                {BORDER_TYPES &&
-                                                    BORDER_TYPES.map((type, index) => {
-                                                        return (
-                                                            <ToggleGroupControlOption
-                                                                key={index}
-                                                                value={type.value}
-                                                                label={type.label}
-                                                                isSelected={borderType === type.value}
-                                                                onClick={() =>
-                                                                    setAttributes({
-                                                                        [`${prefix}${controlName}BorderType`]: type.value,
-                                                                    })
-                                                                }
-                                                            />
-                                                        );
-                                                    })}
-                                            </ToggleGroupControl>
+                                            <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
+                                            {BORDER_TYPES &&
+                                                                BORDER_TYPES.map((type, index) => {
+                                                                    return (
+                                                                        <ZoloToggleGroupControlOption
+                                                                            key={index}
+                                                                            value={type.value}
+                                                                            label={type.label}
+                                                                            isSelected={borderType === type.value}
+                                                                            className={borderType === type.value ? 'active' : ''}
+                                                                            onClick={() =>
+                                                                                setAttributes({
+                                                                                    [`${prefix}${controlName}BorderType`]: type.value,
+                                                                                })
+                                                                            }
+                                                                        />
+                                                                    );
+                                                                })}
+                                            </ZoloToggleGroupControl>
                                             {borderType === 'custom' && (
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={borderStyle}
                                                     options={SEPERATOR_STYLES}
                                                     onChange={(value) => {
@@ -554,7 +555,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 })
                                             }
                                         >
-                                            <Button
+                                            <ZoloButton
                                                 className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                                                 icon={<LinkUnlink isLinked={isLinked} />}
                                                 onClick={onButtonClick}
@@ -598,15 +599,16 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 })
                                             }
                                         >
-                                            <ToggleGroupControl className="border-styles-group">
+                                            <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
                                                 {BORDER_TYPES &&
                                                     BORDER_TYPES.map((type, index) => {
                                                         return (
-                                                            <ToggleGroupControlOption
+                                                            <ZoloToggleGroupControlOption
                                                                 key={index}
                                                                 value={type.value}
                                                                 label={type.label}
                                                                 isSelected={TABborderType === type.value}
+                                                                className={TABborderType === type.value ? 'active' : ''}
                                                                 onClick={() =>
                                                                     setAttributes({
                                                                         [`${prefix}TAB${controlName}BorderType`]: type.value,
@@ -615,9 +617,9 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             />
                                                         );
                                                     })}
-                                            </ToggleGroupControl>
+                                            </ZoloToggleGroupControl>
                                             {TABborderType === 'custom' && (
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={TABborderStyle}
                                                     options={SEPERATOR_STYLES}
                                                     onChange={(value) => {
@@ -642,7 +644,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 })
                                             }
                                         >
-                                            <Button
+                                            <ZoloButton
                                                 className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                                                 icon={<LinkUnlink isLinked={isLinked} />}
                                                 onClick={onButtonClick}
@@ -686,15 +688,16 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 })
                                             }
                                         >
-                                            <ToggleGroupControl className="border-styles-group">
+                                            <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
                                                 {BORDER_TYPES &&
                                                     BORDER_TYPES.map((type, index) => {
                                                         return (
-                                                            <ToggleGroupControlOption
+                                                            <ZoloToggleGroupControlOption
                                                                 key={index}
                                                                 value={type.value}
                                                                 label={type.label}
                                                                 isSelected={MOBborderType === type.value}
+                                                                className={MOBborderType === type.value ? 'active' : ''}
                                                                 onClick={() =>
                                                                     setAttributes({
                                                                         [`${prefix}MOB${controlName}BorderType`]: type.value,
@@ -703,9 +706,9 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             />
                                                         );
                                                     })}
-                                            </ToggleGroupControl>
+                                            </ZoloToggleGroupControl>
                                             {MOBborderType === 'custom' && (
-                                                <SelectControl
+                                                <ZoloSelectControl
                                                     value={MOBborderStyle}
                                                     options={SEPERATOR_STYLES}
                                                     onChange={(value) => {
@@ -720,7 +723,7 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                 )}
                             </div>
                         )}
-                    </Popover>
+                    </ZoloPopover>
                 )}
             </div>
         </>

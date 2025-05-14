@@ -1,19 +1,13 @@
 //wrodpress dependencies
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import {
-    ToggleControl,
-    SelectControl,
-    __experimentalInputControl as InputControl,
-    CardDivider,
-    BaseControl,
-    Button,
-} from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
-
 import { __ } from '@wordpress/i18n';
 
 const {
     HeaderTabs,
+    ZoloCardDivider,
+    ZoloBaseControl,
+    ZoloButton,
     ResAlignmentControl,
     ResRangeControl,
     ColorControl,
@@ -157,7 +151,7 @@ const Inspector = (props) => {
                                 />
                             </div>
                             <div className="zolo-custom-heading">{__('Logo', 'zoloblocks')}</div>
-                            <BaseControl label={__('Select', 'zoloblocks')} className="zolo-flex-col-control">
+                            <ZoloBaseControl label={__('Select', 'zoloblocks')} className="zolo-flex-col-control">
                                 {brandPhoto?.id ? (
                                     <ImageAvatar
                                         imageUrl={brandPhoto && brandPhoto.url}
@@ -189,7 +183,7 @@ const Inspector = (props) => {
                                         allowedTypes={['image']}
                                         value={brandPhoto && brandPhoto.id}
                                         render={({ open }) => (
-                                            <Button className="zolo-image-upload-btn" onClick={open}>
+                                            <ZoloButton className="zolo-image-upload-btn" onClick={open}>
                                                 <svg
                                                     width="24"
                                                     height="24"
@@ -200,11 +194,11 @@ const Inspector = (props) => {
                                                     <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                 </svg>
                                                 {__(' Upload Image', 'zoloblocks')}
-                                            </Button>
+                                            </ZoloButton>
                                         )}
                                     />
                                 )}
-                            </BaseControl>
+                            </ZoloBaseControl>
                             <ImageSizes
                                 label={__('Resolution', 'zoloblocks')}
                                 value={imageRes}
@@ -237,7 +231,7 @@ const Inspector = (props) => {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             /> */}
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={NAV_MENU_WRAP_BORDER}
@@ -273,7 +267,7 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={NAV_MENU_ITEM_BG} noMainBGImg={false} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -281,7 +275,7 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={NAV_MENU_ITEM_BORDER}
@@ -294,7 +288,7 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResRangeControl
                                             label={__('Gap', 'zoloblocks')}
                                             controlName={NAV_MENU_ITEM_GAP}
@@ -376,7 +370,7 @@ const Inspector = (props) => {
                                 max={500}
                                 step={1}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <NormalBGControl requiredProps={requiredProps} controlName={MOBILE_MENU_WRAP_BG} noMainBGImg={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
@@ -384,7 +378,7 @@ const Inspector = (props) => {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={MOBILE_MENU_WRAP_BORDER}
@@ -409,7 +403,7 @@ const Inspector = (props) => {
                                             max={300}
                                             step={1}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={MB_LOGO_PADDING}
@@ -443,7 +437,7 @@ const Inspector = (props) => {
                                             max={100}
                                             step={1}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={HUMBURGER_MENU_BG}
@@ -461,7 +455,7 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={HUMBURGER_MENU_BORDER}
@@ -519,7 +513,7 @@ const Inspector = (props) => {
                                             max={100}
                                             step={1}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={CLOSE_ICON_BG} noMainBGImg={false} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -533,7 +527,7 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={CLOSE_ICON_BORDER}
@@ -599,7 +593,7 @@ const Inspector = (props) => {
                                             max={100}
                                             step={1}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl
                                             requiredProps={requiredProps}
                                             controlName={SUB_MENU_INDICATOR_BG}
@@ -617,7 +611,7 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={SUB_MENU_INDICATOR_BORDER}

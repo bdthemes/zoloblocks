@@ -99,10 +99,13 @@ const Edit = (props) => {
 
                         {showRibbon && ribbonTitle && (
                             <div className={`zolo-ribbon-btn ${ribbonPosition}`}>
-                                <RichText tagName="span" value={ribbonTitle} onChange={(v) => setAttributes({ ribbonTitle: v })}
+                                <RichText
+                                    tagName="span"
+                                    value={ribbonTitle}
+                                    onChange={(v) => setAttributes({ ribbonTitle: v })}
                                     placeholder={__('Ribbon Title', 'zoloblocks')}
                                     allowedFormats={['core/bold', 'core/italic', 'core/strikethrough']}
-                                 />
+                                />
                             </div>
                         )}
 
