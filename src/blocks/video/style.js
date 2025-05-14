@@ -135,8 +135,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    console.log('popupBtnMarginMob', popupBtnMarginMob);
-
     const {
         desktopBorderStyle: popupBtnBorderDesk,
         tabBorderStyle: popupBtnBorderTab,
