@@ -123,36 +123,28 @@ const BGControl = (props) => {
                                 <>
                                     <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
                                         <div className="zolo-toggle-group-control">
-                                            <ZoloToggleGroupControl>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <ZoloToggleGroupControlOption
-                                                    className="zolo-toggle-group-control-option"
-                                                    key={value}
-                                                    variant={backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </ZoloToggleGroupControlOption>
-                                            ))}
-                                            {video && (
-                                                <ZoloToggleGroupControlOption
-                                                    className="zolo-toggle-group-control-option"
-                                                    key="video"
-                                                    variant={backgroundType === 'video' ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}backgroundType`]: 'video',
-                                                        })
-                                                    }
-                                                >
-                                                    {__('Video', 'zoloblocks')}
-                                                </ZoloToggleGroupControlOption>
-                                            )}
-                                        </ZoloToggleGroupControl>
+                                            <ZoloToggleGroupControl
+                                                className="zolo-toggle-box-custom-css"
+                                                value={backgroundType}
+                                                onChange={(value) => setAttributes({
+                                                    [`${controlName}backgroundType`]: value
+                                                })}
+                                            >
+                                                {BACKGROUND_TYPES.map(({ value, label }) => (
+                                                    <ZoloToggleGroupControlOption
+                                                        value={value}
+                                                        label={label}
+                                                        key={value}
+                                                    />
+                                                ))}
+                                                {video && (
+                                                    <ZoloToggleGroupControlOption
+                                                        value="video"
+                                                        label={__('Video', 'zoloblocks')}
+                                                        key="video"
+                                                    />
+                                                )}
+                                            </ZoloToggleGroupControl>
                                         </div>
                                     </ZoloBaseControl>
 

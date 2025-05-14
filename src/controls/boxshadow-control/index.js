@@ -108,25 +108,21 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                 noResetBtn={true}
                                 noResponsive={true}
                             >
-                                <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
-                                    {BOX_SHADOW_TYPES &&
-                                        BOX_SHADOW_TYPES.map((type, index) => {
-                                            return (
-                                                <ZoloToggleGroupControlOption
-                                                    key={index}
-                                                    value={type.value}
-                                                    label={type.label}
-                                                    showTooltip={true}
-                                                    isActive={shadowType === type.value}
-                                                    className={shadowType === type.value ? 'active' : ''}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}shadowType`]: type.value,
-                                                        })
-                                                    }
-                                                />
-                                            );
-                                        })}
+                                <ZoloToggleGroupControl
+                                    className="zolo-toggle-box-custom-css"
+                                    value={shadowType}
+                                    onChange={(value) => setAttributes({
+                                        [`${controlName}shadowType`]: value
+                                    })}
+                                >
+                                    {BOX_SHADOW_TYPES?.map((type) => (
+                                        <ZoloToggleGroupControlOption
+                                            key={type.value}
+                                            value={type.value}
+                                            label={type.label}
+                                            showTooltip={true}
+                                        />
+                                    ))}
                                 </ZoloToggleGroupControl>
                                 <div className="zolo-box-shadow-options">
                                     <div className="single-shadow-input">

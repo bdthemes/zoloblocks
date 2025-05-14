@@ -108,21 +108,17 @@ const NormalBGControl = ({ label = '', controlName, requiredProps, noMainBGImg =
                             <>
                                 <ZoloToggleGroupControl
                                     label={__('Background Type', 'zoloblocks')}
-                                   className="zolo-toggle-box-custom-css"
+                                    className="zolo-toggle-box-custom-css"
+                                    value={backgroundType}
+                                    onChange={(value) => setAttributes({
+                                        [`${controlName}backgroundType`]: value
+                                    })}
                                 >
-                                     {BACKGROUND_TYPES.map(( type, index ) => (
+                                    {BACKGROUND_TYPES.map(({ value, label }) => (
                                         <ZoloToggleGroupControlOption
-                                        key={index}
-                                        value={type.value}
-                                        label={type.label}
-                                        isSelected={backgroundType === type.value}
-                                        className={backgroundType === type.value ? 'active' : ''}
-                                        showTooltip={true}
-                                        onClick={() =>
-                                            setAttributes({
-                                                [`${controlName}backgroundType`]: type.value,
-                                            })
-                                        }
+                                            key={value}
+                                            value={value}
+                                            label={label}
                                         />
                                     ))}
                                 </ZoloToggleGroupControl>
