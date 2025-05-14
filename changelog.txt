@@ -1,3 +1,21 @@
+### 2.3.0 [May 15, 2025]
+
+* **Fixes:**
+
+  * Video Block styling issues resolved.
+  * Display condition logic now functions as expected.
+  * Fixed `NaN` value issue in Dimension control.
+  * Compatibility issues with the latest WordPress version have been addressed.
+  * Resolved issues with outdated controls to ensure smoother performance and reliability.
+
+* **Improvements:**
+
+  * Lightbox: Added content size control for better customization.
+  * Charts Block: Typography control added to the heading for improved styling.
+  * Navigation Block: Toggle on-click feature implemented for better interaction.
+  * Theme color palette issues addressed for consistent appearance across blocks.
+
+
 ### 2.2.7 April 21, 2025
 
 **New:**
