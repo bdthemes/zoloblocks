@@ -77,7 +77,6 @@ export default function Edit(props) {
 
     const {
         resMode,
-
         // settings
         lightboxType,
         imagePoster,
@@ -101,6 +100,7 @@ export default function Edit(props) {
         iconColor,
         iconHColor,
         playBtnBorderHColor,
+        imageSizeLightbox,
     } = attributes;
 
     const requiredProps = {
@@ -374,7 +374,18 @@ export default function Edit(props) {
                                                     )}
                                                 />
                                             )}
-                                        </ZoloBaseControl>
+
+                                        </BaseControl>
+
+                                        <ImageSizes
+                                            label={__('Resolution', 'zoloblocks')}
+                                            value={imageSizeLightbox}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    imageSizeLightbox: value,
+                                                })
+                                            }
+                                        />
                                     </>
                                 )}
 
@@ -492,7 +503,6 @@ export default function Edit(props) {
                                     </ZoloPanelBody>
                                 </>
                             )}
-
                             {lightboxType === 'button' && (
                                 <>
                                     <ZoloPanelBody title={__('Button Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
@@ -735,22 +745,29 @@ export default function Edit(props) {
                                 </>
                             )}
 
-                            {contentType !== 'image' && (
-                                <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={false}>
+                            <ZoloPanelBody
+                                title={__('Lightbox Content', 'zoloblocks')}
+                                stylePanel={true}
+                                panelProps={props}
+                                firstOpen={false}
+                            >
+                                {contentType !== 'image' && (
                                     <ResRangeControl
-                                        label={__('Width', 'zoloblocks')}
+                                        label={__('Size', 'zoloblocks')}
                                         controlName={CONTENT_WIDTH}
                                         requiredProps={requiredProps}
-                                        max={1500}
+                                        max={1000}
                                     />
+                                )}
+                                {contentType === 'image' && (
                                     <ResRangeControl
-                                        label={__('Height', 'zoloblocks')}
+                                        label={__('Size', 'zoloblocks')}
                                         controlName={CONTENT_HEIGHT}
                                         requiredProps={requiredProps}
-                                        max={1500}
+                                        max={1000}
                                     />
-                                </ZoloPanelBody>
-                            )}
+                                )}
+                            </ZoloPanelBody>
                         </>
                     }
                     advancedTab={

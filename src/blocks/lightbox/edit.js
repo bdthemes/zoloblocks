@@ -13,7 +13,6 @@ import LightboxContent from './content';
 import Style from './style';
 import './style.scss';
 
-
 export default function Edit(props) {
     const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
     const { attributes, setAttributes, isSelected } = props;
