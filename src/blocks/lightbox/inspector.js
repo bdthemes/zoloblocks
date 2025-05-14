@@ -375,7 +375,7 @@ export default function Edit(props) {
                                                 />
                                             )}
 
-                                        </BaseControl>
+                                        </ZoloBaseControl>
 
                                         <ImageSizes
                                             label={__('Resolution', 'zoloblocks')}
