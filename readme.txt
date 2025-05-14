@@ -608,7 +608,7 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-### 2.2.8 [May 15, 2025]
+### 2.3.0 [May 14, 2025]
 
 * **Fixes:**
 
