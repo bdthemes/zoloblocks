@@ -1,7 +1,8 @@
-import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, CardDivider } from '@wordpress/components';
+
+import { ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+import { TextControl } from '../../components/Core';
 
 import {
     HEADING_TYPOGRAPHY,

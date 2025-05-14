@@ -1,7 +1,9 @@
-import { Button, SelectControl } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useRef, useEffect, useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
+
+import { SelectControl } from '../../../../../components/Core';
 
 const Content = () => {
     const ref = useRef();

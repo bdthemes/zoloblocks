@@ -1,5 +1,5 @@
 import { MediaUpload } from '@wordpress/block-editor';
-import { BaseControl, Button, ButtonGroup, RangeControl, SelectControl, TabPanel } from '@wordpress/components';
+import { Button, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption,TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
@@ -8,7 +8,8 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
-import { CardDivider } from '@wordpress/components';
+
+import { RangeControl, SelectControl, BaseControl } from '../../components/Core';
 
 const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
     const { setAttributes, attributes, resMode } = requiredProps;
@@ -142,20 +143,20 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                         step={0.1}
                                     />
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    variant={overlayType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}overlayType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
-                                        </ButtonGroup>
+                                        <ToggleGroupControl className="overlay-type-group">
+                                            <ToggleGroupControlOption
+                                                value="none"
+                                                label={__('None', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="color"
+                                                label={__('Color', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="gradient"
+                                                label={__('Gradient', 'zoloblocks')}
+                                            />
+                                        </ToggleGroupControl>
                                     </BaseControl>
 
                                     {overlayType === 'classic' && (
@@ -1328,20 +1329,20 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                         step={0.1}
                                     />
                                     <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    variant={hov_overlayType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`hov_${controlName}overlayType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
-                                        </ButtonGroup>
+                                        <ToggleGroupControl className="overlay-type-group">
+                                            <ToggleGroupControlOption
+                                                value="none"
+                                                label={__('None', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="color"
+                                                label={__('Color', 'zoloblocks')}
+                                            />
+                                            <ToggleGroupControlOption
+                                                value="gradient"
+                                                label={__('Gradient', 'zoloblocks')}
+                                            />
+                                        </ToggleGroupControl>
                                     </BaseControl>
 
                                     {hov_overlayType === 'classic' && (

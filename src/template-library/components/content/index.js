@@ -1,4 +1,3 @@
-import { BaseControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelect } from '@wordpress/data';
 import classNames from 'classnames';
@@ -7,6 +6,7 @@ import InnerPageTemplate from '../../page-templates/inner-page-template';
 import PreLoader from '../../preloader';
 import { STORE_NAME } from '../../store';
 import { useRecords, useTags } from '../../utils';
+import { SelectControl, BaseControl } from '../../../components/Core';
 const Content = ({ handleImportTemplate, isLoading }) => {
     const { setFilters } = useDispatch(STORE_NAME);
     const { activeTab, filters } = useSelect((select) => {

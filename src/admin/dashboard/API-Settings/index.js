@@ -1,9 +1,11 @@
 import SettingPanel from './setting-panel';
 
 import { __ } from '@wordpress/i18n';
-import { TextControl, Button } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+
+import { TextControl } from '../../../components/Core';
 
 const ApiSettings = () => {
     const [isAIExtensionActive, setisAIExtensionActive] = useState(true);

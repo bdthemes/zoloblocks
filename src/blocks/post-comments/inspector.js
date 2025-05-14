@@ -1,12 +1,10 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, CardDivider } from '@wordpress/components';
+import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
 import { TEXT_TYPOGRAPHY, AUTHOR_TYPOGRAPHY, DATE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import QuerySettings from './query-settings';
 import {
-    PRESETS,
     AVATAR_SIZE,
     GRID_COLUMNS,
     COLUMNS_GAP,
@@ -26,6 +24,7 @@ import {
     DATE_MARGIN,
 } from './constants';
 
+import { TextControl } from '../../components/Core';
 const {
     ResDimensionsControl,
     NormalBGControl,
@@ -65,9 +64,7 @@ export default function Inspector(props) {
         attributes,
         objAttributes,
     };
-    const changePremade = (selected) => {
-        setAttributes({ preset: selected });
-    };
+
 
     return (
         <InspectorControls key="controls">
@@ -78,12 +75,6 @@ export default function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            {/*<SelectControl*/}
-                            {/*  label={__('Styles', 'zoloblocks')}*/}
-                            {/*  value={preset}*/}
-                            {/*  options={applyFilters('zolo.postCategory.presets', PRESETS)}*/}
-                            {/*  onChange={(selected) => changePremade(selected)}*/}
-                            {/*/>*/}
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Show/hide elements', 'zoloblocks')}
                             </div>

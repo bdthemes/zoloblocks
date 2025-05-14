@@ -5,7 +5,6 @@ import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import {
     SelectControl,
     ToggleControl,
-    TextControl,
     TextareaControl,
     BaseControl,
     Button,
@@ -19,6 +18,9 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
+
+import { TextControl } from '../../components/Core';
+
 const {
     ResRangeControl,
     ColorControl,

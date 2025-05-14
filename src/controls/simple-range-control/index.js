@@ -1,4 +1,4 @@
-import { RangeControl, BaseControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { BaseControl, NumberControl } from '../../components/Core';
 import UnitsBtn from '../units-btn';
 import ResetBtn from '../reset-btn';
 

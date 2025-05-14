@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
 
 
-import { SelectControl } from '@wordpress/components';
+
+import { SelectControl } from '../../components/Core';
 
 import { MASK_SIZES, MASK_POSITIONS, MASK_REPEATS, MASK_SHAPES } from '../../global/constants';
 

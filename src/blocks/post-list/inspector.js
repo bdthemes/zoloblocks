@@ -1,6 +1,8 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { CardDivider, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { CardDivider, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
+import { TextControl } from '../../components/Core';
 
 import objAttributes from './attributes';
 import {
@@ -62,7 +64,6 @@ import {
 } from './constants/typoPrefixConstant';
 
 import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, TEXT_ALIGN_OPTIONS, PAGINARION_TYPE } from '../../../src/global/constants';
-import { applyFilters } from '@wordpress/hooks';
 
 const {
     ResDimensionsControl,

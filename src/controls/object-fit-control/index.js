@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { OBJECT_FITS } from '../../global/constants';
 
-import { SelectControl } from '@wordpress/components';
+import { SelectControl } from '../../components/Core';
 
 const ObjectFitControl = ({ label = '', value, onChange }) => {
     return (

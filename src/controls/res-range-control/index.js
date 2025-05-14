@@ -1,10 +1,12 @@
-import { __experimentalNumberControl as NumberControl, RangeControl } from '@wordpress/components';
+import { NumberControl } from '../../components/Core';
 // import WithResDeviceBtn from './res-device-btn';
 
 import { prefix } from '../../global/constants';
 import ResetBtn from '../reset-btn';
 import UnitsBtn from '../units-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
+
+import { RangeControl } from '../../components/Core';
 
 const ResRangeControl = ({
     label,

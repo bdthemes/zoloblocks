@@ -1,9 +1,13 @@
 /**
  * WordPress dependencies
  */
-import { BaseControl, Button, TextControl, ToggleControl, Popover, Dropdown } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
+
+import { BaseControl, ToggleControl } from '../../components/Core';
+import { Button } from '@wordpress/components';
+
+import { TextControl } from '../../components/Core';
 
 const LinkControl = ({ label, value, onChange }) => {
     const [isExternal, setIsExternal] = useState(false);

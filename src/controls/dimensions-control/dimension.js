@@ -2,7 +2,8 @@ import { useEffect, useState } from '@wordpress/element';
 import { prefix } from '../../global/constants';
 import WithResDeviceBtn from '../with-res-device-btn';
 import { __ } from '@wordpress/i18n';
-import { RangeControl, __experimentalNumberControl as NumberControl} from '@wordpress/components';
+import { RangeControl } from '../../components/Core';
+import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
 const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min = null, max = null }) => {
     const { label, setAttributes, forBorderRadius, controlName, isLinked } = neededProps;
@@ -51,6 +52,25 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
         });
     }, [isLinked]);
 
+    // Helper function to safely parse numeric values
+    const safeParseInt = (value) => {
+        if (value === '' || value === undefined || value === null) return '';
+        const parsed = parseInt(value);
+        return isNaN(parsed) ? '' : parsed;
+    };
+
+    // Get the current linked value
+    const getLinkedValue = () => {
+        const values = [
+            safeParseInt(dimensions.top),
+            safeParseInt(dimensions.right),
+            safeParseInt(dimensions.bottom),
+            safeParseInt(dimensions.left)
+        ].filter(val => val !== '');
+
+        return values.length > 0 ? values[0] : '';
+    };
+
     return (
         <div className="zb-dimension-container">
             <WithResDeviceBtn label={label} requiredProps={neededProps} controlName={controlName}>
@@ -58,55 +78,73 @@ const DimensionControl = ({ top, right, bottom, left, onChange, neededProps, min
                     {isLinked && (
                         <div className="zolo-input-range-wrapper">
                             <RangeControl
-                                value={
-                                    parseInt(dimensions.top) ??
-                                    parseInt(dimensions.right) ??
-                                    parseInt(dimensions.bottom) ??
-                                    parseInt(dimensions.left) ??
-                                    0
-                                }
-                                onChange={(value) => setLinkedDimensions(value.toString())}
+                                value={getLinkedValue()}
+                                onChange={(value) => setLinkedDimensions(value?.toString() || '')}
                                 max={max || 100}
+                                min={min || 0}
                                 withInputField={false}
                             />
                             <NumberControl
-                                value={
-                                    parseInt(dimensions.top) ??
-                                    parseInt(dimensions.right) ??
-                                    parseInt(dimensions.bottom) ??
-                                    parseInt(dimensions.left) ??
-                                    0
-                                }
-                                onChange={(value) => setLinkedDimensions(value.toString())}
+                                value={getLinkedValue()}
+                                onChange={(value) => setLinkedDimensions(value?.toString() || '')}
+                                min={min || 0}
+                                max={max}
                             />
                         </div>
                     )}
                     {!isLinked && (
                         <>
                             <div className="input-wrap">
-                                <input type="number" name="top" value={dimensions.top} onChange={onInputChange} />
-
+                                <input
+                                    type="number"
+                                    name="top"
+                                    value={dimensions.top}
+                                    onChange={onInputChange}
+                                    min={min || 0}
+                                    max={max}
+                                />
                                 <label className="input-label">
                                     {forBorderRadius ? __('T.Left', 'zoloblocks') : __('Top', 'zoloblocks')}
                                 </label>
                             </div>
 
                             <div className="input-wrap">
-                                <input type="number" name="right" value={dimensions.right} onChange={onInputChange} />
+                                <input
+                                    type="number"
+                                    name="right"
+                                    value={dimensions.right}
+                                    onChange={onInputChange}
+                                    min={min || 0}
+                                    max={max}
+                                />
                                 <label className="input-label">
                                     {forBorderRadius ? __('T.Right', 'zoloblocks') : __('Right', 'zoloblocks')}
                                 </label>
                             </div>
 
                             <div className="input-wrap">
-                                <input type="number" name="bottom" value={dimensions.bottom} onChange={onInputChange} />
+                                <input
+                                    type="number"
+                                    name="bottom"
+                                    value={dimensions.bottom}
+                                    onChange={onInputChange}
+                                    min={min || 0}
+                                    max={max}
+                                />
                                 <label className="input-label">
                                     {forBorderRadius ? __('B.Right', 'zoloblocks') : __('Bottom', 'zoloblocks')}
                                 </label>
                             </div>
 
                             <div className="input-wrap">
-                                <input type="number" name="left" value={dimensions.left} onChange={onInputChange} />
+                                <input
+                                    type="number"
+                                    name="left"
+                                    value={dimensions.left}
+                                    onChange={onInputChange}
+                                    min={min || 0}
+                                    max={max}
+                                />
                                 <label className="input-label">
                                     {forBorderRadius ? __('B.Left', 'zoloblocks') : __('Left', 'zoloblocks')}
                                 </label>

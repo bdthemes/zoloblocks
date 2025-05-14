@@ -1,6 +1,6 @@
 //wrodpress dependencies
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { Button, SelectControl, TextControl, ToggleControl, BaseControl, CardDivider } from '@wordpress/components';
+import { Button, SelectControl, ToggleControl, BaseControl, CardDivider } from '@wordpress/components';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
@@ -29,6 +29,10 @@ const {
 } = window.zoloModule;
 
 const { zolo_pro_status } = window.zoloParams;
+
+
+import { TextControl } from '../../components/Core';
+
 
 //block attributes
 import objAttributes from './attributes';

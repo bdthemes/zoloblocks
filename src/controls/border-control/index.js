@@ -1,7 +1,7 @@
 import UnitsBtn from '../units-btn';
 import Borders from './border';
 import { prefix } from '../../global/constants';
-import { ButtonGroup, Button, SelectControl, Popover } from '@wordpress/components';
+import { __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption, Button, Popover } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import classNames from 'classnames';
@@ -13,7 +13,7 @@ import { __ } from '@wordpress/i18n';
 
 import ColorBtn from '../color-btn';
 import LinkUnlink from '../link-unlink';
-
+import { SelectControl } from '../../components/Core';
 const BorderControl = ({ label, controlName, requiredProps, units, hoverControl = null }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
     const [displayPanel, setDisplayPanel] = useState(false);
@@ -241,26 +241,24 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             });
                                                         }}
                                                     >
-                                                        <ButtonGroup className="border-styles-group">
+                                                        <ToggleGroupControl className="border-styles-group">
                                                             {BORDER_TYPES &&
                                                                 BORDER_TYPES.map((type, index) => {
                                                                     return (
-                                                                        <Button
+                                                                        <ToggleGroupControlOption
                                                                             key={index}
-                                                                            className={`border-style-btn ${
-                                                                                borderType === type.value ? 'active' : ''
-                                                                            }`}
+                                                                            value={type.value}
+                                                                            label={type.label}
+                                                                            isSelected={borderType === type.value}
                                                                             onClick={() =>
                                                                                 setAttributes({
                                                                                     [`${prefix}${controlName}BorderType`]: type.value,
                                                                                 })
                                                                             }
-                                                                        >
-                                                                            {type.label}
-                                                                        </Button>
+                                                                        />
                                                                     );
                                                                 })}
-                                                        </ButtonGroup>
+                                                        </ToggleGroupControl>
                                                         {borderType === 'custom' && (
                                                             <SelectControl
                                                                 value={borderStyle}
@@ -331,26 +329,24 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             })
                                                         }
                                                     >
-                                                        <ButtonGroup className="border-styles-group">
+                                                        <ToggleGroupControl className="border-styles-group">
                                                             {BORDER_TYPES &&
                                                                 BORDER_TYPES.map((type, index) => {
                                                                     return (
-                                                                        <Button
+                                                                        <ToggleGroupControlOption
                                                                             key={index}
-                                                                            className={`border-style-btn ${
-                                                                                TABborderType === type.value ? 'active' : ''
-                                                                            }`}
+                                                                            value={type.value}
+                                                                            label={type.label}
+                                                                            isSelected={TABborderType === type.value}
                                                                             onClick={() =>
                                                                                 setAttributes({
                                                                                     [`${prefix}TAB${controlName}BorderType`]: type.value,
                                                                                 })
                                                                             }
-                                                                        >
-                                                                            {type.label}
-                                                                        </Button>
+                                                                        />
                                                                     );
                                                                 })}
-                                                        </ButtonGroup>
+                                                        </ToggleGroupControl>
                                                         {TABborderType === 'custom' && (
                                                             <SelectControl
                                                                 value={TABborderStyle}
@@ -421,26 +417,24 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                             })
                                                         }
                                                     >
-                                                        <ButtonGroup className="border-styles-group">
+                                                        <ToggleGroupControl className="border-styles-group">
                                                             {BORDER_TYPES &&
                                                                 BORDER_TYPES.map((type, index) => {
                                                                     return (
-                                                                        <Button
+                                                                        <ToggleGroupControlOption
                                                                             key={index}
-                                                                            className={`border-style-btn ${
-                                                                                MOBborderType === type.value ? 'active' : ''
-                                                                            }`}
+                                                                            value={type.value}
+                                                                            label={type.label}
+                                                                            isSelected={MOBborderType === type.value}
                                                                             onClick={() =>
                                                                                 setAttributes({
                                                                                     [`${prefix}MOB${controlName}BorderType`]: type.value,
                                                                                 })
                                                                             }
-                                                                        >
-                                                                            {type.label}
-                                                                        </Button>
+                                                                        />
                                                                     );
                                                                 })}
-                                                        </ButtonGroup>
+                                                        </ToggleGroupControl>
                                                         {MOBborderType === 'custom' && (
                                                             <SelectControl
                                                                 value={MOBborderStyle}
@@ -516,24 +510,24 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 });
                                             }}
                                         >
-                                            <ButtonGroup className="border-styles-group">
+                                            <ToggleGroupControl className="border-styles-group">
                                                 {BORDER_TYPES &&
                                                     BORDER_TYPES.map((type, index) => {
                                                         return (
-                                                            <Button
+                                                            <ToggleGroupControlOption
                                                                 key={index}
-                                                                className={`border-style-btn ${borderType === type.value ? 'active' : ''}`}
+                                                                value={type.value}
+                                                                label={type.label}
+                                                                isSelected={borderType === type.value}
                                                                 onClick={() =>
                                                                     setAttributes({
                                                                         [`${prefix}${controlName}BorderType`]: type.value,
                                                                     })
                                                                 }
-                                                            >
-                                                                {type.label}
-                                                            </Button>
+                                                            />
                                                         );
                                                     })}
-                                            </ButtonGroup>
+                                            </ToggleGroupControl>
                                             {borderType === 'custom' && (
                                                 <SelectControl
                                                     value={borderStyle}
@@ -604,26 +598,24 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 })
                                             }
                                         >
-                                            <ButtonGroup className="border-styles-group">
+                                            <ToggleGroupControl className="border-styles-group">
                                                 {BORDER_TYPES &&
                                                     BORDER_TYPES.map((type, index) => {
                                                         return (
-                                                            <Button
+                                                            <ToggleGroupControlOption
                                                                 key={index}
-                                                                className={`border-style-btn ${
-                                                                    TABborderType === type.value ? 'active' : ''
-                                                                }`}
+                                                                value={type.value}
+                                                                label={type.label}
+                                                                isSelected={TABborderType === type.value}
                                                                 onClick={() =>
                                                                     setAttributes({
                                                                         [`${prefix}TAB${controlName}BorderType`]: type.value,
                                                                     })
                                                                 }
-                                                            >
-                                                                {type.label}
-                                                            </Button>
+                                                            />
                                                         );
                                                     })}
-                                            </ButtonGroup>
+                                            </ToggleGroupControl>
                                             {TABborderType === 'custom' && (
                                                 <SelectControl
                                                     value={TABborderStyle}
@@ -694,26 +686,24 @@ const BorderControl = ({ label, controlName, requiredProps, units, hoverControl 
                                                 })
                                             }
                                         >
-                                            <ButtonGroup className="border-styles-group">
+                                            <ToggleGroupControl className="border-styles-group">
                                                 {BORDER_TYPES &&
                                                     BORDER_TYPES.map((type, index) => {
                                                         return (
-                                                            <Button
+                                                            <ToggleGroupControlOption
                                                                 key={index}
-                                                                className={`border-style-btn ${
-                                                                    MOBborderType === type.value ? 'active' : ''
-                                                                }`}
+                                                                value={type.value}
+                                                                label={type.label}
+                                                                isSelected={MOBborderType === type.value}
                                                                 onClick={() =>
                                                                     setAttributes({
                                                                         [`${prefix}MOB${controlName}BorderType`]: type.value,
                                                                     })
                                                                 }
-                                                            >
-                                                                {type.label}
-                                                            </Button>
+                                                            />
                                                         );
                                                     })}
-                                            </ButtonGroup>
+                                            </ToggleGroupControl>
                                             {MOBborderType === 'custom' && (
                                                 <SelectControl
                                                     value={MOBborderStyle}

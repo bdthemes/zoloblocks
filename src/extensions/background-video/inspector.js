@@ -1,6 +1,8 @@
 import { MediaUpload } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { Button, TextareaControl, BaseControl } from '@wordpress/components';
+import { Button, TextareaControl } from '@wordpress/components';
+
+import { BaseControl } from '../../components/Core';
 
 const { ImageAvatar} = window.zoloModule;
 const Inspector = ({ panelProps }) => {

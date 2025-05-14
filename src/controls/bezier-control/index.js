@@ -1,6 +1,6 @@
 import BezierEditor from 'bezier-easing-editor';
 import { useState } from '@wordpress/element';
-import { BaseControl } from '@wordpress/components';
+import { BaseControl } from '../../components/Core';
 
 const BazierControl = ({ label = '', help = '', value = [], onChange, handleStroke = 3, handleRadius = 6, curveWidth = 2 }) => {
     return (

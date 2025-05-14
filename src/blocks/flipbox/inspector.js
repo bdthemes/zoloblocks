@@ -2,13 +2,16 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, BaseControl, Button, ButtonGroup, ToggleControl, SelectControl } from '@wordpress/components';
+import {  TextareaControl, BaseControl, Button, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption, ToggleControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 
 /**
  * Internal depencencies
  */
+
+import { TextControl } from '../../components/Core';
+
 const {
     ResRangeControl,
     ColorControl,
@@ -155,13 +158,12 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ButtonGroup className="zolo-button-group">
+                                <ToggleGroupControl className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
-                                        <Button
-                                            isLarge
-                                            variant={side === item.value ? 'primary' : 'secondary'}
-                                            aria-pressed={side === item.value}
-                                            showBackLinkBtn
+                                        <ToggleGroupControlOption
+                                            value={item.value}
+                                            label={item.label}
+                                            isSelected={side === item.value}
                                             onClick={() => {
                                                 setSide(item.value);
 
@@ -171,11 +173,9 @@ function Inspector(props) {
                                                     removeActiveClass();
                                                 }
                                             }}
-                                        >
-                                            {item.label}
-                                        </Button>
+                                        />
                                     ))}
-                                </ButtonGroup>
+                                </ToggleGroupControl>
                             </BaseControl>
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             {side === 'front' && (
@@ -256,13 +256,12 @@ function Inspector(props) {
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ButtonGroup className="zolo-button-group">
+                                <ToggleGroupControl className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
-                                        <Button
-                                            isLarge
-                                            variant={side === item.value ? 'primary' : 'secondary'}
-                                            aria-pressed={side === item.value}
-                                            showBackLinkBtn
+                                        <ToggleGroupControlOption
+                                            value={item.value}
+                                            label={item.label}
+                                            isSelected={side === item.value}
                                             onClick={() => {
                                                 setSide(item.value);
 
@@ -272,11 +271,9 @@ function Inspector(props) {
                                                     removeActiveClass();
                                                 }
                                             }}
-                                        >
-                                            {item.label}
-                                        </Button>
+                                        />
                                     ))}
-                                </ButtonGroup>
+                                </ToggleGroupControl>
                             </BaseControl>
                             {side === 'front' && (
                                 <>
@@ -632,13 +629,12 @@ function Inspector(props) {
                             />
                             <CardDivider />
                             <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ButtonGroup className="zolo-button-group">
+                                <ToggleGroupControl className="zolo-button-group">
                                     {FLIPBLOX_SIDE.map((item) => (
-                                        <Button
-                                            isLarge
-                                            variant={side === item.value ? 'primary' : 'secondary'}
-                                            aria-pressed={side === item.value}
-                                            showBackLinkBtn
+                                        <ToggleGroupControlOption
+                                            value={item.value}
+                                            label={item.label}
+                                            isSelected={side === item.value}
                                             onClick={() => {
                                                 setSide(item.value);
 
@@ -648,11 +644,9 @@ function Inspector(props) {
                                                     removeActiveClass();
                                                 }
                                             }}
-                                        >
-                                            {item.label}
-                                        </Button>
+                                        />
                                     ))}
-                                </ButtonGroup>
+                                </ToggleGroupControl>
                             </BaseControl>
                             {side === 'front' && (
                                 <>
@@ -719,13 +713,12 @@ function Inspector(props) {
                         {(showFrontIcon || showBackIcon) && (
                             <ZoloPanelBody title={__('Icon/Image', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ButtonGroup className="zolo-button-group">
+                                    <ToggleGroupControl className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (
-                                            <Button
-                                                isLarge
-                                                variant={side === item.value ? 'primary' : 'secondary'}
-                                                aria-pressed={side === item.value}
-                                                showBackLinkBtn
+                                            <ToggleGroupControlOption
+                                                value={item.value}
+                                                label={item.label}
+                                                isSelected={side === item.value}
                                                 onClick={() => {
                                                     setSide(item.value);
 
@@ -735,11 +728,9 @@ function Inspector(props) {
                                                         removeActiveClass();
                                                     }
                                                 }}
-                                            >
-                                                {item.label}
-                                            </Button>
+                                            />
                                         ))}
-                                    </ButtonGroup>
+                                    </ToggleGroupControl>
                                 </BaseControl>
                                 {side === 'front' && (
                                     <>
@@ -836,13 +827,12 @@ function Inspector(props) {
                         {(showFrontTitle || showBackTitle) && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ButtonGroup className="zolo-button-group">
+                                    <ToggleGroupControl className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (
-                                            <Button
-                                                isLarge
-                                                variant={side === item.value ? 'primary' : 'secondary'}
-                                                aria-pressed={side === item.value}
-                                                showBackLinkBtn
+                                            <ToggleGroupControlOption
+                                                value={item.value}
+                                                label={item.label}
+                                                isSelected={side === item.value}
                                                 onClick={() => {
                                                     setSide(item.value);
 
@@ -852,11 +842,9 @@ function Inspector(props) {
                                                         removeActiveClass();
                                                     }
                                                 }}
-                                            >
-                                                {item.label}
-                                            </Button>
+                                            />
                                         ))}
-                                    </ButtonGroup>
+                                    </ToggleGroupControl>
                                 </BaseControl>
                                 {side === 'front' && (
                                     <>
@@ -915,13 +903,12 @@ function Inspector(props) {
                         {(showFrontContent || showBackContent) && (
                             <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ButtonGroup className="zolo-button-group">
+                                    <ToggleGroupControl className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (
-                                            <Button
-                                                isLarge
-                                                variant={side === item.value ? 'primary' : 'secondary'}
-                                                aria-pressed={side === item.value}
-                                                showBackLinkBtn
+                                            <ToggleGroupControlOption
+                                                value={item.value}
+                                                label={item.label}
+                                                isSelected={side === item.value}
                                                 onClick={() => {
                                                     setSide(item.value);
 
@@ -931,11 +918,9 @@ function Inspector(props) {
                                                         removeActiveClass();
                                                     }
                                                 }}
-                                            >
-                                                {item.label}
-                                            </Button>
+                                            />
                                         ))}
-                                    </ButtonGroup>
+                                    </ToggleGroupControl>
                                 </BaseControl>
                                 {side === 'front' && (
                                     <>
@@ -978,13 +963,12 @@ function Inspector(props) {
                         {showBackLinkBtn && (
                             <ZoloPanelBody title={__('Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ButtonGroup className="zolo-button-group">
+                                    <ToggleGroupControl className="zolo-button-group">
                                         {FLIPBLOX_SIDE.map((item) => (
-                                            <Button
-                                                isLarge
-                                                variant={side === item.value ? 'primary' : 'secondary'}
-                                                aria-pressed={side === item.value}
-                                                showBackLinkBtn
+                                            <ToggleGroupControlOption
+                                                value={item.value}
+                                                label={item.label}
+                                                isSelected={side === item.value}
                                                 onClick={() => {
                                                     setSide(item.value);
                                                     if (item.value === 'back') {
@@ -993,11 +977,9 @@ function Inspector(props) {
                                                         removeActiveClass();
                                                     }
                                                 }}
-                                            >
-                                                {item.label}
-                                            </Button>
+                                            />
                                         ))}
-                                    </ButtonGroup>
+                                    </ToggleGroupControl>
                                 </BaseControl>
                                 {side === 'back' && (
                                     <>

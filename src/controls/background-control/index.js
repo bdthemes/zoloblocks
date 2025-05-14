@@ -1,4 +1,4 @@
-import { ToggleControl } from '@wordpress/components';
+import { ToggleControl } from '../../components/Core';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 

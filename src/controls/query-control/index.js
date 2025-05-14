@@ -1,4 +1,5 @@
-import {BaseControl, SelectControl, __experimentalInputControl as InputControl} from '@wordpress/components';
+import { BaseControl, SelectControl } from '../../components/Core';
+import { __experimentalInputControl as InputControl } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 import Select2 from 'react-select';
 import {SORT_ORDER, ORDER_BY, PRINT_TAXONOMY, INCLUDE_BY, EXCLUDE_BY} from '../../global/constants';

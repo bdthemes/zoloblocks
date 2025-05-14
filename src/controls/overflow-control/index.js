@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { OVERFLOWS } from '../../global/constants';
 
-import { SelectControl } from '@wordpress/components';
+import { SelectControl } from '../../components/Core';
 import IconicBtnGroup from '../iconic-btn-group';
 
 const OverflowControl = ({ label = '', value, onChange }) => {

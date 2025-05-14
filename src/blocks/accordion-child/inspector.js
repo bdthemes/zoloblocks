@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -52,6 +51,8 @@ import {
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
 import { CardDivider } from '@wordpress/components';
+
+import { TextControl } from '../../components/Core';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;

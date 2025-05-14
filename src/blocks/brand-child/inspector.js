@@ -2,13 +2,16 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, BaseControl, Button, SelectControl, TextareaControl, CardDivider } from '@wordpress/components';
+import { BaseControl, Button, SelectControl, TextareaControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
  */
+
+import { TextControl } from '../../components/Core';
+
 const {
     HeaderTabs,
     BorderControl,
@@ -180,7 +183,7 @@ function Inspector(props) {
                                             value={brandTitle}
                                             placeholder={__('Title..', 'zoloblocks')}
                                         />
-                                        
+
                                         <SelectControl
                                             label={__('Tag', 'zoloblocks')}
                                             value={brandNameTag}

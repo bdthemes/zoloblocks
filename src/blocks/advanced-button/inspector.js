@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, TextControl } from '@wordpress/components';
+import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import { applyFilters } from '@wordpress/hooks';
@@ -29,7 +29,7 @@ const {
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
-
+import { TextControl } from '../../components/Core';
 import objAttributes from './attributes';
 import {
     BUTTON_ALIGNMENT,

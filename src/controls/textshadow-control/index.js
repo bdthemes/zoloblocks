@@ -1,4 +1,4 @@
-import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { NumberControl } from '../../components/Core';
 import { __ } from '@wordpress/i18n';
 
 /**
