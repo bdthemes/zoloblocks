@@ -33,6 +33,7 @@ const {
     BoxShadowControl,
     BorderControl,
     ResDimensionsControl,
+    TypographyDropdown
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -40,7 +41,7 @@ import objAttributes from './attributes';
 import { CHART_TYPES, SOURCE_TYPES, POSITIONS, THEME_TYPES, CHART_HEIGHT } from './constants';
 import { CHART_BG_COLOR, CHART_BORDER, CHART_BORDER_RADIUS, CHART_MARGIN, CHART_PADDING, CHART_BOX_SHADOW } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
-
+import { TITLE_TYPO, SUB_TITLE_TYPO } from './constants/typoPrefixConstant';
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
@@ -821,36 +822,11 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <div className="zolo-flex-col-control">
-                                        <SimpleRangeControl
-                                            label={__('Font Size', 'zoloblocks')}
-                                            value={titleObject.style.fontSize}
-                                            onChange={(fontSize) =>
-                                                setAttributes({
-                                                    titleObject: {
-                                                        ...titleObject,
-                                                        style: {
-                                                            ...titleObject.style,
-                                                            fontSize: fontSize,
-                                                        },
-                                                    },
-                                                })
-                                            }
-                                            min={0}
-                                            max={100}
-                                            onReset={() =>
-                                                setAttributes({
-                                                    titleObject: {
-                                                        ...titleObject,
-                                                        style: {
-                                                            ...titleObject.style,
-                                                            fontSize: undefined,
-                                                        },
-                                                    },
-                                                })
-                                            }
-                                        />
-                                    </div>
+                                    <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={TITLE_TYPO}
+                                            requiredProps={requiredProps}
+                                    />
                                 </ZoloPanelBody>
                             </>
                         )}
@@ -872,36 +848,11 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                    <div className="zolo-flex-col-control">
-                                        <SimpleRangeControl
-                                            label={__('Font Size', 'zoloblocks')}
-                                            value={subTitleObject.style.fontSize}
-                                            onChange={(fontSize) =>
-                                                setAttributes({
-                                                    subTitleObject: {
-                                                        ...subTitleObject,
-                                                        style: {
-                                                            ...subTitleObject.style,
-                                                            fontSize: fontSize,
-                                                        },
-                                                    },
-                                                })
-                                            }
-                                            min={0}
-                                            max={100}
-                                            onReset={() =>
-                                                setAttributes({
-                                                    subTitleObject: {
-                                                        ...subTitleObject,
-                                                        style: {
-                                                            ...subTitleObject.style,
-                                                            fontSize: undefined,
-                                                        },
-                                                    },
-                                                })
-                                            }
-                                        />
-                                    </div>
+                                     <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={SUB_TITLE_TYPO}
+                                            requiredProps={requiredProps}
+                                    />
                                 </ZoloPanelBody>
                             </>
                         )}
