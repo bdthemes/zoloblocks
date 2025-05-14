@@ -1,11 +1,11 @@
-import { BlockControls, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
-import { Button, Dropdown, ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
 const { classArrayToStr, ContainerSidebarOpener, DynamicTag } = window.zoloModule;
 
 import { CW_TYPES, CWT_ICONS } from './constants';
+
 export default function RenderView({ attributes, clientId, className, setAttributes }) {
     const { uniqueId, containerWidthType, contentWidthType, isBlockRootParent, parentClasses, containerWidth, tagName, link } = attributes;
     const panelProps = { attributes, setAttributes };

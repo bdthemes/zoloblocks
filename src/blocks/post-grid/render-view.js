@@ -1,9 +1,8 @@
 import { RawHTML, useEffect, useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Spinner } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
-const { DynamicTag, DisplayZoloIcon } = window.zoloModule;
+const { DynamicTag, DisplayZoloIcon, ZoloSpinner } = window.zoloModule;
 
 let postContentCache = new Map();
 
@@ -140,7 +139,7 @@ function RenderView({ attributes, setAttributes }) {
             <div className="zolo-post-content-wrap">
                 {isLoading && (
                     <div className="preloader">
-                        <Spinner />
+                        <ZoloSpinner />
                     </div>
                 )}
                 {postResults.length > 0 &&

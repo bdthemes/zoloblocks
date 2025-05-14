@@ -25,32 +25,26 @@ const WithResDeviceBtnRaw = ({ label, children }) => {
                     {label && <span className="res-btn-label">{label}</span>}
                     <div
                         ref={devicesRef}
-                        className={classNames(
-                            'zb-device-switchers',
-                            `active-${deviceType}`,
-                            { 'zb-device-switchers-open': switcherIsOpen }
-                        )}
+                        className={classNames('zb-device-switchers', `active-${deviceType}`, {
+                            'zb-device-switchers-open': switcherIsOpen,
+                        })}
                         onClick={() => setSwitcherIsOpen(() => !switcherIsOpen)}
                     >
                         <div className="zb-device-switchers-wrap">
-                            {
-                                defaultDeviceList.map((device, index) => {
-                                    return (
-                                        <button
-                                            key={index}
-                                            className={classNames(
-                                                'zb-device-switcher',
-                                                `zb-device-switcher-${device?.identifier}`,
-                                                { 'active': device.slug === deviceType }
-                                            )}
-                                            onClick={() => onClickHandler(device?.slug)}
-                                            data-tooltip={device?.label}
-                                        >
-                                            {device?.icon}
-                                        </button>
-                                    );
-                                })
-                            }
+                            {defaultDeviceList.map((device, index) => {
+                                return (
+                                    <button
+                                        key={index}
+                                        className={classNames('zb-device-switcher', `zb-device-switcher-${device?.identifier}`, {
+                                            active: device.slug === deviceType,
+                                        })}
+                                        onClick={() => onClickHandler(device?.slug)}
+                                        data-tooltip={device?.label}
+                                    >
+                                        {device?.icon}
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

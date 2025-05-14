@@ -1,7 +1,6 @@
-import { TabPanel } from '@wordpress/components';
+import { ZoloBaseControl, ZoloTabPanel } from '../core-controls';
 import { NORMAL_HOVER } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
-import { BaseControl } from '../../components/Core';
 
 const TabPanelControl = ({
     normalComponents,
@@ -15,8 +14,8 @@ const TabPanelControl = ({
     const availableOptions = options.length > 0 ? options : NORMAL_HOVER;
     return (
         <>
-            <BaseControl>
-                <TabPanel
+            <ZoloBaseControl>
+                <ZoloTabPanel
                     className="zolo-tab-panel"
                     activeClass="active-tab"
                     tabs={availableOptions.map((tab, index) => ({
@@ -40,8 +39,8 @@ const TabPanelControl = ({
                             return extraThreeComponents;
                         }
                     }}
-                </TabPanel>
-            </BaseControl>
+                </ZoloTabPanel>
+            </ZoloBaseControl>
         </>
     );
 };

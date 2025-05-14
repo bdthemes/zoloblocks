@@ -1,11 +1,9 @@
 /**
  * Internal depencencies
  */
-const { GoogleMapAutocomplete } = window.zoloModule;
+const { GoogleMapAutocomplete, ZoloTextControl, ZoloButton, ZoloCorePanelBody, ZoloTextareaControl } = window.zoloModule;
 
 const { __ } = wp.i18n;
-const { Button, PanelBody, TextareaControl } = wp.components;
-import { TextControl } from '@wordpress/components';
 import { cloneDeep } from 'lodash';
 
 const Repeater = ({ markers, setAttributes }) => {
@@ -14,7 +12,7 @@ const Repeater = ({ markers, setAttributes }) => {
         <div className="sortable zolo-gmap-repeater">
             <div className="zb-repeater-flex">
                 <div className="repeater-label">{__('Add a Location', 'zoloblocks')}</div>
-                <Button
+                <ZoloButton
                     onClick={() =>
                         setAttributes({
                             markers: [
@@ -35,13 +33,13 @@ const Repeater = ({ markers, setAttributes }) => {
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
             {deepCloneMarkers &&
                 deepCloneMarkers.map((marker, index) => {
                     return (
                         <div className="dnd-container" key={index}>
-                            <Button
+                            <ZoloButton
                                 className="dnd-trash"
                                 icon="trash"
                                 onClick={() => {
@@ -50,7 +48,7 @@ const Repeater = ({ markers, setAttributes }) => {
                                     });
                                 }}
                             />
-                            <PanelBody title={marker?.location || 'Location'} initialOpen={false}>
+                            <ZoloCorePanelBody title={marker?.location || 'Location'} initialOpen={false}>
                                 <GoogleMapAutocomplete
                                     label={__('Location', 'zoloblocks')}
                                     value={marker?.location}
@@ -71,14 +69,14 @@ const Repeater = ({ markers, setAttributes }) => {
                                         });
                                     }}
                                 />
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Latitude', 'zoloblocks')}
                                     value={marker?.position.lat}
                                     readOnly={true}
                                     __nextHasNoMarginBottom={true}
                                     __next40pxDefaultSize={true}
                                 />
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Longitude', 'zoloblocks')}
                                     value={marker?.position.lng}
                                     readOnly={true}
@@ -86,8 +84,8 @@ const Repeater = ({ markers, setAttributes }) => {
                                     __next40pxDefaultSize={true}
                                 />
 
-                                <div className='zolo-flex-col-control'>
-                                    <TextareaControl
+                                <div className="zolo-flex-col-control">
+                                    <ZoloTextareaControl
                                         label={__('Marker Description', 'zoloblocks')}
                                         value={marker?.info}
                                         onChange={(v) => {
@@ -100,7 +98,7 @@ const Repeater = ({ markers, setAttributes }) => {
                                         help={__('HTML tags are allowed', 'zoloblocks')}
                                     />
                                 </div>
-                            </PanelBody>
+                            </ZoloCorePanelBody>
                         </div>
                     );
                 })}

@@ -1,6 +1,4 @@
-import { Spinner } from '@wordpress/components';
-
-const { isEmpty } = window.zoloModule;
+const { isEmpty, ZoloSpinner } = window.zoloModule;
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 
@@ -191,7 +189,9 @@ function AuthorItem({ author, attributes }) {
             <div className="zolo-content">
                 {showName && (
                     <div className="zolo-name">
-                        <a href={author.link} onClick={(e) => e.preventDefault()}>{author.name}</a>
+                        <a href={author.link} onClick={(e) => e.preventDefault()}>
+                            {author.name}
+                        </a>
                     </div>
                 )}
 
@@ -202,7 +202,7 @@ function AuthorItem({ author, attributes }) {
                 {!user && (
                     <div className="zolo-link">
                         <div className="preloader">
-                            <Spinner />
+                            <ZoloSpinner />
                         </div>
                     </div>
                 )}

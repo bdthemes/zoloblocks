@@ -2,8 +2,8 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 
-const { classArrayToStr, DisplayZoloIcon,generateUniqueName } = window.zoloModule;
-import {convertToDefaultValueArray, convertToOptionsArray} from '@/blocks/checkbox-field/helper';
+const { classArrayToStr, DisplayZoloIcon, generateUniqueName } = window.zoloModule;
+import { convertToDefaultValueArray, convertToOptionsArray } from '@/blocks/checkbox-field/helper';
 
 const Save = ({ attributes }) => {
     const {
@@ -44,12 +44,12 @@ const Save = ({ attributes }) => {
 
                 <div className="zolo-field-input-item">
                     {optionArray.length > 0 &&
-                        optionArray.map((option,index) => (
-                            <label key={index} htmlFor={option.value+uniqueId}>
+                        optionArray.map((option, index) => (
+                            <label key={index} htmlFor={option.value + uniqueId}>
                                 <input
                                     type="checkbox"
-                                    id={option.value+uniqueId}
-                                    name={generateUniqueName(uniqueId,customNameAttribute,'checkbox_field')}
+                                    id={option.value + uniqueId}
+                                    name={generateUniqueName(uniqueId, customNameAttribute, 'checkbox_field')}
                                     value={option.value}
                                     checked={defaultCheck.includes(option.value)}
                                     required={isRequired}

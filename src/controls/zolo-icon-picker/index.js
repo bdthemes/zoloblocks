@@ -1,5 +1,5 @@
 import { useState, useEffect, RawHTML, useMemo } from '@wordpress/element';
-import { Modal, Button } from '@wordpress/components';
+import { ZoloModal, ZoloButton } from '../core-controls';
 import { __ } from '@wordpress/i18n';
 import { FixedSizeGrid as Grid } from 'react-window';
 import icons from './icons.json';
@@ -195,7 +195,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                         )}
                     </div>
                     {value && (
-                        <Button
+                        <ZoloButton
                             className="zolo-picker__remove"
                             id="iconRemove"
                             onClick={() => {
@@ -207,56 +207,56 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                 <path
                                     d="M22 2L2 22"
                                     stroke="#4D4D4D"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                 ></path>
                                 <path
                                     d="M2 2L22 22"
                                     stroke="#4D4D4D"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                 ></path>
                             </svg>
-                        </Button>
+                        </ZoloButton>
                     )}
                     <div className="zolo__icon-picker-buttons">
-                        <Button
+                        <ZoloButton
                             className={`zolo-picker__button ${value ? 'active' : ''}`}
                             id="iconPreview"
                             onClick={() => setIconsPanel(true)}
                         >
                             {__('Icon Library', 'zoloblocks')}
-                        </Button>
+                        </ZoloButton>
                         {enableMediaUpload && (
-                            <Button
+                            <ZoloButton
                                 className={`zolo-picker__button ${value ? 'active' : ''}`}
                                 id="iconUpload"
                                 onClick={handlUploadMediaSVG}
                             >
                                 {__('Upload SVG', 'zoloblocks')}
-                            </Button>
+                            </ZoloButton>
                         )}
                     </div>
                 </div>
             </div>
 
             {iconsPanel && (
-                <Modal className="zolo__modal" title={__('ZoloBlocks', 'zoloblocks')} onRequestClose={() => setIconsPanel(false)}>
+                <ZoloModal className="zolo__modal" title={__('ZoloBlocks', 'zoloblocks')} onRequestClose={() => setIconsPanel(false)}>
                     <div className="zolo-modal__wrapper">
                         <div className="zolo-categories__sidebar">
                             <div className="zolo-category-item">
                                 {iconCategories &&
                                     iconCategories.map((item, index) => (
-                                        <Button
+                                        <ZoloButton
                                             className={`category__button ${category === item.value ? 'active' : ''}`}
                                             key={index}
                                             onClick={() => setCategory(item.value)}
                                         >
                                             {item.icon && <span className="category__icon">{item.icon}</span>}
                                             {item.label}
-                                        </Button>
+                                        </ZoloButton>
                                     ))}
                             </div>
                             <p className="zolo-custom-icon">
@@ -322,7 +322,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                             };
 
                                             return (
-                                                <Button
+                                                <ZoloButton
                                                     key={index}
                                                     className={`single__icon ${value === generateIcon(item) ? 'active' : ''}`}
                                                     onClick={() => {
@@ -339,7 +339,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                                                     }}
                                                 >
                                                     <RawHTML className="single__icon_svg" children={generateIcon(item)} />
-                                                </Button>
+                                                </ZoloButton>
                                             );
                                         }}
                                     </Grid>
@@ -347,7 +347,7 @@ const ZoloIconPicker = ({ label, value, onChange }) => {
                             </div>
                         </div>
                     </div>
-                </Modal>
+                </ZoloModal>
             )}
         </div>
     );

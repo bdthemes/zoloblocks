@@ -1,11 +1,13 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
 import { useEffect } from '@wordpress/element';
 import Inspector from './inspector';
 import Counter from './counter';
 // import style
 import Style from './style';
+
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId, context } = props;
     const { uniqueId, preset, parentClasses, socialIcon, socialLink, socialCounter, socialMeta } = attributes;

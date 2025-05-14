@@ -3,9 +3,9 @@
  */
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
-import { useEffect,useState } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup,Modal} from '@wordpress/components';
+import { useEffect, useState } from '@wordpress/element';
 import { BlockControls } from '@wordpress/block-editor';
+const { ZoloToolbarButton, ZoloToolbarGroup, ZoloModal } = window.zoloModule;
 /**
  * Internal depencencies
  */
@@ -52,19 +52,22 @@ export default function Edit(props) {
     const closeModal = () => setIsModalOpen(false);
 
     const hasInnerBlocks = (blocks) => {
-      return blocks.some((block) => {
-        if ( Object.keys(block).length > 0 && block?.name !=='zolo/container') {
-          return true;
-        }
-        if (block?.innerBlocks.length > 0) {
-          return true;
-        }
-        return hasInnerBlocks(block.innerBlocks);
-      });
+        return blocks.some((block) => {
+            if (Object.keys(block).length > 0 && block?.name !== 'zolo/container') {
+                return true;
+            }
+            if (block?.innerBlocks.length > 0) {
+                return true;
+            }
+            return hasInnerBlocks(block.innerBlocks);
+        });
     };
-    const innerBlocks = useSelect((select) => {
-      return select('core/block-editor').getBlock(clientId)?.innerBlocks || [];
-    }, [clientId]);
+    const innerBlocks = useSelect(
+        (select) => {
+            return select('core/block-editor').getBlock(clientId)?.innerBlocks || [];
+        },
+        [clientId]
+    );
     const doesHaveInnerBlocks = hasInnerBlocks(innerBlocks);
 
     if (!variationStatus && 0 === getBlockParents?.length) {
@@ -76,17 +79,13 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             {isBlockRootParent && (
-              <BlockControls>
-                <ToolbarGroup>
-                  <ToolbarButton
-                    label={__('Replace', 'zoloblocks')}
-                    onClick={() => openModal() }
-                    disabled={doesHaveInnerBlocks}
-                  >
-                    {__('Replace', 'zoloblocks')}
-                  </ToolbarButton>
-                </ToolbarGroup>
-              </BlockControls>
+                <BlockControls>
+                    <ZoloToolbarGroup>
+                        <ZoloToolbarButton label={__('Replace', 'zoloblocks')} onClick={() => openModal()} disabled={doesHaveInnerBlocks}>
+                            {__('Replace', 'zoloblocks')}
+                        </ZoloToolbarButton>
+                    </ZoloToolbarGroup>
+                </BlockControls>
             )}
             <RenderView
                 {...{
@@ -98,17 +97,17 @@ export default function Edit(props) {
                 }}
             />
 
-          {/* Conditionally render the Modal */}
-          {isModalOpen && (
-            <Modal
-              overlayClassName="block-library-query-pattern__selection-modal"
-              title={__('Choose Container Layout','zoloblocks')}
-              onRequestClose={closeModal}
-              isFullScreen
-            >
-              <VariationPicker {...{ ...props, variations, defaultVariation, closeModal, isReplace: true }} />
-            </Modal>
-          )}
+            {/* Conditionally render the Modal */}
+            {isModalOpen && (
+                <ZoloModal
+                    overlayClassName="block-library-query-pattern__selection-modal"
+                    title={__('Choose Container Layout', 'zoloblocks')}
+                    onRequestClose={closeModal}
+                    isFullScreen
+                >
+                    <VariationPicker {...{ ...props, variations, defaultVariation, closeModal, isReplace: true }} />
+                </ZoloModal>
+            )}
         </>
     );
 }

@@ -1,7 +1,7 @@
 import UnitsBtn from '../units-btn';
 import DimensionControl from './dimension';
 import { prefix } from '../../global/constants';
-import { Button } from '@wordpress/components';
+import { ZoloButton } from '../core-controls';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import LinkUnlink from '../link-unlink';
@@ -76,7 +76,7 @@ const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forB
                             })
                         }
                     >
-                        <Button
+                        <ZoloButton
                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
@@ -126,7 +126,7 @@ const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forB
                             })
                         }
                     >
-                        <Button
+                        <ZoloButton
                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
@@ -175,7 +175,7 @@ const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forB
                             })
                         }
                     >
-                        <Button
+                        <ZoloButton
                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}

@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -10,6 +9,9 @@ import { applyFilters } from '@wordpress/hooks';
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloCardDivider,
     NormalBGControl,
     BorderControl,
     ResDimensionsControl,
@@ -102,7 +104,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Hover Animation', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.brandGrid.presets', PRESETS)}
@@ -115,19 +117,19 @@ function Inspector(props) {
                             {preset !== 'zb-brand-basic-style' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Show hide elements', 'zoloblocks')}</div>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Title', 'zoloblocks')}
                                         checked={brandNameVisible}
                                         onChange={() => setAttributes({ brandNameVisible: !brandNameVisible })}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Sub Title', 'zoloblocks')}
                                         checked={brandLabelVisible}
                                         onChange={() => setAttributes({ brandLabelVisible: !brandLabelVisible })}
                                     />
                                 </>
                             )}
-                            {/* <ToggleControl
+                            {/* <ZoloToggleControl
                                 label={__('Enable Logo Link', 'zoloblocks')}
                                 checked={enableLogoLink}
                                 onChange={() => setAttributes({ enableLogoLink: !enableLogoLink })}
@@ -227,7 +229,7 @@ function Inspector(props) {
                                             min={0}
                                             max={100}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={CONTAINER_BORDER}
@@ -244,7 +246,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResRangeControl
                                             label={__('Height', 'zoloblocks')}
                                             controlName={CONTAINER_HEIGHT}
@@ -284,7 +286,7 @@ function Inspector(props) {
                                 min={0}
                                 max={1000}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <NormalBGControl requiredProps={requiredProps} controlName={BRAND_PHOTO_BG} noMainBGImg={false} />
                             <ResDimensionsControl
                                 label={__('Padding', 'zoloblocks')}
@@ -300,7 +302,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={BRAND_PHOTO_BORDER}
@@ -315,7 +317,7 @@ function Inspector(props) {
                             />
                             {preset !== 'zb-brand-basic-style' && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     {cssFilters && cssFilters.length > 0 && cssFilters}
                                 </>
                             )}
@@ -367,7 +369,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
                                             controlName={TITLE_MARGIN}
@@ -429,7 +431,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             enableTransition={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
                                             controlName={LINK_MARGIN}

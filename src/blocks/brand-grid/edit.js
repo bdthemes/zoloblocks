@@ -2,14 +2,13 @@
  * WordPress dependencies
  */
 import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
-import { Button, ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -59,9 +58,9 @@ export default function Edit(props) {
                 `}
             </style>
             <BlockControls>
-                <ToolbarGroup>
-                    <ToolbarButton icon="insert" label={__('Add Brand', 'zoloblocks')} onClick={() => appendBlock()} />
-                </ToolbarGroup>
+                <ZoloToolbarGroup>
+                    <ZoloToolbarButton icon="insert" label={__('Add Brand', 'zoloblocks')} onClick={() => appendBlock()} />
+                </ZoloToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}

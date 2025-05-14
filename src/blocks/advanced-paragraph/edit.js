@@ -1,8 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { useBlockProps, RichText } from '@wordpress/block-editor'; 
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -13,9 +12,8 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr } = window.zoloModule;
 
-import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
 
 // import style

@@ -1,11 +1,6 @@
-import {
-    Popover,
-    __experimentalNumberControl as NumberControl,
-    __experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
-} from '@wordpress/components';
+import { ZoloPopover, ZoloNumberControl, ZoloToggleGroupControl, ZoloToggleGroupControlOption } from '../core-controls';
 import { __ } from '@wordpress/i18n';
-import {  useState } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -71,7 +66,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                 </div>
             </div>
             {displayPanel && (
-                <Popover className="zolo-dimensions-control-popover" position="bottom left" onFocusOutside={() => setDisplayPanel(false)}>
+                <ZoloPopover className="zolo-dimensions-control-popover" position="bottom left" onFocusOutside={() => setDisplayPanel(false)}>
                     <div className="zolo-box-shadow">
                         <div className="zolo-label-area">
                             <UnitsBtn
@@ -113,24 +108,29 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                 noResetBtn={true}
                                 noResponsive={true}
                             >
-                                <ToggleGroupControl
-                                    value={shadowType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            [`${controlName}shadowType`]: value,
-                                        })
-                                    }
-                                    isBlock
-                                    __nextHasNoMarginBottom
-                                    __next40pxDefaultSize
-                                >
-                                    {BOX_SHADOW_TYPES.map(({ value, label }) => (
-                                        <ToggleGroupControlOption key={value} value={value} label={label} showTooltip={true} />
-                                    ))}
-                                </ToggleGroupControl>
+                                <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
+                                    {BOX_SHADOW_TYPES &&
+                                        BOX_SHADOW_TYPES.map((type, index) => {
+                                            return (
+                                                <ZoloToggleGroupControlOption
+                                                    key={index}
+                                                    value={type.value}
+                                                    label={type.label}
+                                                    showTooltip={true}
+                                                    isActive={shadowType === type.value}
+                                                    className={shadowType === type.value ? 'active' : ''}
+                                                    onClick={() =>
+                                                        setAttributes({
+                                                            [`${controlName}shadowType`]: type.value,
+                                                        })
+                                                    }
+                                                />
+                                            );
+                                        })}
+                                </ZoloToggleGroupControl>
                                 <div className="zolo-box-shadow-options">
                                     <div className="single-shadow-input">
-                                        <NumberControl
+                                        <ZoloNumberControl
                                             isShiftStepEnabled={true}
                                             onChange={(hOffset) =>
                                                 setAttributes({
@@ -143,7 +143,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                         <div className="input-label">{__('X', 'zoloblocks')}</div>
                                     </div>
                                     <div className="single-shadow-input">
-                                        <NumberControl
+                                        <ZoloNumberControl
                                             isShiftStepEnabled={true}
                                             onChange={(vOffset) =>
                                                 setAttributes({
@@ -156,7 +156,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                         <div className="input-label">{__('Y', 'zoloblocks')}</div>
                                     </div>
                                     <div className="single-shadow-input">
-                                        <NumberControl
+                                        <ZoloNumberControl
                                             isShiftStepEnabled={true}
                                             onChange={(blur) =>
                                                 setAttributes({
@@ -170,7 +170,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                                         <div className="input-label">{__('Blur', 'zoloblocks')}</div>
                                     </div>
                                     <div className="single-shadow-input">
-                                        <NumberControl
+                                        <ZoloNumberControl
                                             isShiftStepEnabled={true}
                                             onChange={(spread) =>
                                                 setAttributes({
@@ -187,7 +187,7 @@ const BoxShadowControl = ({ label = '', controlName, requiredProps }) => {
                             </WithResDeviceBtn>
                         </div>
                     </div>
-                </Popover>
+                </ZoloPopover>
             )}
         </div>
     );

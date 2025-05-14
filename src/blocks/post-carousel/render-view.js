@@ -49,9 +49,7 @@ function RenderView({ attributes, postResults }) {
                     const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
                     const author = (
                         <div className="zolo-post-author-name">
-                            <span>
-                                {authorPrefix || defaultAuthorPrefix}
-                            </span>
+                            <span>{authorPrefix || defaultAuthorPrefix}</span>
                             <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
                         </div>
                     );
@@ -101,7 +99,10 @@ function RenderView({ attributes, postResults }) {
                                                 {post.thumbnail && <a href={'#'} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
                                                 {!post.thumbnail && (
                                                     <a href={'#'}>
-                                                        <img src={zoloPlaceholders.placeholder} alt={__('Thumbnail Placeholder', 'zoloblocks')} />
+                                                        <img
+                                                            src={zoloPlaceholders.placeholder}
+                                                            alt={__('Thumbnail Placeholder', 'zoloblocks')}
+                                                        />
                                                     </a>
                                                 )}
                                             </>

@@ -1,11 +1,9 @@
 import apiFetch from '@wordpress/api-fetch';
-import { Button, Modal, ToggleControl } from '@wordpress/components';
+import { ZoloTextControl, ZoloButton, ZoloModal, ZoloSelectControl, ZoloToggleControl } from '../../../controls/core-controls';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import Notice from '../notice';
 import SettingBox from './setting-box';
-
-import { TextControl, SelectControl } from '../../../components/Core';
 
 const { zoloBlocks } = window;
 const Settings = () => {
@@ -287,7 +285,7 @@ const Settings = () => {
                                             'zoloblocks'
                                         )}
                                     >
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             checked={!!supportSVG}
                                             onChange={() => {
                                                 updateSVG(!supportSVG);
@@ -303,7 +301,7 @@ const Settings = () => {
                                             'zoloblocks'
                                         )}
                                     >
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             checked={!!blockLibrary}
                                             onChange={() => {
                                                 updateBlockLibrary(!blockLibrary);
@@ -318,7 +316,7 @@ const Settings = () => {
                                             'zoloblocks'
                                         )}
                                     >
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             checked={!!disableCorePatterns}
                                             onChange={() => {
                                                 updateDisableCorePatterns(!disableCorePatterns);
@@ -333,7 +331,7 @@ const Settings = () => {
                                             'zoloblocks'
                                         )}
                                     >
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             checked={!!autoRecovery}
                                             onChange={() => {
                                                 updateAutoRecovery(!autoRecovery);
@@ -348,7 +346,7 @@ const Settings = () => {
                                             'zoloblocks'
                                         )}
                                     >
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             checked={!!sidebarOpen}
                                             onChange={() => {
                                                 updateSidebarOpener(!sidebarOpen);
@@ -360,7 +358,7 @@ const Settings = () => {
                                         description={__('Enable video link to your gutenberg editor video link option.', 'zoloblocks')}
                                         isPro={true}
                                     >
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             checked={!!editorVideoLink}
                                             disabled={!zoloBlocks?.has_pro}
                                             onChange={() => {
@@ -408,7 +406,7 @@ const Settings = () => {
                                             </p>
                                             {!maintenanceMode && comingSoonMode && (
                                                 <>
-                                                    <SelectControl
+                                                    <ZoloSelectControl
                                                         label={__('Select Templates', 'zoloblocks')}
                                                         help={__(
                                                             '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
@@ -419,7 +417,7 @@ const Settings = () => {
                                                         onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
                                                         __nextHasNoMarginBottom
                                                     />
-                                                    <ToggleControl
+                                                    <ZoloToggleControl
                                                         label={__('Share your site with a private link', 'zoloblocks')}
                                                         help={__(
                                                             'Allow your site to be visible to only those with the private link. This is useful when you want to share your site with a select group of people or clients before it goes live.',
@@ -434,25 +432,29 @@ const Settings = () => {
                                                     {comingSoonPrivateLink && (
                                                         <>
                                                             <div>
-                                                                <TextControl value={privateLink} disabled={true} onChange={() => {}} />
-                                                                <Button
+                                                                <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                                <ZoloButton
                                                                     className="zolo-create-new-page-btn"
                                                                     variant="primary"
                                                                     onClick={handleCopyClick}
                                                                 >
                                                                     {copyButtonText || 'Copy'}
-                                                                </Button>
+                                                                </ZoloButton>
                                                             </div>
                                                         </>
                                                     )}
 
-                                                    <Button className="zolo-create-new-page-btn" variant="primary" onClick={createNewPage}>
+                                                    <ZoloButton
+                                                        className="zolo-create-new-page-btn"
+                                                        variant="primary"
+                                                        onClick={createNewPage}
+                                                    >
                                                         {__('Create New Page', 'zoloblocks')}
-                                                    </Button>
+                                                    </ZoloButton>
                                                 </>
                                             )}
                                         </div>
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             checked={!!comingSoonMode}
                                             onChange={() => {
                                                 updateComingSoonMode(!comingSoonMode);
@@ -472,7 +474,7 @@ const Settings = () => {
                                             </p>
                                             {maintenanceMode && !comingSoonMode && (
                                                 <>
-                                                    <SelectControl
+                                                    <ZoloSelectControl
                                                         label={__('Select Templates', 'zoloblocks')}
                                                         help={__(
                                                             '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
@@ -483,7 +485,7 @@ const Settings = () => {
                                                         onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
                                                         __nextHasNoMarginBottom
                                                     />
-                                                    <ToggleControl
+                                                    <ZoloToggleControl
                                                         label={__('Share your site with a private link', 'zoloblocks')}
                                                         help={__(
                                                             'Allow your site to be visible to only those with the private link. This is useful when you want to share your site with a select group of people or clients before it goes live.',
@@ -498,24 +500,28 @@ const Settings = () => {
                                                     {comingSoonPrivateLink && (
                                                         <>
                                                             <div className="zolo-private-link-wrap">
-                                                                <TextControl value={privateLink} disabled={true} onChange={() => {}} />
-                                                                <Button
+                                                                <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                                <ZoloButton
                                                                     className="zolo-create-new-page-btn"
                                                                     variant="primary"
                                                                     onClick={handleCopyClick}
                                                                 >
                                                                     {copyButtonText || 'Copy'}
-                                                                </Button>
+                                                                </ZoloButton>
                                                             </div>
                                                         </>
                                                     )}
-                                                    <Button className="zolo-create-new-page-btn" variant="primary" onClick={createNewPage}>
+                                                    <ZoloButton
+                                                        className="zolo-create-new-page-btn"
+                                                        variant="primary"
+                                                        onClick={createNewPage}
+                                                    >
                                                         {__('Create New Page', 'zoloblocks')}
-                                                    </Button>
+                                                    </ZoloButton>
                                                 </>
                                             )}
                                         </div>
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             checked={!!maintenanceMode}
                                             onChange={() => {
                                                 updateMaintenanceMode(!maintenanceMode);
@@ -530,7 +536,7 @@ const Settings = () => {
                 </div>
             </div>
             {modalNewPage && (
-                <Modal
+                <ZoloModal
                     className="zolo-maintenance-modal zolo-sv-create-new-page-modal"
                     onRequestClose={() => setModalNewPage(false)}
                     shouldCloseOnClickOutside={true}
@@ -576,7 +582,7 @@ const Settings = () => {
                             ></iframe>
                         </div>
                     </div>
-                </Modal>
+                </ZoloModal>
             )}
         </>
     );

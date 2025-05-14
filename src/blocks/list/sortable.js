@@ -1,11 +1,10 @@
 /**
  * Internal dependencies
  */
-const { ZoloIconPicker, SortableControl, SortableItem, LinkControl } = window.zoloModule;
-import { Button, PanelBody, TextareaControl } from '@wordpress/components';
+const { ZoloIconPicker, SortableControl, SortableItem, LinkControl, ZoloButton, ZoloCorePanelBody, ZoloTextControl, ZoloTextareaControl } =
+    window.zoloModule;
 import { cloneDeep } from 'lodash';
 import { __ } from '@wordpress/i18n';
-import { TextControl } from '../../components/Core';
 
 const Sortable = ({ listProfiles, setAttributes, attributes }) => {
     const { DscToggle, preset, isLinkable } = attributes;
@@ -38,20 +37,20 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
         <div className="sortable">
             <div className="zb-repeater-flex">
                 <div className="repeater-label">{__('Add a List', 'zoloblocks')}</div>
-                <Button onClick={addProfile}>
+                <ZoloButton onClick={addProfile}>
                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
             <SortableControl defaultItems={listProfiles} attributeName="listProfiles" setAttributes={setAttributes}>
                 {listProfiles.map((profile, index) => (
                     <div className="dnd-container" key={profile.id}>
-                        <Button className="dnd-trash" icon="trash" onClick={() => removeProfile(index)} />
+                        <ZoloButton className="dnd-trash" icon="trash" onClick={() => removeProfile(index)} />
                         <SortableItem id={profile.id}>
-                            <PanelBody title={profile.text.replace(/<[^>]*>/g, '') || 'Title'} initialOpen={false}>
-                                <TextControl
+                            <ZoloCorePanelBody title={profile.text.replace(/<[^>]*>/g, '') || 'Title'} initialOpen={false}>
+                                <ZoloTextControl
                                     label={__('Title', 'zoloblocks')}
                                     value={profile.text}
                                     onChange={(value) => updateProfiles(index, 'text', value)}
@@ -59,7 +58,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                     __next40pxDefaultSize={true}
                                 />
                                 {DscToggle && preset !== 'zolo-list-style-1' && (
-                                    <TextareaControl
+                                    <ZoloTextareaControl
                                         className="zolo-flex-col-control"
                                         label={__('Description', 'zoloblocks')}
                                         value={profile.desc}
@@ -82,7 +81,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         onChange={(value) => updateProfiles(index, 'link', value)}
                                     />
                                 )}
-                            </PanelBody>
+                            </ZoloCorePanelBody>
                         </SortableItem>
                     </div>
                 ))}

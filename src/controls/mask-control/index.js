@@ -1,8 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-
-
-import { SelectControl } from '../../components/Core';
+import { ZoloSelectControl } from '../core-controls';
 
 import { MASK_SIZES, MASK_POSITIONS, MASK_REPEATS, MASK_SHAPES } from '../../global/constants';
 
@@ -18,7 +16,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
 
     return (
         <>
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Mask Shape', 'zoloblocks')}
                 value={maskImage}
                 options={MASK_SHAPES}
@@ -30,7 +28,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
             />
             {maskImage && maskImage !== undefined && (
                 <>
-                    <SelectControl
+                    <ZoloSelectControl
                         label={__('Mask Size', 'zoloblocks')}
                         value={maskSize}
                         options={MASK_SIZES}
@@ -41,7 +39,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
                         }
                     />
 
-                    <SelectControl
+                    <ZoloSelectControl
                         label={__('Mask Position', 'zoloblocks')}
                         value={maskPosition}
                         options={MASK_POSITIONS}
@@ -52,7 +50,7 @@ const MaskControl = ({ controlName, requiredProps }) => {
                         }
                     />
 
-                    <SelectControl
+                    <ZoloSelectControl
                         label={__('Mask Repeat', 'zoloblocks')}
                         value={maskRepeat}
                         options={MASK_REPEATS}

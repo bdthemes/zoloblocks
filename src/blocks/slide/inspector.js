@@ -2,13 +2,13 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
-const { BorderControl, ResDimensionsControl, HeaderTabs, AdvancedOptions, ZoloPanelBody } = window.zoloModule;
+const { BorderControl, ResDimensionsControl, HeaderTabs, AdvancedOptions, ZoloPanelBody, ZoloCardDivider, ZoloCorePanelBody } =
+    window.zoloModule;
 
 import objAttributes from './attributes';
 import { SLIDE_PADDING, SLIDE_BORDER, SLIDE_BORDER_RADIUS } from './constants';
@@ -32,7 +32,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <PanelBody>{__('No settings available. Move to Style Tab', 'zoloblocks')}</PanelBody>
+                        <ZoloCorePanelBody>{__('No settings available. Move to Style Tab', 'zoloblocks')}</ZoloCorePanelBody>
                     </>
                 }
                 styleTab={
@@ -44,7 +44,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={SLIDE_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}

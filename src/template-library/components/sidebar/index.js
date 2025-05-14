@@ -1,8 +1,8 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-import { Tooltip } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
+import { ZoloTooltip } from '../../../controls/core-controls';
 import { STORE_NAME } from '../../store';
 import { useCategories } from '../../utils';
 
@@ -10,14 +10,13 @@ const Sidebar = () => {
     const { Skeleton } = window.zoloModule;
     const { setFilters } = useDispatch(STORE_NAME);
     const { activeTab, filters } = useSelect((select) => {
-        const { getActiveTab, getFilters } = select(STORE_NAME)
+        const { getActiveTab, getFilters } = select(STORE_NAME);
         return {
             activeTab: getActiveTab(),
-            filters: getFilters()
-        }
+            filters: getFilters(),
+        };
     });
     const { categories, isResolving, hasResolved } = useCategories([activeTab]);
-
 
     return (
         <div className="categories">
@@ -46,7 +45,7 @@ const Sidebar = () => {
                 <h2 className="category-title">{__('Categories', 'zoloblocks')}</h2>
                 <div className="demo-proFree-btn">
                     {true && (
-                        <Tooltip>
+                        <ZoloTooltip>
                             <button
                                 className="demo-pro-free-reset"
                                 onClick={() => {
@@ -70,7 +69,7 @@ const Sidebar = () => {
                                     />
                                 </svg>
                             </button>
-                        </Tooltip>
+                        </ZoloTooltip>
                     )}
                     <button
                         className="demo-free-btn"

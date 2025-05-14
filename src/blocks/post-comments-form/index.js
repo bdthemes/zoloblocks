@@ -4,15 +4,13 @@ import attributes from './attributes';
 import Edit from './edit';
 import './style.scss';
 
-const {BlockIcons} = window.zoloIcons;
+const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata.name, {
-  icon: {
-      src: BlockIcons['post-comments-form'],
-  },
-  attributes,
-  edit: Edit,
-  save: () => null,
+    icon: {
+        src: BlockIcons['post-comments-form'],
+    },
+    attributes,
+    edit: Edit,
+    save: () => null,
 });
-
-

@@ -1,5 +1,14 @@
 import { MediaUpload } from '@wordpress/block-editor';
-import { Button, __experimentalToggleGroupControl as ToggleGroupControl, __experimentalToggleGroupControlOption as ToggleGroupControlOption,TabPanel } from '@wordpress/components';
+import {
+    ZoloBaseControl,
+    ZoloButton,
+    ZoloToggleGroupControl,
+    ZoloToggleGroupControlOption,
+    ZoloRangeControl,
+    ZoloSelectControl,
+    ZoloTabPanel,
+} from '../core-controls';
+
 import { __ } from '@wordpress/i18n';
 import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
@@ -8,8 +17,6 @@ import ImageAvatar from '../image-avatar';
 import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
-
-import { RangeControl, SelectControl, BaseControl } from '../../components/Core';
 
 const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
     const { setAttributes, attributes, resMode } = requiredProps;
@@ -120,8 +127,8 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
     return (
         <>
-            <BaseControl>
-                <TabPanel
+            <ZoloBaseControl>
+                <ZoloTabPanel
                     className="zolo-tab-panel"
                     activeClass="active-tab"
                     tabs={NORMAL_HOVER.map(({ value, label }) => ({
@@ -134,7 +141,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                         if ('normal' === tab.name) {
                             return (
                                 <>
-                                    <RangeControl
+                                    <ZoloRangeControl
                                         label={__('Overlay Opacity', 'zoloblocks')}
                                         value={ovl_opacity}
                                         onChange={(v) => setAttributes({ [`${controlName}ovl_opacity`]: v })}
@@ -142,22 +149,13 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                         max={1}
                                         step={0.1}
                                     />
-                                    <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ToggleGroupControl className="overlay-type-group">
-                                            <ToggleGroupControlOption
-                                                value="none"
-                                                label={__('None', 'zoloblocks')}
-                                            />
-                                            <ToggleGroupControlOption
-                                                value="color"
-                                                label={__('Color', 'zoloblocks')}
-                                            />
-                                            <ToggleGroupControlOption
-                                                value="gradient"
-                                                label={__('Gradient', 'zoloblocks')}
-                                            />
-                                        </ToggleGroupControl>
-                                    </BaseControl>
+                                    <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
+                                        <ZoloToggleGroupControl className="overlay-type-group">
+                                            <ZoloToggleGroupControlOption value="none" label={__('None', 'zoloblocks')} />
+                                            <ZoloToggleGroupControlOption value="color" label={__('Color', 'zoloblocks')} />
+                                            <ZoloToggleGroupControlOption value="gradient" label={__('Gradient', 'zoloblocks')} />
+                                        </ZoloToggleGroupControl>
+                                    </ZoloBaseControl>
 
                                     {overlayType === 'classic' && (
                                         <>
@@ -173,7 +171,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                             {noOverlayBGImg === false && (
                                                 <>
-                                                    <BaseControl label={__('Overlay Image', 'zoloblocks')}></BaseControl>
+                                                    <ZoloBaseControl label={__('Overlay Image', 'zoloblocks')}></ZoloBaseControl>
 
                                                     <MediaUpload
                                                         onSelect={({ url, id }) =>
@@ -187,7 +185,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                         render={({ open }) =>
                                                             !ovl_bgImageURL && (
                                                                 <>
-                                                                    <Button
+                                                                    <ZoloButton
                                                                         className="zb-bg-control-img-btn components-button"
                                                                         label={__('Upload Image', 'zoloblocks')}
                                                                         icon="format-image"
@@ -215,15 +213,12 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         [`${controlName}ovl_bgImageID`]: '',
                                                                     })
                                                                 }
-                                                                onEditImage={({url, id}) =>
-                                                                   {
-
-                                                                     setAttributes({
-                                                                         [`${controlName}ovl_bgImageURL`]: url,
-                                                                         [`${controlName}ovl_bgImageID`]: id,
-                                                                     });
-                                                                   }
-                                                                }
+                                                                onEditImage={({ url, id }) => {
+                                                                    setAttributes({
+                                                                        [`${controlName}ovl_bgImageURL`]: url,
+                                                                        [`${controlName}ovl_bgImageID`]: id,
+                                                                    });
+                                                                }}
                                                             />
 
                                                             {resMode === 'Desktop' && (
@@ -238,7 +233,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={ovl_bgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -333,7 +328,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={ovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -381,7 +376,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={ovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -406,7 +401,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={ovl_bgImgAttachment}
@@ -448,7 +443,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={ovl_bgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -487,7 +482,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={ovl_backgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -552,7 +547,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                             label={__('Width', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <RangeControl
+                                                                                            <ZoloRangeControl
                                                                                                 value={ovl_bgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -593,7 +588,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={TABovl_bgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -688,7 +683,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={TABovl_bgImgcustomPosX}
                                                                                                     min={-2000}
                                                                                                     max={
@@ -736,7 +731,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={TABovl_bgImgcustomPosY}
                                                                                                     min={-2000}
                                                                                                     max={
@@ -762,7 +757,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={ovl_bgImgAttachment}
@@ -805,7 +800,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={TABovl_bgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -844,7 +839,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={TABovl_backgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -909,7 +904,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Width', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={TABovl_bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -951,7 +946,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={MOBovl_bgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -1046,7 +1041,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={MOBovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -1093,7 +1088,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={MOBovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -1118,7 +1113,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={ovl_bgImgAttachment}
@@ -1160,7 +1155,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={MOBovl_bgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -1199,7 +1194,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={MOBovl_backgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -1264,7 +1259,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Width', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={MOBovl_bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -1316,7 +1311,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                         } else {
                             return (
                                 <>
-                                    <RangeControl
+                                    <ZoloRangeControl
                                         label={__('Overlay Opacity', 'zoloblocks')}
                                         value={hov_ovl_opacity}
                                         onChange={(v) =>
@@ -1328,22 +1323,13 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                         max={1}
                                         step={0.1}
                                     />
-                                    <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ToggleGroupControl className="overlay-type-group">
-                                            <ToggleGroupControlOption
-                                                value="none"
-                                                label={__('None', 'zoloblocks')}
-                                            />
-                                            <ToggleGroupControlOption
-                                                value="color"
-                                                label={__('Color', 'zoloblocks')}
-                                            />
-                                            <ToggleGroupControlOption
-                                                value="gradient"
-                                                label={__('Gradient', 'zoloblocks')}
-                                            />
-                                        </ToggleGroupControl>
-                                    </BaseControl>
+                                    <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
+                                        <ZoloToggleGroupControl className="overlay-type-group">
+                                            <ZoloToggleGroupControlOption value="none" label={__('None', 'zoloblocks')} />
+                                            <ZoloToggleGroupControlOption value="color" label={__('Color', 'zoloblocks')} />
+                                            <ZoloToggleGroupControlOption value="gradient" label={__('Gradient', 'zoloblocks')} />
+                                        </ZoloToggleGroupControl>
+                                    </ZoloBaseControl>
 
                                     {hov_overlayType === 'classic' && (
                                         <>
@@ -1359,7 +1345,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
 
                                             {noOverlayBGImg === false && (
                                                 <>
-                                                    <BaseControl label={__('Overlay Image', 'zoloblocks')}></BaseControl>
+                                                    <ZoloBaseControl label={__('Overlay Image', 'zoloblocks')}></ZoloBaseControl>
 
                                                     <MediaUpload
                                                         onSelect={({ url, id }) =>
@@ -1373,7 +1359,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                         render={({ open }) =>
                                                             !hov_ovl_bgImageURL && (
                                                                 <>
-                                                                    <Button
+                                                                    <ZoloButton
                                                                         className="zb-bg-control-img-btn components-button"
                                                                         label={__('Upload Image', 'zoloblocks')}
                                                                         icon="format-image"
@@ -1400,7 +1386,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                         [`hov_${controlName}ovl_bgImageID`]: '',
                                                                     })
                                                                 }
-                                                                onEditImage={({url, id}) =>
+                                                                onEditImage={({ url, id }) =>
                                                                     setAttributes({
                                                                         [`hov_${controlName}ovl_bgImageURL`]: url,
                                                                         [`hov_${controlName}ovl_bgImageID`]: id,
@@ -1420,7 +1406,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_ovl_bgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -1515,7 +1501,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_ovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -1562,7 +1548,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_ovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -1587,7 +1573,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={hov_ovl_bgImgAttachment}
@@ -1629,7 +1615,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_ovl_bgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -1668,7 +1654,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_ovl_backgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -1733,7 +1719,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                             label={__('Width', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <RangeControl
+                                                                                            <ZoloRangeControl
                                                                                                 value={hov_ovl_bgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -1774,7 +1760,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_TABovl_bgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -1869,7 +1855,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_TABovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -1919,7 +1905,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_TABovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -1948,7 +1934,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={hov_ovl_bgImgAttachment}
@@ -1990,7 +1976,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_TABovl_bgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -2029,7 +2015,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_TABovl_backgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -2094,7 +2080,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 label={__('Width', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_TABovl_bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -2139,7 +2125,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         requiredProps={requiredProps}
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_MOBovl_bgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -2233,7 +2219,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 requiredProps={requiredProps}
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_MOBovl_bgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -2282,7 +2268,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 requiredProps={requiredProps}
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_MOBovl_bgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -2311,7 +2297,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={hov_ovl_bgImgAttachment}
@@ -2352,7 +2338,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         requiredProps={requiredProps}
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_MOBovl_bgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -2390,7 +2376,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                         requiredProps={requiredProps}
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_MOBovl_backgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -2454,7 +2440,7 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                                                                                 requiredProps={requiredProps}
                                                                                                 label={__('Width', 'zoloblocks')}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_MOBovl_bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -2509,8 +2495,8 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                             );
                         }
                     }}
-                </TabPanel>
-            </BaseControl>
+                </ZoloTabPanel>
+            </ZoloBaseControl>
         </>
     );
 };

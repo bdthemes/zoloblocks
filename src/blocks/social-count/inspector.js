@@ -1,8 +1,10 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+
 const {
+    ZoloSelectControl,
+    ZoloCardDivider,
     ResRangeControl,
     ColorControl,
     TabPanelControl,
@@ -81,7 +83,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.socialCount.presets', PRESETS)}
@@ -123,7 +125,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={ITEM_BORDER}
@@ -141,7 +143,7 @@ function Inspector(props) {
                                 hoverComponents={
                                     <>
                                         <NormalBGControl requiredProps={requiredProps} controlName={ITEM_HOVER_BG} noMainBGImg={true} />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ColorControl
                                             label={__('Border Color', 'zoloblocks')}
                                             color={itemHoverBorderColor}
@@ -178,7 +180,7 @@ function Inspector(props) {
                                             max={100}
                                             step={1}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={ICON_BG} noMainBGImg={true} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -186,7 +188,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={ICON_BORDER}
@@ -202,7 +204,7 @@ function Inspector(props) {
 
                                         {preset === 'style-1' && (
                                             <>
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <ResRangeControl
                                                     label={__('Spacing', 'zoloblocks')}
                                                     controlName={ICON_SPACING}
@@ -216,7 +218,7 @@ function Inspector(props) {
 
                                         {preset === 'style-2' && (
                                             <>
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <ResRangeControl
                                                     label={__('Spacing', 'zoloblocks')}
                                                     controlName={ICON_H_SPACING}
@@ -240,7 +242,7 @@ function Inspector(props) {
                                                 })
                                             }
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={ICON_HOVER_BG} noMainBGImg={true} />
                                         <ColorControl
                                             label={__('Border Color', 'zoloblocks')}
@@ -275,7 +277,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResRangeControl
                                             label={__('Bottom Spacing', 'zoloblocks')}
                                             controlName={COUNTER_SPACING}

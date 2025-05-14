@@ -5,11 +5,13 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useEntityProp } from '@wordpress/core-data';
 import { useEffect } from '@wordpress/element';
-import { SelectControl, ToggleControl, CardDivider } from '@wordpress/components';
 /**
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloCardDivider,
     ResRangeControl,
     HeaderTabs,
     IconicBtnGroup,
@@ -97,7 +99,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Popup Type', 'zoloblocks')}
                                 options={POPUP_TYPES}
                                 onChange={(v) => {
@@ -106,7 +108,7 @@ function Inspector(props) {
                                 value={popupType}
                             />
                             {popupType === 'info_bar' && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Push Content', 'zoloblocks')}
                                     checked={pushContent}
                                     onChange={() => setAttributes({ pushContent: !pushContent })}
@@ -128,7 +130,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {popupType === 'popup_box' && (
                             <ZoloPanelBody title={__('Popup Box', 'zoloblocks')} panelProps={props}>
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Position', 'zoloblocks')}
                                     options={PB_POSITIONS}
                                     onChange={(v) => {
@@ -144,12 +146,12 @@ function Inspector(props) {
                                     max={1600}
                                     step={1}
                                 />
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Enable Overlay', 'zoloblocks')}
                                     checked={enableOverlay}
                                     onChange={() => setAttributes({ enableOverlay: !enableOverlay })}
                                 />
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Fixed Background', 'zoloblocks')}
                                     checked={fixedBackground}
                                     onChange={() => setAttributes({ fixedBackground: !fixedBackground })}
@@ -157,7 +159,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
                         <ZoloPanelBody title={__('Repetition', 'zoloblocks')} panelProps={props}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Infinite Repeat', 'zoloblocks')}
                                 checked={infiniteRepeat}
                                 onChange={() => {
@@ -180,14 +182,14 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Close Button', 'zoloblocks')} panelProps={props}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Dismissable', 'zoloblocks')}
                                 checked={isDismissable}
                                 onChange={() => setAttributes({ isDismissable: !isDismissable })}
                             />
                             {isDismissable && (
                                 <>
-                                    <SelectControl
+                                    <ZoloSelectControl
                                         label={__('Position', 'zoloblocks')}
                                         options={[
                                             { label: __('Top Right', 'zoloblocks'), value: 'cbp_top_right' },
@@ -200,7 +202,7 @@ function Inspector(props) {
                                     />
                                 </>
                             )}
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <div className="zolo-popup-note">
                                 <p>
                                     <b>{__('ID:', 'zoloblocks')}</b>
@@ -338,17 +340,17 @@ function Inspector(props) {
                 }
                 advancedTab={
                     <ZoloPanelBody title={__('Responsive Visibility', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                        <ToggleControl
+                        <ZoloToggleControl
                             label={__('Hide on Desktop', 'zoloblocks')}
                             checked={hideOnDesktop}
                             onChange={() => setAttributes({ hideOnDesktop: !hideOnDesktop })}
                         />
-                        <ToggleControl
+                        <ZoloToggleControl
                             label={__('Hide on Tablet', 'zoloblocks')}
                             checked={hideOnTablet}
                             onChange={() => setAttributes({ hideOnTablet: !hideOnTablet })}
                         />
-                        <ToggleControl
+                        <ZoloToggleControl
                             label={__('Hide on Mobile', 'zoloblocks')}
                             checked={hideOnMobile}
                             onChange={() => setAttributes({ hideOnMobile: !hideOnMobile })}

@@ -1,14 +1,19 @@
-import { SelectControl } from '@wordpress/components';
-
 /**
  * Internal depencencies
  */
-const { SortableControl, SortableItem, LinkControl } = window.zoloModule;
+const {
+    SortableControl,
+    SortableItem,
+    LinkControl,
+    ZoloSelectControl,
+    ZoloButton,
+    ZoloCorePanelBody,
+    ZoloTextControl,
+    ZoloFormTokenField,
+} = window.zoloModule;
 
 import { __ } from '@wordpress/i18n';
-import { Button, PanelBody, FormTokenField } from '@wordpress/components';
 import { socialMediaInfo } from './constants';
-import { TextControl } from '../../components/Core';
 
 // uppercase first letter of string
 const Sortable = ({ attributes, socialMedia, setAttributes }) => {
@@ -28,7 +33,7 @@ const Sortable = ({ attributes, socialMedia, setAttributes }) => {
         <div className="sortable">
             <div className="zb-repeater-flex">
                 <div className="repeater-label">{__('Add a Media', 'zoloblocks')}</div>
-                <Button
+                <ZoloButton
                     onClick={() => {
                         setAttributes({
                             socialMedia: [
@@ -51,14 +56,14 @@ const Sortable = ({ attributes, socialMedia, setAttributes }) => {
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
             <SortableControl defaultItems={socialMedia} attributeName="socialMedia" setAttributes={setAttributes}>
                 {socialMedia &&
                     socialMedia.map((profile, index) => {
                         return (
                             <div className="dnd-container" key={index}>
-                                <Button
+                                <ZoloButton
                                     className="dnd-trash"
                                     icon="trash"
                                     onClick={() => {
@@ -68,8 +73,8 @@ const Sortable = ({ attributes, socialMedia, setAttributes }) => {
                                     }}
                                 />
                                 <SortableItem key={profile.id} id={profile.id}>
-                                    <PanelBody title={capitalizeWords(profile.value) || 'Title'} initialOpen={false}>
-                                        <SelectControl
+                                    <ZoloCorePanelBody title={capitalizeWords(profile.value) || 'Title'} initialOpen={false}>
+                                        <ZoloSelectControl
                                             label={__('Select Media', 'zoloblocks')}
                                             value={profile.value}
                                             options={SocialMediaOptions}
@@ -81,7 +86,7 @@ const Sortable = ({ attributes, socialMedia, setAttributes }) => {
                                                 });
                                             }}
                                         />
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Custom', 'zoloblocks')}
                                             value={profile.customLabel}
                                             onChange={(v) =>
@@ -109,7 +114,7 @@ const Sortable = ({ attributes, socialMedia, setAttributes }) => {
                                             />
                                         )}
 
-                                        <FormTokenField
+                                        <ZoloFormTokenField
                                             label="Has Tags"
                                             value={profile.tags}
                                             onChange={(value) => {
@@ -120,7 +125,7 @@ const Sortable = ({ attributes, socialMedia, setAttributes }) => {
                                                 });
                                             }}
                                         />
-                                    </PanelBody>
+                                    </ZoloCorePanelBody>
                                 </SortableItem>
                             </div>
                         );

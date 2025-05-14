@@ -11,8 +11,6 @@ import classnames from 'classnames';
  */
 const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
-
-
 import Inspector from './inspector';
 
 // import style

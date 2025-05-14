@@ -135,10 +135,7 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
     return (
         <div className="zolo-video-container">
             {videoOverlay && <div className="zolo-video-overlay"></div>}
-            <div className="default-video-message">
-            {iframeMarkup || <p>{__('No video available.', 'zoloblocks')}</p>}
-            </div>
-
+            <div className="default-video-message">{iframeMarkup || <p>{__('No video available.', 'zoloblocks')}</p>}</div>
         </div>
     );
 };

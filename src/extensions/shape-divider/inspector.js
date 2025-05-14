@@ -1,10 +1,10 @@
-const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody, ThumbsControl, PopoverControl } = window.zoloModule;
-import { SHAPE_DIVIDER, TB_POSITION, TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
-
 import { __ } from '@wordpress/i18n';
-
-import { CardDivider, ToggleControl } from '@wordpress/components';
 import objAttributes from './attributes';
+
+const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody, ThumbsControl, PopoverControl, ZoloToggleControl, ZoloCardDivider } =
+    window.zoloModule;
+
+import { SHAPE_DIVIDER, TB_POSITION, TOP_WIDTH_SHAPE, TOP_HEIGHT_SHAPE, BOTTOM_WIDTH_SHAPE, BOTTOM_HEIGHT_SHAPE } from './constants';
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
@@ -141,7 +141,7 @@ const Inspector = ({ panelProps }) => {
                                         })
                                     }
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResRangeControl
                                     label={__('Width', 'zoloblocks')}
                                     controlName={TOP_WIDTH_SHAPE}
@@ -157,7 +157,7 @@ const Inspector = ({ panelProps }) => {
                         hoverComponents={
                             <>
                                 {showFlipTop && (
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Flip', 'zoloblocks')}
                                         checked={shapeDivider.top.flip}
                                         onChange={(value) =>
@@ -174,7 +174,7 @@ const Inspector = ({ panelProps }) => {
                                     />
                                 )}
                                 {toggleInvertTop && (
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Invert', 'zoloblocks')}
                                         checked={shapeDivider.top.invert}
                                         onChange={(value) =>
@@ -191,7 +191,7 @@ const Inspector = ({ panelProps }) => {
                                     />
                                 )}
 
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Bring to Front', 'zoloblocks')}
                                     checked={shapeDivider.top.bringToFront}
                                     onChange={(value) =>
@@ -245,7 +245,7 @@ const Inspector = ({ panelProps }) => {
                                         })
                                     }
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResRangeControl
                                     label={__('Width', 'zoloblocks')}
                                     controlName={BOTTOM_WIDTH_SHAPE}
@@ -262,7 +262,7 @@ const Inspector = ({ panelProps }) => {
                         hoverComponents={
                             <>
                                 {showFlipBottom && (
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Flip', 'zoloblocks')}
                                         checked={shapeDivider.bottom.flip}
                                         onChange={(value) =>
@@ -280,7 +280,7 @@ const Inspector = ({ panelProps }) => {
                                 )}
 
                                 {toggleInvertBottom && (
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Invert', 'zoloblocks')}
                                         checked={shapeDivider.bottom.invert}
                                         onChange={(value) =>
@@ -296,7 +296,7 @@ const Inspector = ({ panelProps }) => {
                                         }
                                     />
                                 )}
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Bring to Front', 'zoloblocks')}
                                     checked={shapeDivider.bottom.bringToFront}
                                     onChange={(value) =>

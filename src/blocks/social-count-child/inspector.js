@@ -1,8 +1,9 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+
 const {
+    ZoloTextControl,
     ResRangeControl,
     ColorControl,
     TabPanelControl,
@@ -87,12 +88,12 @@ function Inspector(props) {
                                 value={socialLink}
                                 onChange={(value) => setAttributes({ socialLink: value })}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Social Counter', 'zoloblocks')}
                                 value={socialCounter}
                                 onChange={(socialCounter) => setAttributes({ socialCounter })}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Social Meta', 'zoloblocks')}
                                 value={socialMeta}
                                 onChange={(socialMeta) => setAttributes({ socialMeta })}

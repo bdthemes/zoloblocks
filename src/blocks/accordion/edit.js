@@ -3,7 +3,6 @@
  */
 import { useBlockProps, BlockControls, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
 import { useEffect, useRef, useState } from '@wordpress/element';
-import { Button, ToolbarButton, ToolbarGroup, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -15,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, ZoloSpinner } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -124,9 +123,9 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <BlockControls>
-                <ToolbarGroup>
-                    <ToolbarButton icon="insert" label={__('Add Accordion', 'zoloblocks')} onClick={() => appendBlock()} />
-                </ToolbarGroup>
+                <ZoloToolbarGroup>
+                    <ZoloToolbarButton icon="insert" label={__('Add Accordion', 'zoloblocks')} onClick={() => appendBlock()} />
+                </ZoloToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
@@ -142,7 +141,7 @@ export default function Edit(props) {
                         </button>
                     </>
                 ) : (
-                    <Spinner />
+                    <ZoloSpinner />
                 )}
                 {renderHookAfter && renderHookAfter}
             </div>

@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { useBlockProps, BlockControls, InnerBlocks } from '@wordpress/block-editor';
-import { ToolbarButton, ToolbarGroup, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -11,7 +10,8 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, generateGapStyle, generateResCounterStyle, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, generateGapStyle, generateResCounterStyle, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup } =
+    window.zoloModule;
 
 import { GRID_COLUMNS, GRID_GAP } from './constants';
 
@@ -91,14 +91,14 @@ export default function Edit(props) {
 			`}</style>
             <Style props={props} />
             <BlockControls>
-                <ToolbarGroup>
-                    <ToolbarButton
+                <ZoloToolbarGroup>
+                    <ZoloToolbarButton
                         className="components-toolbar__control"
                         label={__('Add Team Member', 'zoloblocks')}
                         icon="insert"
                         onClick={() => appendBlock()}
                     />
-                </ToolbarGroup>
+                </ZoloToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
