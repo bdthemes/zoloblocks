@@ -78,12 +78,12 @@ export default function Style({ props }) {
         attributes,
     });
     const {
-        desktopRangeStyle: contentHeightDesk,
-        tabRangeStyle: contentHeightTab,
-        mobRangeStyle: contentHeightMob,
+        desktopRangeStyle: contentImgWidthDesk,
+        tabRangeStyle: contentImgWidthTab,
+        mobRangeStyle: contentImgWidthMob,
     } = generateResRangeStyle({
         controlName: CONTENT_HEIGHT,
-        property: 'height',
+        property: 'width',
         attributes,
     });
     const {
@@ -92,7 +92,7 @@ export default function Style({ props }) {
         mobRangeStyle: contentWidthMob,
     } = generateResRangeStyle({
         controlName: CONTENT_WIDTH,
-        property: 'width',
+        property: 'max-width',
         attributes,
     });
 
@@ -451,9 +451,13 @@ export default function Style({ props }) {
           ${posterBorderDesk}
         ${posterBorderRadiusDesk}
       }
-    .${uniqueId}.zolo-content-iframe {
-            ${contentHeightDesk}
+
+        .${uniqueId}.zolo-content-iframe {
             ${contentWidthDesk}
+        }
+
+       .zolo-lightbox-content .${uniqueId}.zolo-lightbox-image {
+            ${contentImgWidthDesk}
         }
     `;
 
@@ -502,9 +506,12 @@ export default function Style({ props }) {
           ${posterBorderTab}
         ${posterBorderRadiusTab}
       }
-    .${uniqueId}.zolo-content-iframe {
-            ${contentHeightTab}
+       .${uniqueId}.zolo-content-iframe {
             ${contentWidthTab}
+        }
+
+        .zolo-lightbox-content .${uniqueId}.zolo-lightbox-image {
+            ${contentImgWidthTab}
         }
 
     `;
@@ -553,9 +560,13 @@ export default function Style({ props }) {
           ${posterBorderMob}
         ${posterBorderRadiusMob}
       }
-    .${uniqueId}.zolo-content-iframe {
-            ${contentHeightMob}
+        
+       .${uniqueId}.zolo-content-iframe {
             ${contentWidthMob}
+        }
+
+        .zolo-lightbox-content .${uniqueId}.zolo-lightbox-image {
+            ${contentImgWidthMob}
         }
     `;
 
