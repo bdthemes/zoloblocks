@@ -1,6 +1,7 @@
 import { ZoloBaseControl } from '../core-controls';
 import { useState, useEffect, useRef } from '@wordpress/element';
 
+
 const MultiRangeControl = (props) => {
     const min = parseFloat(props.min || 0);
     const max = parseFloat(props.max || 100);

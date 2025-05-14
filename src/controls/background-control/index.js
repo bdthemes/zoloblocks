@@ -1,4 +1,3 @@
-
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import BGControl from './bg-control';

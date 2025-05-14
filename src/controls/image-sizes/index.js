@@ -1,6 +1,7 @@
 import { ZoloSelectControl } from '../core-controls';
 import { __ } from '@wordpress/i18n';
 
+
 const ImageSizes = ({ label = '', value, onChange }) => {
     const Dimensions = wp.data.select('core/editor').getEditorSettings().imageDimensions || {
         thumbnail: { width: 150, height: 150 },

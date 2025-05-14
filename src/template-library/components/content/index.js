@@ -7,7 +7,6 @@ import InnerPageTemplate from '../../page-templates/inner-page-template';
 import PreLoader from '../../preloader';
 import { STORE_NAME } from '../../store';
 import { useRecords, useTags } from '../../utils';
-
 const Content = ({ handleImportTemplate, isLoading }) => {
     const { setFilters } = useDispatch(STORE_NAME);
     const { activeTab, filters } = useSelect((select) => {

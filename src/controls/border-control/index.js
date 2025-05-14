@@ -1,6 +1,5 @@
 import UnitsBtn from '../units-btn';
 import Borders from './border';
-import { prefix } from '../../global/constants';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import classNames from 'classnames';
@@ -8,11 +7,10 @@ import TabPanelControl from '../tabpanel-control';
 
 import { ZoloToggleGroupControl, ZoloToggleGroupControlOption, ZoloButton, ZoloSelectControl, ZoloPopover } from '../core-controls';
 
-import { BORDER_TYPES, SEPERATOR_STYLES } from '../../global/constants';
+import { BORDER_TYPES, SEPERATOR_STYLES, prefix } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
 import ColorBtn from '../color-btn';
 import LinkUnlink from '../link-unlink';
-
 const BorderControl = ({ label, controlName, requiredProps, units, hoverControl = null }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
     const [displayPanel, setDisplayPanel] = useState(false);

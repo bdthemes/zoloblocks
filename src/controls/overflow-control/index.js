@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { OVERFLOWS } from '../../global/constants';
 
 import { ZoloSelectControl } from '../core-controls';
-import IconicBtnGroup from '../iconic-btn-group';
 
 const OverflowControl = ({ label = '', value, onChange }) => {
     return (
@@ -13,12 +12,6 @@ const OverflowControl = ({ label = '', value, onChange }) => {
                 onChange={(v) => onChange(v)}
                 value={value}
             />
-            {/* <IconicBtnGroup
-                label={label || __('Content Overflow', 'zoloblocks')}
-                value={value}
-                onChange={(v) => onChange(v)}
-                options={OVERFLOWS}
-            /> */}
         </div>
     );
 };
