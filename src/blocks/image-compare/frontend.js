@@ -21,14 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
             root.render(
                 <ReactCompareSlider
                     disabled={comparisonOptions?.disableslide}
-                    {...!comparisonOptions?.disableslide && {
+                    {...(!comparisonOptions?.disableslide && {
                         changePositionOnHover: comparisonOptions?.slideOnHover,
-                    }}
+                    })}
                     portrait={comparisonOptions?.slidePositon === 'vertical_direction' ? true : false}
                     position={comparisonOptions?.initialPosition}
-                    {...!comparisonOptions?.disableslide && {
+                    {...(!comparisonOptions?.disableslide && {
                         onlyHandleDraggable: comparisonOptions?.handleDraggable,
-                    }}
+                    })}
                     itemOne={
                         <div className="image-item-One">
                             {comparisonOptions?.showLabels && comparisonOptions?.beforeLabel && (

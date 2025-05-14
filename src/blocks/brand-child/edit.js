@@ -3,13 +3,12 @@
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -84,7 +83,7 @@ export default function Edit(props) {
             {brandPhoto && (
                 <BlockControls>
                     <>
-                        <ToolbarGroup>
+                        <ZoloToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
                                     setAttributes({
@@ -100,7 +99,7 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                                 value={brandPhoto && brandPhoto.id}
                                 render={({ open }) => (
-                                    <ToolbarButton
+                                    <ZoloToolbarButton
                                         className="components-toolbar__control"
                                         label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
@@ -108,7 +107,7 @@ export default function Edit(props) {
                                     />
                                 )}
                             />
-                        </ToolbarGroup>
+                        </ZoloToolbarGroup>
                     </>
                 </BlockControls>
             )}

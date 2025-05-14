@@ -23,7 +23,7 @@ export default class Pagination extends Component {
                 key: 'prev',
                 onClick: () => onClickPage(current - 1),
                 className: 'page-numbers prev',
-                text: prevText||__('Prev','zoloblocks'),
+                text: prevText || __('Prev', 'zoloblocks'),
             });
         }
 
@@ -68,7 +68,7 @@ export default class Pagination extends Component {
                 key: 'next',
                 onClick: () => onClickPage(current + 1),
                 className: 'page-numbers next',
-                text: nextText||__('Next','zoloblocks'),
+                text: nextText || __('Next', 'zoloblocks'),
             });
         }
 

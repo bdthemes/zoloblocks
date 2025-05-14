@@ -3,7 +3,6 @@ import { applyFilters } from '@wordpress/hooks';
 const { classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
 
-
 const Save = (props) => {
     const { attributes } = props;
     const { uniqueId, preset, parentClasses, zoloId } = attributes;

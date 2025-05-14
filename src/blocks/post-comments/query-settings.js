@@ -1,10 +1,9 @@
-import { SelectControl, __experimentalInputControl as InputControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { COMMENT_ORDER_BY, STATUS } from './constants';
 import Select2 from 'react-select';
 
-const { TabDynamicControl, Select2AjaxControl } = window.zoloModule;
+const { TabDynamicControl, Select2AjaxControl, ZoloSelectControl, ZoloInputControl, ZoloToggleControl } = window.zoloModule;
 
 const QuerySettings = ({ attributes, setAttributes }) => {
     const { commentQuery } = attributes;
@@ -17,7 +16,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
 
     return (
         <>
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Post Type', 'zoloblocks')}
                 value={commentQuery?.sourceType}
                 options={PostType}
@@ -84,7 +83,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 }
             />
 
-            <InputControl
+            <ZoloInputControl
                 label={__('Item Limit', 'zoloblocks-pro')}
                 value={commentQuery?.itemLimit}
                 onChange={(itemLimit) => {
@@ -97,7 +96,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 __unstableInputWidth="64px"
             />
 
-            <InputControl
+            <ZoloInputControl
                 label={__('Offset', 'zoloblocks-pro')}
                 value={commentQuery?.offset}
                 onChange={(offset) => {
@@ -109,13 +108,13 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 labelPosition="edge"
                 __unstableInputWidth="64px"
             />
-            <ToggleControl
+            <ZoloToggleControl
                 label={__('Only Parent', 'zoloblocks-pro')}
                 checked={commentQuery?.onlyParent}
                 onChange={(onlyParent) => setAttributes({ commentQuery: { ...commentQuery, onlyParent } })}
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Status', 'zoloblocks-pro')}
                 value={commentQuery?.statusComment}
                 onChange={(statusComment) => {
@@ -124,7 +123,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 options={STATUS}
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Order By', 'zoloblocks-pro')}
                 value={commentQuery?.orderBy}
                 onChange={(orderBy) => {
@@ -133,7 +132,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 options={COMMENT_ORDER_BY}
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Sort Order', 'zoloblocks-pro')}
                 value={commentQuery?.order}
                 onChange={(order) => {

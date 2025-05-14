@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextareaControl, BaseControl, Button, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { applyFilters } from '@wordpress/hooks';
@@ -11,6 +10,8 @@ import { applyFilters } from '@wordpress/hooks';
  * Internal depencencies
  */
 const {
+    ZoloSelectControl,
+    ZoloTextareaControl,
     ColorControl,
     SimpleRangeControl,
     BorderControl,
@@ -92,7 +93,7 @@ export default function Inspector(props) {
                         <>
                             <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
                                 {!qrCodeLink && (
-                                    <TextareaControl
+                                    <ZoloTextareaControl
                                         className="zolo-flex-col-control"
                                         label={__('Content', 'zoloblocks')}
                                         value={qrContent}
@@ -113,7 +114,7 @@ export default function Inspector(props) {
                                     max={500}
                                 />
 
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Error Level', 'zoloblocks')}
                                     value={qrCodeLevel}
                                     onChange={(value) =>

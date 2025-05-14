@@ -3,7 +3,6 @@
  */
 import { useBlockProps, BlockControls, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
 import { useEffect, useRef, useState } from '@wordpress/element';
-import { Button, ToolbarButton, ToolbarGroup, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -15,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, ZoloSpinner } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -30,10 +29,6 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
     const { preview, uniqueId, parentClasses, preset } = attributes;
 
-    // preview image
-    if (preview) {
-        return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zoloblocks')} />;
-    }
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
@@ -62,6 +57,11 @@ export default function Edit(props) {
             }
         };
     }, [delayedInit]);
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.accordion} alt={__('Accordion Preview', 'zoloblocks')} />;
+    }
 
     const innerBlocksProps = useInnerBlocksProps(
         {
@@ -123,9 +123,9 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <BlockControls>
-                <ToolbarGroup>
-                    <ToolbarButton icon="insert" label={__('Add Accordion', 'zoloblocks')} onClick={() => appendBlock()} />
-                </ToolbarGroup>
+                <ZoloToolbarGroup>
+                    <ZoloToolbarButton icon="insert" label={__('Add Accordion', 'zoloblocks')} onClick={() => appendBlock()} />
+                </ZoloToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
@@ -141,7 +141,7 @@ export default function Edit(props) {
                         </button>
                     </>
                 ) : (
-                    <Spinner />
+                    <ZoloSpinner />
                 )}
                 {renderHookAfter && renderHookAfter}
             </div>

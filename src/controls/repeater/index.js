@@ -1,5 +1,5 @@
 import { cloneElement } from '@wordpress/element';
-import { Button, PanelBody } from '@wordpress/components';
+import { ZoloButton, ZoloCorePanelBody } from '../core-controls';
 import { Children } from '@wordpress/element';
 import generateUniqueHash from './generate-uniqe-hash';
 import getItemLabel from './get-item-label';
@@ -50,15 +50,15 @@ const ZoloRepeater = ({ repeaterItems = [], children, onChange, itemLabelName = 
 
     return (
         <div className="zolo-repeater-container">
-            <Button className="zolo-repeater-add" icon={plus} variant="primary" onClick={handleAdd}>
+            <ZoloButton className="zolo-repeater-add" icon={plus} variant="primary" onClick={handleAdd}>
                 {__('Add Item', 'gutenkit-blocks-addon')}
-            </Button>
+            </ZoloButton>
             {repeaterItems &&
                 repeaterItems.map((item, index) => {
                     let itemLabel = getItemLabel(item, itemLabelName, index, defaultLabel);
                     return (
                         <div key={index} className="zolo-repeater-item">
-                            <PanelBody title={itemLabel} initialOpen={false} className="zolo-repeater-item-body">
+                            <ZoloCorePanelBody title={itemLabel} initialOpen={false} className="zolo-repeater-item-body">
                                 <div className="zolo-repeater-item-content">
                                     {Children.toArray(children).map((child, i) => {
                                         const childName = child?.props?.name;
@@ -77,16 +77,16 @@ const ZoloRepeater = ({ repeaterItems = [], children, onChange, itemLabelName = 
                                         });
                                     })}
                                 </div>
-                            </PanelBody>
+                            </ZoloCorePanelBody>
                             <div className="zolo-repeater-actions">
-                                <Button
+                                <ZoloButton
                                     className="zolo-repeater-action-button"
                                     icon={copy}
                                     label="Clone Item"
                                     tooltipPosition="top"
                                     onClick={() => handleClone(index)}
                                 />
-                                <Button
+                                <ZoloButton
                                     className="zolo-repeater-action-button"
                                     icon={trash}
                                     label="Delete Item"

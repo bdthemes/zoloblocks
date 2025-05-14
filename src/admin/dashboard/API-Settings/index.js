@@ -1,9 +1,8 @@
 import SettingPanel from './setting-panel';
-
 import { __ } from '@wordpress/i18n';
-import { TextControl, Button } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+import { ZoloTextControl, ZoloButton } from '../../../controls/core-controls';
 
 const ApiSettings = () => {
     const [isAIExtensionActive, setisAIExtensionActive] = useState(true);
@@ -210,7 +209,11 @@ const ApiSettings = () => {
                     }}
                     icon="map"
                 >
-                    <TextControl label={__('API Key', 'zoloblocks')} onChange={(value) => setGoogleAPIKey(value)} value={googleAPIKey} />
+                    <ZoloTextControl
+                        label={__('API Key', 'zoloblocks')}
+                        onChange={(value) => setGoogleAPIKey(value)}
+                        value={googleAPIKey}
+                    />
                 </SettingPanel>
                 <SettingPanel
                     title={__('Google reCaptcha', 'zoloblocks')}
@@ -225,8 +228,8 @@ const ApiSettings = () => {
                         onChangeSecretKey(secretKey);
                     }}
                 >
-                    <TextControl label={__('Site Key', 'zoloblocks')} onChange={(value) => setSiteKey(value)} value={siteKey} />
-                    <TextControl label={__('Secret Key', 'zoloblocks')} onChange={(value) => setSecretKey(value)} value={secretKey} />
+                    <ZoloTextControl label={__('Site Key', 'zoloblocks')} onChange={(value) => setSiteKey(value)} value={siteKey} />
+                    <ZoloTextControl label={__('Secret Key', 'zoloblocks')} onChange={(value) => setSecretKey(value)} value={secretKey} />
                 </SettingPanel>
                 <SettingPanel
                     title={__('Mailchimp', 'zoloblocks')}
@@ -241,12 +244,16 @@ const ApiSettings = () => {
                         onChangeMailchimpAudienceID(audienceID);
                     }}
                 >
-                    <TextControl
+                    <ZoloTextControl
                         label={__('Mailchimp Key', 'zoloblocks')}
                         onChange={(value) => setMailchimpKey(value)}
                         value={mailchimpKey}
                     />
-                    <TextControl label={__('Audience ID', 'zoloblocks')} onChange={(value) => setAudienceID(value)} value={audienceID} />
+                    <ZoloTextControl
+                        label={__('Audience ID', 'zoloblocks')}
+                        onChange={(value) => setAudienceID(value)}
+                        value={audienceID}
+                    />
                 </SettingPanel>
                 <SettingPanel
                     title={__('Webhook', 'zoloblocks')}
@@ -261,18 +268,18 @@ const ApiSettings = () => {
                 >
                     {webhooks.map((webhook, index) => (
                         <div className="zolo-webhok-label-url-wrap" key={index}>
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Label', 'zoloblocks')}
                                 value={webhook.label}
                                 onChange={(value) => updateWebhookField(index, 'label', value)}
                             />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Url', 'zoloblocks')}
                                 value={webhook.url}
                                 onChange={(value) => updateWebhookField(index, 'url', value)}
                             />
                             {webhooks.length > 1 && (
-                                <Button className="zolo-webhook-remove-btn" isDestructive onClick={() => removeWebhookField(index)}>
+                                <ZoloButton className="zolo-webhook-remove-btn" isDestructive onClick={() => removeWebhookField(index)}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width={24}
@@ -293,12 +300,12 @@ const ApiSettings = () => {
                                         <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                     </svg>
                                     {__('Remove', 'zoloblocks')}
-                                </Button>
+                                </ZoloButton>
                             )}
                         </div>
                     ))}
 
-                    <Button className="zolo-webhook-add-btn" isPrimary onClick={addNewWebhookField}>
+                    <ZoloButton className="zolo-webhook-add-btn" isPrimary onClick={addNewWebhookField}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={24}
@@ -316,7 +323,7 @@ const ApiSettings = () => {
                             <path d="M5 12l14 0" />
                         </svg>
                         {__('Add', 'zoloblocks')}
-                    </Button>
+                    </ZoloButton>
                 </SettingPanel>
                 <SettingPanel
                     title={__('AI Assistant', 'zoloblocks')}
@@ -331,7 +338,7 @@ const ApiSettings = () => {
                     released={isAIExtensionActive}
                     note={`please activate the AI extension to use this feature`}
                 >
-                    <TextControl
+                    <ZoloTextControl
                         label={__('API Key', 'zoloblocks')}
                         onChange={(value) => setZoloaiAPIKey(value)}
                         value={zoloaiAPIKey}
@@ -352,7 +359,7 @@ const ApiSettings = () => {
                     released={false}
                     onSave={() => {}}
                 >
-                    <TextControl label={__('API Key', 'zoloblocks')} disabled={true} />
+                    <ZoloTextControl label={__('API Key', 'zoloblocks')} disabled={true} />
                 </SettingPanel>
             </div>
         </div>

@@ -49,7 +49,12 @@ const v1 = {
                 {photo && (
                     <DynamicTag
                         tagName={link && link.url ? 'a' : 'div'}
-                        className={classnames('zolo-image-block-wrap', `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`, `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`, hoverEffect)}
+                        className={classnames(
+                            'zolo-image-block-wrap',
+                            `${photoMaskImage ? 'zolo-image-mask' : 'no-mask'}`,
+                            `${layout === 'overlay' ? 'zolo-adi-overlay' : ''}`,
+                            hoverEffect
+                        )}
                         {...(link &&
                             link.url && {
                                 href: link.url,
@@ -67,7 +72,11 @@ const v1 = {
                                     width: resizedWidth,
                                 }}
                             >
-                                <img className="zolo-img" src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url} alt={imgAlt} />
+                                <img
+                                    className="zolo-img"
+                                    src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
+                                    alt={imgAlt}
+                                />
                             </div>
                             {layout === 'overlay' && (
                                 <div className="zolo-content-wrap">
@@ -77,13 +86,21 @@ const v1 = {
                                                 <span></span>
                                             </div>
                                         )}
-                                        <RichText.Content tagName={headingTag} className={`zolo-title ${headingVisibleOn}`} value={heading} />
+                                        <RichText.Content
+                                            tagName={headingTag}
+                                            className={`zolo-title ${headingVisibleOn}`}
+                                            value={heading}
+                                        />
                                         {separatorPosition === 'after_title' && separatorStyle !== '' && (
                                             <div className={`zolo-separator ${separatorVisibleOn}`}>
                                                 <span></span>
                                             </div>
                                         )}
-                                        <RichText.Content tagName="p" value={description} className={`zolo-caption ${descriptionVisibleOn}`} />
+                                        <RichText.Content
+                                            tagName="p"
+                                            value={description}
+                                            className={`zolo-caption ${descriptionVisibleOn}`}
+                                        />
                                         {separatorPosition === 'after_desc' && separatorStyle !== '' && (
                                             <div className={`zolo-separator ${separatorVisibleOn}`}>
                                                 <span></span>
@@ -92,7 +109,9 @@ const v1 = {
                                     </div>
                                 </div>
                             )}
-                            {layout === 'normal' && showCaption && <RichText.Content tagName="figcaption" value={caption || photo?.caption} className="zolo-caption" />}
+                            {layout === 'normal' && showCaption && (
+                                <RichText.Content tagName="figcaption" value={caption || photo?.caption} className="zolo-caption" />
+                            )}
                         </div>
                     </DynamicTag>
                 )}

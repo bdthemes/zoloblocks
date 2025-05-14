@@ -1,17 +1,20 @@
 import { MediaUpload } from '@wordpress/block-editor';
+
 import {
-    BaseControl,
-    Button,
-    ButtonGroup,
-    RangeControl,
-    SelectControl,
-    TabPanel,
-    TextareaControl,
-    ToggleControl,
-    TextControl,
-} from '@wordpress/components';
+    ZoloBaseControl,
+    ZoloButton,
+    ZoloToggleGroupControl,
+    ZoloToggleGroupControlOption,
+    ZoloRangeControl,
+    ZoloSelectControl,
+    ZoloTabPanel,
+    ZoloTextareaControl,
+    ZoloToggleControl,
+} from '../core-controls';
+
 import { __ } from '@wordpress/i18n';
-import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
+
+import { NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
 import GradientControl from '../gradient-control';
 import ImageAvatar from '../image-avatar';
@@ -19,9 +22,7 @@ import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
 import { applyFilters } from '@wordpress/hooks';
-import { CardDivider } from '@wordpress/components';
 
-// const { PopoverControl } = window.zoloModule;
 
 const BGControl = (props) => {
     const { controlName, requiredProps, noMainBGImg, video } = props;
@@ -107,8 +108,8 @@ const BGControl = (props) => {
 
     return (
         <>
-            <BaseControl>
-                <TabPanel
+            <ZoloBaseControl>
+                <ZoloTabPanel
                     className="zolo-tab-panel"
                     activeClass="active-tab"
                     tabs={NORMAL_HOVER.map(({ value, label }) => ({
@@ -121,36 +122,46 @@ const BGControl = (props) => {
                         if ('normal' === tab.name) {
                             return (
                                 <>
-                                    <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    key={value}
-                                                    variant={backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
-                                            {video && (
-                                                <Button
-                                                    key="video"
-                                                    variant={backgroundType === 'video' ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`${controlName}backgroundType`]: 'video',
-                                                        })
-                                                    }
-                                                >
-                                                    {__('Video', 'zoloblocks')}
-                                                </Button>
-                                            )}
-                                        </ButtonGroup>
-                                    </BaseControl>
+                                    <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
+                                        <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
+                                            <ZoloToggleGroupControlOption key={"none"} value="none" label={__('None', 'zoloblocks')}
+                                            isSelected={backgroundType === 'none'}
+                                            className={backgroundType === 'none' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`${controlName}backgroundType`]: 'none',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"color"} value="color" label={__('Color', 'zoloblocks')}
+                                            isSelected={backgroundType === 'color'}
+                                            className={backgroundType === 'color' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`${controlName}backgroundType`]: 'color',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"gradient"} value="gradient" label={__('Gradient', 'zoloblocks')}
+                                            isSelected={backgroundType === 'gradient'}
+                                            className={backgroundType === 'gradient' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`${controlName}backgroundType`]: 'gradient',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"image"} value="image" label={__('Image', 'zoloblocks')}
+                                            isSelected={backgroundType === 'image'}
+                                            className={backgroundType === 'image' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`${controlName}backgroundType`]: 'image',
+                                                })
+                                            }
+                                            />
+                                        </ZoloToggleGroupControl>
+                                    </ZoloBaseControl>
 
                                     {backgroundType === 'classic' && (
                                         <>
@@ -178,7 +189,7 @@ const BGControl = (props) => {
                                                         render={({ open }) =>
                                                             !bgImageURL && (
                                                                 <>
-                                                                    <Button
+                                                                    <ZoloButton
                                                                         className="zb-bg-control-img-btn components-button"
                                                                         label={__('Upload Image', 'zoloblocks')}
                                                                         icon="format-image"
@@ -225,7 +236,7 @@ const BGControl = (props) => {
                                                                                             label={__('Position', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={bgImgPos}
                                                                                                 options={[
                                                                                                     {
@@ -338,7 +349,7 @@ const BGControl = (props) => {
                                                                                                     label={__('X Position', 'zoloblocks')}
                                                                                                     noResetBtn={true}
                                                                                                 >
-                                                                                                    <RangeControl
+                                                                                                    <ZoloRangeControl
                                                                                                         value={bgImgcustomPosX}
                                                                                                         min={-2000}
                                                                                                         max={2000}
@@ -381,7 +392,7 @@ const BGControl = (props) => {
                                                                                                     label={__('Y Position', 'zoloblocks')}
                                                                                                     noResetBtn={true}
                                                                                                 >
-                                                                                                    <RangeControl
+                                                                                                    <ZoloRangeControl
                                                                                                         value={bgImgcustomPosY}
                                                                                                         min={-2000}
                                                                                                         max={2000}
@@ -401,7 +412,7 @@ const BGControl = (props) => {
                                                                                             </div>
                                                                                         </>
                                                                                     )}
-                                                                                    <SelectControl
+                                                                                    <ZoloSelectControl
                                                                                         className="zolo-flex-pop-row-control"
                                                                                         label={__('Attachment', 'zoloblocks')}
                                                                                         value={bgImgAttachment}
@@ -445,7 +456,7 @@ const BGControl = (props) => {
                                                                                             label={__('Repeat', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={bgImgRepeat}
                                                                                                 options={[
                                                                                                     {
@@ -487,7 +498,7 @@ const BGControl = (props) => {
                                                                                             label={__('Size', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={backgroundSize}
                                                                                                 options={[
                                                                                                     {
@@ -552,7 +563,7 @@ const BGControl = (props) => {
                                                                                                 label={__('Width', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={bgImgCustomSize}
                                                                                                     min={0}
                                                                                                     max={
@@ -590,7 +601,7 @@ const BGControl = (props) => {
                                                                                             label={__('Position', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={TABbgImgPos}
                                                                                                 options={[
                                                                                                     {
@@ -703,7 +714,7 @@ const BGControl = (props) => {
                                                                                                     label={__('X Position', 'zoloblocks')}
                                                                                                     noResetBtn={true}
                                                                                                 >
-                                                                                                    <RangeControl
+                                                                                                    <ZoloRangeControl
                                                                                                         value={TABbgImgcustomPosX}
                                                                                                         min={0}
                                                                                                         max={
@@ -750,7 +761,7 @@ const BGControl = (props) => {
                                                                                                     label={__('Y Position', 'zoloblocks')}
                                                                                                     noResetBtn={true}
                                                                                                 >
-                                                                                                    <RangeControl
+                                                                                                    <ZoloRangeControl
                                                                                                         value={TABbgImgcustomPosY}
                                                                                                         min={0}
                                                                                                         max={
@@ -775,7 +786,7 @@ const BGControl = (props) => {
                                                                                         </>
                                                                                     )}
 
-                                                                                    <SelectControl
+                                                                                    <ZoloSelectControl
                                                                                         className="zolo-flex-pop-row-control"
                                                                                         label={__('Attachment')}
                                                                                         value={bgImgAttachment}
@@ -820,7 +831,7 @@ const BGControl = (props) => {
                                                                                             label={__('Repeat', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={TABbgImgRepeat}
                                                                                                 options={[
                                                                                                     {
@@ -863,7 +874,7 @@ const BGControl = (props) => {
                                                                                             label={__('Size', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={TABbackgroundSize}
                                                                                                 options={[
                                                                                                     {
@@ -928,7 +939,7 @@ const BGControl = (props) => {
                                                                                                     label={__('Width', 'zoloblocks')}
                                                                                                     noResetBtn={true}
                                                                                                 >
-                                                                                                    <RangeControl
+                                                                                                    <ZoloRangeControl
                                                                                                         value={TABbgImgCustomSize}
                                                                                                         min={0}
                                                                                                         max={
@@ -967,7 +978,7 @@ const BGControl = (props) => {
                                                                                             label={__('Position', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={MOBbgImgPos}
                                                                                                 options={[
                                                                                                     {
@@ -1080,7 +1091,7 @@ const BGControl = (props) => {
                                                                                                     label={__('X Position', 'zoloblocks')}
                                                                                                     noResetBtn={true}
                                                                                                 >
-                                                                                                    <RangeControl
+                                                                                                    <ZoloRangeControl
                                                                                                         value={MOBbgImgcustomPosX}
                                                                                                         min={0}
                                                                                                         max={
@@ -1127,7 +1138,7 @@ const BGControl = (props) => {
                                                                                                     label={__('Y Position', 'zoloblocks')}
                                                                                                     noResetBtn={true}
                                                                                                 >
-                                                                                                    <RangeControl
+                                                                                                    <ZoloRangeControl
                                                                                                         value={MOBbgImgcustomPosY}
                                                                                                         min={0}
                                                                                                         max={
@@ -1152,7 +1163,7 @@ const BGControl = (props) => {
                                                                                         </>
                                                                                     )}
 
-                                                                                    <SelectControl
+                                                                                    <ZoloSelectControl
                                                                                         className="zolo-flex-pop-row-control"
                                                                                         label={__('Attachment', 'zoloblocks')}
                                                                                         value={bgImgAttachment}
@@ -1197,7 +1208,7 @@ const BGControl = (props) => {
                                                                                             label={__('Repeat', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={MOBbgImgRepeat}
                                                                                                 options={[
                                                                                                     {
@@ -1239,7 +1250,7 @@ const BGControl = (props) => {
                                                                                             label={__('Size', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <SelectControl
+                                                                                            <ZoloSelectControl
                                                                                                 value={MOBbackgroundSize}
                                                                                                 options={[
                                                                                                     {
@@ -1304,7 +1315,7 @@ const BGControl = (props) => {
                                                                                                     label={__('Width', 'zoloblocks')}
                                                                                                     noResetBtn={true}
                                                                                                 >
-                                                                                                    <RangeControl
+                                                                                                    <ZoloRangeControl
                                                                                                         value={MOBbgImgCustomSize}
                                                                                                         min={0}
                                                                                                         max={
@@ -1343,7 +1354,7 @@ const BGControl = (props) => {
 
                                     {backgroundType === 'gradient' && (
                                         <>
-                                            <ToggleControl
+                                            <ZoloToggleControl
                                                 label={__('Add Custom Gradient', 'zoloblocks')}
                                                 checked={customGradient}
                                                 onChange={() =>
@@ -1354,7 +1365,7 @@ const BGControl = (props) => {
                                                 }
                                             />
                                             {customGradient && (
-                                                <TextareaControl
+                                                <ZoloTextareaControl
                                                     help={
                                                         <>
                                                             {__('Add your gradient color here. Get Sample', 'zoloblocks')}
@@ -1395,23 +1406,46 @@ const BGControl = (props) => {
                         } else {
                             return (
                                 <>
-                                    <BaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ButtonGroup>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <Button
-                                                    key={value}
-                                                    variant={hov_backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`hov_${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </Button>
-                                            ))}
-                                        </ButtonGroup>
-                                    </BaseControl>
+                                    <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
+                                    <ZoloToggleGroupControl className="zolo-toggle-box-custom-css">
+                                            <ZoloToggleGroupControlOption key={"hov_none"} value="none" label={__('None', 'zoloblocks')}
+                                            isSelected={hov_backgroundType === 'none'}
+                                            className={hov_backgroundType === 'none' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`hov_${controlName}backgroundType`]: 'none',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"hov_color"} value="color" label={__('Color', 'zoloblocks')}
+                                            isSelected={hov_backgroundType === 'color'}
+                                            className={hov_backgroundType === 'color' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`hov_${controlName}backgroundType`]: 'color',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"hov_gradient"} value="gradient" label={__('Gradient', 'zoloblocks')}
+                                            isSelected={hov_backgroundType === 'gradient'}
+                                            className={hov_backgroundType === 'gradient' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`hov_${controlName}backgroundType`]: 'gradient',
+                                                })
+                                            }
+                                            />
+                                            <ZoloToggleGroupControlOption key={"hov_image"} value="image" label={__('Image', 'zoloblocks')}
+                                            isSelected={hov_backgroundType === 'image'}
+                                            className={hov_backgroundType === 'image' ? 'active' : ''}
+                                            onClick={() =>
+                                                setAttributes({
+                                                    [`hov_${controlName}backgroundType`]: 'image',
+                                                })
+                                            }
+                                            />
+                                        </ZoloToggleGroupControl>
+                                    </ZoloBaseControl>
 
                                     {hov_backgroundType === 'classic' && (
                                         <>
@@ -1439,7 +1473,7 @@ const BGControl = (props) => {
                                                         render={({ open }) =>
                                                             !hov_bgImageURL && (
                                                                 <>
-                                                                    <Button
+                                                                    <ZoloButton
                                                                         className="zb-bg-control-img-btn components-button"
                                                                         label={__('Upload Image', 'zoloblocks')}
                                                                         icon="format-image"
@@ -1479,7 +1513,7 @@ const BGControl = (props) => {
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_bgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -1574,7 +1608,7 @@ const BGControl = (props) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_bgImgcustomPosX}
                                                                                                     min={-2000}
                                                                                                     max={2000}
@@ -1617,7 +1651,7 @@ const BGControl = (props) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_bgImgcustomPosY}
                                                                                                     min={-2000}
                                                                                                     max={2000}
@@ -1638,7 +1672,7 @@ const BGControl = (props) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={hov_bgImgAttachment}
@@ -1680,7 +1714,7 @@ const BGControl = (props) => {
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_bgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -1719,7 +1753,7 @@ const BGControl = (props) => {
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_backgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -1784,7 +1818,7 @@ const BGControl = (props) => {
                                                                                             label={__('Width', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <RangeControl
+                                                                                            <ZoloRangeControl
                                                                                                 value={hov_bgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -1825,7 +1859,7 @@ const BGControl = (props) => {
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_TABbgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -1920,7 +1954,7 @@ const BGControl = (props) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_TABbgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -1967,7 +2001,7 @@ const BGControl = (props) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_TABbgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -1992,7 +2026,7 @@ const BGControl = (props) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={hov_bgImgAttachment}
@@ -2034,7 +2068,7 @@ const BGControl = (props) => {
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_TABbgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -2073,7 +2107,7 @@ const BGControl = (props) => {
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_TABbackgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -2138,7 +2172,7 @@ const BGControl = (props) => {
                                                                                             label={__('Width', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <RangeControl
+                                                                                            <ZoloRangeControl
                                                                                                 value={hov_TABbgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -2179,7 +2213,7 @@ const BGControl = (props) => {
                                                                                         label={__('Position', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_MOBbgImgPos}
                                                                                             options={[
                                                                                                 {
@@ -2274,7 +2308,7 @@ const BGControl = (props) => {
                                                                                                 label={__('X Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_MOBbgImgcustomPosX}
                                                                                                     min={0}
                                                                                                     max={
@@ -2321,7 +2355,7 @@ const BGControl = (props) => {
                                                                                                 label={__('Y Position', 'zoloblocks')}
                                                                                                 noResetBtn={true}
                                                                                             >
-                                                                                                <RangeControl
+                                                                                                <ZoloRangeControl
                                                                                                     value={hov_MOBbgImgcustomPosY}
                                                                                                     min={0}
                                                                                                     max={
@@ -2346,7 +2380,7 @@ const BGControl = (props) => {
                                                                                     </>
                                                                                 )}
 
-                                                                                <SelectControl
+                                                                                <ZoloSelectControl
                                                                                     className="zolo-flex-pop-row-control"
                                                                                     label={__('Attachment', 'zoloblocks')}
                                                                                     value={hov_bgImgAttachment}
@@ -2388,7 +2422,7 @@ const BGControl = (props) => {
                                                                                         label={__('Repeat', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_MOBbgImgRepeat}
                                                                                             options={[
                                                                                                 {
@@ -2427,7 +2461,7 @@ const BGControl = (props) => {
                                                                                         label={__('Size', 'zoloblocks')}
                                                                                         noResetBtn={true}
                                                                                     >
-                                                                                        <SelectControl
+                                                                                        <ZoloSelectControl
                                                                                             value={hov_MOBbackgroundSize}
                                                                                             options={[
                                                                                                 {
@@ -2492,7 +2526,7 @@ const BGControl = (props) => {
                                                                                             label={__('Width', 'zoloblocks')}
                                                                                             noResetBtn={true}
                                                                                         >
-                                                                                            <RangeControl
+                                                                                            <ZoloRangeControl
                                                                                                 value={hov_MOBbgImgCustomSize}
                                                                                                 min={0}
                                                                                                 max={
@@ -2529,7 +2563,7 @@ const BGControl = (props) => {
 
                                     {hov_backgroundType === 'gradient' && (
                                         <>
-                                            <ToggleControl
+                                            <ZoloToggleControl
                                                 label={__('Add Custom Gradient', 'zoloblocks')}
                                                 checked={hov_customGradient}
                                                 onChange={() =>
@@ -2540,7 +2574,7 @@ const BGControl = (props) => {
                                                 }
                                             />
                                             {hov_customGradient && (
-                                                <TextareaControl
+                                                <ZoloTextareaControl
                                                     help={
                                                         <>
                                                             {__('Add your gradient color here. Get Sample', 'zoloblocks')}
@@ -2579,8 +2613,8 @@ const BGControl = (props) => {
                             );
                         }
                     }}
-                </TabPanel>
-            </BaseControl>
+                </ZoloTabPanel>
+            </ZoloBaseControl>
         </>
     );
 };

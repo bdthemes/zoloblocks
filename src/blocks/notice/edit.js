@@ -2,14 +2,13 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -66,7 +65,7 @@ export default function Edit(props) {
             <BlockControls>
                 {iconTypeImage && (
                     <>
-                        <ToolbarGroup>
+                        <ZoloToolbarGroup>
                             {iconType === 'image' && (
                                 <MediaUpload
                                     onSelect={(media) => {
@@ -77,7 +76,7 @@ export default function Edit(props) {
                                     allowedTypes={['image']}
                                     value={iconTypeImage && iconTypeImage.id}
                                     render={({ open }) => (
-                                        <ToolbarButton
+                                        <ZoloToolbarButton
                                             className="components-toolbar__control"
                                             label={__('Replace Photo', 'zoloblocks')}
                                             icon="edit"
@@ -86,7 +85,7 @@ export default function Edit(props) {
                                     )}
                                 />
                             )}
-                        </ToolbarGroup>
+                        </ZoloToolbarGroup>
                     </>
                 )}
             </BlockControls>

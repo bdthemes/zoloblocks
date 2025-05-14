@@ -1,4 +1,4 @@
-import { Tooltip } from '@wordpress/components';
+import { ZoloTooltip } from '../controls/core-controls';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 
@@ -21,7 +21,7 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                     {template?.package_type === 'pro' && zoloParams?.zolo_pro_status === 'inactive' && (
                                         <div className="demo-actions-btn-wrap">
                                             {template?.demo_link && (
-                                                <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
+                                                <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
                                                     <a className="demo-btn view-btn" href={template?.demo_link} target="_blank">
                                                         {__('Demo', 'zoloblocks')}
                                                         <svg
@@ -44,7 +44,7 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                                             />
                                                         </svg>
                                                     </a>
-                                                </Tooltip>
+                                                </ZoloTooltip>
                                             )}
                                             <ProPopup />
                                         </div>
@@ -59,7 +59,7 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                                 zoloParams?.zolo_pro_status === 'active' && (
                                                     <>
                                                         {template?.demo_link && (
-                                                            <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
+                                                            <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
                                                                 <a className="demo-btn view-btn" href={template?.demo_link} target="_blank">
                                                                     {__('Demo', 'zoloblocks')}
                                                                     <svg
@@ -82,10 +82,10 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                                                         />
                                                                     </svg>
                                                                 </a>
-                                                            </Tooltip>
+                                                            </ZoloTooltip>
                                                         )}
 
-                                                        <Tooltip text={__('Import Demo', 'zoloblocks')} placement="top">
+                                                        <ZoloTooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                             <button
                                                                 className="demo-btn import-btn"
                                                                 onClick={() => handleImportTemplate(template?.content)}
@@ -108,7 +108,7 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                                                     />
                                                                 </svg>
                                                             </button>
-                                                        </Tooltip>
+                                                        </ZoloTooltip>
                                                     </>
                                                 )
                                             }
@@ -116,7 +116,7 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                     ) : (
                                         <>
                                             {template?.demo_link && (
-                                                <Tooltip text={__('View Demo', 'zoloblocks')} placement="top">
+                                                <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
                                                     <a className="demo-btn view-btn" href={template?.demo_link} target="_blank">
                                                         {__('Demo', 'zoloblocks')}
                                                         <svg
@@ -139,10 +139,10 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                                             />
                                                         </svg>
                                                     </a>
-                                                </Tooltip>
+                                                </ZoloTooltip>
                                             )}
 
-                                            <Tooltip text={__('Import Demo', 'zoloblocks')} placement="top">
+                                            <ZoloTooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                 <button
                                                     className="demo-btn import-btn"
                                                     onClick={() => handleImportTemplate(template?.content)}
@@ -165,18 +165,18 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                                         />
                                                     </svg>
                                                 </button>
-                                            </Tooltip>
+                                            </ZoloTooltip>
                                         </>
                                     )}
                                 </div>
-                                {/* <Tooltip
+                                {/* <ZoloTooltip
                                     text={
                                         Array.isArray(favIds) && favIds.includes(template.id)
                                             ? __('Remove from Favorite', 'zoloblocks')
                                             : __('Add to Favorite', 'zoloblocks')
                                     }
                                     placement="top"
-                                ></Tooltip> */}
+                                ></ZoloTooltip> */}
                             </div>
                             <div className="demo-footer">
                                 <div className="footer-left">

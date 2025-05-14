@@ -2,13 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Button, PanelBody, TextControl } from '@wordpress/components';
 import { cloneDeep } from 'lodash';
 
 /**
  * Internal depencencies
  */
-const { ZoloIconPicker, SortableItem, SortableControl } = window.zoloModule;
+const { ZoloIconPicker, SortableItem, SortableControl, ZoloButton, ZoloCorePanelBody, ZoloTextControl } = window.zoloModule;
 
 const Sortable = ({ features, setAttributes }) => {
     const deepCloneFeatures = cloneDeep(features);
@@ -17,7 +16,7 @@ const Sortable = ({ features, setAttributes }) => {
         <div className="sortable">
             <div className="zb-repeater-flex">
                 <div className="repeater-label">{__('Add a List', 'zoloblocks')}</div>
-                <Button
+                <ZoloButton
                     onClick={() => {
                         setAttributes({
                             features: [
@@ -35,14 +34,14 @@ const Sortable = ({ features, setAttributes }) => {
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
             <SortableControl defaultItems={features} attributeName="features" setAttributes={setAttributes}>
                 {deepCloneFeatures &&
                     deepCloneFeatures.map((feature, index) => {
                         return (
                             <div className="dnd-container" key={index}>
-                                <Button
+                                <ZoloButton
                                     className="dnd-trash"
                                     icon="trash"
                                     onClick={() => {
@@ -54,8 +53,8 @@ const Sortable = ({ features, setAttributes }) => {
                                     }}
                                 />
                                 <SortableItem key={feature.id} id={feature.id}>
-                                    <PanelBody title={feature.text || 'Title'} initialOpen={false}>
-                                        <TextControl
+                                    <ZoloCorePanelBody title={feature.text || 'Title'} initialOpen={false}>
+                                        <ZoloTextControl
                                             label={__('Text', 'zoloblocks')}
                                             value={feature.text}
                                             onChange={(value) => {
@@ -77,7 +76,7 @@ const Sortable = ({ features, setAttributes }) => {
                                                 });
                                             }}
                                         />
-                                    </PanelBody>
+                                    </ZoloCorePanelBody>
                                 </SortableItem>
                             </div>
                         );

@@ -1,11 +1,12 @@
-import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
-import './style.scss';
-const { classArrayToStr, SidebarOpener } = window.zoloModule;
 import Style from './styles';
+import './style.scss';
+
+const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId } = props;

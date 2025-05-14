@@ -1,9 +1,8 @@
 import WithResDeviceBtn from '../with-res-device-btn';
-
 import { DEFAULT_ALIGNS } from '../../global/constants';
+import { ZoloSelectControl } from '../core-controls';
 import classNames from 'classnames';
 import ResetBtn from '../reset-btn';
-import { SelectControl } from '@wordpress/components';
 
 const ResSelectControl = ({ label, controlName, requiredProps, alignOptions, customClass = '' }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
@@ -29,7 +28,7 @@ const ResSelectControl = ({ label, controlName, requiredProps, alignOptions, cus
                             }}
                         />
                     )}
-                    <SelectControl
+                    <ZoloSelectControl
                         value={desktopSelect}
                         options={defaultSelect}
                         onChange={(newSelect) => {
@@ -53,7 +52,7 @@ const ResSelectControl = ({ label, controlName, requiredProps, alignOptions, cus
                             }}
                         />
                     )}
-                    <SelectControl
+                    <ZoloSelectControl
                         value={tabletSelect}
                         options={defaultSelect}
                         onChange={(newSelect) => {
@@ -77,7 +76,7 @@ const ResSelectControl = ({ label, controlName, requiredProps, alignOptions, cus
                             }}
                         />
                     )}
-                    <SelectControl
+                    <ZoloSelectControl
                         value={mobileSelect}
                         options={defaultSelect}
                         onChange={(newSelect) => {

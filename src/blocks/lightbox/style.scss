@@ -162,19 +162,30 @@
     transform: scale(1.1);
 }
 
+.fslightboxtt:has(.zolo-lightbox-content) {
+    width: 100%;
+}
+
 .zolo-lightbox-content {
     display: none;
-    img {
-        width: inherit;
-        height: inherit;
-        display: block;
+    width: 100% !important;
+    height: 100% !important;
+    text-align: center;
+    .zolo-lightbox-image {
+        width: auto;
+        height: auto;
     }
+}
+.zolo-lightbox-content:has(.zolo-lightbox-image) {
+    width: auto !important;
 }
 
 .zolo-content-iframe {
-    width: 650px;
-    height: 450px;
-    border: none;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    z-index: 99999999;
+    border: 0;
+    max-width: 800px;
 }
 
 .wp-block-zolo-lightbox {

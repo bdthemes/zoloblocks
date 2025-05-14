@@ -6,6 +6,6 @@ const getItemLabel = (item, itemLabelName, index, defaultLabel) => {
     } else {
         return `${defaultLabel} #${index + 1}`;
     }
-}
+};
 
 export default getItemLabel;

@@ -2,8 +2,6 @@
  * WordPress dependencies
  */
 import { useBlockProps, BlockControls, InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
-
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useRef, useEffect } from '@wordpress/element';
 
@@ -12,7 +10,15 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
+const {
+    generateResRangeStyle,
+    generateResCounterStyle,
+    classArrayToStr,
+    DisplayZoloIcon,
+    SidebarOpener,
+    ZoloToolbarButton,
+    ZoloToolbarGroup,
+} = window.zoloModule;
 
 import { CAROUSEL_COLUMNS, CAROUSEL_GAP } from './constants';
 
@@ -241,14 +247,14 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <BlockControls>
-                <ToolbarGroup>
-                    <ToolbarButton
+                <ZoloToolbarGroup>
+                    <ZoloToolbarButton
                         className="components-toolbar__control"
                         label={__('Add Review', 'zoloblocks')}
                         icon="insert"
                         onClick={() => appendBlock()}
                     />
-                </ToolbarGroup>
+                </ZoloToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />

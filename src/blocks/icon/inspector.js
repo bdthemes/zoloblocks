@@ -1,25 +1,19 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextControl, TextareaControl, BaseControl, Button, CardDivider } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-
-import { applyFilters } from '@wordpress/hooks';
-import objAttributes from './attributes';
-import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
 /**
  * Internal depencencies
  */
 const {
+    ZoloToggleControl,
+    ZoloCardDivider,
     ResRangeControl,
     ColorControl,
     BorderControl,
     ResDimensionsControl,
-    TextShadowControl,
-    TextStrokeControl,
-    TypographyDropdown,
     TabPanelControl,
     ZoloIconPicker,
     BoxShadowControl,
@@ -27,13 +21,13 @@ const {
     IconicBtnGroup,
     LinkControl,
     NormalBGControl,
-    ImageAvatar,
     ResAlignmentControl,
     AdvancedOptions,
     ZoloPanelBody,
-    ImageSizes,
-    RangeResetControl,
 } = window.zoloModule;
+
+import objAttributes from './attributes';
+import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 
 import {
     ICON_SIZE,
@@ -91,7 +85,7 @@ export default function Inspector(props) {
                                         })
                                     }
                                 />
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Linkable', 'zoloblocks')}
                                     checked={isLinkable}
                                     onChange={(value) =>
@@ -111,7 +105,7 @@ export default function Inspector(props) {
                                         }
                                     />
                                 )}
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <div className="zolo-flex-col-control-tab">
                                     <IconicBtnGroup
                                         label={__('Size', 'zoloblocks')}
@@ -142,7 +136,7 @@ export default function Inspector(props) {
                                     </>
                                 )}
 
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResAlignmentControl
                                     label={__('Alignment', 'zoloblocks')}
                                     controlName={ICON_ALIGNMENT}
@@ -178,7 +172,7 @@ export default function Inspector(props) {
                                                 controlName={ICON_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={ICON_BORDER}

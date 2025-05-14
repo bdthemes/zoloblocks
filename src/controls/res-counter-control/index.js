@@ -1,10 +1,10 @@
-import { Button, __experimentalInputControl as InputControl } from '@wordpress/components';
+import { ZoloButton, ZoloInputControl } from '../core-controls';
 import WithResDeviceBtn from '../with-res-device-btn';
 import ResetBtn from '../reset-btn';
 import { prefix } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
 
-const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, defaults = {}, noteText="" }) => {
+const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, defaults = {}, noteText = '' }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
     const {
         [`${prefix}${controlName}Range`]: desktopRange = defaults.deskRange || 3,
@@ -30,7 +30,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                     <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                         <div className="zb-counter-control">
                             <div className="zb-counter-flex">
-                                <Button
+                                <ZoloButton
                                     className="zb-counter-control-btn"
                                     onClick={() =>
                                         setAttributes({
@@ -42,8 +42,8 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                     </svg>
-                                </Button>
-                                <InputControl
+                                </ZoloButton>
+                                <ZoloInputControl
                                     type="number"
                                     value={desktopRange}
                                     onChange={(val) => {
@@ -56,7 +56,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                     step={step || 1}
                                     disabled={desktopRange >= max}
                                 />
-                                <Button
+                                <ZoloButton
                                     className="zb-counter-control-btn"
                                     onClick={() =>
                                         setAttributes({
@@ -69,7 +69,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                     </svg>
-                                </Button>
+                                </ZoloButton>
                             </div>
                             <p className="zb-counter-note">
                                 <strong>{__('Note: ', 'zoloblocks')}</strong>
@@ -84,7 +84,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                 <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                     <div className="zb-counter-control">
                         <div className="zb-counter-flex">
-                            <Button
+                            <ZoloButton
                                 className="zb-counter-control-btn"
                                 onClick={() =>
                                     setAttributes({
@@ -96,8 +96,8 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                 <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                 </svg>
-                            </Button>
-                            <InputControl
+                            </ZoloButton>
+                            <ZoloInputControl
                                 type="number"
                                 value={tabRange}
                                 onChange={(val) => {
@@ -110,7 +110,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                 step={step || 1}
                                 disabled={tabRange >= max}
                             />
-                            <Button
+                            <ZoloButton
                                 className="zb-counter-control-btn"
                                 onClick={() =>
                                     setAttributes({
@@ -123,7 +123,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                     <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                     <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                 </svg>
-                            </Button>
+                            </ZoloButton>
                         </div>
                         <p className="zb-counter-note">
                             <strong>{__('Note: ', 'zoloblock')}</strong>
@@ -137,7 +137,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                 <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName}>
                     <div className="zb-counter-control">
                         <div className="zb-counter-flex">
-                            <Button
+                            <ZoloButton
                                 className="zb-counter-control-btn"
                                 onClick={() =>
                                     setAttributes({
@@ -149,8 +149,8 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                 <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                 </svg>
-                            </Button>
-                            <InputControl
+                            </ZoloButton>
+                            <ZoloInputControl
                                 type="number"
                                 value={mobRange}
                                 onChange={(val) => {
@@ -163,7 +163,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                 step={step || 1}
                                 disabled={mobRange >= max}
                             />
-                            <Button
+                            <ZoloButton
                                 className="zb-counter-control-btn"
                                 onClick={() =>
                                     setAttributes({
@@ -176,7 +176,7 @@ const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, 
                                     <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                     <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                                 </svg>
-                            </Button>
+                            </ZoloButton>
                         </div>
                         <p className="zb-counter-note">
                             <strong>{__('Note: ', 'zoloblock')}</strong>

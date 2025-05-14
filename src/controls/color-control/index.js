@@ -1,4 +1,4 @@
-import { Button, ColorPicker, Flex, FlexBlock, FlexItem, Popover } from '@wordpress/components';
+import { ZoloButton, ZoloColorPicker, ZoloPopover, ZoloFlex, ZoloFlexBlock, ZoloFlexItem } from '../core-controls';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ResetBtn from '../reset-btn';
@@ -24,30 +24,30 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
 
     return (
         <div className="zb-color-control-wrapper">
-            <Flex>
-                <FlexBlock>{label || __('Color', 'zoloblocks')}</FlexBlock>
+            <ZoloFlex>
+                <ZoloFlexBlock>{label || __('Color', 'zoloblocks')}</ZoloFlexBlock>
                 {color && (
-                    <FlexItem>
+                    <ZoloFlexItem>
                         <ResetBtn
                             customClass="zb-reset-has-value"
                             onReset={() => {
                                 onChange(defaultColor);
                             }}
                         />
-                    </FlexItem>
+                    </ZoloFlexItem>
                 )}
-                <FlexItem>
-                    <Button
+                <ZoloFlexItem>
+                    <ZoloButton
                         className="color-ball"
                         onClick={() => setColorPanel(true)}
                         style={{
                             background: color || defaultColor,
                         }}
-                    ></Button>
-                </FlexItem>
-            </Flex>
+                    ></ZoloButton>
+                </ZoloFlexItem>
+            </ZoloFlex>
             {colorPanel && (
-                <Popover
+                <ZoloPopover
                     position="bottom center"
                     onClose={() => {
                         setColorPanel(false);
@@ -56,7 +56,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                         setColorPanel(false);
                     }}
                 >
-                    <ColorPicker
+                    <ZoloColorPicker
                         color={color}
                         onChange={(color) => {
                             onChange(color);
@@ -64,7 +64,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                         // onChangeComplete={({ rgb }) => {
                         //     onChange(`rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`);
                         // }}
-                     {...(!disableAlpha && { enableAlpha: true })}
+                        {...(!disableAlpha && { enableAlpha: true })}
                     />
                     {COLORS && (
                         <>
@@ -72,7 +72,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                             <div className="zolo-color-circular-option-grid">
                                 {COLORS.map((paletteColor) => (
                                     <div className="components-circular-option-picker__option-wrapper">
-                                        <Button
+                                        <ZoloButton
                                             className={`components-button components-circular-option-picker__option ${`var(--wp--preset--color--${paletteColor.slug})` === color || paletteColor.color === color ? 'is-pressed' : ''}`}
                                             style={{
                                                 backgroundColor: paletteColor.color,
@@ -112,7 +112,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                             <div className="zolo-color-circular-option-grid">
                                 {DEFAULTCOLORS.map((paletteColor) => (
                                     <div className="components-circular-option-picker__option-wrapper">
-                                        <Button
+                                        <ZoloButton
                                             className={`components-button components-circular-option-picker__option ${paletteColor.color === color ? 'is-pressed' : ''}`}
                                             style={{
                                                 backgroundColor: paletteColor.color,
@@ -143,7 +143,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                             </div>
                         </>
                     )}
-                </Popover>
+                </ZoloPopover>
             )}
         </div>
     );

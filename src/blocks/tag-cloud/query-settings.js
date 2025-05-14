@@ -1,9 +1,8 @@
-import { SelectControl, __experimentalInputControl as InputControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { CAT_ORDER_BY } from './constants';
 
-const { Select2AjaxControl } = window.zoloModule;
+const { Select2AjaxControl, ZoloSelectControl, ZoloTextControl, ZoloInputControl } = window.zoloModule;
 
 const QuerySettings = ({ attributes, setAttributes }) => {
     const { catQuery } = attributes;
@@ -27,7 +26,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
 
     return (
         <>
-            <InputControl
+            <ZoloInputControl
                 label={__('Item Limit', 'zoloblocks-pro')}
                 value={catQuery.catItemLimit}
                 onChange={(catItemLimit) => {
@@ -40,7 +39,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 __unstableInputWidth="64px"
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Taxonomy', 'zoloblocks-pro')}
                 value={catQuery.catTaxonomy}
                 onChange={(catTaxonomy) => {
@@ -60,14 +59,14 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 />
             </div>
 
-            <TextControl
+            <ZoloTextControl
                 label={__('Parent', 'zoloblocks')}
                 value={catQuery.catParent}
                 onChange={(catParent) => setAttributes({ catQuery: { ...catQuery, catParent } })}
                 placeholder={__('Category ID: 12', 'zoloblocks')}
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Order By', 'zoloblocks-pro')}
                 value={catQuery.catOrderby}
                 onChange={(catOrderby) => {
@@ -76,7 +75,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 options={CAT_ORDER_BY}
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Sort Order', 'zoloblocks-pro')}
                 value={catQuery.catOrder}
                 onChange={(catOrder) => {

@@ -1,7 +1,7 @@
-import { Spinner, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useEffect, useState, useRef } from '@wordpress/element';
 import usePlacesService from 'react-google-autocomplete/lib/usePlacesAutocompleteService';
+import { ZoloTextControl, ZoloSpinner } from '../core-controls';
 
 const GoogleMapAutocomplete = ({ label, value, onChange, onClick }) => {
     const [predictionPanel, setPredictionPanel] = useState(false);
@@ -20,7 +20,7 @@ const GoogleMapAutocomplete = ({ label, value, onChange, onClick }) => {
 
     return (
         <div className="zolo-google-map-autocomplete">
-            <TextControl
+            <ZoloTextControl
                 label={label || __('Location', 'zoloblocks')}
                 placeholder={__('Enter location', 'zoloblocks')}
                 value={value}
@@ -29,12 +29,14 @@ const GoogleMapAutocomplete = ({ label, value, onChange, onClick }) => {
                     getPlacePredictions({ input: v });
                 }}
                 onFocus={() => setPredictionPanel(true)}
+                __nextHasNoMarginBottom={true}
+                __next40pxDefaultSize={true}
             />
             {predictionPanel && (
                 <>
                     {placePredictions && placePredictions.length > 0 && (
                         <div className="zolo-suggested-places">
-                            {isPlacePredictionsLoading && <Spinner />}
+                            {isPlacePredictionsLoading && <ZoloSpinner />}
                             {placePredictions?.map((item) => (
                                 <li
                                     className="zolo-suggested-place"

@@ -2,13 +2,14 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 const {
+    ZoloToggleControl,
+    ZoloCardDivider,
     ResRangeControl,
     ResCounterControl,
     ResAlignmentControl,
@@ -52,8 +53,6 @@ import {
     DROP_CAP_MARGIN,
     TEXT_GRADIENT_COLOR,
 } from './constants';
-import { CardDivider } from '@wordpress/components';
-import { Card } from '@wordpress/components';
 
 const { zolo_pro_status } = window.zoloParams;
 
@@ -81,12 +80,12 @@ function Inspector(props) {
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Show & Hide elements', 'zoloblocks')}
                             </div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Dropcap', 'zoloblocks')}
                                 checked={dropcap}
                                 onChange={() => setAttributes({ dropcap: !dropcap })}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResCounterControl
                                 label={__('Columns', 'zoloblocks')}
                                 controlName={COLUMNS}
@@ -109,7 +108,7 @@ function Inspector(props) {
                             />
                             {!dropcap && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <ResAlignmentControl
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={TEXT_ALIGNMENT}
@@ -154,7 +153,7 @@ function Inspector(props) {
                                 typoPrefixConstant={TEXT_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={TEXT_MARGIN}
@@ -176,14 +175,14 @@ function Inspector(props) {
                                             typoPrefixConstant={LINK_TYPO}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl controlName={LINK_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={LINK_PADDING}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={LINK_BORDER}
@@ -244,7 +243,7 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         enableTransition={true}
                                     />
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <NormalBGControl controlName={DROP_CAP_BG_COLOR} requiredProps={requiredProps} noMainBGImg={true} />
                                     <ResDimensionsControl
                                         label={__('Padding', 'zoloblocks')}
@@ -256,7 +255,7 @@ function Inspector(props) {
                                         controlName={DROP_CAP_MARGIN}
                                         requiredProps={requiredProps}
                                     />
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <BorderControl
                                         label={__('Border', 'zoloblocks')}
                                         controlName={DROP_CAP_BORDER}

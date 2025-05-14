@@ -2,13 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Button, PanelBody, TextControl } from '@wordpress/components';
 import { cloneDeep } from 'lodash';
 
 /**
  * Internal depencencies
  */
-const { ZoloIconPicker, LinkControl, SortableItem, SortableControl } = window.zoloModule;
+const { ZoloIconPicker, LinkControl, SortableItem, SortableControl, ZoloButton, ZoloCorePanelBody, ZoloTextControl } = window.zoloModule;
 
 const Sortable = ({ socialProfiles, setAttributes }) => {
     const deepCloneSocialProfiles = cloneDeep(socialProfiles);
@@ -17,7 +16,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
         <div className="sortable">
             <div className="zb-repeater-flex">
                 <div className="repeater-label">{__('Add a Profile', 'zoloblocks')}</div>
-                <Button
+                <ZoloButton
                     onClick={() =>
                         setAttributes({
                             socialProfiles: [
@@ -39,14 +38,14 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
             <SortableControl defaultItems={socialProfiles} attributeName="socialProfiles" setAttributes={setAttributes}>
                 {deepCloneSocialProfiles &&
                     deepCloneSocialProfiles.map((profile, index) => {
                         return (
                             <div className="dnd-container" key={index}>
-                                <Button
+                                <ZoloButton
                                     className="dnd-trash"
                                     icon="trash"
                                     onClick={() => {
@@ -59,8 +58,8 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                 />
 
                                 <SortableItem key={profile.id} id={profile.id}>
-                                    <PanelBody title={profile.title || 'Title'} initialOpen={false}>
-                                        <TextControl
+                                    <ZoloCorePanelBody title={profile.title || 'Title'} initialOpen={false}>
+                                        <ZoloTextControl
                                             label={__('Title', 'zoloblocks')}
                                             value={profile.title}
                                             onChange={(value) => {
@@ -93,7 +92,7 @@ const Sortable = ({ socialProfiles, setAttributes }) => {
                                                 });
                                             }}
                                         />
-                                    </PanelBody>
+                                    </ZoloCorePanelBody>
                                 </SortableItem>
                             </div>
                         );

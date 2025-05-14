@@ -9,7 +9,18 @@ import Select2 from 'react-select';
 import particlesInit from './init';
 import MultiColor from './multicolor';
 
-const { PopoverControl, SimpleRangeControl, popoverHasAttrVal } = window.zoloModule;
+import { SelectControl, BaseControl } from '../../components/Core';
+
+const {
+    PopoverControl,
+    SimpleRangeControl,
+    popoverHasAttrVal,
+    ZoloButton,
+    ZoloSelectControl,
+    ZoloTextareaControl,
+    ZoloCardDivider,
+    ZoloBaseControl,
+} = window.zoloModule;
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
@@ -108,7 +119,7 @@ const Inspector = ({ panelProps }) => {
     };
 
     const destroyParticleJS = (editorWindow) => {
-        if (editorWindow){
+        if (editorWindow) {
             const { pJSDom } = editorWindow;
             if (pJSDom && pJSDom.length > 0) {
                 pJSDom.forEach((instance) => {
@@ -156,7 +167,7 @@ const Inspector = ({ panelProps }) => {
 
     return (
         <>
-            <CardDivider />
+            <ZoloCardDivider />
             <PopoverControl
                 label={__('Particles', 'zoloblocks')}
                 icon={
@@ -202,7 +213,7 @@ const Inspector = ({ panelProps }) => {
                 }}
             >
                 <div className="zolo-flex-row-control">
-                    <SelectControl
+                    <ZoloSelectControl
                         label={__('Presets', 'zoloblocks')}
                         value={preset}
                         options={applyFilters('zolo.presets.particles', presets)}
@@ -212,7 +223,7 @@ const Inspector = ({ panelProps }) => {
                 {preset !== 'custom_options' && (
                     <>
                         <div className="zolo-flex-row-control">
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Direction', 'zoloblocks')}
                                 value={direction}
                                 onChange={(value) => {
@@ -239,7 +250,7 @@ const Inspector = ({ panelProps }) => {
                                 ]}
                             />
                         </div>
-                        <BaseControl className="zolo-flex-col-control">
+                        <ZoloBaseControl className="zolo-flex-col-control">
                             <div className="zolo-custom-label">{__('Choose Shape', 'zoloblocks')}</div>
                             <Select2
                                 isMulti
@@ -269,7 +280,7 @@ const Inspector = ({ panelProps }) => {
                                     label: item,
                                 }))}
                             />
-                        </BaseControl>
+                        </ZoloBaseControl>
                         <SimpleRangeControl
                             label={__('Speed', 'zoloblocks')}
                             onChange={(v) =>
@@ -347,7 +358,7 @@ const Inspector = ({ panelProps }) => {
                     </>
                 )}
                 {preset === 'custom_options' && (
-                    <TextareaControl
+                    <ZoloTextareaControl
                         label={__('Custom Options', 'zoloblocks')}
                         onChange={(v) =>
                             setAttributes({
@@ -371,15 +382,15 @@ const Inspector = ({ panelProps }) => {
                     />
                 )}
 
-                <Button 
-                    className="zolo-action-button" 
-                    variant="primary" 
+                <ZoloButton
+                    className="zolo-action-button"
+                    variant="primary"
                     onClick={() => {
-                        setIsPreview( prev => !prev )
+                        setIsPreview((prev) => !prev);
                     }}
                 >
                     {isPreview ? __('Stop Preview', 'zoloblocks-pro') : __('Preview', 'zoloblocks-pro')}
-                </Button>
+                </ZoloButton>
             </PopoverControl>
         </>
     );

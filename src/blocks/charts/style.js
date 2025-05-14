@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
@@ -159,7 +159,6 @@ const Style = ({ props }) => {
           ${subtitleTabTypo}
         }       
     `;
-
   const mobileAllStyle = `
        .${uniqueId} {
         ${chartMobBg}
@@ -179,17 +178,17 @@ const Style = ({ props }) => {
         }       
     `;
 
-  return (
-    <>
-      <GlobalStyleHanlder
-        attributes={attributes}
-        setAttributes={setAttributes}
-        desktopAllStyle={desktopAllStyle}
-        tabAllStyle={tabletAllStyle}
-        mobileAllStyle={mobileAllStyle}
-      />
-    </>
-  );
+    return (
+        <>
+            <GlobalStyleHanlder
+                attributes={attributes}
+                setAttributes={setAttributes}
+                desktopAllStyle={desktopAllStyle}
+                tabAllStyle={tabletAllStyle}
+                mobileAllStyle={mobileAllStyle}
+            />
+        </>
+    );
 };
 
 export default Style;

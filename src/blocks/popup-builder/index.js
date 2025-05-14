@@ -36,4 +36,3 @@ wp.data.subscribe(() => {
         hideBlockInOtherPostTypes();
     }
 });
-

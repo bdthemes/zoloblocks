@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, CardDivider } from '@wordpress/components';
+
 const {
+    ZoloCardDivider,
     HeaderTabs,
     ResAlignmentControl,
     ResRangeControl,
@@ -69,7 +70,7 @@ const Inspector = (props) => {
                                 max={500}
                                 step={1}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                         </ZoloPanelBody>
                     </>
                 }
@@ -89,7 +90,7 @@ const Inspector = (props) => {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
 
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
@@ -125,7 +126,7 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             max={36}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={SUB_MENU_BG} noMainBGImg={false} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -140,7 +141,7 @@ const Inspector = (props) => {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={SUB_MENU_BORDER}

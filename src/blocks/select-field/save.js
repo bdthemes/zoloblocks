@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { parseInputToArray, transformToValueFormat } from '@/blocks/select-field/helper';
 
-const { classArrayToStr, DisplayZoloIcon,generateUniqueName } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, generateUniqueName } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -21,14 +21,14 @@ const Save = ({ attributes }) => {
         requiredMsg,
         customNameAttribute,
         defaultValue,
-        firstOption
+        firstOption,
     } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses), `${showIcon ? 'zolo-field-icon' : ''}`, 'form-group'),
     });
 
-    const optionArray = parseInputToArray(optionData,firstOption);
+    const optionArray = parseInputToArray(optionData, firstOption);
     const defaultSelect = transformToValueFormat(defaultValue);
 
     return (
@@ -54,7 +54,7 @@ const Save = ({ attributes }) => {
                     )}
 
                     <select
-                        name={generateUniqueName(uniqueId,customNameAttribute,'select_field')}
+                        name={generateUniqueName(uniqueId, customNameAttribute, 'select_field')}
                         required={isRequired}
                         value={defaultSelect}
                         {...(isRequired && { 'data-pristine-required-message': requiredMsg })}

@@ -2,15 +2,16 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, RangeControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
 
 /**
  * Internal depencencies
  */
 const {
     HeaderTabs,
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloCardDivider,
     ColorControl,
     TypographyDropdown,
     ResRangeControl,
@@ -67,26 +68,26 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 options={applyFilters('zolo.progressBar.presets', PRESETS)}
                                 onChange={(v) => onPresetChange(v)}
                                 value={preset}
                             />
                             <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Title', 'zoloblocks')}
                                 checked={titleToggle}
                                 onChange={() => setAttributes({ titleToggle: !titleToggle })}
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Percentage Value', 'zoloblocks')}
                                 checked={percentToggle}
                                 onChange={() => setAttributes({ percentToggle: !percentToggle })}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Title Tag')}
                                 value={progressTextTag}
                                 options={HEADING}
@@ -119,7 +120,7 @@ function Inspector(props) {
                                 step={1}
                                 noUnits={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <NormalBGControl
                                 label={__('Background', 'zoloblocks')}
                                 controlName={PROGRESS_BG_COLOR}
@@ -132,7 +133,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResRangeControl
                                 label={__('Gap', 'zoloblocks')}
                                 controlName={PROGRESS_GAP}
@@ -155,7 +156,7 @@ function Inspector(props) {
                                 typoPrefixConstant={TITLE_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={PROGRESS_TITLE_MARGIN}
@@ -171,7 +172,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 noMainBGImg={true}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BoxShadowControl controlName={PROGRESS_BSHADOW} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
@@ -192,7 +193,7 @@ function Inspector(props) {
                                 typoPrefixConstant={PROGRESS_VALUE}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={PROGRESS_VALUE_MARGIN}
@@ -202,7 +203,7 @@ function Inspector(props) {
 
                             {preset === 'style-5' && (
                                 <>
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <ResRangeControl
                                         label={__('Gap', 'zoloblocks')}
                                         controlName={PROGRESS_PERCENT_GAP}

@@ -11,39 +11,39 @@ document.addEventListener('DOMContentLoaded', () => {
         apexChartsItems.forEach((item) => {
             const options = JSON.parse(item.dataset.options);
             try {
-                          const {
-                              chartType,
-                              showTitle,
-                              showSubTitle,
-                              chartHeight,
-                              showLegend,
-                              showTooltip,
-                              showGrid,
-                              showDropshadow,
-                              titleObject,
-                              subTitleObject,
-                              legendObject,
-                              tooltipObject,
-                              showGridY,
-                              showGridX,
-                              gridObject,
-                              chartBackground,
-                              pieChartColor,
-                              xAxisColor,
-                              xAxisFontSize,
-                              yAxisColor,
-                              yAxisFontSize,
-                              barChartData,
-                              pieChartData,
-                              showToolbar,
-                              showDownload,
-                              showSelection,
-                              showZoom,
-                              showZoomIn,
-                              showZoomOut,
-                              showPanel,
-                              showReset,
-                          } = options;
+                const {
+                    chartType,
+                    showTitle,
+                    showSubTitle,
+                    chartHeight,
+                    showLegend,
+                    showTooltip,
+                    showGrid,
+                    showDropshadow,
+                    titleObject,
+                    subTitleObject,
+                    legendObject,
+                    tooltipObject,
+                    showGridY,
+                    showGridX,
+                    gridObject,
+                    chartBackground,
+                    pieChartColor,
+                    xAxisColor,
+                    xAxisFontSize,
+                    yAxisColor,
+                    yAxisFontSize,
+                    barChartData,
+                    pieChartData,
+                    showToolbar,
+                    showDownload,
+                    showSelection,
+                    showZoom,
+                    showZoomIn,
+                    showZoomOut,
+                    showPanel,
+                    showReset,
+                } = options;
 
                           const commonOptions = {
                               dataLabels: { enabled: false },
@@ -131,16 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
                               labels: pieChartData.labels,
                           };
 
-                          const root = createRoot(item);
-                          root.render(
-                              <ApexCharts
-                                  options={chartType === 'pie' || chartType === 'donut' ? newPieChartOptions : newChartOptions}
-                                  series={chartType === 'pie' || chartType === 'donut' ? pieChartData.series : barChartData.series}
-                                  type={chartType}
-                                  width={'100%'}
-                                  height={chartHeight !== undefined ? chartHeight : 300}
-                              />
-                          );
+                const root = createRoot(item);
+                root.render(
+                    <ApexCharts
+                        options={chartType === 'pie' || chartType === 'donut' ? newPieChartOptions : newChartOptions}
+                        series={chartType === 'pie' || chartType === 'donut' ? pieChartData.series : barChartData.series}
+                        type={chartType}
+                        width={'100%'}
+                        height={chartHeight !== undefined ? chartHeight : 300}
+                    />
+                );
             } catch (error) {
                 console.error(error);
             }

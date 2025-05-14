@@ -1,8 +1,9 @@
-import { BaseControl } from '@wordpress/components';
+import { ZoloBaseControl } from '../core-controls';
 import { useEffect, useState } from '@wordpress/element';
 import AsyncSelect from 'react-select/async';
 import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
+
 export default function Select2AjaxControl(props) {
     const { label, value, onChange, sourceName, sourceType, placeholder, isMulti } = props;
     const [defaultData, setDefaultData] = useState([]);
@@ -40,7 +41,7 @@ export default function Select2AjaxControl(props) {
     }, [sourceType]);
 
     return (
-        <BaseControl label={label || ''}>
+        <ZoloBaseControl label={label || ''}>
             <AsyncSelect
                 isMulti={isMulti || false}
                 closeMenuOnSelect={true}
@@ -51,6 +52,6 @@ export default function Select2AjaxControl(props) {
                 loadOptions={fetchData}
                 classNamePrefix="zolo-select"
             />
-        </BaseControl>
+        </ZoloBaseControl>
     );
 }

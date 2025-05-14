@@ -9,15 +9,11 @@ import { __ } from '@wordpress/i18n';
 const {
     generateResRangeStyle,
     generateBorderStyle,
-    generateResCounterStyle,
     generateDimensionStyle,
     generateBoxShadowStyles,
     generateTypographyStyles,
-    generateGapStyle,
     GlobalStyleHanlder,
     generateNormalBGControlStyles,
-    generateResAlignmentStyle,
-    generateTextStrokeStyles,
 } = window.zoloModule;
 
 import {

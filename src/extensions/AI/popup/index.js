@@ -7,14 +7,14 @@
  * WordPress dependencies
  */
 import { createRoot } from '@wordpress/element';
-import { Modal } from '@wordpress/components';
 import { useSelect, useDispatch, dispatch, select } from '@wordpress/data';
 import clsx from 'clsx';
 import { __ } from '@wordpress/i18n';
 import domReady from '@wordpress/dom-ready';
-
 import { Header, Prompt, Content, Footer } from './components';
 const POPUP_CONTAINER_CLASS = 'zolo-popup-container';
+
+import { ZoloModal } from '../../../controls/core-controls';
 
 export default function Popup() {
     const { close, reset } = useDispatch('zoloai/popup');
@@ -69,7 +69,7 @@ export default function Popup() {
     }
 
     return (
-        <Modal
+        <ZoloModal
             title={false}
             className={clsx('zolo-popup zolo-popup-ai')}
             overlayClassName="zolo-popup-overlay"
@@ -89,7 +89,7 @@ export default function Popup() {
                 <Content />
             </div>
             <Footer onInsert={onInsert} />
-        </Modal>
+        </ZoloModal>
     );
 }
 

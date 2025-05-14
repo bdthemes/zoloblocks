@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { useSelect, useDispatch } from '@wordpress/data';
-import {BlockControls } from '@wordpress/block-editor';
-import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
+import { BlockControls } from '@wordpress/block-editor';
 import { useRef } from '@wordpress/element';
-
+import { ZoloToolbarGroup, ZoloToolbarButton } from '../../../../controls/core-controls';
 
 const Edit = (props) => {
     const { isActive, value } = props;
@@ -25,8 +24,8 @@ const Edit = (props) => {
             {isAllowedBlock && (
                 <div ref={toolbarRef}>
                     <BlockControls>
-                        <ToolbarGroup>
-                            <ToolbarButton
+                        <ZoloToolbarGroup>
+                            <ZoloToolbarButton
                                 name="unknown"
                                 icon={
                                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -55,7 +54,7 @@ const Edit = (props) => {
                                 className="zolo-ai-toolbar-button"
                                 aria-posinset={1}
                             />
-                        </ToolbarGroup>
+                        </ZoloToolbarGroup>
                     </BlockControls>
                 </div>
             )}

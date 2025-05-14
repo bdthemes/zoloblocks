@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import CodeMirror from '@uiw/react-codemirror';
 import { css } from '@codemirror/lang-css';
-import { Button } from '@wordpress/components';
+import { ZoloButton } from '../core-controls';
 import { useMemo, useRef, useEffect, useState } from '@wordpress/element';
 
 function getZoloClassNames(element) {
@@ -83,7 +83,7 @@ const CustomCSSControl = ({ attributes, setAttributes }) => {
                 </p>
                 <div className="zolo-suggested-class">
                     {updatedClassesArray && updatedClassesArray.map((className) => (
-                        <Button
+                        <ZoloButton
                             key={className}
                             style={{
                                 margin: '5px',
@@ -101,7 +101,7 @@ const CustomCSSControl = ({ attributes, setAttributes }) => {
                             }}
                         >
                             {className}
-                        </Button>
+                        </ZoloButton>
                     ))}
                 </div>
             </div>

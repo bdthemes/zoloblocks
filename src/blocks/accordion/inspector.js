@@ -2,21 +2,17 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import {
-    ToggleControl,
-    BaseControl,
-    SelectControl,
-    CardDivider,
-    __experimentalInputControl as InputControl,
-    __experimentalHeading as Heading,
-} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 const {
+    ZoloCardDivider,
+    ZoloSelectControl,
     ResRangeControl,
+    ZoloInputControl,
+    ZoloToggleControl,
     ColorControl,
     BorderControl,
     ResDimensionsControl,
@@ -107,7 +103,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Preset', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.accordion.presets', PRESETS)}
@@ -118,14 +114,14 @@ function Inspector(props) {
                                 }}
                             />
 
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Initial Open', 'zoloblocks')}
                                 checked={allowInitialOpen}
                                 onChange={() => setAttributes({ allowInitialOpen: !allowInitialOpen })}
                                 help={__('This feature works on the frontend only.', 'zoloblocks')}
                             />
                             {allowInitialOpen && (
-                                <InputControl
+                                <ZoloInputControl
                                     label={__('Initial open item', 'zoloblocks')}
                                     value={initialOpen}
                                     onChange={(nextValue) =>
@@ -142,7 +138,7 @@ function Inspector(props) {
                                 />
                             )}
 
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Allow multiple open at a time', 'zoloblocks')}
                                 checked={allowMultiple}
                                 onChange={() => setAttributes({ allowMultiple: !allowMultiple })}
@@ -150,7 +146,7 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Tag', 'zoloblocks')}
                                 value={titleTag}
                                 options={HEADING}
@@ -209,7 +205,7 @@ function Inspector(props) {
                                             forBorderRadius={false}
                                         />
 
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={AC_CONTAINER_BORDER}
@@ -254,7 +250,7 @@ function Inspector(props) {
                                             typoPrefixConstant={TITLE_TYPO}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_BG} noMainBGImg={true} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -268,7 +264,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={AC_HEADER_BORDER}
@@ -363,7 +359,7 @@ function Inspector(props) {
                                             controlName={ICON_SIZE}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={ICONTAINER_BG} noMainBGImg={true} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -371,7 +367,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={ICONTAINER_BORDER}
@@ -454,7 +450,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={AC_BODY_BORDER}

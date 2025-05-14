@@ -1,9 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, CardDivider } from '@wordpress/components';
+
 const {
     HeaderTabs,
+    ZoloToggleControl,
+    ZoloCardDivider,
     ResAlignmentControl,
     ResRangeControl,
     ColorControl,
@@ -82,7 +84,7 @@ const Inspector = (props) => {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Add Submenu', 'zoloblocks')}
                                 checked={attributes?.addSubmenu}
                                 onChange={(value) => setAttributes({ addSubmenu: value })}
@@ -157,7 +159,7 @@ const Inspector = (props) => {
                                                     max={100}
                                                     step={1}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
                                                     controlName={SUB_MENU_INDICATOR_BG}
@@ -175,7 +177,7 @@ const Inspector = (props) => {
                                                     requiredProps={requiredProps}
                                                     forBorderRadius={false}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={SUB_MENU_INDICATOR_BORDER}

@@ -1,13 +1,12 @@
 import apiFetch from '@wordpress/api-fetch';
 import { useBlockProps } from '@wordpress/block-editor';
-import { Spinner } from '@wordpress/components';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import Inspector from './inspector';
 import RenderView from './render-view';
 
-const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
+const { generateResRangeStyle, generateResCounterStyle, classArrayToStr, DisplayZoloIcon, SidebarOpener, ZoloSpinner } = window.zoloModule;
 
 // Constants
 import { COLUMNS, COLUMNS_GAP } from './constants';
@@ -77,7 +76,12 @@ export default function Edit(props) {
 
     let options = {
         slidesPerView: resMode === 'Desktop' ? deskCol || 2 : resMode === 'Tablet' ? tabCol || 2 : mobCol || 1,
-        spaceBetween: resMode === 'Desktop' ? parseInt(deskColGap.slice(0, -1)) || 30 : resMode === 'Tablet' ? parseInt(tabColGap.slice(0, -1)) || 30 : parseInt(mobColGap.slice(0, -1)) || 0,
+        spaceBetween:
+            resMode === 'Desktop'
+                ? parseInt(deskColGap.slice(0, -1)) || 30
+                : resMode === 'Tablet'
+                  ? parseInt(tabColGap.slice(0, -1)) || 30
+                  : parseInt(mobColGap.slice(0, -1)) || 0,
         loop: infiniteLoop,
         speed: speed * 100,
         effect: carouselEffect,
@@ -87,23 +91,18 @@ export default function Edit(props) {
         autoplay: autoplay ? { delay: autoplayDelay * 100, pauseOnMouseEnter: pauseOnMouseEnter } : false,
         navigation: showNavigation
             ? {
-                nextEl: customNavIcon
-                    ? `.${uniqueId} .swiper-zolo-next`
-                    : `.${uniqueId} .swiper-button-next`,
-                prevEl: customNavIcon
-                    ? `.${uniqueId} .swiper-zolo-prev`
-                    : `.${uniqueId} .swiper-button-prev`,
-            }
+                  nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
+                  prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
+              }
             : false,
         pagination: showPagination
             ? {
-                el: `.${uniqueId} .swiper-pagination`,
-                clickable: true,
-                type: paginationType,
-                dynamicBullets: dynamicBullets,
-            }
+                  el: `.${uniqueId} .swiper-pagination`,
+                  clickable: true,
+                  type: paginationType,
+                  dynamicBullets: dynamicBullets,
+              }
             : false,
-
     };
 
     //slider initialize
@@ -161,7 +160,7 @@ export default function Edit(props) {
             <>
                 {dataSuccess ? (
                     <div className="zolo-spinner">
-                        <Spinner />
+                        <ZoloSpinner />
                     </div>
                 ) : (
                     <p>{__('No posts found.', 'zoloblocks')}</p>

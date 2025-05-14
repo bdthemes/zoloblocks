@@ -53,8 +53,8 @@ export { default as ThumbsControl } from '../controls/thumbs-control';
 export { default as TabDynamicControl } from '../controls/tabdynamic-control';
 export { default as ToggleGroup } from '../controls/toggle-group';
 export { default as ZoloRepeater } from '../controls/repeater';
-export {default as OrderSortControl} from '../controls/ordersort-control'
-export {default as Skeleton} from '../controls/skeleton';
+export { default as OrderSortControl } from '../controls/ordersort-control';
+export { default as Skeleton } from '../controls/skeleton';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';
@@ -89,9 +89,46 @@ export {
     getTaxonomies,
     popoverHasAttrVal,
     generateUniqueName,
-    generateOrderSortCSS
+    generateOrderSortCSS,
 } from '../helpers/helper';
 
+export {
+    ZoloCorePanelBody,
+    ZoloTextControl,
+    ZoloRangeControl,
+    ZoloNumberControl,
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloBaseControl,
+    ZoloCardDivider,
+    ZoloInputControl,
+    ZoloToggleGroupControl,
+    ZoloToggleGroupControlOption,
+    ZoloAlignmentMatrixControl,
+    ZoloTabPanel,
+    ZoloTextareaControl,
+    ZoloPopover,
+    ZoloDropdown,
+    ZoloColorPicker,
+    ZoloColorIndicator,
+    ZoloButton,
+    ZoloFlex,
+    ZoloFlexBlock,
+    ZoloFlexItem,
+    ZoloGradientPicker,
+    ZoloIcon,
+    ZoloModal,
+    ZoloTooltip,
+    ZoloToolbarButton,
+    ZoloToolbarGroup,
+    ZoloSpinner,
+    ZoloDateTimePicker,
+    ZoloSearchControl,
+    ZoloPlaceholder,
+    ZoloDashicon,
+    ZoloFormTokenField,
+    ZoloFormFileUpload,
+    ZoloNotice,
+} from '../controls/core-controls';
 
 export { default as ZoloAnimations } from '../controls/animations';
-

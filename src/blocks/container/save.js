@@ -10,11 +10,12 @@ const Save = ({ attributes }) => {
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], panelProps);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], panelProps);
 
-    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerWidth, tagName,link } = attributes;
+    const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType, parentClasses, zoloId, containerWidth, tagName, link } =
+        attributes;
 
     return (
         <DynamicTag
-          tagName={tagName}
+            tagName={tagName}
             {...useBlockProps.save({
                 className: classnames(
                     uniqueId,
@@ -24,11 +25,12 @@ const Save = ({ attributes }) => {
                     classArrayToStr(parentClasses)
                 ),
             })}
-            {...(zoloId && {id: zoloId})}
-            {...(tagName === 'a' && link?.url && {
-              href: link.url,
-              ...(link.openInNewTab ? { rel: 'noreferrer noopener', target: '_blank' } : {})
-            })}
+            {...(zoloId && { id: zoloId })}
+            {...(tagName === 'a' &&
+                link?.url && {
+                    href: link.url,
+                    ...(link.openInNewTab ? { rel: 'noreferrer noopener', target: '_blank' } : {}),
+                })}
         >
             {renderHookBefore && renderHookBefore}
 

@@ -1,4 +1,4 @@
-import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { ZoloNumberControl } from '../core-controls';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -72,7 +72,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                 >
                     <div className="zolo-box-shadow-options">
                         <div className="single-shadow-input">
-                            <NumberControl
+                            <ZoloNumberControl
                                 isShiftStepEnabled={true}
                                 onChange={(hShadow) =>
                                     setAttributes({
@@ -85,7 +85,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                             <div className="input-label">{__('X', 'zoloblocks')}</div>
                         </div>
                         <div className="single-shadow-input">
-                            <NumberControl
+                            <ZoloNumberControl
                                 isShiftStepEnabled={true}
                                 onChange={(vShadow) =>
                                     setAttributes({
@@ -98,7 +98,7 @@ function TextShadowControl({ label = '', controlName, requiredProps }) {
                             <div className="input-label">{__('Y', 'zoloblocks')}</div>
                         </div>
                         <div className="single-shadow-input">
-                            <NumberControl
+                            <ZoloNumberControl
                                 isShiftStepEnabled={true}
                                 onChange={(blur) =>
                                     setAttributes({

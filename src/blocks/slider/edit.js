@@ -4,12 +4,13 @@
 import { useBlockProps, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import Inspector from './inspector';
-import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
 import { useEffect, useRef } from '@wordpress/element';
 import { useMergeRefs } from '@wordpress/compose';
 import { useSelect, useDispatch } from '@wordpress/data';
+
+const { DisplayZoloIcon, ZoloToolbarGroup, ZoloToolbarButton } = window.zoloModule;
 
 // Import Swiper core and required modules
 import {
@@ -40,7 +41,6 @@ import {
 } from 'swiper/modules';
 import { Swiper } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-const { DisplayZoloIcon } = window.zoloModule;
 /**
  * Edit function
  */
@@ -184,9 +184,9 @@ export default function Edit(props) {
             </style>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <BlockControls>
-                <ToolbarGroup>
-                    <ToolbarButton title={__('Add Slide', 'zoloblocks')} icon="insert" onClick={addNewSlide} />
-                </ToolbarGroup>
+                <ZoloToolbarGroup>
+                    <ZoloToolbarButton title={__('Add Slide', 'zoloblocks')} icon="insert" onClick={addNewSlide} />
+                </ZoloToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
                 <Swiper

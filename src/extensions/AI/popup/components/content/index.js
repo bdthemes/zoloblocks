@@ -1,7 +1,8 @@
-import { Button, SelectControl } from '@wordpress/components';
+import { ZoloButton, ZoloSelectControl } from '../../../../../controls/core-controls';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { useRef, useEffect, useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
+
 
 const Content = () => {
     const ref = useRef();
@@ -50,7 +51,7 @@ const Content = () => {
                 {screen === 'request' && (
                     <>
                         <div className="zolo-popup-response-button">
-                            <Button
+                            <ZoloButton
                                 variant="primary"
                                 onClick={() => {
                                     openModal(__(`Simplify the language`, 'zoloblocks'));
@@ -67,8 +68,8 @@ const Content = () => {
                                         fill="#4D4D4D"
                                     />
                                 </svg>
-                            </Button>
-                            <Button
+                            </ZoloButton>
+                            <ZoloButton
                                 className={`longer ${isLonger ? 'active' : ''}`}
                                 variant="primary"
                                 onClick={() => {
@@ -85,8 +86,8 @@ const Content = () => {
                                         fill="#4D4D4D"
                                     />
                                 </svg>
-                            </Button>
-                            <Button
+                            </ZoloButton>
+                            <ZoloButton
                                 className={`shorter ${isShorter ? 'active' : ''}`}
                                 variant="primary"
                                 onClick={() => {
@@ -102,8 +103,8 @@ const Content = () => {
                                         d="M6.50505 8.20489C6.77966 7.93111 7.22423 7.93179 7.49801 8.20641L10.5593 11.277C10.8328 11.5514 10.8324 11.9953 10.5585 12.2692L7.49725 15.3305C7.22305 15.6047 6.77849 15.6047 6.50429 15.3305C6.23009 15.0563 6.23009 14.6118 6.50429 14.3376L8.36693 12.4749H1.70213C1.31435 12.4749 1 12.1606 1 11.7728C1 11.385 1.31435 11.0707 1.70213 11.0707H8.37064L6.50353 9.19785C6.22975 8.92323 6.23043 8.47867 6.50505 8.20489ZM17.4965 9.19785C17.7702 8.92323 17.7696 8.47867 17.4949 8.20489C17.2203 7.93111 16.7758 7.93179 16.502 8.20641L13.4407 11.277C13.1672 11.5514 13.1676 11.9953 13.4415 12.2692L16.5027 15.3305C16.7769 15.6047 17.2215 15.6047 17.4957 15.3305C17.7699 15.0563 17.7699 14.6118 17.4957 14.3376L15.633 12.4749H22.2979C22.6856 12.4749 23 12.1606 23 11.7728C23 11.385 22.6856 11.0707 22.2979 11.0707H15.6293L17.4965 9.19785Z"
                                     />
                                 </svg>
-                            </Button>
-                            <Button
+                            </ZoloButton>
+                            <ZoloButton
                                 className={`grammar ${isGrammar ? 'active' : ''}`}
                                 variant="primary"
                                 onClick={() => {
@@ -120,10 +121,10 @@ const Content = () => {
                                         fill="#4D4D4D"
                                     />
                                 </svg>
-                            </Button>
+                            </ZoloButton>
                         </div>
                         <div className="zolo-popup-response-lang">
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Change Language', 'zoloblocks')}
                                 value= {language}
                                 options={[
@@ -176,8 +177,8 @@ const Content = () => {
                                         setLanguage(value);
                                     }
                                 }}
-                            ></SelectControl>
-                            <SelectControl
+                            ></ZoloSelectControl>
+                            <ZoloSelectControl
                                 label={__('Change tone', 'zoloblocks')}
                                 value= {tone}
                                 options={[
@@ -198,7 +199,7 @@ const Content = () => {
                                     openModal(__(sprintf(`Change tone to %s`, value), 'zoloblocks'));
                                     setTone(value);
                                 }}
-                            ></SelectControl>
+                            ></ZoloSelectControl>
                         </div>
                     </>
                 )}

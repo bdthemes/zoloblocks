@@ -1,17 +1,16 @@
-import { SelectControl, __experimentalInputControl as InputControl, BaseControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { ORDER_BY, USER_ROLE } from './constants';
 import Select2 from 'react-select';
 
-const { Select2AjaxControl } = window.zoloModule;
+const { Select2AjaxControl, ZoloSelectControl, ZoloInputControl, ZoloBaseControl, ZoloCardDivider } = window.zoloModule;
 
 const QuerySettings = ({ attributes, setAttributes }) => {
     const { authorQuery } = attributes;
 
     return (
         <>
-            <InputControl
+            <ZoloInputControl
                 label={__('Item Limit', 'zoloblocks')}
                 value={authorQuery.itemLimit}
                 onChange={(itemLimit) => {
@@ -24,9 +23,9 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 __unstableInputWidth="64px"
             />
 
-            <CardDivider />
+            <ZoloCardDivider />
 
-            <BaseControl label={__('Role', 'zoloblocks')} className="zolo-flex-col-control">
+            <ZoloBaseControl label={__('Role', 'zoloblocks')} className="zolo-flex-col-control">
                 <Select2
                     classNamePrefix="zolo-select"
                     options={USER_ROLE}
@@ -35,7 +34,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                     isMulti={true}
                     closeMenuOnSelect={false}
                 />
-            </BaseControl>
+            </ZoloBaseControl>
 
             <div className="zolo-flex-col-control">
                 <Select2AjaxControl
@@ -49,9 +48,9 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 />
             </div>
 
-            <CardDivider />
+            <ZoloCardDivider />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Order By', 'zoloblocks')}
                 value={authorQuery.orderby}
                 onChange={(orderby) => {
@@ -60,7 +59,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 options={ORDER_BY}
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Sort Order', 'zoloblocks')}
                 value={authorQuery.order}
                 onChange={(order) => {

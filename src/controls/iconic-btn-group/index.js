@@ -1,7 +1,4 @@
-/**
- * WordPress dependencies
- */
-import { __experimentalToggleGroupControl as ToggleGroupControl, Button } from '@wordpress/components';
+import { ZoloToggleGroupControl, ZoloButton } from '../core-controls';
 
 const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false, isPro = false }) => {
     return (
@@ -11,7 +8,7 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false, 
                     {label}
                 </label>
             )}
-            <ToggleGroupControl className="zb-iconic-btn-group">
+            <ZoloToggleGroupControl className="zb-iconic-btn-group">
                 {options &&
                     options.map((option, index) => {
                         const isActive = value == option.value;
@@ -19,7 +16,7 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false, 
                         const isProDeactivated = isPro && isProOption && window.zoloSettings?.zolo_pro_status !== 'active';
 
                         return (
-                            <Button
+                            <ZoloButton
                                 onClick={() => {
                                     if (!isProDeactivated) {
                                         if (toggle) {
@@ -36,10 +33,10 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false, 
                                 label={option.label}
                             >
                                 {option.icon && option.icon !== '' ? option.icon : option.label}
-                            </Button>
+                            </ZoloButton>
                         );
                     })}
-            </ToggleGroupControl>
+            </ZoloToggleGroupControl>
         </div>
     );
 };

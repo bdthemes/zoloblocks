@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { useBlockProps, BlockControls, MediaUpload } from '@wordpress/block-editor';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -14,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -96,7 +95,7 @@ export default function Edit(props) {
             {circlePhoto && (
                 <BlockControls>
                     <>
-                        <ToolbarGroup>
+                        <ZoloToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
                                     setAttributes({
@@ -112,7 +111,7 @@ export default function Edit(props) {
                                 allowedTypes={['image']}
                                 value={circlePhoto && circlePhoto.id}
                                 render={({ open }) => (
-                                    <ToolbarButton
+                                    <ZoloToolbarButton
                                         className="components-toolbar__control"
                                         label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
@@ -120,7 +119,7 @@ export default function Edit(props) {
                                     />
                                 )}
                             />
-                        </ToolbarGroup>
+                        </ZoloToolbarGroup>
                     </>
                 </BlockControls>
             )}

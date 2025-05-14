@@ -1,4 +1,4 @@
-import { RangeControl } from '@wordpress/components';
+import { ZoloRangeControl } from '../core-controls';
 import ResetBtn from '../reset-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 
@@ -21,7 +21,7 @@ const RangeResetControl = ({ label, controlName, min, max, step, help, requiredP
                 </div>
             )}
             <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true} noResponsive={true}>
-                <RangeControl
+                <ZoloRangeControl
                     value={controlVal}
                     onChange={(val) => setAttributes({ [controlName]: val })}
                     {...dataAttributes}
