@@ -79,7 +79,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                                                 color: paletteColor.color,
                                             }}
                                             onClick={() => {
-                                                onChange(`var(--wp--preset--color--${paletteColor.slug})` || paletteColor.color);
+                                                onChange(paletteColor.color);
                                             }}
                                         />
                                         {paletteColor.color === color && (

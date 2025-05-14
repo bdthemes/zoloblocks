@@ -45,93 +45,91 @@ document.addEventListener('DOMContentLoaded', () => {
                     showReset,
                 } = options;
 
-                const commonOptions = {
-                    dataLabels: { enabled: false },
-                    colors: pieChartColor,
-                    chart: {
-                        id: `chart-${uid}`,
-                        background: 'transparent',
-                        toolbar: {
-                            show: showToolbar,
-                            tools: {
-                                download: showDownload,
-                                selection: showSelection,
-                                zoom: showZoom,
-                                zoomin: showZoomIn,
-                                zoomout: showZoomOut,
-                                pan: showPanel,
-                                reset: showReset,
-                            },
-                        },
-                    },
-                    title: {
-                        text: showTitle ? titleObject.text : undefined,
-                        align: titleObject.align,
-                        style: {
-                            color: titleObject.style.color,
-                            fontSize: titleObject.style.fontSize,
-                        },
-                    },
-                    subtitle: {
-                        text: showSubTitle ? subTitleObject.text : undefined,
-                        align: subTitleObject.align,
-                        style: {
-                            color: subTitleObject.style.color,
-                            fontSize: subTitleObject.style.fontSize,
-                        },
-                    },
-                    legend: {
-                        show: showLegend,
-                        position: legendObject.position,
-                        horizontalAlign: legendObject.horizontalAlign,
-                        floating: legendObject.floating,
-                        offsetY: legendObject.offsetY,
-                        offsetX: legendObject.offsetX,
-                        labels: {
-                            colors: legendObject.labels?.colors,
-                            useSeriesColors: legendObject.labels?.useSeriesColors,
-                        },
-                    },
-                    tooltip: {
-                        enabled: showTooltip,
-                        shared: tooltipObject.shared,
-                        followCursor: tooltipObject.followCursor,
-                        intersect: tooltipObject.intersect,
-                        inverseOrder: tooltipObject.inverseOrder,
-                        hideEmptySeries: tooltipObject.hideEmptySeries,
-                        fillSeriesColor: tooltipObject.fillSeriesColor,
-                        theme: tooltipObject.theme,
-                    },
-                    grid: {
-                        show: showGrid,
-                        xaxis: { lines: { show: showGrid ? showGridY : false } },
-                        yaxis: { lines: { show: showGrid ? showGridX : false } },
-                    },
-                    labels: barChartData.options.labels,
-                };
-                const newChartOptions = {
-                    ...commonOptions,
-                    xaxis: {
-                        labels: {
-                            style: {
-                                colors: xAxisColor,
-                                fontSize: xAxisFontSize,
-                            },
-                        },
-                    },
-                    yaxis: {
-                        labels: {
-                            style: {
-                                colors: yAxisColor,
-                                fontSize: yAxisFontSize,
-                            },
-                        },
-                    },
-                };
-                const newPieChartOptions = {
-                    ...commonOptions,
-                    labels: pieChartData.labels,
-                };
+                          const commonOptions = {
+                              dataLabels: { enabled: false },
+                              colors: pieChartColor,
+                              chart: {
+                                  id: `chart-${uid}`,
+                                  background: 'transparent',
+                                  toolbar: {
+                                      show: showToolbar,
+                                      tools: {
+                                          download: showDownload,
+                                          selection: showSelection,
+                                          zoom: showZoom,
+                                          zoomin: showZoomIn,
+                                          zoomout: showZoomOut,
+                                          pan: showPanel,
+                                          reset: showReset,
+                                      },
+                                  },
+                              },
+                              title: {
+                                  text: showTitle ? titleObject.text : undefined,
+                                  align: titleObject.align,
+                                  style: {
+                                      color: titleObject.style.color
+                                  },
+                              },
+                              subtitle: {
+                                  text: showSubTitle ? subTitleObject.text : undefined,
+                                  align: subTitleObject.align,
+                                  style: {
+                                      color: subTitleObject.style.color
+                                  },
+                              },
+                              legend: {
+                                  show: showLegend,
+                                  position: legendObject.position,
+                                  horizontalAlign: legendObject.horizontalAlign,
+                                  floating: legendObject.floating,
+                                  offsetY: legendObject.offsetY,
+                                  offsetX: legendObject.offsetX,
+                                  labels: {
+                                      colors: legendObject.labels?.colors,
+                                      useSeriesColors: legendObject.labels?.useSeriesColors,
+                                  },
+                              },
+                              tooltip: {
+                                  enabled: showTooltip,
+                                  shared: tooltipObject.shared,
+                                  followCursor: tooltipObject.followCursor,
+                                  intersect: tooltipObject.intersect,
+                                  inverseOrder: tooltipObject.inverseOrder,
+                                  hideEmptySeries: tooltipObject.hideEmptySeries,
+                                  fillSeriesColor: tooltipObject.fillSeriesColor,
+                                  theme: tooltipObject.theme,
+                              },
+                              grid: {
+                                  show: showGrid,
+                                  xaxis: { lines: { show: showGrid ? showGridY : false } },
+                                  yaxis: { lines: { show: showGrid ? showGridX : false } },
+                              },
+                              labels: barChartData.options.labels,
+                          };
+                          const newChartOptions = {
+                              ...commonOptions,
+                              xaxis: {
+                                  labels: {
+                                      style: {
+                                          colors: xAxisColor,
+                                          fontSize: xAxisFontSize,
+                                      },
+                                  },
+                              },
+                              yaxis: {
+                                  labels: {
+                                      style: {
+                                          colors: yAxisColor,
+                                          fontSize: yAxisFontSize,
+                                      },
+                                  },
+                              },
+                          };
+                          const newPieChartOptions = {
+                              ...commonOptions,
+                              labels: pieChartData.labels,
+                          };
 
                 const root = createRoot(item);
                 root.render(

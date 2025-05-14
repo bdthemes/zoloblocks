@@ -50,6 +50,7 @@ import { applyFilters } from '@wordpress/hooks';
 export default function Style({ props }) {
     const { attributes, setAttributes } = props;
     const {
+        addSubmenuEffect,
         subMenuTextColor,
         subMenuTextHoverColor,
         subMenuTextActiveColor,
@@ -330,6 +331,34 @@ export default function Style({ props }) {
      */
     const desktopAllStyle = `
 
+        ${addSubmenuEffect === 'hover' ?  `
+                .zolo-navigation-wrapper:not(.is-menu-active) .${uniqueId}.zolo-navigation-item:hover > .zolo-navigation-submenu-wrapper{
+                    visibility: visible;
+                    opacity: 1;
+                    pointer-events: all;
+                    transform: translateY(0);
+                }
+        ` 
+            :  `
+                .zolo-navigation-wrapper:not(.is-menu-active) .${uniqueId}.zolo-navigation-item.submenu-open > .zolo-navigation-submenu-wrapper {
+                    visibility: visible;
+                    opacity: 1;
+                    pointer-events: all;
+                    height: auto;
+                    width: auto;
+                    background-color: #fff;
+                    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+                }
+
+                .zolo-navigation-wrapper:not(.is-menu-active) .${uniqueId}.zolo-navigation-submenu-wrapper {
+                    visibility: hidden;
+                    opacity: 0;
+                    pointer-events: none;
+                    height: 0;
+                    transition: all 0.3s ease;
+                    overflow: hidden;
+                }
+            ` }          
         .zolo-block.wp-block-zolo-navigation .${uniqueId}.zolo-navigation-item .zolo-navigation-submenu-wrapper .wp-block-zolo-navigation-submenu,
         .zolo-block.wp-block-zolo-navigation .${uniqueId}.zolo-navigation-item .zolo-navigation-submenu-wrapper .wp-block-zolo-megamenu {
             ${dropdownWrapBGDesk}
