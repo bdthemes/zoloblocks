@@ -1392,21 +1392,30 @@ const BGControl = (props) => {
                             return (
                                 <>
                                     <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ZoloToggleGroupControl>
-                                            {BACKGROUND_TYPES.map(({ value, label }) => (
-                                                <ZoloToggleGroupControlOption
-                                                    key={value}
-                                                    variant={hov_backgroundType === value ? 'primary' : 'secondary'}
-                                                    onClick={() =>
-                                                        setAttributes({
-                                                            [`hov_${controlName}backgroundType`]: value,
-                                                        })
-                                                    }
-                                                >
-                                                    {label}
-                                                </ZoloToggleGroupControlOption>
-                                            ))}
-                                        </ZoloToggleGroupControl>
+                                        <div className="zolo-toggle-group-control">
+                                            <ZoloToggleGroupControl
+                                                className="zolo-toggle-box-custom-css"
+                                                value={hov_backgroundType}
+                                                onChange={(value) => setAttributes({
+                                                     [`hov_${controlName}backgroundType`]: value
+                                                })}
+                                            >
+                                                {BACKGROUND_TYPES.map(({ value, label }) => (
+                                                    <ZoloToggleGroupControlOption
+                                                        value={value}
+                                                        label={label}
+                                                        key={value}
+                                                    />
+                                                ))}
+                                                {video && (
+                                                    <ZoloToggleGroupControlOption
+                                                        value="video"
+                                                        label={__('Video', 'zoloblocks')}
+                                                        key="video"
+                                                    />
+                                                )}
+                                            </ZoloToggleGroupControl>
+                                        </div>
                                     </ZoloBaseControl>
 
                                     {hov_backgroundType === 'classic' && (

@@ -150,10 +150,15 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                         step={0.1}
                                     />
                                     <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ZoloToggleGroupControl className="overlay-type-group">
-                                            <ZoloToggleGroupControlOption value="none" label={__('None', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="color" label={__('Color', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="gradient" label={__('Gradient', 'zoloblocks')} />
+                                        <ZoloToggleGroupControl className="overlay-type-group zolo-toggle-box-custom-css"
+                                         value={overlayType}
+                                           onChange={(value) => setAttributes({
+                                            [`${controlName}overlayType`]: value
+                                         })}
+                                        >
+                                            <ZoloToggleGroupControlOption key="normal-none" showTooltip={true} value="none" label={__('None', 'zoloblocks')}/>
+                                            <ZoloToggleGroupControlOption value="classic" label={__('Classic', 'zoloblocks')} key="normal-classic" showTooltip={true} />
+                                            <ZoloToggleGroupControlOption value="gradient" label={__('Gradient', 'zoloblocks')} key="normal-gradient" showTooltip={true} />
                                         </ZoloToggleGroupControl>
                                     </ZoloBaseControl>
 
@@ -1324,10 +1329,15 @@ const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
                                         step={0.1}
                                     />
                                     <ZoloBaseControl label={__('Background Type', 'zoloblocks')}>
-                                        <ZoloToggleGroupControl className="overlay-type-group">
-                                            <ZoloToggleGroupControlOption value="none" label={__('None', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="color" label={__('Color', 'zoloblocks')} />
-                                            <ZoloToggleGroupControlOption value="gradient" label={__('Gradient', 'zoloblocks')} />
+                                        <ZoloToggleGroupControl className="overlay-type-group zolo-toggle-box-custom-css"
+                                         value={hov_overlayType }
+                                         onChange={(value) => setAttributes({
+                                            [`hov_${controlName}overlayType`]: value
+                                         })}
+                                        >
+                                             <ZoloToggleGroupControlOption key="hover-none" showTooltip={true} value="none" label={__('None', 'zoloblocks')} />
+                                            <ZoloToggleGroupControlOption key="hover-classic" showTooltip={true}  value="classic" label={__('Classic', 'zoloblocks')}/>
+                                             <ZoloToggleGroupControlOption key="hover-gradient" showTooltip={true} value="gradient" label={__('Gradient', 'zoloblocks')}/>
                                         </ZoloToggleGroupControl>
                                     </ZoloBaseControl>
 
