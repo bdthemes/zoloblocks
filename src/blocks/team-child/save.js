@@ -92,15 +92,16 @@ const Save = ({ attributes }) => {
                         {showSocialProfiles && (
                             <div className="zolo-social-share">
                                 {socialProfiles &&
-                                    socialProfiles.map((profile, index) => {
+                                    socialProfiles.map((profile) => {
+                                        const uniqueKey =
+                                            profile.id || profile.platform || `team-social-${Math.random().toString(36).slice(2)}`;
                                         return (
                                             <a
-                                                className="zolo-social-link"
                                                 href={profile.link && profile.link.url}
-                                                key={index}
-                                                rel={profile.link && profile.link.openInNewTab ? 'noreferer noopener' : undefined}
+                                                key={uniqueKey}
                                                 target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
-                                                title={profile.title}
+                                                rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
+                                                className={`zolo-social-item zolo-${profile.platform}`}
                                             >
                                                 <DisplayZoloIcon icon={profile.icon} />
                                             </a>

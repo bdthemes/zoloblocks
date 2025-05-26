@@ -33,7 +33,7 @@ const {
     BoxShadowControl,
     BorderControl,
     ResDimensionsControl,
-    TypographyDropdown
+    TypographyDropdown,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -782,6 +782,7 @@ function Inspector(props) {
                             {chartType === 'pie' || chartType === 'donut'
                                 ? Array.from({ length: pieChartLength }, (_, index) => index).map((i) => (
                                       <ColorControl
+                                          key={`pie-color-${i}`}
                                           label={__(`${chartType} color ${i + 1}`, 'zoloblocks')}
                                           color={attributes.pieChartColor[i]}
                                           onChange={(color) => {
@@ -791,9 +792,9 @@ function Inspector(props) {
                                           }}
                                       />
                                   ))
-                                : // Else condition
-                                  Array.from({ length: barChartLength }, (_, index) => index).map((i) => (
+                                : Array.from({ length: barChartLength }, (_, index) => index).map((i) => (
                                       <ColorControl
+                                          key={`bar-color-${i}`}
                                           label={__(`${chartType} color ${i + 1}`, 'zoloblocks')}
                                           color={attributes.pieChartColor[i]}
                                           onChange={(color) => {
@@ -823,9 +824,9 @@ function Inspector(props) {
                                         }
                                     />
                                     <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={TITLE_TYPO}
-                                            requiredProps={requiredProps}
+                                        label={__('Typography', 'zoloblocks')}
+                                        typoPrefixConstant={TITLE_TYPO}
+                                        requiredProps={requiredProps}
                                     />
                                 </ZoloPanelBody>
                             </>
@@ -848,10 +849,10 @@ function Inspector(props) {
                                             })
                                         }
                                     />
-                                     <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={SUB_TITLE_TYPO}
-                                            requiredProps={requiredProps}
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zoloblocks')}
+                                        typoPrefixConstant={SUB_TITLE_TYPO}
+                                        requiredProps={requiredProps}
                                     />
                                 </ZoloPanelBody>
                             </>

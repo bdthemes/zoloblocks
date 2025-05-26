@@ -144,9 +144,9 @@ function RenderView({ attributes, setAttributes }) {
                 )}
                 {postResults.length > 0 &&
                     postResults.map((post) => {
+                        const uniqueKey = post.id || post.slug || `post-${Math.random().toString(36).slice(2)}`;
                         const titleLimitWords = titleWords > 0 ? post.title.trim().split(' ', titleWords).join(' ') : post.title;
                         const excerptLimitWords = excerptWords > 0 ? post.excerpt.trim().split(' ', excerptWords).join(' ') : post.excerpt;
-                        const uniqueKey = post.id || post.slug || Math.random().toString(36).slice(2);
                         const categoriesHtml =
                             post.categories.length > 0 ? (
                                 <ul className="zolo-post-category">

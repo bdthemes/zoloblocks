@@ -24,7 +24,8 @@ const Save = (props) => {
         >
             {renderHookBefore && renderHookBefore}
             {businessList &&
-                businessList.map((profile, index) => {
+                businessList.map((profile) => {
+                    const uniqueKey = profile.id || profile.day || `business-${Math.random().toString(36).slice(2)}`;
                     return (
                         <div
                             className={
@@ -32,7 +33,7 @@ const Save = (props) => {
                                     ? 'zolo-biz-hours-item zolo-current-date'
                                     : 'zolo-biz-hours-item-closed  zolo-hour-closed'
                             }
-                            key={index}
+                            key={uniqueKey}
                         >
                             {profile.toggleworkday
                                 ? profile.name && <span className="zolo-biz-day">{profile.name}</span>
