@@ -98,7 +98,7 @@ const v1 = {
                                     </>
                                 )}
                                 {preset == 'zolo-list-style-4' && (
-                                    <div class="zolo-list-hover-icon">
+                                    <div className="zolo-list-hover-icon">
                                         <DisplayZoloIcon icon={linkHoverIcon} />
                                     </div>
                                 )}

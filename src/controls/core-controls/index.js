@@ -90,7 +90,7 @@ export const ZoloTabPanel = (props) => {
 };
 
 export const ZoloTextareaControl = (props) => {
-    return <TextareaControl {...props} />;
+    return <TextareaControl {...props} __nextHasNoMarginBottom={true} />;
 };
 
 export const ZoloButton = (props) => {

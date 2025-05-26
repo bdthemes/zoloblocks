@@ -229,7 +229,7 @@ export default function Edit(props) {
                                     height="24"
                                     viewBox="0 0 24 24"
                                     fill="none"
-                                    class="zolo-image-icon"
+                                    className="zolo-image-icon"
                                     aria-hidden="true"
                                     focusable="false"
                                 >
