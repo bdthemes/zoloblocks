@@ -1,7 +1,16 @@
 /**
  * Internal dependencies
  */
-const { generateResRangeAttributies, generateResAlignmentAttributies, generateBorderAttributies, generateDimensionAttributes, generateBoxShadowAttributies, generateNormalBGAttributes, generateMaskAttributes, generateTypographyAttributes } = window.zoloModule;
+const {
+    generateResRangeAttributies,
+    generateResAlignmentAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+    generateNormalBGAttributes,
+    generateMaskAttributes,
+    generateTypographyAttributes,
+} = window.zoloModule;
 
 import {
     PHOTO_MASK,

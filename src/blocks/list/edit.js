@@ -235,14 +235,14 @@ export default function Edit(props) {
                                                                     }}
                                                                 />
                                                             )}
-                                                            <div class="zolo-list-hover-icon">
+                                                            <div className="zolo-list-hover-icon">
                                                                 <DisplayZoloIcon icon={linkHoverIcon} />
                                                             </div>
                                                         </div>
                                                     </>
                                                 )}
                                                 {contentLayout !== 'horizontal' && (
-                                                    <div class="zolo-list-hover-icon">
+                                                    <div className="zolo-list-hover-icon">
                                                         <DisplayZoloIcon icon={linkHoverIcon} />
                                                     </div>
                                                 )}

@@ -43,7 +43,7 @@ export default function Edit(props) {
                         </p>
                         <figure className="wp-block-image size-full">
                             <img src={zoloPlaceholders?.placeholder} alt={__('image Placeholder', 'zoloblocks')} />
-                            <figcaption class="wp-element-caption">{__('This is image caption', 'zoloblocks')}</figcaption>
+                            <figcaption className="wp-element-caption">{__('This is image caption', 'zoloblocks')}</figcaption>
                         </figure>
                     </>
                 )}
