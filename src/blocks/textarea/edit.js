@@ -113,7 +113,7 @@ export default function Edit(props) {
                             rows={4}
                             placeholder={__(placeholder, 'zoloblocks')}
                             required={isRequired}
-                            onChange={() => null}
+                            onChange={(e) => setAttributes({ defaultValue: e.target.value })}
                         />
                     </div>
                 </div>

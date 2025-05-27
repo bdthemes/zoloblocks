@@ -114,7 +114,7 @@ export default function Edit(props) {
                             name={generateUniqueName(uniqueId, customNameAttribute, 'name')}
                             required={isRequired}
                             placeholder={__(placeholder, 'zoloblocks')}
-                            onChange={() => null}
+                            onChange={(e) => setAttributes({ defaultValue: e.target.value })}
                         />
                     </div>
                 </div>

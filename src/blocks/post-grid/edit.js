@@ -38,7 +38,7 @@ export default function Edit(props) {
     });
 
     useEffect(() => {
-        if (typeof postQuery === 'undefined') {
+        if (!postQuery || typeof postQuery === 'undefined') {
             setAttributes({
                 postQuery: {
                     postType: 'post',
@@ -49,6 +49,7 @@ export default function Edit(props) {
                     postOrder: 'desc',
                     postThumbnail: '',
                     showPagination: false,
+                    currentPostType: 'post',
                 },
             });
         }

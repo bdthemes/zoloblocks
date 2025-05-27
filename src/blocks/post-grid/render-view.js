@@ -78,7 +78,17 @@ function RenderView({ attributes, setAttributes }) {
         const apiData = {
             zolo_nonce: zoloParams.zolo_nonce,
             attributes: attributes,
-            postQuery: postQuery,
+            postQuery: postQuery || {
+                postType: 'post',
+                postExclude: [],
+                postPerPage: 6,
+                postOffset: 0,
+                postOrderby: 'date',
+                postOrder: 'desc',
+                postThumbnail: '',
+                showPagination: false,
+                currentPostType: 'post',
+            },
             postTermId: termId,
             postTaxonomy: postTaxonomy,
         };
@@ -271,10 +281,8 @@ function RenderView({ attributes, setAttributes }) {
                                         )}
                                         {showExcerpt && (
                                             <div className="zolo-post-desc">
-                                                <p>
-                                                    <RawHTML>{excerptLimitWords}</RawHTML>
-                                                    {excerptindicator}
-                                                </p>
+                                                <RawHTML>{excerptLimitWords}</RawHTML>
+                                                {excerptindicator}
                                             </div>
                                         )}
                                         {showMeta && preset !== 'style-5' && preset !== 'style-6' && dateRTimeHtml}
