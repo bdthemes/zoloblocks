@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
 
 const {
     ZoloToggleControl,
+    ZoloTextControl,
     ZoloTextareaControl,
     ZoloCardDivider,
     ResRangeControl,
@@ -106,7 +107,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             {showLabel && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Field Label', 'zoloblocks')}
                                     value={label}
                                     onChange={(v) => setAttributes({ label: v })}
@@ -115,14 +116,14 @@ function Inspector(props) {
                                 />
                             )}
                             {preset !== 'style-3' && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Placeholder', 'zoloblocks')}
                                     value={placeholder}
                                     onChange={(v) => setAttributes({ placeholder: v })}
                                 />
                             )}
                             <div className="zolo-flex-col-control">
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Email Validation Message', 'zoloblocks')}
                                     value={emailValidationMsg}
                                     onChange={(v) => setAttributes({ emailValidationMsg: v })}
@@ -157,7 +158,7 @@ function Inspector(props) {
                                 />
                             )}
                             <ZoloCardDivider />
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Default Value', 'zoloblocks')}
                                 value={defaultValue || ''}
                                 onChange={(v) => setAttributes({ defaultValue: v })}
@@ -165,7 +166,7 @@ function Inspector(props) {
                             />
                             <ZoloCardDivider />
                             <div className="zolo-flex-col-control">
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Custom Name Attribute', 'zoloblocks')}
                                     value={customNameAttribute || ''}
                                     onChange={(v) => {
