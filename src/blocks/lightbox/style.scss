@@ -53,6 +53,31 @@
     border: 1px solid #49494f;
     border-radius: 50%;
     transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+    animation: continuousHoverEffect 2s infinite;
+    overflow: hidden;
+}
+
+@keyframes continuousHoverEffect {
+    0% {
+        transform: scale(1);
+        box-shadow:
+            0 0 0 0 rgba(38, 103, 255, 0.4),
+            0 0 0 0 rgba(38, 103, 255, 0.2); 
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow:
+            0 0 0 15px rgba(38, 103, 255, 0),
+            0 0 0 30px rgba(38, 103, 255, 0); 
+            opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 0 0 rgba(38, 103, 255, 0),
+            0 0 0 0 rgba(38, 103, 255, 0);
+            opacity: 0.8;
+    }
 }
 
 .zolo-lightbox-btn-1.zolo-play-btn .zolo-btn-icon::before {
@@ -76,6 +101,7 @@
 .zolo-lightbox-btn-1.zolo-play-btn:hover .zolo-btn-icon {
     transform: scale3d(1.1, 1.1, 1);
     color: #fff;
+    animation: none;
 }
 
 .zolo-lightbox-btn-1.zolo-play-btn:hover .zolo-btn-text {

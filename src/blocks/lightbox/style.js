@@ -390,7 +390,7 @@ export default function Style({ props }) {
              ${playBtnIconSizeDesk}
              ${playBtnIconHDesk}
         }
-        .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
+        .${uniqueId} .zolo-play-btn .zolo-btn-icon::before{
             ${iconHBgColorDesk}
         }
 
@@ -485,7 +485,7 @@ export default function Style({ props }) {
              ${playBtnIconSizeTab}
              ${playBtnIconHTab}
         }
-        .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
+        .${uniqueId} .zolo-play-btn .zolo-btn-icon::before{
             ${iconHBgColorTab}
         }
         .${uniqueId}.zolo-lightbox-button .zolo-play-btn .zolo-btn-text {
@@ -539,7 +539,7 @@ export default function Style({ props }) {
              ${playBtnIconSizeMob}
              ${playBtnIconHMob}
         }
-        .${uniqueId} .zolo-play-btn .zolo-btn-icon:before{
+        .${uniqueId} .zolo-play-btn .zolo-btn-icon::before{
             ${iconHBgColorMob}
         }
         .${uniqueId}.zolo-lightbox-button .zolo-play-btn .zolo-btn-text {
