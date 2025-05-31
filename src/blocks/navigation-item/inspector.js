@@ -89,6 +89,7 @@ const Inspector = (props) => {
                                 checked={attributes?.addSubmenu}
                                 onChange={(value) => setAttributes({ addSubmenu: value })}
                             />
+                            { addSubmenu && (
                             <div className="zolo-flex-row-control-tab">
                                 <IconicBtnGroup
                                     label={__('Event Type', 'zoloblocks')}
@@ -103,7 +104,7 @@ const Inspector = (props) => {
                                         { label: 'Click', value: 'click' },
                                     ]}
                                 />
-                            </div>
+                            </div> ) }
                             {attributes?.addSubmenu && !hasInnerBlocks && !isNested && (
                                 <IconicBtnGroup
                                     label={__('Submenu Type', 'zoloblocks')}
