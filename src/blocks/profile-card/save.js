@@ -106,20 +106,12 @@ const Save = (props) => {
                             {showStatus && (
                                 <div className="zb-profile-status">
                                     {statusItems &&
-                                        statusItems.length > 0 &&
-                                        statusItems.map((item, index) => {
+                                        statusItems.map((item) => {
+                                            const uniqueKey = item.id || item.title || `status-${Math.random().toString(36).slice(2)}`;
                                             return (
-                                                <div className="zb-profile-status-item" key={index}>
-                                                    <RichText.Content
-                                                        tagName="span"
-                                                        className="zb-profile-status-count"
-                                                        value={item && item.number}
-                                                    />
-                                                    <RichText.Content
-                                                        tagName="span"
-                                                        className="zb-profile-status-text"
-                                                        value={item && item.label}
-                                                    />
+                                                <div className="zolo-status-item" key={uniqueKey}>
+                                                    {item.title && <span className="zolo-status-title">{item.title}</span>}
+                                                    {item.value && <span className="zolo-status-value">{item.value}</span>}
                                                 </div>
                                             );
                                         })}
@@ -141,14 +133,18 @@ const Save = (props) => {
                                 {showSocialProfiles && (
                                     <div className="zb-profile-socail-share">
                                         {socialProfiles &&
-                                            socialProfiles.map((profile, index) => {
+                                            socialProfiles.map((profile) => {
+                                                const uniqueKey =
+                                                    profile.id ||
+                                                    profile.platform ||
+                                                    `profile-social-${Math.random().toString(36).slice(2)}`;
                                                 return (
                                                     <a
                                                         href={profile.link && profile.link.url}
-                                                        key={index}
-                                                        rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
-                                                        target={profile.link.openInNewTab ? '_blank' : undefined}
-                                                        title={profile.title}
+                                                        key={uniqueKey}
+                                                        target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
+                                                        rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
+                                                        className={`zolo-social-item zolo-${profile.platform}`}
                                                     >
                                                         <DisplayZoloIcon icon={profile.icon} />
                                                     </a>
@@ -166,20 +162,12 @@ const Save = (props) => {
                                 {showStatus && (
                                     <div className="zb-profile-status">
                                         {statusItems &&
-                                            statusItems.length > 0 &&
-                                            statusItems.map((item, index) => {
+                                            statusItems.map((item) => {
+                                                const uniqueKey = item.id || item.title || `status-${Math.random().toString(36).slice(2)}`;
                                                 return (
-                                                    <div className="zb-profile-status-item" key={index}>
-                                                        <RichText.Content
-                                                            tagName="span"
-                                                            className="zb-profile-status-count"
-                                                            value={item && item.number}
-                                                        />
-                                                        <RichText.Content
-                                                            tagName="span"
-                                                            className="zb-profile-status-text"
-                                                            value={item && item.label}
-                                                        />
+                                                    <div className="zolo-status-item" key={uniqueKey}>
+                                                        {item.title && <span className="zolo-status-title">{item.title}</span>}
+                                                        {item.value && <span className="zolo-status-value">{item.value}</span>}
                                                     </div>
                                                 );
                                             })}
@@ -205,14 +193,22 @@ const Save = (props) => {
                                     {showSocialProfiles && (
                                         <div className="zb-profile-socail-share">
                                             {socialProfiles &&
-                                                socialProfiles.map((profile, index) => {
+                                                socialProfiles.map((profile) => {
+                                                    const uniqueKey =
+                                                        profile.id ||
+                                                        profile.platform ||
+                                                        `profile-social-${Math.random().toString(36).slice(2)}`;
                                                     return (
                                                         <a
                                                             href={profile.link && profile.link.url}
-                                                            key={index}
-                                                            rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
-                                                            target={profile.link.openInNewTab ? '_blank' : undefined}
-                                                            title={profile.title}
+                                                            key={uniqueKey}
+                                                            target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
+                                                            rel={
+                                                                profile.link && profile.link.openInNewTab
+                                                                    ? 'noopener noreferrer'
+                                                                    : undefined
+                                                            }
+                                                            className={`zolo-social-item zolo-${profile.platform}`}
                                                         >
                                                             <DisplayZoloIcon icon={profile.icon} />
                                                         </a>
