@@ -40,6 +40,7 @@ export default function Edit(props) {
         isRequired,
         showRequiredSymbol,
         customNameAttribute,
+        defaultValue,
     } = attributes;
 
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
@@ -111,6 +112,8 @@ export default function Edit(props) {
                             name={generateUniqueName(uniqueId, customNameAttribute, 'number')}
                             required={isRequired}
                             placeholder={__(placeholder, 'zoloblocks')}
+                            value={defaultValue || ''}
+                            onChange={(e) => setAttributes({ defaultValue: e.target.value })}
                         />
                     </div>
                 </div>
