@@ -37,6 +37,7 @@ const attributes = {
     ...generateDimensionAttributes(SLIDE_PADDING),
     ...generateBorderAttributies(SLIDE_BORDER),
     ...generateDimensionAttributes(SLIDE_BORDER_RADIUS),
+
     enableOverlay: {
         type: 'boolean',
         default: false,
