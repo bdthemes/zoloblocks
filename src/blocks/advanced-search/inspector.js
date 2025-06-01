@@ -2,14 +2,18 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { SelectControl, TextControl, ToggleControl, CardDivider } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
 /**
  * Internal depencencies
  */
+
 const {
+    ZoloToggleControl,
+    ZoloSelectControl,
+    ZoloCardDivider,
+    ZoloTextControl,
     HeaderTabs,
     ResRangeControl,
     ColorControl,
@@ -97,7 +101,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Presets', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.advancedSearch.presets', PRESETS)}
@@ -119,8 +123,8 @@ function Inspector(props) {
                                     options={BUTTON_LAYOUT_TYPES}
                                 />
                             </div>
-                            <CardDivider />
-                            <ToggleControl
+                            <ZoloCardDivider />
+                            <ZoloToggleControl
                                 label={__('Button Text', 'zoloblocks')}
                                 checked={showButtonText}
                                 onChange={(value) =>
@@ -129,7 +133,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Icon', 'zoloblocks')}
                                 checked={showIcon}
                                 onChange={(value) =>
@@ -156,7 +160,7 @@ function Inspector(props) {
                             )}
 
                             {showButtonText && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Text', 'zoloblocks')}
                                     value={buttonText}
                                     onChange={(value) =>
@@ -170,7 +174,7 @@ function Inspector(props) {
                             {preset === 'zolo-search-2' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Label', 'zoloblocks')}</div>
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Text', 'zoloblocks')}
                                         value={labelText}
                                         onChange={(value) =>
@@ -184,7 +188,7 @@ function Inspector(props) {
                             {preset === 'zolo-search-1' && (
                                 <>
                                     <div className="zolo-custom-heading">{__('Placeholder', 'zoloblocks')}</div>
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Text', 'zoloblocks')}
                                         value={placeholder}
                                         onChange={(value) => setAttributes({ placeholder: value })}
@@ -226,7 +230,7 @@ function Inspector(props) {
                                                     typoPrefixConstant={LABEL_TYPOGRAPHY}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <NormalBGControl requiredProps={requiredProps} controlName={LABEL_BG} noMainBGImg={false} />
                                                 <ResDimensionsControl
                                                     label={__('Padding', 'zoloblocks')}
@@ -241,7 +245,7 @@ function Inspector(props) {
                                                         requiredProps={requiredProps}
                                                     />
                                                 )}
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={LABEL_BORDER}
@@ -321,7 +325,7 @@ function Inspector(props) {
                                             typoPrefixConstant={INPUT_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={INPUT_BG} noMainBGImg={false} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -329,7 +333,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={INPUT_BORDER}
@@ -413,7 +417,7 @@ function Inspector(props) {
                                                 )}
                                             </>
                                         )}
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={BUTTON_BG} noMainBGImg={false} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -429,7 +433,7 @@ function Inspector(props) {
                                             />
                                         )}
 
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={BUTTON_BORDER}

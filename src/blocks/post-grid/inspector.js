@@ -1,7 +1,32 @@
-import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextControl, ToggleControl, CardDivider, BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
+import { InspectorControls } from '@wordpress/block-editor';
+
+const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloCardDivider,
+    ZoloTextControl,
+    ResDimensionsControl,
+    QueryControl,
+    ResRangeControl,
+    RangeResetControl,
+    NormalBGControl,
+    BorderControl,
+    BoxShadowControl,
+    HeaderTabs,
+    TabPanelControl,
+    ColorControl,
+    TypographyDropdown,
+    ResCounterControl,
+    AdvancedOptions,
+    ZoloIconPicker,
+    ResAlignmentControl,
+    ZoloPanelBody,
+    ResGapControl,
+    getTaxonomies,
+    Select2AjaxControl,
+} = window.zoloModule;
 
 import {
     PRESETS,
@@ -51,6 +76,13 @@ import {
     FILTER_PADDING,
     FILTER_ALIGN,
     FILTER_GAP,
+    INNER_CONTENT_PADDING,
+    INNER_CONTENT_MARGIN,
+    INNER_CONTENT_BG,
+    INNER_CONTENT_BORDER,
+    INNER_CONTENT_BORDER_RADIUS,
+    INNER_CONTENT_SHADOW,
+    BOTTOM_CONTENT_SPACING,
 } from './constants';
 
 import {
@@ -66,28 +98,6 @@ import {
 
 import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, PAGINARION_TYPE } from '../../../src/global/constants';
 import { applyFilters } from '@wordpress/hooks';
-
-const {
-    ResDimensionsControl,
-    QueryControl,
-    ResRangeControl,
-    RangeResetControl,
-    NormalBGControl,
-    BorderControl,
-    BoxShadowControl,
-    HeaderTabs,
-    TabPanelControl,
-    ColorControl,
-    TypographyDropdown,
-    ResCounterControl,
-    AdvancedOptions,
-    ZoloIconPicker,
-    ResAlignmentControl,
-    ZoloPanelBody,
-    ResGapControl,
-    getTaxonomies,
-    Select2AjaxControl,
-} = window.zoloModule;
 
 function Inspector(props) {
     const { attributes, setAttributes, block } = props;
@@ -206,6 +216,14 @@ function Inspector(props) {
                     zolo_gridColumnsRange: 3,
                 });
                 break;
+            case 'style-6':
+                setAttributes({
+                    showExcerpt: false,
+                    showReadMore: true,
+                    showThumbnail: true,
+                    zolo_gridColumnsRange: 3,
+                });
+                break;
             default:
                 break;
         }
@@ -233,54 +251,56 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Styles', 'zoloblocks')}
                                 value={preset}
                                 options={applyFilters('zolo.postGrid.presets', PRESETS)}
                                 onChange={(selected) => changePremade(selected)}
                             />
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Title', 'zoloblocks')}
                                 checked={showTitle}
                                 onChange={() => setAttributes({ showTitle: !showTitle })}
                             />
 
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Excerpt', 'zoloblocks')}
                                 checked={showExcerpt}
                                 onChange={() => setAttributes({ showExcerpt: !showExcerpt })}
                             />
 
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Read More Button', 'zoloblocks')}
                                 checked={showReadMore}
                                 onChange={() => setAttributes({ showReadMore: !showReadMore })}
                             />
 
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Category', 'zoloblocks')}
                                 checked={showCategory}
                                 onChange={() => setAttributes({ showCategory: !showCategory })}
                             />
-                            <ToggleControl
-                                label={__('Author', 'zoloblocks')}
-                                checked={showAuthor}
-                                onChange={() => setAttributes({ showAuthor: !showAuthor })}
-                            />
-                            <ToggleControl
-                                label={__('Meta', 'zoloblocks')}
+                            {preset !== 'style-6' && (
+                                <ZoloToggleControl
+                                    label={__('Author', 'zoloblocks')}
+                                    checked={showAuthor}
+                                    onChange={() => setAttributes({ showAuthor: !showAuthor })}
+                                />
+                            )}
+                            <ZoloToggleControl
+                                label={preset === 'style-6' ? __('Date', 'zoloblocks') : __('Meta', 'zoloblocks')}
                                 checked={showMeta}
                                 onChange={() => setAttributes({ showMeta: !showMeta })}
                             />
                             {showMeta && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Reading Time', 'zoloblocks')}
                                     checked={showReadingTime}
                                     onChange={() => setAttributes({ showReadingTime: !showReadingTime })}
                                 />
                             )}
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Pagination', 'zoloblocks')}
                                 checked={postQuery?.showPagination}
                                 onChange={(showPagination) =>
@@ -296,7 +316,7 @@ function Inspector(props) {
                                     <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                         {__('Title', 'zoloblocks')}
                                     </div>
-                                    <SelectControl
+                                    <ZoloSelectControl
                                         label={__('Tag', 'zoloblocks')}
                                         value={titleTag}
                                         options={HEADING}
@@ -323,45 +343,49 @@ function Inspector(props) {
                                         max={100}
                                         step={1}
                                     />
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Indicator', 'zoloblocks')}
                                         value={excerptindicator}
                                         onChange={(excerptindicator) => setAttributes({ excerptindicator })}
                                     />
                                 </>
                             )}
-                            <div className="zolo-custom-heading">{__('Meta', 'zoloblocks')}</div>
-                            {showMeta && showReadingTime && (
-                                <TextControl
-                                    label={__('Separator', 'zoloblocks')}
-                                    value={metaSeparator}
-                                    onChange={(value) => setAttributes({ metaSeparator: value })}
-                                />
-                            )}
-                            {showAuthor && (
-                                <TextControl
-                                    label={__('Author Prefix', 'zoloblocks')}
-                                    value={authorPrefix}
-                                    onChange={(authorPrefix) => setAttributes({ authorPrefix })}
-                                />
+                            {preset !== 'style-6' && (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Meta', 'zoloblocks')}</div>
+                                    {showMeta && showReadingTime && (
+                                        <ZoloTextControl
+                                            label={__('Separator', 'zoloblocks')}
+                                            value={metaSeparator}
+                                            onChange={(value) => setAttributes({ metaSeparator: value })}
+                                        />
+                                    )}
+                                    {showAuthor && (
+                                        <ZoloTextControl
+                                            label={__('Author Prefix', 'zoloblocks')}
+                                            value={authorPrefix}
+                                            onChange={(authorPrefix) => setAttributes({ authorPrefix })}
+                                        />
+                                    )}
+                                </>
                             )}
                         </ZoloPanelBody>
 
                         {showReadMore && (
                             <ZoloPanelBody title={__('Read More Button', 'zoloblocks')} panelProps={props}>
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Text', 'zoloblocks')}
                                     checked={showReadmoreText}
                                     onChange={(showReadmoreText) => setAttributes({ showReadmoreText })}
                                 />
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Icon', 'zoloblocks')}
                                     checked={showReadmoreIcon}
                                     onChange={(showReadmoreIcon) => setAttributes({ showReadmoreIcon })}
                                 />
 
                                 {showReadmoreText && (
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Text', 'zoloblocks')}
                                         value={readMoreBtnText}
                                         onChange={(readMoreBtnText) => setAttributes({ readMoreBtnText })}
@@ -380,7 +404,7 @@ function Inspector(props) {
 
                         {postQuery?.showPagination && (
                             <ZoloPanelBody title={__('Pagination', 'zoloblocks')} panelProps={props}>
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Type', 'zoloblocks')}
                                     value={paginationType}
                                     options={PAGINARION_TYPE}
@@ -389,12 +413,12 @@ function Inspector(props) {
 
                                 {(paginationType === 'number' || paginationType === 'normal') && (
                                     <>
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Previous Text', 'zoloblocks')}
                                             value={previousText}
                                             onChange={(previousText) => setAttributes({ previousText })}
                                         />
-                                        <TextControl
+                                        <ZoloTextControl
                                             label={__('Next Text', 'zoloblocks')}
                                             value={nextText}
                                             onChange={(nextText) => setAttributes({ nextText })}
@@ -403,7 +427,7 @@ function Inspector(props) {
                                 )}
 
                                 {paginationType === 'button' && (
-                                    <TextControl
+                                    <ZoloTextControl
                                         label={__('Load More', 'zoloblocks')}
                                         value={loadMoreText}
                                         onChange={(loadMoreText) => setAttributes({ loadMoreText })}
@@ -437,7 +461,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Filter By Taxonomy', 'zoloblocks')} panelProps={props}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Filter', 'zoloblocks')}
                                 checked={showFilterTaxonomy}
                                 onChange={(showFilterTaxonomy) => setAttributes({ showFilterTaxonomy })}
@@ -445,7 +469,7 @@ function Inspector(props) {
 
                             {showFilterTaxonomy && (
                                 <>
-                                    <SelectControl
+                                    <ZoloSelectControl
                                         label={__('Select', 'zoloblocks-pro')}
                                         value={postTaxonomy}
                                         onChange={(value) => {
@@ -486,7 +510,7 @@ function Inspector(props) {
                                 controlName={COLUMN_PADDING}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={COLUMN_BORDER} requiredProps={requiredProps} />
                             <BoxShadowControl controlName={COLUMN_SHADOW} requiredProps={requiredProps} />
                             <ResDimensionsControl
@@ -498,11 +522,78 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={CONTENT_PADDING}
-                                requiredProps={requiredProps}
-                            />
+                            {preset !== 'style-6' && (
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={CONTENT_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                            )}
+
+                            {preset === 'style-6' && (
+                                <TabPanelControl
+                                    options={[
+                                        {
+                                            value: 'normal',
+                                            label: __('Content', 'zoloblocks'),
+                                        },
+                                        {
+                                            value: 'hover',
+                                            label: __('Inner Cnt', 'zoloblocks'),
+                                        },
+                                    ]}
+                                    normalComponents={
+                                        <>
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={CONTENT_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={INNER_CONTENT_BG}
+                                                noMainBGImg={true}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={INNER_CONTENT_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                controlName={INNER_CONTENT_MARGIN}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ZoloCardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={INNER_CONTENT_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl controlName={INNER_CONTENT_SHADOW} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={INNER_CONTENT_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <div className="zolo-custom-heading">{__('Bottom Content Spacing', 'zoloblocks')}</div>
+                                            <ResRangeControl
+                                                label={__('Spacing', 'zoloblocks')}
+                                                controlName={BOTTOM_CONTENT_SPACING}
+                                                requiredProps={requiredProps}
+                                                min={0}
+                                                max={100}
+                                                step={1}
+                                            />
+                                        </>
+                                    }
+                                />
+                            )}
                         </ZoloPanelBody>
 
                         {showThumbnail && (
@@ -516,7 +607,7 @@ function Inspector(props) {
                                     step={1}
                                 />
                                 {showThumbnail && (
-                                    <SelectControl
+                                    <ZoloSelectControl
                                         label={__('Resolution', 'zoloblocks')}
                                         value={postQuery?.postThumbnail}
                                         options={THUMBNAIL_SIZE}
@@ -527,7 +618,7 @@ function Inspector(props) {
                                         }
                                     />
                                 )}
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <NormalBGControl requiredProps={requiredProps} controlName={THUMBNAIL_BG} noMainBGImg={true} />
                                 <ResDimensionsControl
                                     label={__('Padding', 'zoloblocks')}
@@ -540,7 +631,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     forBorderRadius={false}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <BorderControl
                                     label={__('Border', 'zoloblocks')}
                                     controlName={THUMBNAIL_BORDER}
@@ -598,7 +689,7 @@ function Inspector(props) {
                                                 typoPrefixConstant={TITLE_TYPOGRAPHY}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ResDimensionsControl
                                                 label={__('Margin', 'zoloblocks')}
                                                 controlName={TITLE_MARGIN}
@@ -608,13 +699,13 @@ function Inspector(props) {
                                     }
                                     hoverComponents={
                                         <>
-                                            <SelectControl
+                                            <ZoloSelectControl
                                                 label={__('Animations', 'zoloblocks')}
                                                 value={postTitleAnimation}
                                                 options={applyFilters('zolo.postGrid.titleAnimation', POST_TITLE_ANIMATION)}
                                                 onChange={(postTitleAnimation) => setAttributes({ postTitleAnimation })}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Color', 'zoloblocks')}
                                                 color={titleHoverColor}
@@ -662,7 +753,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={EXCERPT_MARGIN}
@@ -672,7 +763,11 @@ function Inspector(props) {
                         )}
 
                         {showMeta && (
-                            <ZoloPanelBody title={__('Meta', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <ZoloPanelBody
+                                title={preset === 'style-6' ? __('Date', 'zoloblocks') : __('Meta', 'zoloblocks')}
+                                stylePanel={true}
+                                panelProps={props}
+                            >
                                 <ColorControl
                                     label={__('Color', 'zoloblocks')}
                                     color={metaColor}
@@ -691,7 +786,7 @@ function Inspector(props) {
                                     requiredProps={requiredProps}
                                     max={36}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 <ResDimensionsControl
                                     label={__('Margin', 'zoloblocks')}
                                     controlName={META_MARGIN}
@@ -753,7 +848,7 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 max={36}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Background', 'zoloblocks')}
                                                 color={catBgColor}
@@ -773,7 +868,7 @@ function Inspector(props) {
                                                 controlName={CAT_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={CAT_BORDER}
@@ -785,7 +880,7 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ResRangeControl
                                                 label={__('Gap', 'zoloblocks')}
                                                 controlName={CAT_GAP}
@@ -851,7 +946,7 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 max={36}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Background', 'zoloblocks')}
                                                 color={readMoreBgColor}
@@ -871,7 +966,7 @@ function Inspector(props) {
                                                 controlName={READMORE_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={READMORE_BORDER}
@@ -883,7 +978,7 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ResRangeControl
                                                 label={__('Gap', 'zoloblocks')}
                                                 controlName={READMORE_GAP}
@@ -929,7 +1024,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        {showAuthor && (
+                        {showAuthor && preset !== 'style-6' && (
                             <ZoloPanelBody title={__('Author', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <ResRangeControl
                                     label={__('Gap', 'zoloblocks')}
@@ -1045,7 +1140,7 @@ function Inspector(props) {
                                                 typoPrefixConstant={PAG_TYPOGRAPHY}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Background', 'zoloblocks')}
                                                 color={pagBgColor}
@@ -1065,7 +1160,7 @@ function Inspector(props) {
                                                 controlName={PAG_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Separator', 'zoloblocks')}
                                                 color={pagSeparatorColor}
@@ -1076,7 +1171,7 @@ function Inspector(props) {
                                                 }
                                             />
 
-                                            <CardDivider />
+                                            <ZoloCardDivider />
 
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
@@ -1152,7 +1247,7 @@ function Inspector(props) {
                                                 typoPrefixConstant={FILTER_TYPOGRAPHY}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ColorControl
                                                 label={__('Background', 'zoloblocks')}
                                                 color={filterBgColor}
@@ -1173,7 +1268,7 @@ function Inspector(props) {
                                                 controlName={FILTER_MARGIN}
                                                 requiredProps={requiredProps}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={FILTER_BORDER}
@@ -1186,7 +1281,7 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
                                             />
-                                            <CardDivider />
+                                            <ZoloCardDivider />
                                             <ResGapControl
                                                 label={__('Gap', 'zoloblocks')}
                                                 controlName={FILTER_GAP}

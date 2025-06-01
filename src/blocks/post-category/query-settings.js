@@ -1,12 +1,11 @@
-import { SelectControl, __experimentalInputControl as InputControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { SORT_ORDER } from '../../../src/global/constants';
 import { CAT_ORDER_BY } from './constants';
 
-const { Select2AjaxControl } = window.zoloModule;
+const { Select2AjaxControl, ZoloSelectControl, ZoloInputControl, ZoloTextControl } = window.zoloModule;
 
 const QuerySettings = ({ attributes, setAttributes }) => {
-    const { catQuery } = attributes;
+    const { catQuery, customClass } = attributes;
     const allTaxonomyList = zoloParams.get_taxonomies;
     let tpgAllTaxonomies = new Set();
     tpgAllTaxonomies.add({
@@ -27,7 +26,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
 
     return (
         <>
-            <InputControl
+            <ZoloInputControl
                 label={__('Item Limit', 'zoloblocks-pro')}
                 value={catQuery.catItemLimit}
                 onChange={(catItemLimit) => {
@@ -40,7 +39,7 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 __unstableInputWidth="64px"
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Taxonomy', 'zoloblocks-pro')}
                 value={catQuery.catTaxonomy}
                 onChange={(catTaxonomy) => {
@@ -61,14 +60,14 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 />
             </div>
 
-            <TextControl
+            <ZoloTextControl
                 label={__('Parent', 'zoloblocks')}
                 value={catQuery.catParent}
                 onChange={(catParent) => setAttributes({ catQuery: { ...catQuery, catParent } })}
                 placeholder={__('Category ID: 12', 'zoloblocks')}
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Order By', 'zoloblocks-pro')}
                 value={catQuery.catOrderby}
                 onChange={(catOrderby) => {
@@ -77,13 +76,21 @@ const QuerySettings = ({ attributes, setAttributes }) => {
                 options={CAT_ORDER_BY}
             />
 
-            <SelectControl
+            <ZoloSelectControl
                 label={__('Sort Order', 'zoloblocks-pro')}
                 value={catQuery.catOrder}
                 onChange={(catOrder) => {
                     setAttributes({ catQuery: { ...catQuery, catOrder } });
                 }}
                 options={SORT_ORDER}
+            />
+
+            <ZoloTextControl
+                label={__('Custom Class', 'zoloblocks')}
+                value={customClass}
+                onChange={(value) => setAttributes({ customClass: value })}
+                __nextHasNoMarginBottom={true}
+                __next40pxDefaultSize={true}
             />
         </>
     );

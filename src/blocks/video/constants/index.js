@@ -29,7 +29,14 @@ export const POPUP_IMAGE_BORDER = 'popupImageBorder';
 export const POPUP_IMAGE_BORDER_RADIUS = 'popupImageBorderRadius';
 export const POPUP_IMAGE_PADDING = 'popupImagePadding';
 export const POPUP_IMAGE_BG_COLOR = 'popupImageBgColor';
+
 export const INLINE_VIDEO_CONTANER_WIDTH = 'inlineVideoContainerWidth';
 export const INLINE_VIDEO_CONTANER_HEIGHT = 'inlineVideoContainerHeight';
+export const INLINE_VIDEO_BORDER = 'inlineVideoBorder';
+export const INLINE_VIDEO_BORDER_RADIUS = 'inlineVideoBorderRadius';
+export const INLINE_VIDEO_BOX_SHADOW = 'inlineVideoBoxShadow';
+
 export const VIDEO_OVERLAY = 'videoOverlay';
 export const VIDEO_OVERLAY_SIZE = 'videoOverlaySize';
+
+export const POPUP_VIDEO_CONTANER_WIDTH = 'popupVideoContainerWidth';

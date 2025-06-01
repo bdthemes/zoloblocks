@@ -4,7 +4,7 @@
 import { __ } from '@wordpress/i18n';
 const { zoloParams } = window;
 import { useState } from '@wordpress/element';
-import { Modal, Button } from '@wordpress/components';
+import { ZoloModal } from '../core-controls';
 const ThumbsControl = (props) => {
     const { label, value, options, onChange, itemsPerRow = 2 } = props;
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,7 +62,7 @@ const ThumbsControl = (props) => {
                 ))}
             </div>
             {isModalOpen && (
-                <Modal className="zolo-pro-modal" onRequestClose={() => setIsModalOpen(false)}>
+                <ZoloModal className="zolo-pro-modal" onRequestClose={() => setIsModalOpen(false)}>
                     <svg
                         className="zolo-pro-modal-icon"
                         xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +100,7 @@ const ThumbsControl = (props) => {
                             />
                         </svg>
                     </a>
-                </Modal>
+                </ZoloModal>
             )}
         </>
     );

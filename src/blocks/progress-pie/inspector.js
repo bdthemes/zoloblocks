@@ -3,14 +3,16 @@
  */
 
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, RangeControl, CardDivider } from '@wordpress/components';
-
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 const {
+    ZoloToggleControl,
+    ZoloTextControl,
+    ZoloCardDivider,
+    ZoloRangeControl,
     ResAlignmentControl,
     ResRangeControl,
     ColorControl,
@@ -69,7 +71,7 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <div className="zolo-custom-heading">{__('Show/hide elementts', 'zoloblocks')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Label', 'zoloblocks')}
                                 checked={toggleLabel === undefined ? true : toggleLabel}
                                 onChange={(v) =>
@@ -78,7 +80,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Suffix & Prefix', 'zoloblocks')}
                                 checked={toggleSuffixPrefix === undefined ? true : toggleSuffixPrefix}
                                 onChange={(v) =>
@@ -89,7 +91,7 @@ function Inspector(props) {
                             />
                             <div className="zolo-custom-heading">{__('Progress', 'zoloblocks')}</div>
                             <div className="zolo-flex-col-control">
-                                <RangeControl
+                                <ZoloRangeControl
                                     label={__('Percent (%)', 'zoloblocks')}
                                     value={value}
                                     onChange={(v) =>
@@ -142,7 +144,7 @@ function Inspector(props) {
                                 />
                             </div>
                             <div className="zolo-flex-col-control">
-                                <RangeControl
+                                <ZoloRangeControl
                                     label={__('Duration (s)', 'zoloblocks')}
                                     value={duration}
                                     onChange={(v) => setAttributes({ progressPie: { ...progressPie, duration: v } })}
@@ -153,7 +155,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         {(toggleSuffixPrefix == undefined || toggleSuffixPrefix == true) && (
                             <ZoloPanelBody title={__('Suffix & Prefix', 'zoloblocks')} panelProps={props}>
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Suffix', 'zoloblocks')}
                                     value={suffix}
                                     onChange={(v) =>
@@ -163,7 +165,7 @@ function Inspector(props) {
                                     }
                                     placeholder={__('%', 'zoloblocks')}
                                 />
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Prefix', 'zoloblocks')}
                                     value={prefix}
                                     onChange={(v) =>
@@ -178,7 +180,7 @@ function Inspector(props) {
 
                         {(toggleLabel == undefined || toggleLabel == true) && (
                             <ZoloPanelBody title={__('Label', 'zoloblocks')} panelProps={props}>
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Text', 'zoloblocks')}
                                     value={title}
                                     onChange={(v) =>
@@ -212,7 +214,7 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResRangeControl
                                 label={__('Size', 'zoloblocks')}
                                 controlName={PROGRESS_BAR_SIZE}
@@ -221,8 +223,8 @@ function Inspector(props) {
                                 max={500}
                                 step={1}
                             />
-                            <CardDivider />
-                            <ToggleControl
+                            <ZoloCardDivider />
+                            <ZoloToggleControl
                                 label={__('Rounded', 'zoloblocks')}
                                 checked={round}
                                 onChange={() =>
@@ -261,7 +263,7 @@ function Inspector(props) {
                                             typoPrefixConstant={NUMBER_TYPO}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResRangeControl
                                             label={__('Bottom Spacing', 'zoloblocks')}
                                             controlName={NUMBER_BOTTOM_SPACE}

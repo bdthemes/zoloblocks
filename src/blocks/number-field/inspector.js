@@ -2,19 +2,18 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import {
-    ToggleControl,
-    TextControl,
-    TextareaControl,
-    CardDivider,
-    __experimentalNumberControl as NumberControl,
-} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
+
 const {
+    ZoloToggleControl,
+    ZoloTextareaControl,
+    ZoloCardDivider,
+    ZoloNumberControl,
+    ZoloTextControl,
     ResRangeControl,
     ResGapControl,
     ColorControl,
@@ -86,18 +85,18 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Label', 'zoloblocks')}
                                 checked={showLabel}
                                 onChange={() => setAttributes({ showLabel: !showLabel })}
                             />
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Is It Required Field?', 'zoloblocks')}
                                 checked={isRequired}
                                 onChange={() => setAttributes({ isRequired: !isRequired })}
                             />
                             {preset !== 'style-3' && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Icon', 'zoloblocks')}
                                     checked={showIcon}
                                     onChange={() => setAttributes({ showIcon: !showIcon })}
@@ -105,7 +104,7 @@ function Inspector(props) {
                             )}
 
                             {isRequired && (
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Required Symbol', 'zoloblocks')}
                                     checked={showRequiredSymbol}
                                     onChange={() => setAttributes({ showRequiredSymbol: !showRequiredSymbol })}
@@ -114,7 +113,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             {showLabel && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Field Label', 'zoloblocks')}
                                     value={label}
                                     onChange={(v) => setAttributes({ label: v })}
@@ -123,7 +122,7 @@ function Inspector(props) {
                                 />
                             )}
                             {preset !== 'style-3' && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Placeholder', 'zoloblocks')}
                                     value={placeholder}
                                     onChange={(v) => setAttributes({ placeholder: v })}
@@ -132,7 +131,7 @@ function Inspector(props) {
 
                             {isRequired && (
                                 <div className="zolo-flex-col-control">
-                                    <TextareaControl
+                                    <ZoloTextareaControl
                                         label={__('Required Message', 'zoloblocks')}
                                         help={__('This message will be shown when the field is required', 'zoloblocks')}
                                         value={requiredMsg}
@@ -152,8 +151,8 @@ function Inspector(props) {
                                 />
                             )}
 
-                            <CardDivider />
-                            <NumberControl
+                            <ZoloCardDivider />
+                            <ZoloNumberControl
                                 label={__('Default Value', 'zoloblocks')}
                                 value={defaultValue}
                                 onChange={(v) => setAttributes({ defaultValue: v })}
@@ -162,14 +161,14 @@ function Inspector(props) {
                                 __unstableInputWidth="64px"
                             />
 
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <div className="zolo-flex-col-control">
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Custom Name Attribute', 'zoloblocks')}
                                     value={customNameAttribute || ''}
                                     onChange={(v) => {
-                                      const val = v?.replace(/[^a-zA-Z0-9]/g, '_').replace(/\s+/g, '_')
-                                      setAttributes({customNameAttribute: val});
+                                        const val = v?.replace(/[^a-zA-Z0-9]/g, '_').replace(/\s+/g, '_');
+                                        setAttributes({ customNameAttribute: val });
                                     }}
                                     help={__(
                                         'Each name attribute must be unique to submit form data correctly. Leave the field blank if no custom name attribute is necessary.',
@@ -199,7 +198,7 @@ function Inspector(props) {
                                     typoPrefixConstant={LABEL_TYPO}
                                     requiredProps={requiredProps}
                                 />
-                                <CardDivider />
+                                <ZoloCardDivider />
                                 {preset === 'style-3' && (
                                     <>
                                         <BorderControl
@@ -256,7 +255,7 @@ function Inspector(props) {
                                 typoPrefixConstant={FIELD_TYPO}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <NormalBGControl requiredProps={requiredProps} controlName={FIELD_BG} noMainBGImg={false} />
 
                             <ResDimensionsControl
@@ -264,7 +263,7 @@ function Inspector(props) {
                                 controlName={FIELD_PADDING}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={FIELD_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
@@ -272,7 +271,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
                             />
-                            {/* <CardDivider /> */}
+                            {/* <ZoloCardDivider /> */}
                             {/* <ResGapControl
                                 label={__('Gap', 'zoloblocks')}
                                 controlName={FIELD_GAP}

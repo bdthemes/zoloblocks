@@ -2,13 +2,13 @@
  * WordPress dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
-import { TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal depencencies
  */
 const {
+    ZoloCardDivider,
     ResRangeControl,
     ColorControl,
     BorderControl,
@@ -20,6 +20,7 @@ const {
     AdvancedOptions,
     TypographyDropdown,
     ZoloPanelBody,
+    ZoloTextControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -51,7 +52,6 @@ import {
 } from './constants';
 
 import { TITLE_TYPO } from './constants/typoPrefixConstant';
-import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -83,7 +83,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <TextControl
+                            <ZoloTextControl
                                 label={__('Title', 'zoloblocks')}
                                 onChange={(text) =>
                                     setAttributes({
@@ -111,7 +111,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl
                                 label={__('Border', 'zoloblocks')}
                                 controlName={AC_CONTAINER_BORDER}
@@ -143,7 +143,7 @@ function Inspector(props) {
                                             typoPrefixConstant={TITLE_TYPO}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={AC_HEADER_BG} noMainBGImg={true} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -157,7 +157,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={AC_HEADER_BORDER}
@@ -234,7 +234,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                         />
 
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={ICONTAINER_BG} noMainBGImg={true} />
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
@@ -242,7 +242,7 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             forBorderRadius={false}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={ICONTAINER_BORDER}
@@ -286,7 +286,7 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 forBorderRadius={false}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <BorderControl label={__('Border', 'zoloblocks')} controlName={AC_BODY_BORDER} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}

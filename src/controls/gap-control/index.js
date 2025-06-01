@@ -1,6 +1,6 @@
 import UnitsBtn from '../units-btn';
 import { prefix } from '../../global/constants';
-import { Button } from '@wordpress/components';
+import { ZoloButton } from '../core-controls';
 import { useState } from '@wordpress/element';
 import ResetBtn from '../reset-btn';
 import LinkUnlink from '../link-unlink';
@@ -48,11 +48,11 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
 
     const onButtonClick = () => {
         setIsLinked(!isLinked);
-        if(isLinked){
-          setAttributes({
-            [`${prefix}${controlName}RowGap`]: desktopGap,
-            [`${prefix}${controlName}ColGap`]: desktopGap,
-          })
+        if (isLinked) {
+            setAttributes({
+                [`${prefix}${controlName}RowGap`]: desktopGap,
+                [`${prefix}${controlName}ColGap`]: desktopGap,
+            });
         }
     };
 
@@ -69,12 +69,12 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                             })
                         }
                     >
-                        <Button
+                        <ZoloButton
                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        {(desktopGap || desktopRowGap || desktopColGap) ? (
+                        {desktopGap || desktopRowGap || desktopColGap ? (
                             <ResetBtn
                                 customClass="zb-reset-has-value"
                                 onReset={() => {
@@ -113,12 +113,12 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                             })
                         }
                     >
-                        <Button
+                        <ZoloButton
                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        {(tabGap || tabRowGap || tabColGap) ? (
+                        {tabGap || tabRowGap || tabColGap ? (
                             <ResetBtn
                                 onReset={() => {
                                     setAttributes({
@@ -156,12 +156,12 @@ const ResGapControl = ({ label, controlName, requiredProps, units = null, max = 
                             })
                         }
                     >
-                        <Button
+                        <ZoloButton
                             className={`zb-linked-btn ${isLinked ? 'zb-linked-btn-active' : ''}`}
                             icon={<LinkUnlink isLinked={isLinked} />}
                             onClick={onButtonClick}
                         />
-                        {(mobGap || mobRowGap || mobColGap) ? (
+                        {mobGap || mobRowGap || mobColGap ? (
                             <ResetBtn
                                 onReset={() => {
                                     setAttributes({

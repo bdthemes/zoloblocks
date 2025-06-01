@@ -1,4 +1,4 @@
-import { Dashicon } from '@wordpress/components';
+const { ZoloDashicon } = window.zoloModule;
 import { __ } from '@wordpress/i18n';
 export const BLOCK_PREFIX = 'pricing-table';
 
@@ -13,10 +13,10 @@ export const NORMAL_HOVER = [
 ];
 
 export const RIBBON_ALIGN = [
-    { label: __(<Dashicon icon={'editor-alignleft'} />), value: 'left' },
-    { label: __(<Dashicon icon={'editor-aligncenter'} />), value: 'center' },
-    { label: __(<Dashicon icon={'editor-alignright'} />), value: 'right' },
-    { label: __(<Dashicon icon={'editor-justify'} />), value: 'justify' },
+    { label: __(<ZoloDashicon icon={'editor-alignleft'} />), value: 'left' },
+    { label: __(<ZoloDashicon icon={'editor-aligncenter'} />), value: 'center' },
+    { label: __(<ZoloDashicon icon={'editor-alignright'} />), value: 'right' },
+    { label: __(<ZoloDashicon icon={'editor-justify'} />), value: 'justify' },
 ];
 
 export const BTNS_POSITIONS = [

@@ -63,7 +63,7 @@ import {
     ITEM_OVERLAY,
     IMAGE_OVERLAY,
     SEPARATOR_TEAM_SIZE,
-    SEPARATOR_SPACING_TEAM
+    SEPARATOR_SPACING_TEAM,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -222,7 +222,6 @@ const attributes = {
     separatorTeamColor: {
         type: 'string',
     },
-
 };
 
 export default attributes;

@@ -1,9 +1,8 @@
 import { RawHTML, useEffect, useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Spinner } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
-const { DynamicTag, DisplayZoloIcon } = window.zoloModule;
+const { DynamicTag, DisplayZoloIcon, ZoloSpinner } = window.zoloModule;
 
 let postContentCache = new Map();
 
@@ -140,7 +139,7 @@ function RenderView({ attributes, setAttributes }) {
             <div className="zolo-post-content-wrap">
                 {isLoading && (
                     <div className="preloader">
-                        <Spinner />
+                        <ZoloSpinner />
                     </div>
                 )}
                 {postResults.length > 0 &&
@@ -248,9 +247,9 @@ function RenderView({ attributes, setAttributes }) {
                                         </div>
                                     )}
 
-                                    {showMeta && preset !== 'style-5' && dateRTimeHtml}
+                                    {showMeta && preset !== 'style-5' && preset !== 'style-6' && dateRTimeHtml}
 
-                                    {showAuthor && preset !== 'style-5' && authorInfoHtml}
+                                    {showAuthor && preset !== 'style-5' && preset !== 'style-6' && authorInfoHtml}
 
                                     {preset === 'style-5' && (
                                         <div className="zolo-post-meta-wrap">
@@ -278,14 +277,28 @@ function RenderView({ attributes, setAttributes }) {
                                                 </p>
                                             </div>
                                         )}
-                                        {showMeta && preset != 'style-5' && dateRTimeHtml}
+                                        {showMeta && preset !== 'style-5' && preset !== 'style-6' && dateRTimeHtml}
                                     </div>
-                                    {showReadMore && (
+
+                                    {showReadMore && preset !== 'style-6' && (
                                         <div className="zolo-post-link-btn">
                                             <a href={post.permalink} onClick={(e) => e.preventDefault()}>
                                                 {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
                                                 {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                             </a>
+                                        </div>
+                                    )}
+                                    {preset === 'style-6' && (
+                                        <div className="zolo-post-bottom-content">
+                                            {showMeta && dateRTimeHtml}
+                                            {showReadMore && (
+                                                <div className="zolo-post-link-btn">
+                                                    <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                                        {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
+                                                        {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
+                                                    </a>
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                 </div>

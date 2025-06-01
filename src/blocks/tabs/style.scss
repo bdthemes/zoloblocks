@@ -113,7 +113,7 @@
                 display: flex;
                 align-items: center;
                 .zolo-tab_header-wrap {
-                    width: fit-content;
+                    width: 100%;
                 }
             }
         }
@@ -258,6 +258,15 @@
         .zolo-tab_vertical-left .tab__content,
         .zolo-tab_vertical-right .tab__content {
             width: calc(100% - var(--tab-vertical-width));
+        }
+        .zolo-tab_horizontal {
+            &.zolo-h-tab-auto {
+                .zolo-horizontal-head-tabswrap {
+                    .zolo-tab_header-wrap {
+                        width: fit-content;
+                    }
+                }
+            }
         }
     }
 }

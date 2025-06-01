@@ -32,7 +32,11 @@ class Registration {
                 $block_path = trailingslashit(ZOLO_DIR_PATH);
                 $version = ZOLO_VERSION;
 
-                if (isset($block['is_pro']) && $block['is_pro'] === true && defined('ZOLO_PRO_DIR_PATH')) {
+                if (isset($block['is_pro']) && $block['is_pro'] === true) {
+                    // Check if Zoloblocks Pro is activated
+                    if (!class_exists('Zolo_Blocks_Pro')) {
+                        continue; // Skip pro blocks if pro version is not activated
+                    }
                     $block_path = trailingslashit(ZOLO_PRO_DIR_PATH);
                     $version = ZOLO_PRO_VERSION;
                 }

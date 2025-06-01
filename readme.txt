@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, golam523
 Donate link: http://zoloblocks.com/
 Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
-Tested up to: 6.8
+Tested up to: 6.8.1
 Requires PHP: 7.4
-Stable tag: 2.2.6
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,10 @@ Unlock a better page-building experience in Gutenberg editor. You don’t need o
 Explore how  ZoloBlocks works in Gutenberg Blocks Editor to let you create a website effortlessly.
 
 https://youtu.be/CxzwPClaZm4
+
+https://youtu.be/vkRW_A2KT4k
+
+https://youtu.be/IjAYJZ2guuM
 
 # Available Blocks in ZoloBlocks to enhance your Gutenberg experience
 
@@ -604,180 +608,21 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
-### 2.2.6 [April 15, 2025]
+### 2.3.0 [May 14, 2025]
 
-- **New Features:**
-- Video Block: Introduced a new block for an enhanced video viewing experience.
+* **Fixes:**
 
-- **Fixes:**
-- Tab Block border radius now works correctly in responsive mode.
-- Tab Block additional border display issue resolved.
+  * Video Block styling issues resolved.
+  * Display condition logic now functions as expected.
+  * Fixed `NaN` value issue in Dimension control.
+  * Compatibility issues with the latest WordPress version have been addressed.
+  * Resolved issues with outdated controls to ensure smoother performance and reliability.
 
-- **Improvements:**
-- Refined Background Controls UI for better usability.
-- Enhanced Social Share Block with more customization options.
-- Ensured compatibility with WordPress 6.8 for smooth performance.
+* **Improvements:**
 
-### 2.2.5 [March 24, 2025]
-- **New Features:**
-- Private link feature for accessing the maintenance mode site.
-
-- **Fixes:**
-- Panel Body: Panel body toggle issue when opened.
-- Block Styles: Device-specific CSS not generating correctly in the editor.
-- Unfold Block: Collapse functionality and text display issues fixed.
-- Classic Theme: Layout breaking issue resolved.
-- Mega Menu Block: Full-width feature now responsive.
-- Advanced Heading Block: Subheading icon style controls reappear as expected.
-- List Block: Description control inside repeater fixed.
-- Slider Block: Navigation icon border display corrected.
-- Advanced Paragraph Block: Drop cap alignment issue fixed.
-- Navigation Item: Border display issue resolved.
-- Template Library: Empty appearance issue.
-- Table of Content: merge marker controls with list controls.
-- Post Meta: hover color and comment icon issue.
-
-- **Improvements:**
-- All translatable strings updated to Title Case.
-- Standardized extension naming conventions.
-- Improved editing experience for the Post Content Block.
-- Template library performance optimization.
-
-
-### 2.2.4 [March 11, 2025]
-
-- **New Features:**
-- Introduced a container variation replace option in the toolbar.
-- Added content alignment control for sliders.
-- Implemented a skip button for the container variation picker.
-- Implement transform to, from and ungroup option in container.
-
-- **Fixes:**
-- Resolved the slider alignment issue.
-- Fixed the default container content width not being full-width.
-- Addressed the issue where zero could not be set in the range control and dimensions control.
-- Fixed issues with the gap control.
-- Resolved the container custom width not applying correctly on the frontend.
-- Fixed the missing hover gradient control in the background settings.
-
-- **Improvements:**
-- Enhanced the display conditions extensions for better flexibility.
-- Improved the editing experience for a more seamless workflow.
-- Refined the CSS class control UI for better usability.
-- Upgraded AI assistant extensions for improved functionality.
-- Enhanced overlay features and control UI for a better visual experience.
-- Improved the CSS filter UI for more intuitive adjustments.
-
-### 2.2.3 [February 25, 2025]
-
-**Fixes:**
-- Container Block editor blank spacing issue fixed
-- Paragraph block margin issue fixed
-
-### 2.2.2 [February 20, 2025]
-
-**New Features:**
-- Introduced a container variation replace option in the toolbar.
-- Added content alignment control for sliders.
-- Implemented a skip button for the container variation picker.
-- Implement transform to, from and ungroup option in container.
-
-**Fixes:**
-- Resolved the slider alignment issue.
-- Fixed the default container content width not being full-width.
-- Addressed the issue where zero could not be set in the range control and dimensions control.
-- Fixed issues with the gap control.
-- Resolved the container custom width not applying correctly on the frontend.
-- Fixed the missing hover gradient control in the background settings.
-- Fixed post meta icon visibility issue in frontend.
-
-
-**Improvements:**
-- Enhanced the display conditions extensions for better flexibility.
-- Improved the editing experience for a more seamless workflow.
-- Refined the CSS class control UI for better usability.
-- Upgraded AI assistant extensions for improved functionality.
-- Enhanced overlay features and control UI for a better visual experience.
-- Improved the CSS filter UI for more intuitive adjustments.
-- Improved loop builder item design
-
-### 2.2.1 [February 06, 2025]
-
-**Fixes:**
-- Fixed Single Block Style Broken Issue fixed.
-- Fixed Brand Grid block Deprecated issue fixed.
-
-### 2.2.0 [February 06, 2025]
-
-**New Features:**
-- SVG support added to the Icon Control.
-- AI Text Generation introduced for Paragraph, Advanced Paragraph, and Advanced Heading blocks.
-- HTML tag selection added for the Container block.
-- Quote and offset options added to the Review block.
-- Inline display option added to the Counter block.
-- Hover color option for descriptions added to the Fancy List block.
-
-**Enhancements:**
-- Optimized assets loading for better performance.
-- Added "Maintenance" and "Coming Soon" options in WordPress Reading settings.
-- Improved the Blank Page Template Library with eye-catching updates.
-- Enhanced Editor Block Selector with an on/off toggle.
-- Manual Save button added for dashboard settings.
-- Improved search and features in the Icons Library.
-
-**Fixes:**
-- Fixed copy-paste issues in the Paragraph block.
-- Resolved hover color issue for icons in lightbox buttons.
-- Fixed infinite loading issue in the Template Library.
-- Corrected item order issues in List block controls.
-
-
-### 2.1.5 [December 24, 2024]
-
-- **New Features:**
-  - **Text Path Block:** Added settings for adjusting path thickness and width.
-  - **Paragraph Block:** Improved functionality with added justify alignment options (Thanks to chihi108)
-  - **Tabs Block:** Introduced header wrapper tab width customization.
-  - **Accordion Block:** Initial Open allow or disallow feature added (Thanks to chihi108)
-
-
-- **Fixes:**
-  - **Newsletter Block:** Fixed placeholder text issues in presets 2, 3, and 4.
-  - **Image Gallery Block:** Resolved issue with saving the backdrop filter control settings.
-  - **Text Path Block:** Fixed show/hide conditions for image options in the style tab for circle path type and resolved image border radius issues.
-  - **Navigation Block:** Fixed menu gap control save issue in the style tab.
-  - **Lightbox Block:** Resolved image resolution save issue in the basic tab.
-  - **Accordion Block:** Initial Open item issue fixed.
-
-
-**2.1.4 [December 07, 2024]**
-
-- **New Features:**
-	- **Navigation Block:** Improved indicator control, allowing child elements to shift under parent control.
-	Optimized arrow size for better usability and design consistency.
-	- **Profile Card Block:** Added background options for the photo overlay in preset 2.
-	- **Automatic Block Recovery:** Introduced the "Automatic Block Recovery" feature.
-	- **Form Block:** Added spacing options for icons.
-	- **Newsletter Block:** Added width type and alignment options for the submit button.
-Removed the custom width range control for the submit button in preset 1.
-
-- **Fixes:**
-	- **Container Block:** Enhanced design compatibility for default navigation and Gutenkit navigation in the editor.
-	- **Team Grid Block:** Fixed z-index issues affecting content in preset style 1.
-	- **Review Carousel Block:** Resolved the issue with arrow color control functionality.
-
-**2.1.3 [December 01, 2024]**
-
-- **New Features:**
-  - **Advanced Paragraph Block:** Added hover border color option.
-  - **Lightbox Block:** Introduced play button style options.
-  - **Accordion Block:** Added icon hover and active tab border color options.
-
-- **Fixes:**
-  - **Lightbox Block:** Resolved column layout issue.
-  - **Tabs Block:** Fixed icon size issue on tablet and mobile.
-  - **Form Block:** Corrected frontend preview icon for the submit button.
-  - **Advanced Paragraph Block:** Fixed default spacing issue.
-  - **WordPress v6.7.1 compatibility issue fixed.
+  * Lightbox: Added content size control for better customization.
+  * Charts Block: Typography control added to the heading for improved styling.
+  * Navigation Block: Toggle on-click feature implemented for better interaction.
+  * Theme color palette issues addressed for consistent appearance across blocks.
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)

@@ -186,6 +186,7 @@ const Extensions = () => {
                                     }
                                     return extension.title.toLowerCase().includes(search.toLowerCase());
                                 })
+                                .sort((a, b) => a.title.localeCompare(b.title))
                                 .map((extension, index) => {
                                     return (
                                         <SingleExtension

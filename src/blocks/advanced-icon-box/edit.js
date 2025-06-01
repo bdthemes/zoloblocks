@@ -2,14 +2,13 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, DynamicTag, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, DynamicTag, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -44,6 +43,7 @@ export default function Edit(props) {
         ribbonTitle,
         ribbonPosition,
         iconBoxDirection,
+        iconBoxPresetThreeDirection,
 
         // animation
         animationType,
@@ -63,6 +63,7 @@ export default function Edit(props) {
             'zolo-block-advanced-icon-box',
             preset,
             `${preset === 'style-2' ? iconBoxDirection : ''}`,
+            `${preset === 'style-3' && iconType === 'image' ? iconBoxPresetThreeDirection : ''}`,
             `${(preset === 'style-1' || preset === 'style-2') && animationType ? `animation-${animationType}` : ''}`
         ),
     });
@@ -91,7 +92,7 @@ export default function Edit(props) {
             <BlockControls>
                 {iconTypeImage && (
                     <>
-                        <ToolbarGroup>
+                        <ZoloToolbarGroup>
                             {iconType === 'image' && (
                                 <MediaUpload
                                     onSelect={(media) => {
@@ -102,7 +103,7 @@ export default function Edit(props) {
                                     allowedTypes={['image']}
                                     value={iconTypeImage && iconTypeImage.id}
                                     render={({ open }) => (
-                                        <ToolbarButton
+                                        <ZoloToolbarButton
                                             className="components-toolbar__control"
                                             label={__('Replace Photo', 'zoloblocks')}
                                             icon="edit"
@@ -111,7 +112,7 @@ export default function Edit(props) {
                                     )}
                                 />
                             )}
-                        </ToolbarGroup>
+                        </ZoloToolbarGroup>
                     </>
                 )}
             </BlockControls>

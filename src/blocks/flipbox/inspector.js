@@ -2,14 +2,21 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, BaseControl, Button, ButtonGroup, ToggleControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
-
 /**
  * Internal depencencies
  */
 const {
+    ZoloTextControl,
+    ZoloTextareaControl,
+    ZoloBaseControl,
+    ZoloButton,
+    ZoloToggleGroupControl,
+    ZoloToggleGroupControlOption,
+    ZoloToggleControl,
+    ZoloSelectControl,
+    ZoloCardDivider,
     ResRangeControl,
     ColorControl,
     BorderControl,
@@ -79,7 +86,6 @@ import {
     BACK_LINK_TYPOGRAPHY,
 } from './constants/typoPrefixConstants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
-import { CardDivider } from '@wordpress/components';
 
 function Inspector(props) {
     const { attributes, setAttributes, flipboxRef } = props;
@@ -154,47 +160,46 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ButtonGroup className="zolo-button-group">
+                            <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
+                                <ZoloToggleGroupControl
+                                    className="zolo-button-group zolo-toggle-box-custom-css"
+                                    value={side}
+                                    onChange={(value) => {
+                                        setSide(value);
+                                        if (value === 'back') {
+                                            onBackSideClick();
+                                        } else {
+                                            removeActiveClass();
+                                        }
+                                    }}
+                                >
                                     {FLIPBLOX_SIDE.map((item) => (
-                                        <Button
-                                            isLarge
-                                            variant={side === item.value ? 'primary' : 'secondary'}
-                                            aria-pressed={side === item.value}
-                                            showBackLinkBtn
-                                            onClick={() => {
-                                                setSide(item.value);
-
-                                                if (item.value === 'back') {
-                                                    onBackSideClick();
-                                                } else {
-                                                    removeActiveClass();
-                                                }
-                                            }}
-                                        >
-                                            {item.label}
-                                        </Button>
+                                        <ZoloToggleGroupControlOption
+                                            key={item.value}
+                                            value={item.value}
+                                            label={item.label}
+                                        />
                                     ))}
-                                </ButtonGroup>
-                            </BaseControl>
+                                </ZoloToggleGroupControl>
+                            </ZoloBaseControl>
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             {side === 'front' && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Icon', 'zoloblocks')}
                                         checked={showFrontIcon}
                                         onChange={() => {
                                             setAttributes({ showFrontIcon: !showFrontIcon });
                                         }}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Title', 'zoloblocks')}
                                         checked={showFrontTitle}
                                         onChange={() => {
                                             setAttributes({ showFrontTitle: !showFrontTitle });
                                         }}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Description', 'zoloblocks')}
                                         checked={showFrontContent}
                                         onChange={() => {
@@ -207,21 +212,21 @@ function Inspector(props) {
                             )}
                             {side === 'back' && (
                                 <>
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Icon', 'zoloblocks')}
                                         checked={showBackIcon}
                                         onChange={() => {
                                             setAttributes({ showBackIcon: !showBackIcon });
                                         }}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Title', 'zoloblocks')}
                                         checked={showBackTitle}
                                         onChange={() => {
                                             setAttributes({ showBackTitle: !showBackTitle });
                                         }}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Description', 'zoloblocks')}
                                         checked={showBackContent}
                                         onChange={() => {
@@ -230,7 +235,7 @@ function Inspector(props) {
                                             });
                                         }}
                                     />
-                                    <ToggleControl
+                                    <ZoloToggleControl
                                         label={__('Button', 'zoloblocks')}
                                         checked={showBackLinkBtn}
                                         onChange={() => {
@@ -240,7 +245,7 @@ function Inspector(props) {
                                         }}
                                     />
                                     {showBackLinkBtn && (
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Button Icon', 'zoloblocks')}
                                             checked={showBackLinkBtnIcon}
                                             onChange={() => {
@@ -255,29 +260,28 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
-                            <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ButtonGroup className="zolo-button-group">
+                            <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
+                                <ZoloToggleGroupControl
+                                    className="zolo-button-group zolo-toggle-box-custom-css"
+                                    value={side}
+                                    onChange={(value) => {
+                                        setSide(value);
+                                        if (value === 'back') {
+                                            onBackSideClick();
+                                        } else {
+                                            removeActiveClass();
+                                        }
+                                    }}
+                                >
                                     {FLIPBLOX_SIDE.map((item) => (
-                                        <Button
-                                            isLarge
-                                            variant={side === item.value ? 'primary' : 'secondary'}
-                                            aria-pressed={side === item.value}
-                                            showBackLinkBtn
-                                            onClick={() => {
-                                                setSide(item.value);
-
-                                                if (item.value === 'back') {
-                                                    onBackSideClick();
-                                                } else {
-                                                    removeActiveClass();
-                                                }
-                                            }}
-                                        >
-                                            {item.label}
-                                        </Button>
+                                        <ZoloToggleGroupControlOption
+                                            key={item.value}
+                                            value={item.value}
+                                            label={item.label}
+                                        />
                                     ))}
-                                </ButtonGroup>
-                            </BaseControl>
+                                </ZoloToggleGroupControl>
+                            </ZoloBaseControl>
                             {side === 'front' && (
                                 <>
                                     {showFrontIcon && (
@@ -304,7 +308,7 @@ function Inspector(props) {
                                             )}
                                             {frontIconType === 'image' && (
                                                 <>
-                                                    <BaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
+                                                    <ZoloBaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
                                                         {frontIconTypeImage ? (
                                                             <ImageAvatar
                                                                 imageUrl={frontIconTypeImage && frontIconTypeImage.url}
@@ -342,7 +346,7 @@ function Inspector(props) {
                                                                 allowedTypes={['image']}
                                                                 value={frontIconTypeImage && frontIconTypeImage.id}
                                                                 render={({ open }) => (
-                                                                    <Button className="zolo-image-upload-btn" onClick={open}>
+                                                                    <ZoloButton className="zolo-image-upload-btn" onClick={open}>
                                                                         <svg
                                                                             width="24"
                                                                             height="24"
@@ -353,11 +357,11 @@ function Inspector(props) {
                                                                             <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                                         </svg>
                                                                         {__(' Upload Photo', 'zoloblocks')}
-                                                                    </Button>
+                                                                    </ZoloButton>
                                                                 )}
                                                             />
                                                         )}
-                                                    </BaseControl>
+                                                    </ZoloBaseControl>
                                                     <ImageSizes
                                                         label={__('Resolution', 'zoloblocks')}
                                                         value={imageRes}
@@ -383,7 +387,7 @@ function Inspector(props) {
                                     {showFrontTitle && (
                                         <>
                                             <div className="zolo-custom-heading">{__('Title', 'zoloblocks')}</div>
-                                            <TextControl
+                                            <ZoloTextControl
                                                 label={__('Text', 'zoloblocks')}
                                                 value={frontTitle}
                                                 onChange={(newText) => setAttributes({ frontTitle: newText })}
@@ -394,7 +398,7 @@ function Inspector(props) {
                                         <>
                                             <div className="zolo-custom-heading">{__('Description', 'zoloblocks')}</div>
                                             <div className="zolo-flex-col-control">
-                                                <TextareaControl
+                                                <ZoloTextareaControl
                                                     label={__('Text', 'zoloblocks')}
                                                     value={frontContent}
                                                     onChange={(newText) => setAttributes({ frontContent: newText })}
@@ -430,7 +434,7 @@ function Inspector(props) {
                                             )}
                                             {backIconType === 'image' && (
                                                 <>
-                                                    <BaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
+                                                    <ZoloBaseControl label={__('Image', 'zoloblocks')} className="zolo-flex-col-control">
                                                         {backIconTypeImage ? (
                                                             <ImageAvatar
                                                                 imageUrl={backIconTypeImage && backIconTypeImage.url}
@@ -468,7 +472,7 @@ function Inspector(props) {
                                                                 allowedTypes={['image']}
                                                                 value={backIconTypeImage && backIconTypeImage.id}
                                                                 render={({ open }) => (
-                                                                    <Button className="zolo-image-upload-btn" onClick={open}>
+                                                                    <ZoloButton className="zolo-image-upload-btn" onClick={open}>
                                                                         <svg
                                                                             width="24"
                                                                             height="24"
@@ -479,11 +483,11 @@ function Inspector(props) {
                                                                             <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                                         </svg>
                                                                         {__(' Upload Photo', 'zoloblocks')}
-                                                                    </Button>
+                                                                    </ZoloButton>
                                                                 )}
                                                             />
                                                         )}
-                                                    </BaseControl>
+                                                    </ZoloBaseControl>
                                                     <ImageSizes
                                                         label={__('Resolution', 'zoloblocks')}
                                                         value={imageRes}
@@ -508,7 +512,7 @@ function Inspector(props) {
                                     {showBackTitle && (
                                         <>
                                             <div className="zolo-custom-heading">{__('Title', 'zoloblocks')}</div>
-                                            <TextControl
+                                            <ZoloTextControl
                                                 label={__('Text', 'zoloblocks')}
                                                 value={backTitle}
                                                 onChange={(newText) => setAttributes({ backTitle: newText })}
@@ -520,7 +524,7 @@ function Inspector(props) {
                                         <>
                                             <div className="zolo-custom-heading">{__('Description', 'zoloblocks')}</div>
                                             <div className="zolo-flex-col-control">
-                                                <TextareaControl
+                                                <ZoloTextareaControl
                                                     label={__('Text', 'zoloblocks')}
                                                     value={backContent}
                                                     onChange={(newText) => setAttributes({ backContent: newText })}
@@ -531,7 +535,7 @@ function Inspector(props) {
                                     {showBackLinkBtn && (
                                         <>
                                             <div className="zolo-custom-heading">{__('Button', 'zoloblocks')}</div>
-                                            <TextControl
+                                            <ZoloTextControl
                                                 label={__('Text', 'zoloblocks')}
                                                 value={buttonText}
                                                 onChange={(newText) => setAttributes({ buttonText: newText })}
@@ -568,7 +572,7 @@ function Inspector(props) {
                                 />
                             </div>
                             {triggerType === 'click' && <p>{__('The feature works on the frontend only.', 'zoloblocks')}</p>}
-                            <SelectControl
+                            <ZoloSelectControl
                                 label={__('Flip Effect', 'zoloblocks')}
                                 value={flipEffect}
                                 options={FLIP_EFFECT}
@@ -576,8 +580,8 @@ function Inspector(props) {
                                     setAttributes({ flipEffect });
                                 }}
                             />
-                            <CardDivider />
-                            <SelectControl
+                            <ZoloCardDivider />
+                            <ZoloSelectControl
                                 label={__('Easing Type', 'zoloblocks')}
                                 value={flipEasingType}
                                 options={FLIP_EASING_TYPE}
@@ -586,7 +590,7 @@ function Inspector(props) {
                                 }}
                             />
                             {flipEasingType === 'custom' && (
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Custom Easing', 'zoloblocks')}
                                     help={__('Example: cubic-bezier(0.42, 0, 0.58, 1)', 'zoloblocks')}
                                     value={flipCustomEasing}
@@ -624,40 +628,39 @@ function Inspector(props) {
                                 controlName={FLIPBOX_ITEMS_PADDING}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
+                            <ZoloCardDivider />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
                                 controlName={FLIPBOX_BORDER_RADIUS}
                                 requiredProps={requiredProps}
                             />
-                            <CardDivider />
-                            <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                <ButtonGroup className="zolo-button-group">
+                            <ZoloCardDivider />
+                            <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
+                                <ZoloToggleGroupControl
+                                    className="zolo-button-group zolo-toggle-box-custom-css"
+                                    value={side}
+                                    onChange={(value) => {
+                                        setSide(value);
+                                        if (value === 'back') {
+                                            onBackSideClick();
+                                        } else {
+                                            removeActiveClass();
+                                        }
+                                    }}
+                                >
                                     {FLIPBLOX_SIDE.map((item) => (
-                                        <Button
-                                            isLarge
-                                            variant={side === item.value ? 'primary' : 'secondary'}
-                                            aria-pressed={side === item.value}
-                                            showBackLinkBtn
-                                            onClick={() => {
-                                                setSide(item.value);
-
-                                                if (item.value === 'back') {
-                                                    onBackSideClick();
-                                                } else {
-                                                    removeActiveClass();
-                                                }
-                                            }}
-                                        >
-                                            {item.label}
-                                        </Button>
+                                        <ZoloToggleGroupControlOption
+                                            key={item.value}
+                                            value={item.value}
+                                            label={item.label}
+                                        />
                                     ))}
-                                </ButtonGroup>
-                            </BaseControl>
+                                </ZoloToggleGroupControl>
+                            </ZoloBaseControl>
                             {side === 'front' && (
                                 <>
                                     <NormalBGControl requiredProps={requiredProps} controlName={FRONT_ITEMS_BG} noMainBGImg={false} />
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <BorderControl
                                         label={__('Border', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_BORDER}
@@ -668,7 +671,7 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         enableTransition={false}
                                     />
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <ResAlignmentControl
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={FRONT_ITEMS_ALIGNMENT}
@@ -687,7 +690,7 @@ function Inspector(props) {
                             {side === 'back' && (
                                 <>
                                     <NormalBGControl requiredProps={requiredProps} controlName={BACK_ITEMS_BG} noMainBGImg={false} />
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <BorderControl
                                         label={__('Border', 'zoloblocks')}
                                         controlName={BACK_ITEMS_BORDER}
@@ -698,7 +701,7 @@ function Inspector(props) {
                                         requiredProps={requiredProps}
                                         enableTransition={false}
                                     />
-                                    <CardDivider />
+                                    <ZoloCardDivider />
                                     <ResAlignmentControl
                                         label={__('Alignment', 'zoloblocks')}
                                         controlName={BACK_ITEMS_ALIGNMENT}
@@ -718,29 +721,28 @@ function Inspector(props) {
 
                         {(showFrontIcon || showBackIcon) && (
                             <ZoloPanelBody title={__('Icon/Image', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ButtonGroup className="zolo-button-group">
+                                <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
+                                    <ZoloToggleGroupControl
+                                        className="zolo-button-group zolo-toggle-box-custom-css"
+                                        value={side}
+                                        onChange={(value) => {
+                                            setSide(value);
+                                            if (value === 'back') {
+                                                onBackSideClick();
+                                            } else {
+                                                removeActiveClass();
+                                            }
+                                        }}
+                                    >
                                         {FLIPBLOX_SIDE.map((item) => (
-                                            <Button
-                                                isLarge
-                                                variant={side === item.value ? 'primary' : 'secondary'}
-                                                aria-pressed={side === item.value}
-                                                showBackLinkBtn
-                                                onClick={() => {
-                                                    setSide(item.value);
-
-                                                    if (item.value === 'back') {
-                                                        onBackSideClick();
-                                                    } else {
-                                                        removeActiveClass();
-                                                    }
-                                                }}
-                                            >
-                                                {item.label}
-                                            </Button>
+                                            <ZoloToggleGroupControlOption
+                                                key={item.value}
+                                                value={item.value}
+                                                label={item.label}
+                                            />
                                         ))}
-                                    </ButtonGroup>
-                                </BaseControl>
+                                    </ZoloToggleGroupControl>
+                                </ZoloBaseControl>
                                 {side === 'front' && (
                                     <>
                                         {showFrontIcon && (
@@ -759,7 +761,7 @@ function Inspector(props) {
                                                     controlName={FRONT_ICON_SIZE}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
 
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
@@ -771,7 +773,7 @@ function Inspector(props) {
                                                     controlName={FRONT_ICON_PADDING}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={FRONT_ICON_BORDER}
@@ -804,7 +806,7 @@ function Inspector(props) {
                                                     controlName={BACK_ICON_SIZE}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
                                                     controlName={BACK_ICON_BG}
@@ -815,7 +817,7 @@ function Inspector(props) {
                                                     controlName={BACK_ICON_PADDING}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={BACK_ICON_BORDER}
@@ -835,29 +837,28 @@ function Inspector(props) {
 
                         {(showFrontTitle || showBackTitle) && (
                             <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ButtonGroup className="zolo-button-group">
+                                <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
+                                    <ZoloToggleGroupControl
+                                        className="zolo-button-group zolo-toggle-box-custom-css"
+                                        value={side}
+                                        onChange={(value) => {
+                                            setSide(value);
+                                            if (value === 'back') {
+                                                onBackSideClick();
+                                            } else {
+                                                removeActiveClass();
+                                            }
+                                        }}
+                                    >
                                         {FLIPBLOX_SIDE.map((item) => (
-                                            <Button
-                                                isLarge
-                                                variant={side === item.value ? 'primary' : 'secondary'}
-                                                aria-pressed={side === item.value}
-                                                showBackLinkBtn
-                                                onClick={() => {
-                                                    setSide(item.value);
-
-                                                    if (item.value === 'back') {
-                                                        onBackSideClick();
-                                                    } else {
-                                                        removeActiveClass();
-                                                    }
-                                                }}
-                                            >
-                                                {item.label}
-                                            </Button>
+                                            <ZoloToggleGroupControlOption
+                                                key={item.value}
+                                                value={item.value}
+                                                label={item.label}
+                                            />
                                         ))}
-                                    </ButtonGroup>
-                                </BaseControl>
+                                    </ZoloToggleGroupControl>
+                                </ZoloBaseControl>
                                 {side === 'front' && (
                                     <>
                                         {showFrontTitle && (
@@ -876,7 +877,7 @@ function Inspector(props) {
                                                     typoPrefixConstant={FRONT_TITLE_TYPOGRAPHY}
                                                     requiredProps={requiredProps}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <ResDimensionsControl
                                                     label={__('Margin', 'zoloblocks')}
                                                     controlName={FRONT_TITLE_MARGIN}
@@ -902,7 +903,7 @@ function Inspector(props) {
                                             typoPrefixConstant={BACK_TITLE_TYPOGRAPHY}
                                             requiredProps={requiredProps}
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
                                             controlName={BACK_TITLE_MARGIN}
@@ -914,29 +915,28 @@ function Inspector(props) {
                         )}
                         {(showFrontContent || showBackContent) && (
                             <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ButtonGroup className="zolo-button-group">
+                                <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
+                                    <ZoloToggleGroupControl
+                                        className="zolo-button-group zolo-toggle-box-custom-css"
+                                        value={side}
+                                        onChange={(value) => {
+                                            setSide(value);
+                                            if (value === 'back') {
+                                                onBackSideClick();
+                                            } else {
+                                                removeActiveClass();
+                                            }
+                                        }}
+                                    >
                                         {FLIPBLOX_SIDE.map((item) => (
-                                            <Button
-                                                isLarge
-                                                variant={side === item.value ? 'primary' : 'secondary'}
-                                                aria-pressed={side === item.value}
-                                                showBackLinkBtn
-                                                onClick={() => {
-                                                    setSide(item.value);
-
-                                                    if (item.value === 'back') {
-                                                        onBackSideClick();
-                                                    } else {
-                                                        removeActiveClass();
-                                                    }
-                                                }}
-                                            >
-                                                {item.label}
-                                            </Button>
+                                            <ZoloToggleGroupControlOption
+                                                key={item.value}
+                                                value={item.value}
+                                                label={item.label}
+                                            />
                                         ))}
-                                    </ButtonGroup>
-                                </BaseControl>
+                                    </ZoloToggleGroupControl>
+                                </ZoloBaseControl>
                                 {side === 'front' && (
                                     <>
                                         <TypographyDropdown
@@ -977,28 +977,28 @@ function Inspector(props) {
                         )}
                         {showBackLinkBtn && (
                             <ZoloPanelBody title={__('Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                <BaseControl label={__('Selected Side', 'zoloblocks')}>
-                                    <ButtonGroup className="zolo-button-group">
+                                <ZoloBaseControl label={__('Selected Side', 'zoloblocks')}>
+                                    <ZoloToggleGroupControl
+                                        className="zolo-button-group zolo-toggle-box-custom-css"
+                                        value={side}
+                                        onChange={(value) => {
+                                            setSide(value);
+                                            if (value === 'back') {
+                                                onBackSideClick();
+                                            } else {
+                                                removeActiveClass();
+                                            }
+                                        }}
+                                    >
                                         {FLIPBLOX_SIDE.map((item) => (
-                                            <Button
-                                                isLarge
-                                                variant={side === item.value ? 'primary' : 'secondary'}
-                                                aria-pressed={side === item.value}
-                                                showBackLinkBtn
-                                                onClick={() => {
-                                                    setSide(item.value);
-                                                    if (item.value === 'back') {
-                                                        onBackSideClick();
-                                                    } else {
-                                                        removeActiveClass();
-                                                    }
-                                                }}
-                                            >
-                                                {item.label}
-                                            </Button>
+                                            <ZoloToggleGroupControlOption
+                                                key={item.value}
+                                                value={item.value}
+                                                label={item.label}
+                                            />
                                         ))}
-                                    </ButtonGroup>
-                                </BaseControl>
+                                    </ZoloToggleGroupControl>
+                                </ZoloBaseControl>
                                 {side === 'back' && (
                                     <>
                                         <TabPanelControl
@@ -1018,7 +1018,7 @@ function Inspector(props) {
                                                         typoPrefixConstant={BACK_LINK_TYPOGRAPHY}
                                                         requiredProps={requiredProps}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <NormalBGControl
                                                         requiredProps={requiredProps}
                                                         controlName={BACK_LINK_BG}
@@ -1030,7 +1030,7 @@ function Inspector(props) {
                                                         controlName={BACK_LINK_PADDING}
                                                         requiredProps={requiredProps}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <BorderControl
                                                         label={__('Border', 'zoloblocks')}
                                                         controlName={BACK_LINK_BORDER}

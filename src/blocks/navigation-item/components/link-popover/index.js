@@ -1,13 +1,12 @@
-import { Popover } from '@wordpress/components';
-import { __experimentalLinkControl as LinkControl } from '@wordpress/block-editor';
+import { LinkControl } from '@wordpress/block-editor';
 import { getSuggestionsQuery } from './get-suggestion-query';
 import { decodeEntities } from '@wordpress/html-entities';
 import { useDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { store as coreStore, useResourcePermissions } from '@wordpress/core-data';
-
 import { createInterpolateElement, useMemo, forwardRef } from '@wordpress/element';
 import { __unstableStripHTML as stripHTML } from '@wordpress/dom';
+const { ZoloPopover } = window.zoloModule;
 
 const LinkPopover = (props, ref) => {
     const { label, url, opensInNewTab, type, kind } = props?.link;
@@ -44,7 +43,7 @@ const LinkPopover = (props, ref) => {
     );
 
     return (
-        <Popover ref={ref} placement="bottom" onClose={props?.onClose} anchor={props?.anchor} shift>
+        <ZoloPopover ref={ref} placement="bottom" onClose={props?.onClose} anchor={props?.anchor} shift>
             <LinkControl
                 hasTextControl
                 hasRichPreviews
@@ -73,7 +72,7 @@ const LinkPopover = (props, ref) => {
                 suggestionsQuery={getSuggestionsQuery(type, kind)}
                 onChange={props.onChange}
             />
-        </Popover>
+        </ZoloPopover>
     );
 };
 

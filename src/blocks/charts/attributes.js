@@ -105,13 +105,7 @@ const attributes = {
             text: 'Zolo Block Advanced Chart',
             align: 'left',
             style: {
-                color: '#000000',
-                fontSize: 18,
-                fontWeight: 500,
-                lineHeight: 1.2,
-                letterSpacing: 0,
-                textAlign: 'left',
-                textTransform: 'none',
+                color: '#000000'
             },
         },
     },
@@ -125,13 +119,7 @@ const attributes = {
             text: 'Category Names as DataLabels inside bars',
             align: 'center',
             style: {
-                color: '#000000',
-                fontSize: 14,
-                fontWeight: 500,
-                lineHeight: 1.2,
-                letterSpacing: 0,
-                textAlign: 'left',
-                textTransform: 'none',
+                color: '#000000'
             },
         },
     },

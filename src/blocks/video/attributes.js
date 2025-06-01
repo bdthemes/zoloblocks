@@ -30,8 +30,12 @@ import {
     POPUP_IMAGE_BG_COLOR,
     INLINE_VIDEO_CONTANER_WIDTH,
     INLINE_VIDEO_CONTANER_HEIGHT,
+    INLINE_VIDEO_BORDER,
+    INLINE_VIDEO_BORDER_RADIUS,
+    INLINE_VIDEO_BOX_SHADOW,
     VIDEO_OVERLAY,
     VIDEO_OVERLAY_SIZE,
+    POPUP_VIDEO_CONTANER_WIDTH,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstants';
@@ -281,12 +285,16 @@ const attributes = {
 
     ...generateResRangeAttributies(INLINE_VIDEO_CONTANER_WIDTH),
     ...generateResRangeAttributies(INLINE_VIDEO_CONTANER_HEIGHT),
+    ...generateBorderAttributies(INLINE_VIDEO_BORDER),
+    ...generateDimensionAttributes(INLINE_VIDEO_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(INLINE_VIDEO_BOX_SHADOW),
 
     ...generateNormalBGAttributes(VIDEO_OVERLAY),
 
     ...generateResRangeAttributies(VIDEO_OVERLAY_SIZE, {
         defaultUnit: '%',
     }),
+    ...generateResRangeAttributies(POPUP_VIDEO_CONTANER_WIDTH),
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 };

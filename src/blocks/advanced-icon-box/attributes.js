@@ -270,6 +270,10 @@ const attributes = {
         type: 'string',
         default: 'iconbox-align-left',
     },
+    iconBoxPresetThreeDirection: {
+        type: 'string',
+        default: '',
+    },
     iconBorderHoverColor: {
         type: 'string',
     },

@@ -1,21 +1,18 @@
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
-
-const { ColorControl } = window.zoloModule;
-
+const { ColorControl, ZoloButton } = window.zoloModule;
 
 const MultiColor = ({ propsMultiColor }) => {
-  const { attributes, setAttributes } = propsMultiColor;
-  const { zoloParticles } = attributes;
-  const { colors } = zoloParticles;
-  const particleColors = structuredClone(colors);
+    const { attributes, setAttributes } = propsMultiColor;
+    const { zoloParticles } = attributes;
+    const { colors } = zoloParticles;
+    const particleColors = structuredClone(colors);
     return (
         <>
             {particleColors &&
                 particleColors.map((item, index) => (
                     <div key={index} className="zolo-color-wrap">
                         {colors.length > 1 && (
-                            <Button
+                            <ZoloButton
                                 icon="trash"
                                 onClick={() => {
                                     setAttributes({
@@ -46,7 +43,7 @@ const MultiColor = ({ propsMultiColor }) => {
                     </div>
                 ))}
             <div className="repeater-label">
-                <Button
+                <ZoloButton
                     onClick={() =>
                         setAttributes({
                             zoloParticles: {
@@ -66,7 +63,7 @@ const MultiColor = ({ propsMultiColor }) => {
                         <path d="M12 8V16" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M16 12H8" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                </Button>
+                </ZoloButton>
             </div>
         </>
     );

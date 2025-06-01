@@ -1,6 +1,4 @@
-import { Spinner } from '@wordpress/components';
-
-const { isEmpty } = window.zoloModule;
+const { isEmpty, ZoloSpinner } = window.zoloModule;
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 
@@ -17,8 +15,8 @@ const SocialIcon = ({ value }) => {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"></path>
@@ -36,8 +34,8 @@ const SocialIcon = ({ value }) => {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M21 12a9 9 0 1 0 -9.968 8.948"></path>
@@ -191,7 +189,9 @@ function AuthorItem({ author, attributes }) {
             <div className="zolo-content">
                 {showName && (
                     <div className="zolo-name">
-                        <a href={author.link} onClick={(e) => e.preventDefault()}>{author.name}</a>
+                        <a href={author.link} onClick={(e) => e.preventDefault()}>
+                            {author.name}
+                        </a>
                     </div>
                 )}
 
@@ -202,7 +202,7 @@ function AuthorItem({ author, attributes }) {
                 {!user && (
                     <div className="zolo-link">
                         <div className="preloader">
-                            <Spinner />
+                            <ZoloSpinner />
                         </div>
                     </div>
                 )}

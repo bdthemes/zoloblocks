@@ -106,9 +106,10 @@ $data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $
 					$html .= require __DIR__ . '/post-partials/meta/author-grid.php';
 					$html .= '</div>';
 				}
-				if ( ! empty( $settings['preset'] ) && $settings['preset'] !== 'style-5' ) {
+				if ( ! empty( $settings['preset'] ) && $settings['preset'] !== 'style-5' && $settings['preset'] !== 'style-6' ) {
 					$html .= require __DIR__ . '/post-partials/meta/author-grid.php';
 				}
+				
 
 				$html .= '</div>';
 
@@ -119,7 +120,9 @@ $data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $
 				}
 				$html .= require __DIR__ . '/post-partials/title.php';
 				$html .= require __DIR__ . '/post-partials/content.php';
-				if ( ! empty( $settings['preset'] !== 'style-5' ) && ( $settings['showMeta'] === true ) ) {
+				
+				// Normal meta display for non style-5 and non style-6
+				if ( ! empty( $settings['preset'] !== 'style-5' ) && ! empty( $settings['preset'] !== 'style-6' ) && ( $settings['showMeta'] === true ) ) {
 					$html .= '<div class="zolo-post-dateTime">';
 					$html .= require __DIR__ . '/post-partials/meta/date.php';
 					if ( ! empty( $settings['showReadingTime'] ) ) {
@@ -129,7 +132,26 @@ $data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $
 					$html .= '</div>';
 				}
 				$html .= '</div>';
-				$html .= require __DIR__ . '/post-partials/read-more.php';
+
+				// Style 6 specific bottom content
+				if ( ! empty( $settings['preset'] ) && $settings['preset'] === 'style-6' ) {
+					$html .= '<div class="zolo-post-bottom-content">';
+					if ( $settings['showMeta'] === true ) {
+						$html .= '<div class="zolo-post-dateTime">';
+						$html .= require __DIR__ . '/post-partials/meta/date.php';
+						if ( ! empty( $settings['showReadingTime'] ) ) {
+							$html .= $metaSeparator;
+							$html .= require __DIR__ . '/post-partials/meta/reading-time.php';
+						}
+						$html .= '</div>';
+					}
+					$html .= require __DIR__ . '/post-partials/read-more.php';
+					$html .= '</div>';
+				} else {
+					// Normal read more button for other styles
+					$html .= require __DIR__ . '/post-partials/read-more.php';
+				}
+				
 				$html .= '</div>';
 				$html .= '</div>';
 			}

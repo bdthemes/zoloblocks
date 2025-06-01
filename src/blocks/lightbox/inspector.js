@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { SelectControl, ToggleControl, TextareaControl, TextControl, BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { applyFilters } from '@wordpress/hooks';
@@ -10,7 +9,15 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
+
 const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloTextareaControl,
+    ZoloBaseControl,
+    ZoloButton,
+    ZoloTextControl,
+    ZoloCardDivider,
     ResRangeControl,
     ColorControl,
     BorderControl,
@@ -64,15 +71,12 @@ import {
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY, BUTTON_SUB_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { CardDivider } from '@wordpress/components';
-import { Card } from '@wordpress/components';
 
 export default function Edit(props) {
     const { attributes, setAttributes } = props;
 
     const {
         resMode,
-
         // settings
         lightboxType,
         imagePoster,
@@ -96,6 +100,7 @@ export default function Edit(props) {
         iconColor,
         iconHColor,
         playBtnBorderHColor,
+        imageSizeLightbox,
     } = attributes;
 
     const requiredProps = {
@@ -115,7 +120,7 @@ export default function Edit(props) {
                     generalTab={
                         <>
                             <ZoloPanelBody title={__('Toggler', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Type', 'zoloblocks')}
                                     value={lightboxType}
                                     onChange={(value) =>
@@ -128,8 +133,8 @@ export default function Edit(props) {
 
                                 {lightboxType === 'poster' && (
                                     <>
-                                        <CardDivider />
-                                        <BaseControl label={__('Poster Image', 'zoloblocks')} className="zolo-flex-col-control">
+                                        <ZoloCardDivider />
+                                        <ZoloBaseControl label={__('Poster Image', 'zoloblocks')} className="zolo-flex-col-control">
                                             {imagePoster ? (
                                                 <ImageAvatar
                                                     imageUrl={imagePoster && imagePoster.url}
@@ -161,7 +166,7 @@ export default function Edit(props) {
                                                     allowedTypes={['image']}
                                                     value={imagePoster && imagePoster.id}
                                                     render={({ open }) => (
-                                                        <Button className="zolo-image-upload-btn" onClick={open}>
+                                                        <ZoloButton className="zolo-image-upload-btn" onClick={open}>
                                                             <svg
                                                                 width="24"
                                                                 height="24"
@@ -172,11 +177,11 @@ export default function Edit(props) {
                                                                 <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                             </svg>
                                                             {__(' Upload Logo', 'zoloblocks')}
-                                                        </Button>
+                                                        </ZoloButton>
                                                     )}
                                                 />
                                             )}
-                                        </BaseControl>
+                                        </ZoloBaseControl>
 
                                         <ImageSizes
                                             label={__('Resolution', 'zoloblocks')}
@@ -195,8 +200,8 @@ export default function Edit(props) {
                                             min={0}
                                             max={1200}
                                         />
-                                        <CardDivider />
-                                        <ToggleControl
+                                        <ZoloCardDivider />
+                                        <ZoloToggleControl
                                             label={__('Play Button', 'zoloblocks')}
                                             checked={showPosterIcon}
                                             onChange={() =>
@@ -226,7 +231,7 @@ export default function Edit(props) {
                                 {lightboxType === 'button' && (
                                     <>
                                         <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Title', 'zoloblocks')}
                                             checked={enableHeading}
                                             onChange={() =>
@@ -235,7 +240,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                         />
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Sub Title', 'zoloblocks')}
                                             checked={enableSubHeading}
                                             onChange={() =>
@@ -244,7 +249,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                         />
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Play Button', 'zoloblocks')}
                                             checked={showPosterIcon}
                                             onChange={() =>
@@ -253,10 +258,10 @@ export default function Edit(props) {
                                                 })
                                             }
                                         />
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         {enableHeading && (
                                             <>
-                                                <TextControl
+                                                <ZoloTextControl
                                                     label={__('Title', 'zoloblocks')}
                                                     value={buttonText}
                                                     onChange={(value) =>
@@ -268,7 +273,7 @@ export default function Edit(props) {
                                             </>
                                         )}
                                         {enableSubHeading && (
-                                            <TextControl
+                                            <ZoloTextControl
                                                 label={__('Sub Title', 'zoloblocks')}
                                                 value={buttonHeadingText}
                                                 onChange={(value) =>
@@ -280,7 +285,7 @@ export default function Edit(props) {
                                         )}
                                         {showPosterIcon && (
                                             <>
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <ZoloIconPicker
                                                     label={__('Play Button Icon', 'zoloblocks')}
                                                     value={posterIcon}
@@ -292,7 +297,7 @@ export default function Edit(props) {
                                                 />
                                             </>
                                         )}
-                                        <CardDivider />
+                                        <ZoloCardDivider />
                                         <ResAlignmentControl
                                             label={__('Alignment', 'zoloblocks')}
                                             controlName={BUTTON_ALIGN}
@@ -303,7 +308,7 @@ export default function Edit(props) {
                             </ZoloPanelBody>
 
                             <ZoloPanelBody title={__('Lightbox Content', 'zoloblocks')} panelProps={props} firstOpen={false}>
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Type', 'zoloblocks')}
                                     value={contentType}
                                     onChange={(value) =>
@@ -316,7 +321,7 @@ export default function Edit(props) {
 
                                 {contentType === 'image' && (
                                     <>
-                                        <BaseControl label={__('Image Source', 'zoloblocks')} className="zolo-flex-col-control">
+                                        <ZoloBaseControl label={__('Image Source', 'zoloblocks')} className="zolo-flex-col-control">
                                             {contentImage ? (
                                                 <ImageAvatar
                                                     imageUrl={contentImage && contentImage.url}
@@ -354,7 +359,7 @@ export default function Edit(props) {
                                                     allowedTypes={['image']}
                                                     value={contentImage && contentImage.id}
                                                     render={({ open }) => (
-                                                        <Button className="zolo-image-upload-btn" onClick={open}>
+                                                        <ZoloButton className="zolo-image-upload-btn" onClick={open}>
                                                             <svg
                                                                 width="24"
                                                                 height="24"
@@ -365,17 +370,28 @@ export default function Edit(props) {
                                                                 <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                             </svg>
                                                             {__('Choose Image', 'zoloblocks')}
-                                                        </Button>
+                                                        </ZoloButton>
                                                     )}
                                                 />
                                             )}
-                                        </BaseControl>
+
+                                        </ZoloBaseControl>
+
+                                        <ImageSizes
+                                            label={__('Resolution', 'zoloblocks')}
+                                            value={imageSizeLightbox}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    imageSizeLightbox: value,
+                                                })
+                                            }
+                                        />
                                     </>
                                 )}
 
                                 {contentType === 'youtube' && (
                                     <>
-                                        <TextareaControl
+                                        <ZoloTextareaControl
                                             label={__('Youtube Video Url', 'zoloblocks')}
                                             value={youtubeUrl}
                                             onChange={(value) =>
@@ -397,7 +413,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                         /> */}
-                                        <TextareaControl
+                                        <ZoloTextareaControl
                                             label={__('Vimeo Video Url', 'zoloblocks')}
                                             value={vimeoUrl}
                                             onChange={(value) =>
@@ -410,7 +426,7 @@ export default function Edit(props) {
                                 )}
 
                                 {contentType === 'googleMap' && (
-                                    <TextareaControl
+                                    <ZoloTextareaControl
                                         label={__('Google Map Embed Url', 'zoloblocks')}
                                         value={googleMapUrl}
                                         onChange={(value) =>
@@ -421,7 +437,7 @@ export default function Edit(props) {
                                     />
                                 )}
 
-                                <TextControl
+                                <ZoloTextControl
                                     label={__('Caption', 'zoloblocks')}
                                     value={contentCaption}
                                     onChange={(value) =>
@@ -487,7 +503,6 @@ export default function Edit(props) {
                                     </ZoloPanelBody>
                                 </>
                             )}
-
                             {lightboxType === 'button' && (
                                 <>
                                     <ZoloPanelBody title={__('Button Wrapper', 'zoloblocks')} panelProps={props} firstOpen={true}>
@@ -505,7 +520,7 @@ export default function Edit(props) {
                                                         controlName={BUTTON_PADDING}
                                                         requiredProps={requiredProps}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <BorderControl
                                                         label={__('Border', 'zoloblocks')}
                                                         controlName={BUTTON_BORDER}
@@ -532,7 +547,7 @@ export default function Edit(props) {
                                                         requiredProps={requiredProps}
                                                         noMainBGIMG={false}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
 
                                                     <BoxShadowControl
                                                         controlName={HOVER_BUTTON_BOX_SHADOW}
@@ -653,7 +668,7 @@ export default function Edit(props) {
                                                         min={0}
                                                         max={100}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <NormalBGControl
                                                         label={__('Background Color', 'zoloblocks')}
                                                         controlName={ICON_BG_COLOR}
@@ -670,7 +685,7 @@ export default function Edit(props) {
                                                         controlName={PLAY_BTN_MARGIN}
                                                         requiredProps={requiredProps}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <BorderControl
                                                         label={__('Border', 'zoloblocks')}
                                                         controlName={PLAY_BTN_BORDER}
@@ -707,7 +722,7 @@ export default function Edit(props) {
                                                         requiredProps={requiredProps}
                                                         noMainBGIMG={false}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <ColorControl
                                                         label={__('Border Color', 'zoloblocks')}
                                                         color={playBtnBorderHColor}
@@ -730,22 +745,29 @@ export default function Edit(props) {
                                 </>
                             )}
 
-                            {contentType !== 'image' && (
-                                <ZoloPanelBody title={__('Content', 'zoloblocks')} stylePanel={true} panelProps={props} firstOpen={false}>
+                            <ZoloPanelBody
+                                title={__('Lightbox Content', 'zoloblocks')}
+                                stylePanel={true}
+                                panelProps={props}
+                                firstOpen={false}
+                            >
+                                {contentType !== 'image' && (
                                     <ResRangeControl
-                                        label={__('Width', 'zoloblocks')}
+                                        label={__('Size', 'zoloblocks')}
                                         controlName={CONTENT_WIDTH}
                                         requiredProps={requiredProps}
-                                        max={1500}
+                                        max={1000}
                                     />
+                                )}
+                                {contentType === 'image' && (
                                     <ResRangeControl
-                                        label={__('Height', 'zoloblocks')}
+                                        label={__('Size', 'zoloblocks')}
                                         controlName={CONTENT_HEIGHT}
                                         requiredProps={requiredProps}
-                                        max={1500}
+                                        max={1000}
                                     />
-                                </ZoloPanelBody>
-                            )}
+                                )}
+                            </ZoloPanelBody>
                         </>
                     }
                     advancedTab={

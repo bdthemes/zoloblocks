@@ -2,16 +2,6 @@
  * WordPress dependencies
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import {
-    SelectControl,
-    ToggleControl,
-    CardDivider,
-    BaseControl,
-    Button,
-    __experimentalNumberControl as NumberControl,
-    TextControl,
-    RangeControl,
-} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -21,6 +11,14 @@ import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
 
 const {
+    ZoloSelectControl,
+    ZoloToggleControl,
+    ZoloCardDivider,
+    ZoloBaseControl,
+    ZoloButton,
+    ZoloNumberControl,
+    ZoloTextControl,
+    ZoloRangeControl,
     HeaderTabs,
     LinkControl,
     ImageAvatar,
@@ -58,8 +56,12 @@ import {
     POPUP_IMAGE_BG_COLOR,
     INLINE_VIDEO_CONTANER_WIDTH,
     INLINE_VIDEO_CONTANER_HEIGHT,
+    INLINE_VIDEO_BORDER,
+    INLINE_VIDEO_BORDER_RADIUS,
+    INLINE_VIDEO_BOX_SHADOW,
     VIDEO_OVERLAY_SIZE,
     VIDEO_OVERLAY,
+    POPUP_VIDEO_CONTANER_WIDTH,
 } from './constants';
 import { TEXT_ALIGN_OPTIONS } from '../../../src/global/constants';
 
@@ -120,7 +122,7 @@ export default function Edit(props) {
                     generalTab={
                         <>
                             <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                                <SelectControl
+                                <ZoloSelectControl
                                     label={__('Video Source', 'zoloblocks')}
                                     value={videoSource}
                                     options={VIDEO_SOURCE}
@@ -154,7 +156,7 @@ export default function Edit(props) {
                                 )}
                                 {videoSource === 'custom' && (
                                     <>
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('External URL', 'zoloblocks')}
                                             checked={isExternalCustomUrl}
                                             onChange={(value) =>
@@ -176,13 +178,13 @@ export default function Edit(props) {
                                         )}
 
                                         {!isExternalCustomUrl && (
-                                            <BaseControl label={__('Choose Video', 'zoloblocks')} className="zolo-flex-col-control">
+                                            <ZoloBaseControl label={__('Choose Video', 'zoloblocks')} className="zolo-flex-col-control">
                                                 <MediaUpload
                                                     onSelect={(file) => setAttributes({ customVideo: file.url })}
                                                     type="file"
                                                     value={customVideo}
                                                     render={({ open }) => (
-                                                        <Button
+                                                        <ZoloButton
                                                             style={{ marginBottom: '10px' }}
                                                             className="zolo-action-button"
                                                             variant="primary"
@@ -191,7 +193,7 @@ export default function Edit(props) {
                                                             {customVideo
                                                                 ? __('Change Video File', 'zoloblocks')
                                                                 : __('Choose Video File', 'zoloblocks')}
-                                                        </Button>
+                                                        </ZoloButton>
                                                     )}
                                                     allowedTypes={['video']}
                                                     accept="video/*"
@@ -203,7 +205,7 @@ export default function Edit(props) {
                                                         });
                                                     }}
                                                 />
-                                            </BaseControl>
+                                            </ZoloBaseControl>
                                         )}
                                     </>
                                 )}
@@ -244,7 +246,7 @@ export default function Edit(props) {
 
                                         {/* {attributes?.popupType === 'button' && (
                                             <> */}
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Button Label', 'zoloblocks')}
                                             checked={attributes?.popupButtonLebelWrap}
                                             onChange={() =>
@@ -256,7 +258,7 @@ export default function Edit(props) {
 
                                         {attributes?.popupButtonLebelWrap && (
                                             <>
-                                                <TextControl
+                                                <ZoloTextControl
                                                     label={__('Sub Label', 'zoloblocks')}
                                                     value={attributes?.popupButtonSubLabel}
                                                     onChange={(value) =>
@@ -265,7 +267,7 @@ export default function Edit(props) {
                                                         })
                                                     }
                                                 />
-                                                <TextControl
+                                                <ZoloTextControl
                                                     label={__('Label', 'zoloblocks')}
                                                     value={attributes?.popupButtonLabel}
                                                     onChange={(value) =>
@@ -287,7 +289,7 @@ export default function Edit(props) {
 
                                         {attributes?.popupType === 'image' && (
                                             <>
-                                                <BaseControl label={__('Choose Poster', 'zoloblocks')} className="zolo-flex-col-control">
+                                                <ZoloBaseControl label={__('Choose Poster', 'zoloblocks')} className="zolo-flex-col-control">
                                                     {popoupImage ? (
                                                         <ImageAvatar
                                                             imageUrl={popoupImage && popoupImage.url}
@@ -318,7 +320,7 @@ export default function Edit(props) {
                                                             allowedTypes={['image']}
                                                             value={popoupImage && popoupImage.id}
                                                             render={({ open }) => (
-                                                                <Button className="zolo-image-upload-btn" onClick={open}>
+                                                                <ZoloButton className="zolo-image-upload-btn" onClick={open}>
                                                                     <svg
                                                                         width="24"
                                                                         height="24"
@@ -329,11 +331,11 @@ export default function Edit(props) {
                                                                         <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                                     </svg>
                                                                     {__(' Upload Poster', 'zoloblocks')}
-                                                                </Button>
+                                                                </ZoloButton>
                                                             )}
                                                         />
                                                     )}
-                                                </BaseControl>
+                                                </ZoloBaseControl>
                                                 <ImageSizes
                                                     label={__('Resolution', 'zoloblocks')}
                                                     value={popupImageSizes}
@@ -348,8 +350,8 @@ export default function Edit(props) {
                                     </>
                                 )}
 
-                                <CardDivider />
-                                <NumberControl
+                                <ZoloCardDivider />
+                                <ZoloNumberControl
                                     style={{ display: 'contents' }}
                                     label={__('Start Time (in seconds)', 'zoloblocks')}
                                     value={startTime}
@@ -362,7 +364,7 @@ export default function Edit(props) {
                                 />
 
                                 {videoSource !== 'vimeo' && (
-                                    <NumberControl
+                                    <ZoloNumberControl
                                         style={{ display: 'contents' }}
                                         label={__('End Time (in seconds)', 'zoloblocks')}
                                         value={endTime}
@@ -376,7 +378,7 @@ export default function Edit(props) {
                                 )}
 
                                 <div className="zolo-custom-heading">{__('Video Options', 'zoloblocks')}</div>
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Autoplay', 'zoloblocks')}
                                     checked={autoPlay}
                                     onChange={() =>
@@ -397,7 +399,7 @@ export default function Edit(props) {
                                     on Chrome browsers.
                                 </p>
 
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Loop', 'zoloblocks')}
                                     checked={loop}
                                     onChange={() =>
@@ -406,7 +408,7 @@ export default function Edit(props) {
                                         })
                                     }
                                 />
-                                <ToggleControl
+                                <ZoloToggleControl
                                     label={__('Mute', 'zoloblocks')}
                                     checked={mute}
                                     onChange={() =>
@@ -417,7 +419,7 @@ export default function Edit(props) {
                                 />
                                 {videoSource !== 'vimeo' && (
                                     <>
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Player Control', 'zoloblocks')}
                                             checked={playerControl}
                                             onChange={() =>
@@ -426,7 +428,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                         />
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Lazy Load', 'zoloblocks')}
                                             checked={isLazyLoad}
                                             onChange={() =>
@@ -439,7 +441,7 @@ export default function Edit(props) {
                                 )}
                                 {videoSource == 'custom' && (
                                     <>
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Download Button', 'zoloblocks')}
                                             checked={attributes?.showDownloadButton}
                                             onChange={() =>
@@ -448,7 +450,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                         />
-                                        <SelectControl
+                                        <ZoloSelectControl
                                             label={__('Preload', 'zoloblocks')}
                                             value={attributes?.preload}
                                             onChange={(value) => setAttributes({ preload: value })}
@@ -472,7 +474,7 @@ export default function Edit(props) {
                                 )}
                                 {videoSource == 'youtube' && (
                                     <>
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Captions', 'zoloblocks')}
                                             checked={showCaption}
                                             onChange={() =>
@@ -481,7 +483,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                         />
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Modest Branding', 'zoloblocks')}
                                             checked={youtubeModestBranding}
                                             onChange={() =>
@@ -490,7 +492,7 @@ export default function Edit(props) {
                                                 })
                                             }
                                         />
-                                        <SelectControl
+                                        <ZoloSelectControl
                                             label={__('Suggested Videos', 'zoloblocks')}
                                             value={attributes?.youtubeSuggestedvideoType}
                                             options={[
@@ -504,7 +506,7 @@ export default function Edit(props) {
 
                                 {videoSource !== 'custom' && (
                                     <>
-                                        <ToggleControl
+                                        <ZoloToggleControl
                                             label={__('Privacy Mode', 'zoloblocks')}
                                             checked={isPrivacyMode}
                                             onChange={() =>
@@ -519,8 +521,8 @@ export default function Edit(props) {
                                         </p>
                                     </>
                                 )}
-                                {/* <CardDivider />
-                                <ToggleControl
+                                {/* <ZoloCardDivider />
+                                <ZoloToggleControl
                                     label={__('Overlay', 'zoloblocks')}
                                     checked={attributes?.videoOverlay}
                                     onChange={() =>
@@ -550,7 +552,7 @@ export default function Edit(props) {
                             </ZoloPanelBody>
                             {videoSource === 'custom' && (
                                 <ZoloPanelBody title={__('Poster', 'zoloblocks')} panelProps={props} stylePanel={true}>
-                                    <BaseControl label={__('Choose Poster', 'zoloblocks')} className="zolo-flex-col-control">
+                                    <ZoloBaseControl label={__('Choose Poster', 'zoloblocks')} className="zolo-flex-col-control">
                                         {posterImage ? (
                                             <ImageAvatar
                                                 imageUrl={posterImage && posterImage.url}
@@ -581,7 +583,7 @@ export default function Edit(props) {
                                                 allowedTypes={['image']}
                                                 value={posterImage && posterImage.id}
                                                 render={({ open }) => (
-                                                    <Button className="zolo-image-upload-btn" onClick={open}>
+                                                    <ZoloButton className="zolo-image-upload-btn" onClick={open}>
                                                         <svg
                                                             width="24"
                                                             height="24"
@@ -592,11 +594,11 @@ export default function Edit(props) {
                                                             <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
                                                         </svg>
                                                         {__(' Upload Poster', 'zoloblocks')}
-                                                    </Button>
+                                                    </ZoloButton>
                                                 )}
                                             />
                                         )}
-                                    </BaseControl>
+                                    </ZoloBaseControl>
                                     <ImageSizes
                                         label={__('Resolution', 'zoloblocks')}
                                         value={imageRes}
@@ -615,25 +617,44 @@ export default function Edit(props) {
                             {videoLayoutType === 'inline' && (
                                 <ZoloPanelBody title={__('Player', 'zoloblocks')} panelProps={props} firstOpen={true}>
                                     <ResRangeControl
-                                        label={__('Width', 'zoloblocks')}
+                                        label={__('Size', 'zoloblocks')}
                                         controlName={INLINE_VIDEO_CONTANER_WIDTH}
                                         requiredProps={requiredProps}
                                         min={0}
                                         max={1000}
                                     />
 
-                                    <ResRangeControl
-                                        label={__('Height', 'zoloblocks')}
-                                        controlName={INLINE_VIDEO_CONTANER_HEIGHT}
+                                    <ZoloCardDivider />
+                                    <BorderControl
+                                        label={__('Border', 'zoloblocks')}
+                                        controlName={INLINE_VIDEO_BORDER}
                                         requiredProps={requiredProps}
-                                        min={0}
-                                        max={1000}
+                                    />
+
+                                    <BoxShadowControl
+                                        label={__('Box Shadow', 'zoloblocks')}
+                                        controlName={INLINE_VIDEO_BOX_SHADOW}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <ResDimensionsControl
+                                        label={__('Border Radius', 'zoloblocks')}
+                                        controlName={INLINE_VIDEO_BORDER_RADIUS}
+                                        requiredProps={requiredProps}
                                     />
                                 </ZoloPanelBody>
                             )}
                             {videoLayoutType === 'popup' && (
                                 <>
-                                    <ZoloPanelBody title={__('Popup Button', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                    <ZoloPanelBody title={__('Popup Player', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={POPUP_VIDEO_CONTANER_WIDTH}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={1000}
+                                        />
+                                    </ZoloPanelBody>
+                                    <ZoloPanelBody title={__('Popup Button', 'zoloblocks')} panelProps={props} firstOpen={false}>
                                         <TabPanelControl
                                             normalComponents={
                                                 <>
@@ -653,7 +674,7 @@ export default function Edit(props) {
                                                         min={0}
                                                         max={100}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <NormalBGControl
                                                         label={__('Background Color', 'zoloblocks')}
                                                         controlName={POPUP_BTN_BG_COLOR}
@@ -670,7 +691,7 @@ export default function Edit(props) {
                                                         controlName={POPUP_BTN_MARGIN}
                                                         requiredProps={requiredProps}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <BorderControl
                                                         label={__('Border', 'zoloblocks')}
                                                         controlName={POPUP_BTN_BORDER}
@@ -708,7 +729,7 @@ export default function Edit(props) {
                                                         requiredProps={requiredProps}
                                                         noMainBGIMG={false}
                                                     />
-                                                    <CardDivider />
+                                                    <ZoloCardDivider />
                                                     <ColorControl
                                                         label={__('Border Color', 'zoloblocks')}
                                                         color={popupBtnBorderHColor}
@@ -803,6 +824,12 @@ export default function Edit(props) {
                                     )}
                                     {attributes?.popupType === 'image' && (
                                         <ZoloPanelBody title={__('Popup Image', 'zoloblocks')} panelProps={props} firstOpen={false}>
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={POPUP_IMAGE_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
                                                 controlName={POPUP_IMAGE_BORDER}
@@ -814,11 +841,6 @@ export default function Edit(props) {
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
                                             />
-                                            <ResDimensionsControl
-                                                label={__('Padding', 'zoloblocks')}
-                                                controlName={POPUP_IMAGE_PADDING}
-                                                requiredProps={requiredProps}
-                                            />
                                             <div className="zolo-custom-heading">{__('Overlay', 'zoloblocks')}</div>
                                             <NormalBGControl
                                                 label={__('Background', 'zoloblocks')}
@@ -827,7 +849,7 @@ export default function Edit(props) {
                                                 noMainBGIMG={false}
                                             />
 
-                                            <RangeControl
+                                            <ZoloRangeControl
                                                 className="zolo-flex-col-control"
                                                 label={__('Opacity', 'zoloblocks')}
                                                 value={popupImageOpacity}

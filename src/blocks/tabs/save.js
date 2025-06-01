@@ -2,6 +2,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
+
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 const Save = (props) => {

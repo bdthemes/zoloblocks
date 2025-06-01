@@ -1,7 +1,6 @@
 import { useBlockProps, useInnerBlocksProps, BlockControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-import { Placeholder, Button, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import Inspector from './inspector';
 import './style.scss';
@@ -10,6 +9,8 @@ import PatternPicker from './components/pattern-picker';
 import { closeSmall } from '@wordpress/icons';
 import NavigationAppenderButton from './components/appender-button';
 import { select } from '@wordpress/data';
+
+const { ZoloPlaceholder, ZoloButton, ZoloToolbarGroup, ZoloToolbarButton } = window.zoloModule;
 
 // import style
 import Style from './style';
@@ -115,7 +116,7 @@ const Edit = (props) => {
             {brandPhoto && (
                 <BlockControls>
                     <>
-                        <ToolbarGroup>
+                        <ZoloToolbarGroup>
                             <MediaUpload
                                 onSelect={(media) => {
                                     setAttributes({
@@ -131,7 +132,7 @@ const Edit = (props) => {
                                 allowedTypes={['image']}
                                 value={brandPhoto && brandPhoto.id}
                                 render={({ open }) => (
-                                    <ToolbarButton
+                                    <ZoloToolbarButton
                                         className="components-toolbar__control"
                                         label={__('Replace Photo', 'zoloblocks')}
                                         icon="edit"
@@ -139,7 +140,7 @@ const Edit = (props) => {
                                     />
                                 )}
                             />
-                        </ToolbarGroup>
+                        </ZoloToolbarGroup>
                     </>
                 </BlockControls>
             )}
@@ -149,7 +150,7 @@ const Edit = (props) => {
                     <>
                         {!templateType && (
                             <>
-                                <Placeholder
+                                <ZoloPlaceholder
                                     className="zolo-navigation-placeholder"
                                     icon={
                                         <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -212,21 +213,21 @@ const Edit = (props) => {
                                     label={__('Navigation', 'zoloblocks')}
                                     instructions={__('Select from library or start blank', 'zoloblocks')}
                                 >
-                                    {/* <Button
+                                    {/* <ZoloButton
                                         onClick={() => setTemplateType('library')}
                                         className="zolo-navigation-placeholder-button"
                                         variant="primary"
                                     >
                                         {__('Select From Library', 'zoloblocks')}
-                                    </Button> */}
-                                    <Button
+                                    </ZoloButton> */}
+                                    <ZoloButton
                                         onClick={() => setTemplateType('blank')}
                                         className="zolo-navigation-placeholder-button"
                                         variant="secondary"
                                     >
                                         {__('Start Blank', 'zoloblocks')}
-                                    </Button>
-                                    <Button
+                                    </ZoloButton>
+                                    <ZoloButton
                                         onClick={() => {
                                             setAttributes({ isVariationSelected: true });
                                             setSelectedVariation({
@@ -260,7 +261,7 @@ const Edit = (props) => {
                                         className="zolo-navigation-placeholder-skip-button"
                                         icon={closeSmall}
                                     />
-                                </Placeholder>
+                                </ZoloPlaceholder>
                             </>
                         )}
 
@@ -319,7 +320,12 @@ const Edit = (props) => {
                                         />
                                     )}
                                 </a>
-                                <button className="zolo-navigation-sidebar-close" aria-label="close" type="button" onClick={handleHamburger}>
+                                <button
+                                    className="zolo-navigation-sidebar-close"
+                                    aria-label="close"
+                                    type="button"
+                                    onClick={handleHamburger}
+                                >
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
                                         <path
                                             fillRule="evenodd"

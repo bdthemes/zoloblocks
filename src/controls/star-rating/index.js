@@ -24,8 +24,13 @@ const StarRating = ({ total = 5, rating }) => {
                     {fillItems &&
                         fillItems.map((item, index) => {
                             return (
-
-                                <svg key={index} id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.23 48.44">
+                                <svg
+                                    key={index}
+                                    id="Layer_1"
+                                    data-name="Layer 1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 49.23 48.44"
+                                >
                                     <path
                                         d="M49.05,21.06a1.9,1.9,0,0,0,.46-2A1.93,1.93,0,0,0,48,17.8L33.3,15.63,26.74,1.88a1.93,1.93,0,0,0-3.48,0l-6.5,13.71L2,17.8A1.93,1.93,0,0,0,.49,19.1a1.9,1.9,0,0,0,.46,2L11.5,31.66v.86L9.1,47a1.9,1.9,0,0,0,.79,1.88,1.89,1.89,0,0,0,1.11.36,2,2,0,0,0,.92-.23l13-7.14L38.08,49a1.93,1.93,0,0,0,2.82-2l-2.39-14.2V31.69Z"
                                         transform="translate(-0.39 -0.78)"

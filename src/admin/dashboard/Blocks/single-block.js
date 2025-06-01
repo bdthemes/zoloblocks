@@ -1,4 +1,4 @@
-import { Modal, ToggleControl } from '@wordpress/components';
+import { ZoloModal, ZoloToggleControl } from '../../../controls/core-controls';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
@@ -11,7 +11,7 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
     return (
         <>
             {proPanel && (
-                <Modal className="zolo-pro-modal" onRequestClose={() => setProPanel(false)}>
+                <ZoloModal className="zolo-pro-modal" onRequestClose={() => setProPanel(false)}>
                     <svg
                         className="zolo-pro-modal-icon"
                         xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                             />
                         </svg>
                     </a>
-                </Modal>
+                </ZoloModal>
             )}
             <div
                 className={classnames('zolo-single-block', {
@@ -144,13 +144,13 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                                 {isPro ? (
                                     <>
                                         {zoloBlocks?.has_pro === '1' ? (
-                                            <ToggleControl checked={value} onChange={onClick} />
+                                            <ZoloToggleControl checked={value} onChange={onClick} />
                                         ) : (
-                                            <ToggleControl checked={false} onChange={() => setProPanel(true)} />
+                                            <ZoloToggleControl checked={false} onChange={() => setProPanel(true)} />
                                         )}
                                     </>
                                 ) : (
-                                    <ToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom />
+                                    <ZoloToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom />
                                 )}
                             </>
                         )}

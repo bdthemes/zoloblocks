@@ -63,7 +63,6 @@ const attributes = {
             circleColor: '',
             suffixColor: '',
             prefixColor: '',
-
         },
     },
     //progress multi color

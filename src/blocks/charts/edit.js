@@ -76,16 +76,14 @@ export default function Edit(props) {
                 text: showTitle ? titleObject.text : undefined,
                 align: titleObject.align,
                 style: {
-                    color: titleObject.style.color,
-                    fontSize: titleObject.style.fontSize,
+                    color: titleObject.style.color
                 },
             },
             subtitle: {
                 text: showSubTitle ? subTitleObject.text : undefined,
                 align: subTitleObject.align,
                 style: {
-                    color: subTitleObject.style.color,
-                    fontSize: subTitleObject.style.fontSize,
+                    color: subTitleObject.style.color
                 },
             },
             legend: {
@@ -289,7 +287,13 @@ export default function Edit(props) {
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
                 <SidebarOpener clientId={clientId} />
-                <ApexCharts options={renderOptions()} series={renderSeries()} type={chartType} width={'100%'} height={chartHeight !== undefined ? chartHeight: 300} />
+                <ApexCharts
+                    options={renderOptions()}
+                    series={renderSeries()}
+                    type={chartType}
+                    width={'100%'}
+                    height={chartHeight !== undefined ? chartHeight : 300}
+                />
                 {renderHookAfter && renderHookAfter}
             </div>
         </>

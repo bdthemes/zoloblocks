@@ -7,7 +7,6 @@ import { useState, useRef, useEffect } from '@wordpress/element';
 //internal dependencies
 import Inspector from './inspector';
 import './style.scss';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { addSubmenu as addSubmenuIcon, link as linkIcon, removeSubmenu, menu as menuIcon } from '@wordpress/icons';
 import LinkPopover from './components/link-popover';
 import { useDispatch, useSelect } from '@wordpress/data';
@@ -17,7 +16,8 @@ import { useMergeRefs } from '@wordpress/compose';
 import useIsInvalidLink from './utils/use-invalid-link';
 import NavigationAppenderButton from './components/appender-button';
 import { createBlock, createBlocksFromInnerBlocksTemplate } from '@wordpress/blocks';
-const { DisplayZoloIcon } = window.zoloModule;
+const { DisplayZoloIcon, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
+
 // import style
 import Style from './style';
 
@@ -122,8 +122,8 @@ const Edit = (props) => {
             )}
             <Style props={props} />
             <BlockControls>
-                <ToolbarGroup>
-                    <ToolbarButton
+                <ZoloToolbarGroup>
+                    <ZoloToolbarButton
                         name="link"
                         icon={linkIcon}
                         title={__('Link', 'zoloblocks')}
@@ -139,7 +139,7 @@ const Edit = (props) => {
                     />
                     {!hasInnerBlocks ? (
                         <>
-                            <ToolbarButton
+                            <ZoloToolbarButton
                                 icon={addSubmenuIcon}
                                 label={__('Add Submenu', 'zoloblocks')}
                                 onClick={() => {
@@ -153,7 +153,7 @@ const Edit = (props) => {
                                 }}
                             />
                             {!isNested && (
-                                <ToolbarButton
+                                <ZoloToolbarButton
                                     icon={menuIcon}
                                     label={__('Add Mega Menu', 'zoloblocks')}
                                     onClick={() => {
@@ -173,7 +173,7 @@ const Edit = (props) => {
                         </>
                     ) : (
                         <>
-                            <ToolbarButton
+                            <ZoloToolbarButton
                                 icon={removeSubmenu}
                                 name="Remove Submenu"
                                 label={__(
@@ -188,7 +188,7 @@ const Edit = (props) => {
                             />
                         </>
                     )}
-                </ToolbarGroup>
+                </ZoloToolbarGroup>
             </BlockControls>
 
             <li {...blockProps}>

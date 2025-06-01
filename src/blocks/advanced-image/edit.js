@@ -1,8 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks, RichText, MediaPlaceholder, MediaUpload, BlockControls } from '@wordpress/block-editor';
-import { Button, ToolbarButton, ToolbarGroup, ResizableBox } from '@wordpress/components';
+import { useBlockProps, RichText, MediaPlaceholder, MediaUpload, BlockControls } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
@@ -15,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, DynamicTag, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { handleUniqueId, DynamicTag, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -100,11 +99,11 @@ export default function Edit(props) {
 
     return (
         <>
-            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} block={name}  />}
+            {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} block={name} />}
             <Style props={props} />
             {photo && (
                 <BlockControls>
-                    <ToolbarGroup>
+                    <ZoloToolbarGroup>
                         <MediaUpload
                             onSelect={(media) => {
                                 setAttributes({
@@ -120,7 +119,7 @@ export default function Edit(props) {
                             allowedTypes={['image']}
                             value={photo && photo.id}
                             render={({ open }) => (
-                                <ToolbarButton
+                                <ZoloToolbarButton
                                     className="components-toolbar__control"
                                     label={__('Edit Image', 'zoloblocks')}
                                     icon="edit"
@@ -128,7 +127,7 @@ export default function Edit(props) {
                                 />
                             )}
                         />
-                    </ToolbarGroup>
+                    </ZoloToolbarGroup>
                 </BlockControls>
             )}
             <div {...blockProps}>
@@ -230,7 +229,7 @@ export default function Edit(props) {
                                     height="24"
                                     viewBox="0 0 24 24"
                                     fill="none"
-                                    class="zolo-image-icon"
+                                    className="zolo-image-icon"
                                     aria-hidden="true"
                                     focusable="false"
                                 >

@@ -63,15 +63,17 @@
             opacity: 1;
             pointer-events: all;
             height: auto;
+            width: auto;
+            background-color: #fff;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
         }
+        @media screen and (max-width: 1023px) {
         &.zolo-navigation-submenu-open > .zolo-navigation-submenu-wrapper {
             visibility: visible;
             opacity: 1;
             pointer-events: all;
             height: auto;
-            position: relative;
-            top: unset;
-            left: unset;
+        }
         }
         &.has-megamenu {
             position: static;
@@ -83,19 +85,6 @@
             .zolo-navigation-link {
                 .zolo-submenu-arrow {
                     pointer-events: all;
-                }
-            }
-        }
-    }
-
-    &:not(.is-menu-active) {
-        .zolo-navigation-item {
-            &:hover {
-                & > .zolo-navigation-submenu-wrapper {
-                    visibility: visible;
-                    opacity: 1;
-                    pointer-events: all;
-                    transform: translateY(0);
                 }
             }
         }

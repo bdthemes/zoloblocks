@@ -9,15 +9,11 @@ import { __ } from '@wordpress/i18n';
 const {
     generateResRangeStyle,
     generateBorderStyle,
-    generateResCounterStyle,
     generateDimensionStyle,
     generateBoxShadowStyles,
     generateTypographyStyles,
-    generateGapStyle,
     GlobalStyleHanlder,
     generateNormalBGControlStyles,
-    generateResAlignmentStyle,
-    generateTextStrokeStyles,
 } = window.zoloModule;
 
 import {
@@ -47,6 +43,15 @@ const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId, arrowbtnColor, labelOpacity, beforeColor, afterColor, comparisonOptions } = attributes;
 
+    const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
+    const {
+        active: activeHover = false,
+        blur: blurHover = 0,
+        brightness: brightnessHover = 100,
+        contrast: contrastHover = 100,
+        saturate: saturateHover = 100,
+        hueRotate: hueRotateHover = 0,
+    } = attributes?.cssFiltersHover || {};
     // comparison height
     const {
         desktopRangeStyle: desktopComparisonHeight,
@@ -166,7 +171,7 @@ const Style = ({ props }) => {
         property: 'border-top-width',
         attributes,
     });
-    
+
     const {
         desktopRangeStyle: desktopArrowSizeRight,
         tabRangeStyle: tabArrowSizeRight,
@@ -251,6 +256,37 @@ const Style = ({ props }) => {
         ${desktopArrowBorder.replace(/;(?=\s|$)/g, ' !important;')};
         ${DesktopArrowRadius.replace(';', '!important')};
         ${DeskbArrowBg.replace(';', '!important')};
+    }
+    
+    ${
+        active
+            ? `
+            .wp-block-zolo-image-compare.${uniqueId} .image-item-One img{
+                filter:
+                    blur(${blur}px)
+                    brightness(${brightness}%)
+                    contrast(${contrast}%)
+                    saturate(${saturate}%)
+                    hue-rotate(${hueRotate}deg)
+            }
+        `
+            : ''
+    }
+
+    ${
+        activeHover
+            ? `
+                 .wp-block-zolo-image-compare.${uniqueId} .image-item-two img {
+                    filter:
+                        blur(${blurHover}px)
+                        brightness(${brightnessHover}%)
+                        contrast(${contrastHover}%)
+                        saturate(${saturateHover}%)
+                        hue-rotate(${hueRotateHover}deg)
+                }
+
+            `
+            : ''
     }
    
   	`;

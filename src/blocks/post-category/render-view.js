@@ -1,8 +1,9 @@
 import { useEffect, useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { Spinner } from '@wordpress/components';
 import CategoryItem from './category-item';
-const { isEmpty, strToHex } = window.zoloModule;
+
+const { isEmpty, strToHex, ZoloSpinner } = window.zoloModule;
+
 export default function RenderView({ attributes }) {
     const { catQuery, postCategoryPro } = attributes;
 
@@ -64,19 +65,19 @@ export default function RenderView({ attributes }) {
 
     return (
         <>
-          {isLoading && (
-              <div className="preloader">
-                  <Spinner />
-              </div>
-          )}
+            {isLoading && (
+                <div className="preloader">
+                    <ZoloSpinner />
+                </div>
+            )}
 
-          {!isLoading && catResults.length === 0 ? (
-            <p>No post category found.</p>
-          ) : (
-              catResults.map((cat, index) => (
-                  <CategoryItem key={index} index={index} cat={cat} attributes={attributes} multipleBgArray={multipleBgArray} />
-              ))
-          )}
+            {!isLoading && catResults.length === 0 ? (
+                <p>No post category found.</p>
+            ) : (
+                catResults.map((cat, index) => (
+                    <CategoryItem key={index} index={index} cat={cat} attributes={attributes} multipleBgArray={multipleBgArray} />
+                ))
+            )}
         </>
     );
 }

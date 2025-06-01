@@ -1,3 +1,31 @@
+### 2.3.0 [May 14, 2025]
+
+* **Fixes:**
+
+  * Video Block styling issues resolved.
+  * Display condition logic now functions as expected.
+  * Fixed `NaN` value issue in Dimension control.
+  * Compatibility issues with the latest WordPress version have been addressed.
+  * Resolved issues with outdated controls to ensure smoother performance and reliability.
+
+* **Improvements:**
+
+  * Lightbox: Added content size control for better customization.
+  * Charts Block: Typography control added to the heading for improved styling.
+  * Navigation Block: Toggle on-click feature implemented for better interaction.
+  * Theme color palette issues addressed for consistent appearance across blocks.
+
+
+### 2.2.7 April 21, 2025
+
+**New:**
+- Border, border radius, and shadow options added to the Video Block.
+- Popup size option added to the Video Block.
+
+**Fixed:**
+- Tabs Block width now adjusts better on different screen sizes.
+- Background image replacement issue fixed.
+
 ### 2.2.6 [April 15, 2025]
 
 - **New Features:**

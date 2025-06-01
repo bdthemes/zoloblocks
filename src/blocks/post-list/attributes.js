@@ -2,328 +2,342 @@
  * Internal dependencies
  */
 const {
-  generateResRangeAttributies,
-  generateBorderAttributies,
-  generateDimensionAttributes,
-  generateBoxShadowAttributies,
-  generateNormalBGAttributes,
-  generateTypographyAttributes,
-  generateResAlignmentAttributies
+    generateResRangeAttributies,
+    generateBorderAttributies,
+    generateDimensionAttributes,
+    generateBoxShadowAttributies,
+    generateNormalBGAttributes,
+    generateTypographyAttributes,
+    generateResAlignmentAttributies,
+    generateResCounterAttributies,
 } = window.zoloModule;
 
 import {
-  CONTENT_ALIGN,
-  COLUMNS_GAP,
-  THUMBNAIL_HEIGHT,
-  COLUMN_PADDING,
-  COLUMN_BG,
-  COLUMN_BORDER,
-  COLUMN_BORDER_RADIUS,
-  COLUMN_SHADOW,
-  THUMBNAIL_PADDING,
-  THUMBNAIL_MARGIN,
-  THUMBNAIL_BG,
-  THUMBNAIL_BORDER,
-  THUMBNAIL_BORDER_RADIUS,
-  THUMBNAIL_BOX_SHADOW,
-  TITLE_MARGIN,
-  EXCERPT_MARGIN,
-  META_MARGIN,
-  CAT_GAP,
-  CAT_BORDER,
-  CAT_BORDER_RADIUS,
-  CAT_MARGIN,
-  CAT_PADDING,
-  COUNT_SIZE,
-  COUNT_BORDER,
-  COUNT_BORDER_RADIUS,
-  PAG_BORDER,
-  PAG_BORDER_RADIUS,
-  PAG_MARGIN,
-  PAG_ALIGN,
-  PAG_PADDING,
-  FTHUMB_HEIGHT,
-  FCONTENT_PADDING,
-  FCONTAINER_PADDING,
-  FCONTAINER_BG,
-  FCONTAINER_OVERLAY,
-  FCONTAINER_BORDER,
-  FCONTAINER_BORDER_RADIUS,
-  FCONTAINER_SHADOW,
-  META_SPACE,
+    CONTENT_ALIGN,
+    COLUMNS_GAP,
+    THUMBNAIL_HEIGHT,
+    COLUMN_PADDING,
+    COLUMN_BG,
+    COLUMN_BORDER,
+    COLUMN_BORDER_RADIUS,
+    COLUMN_SHADOW,
+    THUMBNAIL_PADDING,
+    THUMBNAIL_MARGIN,
+    THUMBNAIL_BG,
+    THUMBNAIL_BORDER,
+    THUMBNAIL_BORDER_RADIUS,
+    THUMBNAIL_BOX_SHADOW,
+    TITLE_MARGIN,
+    EXCERPT_MARGIN,
+    META_MARGIN,
+    CAT_GAP,
+    CAT_BORDER,
+    CAT_BORDER_RADIUS,
+    CAT_MARGIN,
+    CAT_PADDING,
+    COUNT_SIZE,
+    COUNT_BORDER,
+    COUNT_BORDER_RADIUS,
+    PAG_BORDER,
+    PAG_BORDER_RADIUS,
+    PAG_MARGIN,
+    PAG_ALIGN,
+    PAG_PADDING,
+    FTHUMB_HEIGHT,
+    FCONTENT_PADDING,
+    FCONTAINER_PADDING,
+    FCONTAINER_BG,
+    FCONTAINER_OVERLAY,
+    FCONTAINER_BORDER,
+    FCONTAINER_BORDER_RADIUS,
+    FCONTAINER_SHADOW,
+    META_SPACE,
+    GRID_COLUMNS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
-  //Global Attributes
-  globalConfig: {
-    type: 'object',
-    default: {
-      margin: {
-        prefix: 'mainMargin',
-      },
-      padding: {
-        prefix: 'mainPadding',
-      },
-      background: {
-        prefix: 'mainBg',
-      },
-      border: {
-        prefix: 'mainBorder',
-      },
-      borderRadius: {
-        prefix: 'mainBorderRadius',
-      },
-      boxShadow: {
-        prefix: 'mainBoxShadow',
-      },
-      responsiveControls: true,
+    //Global Attributes
+    globalConfig: {
+        type: 'object',
+        default: {
+            margin: {
+                prefix: 'mainMargin',
+            },
+            padding: {
+                prefix: 'mainPadding',
+            },
+            background: {
+                prefix: 'mainBg',
+            },
+            border: {
+                prefix: 'mainBorder',
+            },
+            borderRadius: {
+                prefix: 'mainBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'mainBoxShadow',
+            },
+            responsiveControls: true,
+        },
     },
-  },
-  // block attributes
-  preset: {
-    type: 'string',
-    default: 'style-1',
-  },
-  metaSeparator: {
-    type: 'string',
-    default: '//',
-  },
-  showExcerpt: {
-    type: 'boolean',
-    default: false,
-  },
-  postTaxonomies: {
-    type: 'object',
-    default: {},
-  },
-  postQuery: {
-    type: 'object',
-  },
-  paginationType: {
-    type: 'string',
-    default: 'normal'
-  },
-  previousText: {
-    type: 'string',
-    default: 'Prev'
-  },
-  nextText: {
-    type: 'string',
-    default: 'Next'
-  },
-  loadMoreText: {
-    type: 'string',
-    default: 'Load More'
-  },
-  authorPrefix: {
-    type: 'string',
-  },
-  showfeatureimg: {
-    type: 'boolean',
-    default: true,
-  },
-  contentDirection: {
-    type: 'string',
-    default: 'row',
-  },
-  titleTag: {
-    type: 'string',
-    default: 'h2',
-  },
-  titleWords: {
-    type: 'number',
-  },
-  excerptWords: {
-    type: 'number',
-    default: 15,
-  },
-  excerptindicator: {
-    type: 'string',
-    default: '...',
-  },
-  showCategory: {
-    type: 'boolean',
-    default: true,
-  },
-  showCount: {
-    type: 'boolean',
-    default: false,
-  },
-  readMoreBtnText: {
-    type: 'string',
-    default: 'Read More',
-  },
-  showMeta: {
-    type: 'boolean',
-    default: true,
-  },
-  showPagination: {
-    type: 'boolean',
-    default: false,
-  },
-  showReadingTime: {
-    type: 'boolean',
-    default: false,
-  },
-  titleColor: {
-    type: 'string',
-  },
-  titleHoverColor: {
-    type: 'string',
-  },
-  excerptColor: {
-    type: 'string',
-  },
-  catBgColor: {
-    type: 'string',
-  },
-  catColor: {
-    type: 'string',
-  },
-  catBgHoverColor: {
-    type: 'string',
-  },
-  catHoverColor: {
-    type: 'string',
-  },
-  countColor: {
-    type: 'string',
-  },
-  countBGColor: {
-    type: 'string',
-  },
-  countHoverColor: {
-    type: 'string',
-  },
-  countHoverBGColor: {
-    type: 'string',
-  },
-  metaColor: {
-    type: 'string',
-  },
-  // pagination
-  pagColor: {
-    type: 'string',
-  },
-  pagBgColor: {
-    type: 'string',
-  },
-  apagColor: {
-    type: 'string',
-  },
-  apagBgColor: {
-    type: 'string',
-  },
-  pagSeparatorColor: {
-    type: 'string',
-  },
-  authorPrefixColor: {
-    type: 'string',
-  },
-  authorColor: {
-    type: 'string',
-  },
-  authorHoverColor: {
-    type: 'string',
-  },
-  // featured post
-  ftitleColor: {
-    type: 'string',
-  },
-  ftitleHoverColor: {
-    type: 'string',
-  },
-  fexcerptColor: {
-    type: 'string',
-  },
-  fcatBgColor: {
-    type: 'string',
-  },
-  fcatColor: {
-    type: 'string',
-  },
-  fcatBgHoverColor: {
-    type: 'string',
-  },
-  fcatHoverColor: {
-    type: 'string',
-  },
-  fmetaColor: {
-    type: 'string',
-  },
-  fcountColor: {
-    type: 'string',
-  },
-  fcountBGColor: {
-    type: 'string',
-  },
-  fauthorPrefixColor: {
-    type: 'string',
-  },
-  fauthorColor: {
-    type: 'string',
-  },
-  fauthorHoverColor: {
-    type: 'string',
-  },
+    // block attributes
+    preset: {
+        type: 'string',
+        default: 'style-1',
+    },
+    metaSeparator: {
+        type: 'string',
+        default: '//',
+    },
+    showExcerpt: {
+        type: 'boolean',
+        default: false,
+    },
+    postTaxonomies: {
+        type: 'object',
+        default: {},
+    },
+    postQuery: {
+        type: 'object',
+    },
+    paginationType: {
+        type: 'string',
+        default: 'normal',
+    },
+    previousText: {
+        type: 'string',
+        default: 'Prev',
+    },
+    nextText: {
+        type: 'string',
+        default: 'Next',
+    },
+    loadMoreText: {
+        type: 'string',
+        default: 'Load More',
+    },
+    authorPrefix: {
+        type: 'string',
+        default: 'By',
+    },
+    showfeatureimg: {
+        type: 'boolean',
+        default: true,
+    },
+    contentDirection: {
+        type: 'string',
+        default: 'row',
+    },
+    titleTag: {
+        type: 'string',
+        default: 'h2',
+    },
+    titleWords: {
+        type: 'number',
+    },
+    excerptWords: {
+        type: 'number',
+        default: 15,
+    },
+    excerptindicator: {
+        type: 'string',
+        default: '...',
+    },
+    showCategory: {
+        type: 'boolean',
+        default: true,
+    },
+    showCount: {
+        type: 'boolean',
+        default: false,
+    },
+    readMoreBtnText: {
+        type: 'string',
+        default: 'Read More',
+    },
+    showMeta: {
+        type: 'boolean',
+        default: true,
+    },
+    showPagination: {
+        type: 'boolean',
+        default: false,
+    },
+    showReadingTime: {
+        type: 'boolean',
+        default: false,
+    },
+    titleColor: {
+        type: 'string',
+    },
+    titleHoverColor: {
+        type: 'string',
+    },
+    excerptColor: {
+        type: 'string',
+    },
+    catBgColor: {
+        type: 'string',
+    },
+    catColor: {
+        type: 'string',
+    },
+    catBgHoverColor: {
+        type: 'string',
+    },
+    catHoverColor: {
+        type: 'string',
+    },
+    countColor: {
+        type: 'string',
+    },
+    countBGColor: {
+        type: 'string',
+    },
+    countHoverColor: {
+        type: 'string',
+    },
+    countHoverBGColor: {
+        type: 'string',
+    },
+    metaColor: {
+        type: 'string',
+    },
+    // pagination
+    pagColor: {
+        type: 'string',
+    },
+    pagBgColor: {
+        type: 'string',
+    },
+    apagColor: {
+        type: 'string',
+    },
+    apagBgColor: {
+        type: 'string',
+    },
+    pagSeparatorColor: {
+        type: 'string',
+    },
+    authorPrefixColor: {
+        type: 'string',
+    },
+    authorColor: {
+        type: 'string',
+    },
+    authorHoverColor: {
+        type: 'string',
+    },
+    // featured post
+    ftitleColor: {
+        type: 'string',
+    },
+    ftitleHoverColor: {
+        type: 'string',
+    },
+    fexcerptColor: {
+        type: 'string',
+    },
+    fcatBgColor: {
+        type: 'string',
+    },
+    fcatColor: {
+        type: 'string',
+    },
+    fcatBgHoverColor: {
+        type: 'string',
+    },
+    fcatHoverColor: {
+        type: 'string',
+    },
+    fmetaColor: {
+        type: 'string',
+    },
+    fcountColor: {
+        type: 'string',
+    },
+    fcountBGColor: {
+        type: 'string',
+    },
+    fauthorPrefixColor: {
+        type: 'string',
+    },
+    fauthorColor: {
+        type: 'string',
+    },
+    fauthorHoverColor: {
+        type: 'string',
+    },
 
-  ...generateResAlignmentAttributies(CONTENT_ALIGN),
+    postThumbnail: {
+        type: 'string',
+        default: 'thumbnail',
+    },
 
-  ...generateResRangeAttributies(COLUMNS_GAP, {
-    defaultRange: 30,
-  }),
-  ...generateDimensionAttributes(COLUMN_PADDING),
-  ...generateNormalBGAttributes(COLUMN_BG),
-  ...generateBorderAttributies(COLUMN_BORDER),
-  ...generateDimensionAttributes(COLUMN_BORDER_RADIUS),
-  ...generateBoxShadowAttributies(COLUMN_SHADOW),
+    ...generateResAlignmentAttributies(CONTENT_ALIGN),
 
-  ...generateDimensionAttributes(FCONTAINER_PADDING),
-  ...generateNormalBGAttributes(FCONTAINER_BG),
-  ...generateNormalBGAttributes(FCONTAINER_OVERLAY),
-  ...generateBorderAttributies(FCONTAINER_BORDER),
-  ...generateDimensionAttributes(FCONTAINER_BORDER_RADIUS),
-  ...generateBoxShadowAttributies(FCONTAINER_SHADOW),
+    ...generateResRangeAttributies(COLUMNS_GAP, {
+        defaultRange: 30,
+    }),
+    ...generateDimensionAttributes(COLUMN_PADDING),
+    ...generateNormalBGAttributes(COLUMN_BG),
+    ...generateBorderAttributies(COLUMN_BORDER),
+    ...generateDimensionAttributes(COLUMN_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(COLUMN_SHADOW),
 
-  ...generateResRangeAttributies(FTHUMB_HEIGHT),
-  ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
-  ...generateDimensionAttributes(THUMBNAIL_MARGIN),
-  ...generateDimensionAttributes(THUMBNAIL_PADDING),
-  ...generateBorderAttributies(THUMBNAIL_BORDER),
-  ...generateDimensionAttributes(THUMBNAIL_BORDER_RADIUS),
-  ...generateNormalBGAttributes(THUMBNAIL_BG),
-  ...generateBoxShadowAttributies(THUMBNAIL_BOX_SHADOW),
+    ...generateDimensionAttributes(FCONTAINER_PADDING),
+    ...generateNormalBGAttributes(FCONTAINER_BG),
+    ...generateNormalBGAttributes(FCONTAINER_OVERLAY),
+    ...generateBorderAttributies(FCONTAINER_BORDER),
+    ...generateDimensionAttributes(FCONTAINER_BORDER_RADIUS),
+    ...generateBoxShadowAttributies(FCONTAINER_SHADOW),
 
-  ...generateDimensionAttributes(TITLE_MARGIN),
-  ...generateDimensionAttributes(EXCERPT_MARGIN),
-  ...generateDimensionAttributes(META_MARGIN),
+    ...generateResRangeAttributies(FTHUMB_HEIGHT),
+    ...generateResRangeAttributies(THUMBNAIL_HEIGHT),
+    ...generateDimensionAttributes(THUMBNAIL_MARGIN),
+    ...generateDimensionAttributes(THUMBNAIL_PADDING),
+    ...generateBorderAttributies(THUMBNAIL_BORDER),
+    ...generateDimensionAttributes(THUMBNAIL_BORDER_RADIUS),
+    ...generateNormalBGAttributes(THUMBNAIL_BG),
+    ...generateBoxShadowAttributies(THUMBNAIL_BOX_SHADOW),
 
-  ...generateResRangeAttributies(CAT_GAP),
-  ...generateBorderAttributies(CAT_BORDER),
-  ...generateDimensionAttributes(CAT_BORDER_RADIUS),
-  ...generateDimensionAttributes(CAT_MARGIN),
-  ...generateDimensionAttributes(CAT_PADDING),
+    ...generateDimensionAttributes(TITLE_MARGIN),
+    ...generateDimensionAttributes(EXCERPT_MARGIN),
+    ...generateDimensionAttributes(META_MARGIN),
 
-  ...generateResRangeAttributies(COUNT_SIZE),
-  ...generateBorderAttributies(COUNT_BORDER),
-  ...generateDimensionAttributes(COUNT_BORDER_RADIUS),
+    ...generateResRangeAttributies(CAT_GAP),
+    ...generateBorderAttributies(CAT_BORDER),
+    ...generateDimensionAttributes(CAT_BORDER_RADIUS),
+    ...generateDimensionAttributes(CAT_MARGIN),
+    ...generateDimensionAttributes(CAT_PADDING),
 
-  ...generateTypographyAttributes(Object.values(typographyObjs)),
+    ...generateResRangeAttributies(COUNT_SIZE),
+    ...generateBorderAttributies(COUNT_BORDER),
+    ...generateDimensionAttributes(COUNT_BORDER_RADIUS),
 
-  // pagination
-  ...generateBorderAttributies(PAG_BORDER),
-  ...generateDimensionAttributes(PAG_BORDER_RADIUS),
-  ...generateDimensionAttributes(PAG_MARGIN),
-  ...generateDimensionAttributes(PAG_PADDING),
-  ...generateResAlignmentAttributies(PAG_ALIGN),
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
 
-  // featured post
-  ...generateDimensionAttributes(FCONTENT_PADDING),
+    // pagination
+    ...generateBorderAttributies(PAG_BORDER),
+    ...generateDimensionAttributes(PAG_BORDER_RADIUS),
+    ...generateDimensionAttributes(PAG_MARGIN),
+    ...generateDimensionAttributes(PAG_PADDING),
+    ...generateResAlignmentAttributies(PAG_ALIGN),
 
-  // post meta
-  ...generateResRangeAttributies(META_SPACE),
+    // featured post
+    ...generateDimensionAttributes(FCONTENT_PADDING),
+
+    // post meta
+    ...generateResRangeAttributies(META_SPACE),
+
+    ...generateResCounterAttributies(GRID_COLUMNS, {
+        deskRange: 1,
+        tabRange: 1,
+        mobRange: 1,
+    }),
 };
 
 export default attributes;

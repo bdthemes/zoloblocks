@@ -1,10 +1,9 @@
-import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
-
 import BGControl from './bg-control';
 import OverflowControl from './overlay-control';
-import { CardDivider } from '@wordpress/components';
+
+import { ZoloToggleControl, ZoloCardDivider } from '../core-controls';
 
 const BackgroundControl = ({
     requiredProps,
@@ -19,7 +18,12 @@ const BackgroundControl = ({
 }) => {
     const { setAttributes, attributes } = requiredProps;
 
-    const { [`${controlName}isBgOverlay`]: isBgOverlay, mainBgbackgroundType, advBtnBgbackgroundType } = attributes;
+    const {
+        [`${controlName}isBgOverlay`]: isBgOverlay,
+        [`${controlName}bgImageURL`]: bgImageURL,
+        mainBgbackgroundType,
+        advBtnBgbackgroundType,
+    } = attributes;
     const backdropFilters = applyFilters('zolo.extensions.controls.backdropFilters', [], requiredProps);
     const splineViewer = applyFilters('zolo.extensions.controls.splineViewer', [], requiredProps);
 
@@ -34,8 +38,8 @@ const BackgroundControl = ({
             />
             {mainBgbackgroundType !== 'video' && advBtnBgbackgroundType !== 'video' && (
                 <>
-                    <CardDivider />
-                    <ToggleControl
+                    <ZoloCardDivider />
+                    <ZoloToggleControl
                         label={__('Enable Overlay', 'zoloblocks')}
                         checked={isBgOverlay}
                         onChange={() =>
@@ -55,7 +59,7 @@ const BackgroundControl = ({
                     )}
                     {particles && particles}
                     {backdropFilters && backdropFilters.length > 0 && backdropFilters}
-                    {backgroundParallax && backgroundParallax.length > 0 && backgroundParallax}
+                    {bgImageURL && backgroundParallax && backgroundParallax.length > 0 && backgroundParallax}
                     {splineViewer && splineViewer.length > 0 && splineViewer}
                 </>
             )}

@@ -1,13 +1,10 @@
-/**
- * WordPress dependencies
- */
-import { Icon } from '@wordpress/components';
+import { ZoloIcon } from '../core-controls';
 
 const LinkUnlink = ({ isLinked }) => {
 	return (
 		<>
 			{isLinked ? (
-				<Icon
+				<ZoloIcon
 					icon={() => (
 						<svg
 							width={24}
@@ -34,7 +31,7 @@ const LinkUnlink = ({ isLinked }) => {
 					)}
 				/>
 			) : (
-				<Icon
+				<ZoloIcon
 					icon={() => (
 						<svg
 							width={24}

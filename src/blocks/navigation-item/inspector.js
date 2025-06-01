@@ -1,9 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 import { InspectorControls } from '@wordpress/block-editor';
-import { ToggleControl, CardDivider } from '@wordpress/components';
+
 const {
     HeaderTabs,
+    ZoloToggleControl,
+    ZoloCardDivider,
     ResAlignmentControl,
     ResRangeControl,
     ColorControl,
@@ -57,6 +59,7 @@ const Inspector = (props) => {
     const { attributes, setAttributes, hasInnerBlocks, isNested } = props;
     const requiredProps = { attributes, setAttributes, resMode: attributes?.resMode, objAttributes };
     const {
+        addSubmenuEffect,
         resMode,
         subMenuTextColor,
         subMenuTextHoverColor,
@@ -81,12 +84,26 @@ const Inspector = (props) => {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <ToggleControl
+                            <ZoloToggleControl
                                 label={__('Add Submenu', 'zoloblocks')}
                                 checked={attributes?.addSubmenu}
                                 onChange={(value) => setAttributes({ addSubmenu: value })}
                             />
-
+                            <div className="zolo-flex-row-control-tab">
+                                <IconicBtnGroup
+                                    label={__('Event Type', 'zoloblocks')}
+                                    value={addSubmenuEffect}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            addSubmenuEffect: value,
+                                        })
+                                    }
+                                    options={[
+                                        { label: 'Hover', value: 'hover' },
+                                        { label: 'Click', value: 'click' },
+                                    ]}
+                                />
+                            </div>
                             {attributes?.addSubmenu && !hasInnerBlocks && !isNested && (
                                 <IconicBtnGroup
                                     label={__('Submenu Type', 'zoloblocks')}
@@ -142,7 +159,7 @@ const Inspector = (props) => {
                                                     max={100}
                                                     step={1}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <NormalBGControl
                                                     requiredProps={requiredProps}
                                                     controlName={SUB_MENU_INDICATOR_BG}
@@ -160,7 +177,7 @@ const Inspector = (props) => {
                                                     requiredProps={requiredProps}
                                                     forBorderRadius={false}
                                                 />
-                                                <CardDivider />
+                                                <ZoloCardDivider />
                                                 <BorderControl
                                                     label={__('Border', 'zoloblocks')}
                                                     controlName={SUB_MENU_INDICATOR_BORDER}
