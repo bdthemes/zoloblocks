@@ -192,7 +192,7 @@ const Edit = (props) => {
             </BlockControls>
 
             <li {...blockProps}>
-                <a className="zolo-navigation-link">
+                <a href={url || '#'} className="zolo-navigation-link">
                     {isLinkOpen ? (
                         <LinkPopover
                             ref={linkUIref}
