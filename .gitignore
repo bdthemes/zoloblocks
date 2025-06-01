@@ -14,4 +14,6 @@ tags*
 yarn.lock
 composer.lock
 build/
-package-lock.json
+/package-lock.json
+/pnpm-lock.yaml
+

@@ -60,15 +60,7 @@ export default function Edit(props) {
             slot: 'container-start',
         },
         {
-            template: [
-                [
-                    'zolo/advanced-heading',
-                    {
-                        titleText: 'Slide Title',
-                        titleAlignZRPAlign: 'center',
-                    },
-                ],
-            ],
+            template: [],
             templateLock: false,
             orientation: 'horizontal',
         }
