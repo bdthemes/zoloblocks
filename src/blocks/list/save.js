@@ -46,7 +46,7 @@ const Save = (props) => {
             {listProfiles &&
                 listProfiles.map((profile, index) => {
                     const commonProps = {
-                        className: `zolo-list-item ${preset === 'zolo-list-style-1' ? 'zolo-list-title' : ''}`,
+                        className: classnames('zolo-list-item', preset === 'zolo-list-style-1' ? 'zolo-list-title' : ''),
                     };
 
                     if (isLinkable) {
@@ -57,38 +57,12 @@ const Save = (props) => {
 
                     return (
                         <ContainerTag key={index} {...commonProps}>
-                            {preset === 'zolo-list-style-1' && <RawHTML>{profile.text}</RawHTML>}
-
-                            {preset === 'zolo-list-style-4' ? (
-                                <div className="zolo-list-icon-and-content-wrap">
-                                    {iconToggle && (
-                                        <div className="zolo-list-icon">
-                                            {profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}
-                                        </div>
-                                    )}
-                                    <div className="zolo-list-content">
-                                        {titleToggle && (
-                                            <div className="zolo-list-title">
-                                                <RawHTML>{profile.text}</RawHTML>
-                                            </div>
-                                        )}
-                                        {DscToggle && contentLayout !== 'horizontal' && (
-                                            <span className="zolo-list-desc">
-                                                <RawHTML>{profile.desc}</RawHTML>
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
+                            {preset === 'zolo-list-style-1' ? (
+                                <RawHTML>{profile.text}</RawHTML>
                             ) : (
                                 <>
-                                    {iconToggle && preset !== 'zolo-list-style-1' && contentLayout !== 'horizontal' && (
-                                        <div className="zolo-list-icon">
-                                            {profile.icon ? <DisplayZoloIcon icon={profile.icon} /> : <DisplayZoloIcon icon={globalIcon} />}
-                                        </div>
-                                    )}
-
-                                    {contentLayout === 'horizontal' && preset !== 'zolo-list-style-1' && (
-                                        <div className="zolo-list-icon-title-wrap">
+                                    {preset === 'zolo-list-style-4' ? (
+                                        <div className="zolo-list-icon-and-content-wrap">
                                             {iconToggle && (
                                                 <div className="zolo-list-icon">
                                                     {profile.icon ? (
@@ -98,26 +72,64 @@ const Save = (props) => {
                                                     )}
                                                 </div>
                                             )}
-                                            {titleToggle && (
-                                                <div className="zolo-list-title">
-                                                    <RawHTML>{profile.text}</RawHTML>
+                                            <div className="zolo-list-content">
+                                                {titleToggle && (
+                                                    <div className="zolo-list-title">
+                                                        <RawHTML>{profile.text}</RawHTML>
+                                                    </div>
+                                                )}
+                                                {DscToggle && contentLayout !== 'horizontal' && (
+                                                    <span className="zolo-list-desc">
+                                                        <RawHTML>{profile.desc}</RawHTML>
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            {iconToggle && contentLayout !== 'horizontal' && (
+                                                <div className="zolo-list-icon">
+                                                    {profile.icon ? (
+                                                        <DisplayZoloIcon icon={profile.icon} />
+                                                    ) : (
+                                                        <DisplayZoloIcon icon={globalIcon} />
+                                                    )}
                                                 </div>
                                             )}
-                                        </div>
-                                    )}
 
-                                    <div className="zolo-list-content">
-                                        {titleToggle && contentLayout !== 'horizontal' && (
-                                            <div className="zolo-list-title">
-                                                <RawHTML>{profile.text}</RawHTML>
+                                            {contentLayout === 'horizontal' && (
+                                                <div className="zolo-list-icon-title-wrap">
+                                                    {iconToggle && (
+                                                        <div className="zolo-list-icon">
+                                                            {profile.icon ? (
+                                                                <DisplayZoloIcon icon={profile.icon} />
+                                                            ) : (
+                                                                <DisplayZoloIcon icon={globalIcon} />
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                    {titleToggle && (
+                                                        <div className="zolo-list-title">
+                                                            <RawHTML>{profile.text}</RawHTML>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+
+                                            <div className="zolo-list-content">
+                                                {titleToggle && contentLayout !== 'horizontal' && (
+                                                    <div className="zolo-list-title">
+                                                        <RawHTML>{profile.text}</RawHTML>
+                                                    </div>
+                                                )}
+                                                {DscToggle && (
+                                                    <p className="zolo-list-desc">
+                                                        <RawHTML>{profile.desc}</RawHTML>
+                                                    </p>
+                                                )}
                                             </div>
-                                        )}
-                                        {DscToggle && (
-                                            <p className="zolo-list-desc">
-                                                <RawHTML>{profile.desc}</RawHTML>
-                                            </p>
-                                        )}
-                                    </div>
+                                        </>
+                                    )}
                                 </>
                             )}
 
