@@ -123,6 +123,17 @@ const attributes = {
     },
     postQuery: {
         type: 'object',
+        default: {
+            postType: 'post',
+            postExclude: [],
+            postPerPage: 6,
+            postOffset: 0,
+            postOrderby: 'date',
+            postOrder: 'desc',
+            postThumbnail: '',
+            showPagination: false,
+            currentPostType: 'post',
+        },
     },
     showFilterTaxonomy: {
         type: 'boolean',

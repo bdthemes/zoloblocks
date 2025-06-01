@@ -16,27 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         });
 
-       const zoloNavigationLink = navigation.querySelectorAll('.zolo-navigation-link');
-       const navigationItems = navigation.querySelectorAll('.zolo-navigation-item');
-       navigationOverlay.addEventListener('click', () => {
-           navigationWrapper.classList.remove('zolo-navigation-open');
-           navigationOverlay.classList.remove('zolo-navigation-overlay-open');
-           navigationItems.forEach((item) => {
-               item.classList.remove('zolo-navigation-submenu-open');
-           })
-           setTimeout(() => {
-               navigationWrapper.classList.remove('is-menu-active');
-           }, 700);
-       });
+        const zoloNavigationLink = navigation.querySelectorAll('.zolo-navigation-link');
+        const navigationItems = navigation.querySelectorAll('.zolo-navigation-item');
+        navigationOverlay.addEventListener('click', () => {
+            navigationWrapper.classList.remove('zolo-navigation-open');
+            navigationOverlay.classList.remove('zolo-navigation-overlay-open');
+            navigationItems.forEach((item) => {
+                item.classList.remove('zolo-navigation-submenu-open');
+            });
+            setTimeout(() => {
+                navigationWrapper.classList.remove('is-menu-active');
+            }, 700);
+        });
 
-    zoloNavigationLink.forEach((link) => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const currentItem = this.closest('.zolo-navigation-item');
-            currentItem.classList.toggle('zolo-navigation-submenu-open');
-            currentItem.classList.toggle('submenu-open');
-        })
-    });
+        zoloNavigationLink.forEach((link) => {
+            link.addEventListener('click', function (e) {
+                const currentItem = this.closest('.zolo-navigation-item');
+                if (currentItem.classList.contains('has-submenu') || currentItem.classList.contains('has-megamenu')) {
+                    e.preventDefault();
+                    currentItem.classList.toggle('zolo-navigation-submenu-open');
+                    currentItem.classList.toggle('submenu-open');
+                }
+            });
+        });
         sidebarClose.addEventListener('click', () => {
             navigationWrapper.classList.remove('zolo-navigation-open');
             navigationOverlay.classList.remove('zolo-navigation-overlay-open');
