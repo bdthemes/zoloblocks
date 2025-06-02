@@ -109,6 +109,7 @@ const attributes = {
     },
     imgAlt: {
         type: 'string',
+        default: '',
     },
     link: {
         type: 'object',
@@ -127,6 +128,7 @@ const attributes = {
     },
     caption: {
         type: 'string',
+        default: '',
     },
     layout: {
         type: 'string',
