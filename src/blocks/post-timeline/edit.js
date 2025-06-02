@@ -48,7 +48,7 @@ export default function Edit(props) {
                     postOffset: 0,
                     postOrderby: 'date',
                     postOrder: 'desc',
-                    postThumbnail: '',
+                    postThumbnail: 'thumbnail',
                     showPagination: false,
                 },
             });
