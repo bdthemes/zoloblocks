@@ -1,11 +1,11 @@
-=== ZoloBlocks - WordPress Gutenberg Plugin with Advanced Blocks, Dynamic Content, Templates & Patterns ===
-Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, golam523
+=== ZoloBlocks - Gutenberg Block Editor Plugin with Advanced Blocks, Dynamic Content, Templates & Patterns ===
+Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, shamim496
 Donate link: http://zoloblocks.com/
 Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.8.1
 Requires PHP: 7.4
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,48 +13,48 @@ Empowering Gutenberg block editor to help you create WordPress websites with 55+
 
 == Description ==
 
-- Best plugin to enhance your **WordPress Gutenberg Block Editor** experience
-- **65+ free blocks:** Mega menu, Advanced Heading, Accordion, and more
-- Helps you build professional website | **No coding required**
-- **5 out of 5 ratings** on WordPress Repository
+- Best plugin to enhance your **WordPress Gutenberg Block Editor** experience with **ZoloBlocks** (Zolo Blocks)
+- **65+ free blocks:** Mega menu, Advanced Heading, Accordion, and more from the Zolo Blocks collection
+- Helps you build professional website | **No coding required** with Zolo Block Builder
+- **5 out of 5 ratings** on WordPress Repository for ZoloBlocks (Zolo-Blocks)
 - Premium support with **4.8 customer satisfaction** on [**Trustpilot**](https://www.trustpilot.com/review/bdthemes.com)
 
 [**Free Demo**](https://zoloblocks.com/demo/) | [**ZoloBlocks Pro**](https://zoloblocks.com/pricing) | [**Documentation**](https://bdthemes.com/knowledge-base-zoloblocks/)
 
-== ZoloBlocks - A WordPress Block Editor Plugin for Creating Websites within 15 Minutes!
+== ZoloBlocks - A WordPress Gutenberg Block Editor Plugin for Creating Websites within 15 Minutes! ==
 
-ZoloBlocks is a WordPress Gutenberg block editor plugin that empowers you in your web creation process. It delivers you free blocks, pre-made pages, and patterns. With this block plugin, you’ve got everything below for faster website design:
+ZoloBlocks (also known as Zolo Blocks, Zolo-Blocks) is a WordPress Gutenberg block editor plugin that empowers you in your web creation process. The Zolo Block Builder delivers you free blocks, pre-made pages, and patterns. With this Zolo WordPress blocks plugin, you've got everything below for faster website design:
 
-✅ 65+ Unique, creative and advanced blocks
-✅ Full Site Editing
-✅ Dynamic Content
-✅ Easy-to-use interface
-✅ Animations and effects
-✅ Media and content customization
-✅ Visual and styling options
-✅ A library of 100+ pre-built pages and 300+ patterns
+✅ 65+ Unique, creative and advanced Zolo Gutenberg blocks
+✅ Full Site Editing with Zolo Block Builder
+✅ Dynamic Content through ZoloBlocks
+✅ Easy-to-use Zolo Blocks interface
+✅ Animations and effects in Zolo-Blocks
+✅ Media and content customization with Zolo block builder
+✅ Visual and styling options in ZoloBlocks
+✅ A library of 100+ pre-built pages and 300+ patterns from Zolo Blocks
 
-Unlock a better page-building experience in Gutenberg editor. You don’t need other page builders.
+Unlock a better page-building experience in Gutenberg editor with ZoloBlocks (Zolo Blocks). You don't need other page builders.
 
-== Key Features - Create a Complete Website Experience ==
+== Key Features - Create a Complete Website Experience with ZoloBlocks ==
 
-- **One-Click Layout Building 🖱️:** Quickly create structured page layouts with pre-built sections and templates.
+- **One-Click Layout Building 🖱️:** Quickly create structured page layouts with pre-built sections and templates using Zolo Blocks.
 
-- **Responsive Container for Mobile, Tablet, Desktop📱💻:** Design flexible layouts that adapt seamlessly to different screen sizes.
+- **Responsive Container for Mobile, Tablet, Desktop📱💻:** Design flexible layouts that adapt seamlessly to different screen sizes with the Zolo block builder.
 
-- **Mega Menu Builder:** Create interactive, multi-level navigation menus to enhance website usability.
+- **Mega Menu Builder:** Create interactive, multi-level navigation menus to enhance website usability with ZoloBlocks.
 
-- **Dynamic Content 🔄:** Automatically update and display content based on user interactions or external data.
+- **Dynamic Content 🔄:** Automatically update and display content based on user interactions or external data using Zolo-Blocks.
 
-- **Query Loop Builder 🔁:** Customize query loops to display specific content dynamically & categorically.
+- **Query Loop Builder 🔁:** Customize query loops to display specific content dynamically & categorically with Zolo WordPress blocks.
 
-- **Animation and Effects 🎭:** Enhance user engagement with smooth visual effects and animations.
+- **Animation and Effects 🎭:** Enhance user engagement with smooth visual effects and animations from the ZoloBlocks collection.
 
-- **AI Text Generation 🤖:** Automatically generate engaging content to speed up writing processes.
+- **AI Text Generation 🤖:** Automatically generate engaging content to speed up writing processes with Zolo Blocks AI.
 
-- **Pattern Import and Export 📁:** Save and reuse design patterns across multiple pages or websites.
+- **Pattern Import and Export 📁:** Save and reuse design patterns across multiple pages or websites with the Zolo block builder.
 
-Explore how  ZoloBlocks works in Gutenberg Blocks Editor to let you create a website effortlessly.
+Explore how ZoloBlocks (Zolo Blocks) works in Gutenberg Blocks Editor to let you create a website effortlessly.
 
 https://youtu.be/CxzwPClaZm4
 
@@ -211,7 +211,7 @@ Display author information, such as name, bio, and avatar, to personalize blog p
 
 [**Breadcrumbs**](https://demo.zoloblocks.com/breadcrumbs) (Free)
 
-Add a navigation trail to show users their location within your website’s hierarchy without confusing your users about their location on the site.
+Add a navigation trail to show users their location within your website's hierarchy without confusing your users about their location on the site.
 
 [**Business Hour**](https://demo.zoloblocks.com/business-hour) (Free)
 
@@ -576,7 +576,7 @@ You will continue to receive support as long as the plugin is alive. Also, we pr
 Yes, our plugin offers multi-lingual support as a compliment being developed from the raw essence of WordPress.
 
 = Can I White Label ZoloBlocks? =
-The White Label option can only be enjoyed by paid customers belonging to a specific tier mentioned in the plugin’s Terms of Use.
+The White Label option can only be enjoyed by paid customers belonging to a specific tier mentioned in the plugin's Terms of Use.
 
 = Can we get more widgets in the near future? =
 Of course. Please expect new features within the frequent plugin updates. Also, you can contribute by suggesting features and your opinions to us.
@@ -608,29 +608,38 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+### 2.3.2 [June 02, 2025]
+
+**Fixes:**
+
+* Added animation to the play button in the Lightbox block
+* Fixed alignment issue in the List block
+* Resolved event type issue in the Navigation submenu
+* Fixed background overlay color issues
+* Fixed transformation control issues in the Flip Box block
+
 ### 2.3.1 [June 01, 2025]
 
-* **Fixes:**
+**Fixes:**
 
-  * List Block duplicate items issues are fixed
-  * Navigation link issues are fixed
-
+* Fixed duplicate item issue in the List block
+* Resolved navigation link issues
 
 ### 2.3.0 [May 14, 2025]
 
-* **Fixes:**
+**Fixes:**
 
-  * Video Block styling issues resolved.
-  * Display condition logic now functions as expected.
-  * Fixed `NaN` value issue in Dimension control.
-  * Compatibility issues with the latest WordPress version have been addressed.
-  * Resolved issues with outdated controls to ensure smoother performance and reliability.
+* Resolved styling issues in the Video block
+* Fixed display condition logic functionality
+* Addressed `NaN` value issue in the Dimension control
+* Ensured compatibility with the latest WordPress version
+* Updated outdated controls for improved performance and reliability
 
-* **Improvements:**
+**Improvements:**
 
-  * Lightbox: Added content size control for better customization.
-  * Charts Block: Typography control added to the heading for improved styling.
-  * Navigation Block: Toggle on-click feature implemented for better interaction.
-  * Theme color palette issues addressed for consistent appearance across blocks.
+* **Lightbox Block:** Added content size control for better customization
+* **Charts Block:** Added typography control to heading for enhanced styling
+* **Navigation Block:** Implemented toggle on-click feature for improved interaction
+* Addressed theme color palette issues for consistent appearance across all blocks
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)
