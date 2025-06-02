@@ -86,6 +86,9 @@
     .components-popover__content {
         padding: 15px;
         width: 270px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
     .components-input-control__backdrop {
         border: none !important;
