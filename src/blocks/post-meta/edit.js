@@ -49,10 +49,12 @@ export default function Edit(props) {
 
                 {Array.isArray(metaData) && metaData.length > 0 ? (
                     metaData.map((meta, index) => (
-                        <React.Fragment key={meta.id}>
+                        <React.Fragment key={meta.id || index}>
                             <MetaItem meta={meta} post={post} />
                             {index < metaData.length - 1 && (
-                                <span className="zolo-separator">{separatorStyle === 'separator-custom' && customSeparator}</span>
+                                <span className="zolo-separator" key={`sep-${meta.id || index}`}>
+                                    {separatorStyle === 'separator-custom' && customSeparator}
+                                </span>
                             )}
                         </React.Fragment>
                     ))
