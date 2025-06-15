@@ -13,7 +13,6 @@
 
 namespace Zolo\Helpers;
 
-use mysql_xdevapi\Statement;
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -102,24 +101,46 @@ class ZoloHelpers {
     /**
      * Get file path
      *
-     * @param string $name file name.
-     * @return false|string
+     * @param string $name Relative path to the view file, using forward slashes (e.g., 'post-partials/meta/reading-time').
+     * @return string|false Full path to the PHP file if found and allowed, false otherwise.
      */
     protected static function get_views_path($name) {
-        // Define the base path.
-        $paths = [
-            trailingslashit(ZOLO_DIR_PATH) . 'views/' . $name . '.php',
-        ];
+        // Sanitize the file name (allowing nested paths, safer than wp_basename alone)
+        $name = sanitize_text_field($name);
+        $name = ltrim($name, '/\\');
+        $name = preg_replace('#\.\.[/\\\]#', '', $name);
+        $name = preg_replace('#[^a-zA-Z0-9_\-/]#', '', $name);
 
-        // Check if ZOLO_PRO_DIR_PATH is defined and add it to the paths.
-        if (defined('ZOLO_PRO_DIR_PATH')) {
-            $paths[] = trailingslashit(ZOLO_PRO_DIR_PATH) . 'views/' . $name . '.php';
+        if (substr($name, -4) !== '.php') {
+            $name .= '.php';
         }
 
-        // Iterate through the paths and return the first existing file.
-        foreach ($paths as $path) {
-            if (file_exists($path)) {
-                return $path;
+        $base_paths = array(
+            defined('ZOLO_PRO_DIR_PATH') ? ZOLO_PRO_DIR_PATH : null,
+            ZOLO_DIR_PATH,
+        );
+
+        foreach ($base_paths as $base) {
+            if (empty($base)) {
+                continue;
+            }
+
+            $base      = trailingslashit($base) . 'views/';
+            $full_path = $base . $name;
+
+            $real_base = realpath($base);
+            $real_file = realpath($full_path);
+
+            if (
+                $real_base &&
+                $real_file &&
+                strpos($real_file, $real_base) === 0 &&
+                is_file($real_file) &&
+                is_readable($real_file)
+            ) {
+                if ('php' === strtolower(pathinfo($real_file, PATHINFO_EXTENSION))) {
+                    return $real_file;
+                }
             }
         }
 
