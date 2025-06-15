@@ -13,7 +13,6 @@
 
 namespace Zolo\Helpers;
 
-use mysql_xdevapi\Statement;
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -100,8 +99,7 @@ class ZoloHelpers {
     }
 
     /**
-     * Securely get the view file path from the views directory (root or nested).
-     * Only allows .php files within the 'views' directory and its subdirectories.
+     * Get file path
      *
      * @param string $name Relative path to the view file, using forward slashes (e.g., 'post-partials/meta/reading-time').
      * @return string|false Full path to the PHP file if found and allowed, false otherwise.
