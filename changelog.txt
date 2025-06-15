@@ -1,3 +1,9 @@
+### 2.3.3 [June 15, 2025]
+
+**Security & Performance:**
+
+* Enhanced security measures and vulnerability patches implemented
+* Optimized script loading and execution for improved performance
 
 ### 2.3.2 [June 02, 2025]
 
