@@ -154,7 +154,7 @@ export default function Edit(props) {
                                         <RichText
                                             tagName={headingTag}
                                             className={`zolo-title ${headingVisibleOn}`}
-                                            value={heading}
+                                            value={heading || ''}
                                             onChange={(v) =>
                                                 setAttributes({
                                                     heading: v,
@@ -169,7 +169,7 @@ export default function Edit(props) {
                                         )}
                                         <RichText
                                             tagName="p"
-                                            value={description}
+                                            value={description || ''}
                                             className={`zolo-caption ${descriptionVisibleOn}`}
                                             onChange={(v) =>
                                                 setAttributes({
@@ -189,7 +189,7 @@ export default function Edit(props) {
                             {layout === 'normal' && showCaption && (
                                 <RichText
                                     tagName="figcaption"
-                                    value={caption || photo?.caption}
+                                    value={caption || photo?.caption || ''}
                                     onChange={(value) => setAttributes({ caption: value })}
                                     placeholder={__('Write Caption...', 'zoloblocks')}
                                     className="zolo-caption"
