@@ -332,7 +332,7 @@ export const AdvancedOptions = (props) => {
                         value={zoloId}
                         help={__('Add custom ID to the block WITHOUT the Pound key. e.g: my-id', 'zoloblocks')}
                     />
-                    <div div className="zolo-css-class-control">
+                    <div className="zolo-css-class-control">
                         <h3 className="zolo-control-label">{__('CSS Classes', 'zoloblocks')}</h3>
                         <CreatableSelect
                             className="zolo-css-class"
