@@ -170,7 +170,7 @@ export const ZoloDashicon = (props) => {
 };
 
 export const ZoloFormTokenField = (props) => {
-    return <FormTokenField {...props} />;
+    return <FormTokenField {...props} __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} />;
 };
 
 export const ZoloFormFileUpload = (props) => {
