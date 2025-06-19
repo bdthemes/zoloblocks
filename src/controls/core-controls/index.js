@@ -6,11 +6,12 @@ import {
     ToggleControl,
     BaseControl,
     CardDivider,
+    __experimentalHeading as Heading,
     __experimentalInputControl as InputControl,
     __experimentalNumberControl as NumberControl,
     __experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
     __experimentalAlignmentMatrixControl as AlignmentMatrixControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
     Button,
     TabPanel,
     TextareaControl,
@@ -67,6 +68,10 @@ export const ZoloBaseControl = (props) => {
 
 export const ZoloCardDivider = (props) => {
     return <CardDivider {...props} />;
+};
+
+export const ZoloHeading = (props) => {
+    return <Heading {...props} />;
 };
 
 export const ZoloInputControl = (props) => {
