@@ -36,6 +36,7 @@ import {
     FormTokenField,
     FormFileUpload,
     Notice,
+    ComboboxControl,
 } from '@wordpress/components';
 
 export const ZoloCorePanelBody = (props) => {
@@ -184,4 +185,8 @@ export const ZoloFormFileUpload = (props) => {
 
 export const ZoloNotice = (props) => {
     return <Notice {...props} />;
+};
+
+export const ZoloComboboxControl = (props) => {
+    return <ComboboxControl {...props} __next40pxDefaultSize={true} __nextHasNoMarginBottom={true} />;
 };
