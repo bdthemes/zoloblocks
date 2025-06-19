@@ -8,7 +8,10 @@ import {
     CardDivider,
     __experimentalHeading as Heading,
     __experimentalInputControl as InputControl,
+    __experimentalUseNavigator as useNavigator,
     __experimentalNumberControl as NumberControl,
+    __experimentalNavigatorScreen as NavigatorScreen,
+    __experimentalNavigatorProvider as NavigatorProvider,
     __experimentalToggleGroupControl as ToggleGroupControl,
     __experimentalAlignmentMatrixControl as AlignmentMatrixControl,
     __experimentalToggleGroupControlOption as ToggleGroupControlOption,
@@ -51,6 +54,10 @@ export const ZoloRangeControl = (props) => {
     return <RangeControl __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} {...props} />;
 };
 
+export const ZoloUseNavigator = (props) => {
+    return useNavigator(props);
+};
+
 export const ZoloNumberControl = (props) => {
     return <NumberControl __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} {...props} />;
 };
@@ -77,6 +84,14 @@ export const ZoloHeading = (props) => {
 
 export const ZoloInputControl = (props) => {
     return <InputControl {...props} __next40pxDefaultSize={true} />;
+};
+
+export const ZoloNavigatorScreen = (props) => {
+    return <NavigatorScreen {...props} />;
+};
+
+export const ZoloNavigatorProvider = (props) => {
+    return <NavigatorProvider {...props} />;
 };
 
 export const ZoloToggleGroupControl = (props) => {
