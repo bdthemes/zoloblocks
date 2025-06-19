@@ -16,6 +16,7 @@ import {
     __experimentalAlignmentMatrixControl as AlignmentMatrixControl,
     __experimentalToggleGroupControlOption as ToggleGroupControlOption,
     Button,
+    ButtonGroup,
     TabPanel,
     TextareaControl,
     Popover,
@@ -116,6 +117,10 @@ export const ZoloTextareaControl = (props) => {
 
 export const ZoloButton = (props) => {
     return <Button {...props} />;
+};
+
+export const ZoloButtonGroup = (props) => {
+    return <ButtonGroup {...props} />;
 };
 
 export const ZoloPopover = (props) => {
