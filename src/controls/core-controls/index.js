@@ -56,7 +56,7 @@ export const ZoloRangeControl = (props) => {
 };
 
 export const ZoloUseNavigator = (props) => {
-    return <useNavigator {...props} />;
+    return useNavigator(props);
 };
 
 export const ZoloNumberControl = (props) => {
@@ -87,16 +87,16 @@ export const ZoloInputControl = (props) => {
     return <InputControl {...props} __next40pxDefaultSize={true} />;
 };
 
-export const ZoloToggleGroupControl = (props) => {
-    return <ToggleGroupControl {...props} __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} />;
+export const ZoloNavigatorScreen = (props) => {
+    return <NavigatorScreen {...props} />;
 };
 
 export const ZoloNavigatorProvider = (props) => {
     return <NavigatorProvider {...props} />;
 };
 
-export const ZoloNavigatorScreen = (props) => {
-    return <NavigatorScreen {...props} />;
+export const ZoloToggleGroupControl = (props) => {
+    return <ToggleGroupControl {...props} __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} />;
 };
 
 export const ZoloToggleGroupControlOption = (props) => {
@@ -208,5 +208,5 @@ export const ZoloNotice = (props) => {
 };
 
 export const ZoloComboboxControl = (props) => {
-    return <ComboboxControl {...props} />;
+    return <ComboboxControl {...props} __next40pxDefaultSize={true} __nextHasNoMarginBottom={true} />;
 };
