@@ -6,12 +6,17 @@ import {
     ToggleControl,
     BaseControl,
     CardDivider,
+    __experimentalHeading as Heading,
     __experimentalInputControl as InputControl,
+    __experimentalUseNavigator as useNavigator,
     __experimentalNumberControl as NumberControl,
+    __experimentalNavigatorScreen as NavigatorScreen,
+    __experimentalNavigatorProvider as NavigatorProvider,
     __experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
     __experimentalAlignmentMatrixControl as AlignmentMatrixControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
     Button,
+    ButtonGroup,
     TabPanel,
     TextareaControl,
     Popover,
@@ -35,6 +40,7 @@ import {
     FormTokenField,
     FormFileUpload,
     Notice,
+    ComboboxControl,
 } from '@wordpress/components';
 
 export const ZoloCorePanelBody = (props) => {
@@ -47,6 +53,10 @@ export const ZoloTextControl = (props) => {
 
 export const ZoloRangeControl = (props) => {
     return <RangeControl __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} {...props} />;
+};
+
+export const ZoloUseNavigator = (props) => {
+    return <useNavigator {...props} />;
 };
 
 export const ZoloNumberControl = (props) => {
@@ -69,12 +79,24 @@ export const ZoloCardDivider = (props) => {
     return <CardDivider {...props} />;
 };
 
+export const ZoloHeading = (props) => {
+    return <Heading {...props} />;
+};
+
 export const ZoloInputControl = (props) => {
     return <InputControl {...props} __next40pxDefaultSize={true} />;
 };
 
 export const ZoloToggleGroupControl = (props) => {
     return <ToggleGroupControl {...props} __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} />;
+};
+
+export const ZoloNavigatorProvider = (props) => {
+    return <NavigatorProvider {...props} />;
+};
+
+export const ZoloNavigatorScreen = (props) => {
+    return <NavigatorScreen {...props} />;
 };
 
 export const ZoloToggleGroupControlOption = (props) => {
@@ -95,6 +117,10 @@ export const ZoloTextareaControl = (props) => {
 
 export const ZoloButton = (props) => {
     return <Button {...props} />;
+};
+
+export const ZoloButtonGroup = (props) => {
+    return <ButtonGroup {...props} />;
 };
 
 export const ZoloPopover = (props) => {
@@ -179,4 +205,8 @@ export const ZoloFormFileUpload = (props) => {
 
 export const ZoloNotice = (props) => {
     return <Notice {...props} />;
+};
+
+export const ZoloComboboxControl = (props) => {
+    return <ComboboxControl {...props} />;
 };
