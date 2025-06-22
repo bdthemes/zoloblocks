@@ -131,10 +131,6 @@ export {
     ZoloFormFileUpload,
     ZoloNotice,
     ZoloHeading,
-    ZoloUseNavigator,
-    ZoloNavigatorScreen,
-    ZoloNavigatorProvider,
-    ZoloComboboxControl,
 } from '../controls/core-controls';
 
 export { default as ZoloAnimations } from '../controls/animations';
