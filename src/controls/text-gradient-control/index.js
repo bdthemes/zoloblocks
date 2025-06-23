@@ -7,7 +7,7 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import IconicBtnGroup from '../iconic-btn-group';
 import PopoverControl from '../popover-control';
 import ColorControl from '../color-control';
-import {  MediaUpload } from '@wordpress/block-editor';
+import { MediaUpload } from '@wordpress/block-editor';
 import GradientControl from '../gradient-control';
 const TextGradientControl = ({
     label = '',
@@ -78,10 +78,10 @@ const TextGradientControl = ({
                 backgroundType === 'gradient'
                     ? textGradientColorgradientColor
                     : backgroundType === 'classic'
-                      ? defaultColor
-                      : backgroundType === 'image'
-                        ? 'url(' + bgImageURL + ')'
-                        : ''
+                    ? defaultColor
+                    : backgroundType === 'image'
+                    ? 'url(' + bgImageURL + ')'
+                    : ''
             }
         >
             <div className="zolo-control-container zolo-border-control">
@@ -97,7 +97,6 @@ const TextGradientControl = ({
                         options={TEXT_GRADIENT_TYPES}
                     />
                 </div>
-
 
                 {backgroundType === 'image' && (
                     <>
@@ -1044,7 +1043,7 @@ const TextGradientControl = ({
                                 value={gradientColor}
                             />
                         )}
-                      {!customGradient && (
+                        {!customGradient && (
                             <GradientControl
                                 label={__('Gradient Color', 'zoloblocks')}
                                 value={gradientColor}

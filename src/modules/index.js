@@ -112,6 +112,7 @@ export {
     ZoloColorPicker,
     ZoloColorIndicator,
     ZoloButton,
+    ZoloButtonGroup,
     ZoloFlex,
     ZoloFlexBlock,
     ZoloFlexItem,
@@ -129,6 +130,7 @@ export {
     ZoloFormTokenField,
     ZoloFormFileUpload,
     ZoloNotice,
+    ZoloHeading,
 } from '../controls/core-controls';
 
 export { default as ZoloAnimations } from '../controls/animations';

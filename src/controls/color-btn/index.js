@@ -23,7 +23,9 @@ const ColorBtn = ({ color, onChange }) => {
     return (
         <ZoloDropdown
             className="zolo-color-picker-btn"
-            position="bottom right"
+            popoverProps={{
+                placement: 'bottom-end',
+            }}
             renderToggle={({ isOpen, onToggle }) => (
                 <ZoloButton onClick={onToggle} aria-expanded={isOpen} className="color-ball-btn">
                     <ZoloColorIndicator colorValue={color} className="color-ball" />

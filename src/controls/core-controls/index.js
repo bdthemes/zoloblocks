@@ -6,12 +6,14 @@ import {
     ToggleControl,
     BaseControl,
     CardDivider,
+    __experimentalHeading as Heading,
     __experimentalInputControl as InputControl,
     __experimentalNumberControl as NumberControl,
     __experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
     __experimentalAlignmentMatrixControl as AlignmentMatrixControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
     Button,
+    ButtonGroup,
     TabPanel,
     TextareaControl,
     Popover,
@@ -69,6 +71,10 @@ export const ZoloCardDivider = (props) => {
     return <CardDivider {...props} />;
 };
 
+export const ZoloHeading = (props) => {
+    return <Heading {...props} />;
+};
+
 export const ZoloInputControl = (props) => {
     return <InputControl {...props} __next40pxDefaultSize={true} />;
 };
@@ -95,6 +101,10 @@ export const ZoloTextareaControl = (props) => {
 
 export const ZoloButton = (props) => {
     return <Button {...props} />;
+};
+
+export const ZoloButtonGroup = (props) => {
+    return <ButtonGroup {...props} />;
 };
 
 export const ZoloPopover = (props) => {
@@ -170,7 +180,7 @@ export const ZoloDashicon = (props) => {
 };
 
 export const ZoloFormTokenField = (props) => {
-    return <FormTokenField {...props} />;
+    return <FormTokenField {...props} __nextHasNoMarginBottom={true} __next40pxDefaultSize={true} />;
 };
 
 export const ZoloFormFileUpload = (props) => {
