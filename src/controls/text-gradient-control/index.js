@@ -7,7 +7,6 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import IconicBtnGroup from '../iconic-btn-group';
 import PopoverControl from '../popover-control';
 import ColorControl from '../color-control';
-import { ColorPalette } from '@wordpress/components';
 import {  MediaUpload } from '@wordpress/block-editor';
 import GradientControl from '../gradient-control';
 const TextGradientControl = ({
