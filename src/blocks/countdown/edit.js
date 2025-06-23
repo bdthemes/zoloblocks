@@ -55,6 +55,15 @@ export default function Edit(props) {
         });
     }, []);
 
+    // Initialize CountDate if not set
+    useEffect(() => {
+        if (!CountDate) {
+            setAttributes({
+                CountDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            });
+        }
+    }, []);
+
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
@@ -66,10 +75,6 @@ export default function Edit(props) {
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.countdown} alt={__('Count down Preview', 'zoloblocks')} />;
-    }
-
-    if (!CountDate) {
-        setAttributes({ CountDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] });
     }
 
     return (
