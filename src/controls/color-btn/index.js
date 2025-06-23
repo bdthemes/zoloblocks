@@ -38,8 +38,11 @@ const ColorBtn = ({ color, onChange }) => {
                         <>
                             <p className="zolo-theme-color-label">{__('Theme Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
-                                {COLORS.map((paletteColor) => (
-                                    <div className="components-circular-option-picker__option-wrapper">
+                                {COLORS.map((paletteColor, index) => (
+                                    <div
+                                        key={`theme-color-${paletteColor.color}-${index}`}
+                                        className="components-circular-option-picker__option-wrapper"
+                                    >
                                         <ZoloButton
                                             className={`components-button components-circular-option-picker__option ${
                                                 paletteColor.color === color ? 'is-pressed' : ''
@@ -80,8 +83,11 @@ const ColorBtn = ({ color, onChange }) => {
                         <>
                             <p className="zolo-theme-color-label">{__('Default Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
-                                {DEFAULTCOLORS.map((paletteColor) => (
-                                    <div className="components-circular-option-picker__option-wrapper">
+                                {DEFAULTCOLORS.map((paletteColor, index) => (
+                                    <div
+                                        key={`default-color-${paletteColor.color}-${index}`}
+                                        className="components-circular-option-picker__option-wrapper"
+                                    >
                                         <ZoloButton
                                             className={`components-button components-circular-option-picker__option ${paletteColor.color === color ? 'is-pressed' : ''}`}
                                             style={{
