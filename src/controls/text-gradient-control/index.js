@@ -1,4 +1,4 @@
-import { ZoloButton, ZoloSelectControl, ZoloRangeControl } from '../core-controls';
+import { ZoloButton, ZoloSelectControl, ZoloRangeControl, ZoloToggleControl, ZoloTextControl, ZoloTextareaControl } from '../core-controls';
 import { __ } from '@wordpress/i18n';
 import { TEXT_GRADIENT_TYPES } from '../../global/constants';
 import ImageAvatar from '../image-avatar';
@@ -6,7 +6,9 @@ import UnitBtn from '../unit-btn';
 import WithResDeviceBtn from '../with-res-device-btn';
 import IconicBtnGroup from '../iconic-btn-group';
 import PopoverControl from '../popover-control';
-
+import ColorControl from '../color-control';
+import {  MediaUpload } from '@wordpress/block-editor';
+import GradientControl from '../gradient-control';
 const TextGradientControl = ({
     label = '',
     controlName,
@@ -95,6 +97,8 @@ const TextGradientControl = ({
                         options={TEXT_GRADIENT_TYPES}
                     />
                 </div>
+
+
                 {backgroundType === 'image' && (
                     <>
                         <MediaUpload
@@ -1009,10 +1013,9 @@ const TextGradientControl = ({
                         )}
                     </>
                 )}
-
                 {backgroundType === 'gradient' && (
                     <>
-                        <ToggleControl
+                        <ZoloToggleControl
                             label={__('Add Custom Gradient', 'zoloblocks')}
                             checked={customGradient}
                             onChange={() =>
@@ -1023,7 +1026,7 @@ const TextGradientControl = ({
                             }
                         />
                         {customGradient && (
-                            <TextareaControl
+                            <ZoloTextareaControl
                                 help={
                                     <>
                                         {__('Add your gradient color here. Get Sample', 'zoloblocks')}
@@ -1041,7 +1044,7 @@ const TextGradientControl = ({
                                 value={gradientColor}
                             />
                         )}
-                        {!customGradient && (
+                      {!customGradient && (
                             <GradientControl
                                 label={__('Gradient Color', 'zoloblocks')}
                                 value={gradientColor}
@@ -1055,7 +1058,7 @@ const TextGradientControl = ({
                     </>
                 )}
                 {backgroundType === 'classic' && (
-                    <ColorPalette label={__('Color', 'zoloblocks')} value={defaultColor} onChange={onChangeDefault} enableAlpha={true} />
+                    <ColorControl label={__('Color', 'zoloblocks')} color={defaultColor} onChange={onChangeDefault} enableAlpha={true} />
                 )}
             </div>
         </PopoverControl>
