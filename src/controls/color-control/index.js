@@ -70,8 +70,11 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                         <>
                             <p className="zolo-theme-color-label">{__('Theme Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
-                                {COLORS.map((paletteColor) => (
-                                    <div className="components-circular-option-picker__option-wrapper">
+                                {COLORS.map((paletteColor, index) => (
+                                    <div
+                                        key={`theme-color-${index}-${paletteColor.slug}`}
+                                        className="components-circular-option-picker__option-wrapper"
+                                    >
                                         <ZoloButton
                                             className={`components-button components-circular-option-picker__option ${`var(--wp--preset--color--${paletteColor.slug})` === color || paletteColor.color === color ? 'is-pressed' : ''}`}
                                             style={{
@@ -110,8 +113,11 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                         <>
                             <p className="zolo-theme-color-label">{__('Default Colors', 'zoloblocks')}</p>
                             <div className="zolo-color-circular-option-grid">
-                                {DEFAULTCOLORS.map((paletteColor) => (
-                                    <div className="components-circular-option-picker__option-wrapper">
+                                {DEFAULTCOLORS.map((paletteColor, index) => (
+                                    <div
+                                        key={`default-color-${index}-${paletteColor.name.toLowerCase().replace(/\s+/g, '-')}`}
+                                        className="components-circular-option-picker__option-wrapper"
+                                    >
                                         <ZoloButton
                                             className={`components-button components-circular-option-picker__option ${paletteColor.color === color ? 'is-pressed' : ''}`}
                                             style={{
