@@ -13,7 +13,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'advanced-paragraph' => [
         'name' => 'advanced-paragraph',
-        'title' => __('Advanced Paragraph', 'zoloblocks-pro'),
+        'title' => __('Advanced Paragraph', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'demo' => 'https://demo.zoloblocks.com/advanced-paragraph',
@@ -100,7 +100,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'brand-carousel-child' => [
         'name' => 'brand-carousel-child',
-        'title' => __('Brand Carousel Child', 'zoloblocks-pro'),
+        'title' => __('Brand Carousel Child', 'zoloblocks'),
         'categories' => ['post'],
         'status' => true,
         'is_pro' => true,
@@ -635,7 +635,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'table-of-content' => [
         'name' => 'table-of-content',
-        'title' => __('Table of Content', 'zolo-blocks'),
+        'title' => __('Table of Content', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'demo' => 'https://demo.zoloblocks.com/table-of-content',
