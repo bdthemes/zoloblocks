@@ -49,8 +49,13 @@ const Sortable = ({ metaData, setAttributes }) => {
             {deepCloneMetaData &&
                 deepCloneMetaData.map((meta, index) => {
                     return (
-                        <SortableControl defaultItems={metaData} attributeName="metaData" setAttributes={setAttributes}>
-                            <div className="dnd-container" key={index}>
+                        <SortableControl
+                            key={`meta-${meta.id}`}
+                            defaultItems={metaData}
+                            attributeName="metaData"
+                            setAttributes={setAttributes}
+                        >
+                            <div className="dnd-container">
                                 <ZoloButton
                                     className="dnd-trash"
                                     icon="trash"
