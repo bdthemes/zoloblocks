@@ -83,7 +83,7 @@ class ZoloAJAX {
     public function zolo_post_pagination() {
 
         if ( !wp_verify_nonce( ZoloHelpers::ge_nonce_id(), ZoloHelpers::get_nonce_text() ) ) {
-            wp_send_json_error( esc_html__( 'Session Expired!!', 'zoloblocks-pro' ) );
+            wp_send_json_error( esc_html__( 'Session Expired!!', 'zoloblocks' ) );
         }
 
         // Sanitize and validate POST data
@@ -95,7 +95,7 @@ class ZoloAJAX {
         $settings = json_decode( $settings_json, true );
 
         if ( json_last_error() !== JSON_ERROR_NONE ) {
-            wp_send_json_error( esc_html__( 'Invalid settings data', 'zoloblocks-pro' ) );
+            wp_send_json_error( esc_html__( 'Invalid settings data', 'zoloblocks' ) );
         }
 
         // Safely get nested array values with defaults

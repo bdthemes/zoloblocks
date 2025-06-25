@@ -547,7 +547,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'unfold' => [
         'name' => 'unfold',
-        'title' => __('Unfold', 'zoloblocks-pro'),
+        'title' => __('Unfold', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'is_pro' => true,
@@ -556,7 +556,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'data-table' => [
         'name' => 'data-table',
-        'title' => __('Data Table', 'zoloblocks-pro'),
+        'title' => __('Data Table', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'is_pro' => true,
@@ -565,7 +565,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'image-hotspot' => [
         'name' => 'image-hotspot',
-        'title' => __('Image Hotspot', 'zoloblocks-pro'),
+        'title' => __('Image Hotspot', 'zoloblocks'),
         'categories' => ['gallery'],
         'status' => true,
         'is_pro' => true,
@@ -618,7 +618,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'marquee' => [
         'name' => 'marquee',
-        'title' => __('Marquee', 'zoloblocks-pro'),
+        'title' => __('Marquee', 'zoloblocks'),
         'categories' => ['gallery'],
         'status' => true,
         'is_pro' => true,
@@ -627,7 +627,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'marquee-child' => [
         'name' => 'marquee-child',
-        'title' => __('Marquee Child', 'zoloblocks-pro'),
+        'title' => __('Marquee Child', 'zoloblocks'),
         'categories' => ['post'],
         'status' => true,
         'is_pro' => true,
@@ -643,7 +643,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'post-tab' => [
         'name' => 'post-tab',
-        'title' => __('Post Tab', 'zoloblocks-pro'),
+        'title' => __('Post Tab', 'zoloblocks'),
         'categories' => ['postCategory'],
         'class'      => '\ZoloPro\Blocks\PostTab',
         'status'     => true,
@@ -694,7 +694,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'post-video-slider' => [
         'name' => 'post-video-slider',
-        'title' => __('Post Video Slider', 'zoloblocks-pro'),
+        'title' => __('Post Video Slider', 'zoloblocks'),
         'categories' => ['postCategory'],
         'class' => '\ZoloPro\Blocks\PostVideoSlider',
         'status' => true,
@@ -704,7 +704,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'lottie-image' => [
         'name' => 'lottie-image',
-        'title' => __('Lottie Image', 'zoloblocks-pro'),
+        'title' => __('Lottie Image', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'is_pro' => true,
@@ -728,7 +728,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     // 'datetime-field' => [
     //     'name' => 'datetime-field',
-    //     'title' => __('Date Time Field', 'zoloblocks-pro'),
+    //     'title' => __('Date Time Field', 'zoloblocks'),
     //     'categories' => ['form'],
     //     'status' => true,
     //     'is_pro' => true,
@@ -742,14 +742,14 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'phonenumber-field' => [
         'name' => 'phonenumber-field',
-        'title' => __('Phone Number', 'zoloblocks-pro'),
+        'title' => __('Phone Number', 'zoloblocks'),
         'categories' => ['form'],
         'status' => true,
         'is_pro' => true,
     ],
     'country-field' => [
         'name' => 'country-field',
-        'title' => __('Country Field', 'zoloblocks-pro'),
+        'title' => __('Country Field', 'zoloblocks'),
         'categories' => ['form'],
         'status' => true,
         'is_pro' => true,

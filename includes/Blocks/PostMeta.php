@@ -159,7 +159,9 @@ class PostMeta {
 				$num_comments    = (int) get_comments_number();
 				$default_strings = [
 					'string_no_comments' => esc_html__('No Comments', 'zoloblocks'),
+					/* translators: %s: number of comments */
 					'string_one_comment' => esc_html__('%s Comment', 'zoloblocks'),
+					/* translators: %s: number of comments */
 					'string_comments'    => esc_html__('%s Comments', 'zoloblocks'),
 				];
 
@@ -180,6 +182,7 @@ class PostMeta {
 				$content           = get_the_content();
 				$word_count        = str_word_count(wp_strip_all_tags($content));
 				$reading_time      = round($word_count / $reading_speed);
+				/* translators: %d: estimated reading time in minutes */
 				$item_data['text'] = sprintf(__('%d Min Read', 'zoloblocks'), max($reading_time, 1));
 				$item_data['icon'] = 'none' !== $meta['showIcon'] ? ($meta['icon'] ?? '') : '';
 				break;
