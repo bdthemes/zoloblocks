@@ -103,7 +103,7 @@ class FormEntries
         $form_settings = $data['form_settings'] ?? [];
         $form_data = $data['form_data'] ?? [];
     
-        echo $this->generate_form_entries_table($form_data, $form_settings);
+        echo wp_kses_post($this->generate_form_entries_table($form_data, $form_settings));    
     }
     
     /**

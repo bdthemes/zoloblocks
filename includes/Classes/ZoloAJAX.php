@@ -526,8 +526,8 @@ class ZoloAJAX {
      * Example Function
      */
     public static function zolo_example_ajax_function_callback() {
-        if ( !wp_verify_nonce( $_POST['nonce'], 'nonce' ) ) {
-            wp_die( esc_html_e( 'Nonce did not match', 'zoloblocks' ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+        if ( !isset( $_POST['nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'nonce' ) ) {
+            wp_die( esc_html__( 'Nonce did not match', 'zoloblocks' ) );
         }
 
         // Write your code here.
