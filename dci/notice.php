@@ -13,10 +13,7 @@ if ( ! function_exists( 'dci_popup_notice' ) ) {
 		?>
 		<div class="dci-notice">
 			<div class="dci-notice-wrapper">
-				<div class="dci-header">
-					<!-- <div class="dci-logo">
-				<img src="plugins_url( 'assets/images/logo.png', __FILE__ );" alt="logo">
-						</div> -->
+				<div class="dci-header">				
 					<h2 class="dci-title">
 						<?php esc_html_e( 'Never miss an important update.', 'zoloblocks' ); ?>
 					</h2>
