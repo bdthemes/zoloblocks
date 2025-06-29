@@ -289,6 +289,7 @@ class ZoloAJAX {
             'order'    => !empty( $data['order'] ) ? sanitize_text_field( $data['order'] ) : 'desc',
             'role__in' => !empty( $data['role'] ) && is_array( $data['role'] ) ? wp_list_pluck( $data['role'], 'value' ) : [],
             'number'   => !empty( $data['itemLimit'] ) ? sanitize_text_field( $data['itemLimit'] ) : 6,
+            // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
             'exclude'  => !empty( $data['exclude'] ) && is_array( $data['exclude'] ) ? wp_list_pluck( $data['exclude'], 'value' ) : [],
         ];
         $users   = get_users( $args );

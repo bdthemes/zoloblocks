@@ -100,8 +100,10 @@ class GetPostsV1 {
 
 		if ( in_array( 'manual_selection', $exclude_by, true ) ) {
 			$exclude_ids          = $data['postExclude'] ?? [];
+			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 			$args['post__not_in'] = array_merge( $current_post, wp_list_pluck( $exclude_ids, 'value' ) );
 		} else {
+			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 			$args['post__not_in'] = $current_post;
 		}
 
@@ -299,7 +301,7 @@ class GetPostsV1 {
 				}
 			}
 		}
-
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		$args['tax_query'] = [];
 
 		foreach ( $included_terms as $taxonomy_name => $terms ) {
