@@ -95,7 +95,7 @@ class PostCategoryImage {
      */
     public function save_category_image($term_id) {
         // Verify nonce before saving the data
-        if (!isset($_POST['zolo_category_image_nonce']) || !wp_verify_nonce($_POST['zolo_category_image_nonce'], 'zolo_save_category_image')) {
+        if (!isset($_POST['zolo_category_image_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['zolo_category_image_nonce'])), 'zolo_save_category_image')) {
             return;
         }
 
@@ -150,7 +150,7 @@ class PostCategoryImage {
      */
     public function updated_category_image($term_id) {
         // Verify nonce before saving the data
-        if (!isset($_POST['zolo_category_image_nonce']) || !wp_verify_nonce($_POST['zolo_category_image_nonce'], 'zolo_save_category_image')) {
+        if (!isset($_POST['zolo_category_image_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['zolo_category_image_nonce'])), 'zolo_save_category_image')) {
             return;
         }
 

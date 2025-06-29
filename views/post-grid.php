@@ -50,7 +50,7 @@ $data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $
 						echo esc_attr( 'current' );}
 					?>
 				">
-					<?php esc_html_e( 'All', 'zoloblocks-pro' ); ?>
+					<?php esc_html_e( 'All', 'zoloblocks' ); ?>
 				</a>
 
 				<?php

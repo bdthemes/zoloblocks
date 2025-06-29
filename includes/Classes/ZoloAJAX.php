@@ -83,7 +83,7 @@ class ZoloAJAX {
     public function zolo_post_pagination() {
 
         if ( !wp_verify_nonce( ZoloHelpers::ge_nonce_id(), ZoloHelpers::get_nonce_text() ) ) {
-            wp_send_json_error( esc_html__( 'Session Expired!!', 'zoloblocks-pro' ) );
+            wp_send_json_error( esc_html__( 'Session Expired!!', 'zoloblocks' ) );
         }
 
         // Sanitize and validate POST data
@@ -95,7 +95,7 @@ class ZoloAJAX {
         $settings = json_decode( $settings_json, true );
 
         if ( json_last_error() !== JSON_ERROR_NONE ) {
-            wp_send_json_error( esc_html__( 'Invalid settings data', 'zoloblocks-pro' ) );
+            wp_send_json_error( esc_html__( 'Invalid settings data', 'zoloblocks' ) );
         }
 
         // Safely get nested array values with defaults
@@ -526,8 +526,8 @@ class ZoloAJAX {
      * Example Function
      */
     public static function zolo_example_ajax_function_callback() {
-        if ( !wp_verify_nonce( $_POST['nonce'], 'nonce' ) ) {
-            wp_die( esc_html_e( 'Nonce did not match', 'zoloblocks' ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+        if ( !isset( $_POST['nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'nonce' ) ) {
+            wp_die( esc_html__( 'Nonce did not match', 'zoloblocks' ) );
         }
 
         // Write your code here.

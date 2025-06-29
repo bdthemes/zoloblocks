@@ -85,7 +85,7 @@ class ZoloAi extends WP_REST_Controller {
         if (is_wp_error($response)) {
             return new WP_Error(
                 'request_failed',
-                __('Failed to connect to the Sigmative API.', 'your-textdomain'),
+                __('Failed to connect to the Sigmative API.', 'zoloblocks'),
                 $response->get_error_message()
             );
         }
@@ -97,7 +97,7 @@ class ZoloAi extends WP_REST_Controller {
         if (empty($data)) {
             return new WP_Error(
                 'invalid_response',
-                __('The API returned an invalid response.', 'your-textdomain')
+                __('The API returned an invalid response.', 'zoloblocks')
             );
         }
 

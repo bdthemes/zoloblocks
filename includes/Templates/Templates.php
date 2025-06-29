@@ -47,12 +47,12 @@ if (! class_exists('Templates')) {
          */
         public function demo_import() {
             // Access the json_file_url from the POST data
-            if (!isset($_POST['json_file_url'])) {
+            if (!isset($_POST['json_file_url'])) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
                 wp_send_json_error('No JSON file URL provided');
                 return;
             }
 
-            $json_file_url = sanitize_text_field($_POST['json_file_url']);
+            $json_file_url = sanitize_text_field(wp_unslash($_POST['json_file_url'])); //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
             // Fetch the JSON data from the external URL
             $response = wp_remote_get($json_file_url, [

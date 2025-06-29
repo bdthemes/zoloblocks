@@ -403,8 +403,8 @@ if ( ! class_exists( Breadcrumbs::class ) ) :
 
 			$this->prepend_shop_page();
 
-			/* translators: %s: product tag */
 			$this->add_item(
+				// translators: %s is the name of the current product tag term.
 				sprintf( __( 'Products tagged &ldquo;%s&rdquo;', 'zoloblocks' ), $current_term->name ),
 				get_term_link( $current_term, 'product_tag' ),
 				false,

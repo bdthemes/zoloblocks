@@ -155,35 +155,41 @@ class PostMeta {
 				}
 				break;
 
-			case 'comments':
-				$num_comments    = (int) get_comments_number();
-				$default_strings = [
-					'string_no_comments' => esc_html__('No Comments', 'zoloblocks'),
-					'string_one_comment' => esc_html__('%s Comment', 'zoloblocks'),
-					'string_comments'    => esc_html__('%s Comments', 'zoloblocks'),
-				];
-
-				if (0 === $num_comments) {
-					$item_data['text'] = $default_strings['string_no_comments'];
-				} else {
-					$item_data['text'] = sprintf(_n($default_strings['string_one_comment'], $default_strings['string_comments'], $num_comments, 'zoloblocks'), $num_comments);
-				}
-
-				$item_data['icon'] = 'none' !== $meta['showIcon'] ? ($meta['icon'] ?? '') : '';
-
-				if (! empty($meta['link'])) {
-					$item_data['url'] = get_comments_link();
-				}
-				break;
-			case 'readingTime':
-				$reading_speed     = 200;
-				$content           = get_the_content();
-				$word_count        = str_word_count(wp_strip_all_tags($content));
-				$reading_time      = round($word_count / $reading_speed);
-				$item_data['text'] = sprintf(__('%d Min Read', 'zoloblocks'), max($reading_time, 1));
-				$item_data['icon'] = 'none' !== $meta['showIcon'] ? ($meta['icon'] ?? '') : '';
-				break;
-		}
+				case 'comments':
+					$num_comments = (int) get_comments_number();
+				
+					if (0 === $num_comments) {
+						$item_data['text'] = esc_html__('No Comments', 'zoloblocks');
+					} else {
+						$item_data['text'] = sprintf(
+							/* translators: %d: number of comments */
+							_n(
+								'%s Comment',    // string literal
+								'%s Comments',   // string literal
+								$num_comments,
+								'zoloblocks'
+							),
+							$num_comments
+						);
+					}
+				
+					$item_data['icon'] = 'none' !== $meta['showIcon'] ? ($meta['icon'] ?? '') : '';
+				
+					if (!empty($meta['link'])) {
+						$item_data['url'] = get_comments_link();
+					}
+					break;
+				
+				case 'readingTime':
+					$reading_speed     = 200;
+					$content           = get_the_content();
+					$word_count        = str_word_count(wp_strip_all_tags($content));
+					$reading_time      = round($word_count / $reading_speed);
+					/* translators: %d: estimated reading time in minutes */
+					$item_data['text'] = sprintf(__('%d Min Read', 'zoloblocks'), max($reading_time, 1));
+					$item_data['icon'] = 'none' !== $meta['showIcon'] ? ($meta['icon'] ?? '') : '';
+					break;
+			}
 
 		return $item_data;
 	}
