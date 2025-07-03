@@ -231,6 +231,7 @@ const attributes = {
     },
     titleWords: {
         type: 'number',
+        default: 0,
     },
     //excerpts
     excerptWords: {
@@ -243,12 +244,15 @@ const attributes = {
     },
     excerptColor: {
         type: 'string',
+        default: '',
     },
     dateColor: {
         type: 'string',
+        default: '',
     },
     metaColor: {
         type: 'string',
+        default: '',
     },
 
     categoryHoverColor: {
