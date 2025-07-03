@@ -1,8 +1,9 @@
-### 2.3.4 [July 03 15, 2025]
+### 2.3.4 [July 03, 2025]
 
 **Performance:**
 
 * Updated outdated controls for improved performance and reliability
+* Optimized script loading for better page speed
 
 ### 2.3.3 [June 15, 2025]
 

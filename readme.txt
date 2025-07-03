@@ -608,6 +608,13 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+### 2.3.4 [July 03, 2025]
+
+**Performance:**
+
+* Updated outdated controls for improved performance and reliability
+* Optimized script loading for better page speed
+
 ### 2.3.3 [June 15, 2025]
 
 **Security & Performance:**
