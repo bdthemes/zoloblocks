@@ -78,10 +78,12 @@ class GetPostMetaV1 {
         global $wpdb;
         $prefix = $wpdb->prefix;
         $query = $wpdb->prepare(
+            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
             "SELECT DISTINCT meta_key FROM {$prefix}postmeta WHERE meta_key NOT LIKE %s",
             '\_%'
         );
         
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $meta_keys = $wpdb->get_col( $query );
 
         if ( $meta_keys ) {

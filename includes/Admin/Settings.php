@@ -50,11 +50,25 @@ if (! class_exists('Settings')) {
                 'zolo_site_visibility'
             );
 
-            register_setting('reading', 'zolo_maintenance_mode');
-            register_setting('reading', 'zolo_coming_soon_mode');
-            register_setting('reading', 'zolo_maintenance_mode_template');
-            register_setting('reading', 'zolo_site_visibility_private_link');
-            // register_setting('reading', 'zolo_site_visibility_secret_key');
+            register_setting('reading', 'zolo_maintenance_mode', [
+                'sanitize_callback' => 'sanitize_text_field',
+            ]);
+            
+            register_setting('reading', 'zolo_coming_soon_mode', [
+                'sanitize_callback' => 'sanitize_text_field',
+            ]);
+            
+            register_setting('reading', 'zolo_maintenance_mode_template', [
+                'sanitize_callback' => 'sanitize_text_field',
+            ]);
+            
+            register_setting('reading', 'zolo_site_visibility_private_link', [
+                'sanitize_callback' => 'esc_url_raw', // Assuming this is a URL
+            ]);
+            
+            // register_setting('reading', 'zolo_site_visibility_secret_key', [
+            //     'sanitize_callback' => 'sanitize_text_field',
+            // ]);
         }
 
 
@@ -74,7 +88,7 @@ if (! class_exists('Settings')) {
             $private_url = $site_url . '/?private_link=' . $visibility_secrect_key;
 ?>
             <fieldset>
-                <legend class="screen-reader-text"><span><?php _e('Site Visibility', 'zoloblocks'); ?></span></legend>
+                <legend class="screen-reader-text"><span><?php esc_html_e('Site Visibility', 'zoloblocks'); ?></span></legend>
 
                 <!-- Coming Soon Mode Toggle -->
                 <label for="zolo_coming_soon_mode">
@@ -112,7 +126,7 @@ if (! class_exists('Settings')) {
                     <br>
                     <!-- Private Link Field (Initially Hidden) -->
                     <div id="private-link-field" style="display: <?php echo esc_attr($visibility_private_link ? 'block' : 'none'); ?>;">
-                        <input readonly type="text" name="zolo_site_visibility_secret_key" id="zolo_site_visibility_secret_key" class="regular-text" value="<?php echo esc_attr($private_url); ?>" placeholder="<?php _e('Enter Secret Key', 'zoloblocks'); ?>">
+                        <input readonly type="text" name="zolo_site_visibility_secret_key" id="zolo_site_visibility_secret_key" class="regular-text" value="<?php echo esc_attr($private_url); ?>" placeholder="<?php esc_html_e('Enter Secret Key', 'zoloblocks'); ?>">
                         <button class="zolo-private-link-copy-btn" onclick="copyToClipboard(event)">Copy</button>
                     </div>
                     <br>

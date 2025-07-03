@@ -3,7 +3,7 @@ Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, shamim496
 Donate link: http://zoloblocks.com/
 Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
-Tested up to: 6.8.1
+Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 2.3.3
 License: GPLv2 or later

@@ -154,7 +154,7 @@ class PostMeta {
 					$item_data['text'] = $terms_list;
 				}
 				break;
-
+        
 			case 'comments':
 				$num_comments    = (int) get_comments_number();
 				$default_strings = [

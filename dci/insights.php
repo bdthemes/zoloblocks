@@ -145,11 +145,11 @@ if (! class_exists('Insights_SDK')) {
 		 * Insights Deactivate Feedback
 		 */
 		public function insights_deactivate_feedback() {
-			$api_endpoint = isset($_POST['api_endpoint']) ? sanitize_text_field($_POST['api_endpoint']) : '';
-			$public_key   = isset($_POST['public_key']) ? sanitize_text_field($_POST['public_key']) : '';
-			$product_id   = isset($_POST['product_id']) ? sanitize_text_field($_POST['product_id']) : '';
-			$feedback     = isset($_POST['feedback']) ? sanitize_text_field($_POST['feedback']) : '';
-			$nonce        = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+			$api_endpoint = isset($_POST['api_endpoint']) ? sanitize_text_field(wp_unslash($_POST['api_endpoint'])) : '';
+			$public_key   = isset($_POST['public_key']) ? sanitize_text_field(wp_unslash($_POST['public_key'])) : '';
+			$product_id   = isset($_POST['product_id']) ? sanitize_text_field(wp_unslash($_POST['product_id'])) : '';
+			$feedback     = isset($_POST['feedback']) ? sanitize_text_field(wp_unslash($_POST['feedback'])) : '';
+			$nonce        = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 
 			if (! wp_verify_nonce($nonce, 'dci_sdk')) {
 				wp_send_json(array(
@@ -311,7 +311,7 @@ if (! class_exists('Insights_SDK')) {
 				return false;
 			}
 
-			$sanitized_status = sanitize_text_field($_GET['dci_allow_status']);
+			$sanitized_status = isset($_GET['dci_allow_status']) ? sanitize_text_field(wp_unslash($_GET['dci_allow_status'])) : '';
 
 			if ($sanitized_status == 'skip') {
 				update_option($this->dci_allow_name, 'skip');
@@ -558,10 +558,10 @@ if (! class_exists('Insights_SDK')) {
 		 * Ajax callback
 		 */
 		public function dci_sdk_insights() {
-			$sanitized_status = isset($_POST['button_val']) ? sanitize_text_field($_POST['button_val']) : '';
-			$nonce            = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
-			$allow_name       = isset($_POST['allow_name']) ? sanitize_text_field($_POST['allow_name']) : '';
-			$date_name        = isset($_POST['date_name']) ? sanitize_text_field($_POST['date_name']) : '';
+			$sanitized_status = isset($_POST['button_val']) ? sanitize_text_field(wp_unslash($_POST['button_val'])) : '';
+			$nonce            = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'] ) ) : '';
+			$allow_name       = isset($_POST['allow_name']) ? sanitize_text_field(wp_unslash($_POST['allow_name'])) : '';
+			$date_name        = isset($_POST['date_name']) ? sanitize_text_field(wp_unslash($_POST['date_name'])) : '';
 
 			if (! wp_verify_nonce($nonce, 'dci_sdk')) {
 				wp_send_json(array(
@@ -689,10 +689,10 @@ if (! class_exists('Insights_SDK')) {
 						</div>
 					<?php endif; ?>
 					<h3>
-						<?php printf($plugin_title); ?>
+						<?php printf(esc_html($plugin_title)); ?>
 					</h3>
 				</div>
-				<?php printf($plugin_msg); ?>
+				<?php printf(esc_html($plugin_msg)); ?>
 				<p>
 					What we <a href="<?php echo esc_url($admin_url); ?>">collect</a>?
 				</p>
@@ -721,8 +721,8 @@ if (! class_exists('Insights_SDK')) {
 		 * @return void
 		 */
 		public function dci_sdk_dismiss_notice() {
-			$nonce    = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
-			$dci_name = isset($_POST['dci_name']) ? sanitize_text_field($_POST['dci_name']) : '';
+			$nonce    = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+			$dci_name = isset($_POST['dci_name']) ? sanitize_text_field(wp_unslash($_POST['dci_name'])) : '';
 
 			if (! wp_verify_nonce($nonce, 'dci_sdk')) {
 				wp_send_json(array(

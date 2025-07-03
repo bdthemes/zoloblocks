@@ -194,8 +194,8 @@ if (! class_exists('PopupBuilder')) {
             if ('zolo_popup_enable_disable' === $column) {
                 $status = get_post_meta($post_id, 'zolo_popup_enable_disable', true) ? 'checked' : '';
                 $checked = $status ? 'switch-on' : 'switch-off';
-                echo '<div class="zolo-popup-btn" data-post-id="' . $post_id . '">';
-                echo '<span class="switch ' . $checked . '"></span>';
+                echo '<div class="zolo-popup-btn" data-post-id="' . esc_attr($post_id) . '">';
+                echo '<span class="switch ' . esc_attr($checked) . '"></span>';
                 echo '</div>';
             }
         }
@@ -286,7 +286,7 @@ if (! class_exists('PopupBuilder')) {
                     }
 
                     $cookie_name = 'zp_' . $popup_meta['zolo_popup_id'];
-                    $cookie_value = isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : 0;
+                    $cookie_value = isset($_COOKIE[$cookie_name]) ? sanitize_text_field( wp_unslash( $_COOKIE[$cookie_name] ) ) : 0;
 
                     if ($popup_meta['zolo_popup_enable_disable']) {
                         $block_content = get_the_content();
@@ -345,7 +345,7 @@ if (! class_exists('PopupBuilder')) {
          */
         public function enqueue_popup_styles($styles) {
             if (!empty($styles)) {
-                $handle = 'zolo-block-inline-popup-style-' . rand(100, 10000);
+                $handle = 'zolo-block-inline-popup-style-' . wp_rand(100, 10000);
                 wp_register_style($handle, false, [], ZOLO_VERSION, 'all');
                 wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
                 wp_add_inline_style($handle, $styles);

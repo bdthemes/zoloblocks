@@ -289,6 +289,7 @@ class ZoloAJAX {
             'order'    => !empty( $data['order'] ) ? sanitize_text_field( $data['order'] ) : 'desc',
             'role__in' => !empty( $data['role'] ) && is_array( $data['role'] ) ? wp_list_pluck( $data['role'], 'value' ) : [],
             'number'   => !empty( $data['itemLimit'] ) ? sanitize_text_field( $data['itemLimit'] ) : 6,
+            // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
             'exclude'  => !empty( $data['exclude'] ) && is_array( $data['exclude'] ) ? wp_list_pluck( $data['exclude'], 'value' ) : [],
         ];
         $users   = get_users( $args );
@@ -486,8 +487,8 @@ class ZoloAJAX {
         }
 
         $query   = "select post_title,ID  from $wpdb->posts where post_status = 'publish' {$where} {$limit}";
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $results = $wpdb->get_results( $query );
-//phpcs:ignore
 
         if ( !empty( $results ) ) {
             foreach ( $results as $row ) {
@@ -526,8 +527,8 @@ class ZoloAJAX {
      * Example Function
      */
     public static function zolo_example_ajax_function_callback() {
-        if ( !wp_verify_nonce( $_POST['nonce'], 'nonce' ) ) {
-            wp_die( esc_html_e( 'Nonce did not match', 'zoloblocks' ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+        if ( !isset( $_POST['nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'nonce' ) ) {
+            wp_die( esc_html__( 'Nonce did not match', 'zoloblocks' ) );
         }
 
         // Write your code here.

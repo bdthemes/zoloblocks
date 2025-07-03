@@ -40,12 +40,12 @@ if (!class_exists('Form')) {
         public function send_form_data()
         {
             // Ensure form data is provided
-            if (empty($_POST['formData'])) {
+            if (empty($_POST['formData'])) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
                 $this->error_response(__('Form data is empty', 'zoloblocks')); // 400
             }
 
             // Decode the form data
-            $form_data = json_decode(stripslashes($_POST['formData']), true);
+            $form_data = json_decode(stripslashes(sanitize_text_field(wp_unslash($_POST['formData']))), true);  //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
             // Verify nonce
             if (!$this->verify_nonce($form_data['nonce'])) {
