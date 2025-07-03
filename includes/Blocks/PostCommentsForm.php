@@ -66,6 +66,7 @@ class PostCommentsForm {
 		$output = '<div ' . wp_kses_data( $wrapper_attributes ) . ' >';
 		if ( get_comments_number( $post_id ) > 0 ) {
 			$comments_number = get_comments_number( $post_id );
+			// translators: %s is the number of comments.
 			$comments_text   = sprintf( _n( '<span>%s</span> comment', '<span>%s</span> comments', $comments_number, 'zoloblocks' ), esc_html( $comments_number ) );
 			$output         .= '<div class="zolo-comment-count">' . $comments_text . '</div>';
 		}
@@ -238,6 +239,7 @@ class PostCommentsForm {
 		return sprintf(
 			'<p class="must-log-in">%s</p>',
 			sprintf(
+				// translators: 1: opening <a> tag linking to the login page, 2: closing </a> tag.
 				esc_html__( 'You must be %1$slogged in%2$s to post a comment.', 'zoloblocks' ),
 				'<a href="' . esc_url( wp_login_url( get_permalink() ) ) . '">',
 				'</a>'
@@ -259,7 +261,9 @@ class PostCommentsForm {
 		return sprintf(
 			'<p class="logged-in-as">%s</p>',
 			sprintf(
-				wp_kses_post( $this->settings['loginAsText'] ?? '' ) . esc_html__( ' %1$s%2$s. %3$s%4$s%5$s', 'zoloblocks' ),
+				wp_kses_post( $this->settings['loginAsText'] ?? '' ) . 
+				// translators: 1: opening <a> tag with profile link, 2: closing </a> tag, 3: opening <a> tag with logout link, 4: logout text, 5: closing </a> tag.
+				esc_html__( ' %1$s%2$s. %3$s%4$s%5$s', 'zoloblocks' ),
 				'<a href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . $user_identity,
 				'</a>',
 				'<a href="' . esc_url( wp_logout_url( get_permalink() ) ) . '" title="' . esc_attr( $this->settings['logOutText'] ?? '' ) . '">',

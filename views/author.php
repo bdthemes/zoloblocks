@@ -75,6 +75,7 @@ $wrapperId      = $settings['zoloId'] ?? '';
 				<?php if ( ! empty( $settings['showPostCount'] ) ) : ?>
 					<div class="zolo-post-count">
 						<?php
+						/* translators: %s: number of posts */
 						$total_count = sprintf( _n( 'Post: %s', 'Posts: %s', $author->postCount, 'zoloblocks' ), $author->postCount );
 						echo esc_html( $total_count );
 						?>
