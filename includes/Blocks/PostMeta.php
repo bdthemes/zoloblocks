@@ -156,23 +156,20 @@ class PostMeta {
 				break;
         
 			case 'comments':
-				$num_comments    = (int) get_comments_number();
-				$default_strings = [
-					'string_no_comments' => esc_html__('No Comments', 'zoloblocks'),
-					/* translators: %s: number of comments */
-					'string_one_comment' => esc_html__('%s Comment', 'zoloblocks'),
-					/* translators: %s: number of comments */
-					'string_comments'    => esc_html__('%s Comments', 'zoloblocks'),
-				];
-
+				$num_comments = (int) get_comments_number();
+			
 				if (0 === $num_comments) {
-					$item_data['text'] = $default_strings['string_no_comments'];
+					$item_data['text'] = esc_html__('No Comments', 'zoloblocks');
 				} else {
-					$item_data['text'] = sprintf(_n($default_strings['string_one_comment'], $default_strings['string_comments'], $num_comments, 'zoloblocks'), $num_comments);
+					$item_data['text'] = sprintf(
+						/* translators: %s: number of comments */
+						_n('%s Comment', '%s Comments', $num_comments, 'zoloblocks'),
+						$num_comments
+					);
 				}
-
+			
 				$item_data['icon'] = 'none' !== $meta['showIcon'] ? ($meta['icon'] ?? '') : '';
-
+			
 				if (! empty($meta['link'])) {
 					$item_data['url'] = get_comments_link();
 				}
