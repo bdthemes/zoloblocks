@@ -635,6 +635,7 @@ if (! class_exists('Insights_SDK')) {
 				<div class="dci-global-header bdt-dci-notice-global-header">
 					<?php if (! empty($plugin_icon)) : ?>
 						<div class="bdt-dci-notice-logo">
+							<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
 							<img src="<?php echo esc_url($plugin_icon); ?>" alt="icon">
 						</div>
 					<?php endif; ?>
@@ -685,6 +686,7 @@ if (! class_exists('Insights_SDK')) {
 				<div class="dci-global-header">
 					<?php if (! empty($plugin_icon)) : ?>
 						<div>
+							<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
 							<img src="<?php echo esc_url($plugin_icon); ?>" alt="icon">
 						</div>
 					<?php endif; ?>
