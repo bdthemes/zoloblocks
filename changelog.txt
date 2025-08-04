@@ -1,3 +1,10 @@
+### 2.3.5 [August 04, 2025]
+
+**Performance and Enhancements:**
+
+* Optimized script loading for better page speed
+* WordPress latest version compatibility issue fixed.
+
 ### 2.3.4 [July 03, 2025]
 
 **Performance:**
