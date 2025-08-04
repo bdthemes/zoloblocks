@@ -89,6 +89,7 @@ class PostNavigation {
 					<?php if ( has_post_thumbnail( $post->ID ) ) { ?>
 						<?php echo get_the_post_thumbnail( $post->ID, ( $this->settings['thumbnailSize'] ?? 'thumbnail' ) ); ?>
 					<?php } else { ?>
+						<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
 						<img src="<?php echo esc_url( $placeholderImage ); ?>"
 							 alt="<?php echo esc_html( $post->post_title ); ?>">
 					<?php } ?>

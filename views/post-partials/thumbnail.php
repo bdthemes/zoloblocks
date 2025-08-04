@@ -19,6 +19,7 @@ if ( ! empty( $settings['showThumbnail'] ) ) {
 			);
 		} else {
 			$thumbnailHTML .= sprintf(
+				// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 				'<a href="%1$s"><img src="%2$s" alt="%3$s"></a>',
 				esc_url( $permalink ),
 				esc_url( $placeholderImage ),
@@ -30,6 +31,7 @@ if ( ! empty( $settings['showThumbnail'] ) ) {
 			$thumbnailHTML .= $thumbnail;
 		} else {
 			$thumbnailHTML .= sprintf(
+				// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 				'<img src="%1$s" alt="%2$s">',
 				esc_url( $placeholderImage ),
 				esc_attr( $title )

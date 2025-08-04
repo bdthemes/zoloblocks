@@ -51,6 +51,7 @@ class PostCategoryImage {
             $image_id = get_term_meta($term_id, 'zolo-category-image-id', true);
             if ($image_id) {
                 $image_url = wp_get_attachment_image_url($image_id, 'thumbnail');
+                // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
                 $content   = '<img src="' . esc_url($image_url) . '" style="max-width: 50px; max-height: 50px;" />';
             } else {
                 $content = __('No Image', 'zoloblocks');

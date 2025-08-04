@@ -36,6 +36,7 @@ $viewAllBtnIcon = '<div class="zolo__display-icon">' . $viewAllBtnIcon . '</div>
 			<a class="zolo-category-item" href="<?php echo esc_url( $category->link ); ?>"
 				style="<?php echo ! empty( $settings['postCategoryPro']['enableMultipleBG'] ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : ''; ?>">
 				<?php if ( ! empty( $settings['showImage'] ) && ! empty( $category->image ) && ( 'style-2' === $settings['preset'] || 'style-3' === $settings['preset'] ) ) : ?>
+					<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
 					<div class="zolo-category-img"><img src="<?php echo esc_url( $category->image ); ?>"
 							alt="<?php echo esc_html( $category->name ); ?>"></div>
 				<?php endif; ?>

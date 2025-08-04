@@ -56,6 +56,7 @@ class PostFeaturedImage {
 		$placeholderImage      = trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/placeholder.svg';
 		$postLink              = get_post_permalink( $post_id );
 		$altText               = get_the_title( $post_id );
+		// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 		$content               = '<img src="' . $placeholderImage . '" alt="' . $altText . '">';
 		$isLink                = $this->settings['isLink'] ?? false;
 		$linkTarget            = $this->settings['linkTarget'] ?? '_self';
