@@ -24,7 +24,7 @@ const ProPopup = () => {
                 // Pro Modal
                 proModal && (
                     <ZoloModal
-                        title={__('Upgrade to Pro', 'zoloblocks')}
+                        className="zolo-pro-modal zolo-plugin-modal"
                         onRequestClose={() => setProModal(false)}
                     >
                         <svg
@@ -56,6 +56,11 @@ const ProPopup = () => {
                                 </linearGradient>
                             </defs>
                         </svg>
+
+                        <h2 className="zolo-pro-modal-title">
+                            {__('Upgrade to Pro', 'zoloblocks')}
+                        </h2>
+
                         <p className="zolo-pro-modal-desc">
                             {__(
                                 'Get premium resources at ZoloBlocks and save more time with stunning patterns and templates',
