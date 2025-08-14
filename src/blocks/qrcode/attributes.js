@@ -87,6 +87,96 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    
+    // QR Code Type Selection
+    qrCodeType: {
+        type: 'string',
+        default: 'url',
+    },
+    
+    // WiFi QR Code
+    qrWifiSSID: {
+        type: 'string',
+        default: '',
+    },
+    qrWifiPassword: {
+        type: 'string',
+        default: '',
+    },
+    qrWifiSecurity: {
+        type: 'string',
+        default: 'WPA',
+    },
+    qrWifiHidden: {
+        type: 'boolean',
+        default: false,
+    },
+    
+    // vCard Contact QR Code
+    qrVCardName: {
+        type: 'string',
+        default: '',
+    },
+    qrVCardPhone: {
+        type: 'string',
+        default: '',
+    },
+    qrVCardEmail: {
+        type: 'string',
+        default: '',
+    },
+    qrVCardOrg: {
+        type: 'string',
+        default: '',
+    },
+    qrVCardUrl: {
+        type: 'string',
+        default: '',
+    },
+    
+    // SMS QR Code
+    qrSMSNumber: {
+        type: 'string',
+        default: '',
+    },
+    qrSMSMessage: {
+        type: 'string',
+        default: '',
+    },
+    
+    // Email QR Code
+    qrEmailTo: {
+        type: 'string',
+        default: '',
+    },
+    qrEmailSubject: {
+        type: 'string',
+        default: '',
+    },
+    qrEmailBody: {
+        type: 'string',
+        default: '',
+    },
+    
+    // Phone QR Code
+    qrPhoneNumber: {
+        type: 'string',
+        default: '',
+    },
+    
+    // Location QR Code
+    qrLocationLat: {
+        type: 'string',
+        default: '',
+    },
+    qrLocationLng: {
+        type: 'string',
+        default: '',
+    },
+    qrLocationName: {
+        type: 'string',
+        default: '',
+    },
     qrCodeStyle: {
         type: 'string',
         deafult: '#000',
