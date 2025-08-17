@@ -154,7 +154,7 @@ const Style = ({ props }) => {
     const desktopAllStyle = `
         .${uniqueId} .start-rating-wrapper {
             ${itemsVDeskAlign}
-            ${textDeskAlign == ':flex-start;' ? 'text-align: left;' : textDeskAlign == ':flex-end;' ? 'text-align: right;' : textDeskAlign == ':center;' ? 'text-align: center;' : ''}
+            ${textDeskAlign == 'justify-content:flex-start;' ? 'text-align: left;' : textDeskAlign == 'justify-content:flex-end;' ? 'text-align: right;' : textDeskAlign == 'justify-content:center;' ? 'text-align: center;' : ''}
         }
         .${uniqueId} .star-rating-inner {
             ${deskGap}
@@ -188,17 +188,16 @@ const Style = ({ props }) => {
     const tabletAllStyle = `
         .${uniqueId} .start-rating-wrapper {
             ${itemsVTabAlign}
-            ${textTabAlign == ':flex-start;' ? 'text-align: left;' : textTabAlign == ':flex-end;' ? 'text-align: right;' : textTabAlign == ':center;' ? 'text-align: center;' : ''}
+            ${textTabAlign == 'justify-content:flex-start;' ? 'text-align: left;' : textTabAlign == 'justify-content:flex-end;' ? 'text-align: right;' : textTabAlign == 'justify-content:center;' ? 'text-align: center;' : ''}
         }
         .${uniqueId} .star-rating-inner {
             ${tabGap}
             ${titlePosition === 'top' || titlePosition === 'bottom' ? ratingVTabAlign : ''}
-
         }
         .${uniqueId} .start-rating-title {
             ${titleTabTypo}
         }
-            .${uniqueId} .star-rating_inner-icon {
+        .${uniqueId} .star-rating_inner-icon {
             ${iconBgTab}
             ${iconPaddingTab}
             ${iconrRadiusTab}
@@ -217,28 +216,25 @@ const Style = ({ props }) => {
     const mobileAllStyle = `
         .${uniqueId} .start-rating-wrapper {
             ${itemsVMobAlign}
-            ${textMobAlign == ':flex-start;' ? 'text-align: left;' : textMobAlign == ':flex-end;' ? 'text-align: right;' : textMobAlign == ':center;' ? 'text-align: center;' : ''}
+            ${textMobAlign == 'justify-content:flex-start;' ? 'text-align: left;' : textMobAlign == 'justify-content:flex-end;' ? 'text-align: right;' : textMobAlign == 'justify-content:center;' ? 'text-align: center;' : ''}
         }
         .${uniqueId} .star-rating-inner {
             ${mobGap}
             ${titlePosition === 'top' || titlePosition === 'bottom' ? ratingVMobAlign : ''}
-
         }
         .${uniqueId} .start-rating-title {
             ${titleMobTypo}
         }
-         .${uniqueId} .star-rating_inner-icon {
+        .${uniqueId} .star-rating_inner-icon {
             ${iconBgMobile}
             ${iconPaddingMobile}
             ${iconrRadiusMobile}
             ${iconBorderStylesMob}
         }
-
-          .${uniqueId} .star-rating_inner-icon .zolo__display-icon svg {
+        .${uniqueId} .star-rating_inner-icon .zolo__display-icon svg {
             ${mobIconWidth}
             ${mobIconHeight}
         }
-
         .${uniqueId} .zolo-star-rating svg {
             ${mobSize}
             ${mobHeight}

@@ -23,10 +23,10 @@
             flex-direction: column-reverse;
         }
         &.left {
-            flex-direction: column;
+            flex-direction: row;
         }
         &.right {
-            flex-direction: column-reverse;
+            flex-direction: row-reverse;
         }
     }
 
