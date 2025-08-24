@@ -12,6 +12,7 @@ import { applyFilters } from '@wordpress/hooks';
 const {
     ZoloSelectControl,
     ZoloTextareaControl,
+    ZoloTextControl,
     ColorControl,
     SimpleRangeControl,
     BorderControl,
@@ -23,6 +24,7 @@ const {
     BoxShadowControl,
     TypographyDropdown,
     ResRangeControl,
+    ZoloToggleControl,
 } = window.zoloModule;
 
 import {
@@ -56,6 +58,31 @@ export default function Inspector(props) {
         // settings
         qrContent,
         qrCodeLink,
+        qrCodeType,
+        // WiFi QR Code
+        qrWifiSSID,
+        qrWifiPassword,
+        qrWifiSecurity,
+        qrWifiHidden,
+        // vCard Contact QR Code
+        qrVCardName,
+        qrVCardPhone,
+        qrVCardEmail,
+        qrVCardOrg,
+        qrVCardUrl,
+        // SMS QR Code
+        qrSMSNumber,
+        qrSMSMessage,
+        // Email QR Code
+        qrEmailTo,
+        qrEmailSubject,
+        qrEmailBody,
+        // Phone QR Code
+        qrPhoneNumber,
+        // Location QR Code
+        qrLocationLat,
+        qrLocationLng,
+        qrLocationName,
         codeColor,
         backgroundColor,
         qrCodePadding,
@@ -92,7 +119,22 @@ export default function Inspector(props) {
                     generalTab={
                         <>
                             <ZoloPanelBody title={__('QR Code', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
-                                {!qrCodeLink && (
+                                <ZoloSelectControl
+                                    label={__('QR Code Type', 'zoloblocks')}
+                                    value={qrCodeType}
+                                    onChange={(value) => setAttributes({ qrCodeType: value })}
+                                    options={[
+                                        { label: __('URL/Text', 'zoloblocks'), value: 'url' },
+                                        { label: __('WiFi', 'zoloblocks'), value: 'wifi' },
+                                        { label: __('Contact (vCard)', 'zoloblocks'), value: 'vcard' },
+                                        { label: __('SMS', 'zoloblocks'), value: 'sms' },
+                                        { label: __('Email', 'zoloblocks'), value: 'email' },
+                                        { label: __('Phone', 'zoloblocks'), value: 'phone' },
+                                        { label: __('Location', 'zoloblocks'), value: 'location' },
+                                    ]}
+                                />
+                                
+                                {qrCodeType === 'url' && !qrCodeLink && (
                                     <ZoloTextareaControl
                                         className="zolo-flex-col-control"
                                         label={__('Content', 'zoloblocks')}
@@ -104,6 +146,132 @@ export default function Inspector(props) {
                                         }
                                     />
                                 )}
+                                
+                                {qrCodeType === 'wifi' && (
+                                    <>
+                                        <ZoloTextControl
+                                            label={__('WiFi Network Name (SSID)', 'zoloblocks')}
+                                            value={qrWifiSSID}
+                                            onChange={(value) => setAttributes({ qrWifiSSID: value })}
+                                        />
+                                        <ZoloTextControl
+                                            label={__('WiFi Password', 'zoloblocks')}
+                                            value={qrWifiPassword}
+                                            onChange={(value) => setAttributes({ qrWifiPassword: value })}
+                                        />
+                                        <ZoloSelectControl
+                                            label={__('Security Type', 'zoloblocks')}
+                                            value={qrWifiSecurity}
+                                            onChange={(value) => setAttributes({ qrWifiSecurity: value })}
+                                            options={[
+                                                { label: __('WPA/WPA2', 'zoloblocks'), value: 'WPA' },
+                                                { label: __('WEP', 'zoloblocks'), value: 'WEP' },
+                                                { label: __('None', 'zoloblocks'), value: 'nopass' },
+                                            ]}
+                                        />
+                                        <ZoloToggleControl
+                                            label={__('Hidden Network', 'zoloblocks')}
+                                            checked={qrWifiHidden}
+                                            onChange={(value) => setAttributes({ qrWifiHidden: value })}
+                                        />
+                                    </>
+                                )}
+                                
+                                {qrCodeType === 'vcard' && (
+                                    <>
+                                        <ZoloTextControl
+                                            label={__('Full Name', 'zoloblocks')}
+                                            value={qrVCardName}
+                                            onChange={(value) => setAttributes({ qrVCardName: value })}
+                                        />
+                                        <ZoloTextControl
+                                            label={__('Phone Number', 'zoloblocks')}
+                                            value={qrVCardPhone}
+                                            onChange={(value) => setAttributes({ qrVCardPhone: value })}
+                                        />
+                                        <ZoloTextControl
+                                            label={__('Email Address', 'zoloblocks')}
+                                            value={qrVCardEmail}
+                                            onChange={(value) => setAttributes({ qrVCardEmail: value })}
+                                        />
+                                        <ZoloTextControl
+                                            label={__('Organization', 'zoloblocks')}
+                                            value={qrVCardOrg}
+                                            onChange={(value) => setAttributes({ qrVCardOrg: value })}
+                                        />
+                                        <ZoloTextControl
+                                            label={__('Website URL', 'zoloblocks')}
+                                            value={qrVCardUrl}
+                                            onChange={(value) => setAttributes({ qrVCardUrl: value })}
+                                        />
+                                    </>
+                                )}
+                                
+                                {qrCodeType === 'sms' && (
+                                    <>
+                                        <ZoloTextControl
+                                            label={__('Phone Number', 'zoloblocks')}
+                                            value={qrSMSNumber}
+                                            onChange={(value) => setAttributes({ qrSMSNumber: value })}
+                                        />
+                                        <ZoloTextareaControl
+                                            label={__('Message', 'zoloblocks')}
+                                            value={qrSMSMessage}
+                                            onChange={(value) => setAttributes({ qrSMSMessage: value })}
+                                        />
+                                    </>
+                                )}
+                                
+                                {qrCodeType === 'email' && (
+                                    <>
+                                        <ZoloTextControl
+                                            label={__('Email Address', 'zoloblocks')}
+                                            value={qrEmailTo}
+                                            onChange={(value) => setAttributes({ qrEmailTo: value })}
+                                        />
+                                        <ZoloTextControl
+                                            label={__('Subject', 'zoloblocks')}
+                                            value={qrEmailSubject}
+                                            onChange={(value) => setAttributes({ qrEmailSubject: value })}
+                                        />
+                                        <ZoloTextareaControl
+                                            label={__('Message Body', 'zoloblocks')}
+                                            value={qrEmailBody}
+                                            onChange={(value) => setAttributes({ qrEmailBody: value })}
+                                        />
+                                    </>
+                                )}
+                                
+                                {qrCodeType === 'phone' && (
+                                    <ZoloTextControl
+                                        label={__('Phone Number', 'zoloblocks')}
+                                        value={qrPhoneNumber}
+                                        onChange={(value) => setAttributes({ qrPhoneNumber: value })}
+                                    />
+                                )}
+                                
+                                {qrCodeType === 'location' && (
+                                    <>
+                                        <ZoloTextControl
+                                            label={__('Latitude', 'zoloblocks')}
+                                            value={qrLocationLat}
+                                            onChange={(value) => setAttributes({ qrLocationLat: value })}
+                                            placeholder="40.7128"
+                                        />
+                                        <ZoloTextControl
+                                            label={__('Longitude', 'zoloblocks')}
+                                            value={qrLocationLng}
+                                            onChange={(value) => setAttributes({ qrLocationLng: value })}
+                                            placeholder="-74.0060"
+                                        />
+                                        <ZoloTextControl
+                                            label={__('Location Name (Optional)', 'zoloblocks')}
+                                            value={qrLocationName}
+                                            onChange={(value) => setAttributes({ qrLocationName: value })}
+                                        />
+                                    </>
+                                )}
+                                
                                 {/* hook links */}
                                 {hookLinks && hookLinks.length > 0 && hookLinks}
                                 <ResRangeControl

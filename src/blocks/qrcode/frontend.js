@@ -24,17 +24,84 @@ document.addEventListener('DOMContentLoaded', () => {
                 logoQrBehind,
                 eyeColor,
                 eyeRadius,
+                // QR Code Types
+                qrCodeType,
+                qrWifiSSID,
+                qrWifiPassword,
+                qrWifiSecurity,
+                qrWifiHidden,
+                qrVCardName,
+                qrVCardPhone,
+                qrVCardEmail,
+                qrVCardOrg,
+                qrVCardUrl,
+                qrSMSNumber,
+                qrSMSMessage,
+                qrEmailTo,
+                qrEmailSubject,
+                qrEmailBody,
+                qrPhoneNumber,
+                qrLocationLat,
+                qrLocationLng,
+                qrLocationName,
                 // badge
                 badgeStyle,
                 showBadge,
                 badgeText,
             } = JSON.parse(options);
 
+            // Generate QR content based on type
+            const generateQRContent = () => {
+                switch (qrCodeType) {
+                    case 'wifi':
+                        if (!qrWifiSSID) return 'WiFi Network';
+                        const security = qrWifiSecurity === 'nopass' ? '' : qrWifiSecurity;
+                        const hidden = qrWifiHidden ? 'true' : 'false';
+                        return `WIFI:T:${security};S:${qrWifiSSID};P:${qrWifiPassword};H:${hidden};;`;
+                    
+                    case 'vcard':
+                        if (!qrVCardName) return 'Contact Card';
+                        let vcard = 'BEGIN:VCARD\nVERSION:3.0\n';
+                        vcard += `FN:${qrVCardName}\n`;
+                        if (qrVCardPhone) vcard += `TEL:${qrVCardPhone}\n`;
+                        if (qrVCardEmail) vcard += `EMAIL:${qrVCardEmail}\n`;
+                        if (qrVCardOrg) vcard += `ORG:${qrVCardOrg}\n`;
+                        if (qrVCardUrl) vcard += `URL:${qrVCardUrl}\n`;
+                        vcard += 'END:VCARD';
+                        return vcard;
+                    
+                    case 'sms':
+                        if (!qrSMSNumber) return 'SMS Message';
+                        return `sms:${qrSMSNumber}${qrSMSMessage ? `?body=${encodeURIComponent(qrSMSMessage)}` : ''}`;
+                    
+                    case 'email':
+                        if (!qrEmailTo) return 'Email';
+                        let emailUrl = `mailto:${qrEmailTo}`;
+                        const params = [];
+                        if (qrEmailSubject) params.push(`subject=${encodeURIComponent(qrEmailSubject)}`);
+                        if (qrEmailBody) params.push(`body=${encodeURIComponent(qrEmailBody)}`);
+                        if (params.length > 0) emailUrl += `?${params.join('&')}`;
+                        return emailUrl;
+                    
+                    case 'phone':
+                        return qrPhoneNumber ? `tel:${qrPhoneNumber}` : 'Phone Number';
+                    
+                    case 'location':
+                        if (!qrLocationLat || !qrLocationLng) return 'Location';
+                        return `geo:${qrLocationLat},${qrLocationLng}${qrLocationName ? `?q=${encodeURIComponent(qrLocationName)}` : ''}`;
+                    
+                    default:
+                        return qrContent || 'https://zoloblocks.com';
+                }
+            };
+
+            const finalQRContent = generateQRContent();
+
             const root = createRoot(qrcode);
 
             const QRCodeWrapper = () => (
                 <QRCode
-                    value={qrContent}
+                    value={finalQRContent}
                     ecLevel={qrCodeLevel}
                     size="1200"
                     qrStyle={qrCodeStyle}
