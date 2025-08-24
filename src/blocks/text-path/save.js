@@ -12,7 +12,7 @@ const Save = ({ attributes }) => {
         textPathType,
         pathlink,
         textpathLength,
-        textPathSpoin,
+        textPathSpoint,
         circlePhoto,
         circlePhotoTitle,
         imageRes,
@@ -33,7 +33,7 @@ const Save = ({ attributes }) => {
                 data-textpathtype={textPathType}
                 data-pathlink={JSON.stringify(sanitizeUrl(pathlink?.url))}
                 data-textpathlength={textpathLength}
-                data-textstartoffset={textPathSpoin}
+                data-textstartoffset={textPathSpoint}
                 data-uniqueid={uniqueId}
                 data-circlephoto={JSON.stringify(circlePhoto)} // Adding circlePhoto to data attributes
                 data-circlephototitle={circlePhotoTitle}

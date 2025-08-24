@@ -4,6 +4,7 @@ import metadata from './block.json';
 import Edit from './edit';
 import Save from './save';
 import './style.scss';
+import deprecated from './deprecated';
 
 const { BlockIcons } = window.zoloIcons;
 
@@ -11,6 +12,7 @@ registerBlockType(metadata, {
     icon: {
         src: BlockIcons['advanced-button'],
     },
+    deprecated,
     attributes,
     edit: Edit,
     save: Save,
