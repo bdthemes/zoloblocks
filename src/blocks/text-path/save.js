@@ -1,7 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, sanitizeUrl } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -31,7 +31,7 @@ const Save = ({ attributes }) => {
                 })}
                 data-textpathcontent={textpathContent}
                 data-textpathtype={textPathType}
-                data-pathlink={JSON.stringify(pathlink)}
+                data-pathlink={JSON.stringify(sanitizeUrl(pathlink?.url))}
                 data-textpathlength={textpathLength}
                 data-textstartoffset={textPathSpoin}
                 data-uniqueid={uniqueId}

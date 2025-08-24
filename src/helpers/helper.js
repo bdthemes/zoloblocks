@@ -1,6 +1,7 @@
 import { select } from '@wordpress/data';
 import CryptoJS from 'crypto-js';
 import {forwardRef} from '@wordpress/element';
+import { isURL } from '@wordpress/url';
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
@@ -305,3 +306,77 @@ export const generateOrderSortCSS = (items,uniqueId) => {
       return `.${uniqueId}.zolo-block .${item.class} {order: ${index + 1};}`;
     }).join("\n");
 };
+
+
+// utils/sanitize.js
+
+/**
+ * Strip dangerous schemes like javascript:, data:, vbscript:
+ */
+export function stripBadSchemes(raw = '') {
+  const s = String(raw).trim();
+  return /^(javascript|data|vbscript):/i.test(s) ? '' : s;
+}
+
+/**
+ * URL sanitizer for editor-side UX. Final security is on PHP.
+ */
+export function sanitizeUrl(raw) {
+  const s = stripBadSchemes(raw);
+  if (!s) return '';
+  // Basic URL validity
+  if (!isURL(s)) return '';
+  return s;
+}
+
+/**
+ * Text nodes (labels, plain text)
+ */
+export function sanitizeText(raw) {
+  return String(raw ?? '').replace(/\u0000/g, '').trim();
+}
+
+/**
+ * Attribute-safe text (for data-* etc. if you mirror in editor)
+ */
+export function sanitizeAttr(raw) {
+  return sanitizeText(raw).replace(/"/g, '&quot;');
+}
+
+/**
+ * Integer / Float
+ */
+export function sanitizeInt(raw, { min = null, max = null } = {}) {
+  let v = parseInt(raw, 10);
+  if (Number.isNaN(v)) v = 0;
+  if (typeof min === 'number' && v < min) v = min;
+  if (typeof max === 'number' && v > max) v = max;
+  return v;
+}
+export function sanitizeFloat(raw, { min = null, max = null } = {}) {
+  let v = parseFloat(raw);
+  if (Number.isNaN(v)) v = 0;
+  if (typeof min === 'number' && v < min) v = min;
+  if (typeof max === 'number' && v > max) v = max;
+  return v;
+}
+
+/**
+ * Boolean
+ */
+export function sanitizeBool(raw) {
+  return !!raw;
+}
+
+/**
+ * Target + rel hardening for <a> tags (avoid window.opener vulns)
+ */
+export function hardenLinkTarget({ target, rel }) {
+  const t = target === '_blank' ? '_blank' : '';
+  let r = String(rel || '').toLowerCase().split(/\s+/).filter(Boolean);
+  if (t === '_blank') {
+    if (!r.includes('noopener')) r.push('noopener');
+    if (!r.includes('noreferrer')) r.push('noreferrer');
+  }
+  return { target: t, rel: r.join(' ') };
+}

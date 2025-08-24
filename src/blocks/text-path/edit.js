@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup, sanitizeUrl } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -61,7 +61,7 @@ export default function Edit(props) {
 
     const textPathLinkProps = {
         className: 'zolo-textpath',
-        href: pathlink?.url,
+        href: sanitizeUrl(pathlink?.url),
         rel: pathlink?.openInNewTab ? 'noreferrer noopener' : undefined,
         target: pathlink?.openInNewTab ? '_blank' : undefined,
         title: textpathContent,
@@ -169,3 +169,5 @@ export default function Edit(props) {
         </>
     );
 }
+
+

@@ -90,6 +90,13 @@ export {
     popoverHasAttrVal,
     generateUniqueName,
     generateOrderSortCSS,
+    sanitizeUrl,
+    sanitizeText,
+    sanitizeAttr,
+    sanitizeInt,
+    sanitizeFloat,
+    sanitizeBool,
+    hardenLinkTarget,
 } from '../helpers/helper';
 
 export {
