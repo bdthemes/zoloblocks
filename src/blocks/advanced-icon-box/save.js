@@ -4,7 +4,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag, sanitizeUrl } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -69,7 +69,7 @@ const Save = (props) => {
             <DynamicTag
                 tagName={globalLink === true ? 'a' : 'div'}
                 {...(globalLink === true && {
-                    href: buttonLink && buttonLink.url,
+                    href: buttonLink && sanitizeUrl(buttonLink.url),
                     target: buttonLink && buttonLink.openInNewTab && '_blank',
                     rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
                     title: buttonText,
