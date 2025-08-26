@@ -1,4 +1,4 @@
-const { isEmpty, ZoloSpinner } = window.zoloModule;
+const { isEmpty, ZoloSpinner, sanitizeUrl } = window.zoloModule;
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 
@@ -182,14 +182,14 @@ function AuthorItem({ author, attributes }) {
         <div className="zolo-item">
             {showAvatar && (
                 <div className="zolo-image">
-                    <a href={author.link} dangerouslySetInnerHTML={{ __html: author.avatar }} onClick={(e) => e.preventDefault()}></a>
+                    <a href={sanitizeUrl(author.link)} dangerouslySetInnerHTML={{ __html: author.avatar }} onClick={(e) => e.preventDefault()}></a>
                 </div>
             )}
 
             <div className="zolo-content">
                 {showName && (
                     <div className="zolo-name">
-                        <a href={author.link} onClick={(e) => e.preventDefault()}>
+                        <a href={sanitizeUrl(author.link)} onClick={(e) => e.preventDefault()}>
                             {author.name}
                         </a>
                     </div>
@@ -221,7 +221,7 @@ function AuthorItem({ author, attributes }) {
 
                             if (!isEmpty(link)) {
                                 return (
-                                    <a href={link} onClick={(e) => e.preventDefault()}>
+                                    <a href={sanitizeUrl(link)} onClick={(e) => e.preventDefault()}>
                                         <SocialIcon value={value} />
                                     </a>
                                 );

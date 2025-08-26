@@ -1,11 +1,12 @@
 import { RichText, useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
 const { classArrayToStr, DynamicTag, DisplayZoloIcon } = window.zoloModule;
+import { applyFilters } from '@wordpress/hooks';
 
 // attributes.js
 import attributes from '../../attributes';
 
-const v1 = {
+const v2 = {
     attributes: {
         ...attributes,
     },
@@ -134,4 +135,4 @@ const v1 = {
     },
 };
 
-export default v1;
+export default v2;

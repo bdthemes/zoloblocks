@@ -1,7 +1,7 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeText } = window.zoloModule;
 import { applyFilters } from '@wordpress/hooks';
 // Save function
 const Save = (props) => {
@@ -72,7 +72,7 @@ const Save = (props) => {
                             })}
                         >
                             <span className="zolo-submit-btn-content">
-                                {btnLabel || __('Submit Now', 'zoloblocks')}
+                                {sanitizeText(btnLabel) || __('Submit Now', 'zoloblocks')}
                                 {showBtnIcon && <DisplayZoloIcon icon={icon} />}
                             </span>
                         </button>

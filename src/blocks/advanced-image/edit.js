@@ -14,7 +14,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, DynamicTag, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
+const { handleUniqueId, DynamicTag, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -83,7 +83,7 @@ export default function Edit(props) {
             hoverEffect
         ),
         ...(link?.url && {
-            href: link.url,
+            href: sanitizeUrl(link.url),
         }),
         ...(link?.openInNewTab && {
             target: '_blank',
@@ -140,7 +140,7 @@ export default function Edit(props) {
                                 <img
                                     className="zolo-img"
                                     src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
-                                    alt={imgAlt}
+                                    alt={sanitizeText(imgAlt)}
                                 />
                             </div>
                             {layout === 'overlay' && (
@@ -209,7 +209,7 @@ export default function Edit(props) {
                                         alt: media.alt,
                                         caption: media.caption,
                                     },
-                                    imgAlt: media.alt,
+                                    imgAlt: sanitizeText(media.alt),
                                 });
                             }}
                             accept="image/*"

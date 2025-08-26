@@ -1,9 +1,9 @@
-import attributes from './attributes';
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
 import classnames from 'classnames';
+import attributes from '../../../cta/attributes';
 
-const deprecated = {
+const v1 = {
     attributes: {
         ...attributes,
         counterNumber: {
@@ -96,4 +96,4 @@ const deprecated = {
     },
 };
 
-export default deprecated;
+export default v1;

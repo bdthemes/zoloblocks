@@ -1,7 +1,7 @@
 /**
  * Internal depencencies
  */
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, sanitizeText } = window.zoloModule;
 
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
@@ -36,17 +36,17 @@ const Save = (props) => {
                             key={uniqueKey}
                         >
                             {profile.toggleworkday
-                                ? profile.name && <span className="zolo-biz-day">{profile.name}</span>
-                                : profile.name && <span className="zolo-biz-day-closed">{profile.name}</span>}
+                                ? profile.name && <span className="zolo-biz-day">{sanitizeText(profile.name)}</span>
+                                : profile.name && <span className="zolo-biz-day-closed">{sanitizeText(profile.name)}</span>}
                             <div className="zolo-biz-time-wrap">
                                 {profile.toggleworkday ? (
                                     <>
-                                        {profile.startDate && <span className="zolo-biz-time">{profile.startDate}</span>}
+                                        {profile.startDate && <span className="zolo-biz-time">{sanitizeText(profile.startDate)}</span>}
                                         {profile.startDate && profile.endDate && <span className="zolo-biz-time-separator">-</span>}
-                                        {profile.endDate && <span className="zolo-biz-time">{profile.endDate}</span>}
+                                        {profile.endDate && <span className="zolo-biz-time">{sanitizeText(profile.endDate)}</span>}
                                     </>
                                 ) : (
-                                    <span className="zolo-business-closed-time">{profile.closedDay}</span>
+                                    <span className="zolo-business-closed-time">{sanitizeText(profile.closedDay)}</span>
                                 )}
                             </div>
                         </div>

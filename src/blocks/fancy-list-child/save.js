@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayZoloIcon, classArrayToStr, DynamicTag } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, DynamicTag, sanitizeText, sanitizeUrl } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = ({ attributes }) => {
@@ -37,11 +37,11 @@ const Save = ({ attributes }) => {
                 id: zoloId,
             })}
             {...(fancyLinkToggle && {
-                href: fancyLink.url,
+                href: sanitizeUrl(fancyLink.url),
                 ...(fancyLink.openInNewTab && {
                     target: '_blank',
                     rel: 'noreferrer noopener',
-                    title: fancyTitle,
+                    title: sanitizeText(fancyTitle),
                 }),
             })}
         >

@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr, generateUniqueName } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, generateUniqueName, sanitizeText } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -105,7 +105,7 @@ export default function Edit(props) {
                                         defaultChecked={defaultCheck.includes(option.value)}
                                         required={isRequired}
                                     />{' '}
-                                    {option.name}
+                                    {sanitizeText(option.name)}
                                 </label>
                             ))}
                     </div>

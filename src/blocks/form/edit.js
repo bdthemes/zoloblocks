@@ -11,7 +11,7 @@ import { useSelect } from '@wordpress/data';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener, sanitizeText } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -93,7 +93,7 @@ export default function Edit(props) {
                         <div className="zolo-submit-btn">
                             <button type="submit" className={iconPosition}>
                                 <span className="zolo-submit-btn-content">
-                                    {btnLabel || __('Submit Now', 'zoloblocks')}
+                                    {sanitizeText(btnLabel) || __('Submit Now', 'zoloblocks')}
                                     {showBtnIcon && <DisplayZoloIcon icon={icon} />}
                                 </span>
                             </button>

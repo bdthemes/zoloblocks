@@ -1,5 +1,5 @@
 import { useBlockProps } from '@wordpress/block-editor';
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, sanitizeText, sanitizeUrl } = window.zoloModule;
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -85,8 +85,8 @@ const Save = (props) => {
                                 {(showFrontTitle || showFrontContent) && (
                                     <>
                                         <div>
-                                            {showFrontTitle && <h3 className="zolo-flip-box_title">{frontTitle}</h3>}
-                                            {showFrontContent && <p className="zolo-flip-box_desc">{frontContent}</p>}
+                                            {showFrontTitle && <h3 className="zolo-flip-box_title">{sanitizeText(frontTitle)}</h3>}
+                                            {showFrontContent && <p className="zolo-flip-box_desc">{sanitizeText(frontContent)}</p>}
                                         </div>
                                     </>
                                 )}
@@ -124,17 +124,17 @@ const Save = (props) => {
                                             {showBackTitle &&
                                                 (link ? (
                                                     <a
-                                                        href={link && link?.url}
+                                                        href={sanitizeUrl(link && link?.url)}
                                                         target={link && link?.openInNewTab ? '_blank' : undefined}
                                                         rel={link && link?.openInNewTab ? 'noopener noreferrer' : undefined}
                                                         className="title-link"
                                                     >
-                                                        <h3 className="zolo-flip-box_title">{backTitle}</h3>
+                                                        <h3 className="zolo-flip-box_title">{sanitizeText(backTitle)}</h3>
                                                     </a>
                                                 ) : (
-                                                    <h3 className="zolo-flip-box_title">{backTitle}</h3>
+                                                    <h3 className="zolo-flip-box_title">{sanitizeText(backTitle)}</h3>
                                                 ))}
-                                            {showBackContent && <p className="zolo-flip-box_desc">{backContent}</p>}
+                                            {showBackContent && <p className="zolo-flip-box_desc">{sanitizeText(backContent)}</p>}
                                         </div>
                                     </>
                                 )}
@@ -142,12 +142,12 @@ const Save = (props) => {
                                 {showBackLinkBtn && (
                                     <div className="zolo-flip-box_link-button-wrap">
                                         <a
-                                            href={link && link?.url}
+                                            href={sanitizeUrl(link && link?.url)}
                                             target={link && link?.openInNewTab ? '_blank' : undefined}
                                             rel={link && link?.openInNewTab ? 'noopener noreferrer' : undefined}
                                             className="zolo-flip-box_link-btn"
                                         >
-                                            <span>{buttonText}</span>
+                                            <span>{sanitizeText(buttonText)}</span>
                                             {buttonIcon && showBackLinkBtnIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                         </a>
                                     </div>

@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, DisplayZoloIcon, classArrayToStr, generateUniqueName } = window.zoloModule;
+const { handleUniqueId, DisplayZoloIcon, classArrayToStr, generateUniqueName, sanitizeText, sanitizeEmail } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -113,8 +113,8 @@ export default function Edit(props) {
                             value={defaultValue || ''}
                             name={generateUniqueName(uniqueId, customNameAttribute, 'email')}
                             required={isRequired}
-                            placeholder={__(placeholder, 'zoloblocks')}
-                            onChange={(e) => setAttributes({ defaultValue: e.target.value })}
+                            placeholder={sanitizeText(placeholder)}
+                            onChange={(e) => setAttributes({ defaultValue: sanitizeEmail(e.target.value) })}
                         />
                     </div>
                 </div>

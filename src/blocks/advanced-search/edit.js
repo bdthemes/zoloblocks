@@ -9,7 +9,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener, sanitizeText } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -64,7 +64,7 @@ export default function Edit(props) {
                         <input type="search" name="s" placeholder={__(placeholder, 'zoloblocks')} className="zolo-form-input" />
                         {preset == 'zolo-search-2' && (
                             <label htmlFor={uniqueId} className="zolo-form-label">
-                                {labelText}
+                                {sanitizeText(labelText)}
                             </label>
                         )}
                     </div>

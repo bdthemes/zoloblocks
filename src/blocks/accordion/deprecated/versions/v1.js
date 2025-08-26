@@ -1,21 +1,16 @@
-import attributes from './attributes';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 const { classArrayToStr } = window.zoloModule;
 
-const deprecated = {
+// attributes.js
+import attributes from '../../attributes';
+
+const v1 = {
     attributes: {
         ...attributes,
-        initialOpen: {
-            type: 'string',
-            default: '1',
-        },
-        allowMultiple: {
-            type: 'boolean',
-            default: false,
-        },
     },
-    save: ({ attributes }) => {
+    save(props) {
+        const { attributes } = props;
         const { uniqueId, parentClasses, initialOpen, allowMultiple, zoloId, preset } = attributes;
 
         const blockProps = useBlockProps.save({
@@ -37,4 +32,4 @@ const deprecated = {
     },
 };
 
-export default deprecated;
+export default v1;

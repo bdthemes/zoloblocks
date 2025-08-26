@@ -8,7 +8,8 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, DynamicTag, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, sanitizeUrl } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, DynamicTag, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, sanitizeText, sanitizeUrl } =
+    window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -75,7 +76,7 @@ export default function Edit(props) {
             href: sanitizeUrl(buttonLink?.url) || sanitizeUrl('#'),
             target: buttonLink?.openInNewTab ? '_blank' : undefined,
             rel: buttonLink?.openInNewTab ? 'noopener noreferrer' : undefined,
-            title: buttonText,
+            title: sanitizeText(buttonText),
             onClick: (e) => e.preventDefault(),
         }),
     };

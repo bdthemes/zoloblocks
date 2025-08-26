@@ -369,6 +369,110 @@ export function sanitizeBool(raw) {
 }
 
 /**
+ * Email sanitization function
+ * Validates and sanitizes email addresses with comprehensive security checks
+ * @param {*} raw - Raw email input
+ * @returns {string} - Sanitized email or empty string if invalid
+ */
+export function sanitizeEmail(raw) {
+  // Handle null/undefined/non-string inputs
+  if (raw === null || raw === undefined) {
+      return '';
+  }
+
+  // Convert to string and normalize
+  let email = String(raw).trim().toLowerCase();
+
+  // Return empty string if no input after trimming
+  if (!email || email.length === 0) {
+      return '';
+  }
+
+  // Remove dangerous characters and control characters
+  email = email
+      .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Remove control characters
+      .replace(/[\r\n\t\v\f]/g, '') // Remove line breaks and tabs
+      .replace(/[<>]/g, ''); // Remove potential XSS characters
+
+  // Check if email contains exactly one @ symbol
+  const atCount = (email.match(/@/g) || []).length;
+  if (atCount !== 1) {
+      return '';
+  }
+
+  // Split into local and domain parts
+  const parts = email.split('@');
+  const localPart = parts[0];
+  const domainPart = parts[1];
+
+  // Validate local part (before @)
+  if (!localPart || localPart.length === 0 || localPart.length > 64) {
+      return '';
+  }
+
+  // Validate domain part (after @)
+  if (!domainPart || domainPart.length === 0 || domainPart.length > 253) {
+      return '';
+  }
+
+  // Check for consecutive dots
+  if (email.includes('..')) {
+      return '';
+  }
+
+  // Check if starts or ends with dot
+  if (localPart.startsWith('.') || localPart.endsWith('.')) {
+      return '';
+  }
+
+  // Comprehensive email regex pattern (RFC 5322 compliant)
+  const emailRegex =
+      /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+  // Test against regex
+  if (!emailRegex.test(email)) {
+      return '';
+  }
+
+  // Additional domain validation
+  const domainParts = domainPart.split('.');
+
+  // Domain must have at least one dot
+  if (domainParts.length < 2) {
+      return '';
+  }
+
+  // Check each domain part
+  for (const part of domainParts) {
+      if (!part || part.length === 0) {
+          return '';
+      }
+      // Domain parts cannot start or end with hyphen
+      if (part.startsWith('-') || part.endsWith('-')) {
+          return '';
+      }
+      // Domain parts must contain valid characters only
+      if (!/^[a-zA-Z0-9-]+$/.test(part)) {
+          return '';
+      }
+  }
+
+  // Check total email length (RFC 5321 limit)
+  if (email.length > 254) {
+      return '';
+  }
+
+  // Check TLD (top-level domain) length and format
+  const tld = domainParts[domainParts.length - 1];
+  if (tld.length < 2 || !/^[a-zA-Z]+$/.test(tld)) {
+      return '';
+  }
+
+  // Return the sanitized email
+  return email;
+}
+
+/**
  * Target + rel hardening for <a> tags (avoid window.opener vulns)
  */
 export function hardenLinkTarget({ target, rel }) {

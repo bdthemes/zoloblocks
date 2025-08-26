@@ -1,7 +1,7 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
-const { classArrayToStr, DynamicTag } = window.zoloModule;
+const { classArrayToStr, DynamicTag, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -56,7 +56,7 @@ const Save = (props) => {
                     )}
                     {...(link &&
                         link.url && {
-                            href: link.url,
+                            href: sanitizeUrl(link.url),
                         })}
                     {...(link &&
                         link.openInNewTab && {
@@ -69,7 +69,7 @@ const Save = (props) => {
                             <img
                                 className={`zolo-img wp-image-${photo.id}`}
                                 src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
-                                alt={imgAlt}
+                                alt={sanitizeText(imgAlt)}
                                 style={{
                                     width: resizedWidth,
                                 }}

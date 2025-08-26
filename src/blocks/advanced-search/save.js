@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeText } = window.zoloModule;
 
 const formPreventDefault = (e) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ const Save = (props) => {
                     <input type="search" name="s" placeholder={__(placeholder, 'zoloblocks')} className="zolo-form-input" />
                     {preset == 'zolo-search-2' && (
                         <label htmlFor={uniqueId} className="zolo-form-label">
-                            {labelText}
+                            {sanitizeText(labelText)}
                         </label>
                     )}
                 </div>

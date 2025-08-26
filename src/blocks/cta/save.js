@@ -5,7 +5,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -60,10 +60,10 @@ const Save = (props) => {
                                 <div className={`zolo-call-out__button zolo-call-out__icon-${iconPosition}`}>
                                     <a
                                         className={`zolo-button primary ${iconPosition}`}
-                                        href={link && link.url}
+                                        href={sanitizeUrl(link && link.url)}
                                         rel={link && link.openInNewTab ? 'noreferrer noopener' : undefined}
                                         target={link && link.openInNewTab ? '_blank' : undefined}
-                                        title={label}
+                                        title={sanitizeText(label)}
                                     >
                                         {iconType !== 'iconOnly' && (
                                             <RichText.Content tagName="span" className={`zolo-text`} value={label} />
@@ -80,10 +80,10 @@ const Save = (props) => {
                                 <div className={`zolo-call-out__button zolo-call-out__secondary zolo-call-out__icon-${SiconPosition}`}>
                                     <a
                                         className={`zolo-button secondary ${SiconPosition}`}
-                                        href={Slink && Slink.url}
+                                        href={sanitizeUrl(Slink && Slink.url)}
                                         rel={Slink && Slink.openInNewTab ? 'noreferrer noopener' : undefined}
                                         target={Slink && Slink.openInNewTab ? '_blank' : undefined}
-                                        title={Slabel}
+                                        title={sanitizeText(Slabel)}
                                     >
                                         {SiconType !== 'iconOnly' && (
                                             <RichText.Content tagName="span" className={`zolo-text`} value={Slabel} />

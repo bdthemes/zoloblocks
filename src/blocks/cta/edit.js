@@ -9,7 +9,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -51,19 +51,19 @@ export default function Edit(props) {
 
     const ctaPrimaryLinkButton = {
         className: `zolo-button primary ${iconPosition}`,
-        href: link?.url || '#',
+        href: sanitizeUrl(link?.url) || '#',
         rel: link?.openInNewTab ? 'noreferrer noopener' : undefined,
         target: link?.openInNewTab ? '_blank' : undefined,
-        title: label,
+        title: sanitizeText(label),
         onClick: (e) => e.preventDefault(),
     };
 
     const ctaSecondaryLinkButton = {
         className: `zolo-button secondary ${SiconPosition}`,
-        href: Slink?.url || '#',
+        href: sanitizeUrl(Slink?.url) || '#',
         rel: Slink?.openInNewTab ? 'noreferrer noopener' : undefined,
         target: Slink?.openInNewTab ? '_blank' : undefined,
-        title: Slabel,
+        title: sanitizeText(Slabel),
         onClick: (e) => e.preventDefault(),
     };
 

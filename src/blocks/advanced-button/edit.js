@@ -9,7 +9,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon, SidebarOpener, sanitizeUrl } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -39,7 +39,7 @@ export default function Edit(props) {
         href: link?.url ? sanitizeUrl(link.url) : '',
         rel: link?.openInNewTab ? 'noreferrer noopener' : undefined,
         target: link?.openInNewTab ? '_blank' : undefined,
-        title: label,
+        title: sanitizeText(label),
         onClick: (e) => e.preventDefault(),
     };
 
