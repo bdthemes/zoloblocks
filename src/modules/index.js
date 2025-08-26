@@ -96,6 +96,7 @@ export {
     sanitizeInt,
     sanitizeFloat,
     sanitizeBool,
+    sanitizeEmail,
     hardenLinkTarget,
 } from '../helpers/helper';
 
