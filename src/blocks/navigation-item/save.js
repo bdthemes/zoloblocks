@@ -1,6 +1,6 @@
 import { useBlockProps, useInnerBlocksProps, RichText } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { DisplayZoloIcon } = window.zoloModule;
+const { DisplayZoloIcon, sanitizeUrl } = window.zoloModule;
 const Save = (props) => {
     const { attributes } = props;
     const { uniqueId, addSubmenu, url, label, id, kind, type, title, subMenuIndicator } = attributes;
@@ -21,7 +21,7 @@ const Save = (props) => {
 
     return (
         <li {...blockProps}>
-            <a href={url} title={title} className="zolo-navigation-link">
+            <a href={sanitizeUrl(url)} title={title} className="zolo-navigation-link">
                 <RichText.Content tagName="span" value={title || label} />
                 {addSubmenu ? (
                     <button className="zolo-submenu-arrow" aria-label="Submenu Arrow">

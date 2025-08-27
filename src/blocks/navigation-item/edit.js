@@ -16,7 +16,7 @@ import { useMergeRefs } from '@wordpress/compose';
 import useIsInvalidLink from './utils/use-invalid-link';
 import NavigationAppenderButton from './components/appender-button';
 import { createBlock, createBlocksFromInnerBlocksTemplate } from '@wordpress/blocks';
-const { DisplayZoloIcon, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
+const { DisplayZoloIcon, ZoloToolbarButton, ZoloToolbarGroup, sanitizeUrl } = window.zoloModule;
 
 // import style
 import Style from './style';
@@ -193,7 +193,7 @@ const Edit = (props) => {
 
             <li {...blockProps}>
                 <a
-                    href={url || '#'}
+                    href={sanitizeUrl(url) || '#'}
                     className="zolo-navigation-link"
                     onClick={(e) => {
                         e.preventDefault();
