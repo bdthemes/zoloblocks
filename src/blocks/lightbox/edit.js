@@ -4,6 +4,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
+const { sanitizeAttr } = window.zoloModule;
 
 /**
  * Internal depencencies
@@ -40,7 +41,12 @@ export default function Edit(props) {
         <div {...blocksProps}>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
-            <a href={`#${uniqueId}`} className="zolo-play-btn zolo-lightbox-btn-1" data-fslightbox={uniqueId} data-caption={contentCaption}>
+            <a
+                href={`#${uniqueId}`}
+                className="zolo-play-btn zolo-lightbox-btn-1"
+                data-fslightbox={uniqueId}
+                data-caption={sanitizeAttr(contentCaption)}
+            >
                 {lightboxType !== 'poster' && (
                     <span className="zolo-btn-text">
                         <small>{enableSubHeading && buttonHeadingText}</small>

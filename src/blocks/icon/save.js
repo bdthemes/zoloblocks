@@ -6,7 +6,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag, sanitizeUrl } = window.zoloModule;
 
 export default function save(props) {
     const { attributes } = props;
@@ -34,7 +34,7 @@ export default function save(props) {
                 tagName={isLinkable === true ? 'a' : 'div'}
                 className="zolo-icon-wrap"
                 {...(iconLink !== '' && {
-                    href: iconLink && iconLink.url,
+                    href: sanitizeUrl(iconLink.url),
                     target: iconLink && iconLink.openInNewTab ? '_blank' : undefined,
                     rel: iconLink && iconLink.openInNewTab ? 'noopener noreferrer' : undefined,
                 })}

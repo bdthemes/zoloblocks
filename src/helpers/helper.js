@@ -484,3 +484,32 @@ export function hardenLinkTarget({ target, rel }) {
   }
   return { target: t, rel: r.join(' ') };
 }
+
+/**
+ * Basic HTML sanitizer
+ * Removes potentially dangerous tags and attributes
+ * @param {string} raw - Raw HTML input
+ * @returns {string} - Sanitized HTML
+ */
+export function sanitizeHtml(raw) {
+  if (!raw) return '';
+
+  // Convert to string
+  let html = String(raw);
+
+  // Remove script/style tags completely
+  html = html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
+  html = html.replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '');
+
+  // Remove on* attributes (onclick, onerror, etc.)
+  html = html.replace(/\s?on\w+="[^"]*"/gi, '');
+  html = html.replace(/\s?on\w+='[^']*'/gi, '');
+
+  // Remove javascript: in href/src
+  html = html.replace(/\s(href|src)=["']javascript:[^"']*["']/gi, '');
+
+  // Optionally, allow only certain tags (like <b>, <i>, <u>, <p>, <br>, <strong>, <em>)
+  html = html.replace(/<(\/?)(?!b|i|u|p|br|strong|em)[^>]*>/gi, '');
+
+  return html;
+}

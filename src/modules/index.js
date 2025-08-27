@@ -98,6 +98,7 @@ export {
     sanitizeBool,
     sanitizeEmail,
     hardenLinkTarget,
+    sanitizeHtml,
 } from '../helpers/helper';
 
 export {

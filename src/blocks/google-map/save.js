@@ -1,7 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, sanitizeHtml } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -32,7 +32,7 @@ const Save = ({ attributes }) => {
     zoom && (options.zoom = zoom);
     latitude && (options.latitude = latitude);
     longitude && (options.longitude = longitude);
-    infoWindow && (options.infoWindow = infoWindow);
+    infoWindow && (options.infoWindow = sanitizeHtml(infoWindow));
     mapType && (options.mapType = mapType);
     mapStyleType && (options.mapStyleType = mapStyleType);
     mapId && (options.mapId = mapId);
