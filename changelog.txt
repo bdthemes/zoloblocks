@@ -1,3 +1,16 @@
+
+### 2.3.6 [August 28, 2025]
+
+**Security:**
+* Fixed an authenticated (Contributor+) Stored Cross-Site Scripting (XSS) vulnerability.
+* Improved input validation and data sanitization across multiple blocks.
+
+**Improvements:**
+* Minor performance enhancements and code refactoring.
+
+**Fixes:**
+* Fixed frontend layout issues with social links.
+
 ### 2.3.5 [August 04, 2025]
 
 **Performance and Enhancements:**
