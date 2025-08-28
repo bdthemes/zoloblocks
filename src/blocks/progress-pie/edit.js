@@ -14,7 +14,7 @@ import CountUp from 'react-countup';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, sanitizeText } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -75,8 +75,8 @@ export default function Edit(props) {
                     end={value || 50}
                     delay={0}
                     duration={duration || 3}
-                    prefix={toggleSuffixPrefix && prefix !== '' ? `<span class="progress-prefix">${prefix}</span>` : ''}
-                    suffix={toggleSuffixPrefix && suffix !== '' ? `<span class="progress-suffix">${suffix}</span>` : ''}
+                    prefix={toggleSuffixPrefix && prefix !== '' ? `<span class="progress-prefix">${sanitizeText(prefix)}</span>` : ''}
+                    suffix={toggleSuffixPrefix && suffix !== '' ? `<span class="progress-suffix">${sanitizeText(suffix)}</span>` : ''}
                 >
                     {({ countUpRef }) => (
                         <>

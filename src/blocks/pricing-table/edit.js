@@ -8,7 +8,7 @@ import { applyFilters } from '@wordpress/hooks';
 import Inspector from './inspector';
 import './style.scss';
 
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, sanitizeText } = window.zoloModule;
 
 // import style
 import Style from './style';
@@ -112,16 +112,16 @@ const Edit = (props) => {
                         <div className="zolo-price-info">
                             {orginalPrice && sale && (
                                 <span className="zolo-orginal-price">
-                                    {pricePrefix && <span className="currency">{pricePrefix}</span>}
-                                    <span className="price">{orginalPrice}</span>
+                                    {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}
+                                    <span className="price">{sanitizeText(orginalPrice)}</span>
                                 </span>
                             )}
 
                             {price && (
                                 <span className="zolo-price">
-                                    {pricePrefix && <span className="currency">{pricePrefix}</span>}
-                                    <span className="price">{price}</span>
-                                    {priceSuffix && <span className="fractional">{priceSuffix}</span>}
+                                    {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}    
+                                    <span className="price">{sanitizeText(price)}</span>
+                                    {priceSuffix && <span className="fractional">{sanitizeText(priceSuffix)}</span>}
                                 </span>
                             )}
 

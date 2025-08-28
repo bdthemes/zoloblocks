@@ -1,7 +1,7 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -63,21 +63,21 @@ const Save = (props) => {
                 <div className="zolo-head-content">
                     <RichText.Content tagName={titleTagName} value={titleText} className="zolo-package-title" />
 
-                    {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
+                    {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{sanitizeText(ribbonTitle)}</div>}
 
                     <div className="zolo-price-info">
                         {orginalPrice && sale && (
                             <span className="zolo-orginal-price">
-                                {pricePrefix && <span className="currency">{pricePrefix}</span>}
-                                <span className="price">{orginalPrice}</span>
+                                {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}    
+                                <span className="price">{sanitizeText(orginalPrice)}</span>
                             </span>
                         )}
 
                         {price && (
                             <span className="zolo-price">
-                                {pricePrefix && <span className="currency">{pricePrefix}</span>}
-                                <span className="price">{price}</span>
-                                {priceSuffix && <span className="fractional">{priceSuffix}</span>}
+                                {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}    
+                                <span className="price">{sanitizeText(price)}</span>
+                                {priceSuffix && <span className="fractional">{sanitizeText(priceSuffix)}</span>}
                             </span>
                         )}
 
@@ -85,7 +85,7 @@ const Save = (props) => {
                             <div className="zolo-user-month">
                                 {pricingPeriod.map((name, index) => (
                                     <span className={`zolo-period text-${index}`} key={index}>
-                                        {name}
+                                        {sanitizeText(name)}
                                     </span>
                                 ))}
                             </div>
@@ -103,7 +103,7 @@ const Save = (props) => {
                                             tagName="a"
                                             className="zolo-buy-btn"
                                             value={buttonText}
-                                            href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
+                                            href={buttonLink && buttonLink.url ? sanitizeUrl(buttonLink.url) : '# '} 
                                             target={buttonLink && buttonLink.openInNewTab ? '_blank' : undefined}
                                             rel={buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                         />
@@ -113,7 +113,7 @@ const Save = (props) => {
                                             tagName="a"
                                             className="zolo-chat-btn"
                                             value={chatBtnText}
-                                            href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
+                                            href={chatBtnLink && chatBtnLink.url ? sanitizeUrl(chatBtnLink.url) : '# '}
                                             target={chatBtnLink && chatBtnLink.openInNewTab ? '_blank' : undefined}
                                             rel={chatBtnLink && chatBtnLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                         />
@@ -152,7 +152,7 @@ const Save = (props) => {
                                             tagName="a"
                                             className="zolo-buy-btn"
                                             value={buttonText}
-                                            href={buttonLink && buttonLink.url ? buttonLink.url : '# '}
+                                            href={buttonLink && buttonLink.url ? sanitizeUrl(buttonLink.url) : '# '}
                                             target={buttonLink && buttonLink.openInNewTab ? '_blank' : undefined}
                                             rel={buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                             title={buttonText}
@@ -163,7 +163,7 @@ const Save = (props) => {
                                             tagName="a"
                                             className="zolo-chat-btn"
                                             value={chatBtnText}
-                                            href={chatBtnLink && chatBtnLink.url ? chatBtnLink.url : '# '}
+                                            href={chatBtnLink && chatBtnLink.url ? sanitizeUrl(chatBtnLink.url) : '# '}
                                             target={chatBtnLink && chatBtnLink.openInNewTab ? '_blank' : undefined}
                                             rel={chatBtnLink && chatBtnLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                             title={chatBtnText}
