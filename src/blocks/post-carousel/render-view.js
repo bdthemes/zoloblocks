@@ -1,6 +1,6 @@
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-const { DynamicTag, DisplayZoloIcon } = window.zoloModule;
+const { DynamicTag, DisplayZoloIcon, sanitizeUrl, sanitizeText } = window.zoloModule;
 
 function RenderView({ attributes, postResults }) {
     const {
@@ -49,7 +49,7 @@ function RenderView({ attributes, postResults }) {
                     const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
                     const author = (
                         <div className="zolo-post-author-name">
-                            <span>{authorPrefix || defaultAuthorPrefix}</span>
+                            <span>{sanitizeText(authorPrefix) || defaultAuthorPrefix}</span>
                             <a href="#" className="zolo-post-author-link" dangerouslySetInnerHTML={{ __html: post.author }}></a>
                         </div>
                     );
@@ -71,7 +71,7 @@ function RenderView({ attributes, postResults }) {
                             {date}
                             {showReadingTime && (
                                 <>
-                                    <span className="meta-separator">{metaSeparator}</span>
+                                    <span className="meta-separator">{sanitizeText(metaSeparator)}</span>
                                     {readingTime}
                                 </>
                             )}
@@ -83,7 +83,9 @@ function RenderView({ attributes, postResults }) {
                             <div className="zolo-post-image">
                                 {showThumbnail && preset !== 'style-4' && (
                                     <>
-                                        {post.thumbnail && <a href={'#'} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
+                                        {post.thumbnail && (
+                                            <a href={'#'} dangerouslySetInnerHTML={{ __html: sanitizeUrl(post.thumbnail) }}></a>
+                                        )}
                                         {!post.thumbnail && (
                                             <a href={'#'}>
                                                 <img src={zoloPlaceholders.placeholder} alt={__('Thumbnail Placeholder', 'zoloblocks')} />
@@ -96,7 +98,9 @@ function RenderView({ attributes, postResults }) {
                                     <div className="zolo-post-img-category">
                                         {showThumbnail && (
                                             <>
-                                                {post.thumbnail && <a href={'#'} dangerouslySetInnerHTML={{ __html: post.thumbnail }}></a>}
+                                                {post.thumbnail && (
+                                                    <a href={'#'} dangerouslySetInnerHTML={{ __html: sanitizeUrl(post.thumbnail) }}></a>
+                                                )}
                                                 {!post.thumbnail && (
                                                     <a href={'#'}>
                                                         <img
@@ -135,8 +139,8 @@ function RenderView({ attributes, postResults }) {
                                     {showExcerpt && (
                                         <div className="zolo-post-desc">
                                             <p>
-                                                <RawHTML>{excerptLimitWords}</RawHTML>
-                                                {excerptindicator}
+                                                <RawHTML>{excerptLimitWords}</RawHTML>  
+                                                {sanitizeText(excerptindicator)}
                                             </p>
                                         </div>
                                     )}
@@ -145,7 +149,7 @@ function RenderView({ attributes, postResults }) {
                                 {showReadMore && (
                                     <div className="zolo-post-link-btn">
                                         <a href={'#'}>
-                                            {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
+                                            {showReadmoreText && readMoreBtnText && <>{sanitizeText(readMoreBtnText)}</>}
                                             {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                         </a>
                                     </div>

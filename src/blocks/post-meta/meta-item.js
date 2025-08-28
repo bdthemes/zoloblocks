@@ -1,6 +1,7 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import { contentReadingTime } from './constants';
+const { sanitizeUrl } = window.zoloModule;
 
 const AuthorMeta = ({ post, meta }) => {
     const authorId = post?.author;
@@ -16,7 +17,7 @@ const AuthorMeta = ({ post, meta }) => {
     );
 
     return meta?.link ? (
-        <a href={authorLink} onClick={(event) => event.preventDefault()}>
+        <a href={sanitizeUrl(authorLink)} onClick={(event) => event.preventDefault()}>
             {content}
         </a>
     ) : (
@@ -44,7 +45,7 @@ const DateMeta = ({ post, meta }) => {
     );
 
     return meta.link ? (
-        <a href={dateLink} onClick={(event) => event.preventDefault()}>
+        <a href={sanitizeUrl(dateLink)} onClick={(event) => event.preventDefault()}>
             {content}
         </a>
     ) : (
@@ -80,7 +81,7 @@ const TermsMeta = ({ post, meta }) => {
               if (meta?.link) {
                   return (
                       <>
-                          <a className="term-name" href={term.link} onClick={(event) => event.preventDefault()}>
+                          <a className="term-name" href={sanitizeUrl(term.link)} onClick={(event) => event.preventDefault()}>
                               {term.name}
                           </a>
                           <span className="separator">{separator}</span>
@@ -117,7 +118,7 @@ const CommentsMeta = ({ post, meta }) => {
     );
 
     return meta?.link ? (
-        <a href={commentsLink} onClick={(event) => event.preventDefault()}>
+        <a href={sanitizeUrl(commentsLink)} onClick={(event) => event.preventDefault()}>
             {content}
         </a>
     ) : (

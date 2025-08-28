@@ -1,6 +1,6 @@
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-const { DynamicTag } = window.zoloModule;
+const { DynamicTag, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 function RenderView({ attributes, postResults }) {
     const {
@@ -44,7 +44,7 @@ function RenderView({ attributes, postResults }) {
 
                     const author = (
                         <div className="zolo-post-author-name">
-                            <span>{authorPrefix || defaultAuthorPrefix}</span>
+                            <span>{sanitizeText(authorPrefix) || defaultAuthorPrefix}</span>
                             <a
                                 href="#"
                                 className="zolo-post-author-link"
@@ -69,13 +69,13 @@ function RenderView({ attributes, postResults }) {
                                 <>
                                     {post.thumbnail && (
                                         <a
-                                            href={post.permalink}
+                                            href={sanitizeUrl(post.permalink)}
                                             dangerouslySetInnerHTML={{ __html: post.thumbnail }}
                                             onClick={(e) => e.preventDefault()}
                                         ></a>
                                     )}
                                     {!post.thumbnail && (
-                                        <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                        <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
                                             <img src={zoloPlaceholders.placeholder} alt={__('Thumbnail Placeholder', 'zoloblocks')} />
                                         </a>
                                     )}
@@ -89,7 +89,7 @@ function RenderView({ attributes, postResults }) {
                                     {showCategory && categoriesHtml}
 
                                     <DynamicTag tagName={titleTag} className="zolo-post-title">
-                                        <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                        <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
                                             <RawHTML>{titleLimitWords}</RawHTML>
                                         </a>
                                     </DynamicTag>
@@ -97,18 +97,18 @@ function RenderView({ attributes, postResults }) {
                                         <div className="zolo-post-desc">
                                             <p>
                                                 <RawHTML>{excerptLimitWords}</RawHTML>
-                                                {excerptindicator}
+                                                {sanitizeText(excerptindicator)}
                                             </p>
                                         </div>
                                     )}
                                     {showMeta && (
                                         <div className="zolo-post-meta">
                                             {author}
-                                            <span className="meta-separator">{metaSeparator}</span>
+                                            <span className="meta-separator">{sanitizeText(metaSeparator)}</span>
                                             {date}
                                             {showReadingTime && (
                                                 <>
-                                                    <span className="meta-separator">{metaSeparator}</span>
+                                                    <span className="meta-separator">{sanitizeText(metaSeparator)}</span>
                                                     {readingTimeHtml}
                                                 </>
                                             )}

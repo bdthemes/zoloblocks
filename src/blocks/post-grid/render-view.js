@@ -2,7 +2,7 @@ import { RawHTML, useEffect, useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 
-const { DynamicTag, DisplayZoloIcon, ZoloSpinner } = window.zoloModule;
+const { DynamicTag, DisplayZoloIcon, ZoloSpinner, sanitizeText, sanitizeUrl} = window.zoloModule;
 
 let postContentCache = new Map();
 
@@ -37,7 +37,7 @@ function RenderView({ attributes, setAttributes }) {
     const defaultAuthorPrefix = preset === 'style-5' ? __('By', 'zoloblocks') : __('Posted By', 'zoloblocks');
 
     //for filter taxonomy.
-    const filterAll = [{ value: 'all', label: 'All' }];
+    const filterAll = [{ value: 'all', label: __('All', 'zoloblocks') }];
     const [filterArray, setFilterArray] = useState([]);
     const fetchFilterData = async () => {
         const formData = new FormData();
@@ -175,7 +175,7 @@ function RenderView({ attributes, setAttributes }) {
                         const avatar = <a dangerouslySetInnerHTML={{ __html: post.avatar }} />;
                         const author = (
                             <div className="zolo-post-author-name">
-                                <span>{authorPrefix || defaultAuthorPrefix}</span>
+                                <span>{sanitizeText(authorPrefix) || defaultAuthorPrefix}</span>  
                                 <a
                                     href="#"
                                     className="zolo-post-author-link"
@@ -202,7 +202,7 @@ function RenderView({ attributes, setAttributes }) {
                                 {date}
                                 {showReadingTime && (
                                     <>
-                                        <span className="meta-separator">{metaSeparator}</span>
+                                        <span className="meta-separator">{sanitizeText(metaSeparator)}</span>
                                         {readingTime}
                                     </>
                                 )}
@@ -216,13 +216,13 @@ function RenderView({ attributes, setAttributes }) {
                                         <>
                                             {post.thumbnail && (
                                                 <a
-                                                    href={post.permalink}
+                                                    href={sanitizeUrl(post.permalink)}
                                                     dangerouslySetInnerHTML={{ __html: post.thumbnail }}
                                                     onClick={(e) => e.preventDefault()}
                                                 ></a>
                                             )}
                                             {!post.thumbnail && (
-                                                <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                                <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
                                                     <img
                                                         src={zoloPlaceholders.placeholder}
                                                         alt={__('Thumbnail Placeholder', 'zoloblocks')}
@@ -238,13 +238,13 @@ function RenderView({ attributes, setAttributes }) {
                                                 <>
                                                     {post.thumbnail && (
                                                         <a
-                                                            href={post.permalink}
+                                                            href={sanitizeUrl(post.permalink)}
                                                             dangerouslySetInnerHTML={{ __html: post.thumbnail }}
                                                             onClick={(e) => e.preventDefault()}
                                                         ></a>
                                                     )}
                                                     {!post.thumbnail && (
-                                                        <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                                        <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
                                                             <img
                                                                 src={zoloPlaceholders.placeholder}
                                                                 alt={__('Thumbnail Placeholder', 'zoloblocks')}
@@ -274,7 +274,7 @@ function RenderView({ attributes, setAttributes }) {
                                         {showCategory && preset !== 'style-5' && categoriesHtml}
                                         {showTitle && (
                                             <DynamicTag tagName={titleTag} className="zolo-post-title">
-                                                <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                                <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
                                                     <RawHTML>{titleLimitWords}</RawHTML>
                                                 </a>
                                             </DynamicTag>
@@ -282,7 +282,7 @@ function RenderView({ attributes, setAttributes }) {
                                         {showExcerpt && (
                                             <div className="zolo-post-desc">
                                                 <RawHTML>{excerptLimitWords}</RawHTML>
-                                                {excerptindicator}
+                                                {sanitizeText(excerptindicator)}
                                             </div>
                                         )}
                                         {showMeta && preset !== 'style-5' && preset !== 'style-6' && dateRTimeHtml}
@@ -290,8 +290,8 @@ function RenderView({ attributes, setAttributes }) {
 
                                     {showReadMore && preset !== 'style-6' && (
                                         <div className="zolo-post-link-btn">
-                                            <a href={post.permalink} onClick={(e) => e.preventDefault()}>
-                                                {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
+                                            <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
+                                                {showReadmoreText && readMoreBtnText && <>{sanitizeText(readMoreBtnText)}</>}
                                                 {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                             </a>
                                         </div>
@@ -301,8 +301,8 @@ function RenderView({ attributes, setAttributes }) {
                                             {showMeta && dateRTimeHtml}
                                             {showReadMore && (
                                                 <div className="zolo-post-link-btn">
-                                                    <a href={post.permalink} onClick={(e) => e.preventDefault()}>
-                                                        {showReadmoreText && readMoreBtnText && <>{__(readMoreBtnText, 'zoloblocks')}</>}
+                                                    <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
+                                                        {showReadmoreText && readMoreBtnText && <>{sanitizeText(readMoreBtnText)}</>}
                                                         {showReadmoreIcon && readMoreIcon && <DisplayZoloIcon icon={readMoreIcon} />}
                                                     </a>
                                                 </div>

@@ -1,7 +1,7 @@
 const { isEmpty, strToHex, DisplayZoloIcon } = window.zoloModule;
 
 function CategoryItem({ index, cat, attributes, multipleBgArray }) {
-    const { preset, showCount, showText, showImage, viewAllBtn, postCategoryPro, itemTextLimit, viewAllBtnText, viewAllBtnIcon } =
+    const { preset, showCount, showText, showImage, viewAllBtn, postCategoryPro, itemTextLimit, viewAllBtnText, viewAllBtnIcon, sanitizeText } =
         attributes;
     const { enableMultipleBG } = postCategoryPro ?? {};
 
@@ -29,7 +29,7 @@ function CategoryItem({ index, cat, attributes, multipleBgArray }) {
 
                 {viewAllBtn && (
                     <span className="zolo-category-link">
-                        {viewAllBtnText}
+                        {sanitizeText(viewAllBtnText)   }
                         <DisplayZoloIcon icon={viewAllBtnIcon} />
                     </span>
                 )}

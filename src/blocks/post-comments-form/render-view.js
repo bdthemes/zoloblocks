@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+const { sanitizeText } = window.zoloModule;
 
 export default function RenderView({ attributes }) {
     const { showCommentTitle, showCommentCount, showForm, commentFormTitle, cancelReply, loginAsText, logoutText, submitBtnText } =
@@ -64,22 +65,22 @@ export default function RenderView({ attributes }) {
             {showForm && (
                 <div id="respond" className="comment-respond">
                     <h3 id="reply-title" className="comment-reply-title">
-                        {commentFormTitle}
+                        {sanitizeText(commentFormTitle)}
                         <small>
                             <a onClick={(event) => event.preventDefault()} id="cancel-comment-reply-link" href="#">
-                                {cancelReply}
+                                {sanitizeText(cancelReply)}
                             </a>
                         </small>
                     </h3>
 
                     <form action="#" method="post" id="commentform" className="zolo-comment-form">
                         <p className="logged-in-as">
-                            {loginAsText}
+                            {sanitizeText(loginAsText)}
                             <a onClick={(event) => event.preventDefault()} href="#">
                                 {__('Admin.', 'zoloblocks')}
                             </a>
                             <a onClick={(event) => event.preventDefault()} href="#">
-                                {logoutText}
+                                {sanitizeText(logoutText)}
                             </a>
                         </p>
 
@@ -88,7 +89,13 @@ export default function RenderView({ attributes }) {
                         </div>
 
                         <p className="form-submit wp-block-button">
-                            <input name="submit" type="submit" id="submit" className="submit wp-element-button" value={submitBtnText} />
+                            <input
+                                name="submit"
+                                type="submit"
+                                id="submit"
+                                className="submit wp-element-button"
+                                value={sanitizeText(submitBtnText)}
+                            />
                         </p>
                     </form>
                 </div>
