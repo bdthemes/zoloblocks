@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.3.5
+Stable tag: 2.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -607,6 +607,18 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.3.6 [August 28, 2025]
+
+**Security:**
+* Fixed an authenticated (Contributor+) Stored Cross-Site Scripting (XSS) vulnerability.
+* Improved input validation and data sanitization across multiple blocks.
+
+**Improvements:**
+* Minor performance enhancements and code refactoring.
+
+**Fixes:**
+* Fixed frontend layout issues with social links.
 
 ### 2.3.5 [August 04, 2025]
 
