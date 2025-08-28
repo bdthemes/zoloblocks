@@ -2,7 +2,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 
-const { classArrayToStr, DisplayZoloIcon, generateUniqueName } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, generateUniqueName, sanitizeText } = window.zoloModule;
 import { convertToDefaultValueArray, convertToOptionsArray } from '@/blocks/checkbox-field/helper';
 
 const Save = ({ attributes }) => {
@@ -55,7 +55,7 @@ const Save = ({ attributes }) => {
                                     required={isRequired}
                                     {...(isRequired && { 'data-pristine-required-message': requiredMsg })}
                                 />{' '}
-                                {option.name}
+                                {sanitizeText(option.name)}
                             </label>
                         ))}
                 </div>

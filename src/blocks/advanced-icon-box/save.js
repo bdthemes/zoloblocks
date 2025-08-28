@@ -4,7 +4,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -69,7 +69,7 @@ const Save = (props) => {
             <DynamicTag
                 tagName={globalLink === true ? 'a' : 'div'}
                 {...(globalLink === true && {
-                    href: buttonLink && buttonLink.url,
+                    href: buttonLink && sanitizeUrl(buttonLink.url),
                     target: buttonLink && buttonLink.openInNewTab && '_blank',
                     rel: buttonLink && buttonLink.openInNewTab && 'noopener noreferrer',
                     title: buttonText,
@@ -82,7 +82,7 @@ const Save = (props) => {
                         `${(preset === 'style-1' || preset === 'style-2') && animationType === 'style-2' ? `animation-${animationPositionTwo}` : ''}`
                     )}
                 >
-                    {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{ribbonTitle}</div>}
+                    {showRibbon && ribbonTitle && <div className={`zolo-ribbon-btn ${ribbonPosition}`}>{sanitizeText(ribbonTitle)}</div>}
                     {showMainIcon && (
                         <div className={`zolo-block-icon-wrap`}>
                             {iconType == 'icon' ? (
@@ -112,7 +112,7 @@ const Save = (props) => {
                                     tagName={globalLink === true ? 'div' : 'a'}
                                     className="zolo-box-button"
                                     {...(globalLink !== true && {
-                                        href: buttonLink && buttonLink.url,
+                                        href: sanitizeUrl(buttonLink && buttonLink.url),
                                         target: buttonLink && buttonLink.openInNewTab ? '_blank' : undefined,
                                         rel: buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined,
                                     })}

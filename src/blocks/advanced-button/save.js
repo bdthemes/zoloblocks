@@ -5,7 +5,7 @@ import classnames from 'classnames';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -46,10 +46,10 @@ const Save = (props) => {
                                 : ''
                         }`
                     )}
-                    href={link?.url ? link.url : '#'}
+                    href={link?.url ? sanitizeUrl(link.url) : sanitizeUrl('#')}
                     {...(link?.openInNewTab && { rel: 'noreferrer noopener' })}
                     {...(link?.openInNewTab && { target: '_blank' })}
-                    title={label}
+                    title={sanitizeText(label)}
                 >
                     {iconType !== 'iconOnly' && <RichText.Content tagName="span" className={`zolo-button-content`} value={label} />}
                     {iconType !== 'none' && <DisplayZoloIcon icon={icon} />}

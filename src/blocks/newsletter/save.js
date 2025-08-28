@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeText } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -112,7 +112,7 @@ const Save = (props) => {
                         )}
                         {showLabels && (
                             <label htmlFor={uniqueId} className="zolo-form-label">
-                                {labelName}
+                                {sanitizeText(labelName)}
                             </label>
                         )}
                     </div>
@@ -167,7 +167,7 @@ const Save = (props) => {
                     )}
                     {showLabels && (
                         <label htmlFor={uniqueId} className="zolo-form-label">
-                            {labelText}
+                            {sanitizeText(labelText)}
                         </label>
                     )}
                 </div>

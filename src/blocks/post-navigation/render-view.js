@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-const { DisplayZoloIcon } = window.zoloModule;
+const { DisplayZoloIcon, sanitizeText } = window.zoloModule;
 
 export default function RenderView({ attributes }) {
     const { showImage, showTitle, showBtn, previousPost, previousPostIcon, nextPost, nextPostIcon } = attributes;
@@ -16,7 +16,7 @@ export default function RenderView({ attributes }) {
                     {showBtn && (
                         <div className="zolo-nav-wrap">
                             <span className="zolo-nav-text">
-                                <span>{previousPost}</span>
+                                <span>{sanitizeText(previousPost)}</span>
                                 {previousPostIcon && <DisplayZoloIcon icon={previousPostIcon} />}
                             </span>
                         </div>
@@ -35,7 +35,7 @@ export default function RenderView({ attributes }) {
                     {showBtn && (
                         <div className="zolo-nav-wrap">
                             <span className="zolo-nav-text">
-                                <span>{nextPost}</span>
+                                <span>{sanitizeText(nextPost)}</span>
                                 {nextPostIcon && <DisplayZoloIcon icon={nextPostIcon} />}
                             </span>
                         </div>

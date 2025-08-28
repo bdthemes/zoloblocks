@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
+const { handleUniqueId, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup, sanitizeUrl, sanitizeText } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -61,10 +61,10 @@ export default function Edit(props) {
 
     const textPathLinkProps = {
         className: 'zolo-textpath',
-        href: pathlink?.url,
+        href: sanitizeUrl(pathlink?.url),
         rel: pathlink?.openInNewTab ? 'noreferrer noopener' : undefined,
         target: pathlink?.openInNewTab ? '_blank' : undefined,
-        title: textpathContent,
+        title: sanitizeText(textpathContent), 
         onClick: (e) => e.preventDefault(),
     };
 
@@ -77,7 +77,7 @@ export default function Edit(props) {
         <SvgComponent uniqueId={uniqueId} pathType={textPathType}>
             <text>
                 <textPath
-                    href={`#MyPath-${uniqueId}`}
+                    href={`#MyPath-${uniqueId}`} 
                     textLength={textpathLength ? textpathLength : 0}
                     startOffset={textPathSpoint ? 100 - textPathSpoint + '%' : 0 + '%'}
                 >
@@ -169,3 +169,5 @@ export default function Edit(props) {
         </>
     );
 }
+
+

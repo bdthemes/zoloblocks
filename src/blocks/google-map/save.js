@@ -1,7 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, sanitizeHtml } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {

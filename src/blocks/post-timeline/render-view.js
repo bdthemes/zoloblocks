@@ -1,7 +1,7 @@
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-const { DynamicTag } = window.zoloModule;
+const { DynamicTag, sanitizeText, sanitizeUrl } = window.zoloModule;   
 
 function RenderView({ attributes, postResults }) {
     const {
@@ -60,13 +60,13 @@ function RenderView({ attributes, postResults }) {
                                         <div className="zolo-post-image">
                                             {post.thumbnail && (
                                                 <a
-                                                    href={post.permalink}
+                                                    href={sanitizeUrl(post.permalink)}
                                                     dangerouslySetInnerHTML={{ __html: post.thumbnail }}
                                                     onClick={(e) => e.preventDefault()}
                                                 ></a>
                                             )}
                                             {!post.thumbnail && (
-                                                <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                                <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
                                                     <img
                                                         src={zoloPlaceholders.placeholder}
                                                         alt={__('Thumbnail Placeholder', 'zoloblocks')}
@@ -80,7 +80,7 @@ function RenderView({ attributes, postResults }) {
 
                                     {showTitle && (
                                         <DynamicTag tagName={titleTag} className="zolo-post-title">
-                                            <a href={post.permalink} onClick={(e) => e.preventDefault()}>
+                                            <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
                                                 <RawHTML>{titleLimitWords}</RawHTML>
                                             </a>
                                         </DynamicTag>
@@ -89,7 +89,7 @@ function RenderView({ attributes, postResults }) {
                                         <div className="zolo-post-desc">
                                             <p>
                                                 <span>{excerptLimitWords}</span>
-                                                {excerptindicator}
+                                                {sanitizeText(excerptindicator)}
                                             </p>
                                         </div>
                                     )}

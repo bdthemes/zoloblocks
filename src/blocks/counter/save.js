@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, sanitizeText } = window.zoloModule;
 import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
 
@@ -54,7 +54,7 @@ const Save = (props) => {
                                                 ? iconTypeImage.sizes[imageRes].url
                                                 : iconTypeImage.url
                                         }
-                                        alt={iconTypeImage.alt || titleText}
+                                        alt={sanitizeText(iconTypeImage.alt) || sanitizeText(titleText)}
                                         className={`wp-image-${iconTypeImage.id}`}
                                         loading="lazy"
                                     />
@@ -68,7 +68,7 @@ const Save = (props) => {
                             {hideCounter && preset !== 'style-3' && (
                                 <>
                                     <span className="animated-counter" {...(counterNumber && { 'data-count': counterNumber })}></span>
-                                    {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
+                                    {hideSuffix && <span className="zolo-counter-sub-text">{sanitizeText(counterSuffix)}</span>}
                                 </>
                             )}
 
@@ -80,7 +80,7 @@ const Save = (props) => {
                                             'data-count': counterNumber,
                                         })}
                                     ></span>
-                                    {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
+                                    {hideSuffix && <span className="zolo-counter-sub-text">{sanitizeText(counterSuffix)}</span>}
                                     {hideTitle && <RichText.Content tagName={titleTag} className="zolo-counter-title" value={titleText} />}
                                 </>
                             )}

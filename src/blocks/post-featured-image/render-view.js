@@ -3,7 +3,7 @@ import { store as coreStore, useEntityProp } from '@wordpress/core-data';
 import { useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
-const { ZoloSpinner } = window.zoloModule;
+const { ZoloSpinner, sanitizeUrl } = window.zoloModule;
 
 function getMediaSourceUrlBySizeSlug(media, slug) {
     return media?.media_details?.sizes?.[slug]?.source_url || media?.source_url;
@@ -75,7 +75,7 @@ export default function RenderView({ props }) {
     return (
         <>
             {isLink && postPermalink ? (
-                <a href={postPermalink} target={linkTarget ? linkTarget : undefined} rel={linkRel}>
+                <a href={sanitizeUrl(postPermalink)} target={linkTarget ? linkTarget : undefined} rel={linkRel}>
                     {image}
                 </a>
             ) : (

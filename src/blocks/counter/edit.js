@@ -9,7 +9,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, sanitizeText } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -114,7 +114,7 @@ export default function Edit(props) {
                                                     ? iconTypeImage.sizes[imageRes].url
                                                     : iconTypeImage.url
                                             }
-                                            alt={iconTypeImage.alt || titleText}
+                                            alt={sanitizeText(iconTypeImage.alt) || sanitizeText(titleText)}
                                         />
                                     )
                                 )}
@@ -127,9 +127,9 @@ export default function Edit(props) {
                                     {hideCounter && (
                                         <>
                                             <span className="animated-counter">
-                                                <CountUp end={counterNumber || '1000'} duration={3.2} />
+                                                <CountUp end={sanitizeText(counterNumber) || '1000'} duration={3.2} />
                                             </span>
-                                            {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
+                                            {hideSuffix && <span className="zolo-counter-sub-text">{sanitizeText(counterSuffix)}</span>}
                                         </>
                                     )}
                                 </div>
@@ -140,9 +140,9 @@ export default function Edit(props) {
                                     {hideCounter && (
                                         <>
                                             <span className="animated-counter">
-                                                <CountUp end={counterNumber || '1000'} duration={3.2} />
+                                                <CountUp end={sanitizeText(counterNumber) || '1000'} duration={3.2} />
                                             </span>
-                                            {hideSuffix && <span className="zolo-counter-sub-text">{counterSuffix}</span>}
+                                            {hideSuffix && <span className="zolo-counter-sub-text">{sanitizeText(counterSuffix)}</span>}
                                         </>
                                     )}
 

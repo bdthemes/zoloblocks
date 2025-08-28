@@ -1,6 +1,7 @@
 import { select } from '@wordpress/data';
 import CryptoJS from 'crypto-js';
 import {forwardRef} from '@wordpress/element';
+import { isURL } from '@wordpress/url';
 
 /**
  * this function is for creating a unique uniqueId for each block's unique className
@@ -305,3 +306,210 @@ export const generateOrderSortCSS = (items,uniqueId) => {
       return `.${uniqueId}.zolo-block .${item.class} {order: ${index + 1};}`;
     }).join("\n");
 };
+
+
+// utils/sanitize.js
+
+/**
+ * Strip dangerous schemes like javascript:, data:, vbscript:
+ */
+export function stripBadSchemes(raw = '') {
+  const s = String(raw).trim();
+  return /^(javascript|data|vbscript):/i.test(s) ? '' : s;
+}
+
+/**
+ * URL sanitizer for editor-side UX. Final security is on PHP.
+ */
+export function sanitizeUrl(raw) {
+  const s = stripBadSchemes(raw);
+  if (!s) return '';
+  // Basic URL validity
+  if (!isURL(s)) return '';
+  return s;
+}
+
+/**
+ * Text nodes (labels, plain text)
+ */
+export function sanitizeText(raw) {
+  return String(raw ?? '').replace(/\u0000/g, '').trim();
+}
+
+/**
+ * Attribute-safe text (for data-* etc. if you mirror in editor)
+ */
+export function sanitizeAttr(raw) {
+  return sanitizeText(raw).replace(/"/g, '&quot;');
+}
+
+/**
+ * Integer / Float
+ */
+export function sanitizeInt(raw, { min = null, max = null } = {}) {
+  let v = parseInt(raw, 10);
+  if (Number.isNaN(v)) v = 0;
+  if (typeof min === 'number' && v < min) v = min;
+  if (typeof max === 'number' && v > max) v = max;
+  return v;
+}
+export function sanitizeFloat(raw, { min = null, max = null } = {}) {
+  let v = parseFloat(raw);
+  if (Number.isNaN(v)) v = 0;
+  if (typeof min === 'number' && v < min) v = min;
+  if (typeof max === 'number' && v > max) v = max;
+  return v;
+}
+
+/**
+ * Boolean
+ */
+export function sanitizeBool(raw) {
+  return !!raw;
+}
+
+/**
+ * Email sanitization function
+ * Validates and sanitizes email addresses with comprehensive security checks
+ * @param {*} raw - Raw email input
+ * @returns {string} - Sanitized email or empty string if invalid
+ */
+export function sanitizeEmail(raw) {
+  // Handle null/undefined/non-string inputs
+  if (raw === null || raw === undefined) {
+      return '';
+  }
+
+  // Convert to string and normalize
+  let email = String(raw).trim().toLowerCase();
+
+  // Return empty string if no input after trimming
+  if (!email || email.length === 0) {
+      return '';
+  }
+
+  // Remove dangerous characters and control characters
+  email = email
+      .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Remove control characters
+      .replace(/[\r\n\t\v\f]/g, '') // Remove line breaks and tabs
+      .replace(/[<>]/g, ''); // Remove potential XSS characters
+
+  // Check if email contains exactly one @ symbol
+  const atCount = (email.match(/@/g) || []).length;
+  if (atCount !== 1) {
+      return '';
+  }
+
+  // Split into local and domain parts
+  const parts = email.split('@');
+  const localPart = parts[0];
+  const domainPart = parts[1];
+
+  // Validate local part (before @)
+  if (!localPart || localPart.length === 0 || localPart.length > 64) {
+      return '';
+  }
+
+  // Validate domain part (after @)
+  if (!domainPart || domainPart.length === 0 || domainPart.length > 253) {
+      return '';
+  }
+
+  // Check for consecutive dots
+  if (email.includes('..')) {
+      return '';
+  }
+
+  // Check if starts or ends with dot
+  if (localPart.startsWith('.') || localPart.endsWith('.')) {
+      return '';
+  }
+
+  // Comprehensive email regex pattern (RFC 5322 compliant)
+  const emailRegex =
+      /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+  // Test against regex
+  if (!emailRegex.test(email)) {
+      return '';
+  }
+
+  // Additional domain validation
+  const domainParts = domainPart.split('.');
+
+  // Domain must have at least one dot
+  if (domainParts.length < 2) {
+      return '';
+  }
+
+  // Check each domain part
+  for (const part of domainParts) {
+      if (!part || part.length === 0) {
+          return '';
+      }
+      // Domain parts cannot start or end with hyphen
+      if (part.startsWith('-') || part.endsWith('-')) {
+          return '';
+      }
+      // Domain parts must contain valid characters only
+      if (!/^[a-zA-Z0-9-]+$/.test(part)) {
+          return '';
+      }
+  }
+
+  // Check total email length (RFC 5321 limit)
+  if (email.length > 254) {
+      return '';
+  }
+
+  // Check TLD (top-level domain) length and format
+  const tld = domainParts[domainParts.length - 1];
+  if (tld.length < 2 || !/^[a-zA-Z]+$/.test(tld)) {
+      return '';
+  }
+
+  // Return the sanitized email
+  return email;
+}
+
+/**
+ * Target + rel hardening for <a> tags (avoid window.opener vulns)
+ */
+export function hardenLinkTarget({ target, rel }) {
+  const t = target === '_blank' ? '_blank' : '';
+  let r = String(rel || '').toLowerCase().split(/\s+/).filter(Boolean);
+  if (t === '_blank') {
+    if (!r.includes('noopener')) r.push('noopener');
+    if (!r.includes('noreferrer')) r.push('noreferrer');
+  }
+  return { target: t, rel: r.join(' ') };
+}
+
+/**
+ * Basic HTML sanitizer
+ * Removes potentially dangerous tags and attributes
+ * @param {string} raw - Raw HTML input
+ * @returns {string} - Sanitized HTML
+ */
+export function sanitizeHtml(raw) {
+  if (!raw) return '';
+
+  // Convert to string
+  let html = String(raw);
+
+  // Remove script/style tags completely
+  html = html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
+  html = html.replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '');
+
+  // Remove on* attributes (onclick, onerror, etc.)
+  html = html.replace(/\s?on\w+="[^"]*"/gi, '');
+  html = html.replace(/\s?on\w+='[^']*'/gi, '');
+
+  // Remove javascript: in href/src
+  html = html.replace(/\s(href|src)=["']javascript:[^"']*["']/gi, '');
+
+  // Optionally, allow only certain tags (like <b>, <i>, <u>, <p>, <br>, <strong>, <em>)
+  html = html.replace(/<(\/?)(?!b|i|u|p|br|strong|em)[^>]*>/gi, '');
+
+  return html;
+}

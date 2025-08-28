@@ -10,7 +10,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -56,7 +56,7 @@ export default function Edit(props) {
     // link
 
     const flipBoxTitleLink = {
-        href: link?.url || '#',
+        href: sanitizeUrl(link?.url) || '#',
         target: link?.openInNewTab ? '_blank' : undefined,
         rel: link?.openInNewTab ? 'noopener noreferrer' : undefined,
         className: 'title-link',
@@ -64,7 +64,7 @@ export default function Edit(props) {
     };
 
     const flipBoxButtonLink = {
-        href: link?.url || '#',
+        href: sanitizeUrl(link?.url) || '#',
         target: link?.openInNewTab ? '_blank' : undefined,
         rel: link?.openInNewTab ? 'noopener noreferrer' : undefined,
         className: 'zolo-flip-box_link-btn',
@@ -144,8 +144,8 @@ export default function Edit(props) {
                                     {(showFrontTitle || showFrontContent) && (
                                         <>
                                             <div>
-                                                {showFrontTitle && <h3 className="zolo-flip-box_title">{frontTitle}</h3>}
-                                                {showFrontContent && <p className="zolo-flip-box_desc">{frontContent}</p>}
+                                                {showFrontTitle && <h3 className="zolo-flip-box_title">{sanitizeText(frontTitle)}</h3>}
+                                                {showFrontContent && <p className="zolo-flip-box_desc">{sanitizeText(frontContent)}</p>}
                                             </div>
                                         </>
                                     )}
@@ -204,19 +204,19 @@ export default function Edit(props) {
                                                 {showBackTitle &&
                                                     (link ? (
                                                         <a {...flipBoxTitleLink}>
-                                                            <h3 className="zolo-flip-box_title">{backTitle}</h3>
+                                                            <h3 className="zolo-flip-box_title">{sanitizeText(backTitle)}</h3>
                                                         </a>
                                                     ) : (
-                                                        <h3 className="zolo-flip-box_title">{backTitle}</h3>
+                                                        <h3 className="zolo-flip-box_title">{sanitizeText(backTitle)}</h3>
                                                     ))}
-                                                {showBackContent && <p className="zolo-flip-box_desc">{backContent}</p>}
+                                                {showBackContent && <p className="zolo-flip-box_desc">{sanitizeText(backContent)}</p>}
                                             </div>
                                         </>
                                     )}
                                     {showBackLinkBtn && (
                                         <div className="zolo-flip-box_link-button-wrap">
                                             <a {...flipBoxButtonLink}>
-                                                <span>{buttonText}</span>
+                                                <span>{sanitizeText(buttonText)}</span>
                                                 {buttonIcon && showBackLinkBtnIcon && <DisplayZoloIcon icon={buttonIcon} />}
                                             </a>
                                         </div>

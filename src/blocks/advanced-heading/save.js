@@ -1,7 +1,7 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { applyFilters } from '@wordpress/hooks';
 import classnames from 'classnames';
-const { classArrayToStr, DynamicTag, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DynamicTag, DisplayZoloIcon, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -67,7 +67,7 @@ const Save = (props) => {
                             tagName={transparentTag}
                             className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}
                         >
-                            {transparentTitleText}
+                            {sanitizeText(transparentTitleText)}
                         </DynamicTag>
                     </div>
                 )}
@@ -98,10 +98,10 @@ const Save = (props) => {
                         allowedFormats={['core/bold', 'core/italic']}
                         {...(enableTitleLink && titleLink
                             ? {
-                                  href: titleLink.url,
+                                  href: sanitizeUrl(titleLink.url),
                                   target: titleLink.openInNewTab ? '_blank' : '_self',
                                   rel: titleLink.openInNewTab ? 'noopener noreferrer' : 'noopener',
-                                  title: titleText,
+                                  title: sanitizeText(titleText),
                               }
                             : {})}
                     />

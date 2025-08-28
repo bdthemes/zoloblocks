@@ -1,6 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon, DynamicTag } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag, sanitizeAttr } = window.zoloModule;
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -55,7 +55,7 @@ const Save = (props) => {
                                 {...(showLightbox &&
                                     showThumbCaption &&
                                     image.caption && {
-                                        'data-caption': `<div class="zolo-lightbox-content"><h3 class="zolo-lightbox-caption">${image.caption}</h3></div>`,
+                                        'data-caption': `<div class="zolo-lightbox-content"><h3 class="zolo-lightbox-caption">${sanitizeAttr(image.caption)}</h3></div>`,
                                     })}
                                 {...(showLightbox &&
                                     showLightboxThumb && {

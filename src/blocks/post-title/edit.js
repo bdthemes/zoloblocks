@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import Inspector from './inspector';
 import './style.scss';
 
-const { classArrayToStr, SidebarOpener, DynamicTag } = window.zoloModule;
+const { classArrayToStr, SidebarOpener, DynamicTag, sanitizeUrl } = window.zoloModule;
 
 import Style from './styles';
 
@@ -40,7 +40,7 @@ export default function Edit(props) {
         if (isLink) {
             return (
                 <a
-                    href={postLink || '#'}
+                    href={sanitizeUrl(postLink) || '#'}
                     target={linkTarget || undefined}
                     rel={linkRel}
                     onClick={(event) => event.preventDefault()} // Prevent default for edit mode

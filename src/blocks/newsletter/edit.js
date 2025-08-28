@@ -9,7 +9,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener, sanitizeText } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -114,7 +114,7 @@ export default function Edit(props) {
                             )}
                             {showLabels && (
                                 <label htmlFor={uniqueId} className="zolo-form-label">
-                                    {labelName}
+                                    {sanitizeText(labelName)}
                                 </label>
                             )}
                         </div>
@@ -169,7 +169,7 @@ export default function Edit(props) {
                         )}
                         {showLabels && (
                             <label htmlFor={uniqueId} className="zolo-form-label">
-                                {labelText}
+                                {sanitizeText(labelText)}
                             </label>
                         )}
                     </div>
@@ -199,9 +199,9 @@ export default function Edit(props) {
                 </form>
                 {showMessage && (
                     <div className="zolo-newsletter-message">
-                        <span class="zolo-newsletter-info-text status-success">{textSuccess}</span>
-                        <span class="zolo-newsletter-info-text status-warning">{textSubscribed}</span>
-                        <span class="zolo-newsletter-info-text status-error">{textError}</span>
+                        <span class="zolo-newsletter-info-text status-success">{sanitizeText(textSuccess)}</span>
+                        <span class="zolo-newsletter-info-text status-warning">{sanitizeText(textSubscribed)}</span>
+                        <span class="zolo-newsletter-info-text status-error">{sanitizeText(textError)}</span>
                     </div>
                 )}
                 {renderHookAfter && renderHookAfter}

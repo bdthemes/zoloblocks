@@ -8,7 +8,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, DynamicTag } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, DynamicTag, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -42,7 +42,7 @@ export default function Edit(props) {
         tagName: isLinkable ? 'a' : 'div',
         className: 'zolo-icon-wrap',
         ...(iconLink?.url && {
-            href: iconLink.url,
+            href: sanitizeUrl(iconLink.url),
             target: iconLink.openInNewTab ? '_blank' : undefined,
             rel: iconLink.openInNewTab ? 'noopener noreferrer' : undefined,
         }),

@@ -1,4 +1,4 @@
-const { isEmpty } = window.zoloModule;
+const { isEmpty, sanitizeText } = window.zoloModule;
 
 function CommentItem({ comment, attributes }) {
     const { showTitle, showText, textLimit, showAuthor, authorMiddleText, showDate } = attributes;
@@ -11,7 +11,7 @@ function CommentItem({ comment, attributes }) {
                 <div className="zolo-author-info">
                     {showAuthor && (
                         <a className="zolo-author-name" href={comment.link} target="_blank">
-                            {comment.author} {showTitle && authorMiddleText + ' ' + comment.title}
+                            {sanitizeText(comment.author)} {showTitle && sanitizeText(authorMiddleText) + ' ' + sanitizeText(comment.title)}
                         </a>
                     )}
 

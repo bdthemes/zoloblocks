@@ -3,6 +3,7 @@ import attributes from './attributes';
 import metadata from './block.json';
 import Edit from './edit';
 import Save from './save';
+import deprecated from './deprecated';
 import './style.scss';
 
 const { BlockIcons } = window.zoloIcons;
@@ -14,4 +15,5 @@ registerBlockType(metadata, {
     attributes,
     edit: Edit,
     save: Save,
+    deprecated,
 });

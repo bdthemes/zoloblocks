@@ -1,4 +1,4 @@
-const { DisplayZoloIcon } = window.zoloModule;
+const { DisplayZoloIcon, sanitizeText } = window.zoloModule;
 
 export default function RenderView({ attributes }) {
     const { homeText, homeIcon, showSeparator, separatorIcon } = attributes;
@@ -7,7 +7,7 @@ export default function RenderView({ attributes }) {
         <ul className="breadcrumb-items">
             <li className="breadcrumb-item home">
                 <a href="#" className="name">
-                    {homeIcon && <DisplayZoloIcon icon={homeIcon} />} {homeText}
+                    {homeIcon && <DisplayZoloIcon icon={homeIcon} />} {sanitizeText(homeText)}
                 </a>
                 {showSeparator && (
                     <span className="separator">

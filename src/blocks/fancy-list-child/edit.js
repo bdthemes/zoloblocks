@@ -9,7 +9,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, sanitizeText, sanitizeUrl } = window.zoloModule;
 const { DynamicTag } = window.zoloModule;
 
 import Inspector from './inspector';
@@ -50,11 +50,11 @@ export default function Edit(props) {
         tagName: fancyLinkToggle ? 'a' : 'div',
         ...blockProps,
         ...(fancyLinkToggle && {
-            href: fancyLink.url,
+            href: sanitizeUrl(fancyLink.url),
             ...(fancyLink.openInNewTab && {
                 target: '_blank',
                 rel: 'noreferrer noopener',
-                title: fancyTitle,
+                title: sanitizeText(fancyTitle),
             }),
             onClick: (e) => e.preventDefault(),
         }),

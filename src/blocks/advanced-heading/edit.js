@@ -9,7 +9,7 @@ import Inspector from './inspector';
 import Style from './style';
 import './style.scss';
 
-const { DynamicTag, classArrayToStr, SidebarOpener, DisplayZoloIcon } = window.zoloModule;
+const { DynamicTag, classArrayToStr, SidebarOpener, DisplayZoloIcon, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId } = props;
@@ -85,7 +85,7 @@ const Edit = (props) => {
                                 tagName={transparentTag}
                                 className={`zolo-transparent-heading zolo-transform-origin-${transparentTitleRotateOrigin}`}
                             >
-                                {transparentTitleText}
+                                {sanitizeText(transparentTitleText)}
                             </DynamicTag>
                         </div>
                     )}
@@ -124,10 +124,10 @@ const Edit = (props) => {
                             onChange={(titleText) => setAttributes({ titleText })}
                             {...(enableTitleLink && titleLink
                                 ? {
-                                      href: titleLink.url,
+                                      href: sanitizeUrl(titleLink.url),
                                       target: titleLink.openInNewTab ? '_blank' : '_self',
                                       rel: titleLink.openInNewTab ? 'noopener noreferrer' : 'noopener',
-                                      title: titleText,
+                                      title: sanitizeText(titleText),
                                   }
                                 : {})}
                         />

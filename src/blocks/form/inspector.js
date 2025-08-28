@@ -28,6 +28,9 @@ const {
     ZoloPanelBody,
     IconicBtnGroup,
     ZoloIconPicker,
+    sanitizeText,
+    sanitizeUrl,
+    sanitizeEmail,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -207,7 +210,7 @@ function Inspector(props) {
                                     setAttributes({
                                         formSettings: {
                                             ...formSettings,
-                                            formTitle: v,
+                                            formTitle: sanitizeText(v),
                                         },
                                     })
                                 }
@@ -233,7 +236,7 @@ function Inspector(props) {
                                     setAttributes({
                                         formSettings: {
                                             ...formSettings,
-                                            emailTo: v,
+                                            emailTo: sanitizeEmail(v),
                                         },
                                     })
                                 }
@@ -247,7 +250,7 @@ function Inspector(props) {
                                     setAttributes({
                                         formSettings: {
                                             ...formSettings,
-                                            emailCC: v,
+                                            emailCC: sanitizeEmail(v),
                                         },
                                     })
                                 }
@@ -261,7 +264,7 @@ function Inspector(props) {
                                     setAttributes({
                                         formSettings: {
                                             ...formSettings,
-                                            emailBCC: v,
+                                            emailBCC: sanitizeEmail(v),
                                         },
                                     })
                                 }
@@ -276,7 +279,7 @@ function Inspector(props) {
                                     setAttributes({
                                         formSettings: {
                                             ...formSettings,
-                                            emailSubject: v,
+                                            emailSubject: sanitizeText(v),
                                         },
                                     })
                                 }
@@ -316,7 +319,7 @@ function Inspector(props) {
                                         setAttributes({
                                             submissionSettings: {
                                                 ...submissionSettings,
-                                                successMessage: v,
+                                                successMessage: sanitizeText(v),
                                             },
                                         })
                                     }
@@ -334,7 +337,7 @@ function Inspector(props) {
                                         setAttributes({
                                             submissionSettings: {
                                                 ...submissionSettings,
-                                                failMessage: v,
+                                                failMessage: sanitizeText(v),
                                             },
                                         })
                                     }
@@ -351,7 +354,7 @@ function Inspector(props) {
                                         setAttributes({
                                             submissionSettings: {
                                                 ...submissionSettings,
-                                                validationMessage: v,
+                                                validationMessage: sanitizeText(v),
                                             },
                                         })
                                     }

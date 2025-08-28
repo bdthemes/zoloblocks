@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import SvgComponent from './svg';
+import { sanitizeText, sanitizeUrl } from '../../helpers/helper';
 
 document.addEventListener('DOMContentLoaded', () => {
     const textPath = document.querySelectorAll('.wp-block-zolo-text-path');
@@ -31,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             >
                                 <a
                                     className="zolo-textpath"
-                                    href={pathlink && pathlink.url}
+                                    href={pathlink && sanitizeUrl(pathlink.url)}
                                     rel={pathlink && pathlink.openInNewTab ? 'noreferrer noopener' : undefined}
                                     target={pathlink && pathlink.openInNewTab ? '_blank' : undefined}
-                                    title={textpathContent}
+                                    title={sanitizeText(textpathContent)}
                                 >
                                     <tspan>{textpathContent && textpathContent}</tspan>
                                 </a>
@@ -54,10 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                     >
                                         <a
                                             className="zolo-textpath"
-                                            href={pathlink && pathlink.url}
+                                            href={pathlink && sanitizeUrl(pathlink.url)}
                                             rel={pathlink && pathlink.openInNewTab ? 'noreferrer noopener' : undefined}
                                             target={pathlink && pathlink.openInNewTab ? '_blank' : undefined}
-                                            title={textpathContent}
+                                            title={sanitizeText(textpathContent)}
                                         >
                                             <tspan>{textpathContent && textpathContent}</tspan>
                                         </a>

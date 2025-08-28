@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import classnames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
@@ -50,7 +50,7 @@ const Save = (props) => {
                     };
 
                     if (isLinkable) {
-                        commonProps.href = profile.link?.url;
+                        commonProps.href = sanitizeUrl(profile.link?.url);
                         commonProps.target = profile.link?.openInNewTab ? '_blank' : undefined;
                         commonProps.rel = profile.link?.openInNewTab ? 'noopener noreferrer' : undefined;
                     }
@@ -75,12 +75,12 @@ const Save = (props) => {
                                             <div className="zolo-list-content">
                                                 {titleToggle && (
                                                     <div className="zolo-list-title">
-                                                        <RawHTML>{profile.text}</RawHTML>
+                                                        <RawHTML>{sanitizeText(profile.text)}</RawHTML>
                                                     </div>
                                                 )}
                                                 {DscToggle && contentLayout !== 'horizontal' && (
                                                     <span className="zolo-list-desc">
-                                                        <RawHTML>{profile.desc}</RawHTML>
+                                                        <RawHTML>{sanitizeText(profile.desc)}</RawHTML>
                                                     </span>
                                                 )}
                                             </div>
@@ -110,7 +110,7 @@ const Save = (props) => {
                                                     )}
                                                     {titleToggle && (
                                                         <div className="zolo-list-title">
-                                                            <RawHTML>{profile.text}</RawHTML>
+                                                            <RawHTML>{sanitizeText(profile.text)}</RawHTML>
                                                         </div>
                                                     )}
                                                 </div>
@@ -119,12 +119,12 @@ const Save = (props) => {
                                             <div className="zolo-list-content">
                                                 {titleToggle && contentLayout !== 'horizontal' && (
                                                     <div className="zolo-list-title">
-                                                        <RawHTML>{profile.text}</RawHTML>
+                                                        <RawHTML>{sanitizeText(profile.text)}</RawHTML>
                                                     </div>
                                                 )}
                                                 {DscToggle && (
                                                     <p className="zolo-list-desc">
-                                                        <RawHTML>{profile.desc}</RawHTML>
+                                                        <RawHTML>{sanitizeText(profile.desc)}</RawHTML>
                                                     </p>
                                                 )}
                                             </div>
@@ -143,7 +143,7 @@ const Save = (props) => {
                                         <div className="zolo-list-desc-hover-icon">
                                             {DscToggle && (
                                                 <span className="zolo-list-desc">
-                                                    <RawHTML>{profile.desc}</RawHTML>
+                                                    <RawHTML>{sanitizeText(profile.desc)}</RawHTML>
                                                 </span>
                                             )}
                                             <div className="zolo-list-hover-icon">
