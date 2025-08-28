@@ -35,9 +35,9 @@ const Save = (props) => {
                             key={uniqueKey}
                             target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                             rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
-                            className={`zolo-list-item ${preset == 'zolo-list-style-1' ? 'zolo-list-title' : ''} zolo-${socialName} ${socialColor} ${iconName}`}
+                            className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}
+                            title={profile.text}
                         >
-                            {preset == 'zolo-list-style-1' && <RawHTML>{profile.text}</RawHTML>}
                             {socialText !== 'none' && (
                                 <span className="zolo-social-icon">
                                     <DisplayZoloIcon icon={profile.icon} />
