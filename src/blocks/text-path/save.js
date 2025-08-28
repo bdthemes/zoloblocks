@@ -22,6 +22,7 @@ const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+    const link = sanitizeUrl();
     return (
         <>
             <div
@@ -31,7 +32,7 @@ const Save = ({ attributes }) => {
                 })}
                 data-textpathcontent={textpathContent}
                 data-textpathtype={textPathType}
-                data-pathlink={JSON.stringify(sanitizeUrl(pathlink?.url))}
+                data-pathlink={JSON.stringify(link)}
                 data-textpathlength={textpathLength}
                 data-textstartoffset={textPathSpoint}
                 data-uniqueid={uniqueId}
