@@ -1,4 +1,4 @@
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr,sanitizeText, sanitizeUrl } = window.zoloModule;
 import classnames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
 
@@ -16,7 +16,7 @@ const Save = (props) => {
             })}
         >
             <a
-                href={socialLink && socialLink.url}
+                href={socialLink && sanitizeUrl(socialLink.url)}
                 target={socialLink && socialLink.openInNewTab ? '_blank' : undefined}
                 rel={socialLink && socialLink.openInNewTab ? 'noopener noreferrer' : undefined}
                 className={`zolo-item zolo-social-icon`}
@@ -27,10 +27,10 @@ const Save = (props) => {
 
                 <div className="zolo-content">
                     <div className="zolo-count">
-                        <span className="counter-value">{socialCounter}</span>
+                        <span className="counter-value">{sanitizeText(socialCounter)}</span>
                     </div>
                     <div className="zolo-meta">
-                        <span>{socialMeta}</span>
+                        <span>{sanitizeText(socialMeta)}</span>
                     </div>
                 </div>
             </a>

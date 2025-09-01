@@ -6,7 +6,7 @@ import Counter from './counter';
 // import style
 import Style from './style';
 
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId, context } = props;
@@ -18,7 +18,7 @@ export default function Edit(props) {
     });
 
     const socailCountLinkProps = {
-        href: socialLink?.url,
+        href: sanitizeUrl(socialLink?.url),
         target: socialLink?.openInNewTab ? '_blank' : undefined,
         rel: socialLink?.openInNewTab ? 'noopener noreferrer' : undefined,
         className: 'zolo-item zolo-social-icon',
@@ -51,7 +51,7 @@ export default function Edit(props) {
                     <div className="zolo-content">
                         <Counter endValue={socialCounter} />
                         <div className="zolo-meta">
-                            <span>{socialMeta}</span>
+                            <span>{sanitizeText(socialMeta)}</span>
                         </div>
                     </div>
                 </a>

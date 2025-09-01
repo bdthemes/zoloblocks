@@ -10,7 +10,7 @@ import { applyFilters } from '@wordpress/hooks';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, ZoloButton } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, ZoloToolbarButton, ZoloToolbarGroup, ZoloButton, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -103,7 +103,7 @@ export default function Edit(props) {
                         <div className="zb-profile-header-content">
                             {showBadge && (
                                 <div className="zb-profile-badge">
-                                    <span>{badgeText}</span>
+                                    <span>{sanitizeText(badgeText)}</span>
                                 </div>
                             )}
                         </div>
@@ -111,7 +111,7 @@ export default function Edit(props) {
 
                     {showBadge && preset === 'style-1' && (
                         <div className="zb-profile-badge">
-                            <span>{badgeText}</span>
+                            <span>{sanitizeText(badgeText)}</span>
                         </div>
                     )}
 
@@ -261,7 +261,7 @@ export default function Edit(props) {
                                                 socialProfiles.map((profile, index) => {
                                                     return (
                                                         <a
-                                                            href={profile.link && profile.link.url}
+                                                            href={profile.link && profile.link.url && sanitizeUrl(profile.link.url)}
                                                             key={index}
                                                             rel={profile.link.openInNewTab ? 'noopener noreferer' : undefined}
                                                             target={profile.link.openInNewTab ? '_blank' : undefined}

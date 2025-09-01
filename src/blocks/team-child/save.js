@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, sanitizeUrl } = window.zoloModule;
 import classNames from 'classnames';
 
 const Save = ({ attributes }) => {
@@ -45,7 +45,7 @@ const Save = ({ attributes }) => {
                         <div className="zolo-link-btn">
                             <a
                                 className="zolo-external-link"
-                                href={memberDetailPageLink && memberDetailPageLink.url}
+                                href={sanitizeUrl(memberDetailPageLink && memberDetailPageLink.url)}
                                 rel={memberDetailPageLink && memberDetailPageLink.openInNewTab ? 'noreferer noopener' : undefined}
                                 target={memberDetailPageLink && memberDetailPageLink.openInNewTab ? '_blank' : undefined}
                             >
@@ -97,7 +97,7 @@ const Save = ({ attributes }) => {
                                             profile.id || profile.platform || `team-social-${Math.random().toString(36).slice(2)}`;
                                         return (
                                             <a
-                                                href={profile.link && profile.link.url}
+                                                href={profile.link && sanitizeUrl(profile.link.url)}
                                                 key={uniqueKey}
                                                 target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                                                 rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
@@ -114,7 +114,7 @@ const Save = ({ attributes }) => {
                             <div className="zolo-link-btn">
                                 <a
                                     className="zolo-external-link"
-                                    href={memberDetailPageLink && memberDetailPageLink.url}
+                                    href={memberDetailPageLink && sanitizeUrl(memberDetailPageLink.url)}
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab ? 'noreferer noopener' : undefined}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab ? '_blank' : undefined}
                                 >

@@ -1,9 +1,9 @@
-import attributes from './attributes';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+import attributes from '../../attributes';
 
-const deprecated = {
+const v1 = {
     attributes: {
         ...attributes,
         infiniteLoop: {
@@ -83,4 +83,4 @@ const deprecated = {
         );
     },
 };
-export default deprecated;
+export default v1;

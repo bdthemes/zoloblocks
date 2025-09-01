@@ -11,7 +11,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import classnames from 'classnames';
 
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import { zoloArraysMergeIfUniqueValue } from '../../../src/helpers/helper';
 
@@ -60,8 +60,8 @@ export default function Edit(props) {
                                 type="button"
                                 data-hashtags={tags}
                                 data-sharer={brand.value}
-                                data-url={brand.link && brand.link.url}
-                                data-title={brand.label}
+                                data-url={brand.link && sanitizeUrl(brand.link.url)}
+                                data-title={sanitizeText(brand.label)}
                                 className={`zolo-social-item zolo-${socialName} ${socialColor} ${brand.value}`}
                             >
                                 {socialText !== 'none' && (
@@ -69,7 +69,7 @@ export default function Edit(props) {
                                         <DisplayZoloIcon icon={brand.icon} />
                                     </span>
                                 )}
-                                {socialText !== 'iconOnly' && <span className="zolo-social-text">{socialLabel}</span>}
+                                {socialText !== 'iconOnly' && <span className="zolo-social-text">{sanitizeText(socialLabel)}</span>}
                             </div>
                         );
                     })}

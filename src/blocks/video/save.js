@@ -6,7 +6,7 @@ import EmbedPlayer from './embed-player';
 /**
  * Internal Dependencies
  */
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 export default function Save(props) {
     const { attributes } = props;
@@ -26,7 +26,7 @@ export default function Save(props) {
                 <div className="video-player-popoup">
                     <div className={`video-player-popup-inline-content ${attributes?.popupType || ''}`}>
                         <a
-                            href={`#video-player-popup-${attributes?.uniqueId}`}
+                            href={sanitizeUrl(`#video-player-popup-${attributes?.uniqueId}`)}
                             className="popup-trigger-button"
                             data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
                         >

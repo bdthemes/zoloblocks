@@ -7,6 +7,7 @@ import './style.scss';
 import './editor.scss';
 import EmbedPlayer from './embed-player';
 import { useEffect, useRef, useState } from '@wordpress/element';
+const { sanitizeUrl } = window.zoloModule;
 
 export default function Edit(props) {
     const { classArrayToStr } = window.zoloModule;
@@ -92,7 +93,7 @@ export default function Edit(props) {
                     <div className={`video-player-popup-inline-content ${attributes?.popupType || ''}`}>
                         <a
                             onClick={() => setOpenPopup(!openPopup)}
-                            href={`#video-player-popup-${attributes?.uniqueId}`}
+                            href={sanitizeUrl(`#video-player-popup-${attributes?.uniqueId}`)}
                             className="popup-trigger-button"
                             data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
                         >

@@ -2,6 +2,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { parseInputToArray, transformToValueFormat } from '@/blocks/select-field/helper';
+import { sanitizeText } from '@wordpress/blocks';
 
 const { classArrayToStr, DisplayZoloIcon, generateUniqueName } = window.zoloModule;
 
@@ -72,7 +73,7 @@ const Save = ({ attributes }) => {
                                                     {...(defaultSelect === option.value && { selected: '' })}
                                                     {...(option?.disabled && { disabled: option.disabled })}
                                                 >
-                                                    {option.name}
+                                                    {sanitizeText(option.name)}
                                                 </option>
                                             ))}
                                         </optgroup>
@@ -86,7 +87,7 @@ const Save = ({ attributes }) => {
                                             {...(defaultSelect === item.value && { selected: '' })}
                                             {...(item?.disabled && { disabled: item.disabled })}
                                         >
-                                            {item.name}
+                                            {sanitizeText(item.name)}
                                         </option>
                                     );
                                 }

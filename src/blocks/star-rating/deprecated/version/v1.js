@@ -1,9 +1,9 @@
-import attributes from './attributes';
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+import attributes from '../../attributes';
+import classnames from 'classnames';
 
-const deprecated = {
+const v1 = {
     attributes: {
         ...attributes,
         rating: {
@@ -11,8 +11,8 @@ const deprecated = {
             default: 5,
         },
     },
-
-    save: ({ attributes }) => {
+    save: (props) => {
+        const { attributes } = props;
         const {
             uniqueId,
             parentClasses,
@@ -71,4 +71,4 @@ const deprecated = {
     },
 };
 
-export default deprecated;
+export default v1;

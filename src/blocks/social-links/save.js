@@ -1,7 +1,7 @@
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr,sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
@@ -31,19 +31,19 @@ const Save = (props) => {
                     const iconName = profile && profile.text && profile.text.toLowerCase();
                     return (
                         <a
-                            href={profile.link && profile.link.url}
+                            href={profile.link && sanitizeUrl(profile.link.url)}
                             key={uniqueKey}
                             target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                             rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
                             className={`zolo-social-item zolo-${socialName} ${socialColor} ${iconName}`}
-                            title={profile.text}
+                            title={sanitizeText(profile.text)}
                         >
                             {socialText !== 'none' && (
                                 <span className="zolo-social-icon">
                                     <DisplayZoloIcon icon={profile.icon} />
                                 </span>
                             )}
-                            {socialText !== 'iconOnly' && <span className="zolo-social-text">{profile.text}</span>}
+                            {socialText !== 'iconOnly' && <span className="zolo-social-text">{sanitizeText(profile.text)}</span>}
                         </a>
                     );
                 })}
