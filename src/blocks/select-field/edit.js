@@ -4,7 +4,6 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { sanitizeText } from '@wordpress/blocks';
 
 /**
  * External dependencies
@@ -134,7 +133,7 @@ export default function Edit(props) {
                                                         //selected={option.value === defaultSelect}
                                                         disabled={option?.disabled}
                                                     >
-                                                        {sanitizeText(option.name)}
+                                                        {option.name}
                                                     </option>
                                                 ))}
                                             </optgroup>
@@ -148,7 +147,7 @@ export default function Edit(props) {
                                                 //selected={item.value === defaultSelect}
                                                 disabled={item?.disabled}
                                             >
-                                                {sanitizeText(item.name)}
+                                                {item.name}
                                             </option>
                                         );
                                     }
