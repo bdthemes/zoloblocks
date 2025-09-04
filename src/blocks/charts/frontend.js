@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
-const { sanitizeText } = window.zoloModule;
 
 import ApexCharts from 'react-apexcharts';
 import { v4 as uuidv4 } from 'uuid';
@@ -66,14 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         },
                     },
                     title: {
-                        text: showTitle ? sanitizeText(titleObject.text) : undefined,
+                        text: showTitle ? titleObject.text : undefined,
                         align: titleObject.align,
                         style: {
                             color: titleObject.style.color,
                         },
                     },
                     subtitle: {
-                        text: showSubTitle ? sanitizeText(subTitleObject.text) : undefined,
+                        text: showSubTitle ? subTitleObject.text : undefined,
                         align: subTitleObject.align,
                         style: {
                             color: subTitleObject.style.color,
