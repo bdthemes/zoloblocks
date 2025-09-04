@@ -1,3 +1,10 @@
+### 2.3.7 [September 04, 2025]
+
+**Bug Fixes:**
+* Resolved frontend rendering issues in the Charts block for improved display consistency.
+
+**Enhancements:**
+* Optimized block scripts for enhanced performance and reliability.
 
 ### 2.3.6 [August 28, 2025]
 
