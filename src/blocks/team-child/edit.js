@@ -9,7 +9,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -43,7 +43,7 @@ export default function Edit(props) {
 
     const teamLinkButtonProps = {
         className: 'zolo-external-link',
-        href: memberDetailPageLink?.url,
+        href: sanitizeUrl(memberDetailPageLink?.url),
         rel: memberDetailPageLink?.openInNewTab ? 'noopener noreferrer' : undefined,
         target: memberDetailPageLink?.openInNewTab ? '_blank' : undefined,
         onClick: (e) => e.preventDefault(),
@@ -133,7 +133,7 @@ export default function Edit(props) {
                             <div className="zolo-link-btn">
                                 <a
                                     className="zolo-external-link"
-                                    href={memberDetailPageLink && memberDetailPageLink.url}
+                                    href={sanitizeUrl(memberDetailPageLink && memberDetailPageLink.url)}
                                     rel={memberDetailPageLink && memberDetailPageLink.openInNewTab ? 'noreferer' : undefined}
                                     target={memberDetailPageLink && memberDetailPageLink.openInNewTab ? '_blank' : undefined}
                                 >
@@ -216,11 +216,11 @@ export default function Edit(props) {
                                             return (
                                                 <a
                                                     className="zolo-social-link"
-                                                    href={profile.link && profile.link.url}
+                                                    href={profile.link && sanitizeUrl(profile.link.url)}
                                                     key={index}
                                                     rel={profile.link && profile.link.openInNewTab ? 'noreferer noopener' : undefined}
                                                     target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
-                                                    title={profile.title}
+                                                    title={sanitizeText(profile.title)}
                                                     onClick={(e) => e.preventDefault()}
                                                 >
                                                     <DisplayZoloIcon icon={profile.icon} />

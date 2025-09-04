@@ -1,7 +1,7 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 const Save = (props) => {
     const { attributes } = props;
@@ -67,11 +67,11 @@ const Save = (props) => {
                         {showName &&
                             (addReviewerWebsiteLink ? (
                                 <a
-                                    href={reviewerWebsiteLink && reviewerWebsiteLink.url}
+                                    href={reviewerWebsiteLink && reviewerWebsiteLink.url && sanitizeUrl(reviewerWebsiteLink.url)}
                                     rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? 'noreferer noopener' : undefined}
                                     target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? '_blank' : undefined}
                                     className="zolo-name has-link"
-                                    title={memberName}
+                                    title={sanitizeText(memberName)}
                                 >
                                     <RichText.Content value={memberName} />
                                 </a>

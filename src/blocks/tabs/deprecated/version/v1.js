@@ -2,10 +2,9 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+import attributes from '../../attributes';
 
-import attributes from './attributes';
-
-const deprecated = {
+const v1 = {
     attributes: {
         ...attributes,
         tabActiveItemNo: {
@@ -13,7 +12,8 @@ const deprecated = {
             default: '1',
         },
     },
-    save: ({ attributes }) => {
+    save: (props) => {
+        const { attributes } = props;
         const {
             uniqueId,
             parentClasses,
@@ -94,4 +94,4 @@ const deprecated = {
     },
 };
 
-export default deprecated;
+export default v1;

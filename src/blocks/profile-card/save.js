@@ -1,5 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, sanitizeUrl, sanitizeText } = window.zoloModule;
 import classNames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -51,7 +51,7 @@ const Save = (props) => {
                     <div className="zb-profile-header-content">
                         {showBadge && (
                             <div className="zb-profile-badge">
-                                <span>{badgeText}</span>
+                                <span>{sanitizeText(badgeText)}</span>
                             </div>
                         )}
                     </div>
@@ -59,7 +59,7 @@ const Save = (props) => {
 
                 {showBadge && preset === 'style-1' && (
                     <div className="zb-profile-badge">
-                        <span>{badgeText}</span>
+                        <span>{sanitizeText(badgeText)}</span>
                     </div>
                 )}
 
@@ -125,9 +125,9 @@ const Save = (props) => {
                                         href={followButtonLink && followButtonLink.url && followButtonLink.url}
                                         target={followButtonLink && followButtonLink.openInNewTab ? '_blank' : undefined}
                                         rel={followButtonLink && followButtonLink.openInNewTab ? 'noopener noreferrer' : undefined}
-                                        title={followButtonText}
+                                        title={sanitizeText(followButtonText)}
                                     >
-                                        {followButtonText}
+                                        {sanitizeText(followButtonText)}
                                     </a>
                                 )}
                                 {showSocialProfiles && (
@@ -182,12 +182,12 @@ const Save = (props) => {
                                     {showFollowButton && (
                                         <a
                                             className="zb-profile-fllow-btn"
-                                            href={followButtonLink && followButtonLink.url && followButtonLink.url}
+                                            href={followButtonLink && followButtonLink.url && sanitizeUrl(followButtonLink.url)}
                                             target={followButtonLink && followButtonLink.openInNewTab ? '_blank' : undefined}
                                             rel={followButtonLink && followButtonLink.openInNewTab ? 'noopener noreferrer' : undefined}
-                                            title={followButtonText}
+                                            title={sanitizeText(followButtonText)}
                                         >
-                                            {followButtonText}
+                                            {sanitizeText(followButtonText)}
                                         </a>
                                     )}
                                     {showSocialProfiles && (

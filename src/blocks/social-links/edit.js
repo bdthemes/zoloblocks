@@ -11,7 +11,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import classnames from 'classnames';
 
-const { DisplayZoloIcon, classArrayToStr, SidebarOpener } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, SidebarOpener, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -51,7 +51,7 @@ export default function Edit(props) {
                         const iconName = profile && profile.text && profile.text.toLowerCase();
                         return (
                             <a
-                                href={profile.link && profile.link.url}
+                                href={profile.link && sanitizeUrl(profile.link.url)}
                                 key={index}
                                 target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                                 rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
@@ -63,7 +63,7 @@ export default function Edit(props) {
                                         <DisplayZoloIcon icon={profile.icon} />
                                     </span>
                                 )}
-                                {socialText !== 'iconOnly' && <span className="zolo-social-text">{profile.text}</span>}
+                                {socialText !== 'iconOnly' && <span className="zolo-social-text">{sanitizeText(profile.text)}</span>}
                             </a>
                         );
                     })}

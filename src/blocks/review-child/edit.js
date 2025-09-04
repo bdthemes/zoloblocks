@@ -16,7 +16,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { StarRating, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup } = window.zoloModule;
+const { StarRating, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -81,11 +81,11 @@ export default function Edit(props) {
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     const reviewerLinkProps = {
-        href: reviewerWebsiteLink && reviewerWebsiteLink.url,
+        href: reviewerWebsiteLink && reviewerWebsiteLink.url && sanitizeUrl(reviewerWebsiteLink.url),
         rel: reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? 'noreferrer noopener' : undefined,
         target: reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? '_blank' : undefined,
         className: 'zolo-name has-link',
-        title: memberName,
+        title: sanitizeText(memberName),
         onClick: (e) => e.preventDefault(),
     };
 

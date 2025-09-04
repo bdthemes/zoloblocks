@@ -1,7 +1,7 @@
 /**
  * Internal depencencies
  */
-const { DisplayZoloIcon, classArrayToStr } = window.zoloModule;
+const { DisplayZoloIcon, classArrayToStr, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import classnames from 'classnames';
 import { socialMediaInfo } from './constants';
@@ -34,8 +34,8 @@ const Save = (props) => {
                             type="button"
                             data-hashtags={tags}
                             data-sharer={brand.value}
-                            data-url={brand.link && brand.link.url}
-                            data-title={brand.label}
+                            data-url={brand.link && sanitizeUrl(brand.link.url)}
+                            data-title={sanitizeText(brand.label)}
                             className={`zolo-social-item zolo-${socialName} ${socialColor} ${brand.value}`}
                         >
                             {socialText !== 'none' && (
@@ -43,7 +43,7 @@ const Save = (props) => {
                                     <DisplayZoloIcon icon={brand.icon} />
                                 </span>
                             )}
-                            {socialText !== 'iconOnly' && <span className="zolo-social-text">{socialLabel}</span>}
+                            {socialText !== 'iconOnly' && <span className="zolo-social-text">{sanitizeText(socialLabel)}</span>}
                         </div>
                     );
                 })}

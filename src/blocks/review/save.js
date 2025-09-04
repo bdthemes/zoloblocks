@@ -1,6 +1,6 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeUrl, sanitizeText } = window.zoloModule;
 
 const Save = ({ attributes }) => {
     const {
@@ -106,11 +106,11 @@ const Save = ({ attributes }) => {
                             {showName &&
                                 (showQuoteIcon ? (
                                     <a
-                                        href={reviewerWebsiteLink && reviewerWebsiteLink.url}
+                                        href={reviewerWebsiteLink && reviewerWebsiteLink.url && sanitizeUrl(reviewerWebsiteLink.url)}
                                         rel={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? 'noreferer noopener' : undefined}
                                         target={reviewerWebsiteLink && reviewerWebsiteLink.openInNewTab ? '_blank' : undefined}
                                         className="zolo-name has-link"
-                                        title={memberName}
+                                        title={sanitizeText(memberName)}
                                     >
                                         <RichText.Content value={memberName} />
                                     </a>

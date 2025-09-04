@@ -1,6 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
 import attributes from './attributes';
+import deprecated from './deprecated';
 import Edit from './edit';
 import Save from './save';
 import Context from './context';
@@ -21,4 +22,5 @@ registerBlockType(metadata, {
     usesContext: Context,
     edit: Edit,
     save: Save,
+    deprecated,
 });
