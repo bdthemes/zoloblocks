@@ -1,6 +1,8 @@
 import { render, useRef, useEffect } from '@wordpress/element';
 import CountUp from 'react-countup';
 import { __ } from '@wordpress/i18n';
+import { sanitizeText } from '../../../src/helpers/helper';
+
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
     const progress = document.querySelectorAll('.wp-block-zolo-progress-pie');
@@ -42,15 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     return () => clearTimeout();
                 }, [value]);
 
-
                 return (
                     <CountUp
                         start={0}
                         end={value || 50}
                         delay={0}
                         duration={duration || 3}
-                        prefix={toggleSuffixPrefix && prefix !== '' ? `<span class="progress-prefix">${prefix}</span>` : ''}
-                        suffix={toggleSuffixPrefix && suffix !== '' ? `<span class="progress-suffix">${suffix}</span>` : ''}
+                        prefix={toggleSuffixPrefix && prefix !== '' ? `<span class="progress-prefix">${sanitizeText(prefix)}</span>` : ''}
+                        suffix={toggleSuffixPrefix && suffix !== '' ? `<span class="progress-suffix">${sanitizeText(suffix)}</span>` : ''}
                     >
                         {({ countUpRef }) => (
                             <>
@@ -131,13 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //     />
             // );
             render(
-                <CountupComponent
-                    value={value}
-                    duration={duration}
-                    fillColor={fillColor}
-                    toggleLabel={toggleLabel}
-                    title={title}
-                />,
+                <CountupComponent value={value} duration={duration} fillColor={fillColor} toggleLabel={toggleLabel} title={title} />,
                 item
             );
         });

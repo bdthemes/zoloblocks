@@ -1,6 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon, DynamicTag, sanitizeAttr } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag, sanitizeHtml } = window.zoloModule;
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -55,7 +55,7 @@ const Save = (props) => {
                                 {...(showLightbox &&
                                     showThumbCaption &&
                                     image.caption && {
-                                        'data-caption': `<div class="zolo-lightbox-content"><h3 class="zolo-lightbox-caption">${sanitizeAttr(image.caption)}</h3></div>`,
+                                        'data-caption': `<div class="zolo-lightbox-content"><h3 class="zolo-lightbox-caption">${sanitizeHtml(image.caption)}</h3></div>`,
                                     })}
                                 {...(showLightbox &&
                                     showLightboxThumb && {
@@ -77,7 +77,9 @@ const Save = (props) => {
                                         </span>
                                     </div>
                                 )}
-                                {showCaption && preset !== 'style-2' && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                {showCaption && preset !== 'style-2' && image.caption && (
+                                    <div className="zolo-title">{sanitizeHtml(image.caption)}</div>
+                                )}
 
                                 {preset === 'style-2' && (
                                     <div className="zolo-inner-item">
@@ -85,7 +87,9 @@ const Save = (props) => {
                                             {showTitle && (
                                                 <h4 className="zolo-subTitle">{image?.alt || __('No Alt Text', 'zoloblocks')}</h4>
                                             )}
-                                            {showCaption && image.caption && <div className="zolo-title">{image.caption}</div>}
+                                            {showCaption && image.caption && (
+                                                <div className="zolo-title">{sanitizeHtml(image.caption)}</div>
+                                            )}
                                         </div>
                                         {showLightbox && (
                                             <div className="zolo-icon-wrap">
