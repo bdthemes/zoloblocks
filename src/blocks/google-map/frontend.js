@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import apiFetch from '@wordpress/api-fetch';
 import ZoloMarker from './marker';
+import { escapeHTML } from '../../../src/helpers/helper';
 
 const GoogleMapFrontend = (props) => {
     const {
@@ -49,7 +50,7 @@ const GoogleMapFrontend = (props) => {
                     <ZoloMarker
                         position={position}
                         info={
-                            infoWindow ||
+                            escapeHTML(infoWindow) ||
                             '<a href="https://bdthemes.com"><b>BdThemes</b></a> is the sole owner of market-leading addons for #1 Elementor such as Element Pack Pro, Prime Slider, Ultimate Post Kit, Ultimate Store Kit, Pixel Gallery, and more useful plugins.'
                         }
                     />
