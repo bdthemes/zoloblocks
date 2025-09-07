@@ -19,7 +19,7 @@ const ZoloMarker = ({ position, info }) => {
             <Marker position={position} onClick={handleMarkerClick} />
             {open && (
                 <InfoWindow position={position} onCloseClick={handleInfoWindowClose}>
-                    <RawHTML className="zolo-gmap-marker-info">{sanitizeHtml(info)}</RawHTML>
+                    <RawHTML className="zolo-gmap-marker-info" dangerouslySetInnerHTML={{ __html: sanitizeHtml(info) }}></RawHTML>
                 </InfoWindow>
             )}
         </div>
