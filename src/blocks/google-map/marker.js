@@ -1,7 +1,7 @@
 import { InfoWindow, Marker } from '@vis.gl/react-google-maps';
 import { RawHTML, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { sanitizeHtml } from '../../helpers/helper';
+import { escapeHTML } from '../../helpers/helper';
 
 const ZoloMarker = ({ position, info }) => {
     const [open, setOpen] = useState(false);
@@ -19,7 +19,7 @@ const ZoloMarker = ({ position, info }) => {
             <Marker position={position} onClick={handleMarkerClick} />
             {open && (
                 <InfoWindow position={position} onCloseClick={handleInfoWindowClose}>
-                    <RawHTML className="zolo-gmap-marker-info" dangerouslySetInnerHTML={{ __html: sanitizeHtml(info) }}></RawHTML>
+                    <RawHTML className="zolo-gmap-marker-info" dangerouslySetInnerHTML={{ __html: escapeHTML(info) }}></RawHTML>
                 </InfoWindow>
             )}
         </div>

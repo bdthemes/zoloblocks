@@ -2,6 +2,7 @@ import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { __ } from '@wordpress/i18n';
 // marker
 import ZoloMarker from './marker';
+import { escapeHTML } from '../../../src/helpers/helper';
 const { zoloSettings } = window;
 
 function GoogleMap({ attributes }) {
@@ -64,7 +65,7 @@ function GoogleMap({ attributes }) {
                             <ZoloMarker
                                 position={position}
                                 info={
-                                    infoWindow ||
+                                    escapeHTML(infoWindow) ||
                                     '<a href="https://bdthemes.com"><b>BdThemes</b></a> is the sole owner of market-leading addons for #1 Elementor such as Element Pack Pro, Prime Slider, Ultimate Post Kit, Ultimate Store Kit, Pixel Gallery, and more useful plugins.'
                                 }
                             />
