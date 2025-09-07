@@ -1,7 +1,8 @@
 import { render, useRef, useEffect } from '@wordpress/element';
 import CountUp from 'react-countup';
 import { __ } from '@wordpress/i18n';
-import { sanitizeText } from '../../../src/helpers/helper';
+import { escapeHTML } from '../../../src/helpers/helper';
+
 
 // render on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         end={value || 50}
                         delay={0}
                         duration={duration || 3}
-                        prefix={toggleSuffixPrefix && prefix !== '' ? `<span class="progress-prefix">${sanitizeText(prefix)}</span>` : ''}
-                        suffix={toggleSuffixPrefix && suffix !== '' ? `<span class="progress-suffix">${sanitizeText(suffix)}</span>` : ''}
+                        prefix={toggleSuffixPrefix && prefix !== '' ? `<span class="progress-prefix">${escapeHTML(prefix)}</span>` : ''}
+                        suffix={toggleSuffixPrefix && suffix !== '' ? `<span class="progress-suffix">${escapeHTML(suffix)}</span>` : ''}
                     >
                         {({ countUpRef }) => (
                             <>

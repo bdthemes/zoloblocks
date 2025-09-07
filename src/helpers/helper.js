@@ -513,3 +513,88 @@ export function sanitizeHtml(raw) {
 
   return html;
 }
+
+/**
+ * Safely insert HTML content into DOM element using DOMParser
+ * This prevents XSS by parsing and sanitizing the content
+ * @param {Element} element - Target DOM element
+ * @param {string} htmlContent - HTML content to insert
+ * @param {string} method - Insert method ('replace', 'append', 'prepend')
+ */
+export function safeInsertHTML(element, htmlContent, method = 'replace') {
+    if (!element || typeof htmlContent !== 'string') {
+        return;
+    }
+
+    // Create a document fragment to safely parse HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, 'text/html');
+
+    // Remove any script tags and event handlers
+    const scripts = doc.querySelectorAll('script');
+    scripts.forEach(script => script.remove());
+
+    // Remove event handler attributes
+    const allElements = doc.querySelectorAll('*');
+    allElements.forEach(el => {
+        const attributes = [...el.attributes];
+        attributes.forEach(attr => {
+            if (attr.name.startsWith('on') || attr.name === 'javascript:') {
+                el.removeAttribute(attr.name);
+            }
+        });
+    });
+
+    // Extract the body content
+    const fragment = document.createDocumentFragment();
+    while (doc.body.firstChild) {
+        fragment.appendChild(doc.body.firstChild);
+    }
+
+    // Insert based on method
+    switch (method) {
+        case 'replace':
+            element.innerHTML = '';
+            element.appendChild(fragment);
+            break;
+        case 'append':
+            element.appendChild(fragment);
+            break;
+        case 'prepend':
+            element.insertBefore(fragment, element.firstChild);
+            break;
+    }
+}
+
+/**
+ * Create a safe text node
+ * @param {string} text - Text content
+ * @returns {Text} - Text node
+ */
+export function createSafeTextNode(text) {
+    return document.createTextNode(text || '');
+}
+
+/**
+ * Safely set element content as text (prevents HTML injection)
+ * @param {Element} element - Target element
+ * @param {string} content - Content to set
+ */
+export function setSafeTextContent(element, content) {
+    if (element && typeof content === 'string') {
+        element.textContent = content;
+    }
+}
+
+/**
+ * Escape HTML to prevent XSS
+ */
+export function escapeHTML(str) {
+  if (typeof str !== "string") return "";
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
