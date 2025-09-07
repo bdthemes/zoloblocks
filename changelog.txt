@@ -1,3 +1,8 @@
+### 2.3.8 [September 07, 2025]
+
+**Security:**
+* Fixed security vulnerabilities in Google Map and Progress Pie blocks to enhance data protection and user safety.
+
 ### 2.3.7 [September 04, 2025]
 
 **Bug Fixes:**
