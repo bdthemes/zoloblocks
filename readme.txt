@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.3.7
+Stable tag: 2.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -607,6 +607,11 @@ Not at all. We have optimized all of these blocks for better performance.
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.3.8 [September 07, 2025]
+
+**Security:**
+* Fixed security vulnerabilities in Google Map and Progress Pie blocks to enhance data protection and user safety.
 
 ### 2.3.7 [September 04, 2025]
 
