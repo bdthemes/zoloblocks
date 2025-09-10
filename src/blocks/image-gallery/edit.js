@@ -9,7 +9,8 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon, SidebarOpener, ZoloToolbarGroup, ZoloToolbarButton, sanitizeHtml } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener, ZoloToolbarGroup, ZoloToolbarButton, sanitizeUrl, sanitizeHtml } =
+    window.zoloModule;
 
 // import style
 import Style from './style';
@@ -29,7 +30,7 @@ export default function Edit(props) {
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
 
     const lightboxButtonProps = {
-        href: '#',
+        href: sanitizeUrl('#'),
         className: 'zolo-icon-wrap',
         onClick: (e) => e.preventDefault(),
     };
@@ -101,7 +102,12 @@ export default function Edit(props) {
                                                 {showTitle && (
                                                     <h4 className="zolo-subTitle">{image?.alt || __('No Alt Text', 'zoloblocks')}</h4>
                                                 )}
-                                                {showCaption && image.caption && <div className="zolo-title" dangerouslySetInnerHTML={{ __html: sanitizeHtml(image.caption) }}></div>}
+                                                {showCaption && image.caption && (
+                                                    <div
+                                                        className="zolo-title"
+                                                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(image.caption) }}
+                                                    ></div>
+                                                )}
                                             </div>
                                             {showLightbox && (
                                                 <a {...lightboxButtonProps}>
