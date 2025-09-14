@@ -3,7 +3,7 @@
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://zoloblocks.com/
- * Version: 2.3.8
+ * Version: 2.3.9
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zoloblocks
@@ -66,7 +66,7 @@ final class ZoloBlocks {
         define('ZOLO_DIR', __DIR__);
         define('ZOLO_NAMESPACE', 'zoloblocks');
         define('ZOLO_SLUG', 'zoloblocks');
-        define('ZOLO_VERSION', '2.3.8');
+        define('ZOLO_VERSION', '2.3.9');
         define('ZOLO_DIR_PATH', plugin_dir_path(__FILE__));
         define('ZOLO_ADMIN_URL', plugin_dir_url(__FILE__));
         define('ZOLO_WP_VERSION', (float) get_bloginfo('version'));
