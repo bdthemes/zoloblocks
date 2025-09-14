@@ -1,3 +1,8 @@
+### 2.3.9 [September 14, 2025]
+
+**Security:**
+* Fixed security vulnerabilities in Image Gallery block to enhance data protection and user safety.
+
 ### 2.3.8 [September 07, 2025]
 
 **Security:**
