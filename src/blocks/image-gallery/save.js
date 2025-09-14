@@ -1,6 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-const { classArrayToStr, DisplayZoloIcon, DynamicTag, sanitizeHtml } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, DynamicTag, sanitizeUrl, sanitizeHtml } = window.zoloModule;
 import classnames from 'classnames';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -49,7 +49,7 @@ const Save = (props) => {
                                 className="zolo-item"
                                 key={index}
                                 {...(showLightbox && {
-                                    href: image.url,
+                                    href: sanitizeUrl(image.url),
                                     'data-fslightbox': `gallery-${uniqueId}`,
                                 })}
                                 {...(showLightbox &&
