@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.3.10
+Stable tag: 2.3.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -608,15 +608,20 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+### 2.3.11 [September 28, 2025]
+
+**Maintenance Release:**
+This version addresses a previously unresolved security vulnerability in the Image Gallery block, ensuring enhanced data protection and user safety.
+
 ### 2.3.10 [September 24, 2025]
 
-**Security:**
-* Fixed security vulnerabilities in Image Gallery block to enhance data protection and user safety.
+**Security Patch:**
+A security vulnerability was identified and resolved in the Image Gallery block, further enhancing data protection and user safety.
 
 ### 2.3.9 [September 14, 2025]
 
-**Bug Fixes:**
-* Minor bug fixes and improvements.
+**Stability Release:**
+This version includes minor bug fixes and improvements to maintain optimal performance and reliability.
 
 ### 2.3.8 [September 07, 2025]
 
