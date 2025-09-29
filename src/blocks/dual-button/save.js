@@ -12,6 +12,8 @@ const Save = (props) => {
         buttonTwoText,
         buttonOneIcon,
         buttonTwoIcon,
+        buttonOneIconAdd,
+        buttonTwoIconAdd,
         buttonOneLink,
         buttonTwoLink,
     } = attributes;
@@ -24,27 +26,27 @@ const Save = (props) => {
         <div {...blockProps}>
             <div className="zolo-btn-group">
                 <a
-                    className="zolo-btn"
+                    className="zolo-btn zolo-btn-first"
                     href={buttonOneLink?.url ? buttonOneLink?.url : ''}
                     rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                     target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
                 >
                     <span className="zolo-btn-label">{buttonOneText}</span>
-                    {buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
+                    {buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
                 </a>
                 {middleText && (
                     <div className="zolo-btn-separator">
-                        <span>Or</span>
+                        <span className="zolo-btn-separator-text">Or</span>
                     </div>
                 )}
                 <a
-                    className="zolo-btn"
+                    className="zolo-btn zolo-btn-second"
                     href={buttonTwoLink?.url ? buttonTwoLink?.url : ''}
                     rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                     target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
                 >
                     <span className="zolo-btn-label">{buttonTwoText}</span>
-                    {buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
+                    {buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
                 </a>
             </div>
         </div>

@@ -24,6 +24,8 @@ export default function Edit(props) {
         buttonTwoText,
         buttonOneIcon,
         buttonTwoIcon,
+        buttonOneIconAdd,
+        buttonTwoIconAdd,
         buttonOneLink,
         buttonTwoLink,
     } = attributes;
@@ -38,31 +40,29 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <div className="zolo-btn-group">
-                    <button className="zolo-btn zolo-facebook">
-                        <a
-                            href={buttonOneLink?.url ? buttonOneLink?.url : ''}
-                            rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
-                            target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
-                        >
-                            <span className="zolo-btn-label">{buttonOneText}</span>
-                            <DisplayZoloIcon icon={buttonOneIcon} />
-                        </a>
-                    </button>
+                    <a
+                        className="zolo-btn zolo-btn-first"
+                        href={buttonOneLink?.url ? buttonOneLink?.url : ''}
+                        rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                        target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
+                    >
+                        <span className="zolo-btn-label">{buttonOneText}</span>
+                        {buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
+                    </a>
                     {middleText && (
                         <div className="zolo-btn-separator">
-                            <span>Or</span>
+                            <span className="zolo-btn-separator-text">Or</span>
                         </div>
                     )}
-                    <button className="zolo-btn zolo-tiktok">
-                        <a
-                            href={buttonTwoLink?.url ? buttonTwoLink?.url : ''}
-                            rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
-                            target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
-                        >
-                            <span className="zolo-btn-label">{buttonTwoText}</span>
-                            <DisplayZoloIcon icon={buttonTwoIcon} />
-                        </a>
-                    </button>
+                    <a
+                        className="zolo-btn zolo-btn-second"
+                        href={buttonTwoLink?.url ? buttonTwoLink?.url : ''}
+                        rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                        target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
+                    >
+                        <span className="zolo-btn-label">{buttonTwoText}</span>
+                        {buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
+                    </a>
                 </div>
             </div>
         </>

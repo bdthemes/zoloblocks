@@ -140,19 +140,22 @@ function Inspector(props) {
                             />
 
                             {buttonOneIconAdd && (
-                                <ZoloIconPicker
-                                    label={__('Icon', 'zoloblocks')}
-                                    value={buttonOneIcon}
-                                    onChange={(value) => setAttributes({ buttonOneIcon: value })}
-                                />
+                                <>
+                                    <ZoloIconPicker
+                                        label={__('Icon', 'zoloblocks')}
+                                        value={buttonOneIcon}
+                                        onChange={(value) => setAttributes({ buttonOneIcon: value })}
+                                    />
+                                    <ZoloSelectControl
+                                        label={__('Icon Position', 'zoloblocks')}
+                                        value={buttonOneIconPosition}
+                                        options={BUTTON_ONE_ICON_POSITIONS}
+                                        onChange={(value) => setAttributes({ buttonOneIconPosition: value })}
+                                    />
+                                </>
                             )}
 
-                            <ZoloSelectControl
-                                label={__('Icon Position', 'zoloblocks')}
-                                value={buttonOneIconPosition}
-                                options={BUTTON_ONE_ICON_POSITIONS}
-                                onChange={(value) => setAttributes({ buttonOneIconPosition: value })}
-                            />
+
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Button Two', 'zoloblocks')} firstOpen={false} panelProps={props}>
@@ -172,18 +175,21 @@ function Inspector(props) {
                                 onChange={() => setAttributes({ buttonTwoIconAdd: !attributes.buttonTwoIconAdd })}
                             />
                             {attributes.buttonTwoIconAdd && (
-                                <ZoloIconPicker
-                                    label={__('Icon', 'zoloblocks')}
-                                    value={attributes.buttonTwoIcon}
-                                    onChange={(value) => setAttributes({ buttonTwoIcon: value })}
-                                />
+                                <>
+                                    <ZoloIconPicker
+                                        label={__('Icon', 'zoloblocks')}
+                                        value={attributes.buttonTwoIcon}
+                                        onChange={(value) => setAttributes({ buttonTwoIcon: value })}
+                                    />
+                                    <ZoloSelectControl
+                                        label={__('Icon Position', 'zoloblocks')}
+                                        value={attributes.buttonTwoIconPosition}
+                                        options={BUTTON_ONE_ICON_POSITIONS}
+                                        onChange={(value) => setAttributes({ buttonTwoIconPosition: value })}
+                                    />
+                                </>
                             )}
-                            <ZoloSelectControl
-                                label={__('Icon Position', 'zoloblocks')}
-                                value={attributes.buttonTwoIconPosition}
-                                options={BUTTON_ONE_ICON_POSITIONS}
-                                onChange={(value) => setAttributes({ buttonTwoIconPosition: value })}
-                            />
+
                         </ZoloPanelBody>
                     </>
                 }

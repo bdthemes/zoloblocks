@@ -46,9 +46,23 @@ import {
     MIDDLE_TEXT_BORDER_RADIUS,
 } from './constants';
 
+import { BUTTON_ONE_TYPO, BUTTON_TWO_TYPO, MIDDLE_TEXT_TYPO } from './constants/typoPrefixConstant';
+
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
     const { uniqueId } = attributes;
+
+
+    const {
+        typoStylesDesktop: btnOneTypoDesktop,
+        typoStylesTab: btnOneTypoTab,
+        typoStylesMobile: btnOneTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: BUTTON_ONE_TYPO,
+        defaultFontSize: '',
+        attributes,
+    });
+
 
     const {
         desktopAlignStyle: buttonDeskAlign,
@@ -70,33 +84,391 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        dimensionStylesDesktop: buttonOneBorderRadiusDesktop,
+        dimensionStylesTab: buttonOneBorderRadiusTab,
+        dimensionStylesMobile: buttonOneBorderRadiusMo,
+    } = generateDimensionStyle({
+        controlName: BUTTON_ONE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: buttonTwoBorderRadiusDesktop,
+        dimensionStylesTab: buttonTwoBorderRadiusTab,
+        dimensionStylesMobile: buttonTwoBorderRadiusMo,
+    } = generateDimensionStyle({
+        controlName: BUTTON_TWO_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: buttonOneMarginDesktop,
+        dimensionStylesTab: buttonOneMarginTab,
+        dimensionStylesMobile: buttonOneMarginMo,
+    } = generateDimensionStyle({
+        controlName: BUTTON_ONE_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: buttonTwoMarginDesktop,
+        dimensionStylesTab: buttonTwoMarginTab,
+        dimensionStylesMobile: buttonTwoMarginMo,
+    } = generateDimensionStyle({
+        controlName: BUTTON_TWO_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: buttonOnePaddingDesktop,
+        dimensionStylesTab: buttonOnePaddingTab,
+        dimensionStylesMobile: buttonOnePaddingMo,
+    } = generateDimensionStyle({
+        controlName: BUTTON_ONE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        boxShadowStyle: buttonOneShadowDesktop,
+        boxShadowStyleTab: buttonOneShadowTab,
+        boxShadowStyleMobile: buttonOneShadowMo,
+    } = generateBoxShadowStyles({
+        controlName: BUTTON_ONE_SHADOW,
+        attributes,
+    });
+    
+    const {
+        boxShadowStyle: buttonTwoShadowDesktop,
+        boxShadowStyleTab: buttonTwoShadowTab,
+        boxShadowStyleMobile: buttonTwoShadowMo,
+    } = generateBoxShadowStyles({
+        controlName: BUTTON_TWO_SHADOW,
+        attributes,
+    });
+    
+    const {
+        desktopAlignStyle: buttonOneAlignDesktop,
+        tabAlignStyle: buttonOneAlignTab,
+        mobAlignStyle: buttonOneAlignMo,
+    } = generateResAlignmentStyle({
+        controlName: BUTTON_ONE_ALIGN,
+        property: 'justify-content',
+        attributes,
+    });
+    
+    const {
+        desktopAlignStyle: buttonTwoAlignDesktop,
+        tabAlignStyle: buttonTwoAlignTab,
+        mobAlignStyle: buttonTwoAlignMo,
+    } = generateResAlignmentStyle({
+        controlName: BUTTON_TWO_ALIGN,
+        property: 'justify-content',
+        attributes,
+    });
+    
+    const {
+        dimensionStylesDesktop: buttonTwoPaddingDesktop,
+        dimensionStylesTab: buttonTwoPaddingTab,
+        dimensionStylesMobile: buttonTwoPaddingMo,
+    } = generateDimensionStyle({
+        controlName: BUTTON_TWO_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    // Button One Background Styles
+    const {
+        backgroundStylesDesktop: buttonOneBGDesktop,
+        backgroundStylesTab: buttonOneBGTab,
+        backgroundStylesMobile: buttonOneBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: BUTTON_ONE_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // Button Two Background Styles
+    const {
+        backgroundStylesDesktop: buttonTwoBGDesktop,
+        backgroundStylesTab: buttonTwoBGTab,
+        backgroundStylesMobile: buttonTwoBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: BUTTON_TWO_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    // Button One Border Styles
+    const {
+        desktopBorderStyle: buttonOneBorderDesktop,
+        tabBorderStyle: buttonOneBorderTab,
+        mobBorderStyle: buttonOneBorderMo,
+    } = generateBorderStyle({
+        controlName: BUTTON_ONE_BORDER,
+        attributes,
+    });
+
+    // Button Two Border Styles
+    const {
+        desktopBorderStyle: buttonTwoBorderDesktop,
+        tabBorderStyle: buttonTwoBorderTab,
+        mobBorderStyle: buttonTwoBorderMo,
+    } = generateBorderStyle({
+        controlName: BUTTON_TWO_BORDER,
+        attributes,
+    });
+
+    // Button One Typography Styles
+    const {
+        typoStylesDesktop: buttonOneTypoDesktop,
+        typoStylesTab: buttonOneTypoTab,
+        typoStylesMobile: buttonOneTypoMo,
+    } = generateTypographyStyles({
+        prefixConstant: 'buttonOneTypo',
+        defaultFontSize: '',
+        attributes,
+    });
+
+    // Button Two Typography Styles
+    const {
+        typoStylesDesktop: buttonTwoTypoDesktop,
+        typoStylesTab: buttonTwoTypoTab,
+        typoStylesMobile: buttonTwoTypoMo,
+    } = generateTypographyStyles({
+        prefixConstant: 'buttonTwoTypo',
+        defaultFontSize: '',
+        attributes,
+    });
+
+    // Middle Text Styles
+    const {
+        backgroundStylesDesktop: middleTextBGDesktop,
+        backgroundStylesTab: middleTextBGTab,
+        backgroundStylesMobile: middleTextBGMob,
+    } = generateNormalBGControlStyles({
+        controlName: MIDDLE_TEXT_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const {
+        dimensionStylesDesktop: middleTextMarginDesktop,
+        dimensionStylesTab: middleTextMarginTab,
+        dimensionStylesMobile: middleTextMarginMo,
+    } = generateDimensionStyle({
+        controlName: MIDDLE_TEXT_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: middleTextPaddingDesktop,
+        dimensionStylesTab: middleTextPaddingTab,
+        dimensionStylesMobile: middleTextPaddingMo,
+    } = generateDimensionStyle({
+        controlName: MIDDLE_TEXT_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        boxShadowStyle: middleTextShadowDesktop,
+        boxShadowStyleTab: middleTextShadowTab,
+        boxShadowStyleMobile: middleTextShadowMo,
+    } = generateBoxShadowStyles({
+        controlName: MIDDLE_TEXT_SHADOW,
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: middleTextBorderDesktop,
+        tabBorderStyle: middleTextBorderTab,
+        mobBorderStyle: middleTextBorderMo,
+    } = generateBorderStyle({
+        controlName: MIDDLE_TEXT_BORDER,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: middleTextBorderRadiusDesktop,
+        dimensionStylesTab: middleTextBorderRadiusTab,
+        dimensionStylesMobile: middleTextBorderRadiusMo,
+    } = generateDimensionStyle({
+        controlName: MIDDLE_TEXT_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: middleTextTypoDesktop,
+        typoStylesTab: middleTextTypoTab,
+        typoStylesMobile: middleTextTypoMo,
+    } = generateTypographyStyles({
+        prefixConstant: 'middleTextTypo',
+        defaultFontSize: '',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .zolo-btn-group {
+        .wp-block-zolo-dual-button.${uniqueId} {
             ${buttonDeskAlign}
         }
-        .${uniqueId} .zolo-btn {
+        
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-group {
+            ${buttonDeskAlign}
             ${buttonWidthDesktop}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first {
+            ${buttonOneBGDesktop}
+            ${buttonOneBorderDesktop}
+            ${buttonOneBorderRadiusDesktop}
+            ${buttonOneMarginDesktop}
+            ${buttonOnePaddingDesktop}
+            ${buttonOneShadowDesktop}
+            ${buttonOneAlignDesktop}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo-btn-label {
+            ${buttonOneTypoDesktop}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second {
+            ${buttonTwoBGDesktop}
+            ${buttonTwoBorderDesktop}
+            ${buttonTwoBorderRadiusDesktop}
+            ${buttonTwoMarginDesktop}
+            ${buttonTwoPaddingDesktop}
+            ${buttonTwoShadowDesktop}
+            ${buttonTwoAlignDesktop}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo-btn-label {
+            ${buttonTwoTypoDesktop}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator {
+            ${middleTextBGDesktop}
+            ${middleTextMarginDesktop}
+            ${middleTextPaddingDesktop}
+            ${middleTextShadowDesktop}
+            ${middleTextBorderDesktop}
+            ${middleTextBorderRadiusDesktop}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator .zolo-btn-separator-text {
+            ${middleTextTypoDesktop}
         }
     `;
 
     const tabletAllStyle = `
-        .${uniqueId} .zolo-btn-group { 
+        .wp-block-zolo-dual-button.${uniqueId} {
             ${buttonTabAlign}
         }
-        .${uniqueId} .zolo-btn {
+        
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-group { 
             ${buttonWidthTab}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first {
+            ${buttonOneBGTab}
+            ${buttonOneBorderTab}
+            ${buttonOneBorderRadiusTab}
+            ${buttonOneMarginTab}
+            ${buttonOnePaddingTab}
+            ${buttonOneShadowTab}
+            ${buttonOneAlignTab}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo-btn-label {
+            ${buttonOneTypoTab}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second {
+            ${buttonTwoBGTab}
+            ${buttonTwoBorderTab}
+            ${buttonTwoBorderRadiusTab}
+            ${buttonTwoMarginTab}
+            ${buttonTwoPaddingTab}
+            ${buttonTwoShadowTab}
+            ${buttonTwoAlignTab}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo-btn-label {
+            ${buttonTwoTypoTab}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator {
+            ${middleTextBGTab}
+            ${middleTextMarginTab}
+            ${middleTextPaddingTab}
+            ${middleTextShadowTab}
+            ${middleTextBorderTab}
+            ${middleTextBorderRadiusTab}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator .zolo-btn-separator-text {
+            ${middleTextTypoTab}
         }
     `;
 
     const mobileAllStyle = `
-        .${uniqueId} .zolo-btn-group {
+        .wp-block-zolo-dual-button.${uniqueId} {
             ${buttonMobAlign}
         }
-        .${uniqueId} .zolo-btn {
+        
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-group {
             ${buttonWidthMo}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first {
+            ${buttonOneBGMob}
+            ${buttonOneBorderMo}
+            ${buttonOneBorderRadiusMo}
+            ${buttonOneMarginMo}
+            ${buttonOnePaddingMo}
+            ${buttonOneShadowMo}
+            ${buttonOneAlignMo}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo-btn-label {
+            ${buttonOneTypoMo}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second {
+            ${buttonTwoBGMob}
+            ${buttonTwoBorderMo}
+            ${buttonTwoBorderRadiusMo}
+            ${buttonTwoMarginMo}
+            ${buttonTwoPaddingMo}
+            ${buttonTwoShadowMo}
+            ${buttonTwoAlignMo}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo-btn-label {
+            ${buttonTwoTypoMo}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator {
+            ${middleTextBGMob}
+            ${middleTextMarginMo}
+            ${middleTextPaddingMo}
+            ${middleTextShadowMo}
+            ${middleTextBorderMo}
+            ${middleTextBorderRadiusMo}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator .zolo-btn-separator-text {
+            ${middleTextTypoMo}
         }
     `;
 
@@ -105,9 +477,9 @@ const Style = ({ props }) => {
             <GlobalStyleHanlder
                 attributes={attributes}
                 setAttributes={setAttributes}
-                desktopAllStyle={applyFilters('zolo.counter.desktopAllStyle', desktopAllStyle, props)}
-                tabAllStyle={applyFilters('zolo.counter.tabletAllStyle', tabletAllStyle, props)}
-                mobileAllStyle={applyFilters('zolo.counter.mobileAllStyle', mobileAllStyle, props)}
+                desktopAllStyle={applyFilters('zolo.dualButton.desktopAllStyle', desktopAllStyle, props)}
+                tabAllStyle={applyFilters('zolo.dualButton.tabletAllStyle', tabletAllStyle, props)}
+                mobileAllStyle={applyFilters('zolo.dualButton.mobileAllStyle', mobileAllStyle, props)}
             />
         </>
     );
