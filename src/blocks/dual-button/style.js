@@ -50,19 +50,7 @@ import { BUTTON_ONE_TYPO, BUTTON_TWO_TYPO, MIDDLE_TEXT_TYPO } from './constants/
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId } = attributes;
-
-
-    const {
-        typoStylesDesktop: btnOneTypoDesktop,
-        typoStylesTab: btnOneTypoTab,
-        typoStylesMobile: btnOneTypoMob,
-    } = generateTypographyStyles({
-        prefixConstant: BUTTON_ONE_TYPO,
-        defaultFontSize: '',
-        attributes,
-    });
-
+    const { uniqueId, buttonOneColor, buttonTwoColor, middleTextColor } = attributes;
 
     const {
         desktopAlignStyle: buttonDeskAlign,
@@ -142,7 +130,7 @@ const Style = ({ props }) => {
         controlName: BUTTON_ONE_SHADOW,
         attributes,
     });
-    
+
     const {
         boxShadowStyle: buttonTwoShadowDesktop,
         boxShadowStyleTab: buttonTwoShadowTab,
@@ -151,7 +139,7 @@ const Style = ({ props }) => {
         controlName: BUTTON_TWO_SHADOW,
         attributes,
     });
-    
+
     const {
         desktopAlignStyle: buttonOneAlignDesktop,
         tabAlignStyle: buttonOneAlignTab,
@@ -161,7 +149,7 @@ const Style = ({ props }) => {
         property: 'justify-content',
         attributes,
     });
-    
+
     const {
         desktopAlignStyle: buttonTwoAlignDesktop,
         tabAlignStyle: buttonTwoAlignTab,
@@ -171,7 +159,7 @@ const Style = ({ props }) => {
         property: 'justify-content',
         attributes,
     });
-    
+
     const {
         dimensionStylesDesktop: buttonTwoPaddingDesktop,
         dimensionStylesTab: buttonTwoPaddingTab,
@@ -230,7 +218,7 @@ const Style = ({ props }) => {
         typoStylesTab: buttonOneTypoTab,
         typoStylesMobile: buttonOneTypoMo,
     } = generateTypographyStyles({
-        prefixConstant: 'buttonOneTypo',
+        prefixConstant: BUTTON_ONE_TYPO,
         defaultFontSize: '',
         attributes,
     });
@@ -241,7 +229,7 @@ const Style = ({ props }) => {
         typoStylesTab: buttonTwoTypoTab,
         typoStylesMobile: buttonTwoTypoMo,
     } = generateTypographyStyles({
-        prefixConstant: 'buttonTwoTypo',
+        prefixConstant: BUTTON_TWO_TYPO,
         defaultFontSize: '',
         attributes,
     });
@@ -368,6 +356,20 @@ const Style = ({ props }) => {
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator .zolo-btn-separator-text {
             ${middleTextTypoDesktop}
         }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator span{
+            color: ${middleTextColor ? middleTextColor : ''};
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first span{
+            color: ${buttonOneColor ? buttonOneColor : ''};
+            ${buttonOneTypoDesktop}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second span{
+            color: ${buttonTwoColor ? buttonTwoColor : ''};
+            ${buttonTwoTypoDesktop}
+        }
     `;
 
     const tabletAllStyle = `
@@ -419,6 +421,21 @@ const Style = ({ props }) => {
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator .zolo-btn-separator-text {
             ${middleTextTypoTab}
         }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first span{
+            color: ${buttonOneColor ? buttonOneColor : ''};
+            ${buttonOneTypoTab}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator span{
+            color: ${middleTextColor ? middleTextColor : ''};
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second span{
+            color: ${buttonTwoColor ? buttonTwoColor : ''};
+            ${buttonTwoTypoTab}
+        }
+
     `;
 
     const mobileAllStyle = `
@@ -469,6 +486,20 @@ const Style = ({ props }) => {
 
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator .zolo-btn-separator-text {
             ${middleTextTypoMo}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first span{
+            color: ${buttonOneColor ? buttonOneColor : ''};
+            ${buttonOneTypoMo}
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-separator span{
+            color: ${middleTextColor ? middleTextColor : ''};
+        }
+
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second span{
+            color: ${buttonTwoColor ? buttonTwoColor : ''};
+            ${buttonTwoTypoMo}
         }
     `;
 
