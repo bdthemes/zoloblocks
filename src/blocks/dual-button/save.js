@@ -24,8 +24,8 @@ const Save = (props) => {
         <div {...blockProps}>
             <div className="zolo-btn-group">
                 <a
-                    className="zolo-btn zolo-facebook"
-                    href={buttonOneLink?.url ? buttonOneLink?.url : '#'}
+                    className="zolo-btn"
+                    href={buttonOneLink?.url ? buttonOneLink?.url : ''}
                     rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                     target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
                 >
@@ -38,8 +38,8 @@ const Save = (props) => {
                     </div>
                 )}
                 <a
-                    className="zolo-btn zolo-tiktok"
-                    href={buttonTwoLink?.url ? buttonTwoLink?.url : '#'}
+                    className="zolo-btn"
+                    href={buttonTwoLink?.url ? buttonTwoLink?.url : ''}
                     rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                     target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
                 >
