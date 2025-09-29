@@ -123,7 +123,7 @@ function Inspector(props) {
 
                         <ZoloPanelBody title={__('Button One', 'zoloblocks')} firstOpen={false} panelProps={props}>
                             <ZoloTextControl
-                                label={__('Button One Text', 'zoloblocks')}
+                                label={__('Text', 'zoloblocks')}
                                 value={buttonOneText}
                                 onChange={(value) => setAttributes({ buttonOneText: value })}
                             />
@@ -157,7 +157,7 @@ function Inspector(props) {
 
                         <ZoloPanelBody title={__('Button Two', 'zoloblocks')} firstOpen={false} panelProps={props}>
                             <ZoloTextControl
-                                label={__('Button Two Text', 'zoloblocks')}
+                                label={__('Text', 'zoloblocks')}
                                 value={buttonTwoText}
                                 onChange={(value) => setAttributes({ buttonTwoText: value })}
                             />

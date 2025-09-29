@@ -1,10 +1,20 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = (props) => {
     const { attributes } = props;
-    const { uniqueId, parentClasses } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        middleText,
+        buttonOneText,
+        buttonTwoText,
+        buttonOneIcon,
+        buttonTwoIcon,
+        buttonOneLink,
+        buttonTwoLink,
+    } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -12,17 +22,30 @@ const Save = (props) => {
 
     return (
         <div {...blockProps}>
-            <div className="zb-btn-group">
-                <button className="zb-btn zb-facebook">
-                    <span className="zb-btn-label">Facebook</span>
-                    <span className="zb-btn-count">5</span>
-                </button>
-                <div className="zb-btn-separator">
-                    <span>Or</span>
-                </div>
-                <button className="zb-btn zb-tiktok">
-                    <span className="zb-btn-label">Tiktok</span>
-                </button>
+            <div className="zolo-btn-group">
+                <a
+                    className="zolo-btn zolo-facebook"
+                    href={buttonOneLink?.url ? buttonOneLink?.url : '#'}
+                    rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                    target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
+                >
+                    <span className="zolo-btn-label">{buttonOneText}</span>
+                    {buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
+                </a>
+                {middleText && (
+                    <div className="zolo-btn-separator">
+                        <span>Or</span>
+                    </div>
+                )}
+                <a
+                    className="zolo-btn zolo-tiktok"
+                    href={buttonTwoLink?.url ? buttonTwoLink?.url : '#'}
+                    rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                    target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
+                >
+                    <span className="zolo-btn-label">{buttonTwoText}</span>
+                    {buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
+                </a>
             </div>
         </div>
     );

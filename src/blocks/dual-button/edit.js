@@ -7,7 +7,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -16,7 +16,17 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { uniqueId, parentClasses } = attributes;
+    const {
+        uniqueId,
+        parentClasses,
+        middleText,
+        buttonOneText,
+        buttonTwoText,
+        buttonOneIcon,
+        buttonTwoIcon,
+        buttonOneLink,
+        buttonTwoLink,
+    } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -27,16 +37,31 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className="zb-btn-group">
-                    <button className="zb-btn zb-facebook">
-                        <span className="zb-btn-label">Facebook</span>
-                        <span className="zb-btn-count">5</span>
+                <div className="zolo-btn-group">
+                    <button className="zolo-btn zolo-facebook">
+                        <a
+                            href={buttonOneLink?.url ? buttonOneLink?.url : ''}
+                            rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                            target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
+                        >
+                            <span className="zolo-btn-label">{buttonOneText}</span>
+                            <DisplayZoloIcon icon={buttonOneIcon} />
+                        </a>
                     </button>
-                    <div className="zb-btn-separator">
-                        <span>Or</span>
-                    </div>
-                    <button className="zb-btn zb-tiktok">
-                        <span className="zb-btn-label">Tiktok</span>
+                    {middleText && (
+                        <div className="zolo-btn-separator">
+                            <span>Or</span>
+                        </div>
+                    )}
+                    <button className="zolo-btn zolo-tiktok">
+                        <a
+                            href={buttonTwoLink?.url ? buttonTwoLink?.url : ''}
+                            rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
+                            target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
+                        >
+                            <span className="zolo-btn-label">{buttonTwoText}</span>
+                            <DisplayZoloIcon icon={buttonTwoIcon} />
+                        </a>
                     </button>
                 </div>
             </div>
