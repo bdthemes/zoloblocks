@@ -66,15 +66,15 @@ const attributes = {
     },
     buttonOneText: {
         type: 'string',
-        default: 'Zoloblocks',
+        default: 'Button One',
     },
     buttonTwoText: {
         type: 'string',
-        default: 'Element Pack',
+        default: 'Button Two',
     },
     middleText: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     buttonOneLink: {
         type: 'object',
@@ -128,7 +128,9 @@ const attributes = {
     },
 
     ...generateResAlignmentAttributies(BUTTON_ALIGNMENT),
-    ...generateResRangeAttributies(BUTTON_WIDTH),
+    ...generateResRangeAttributies(BUTTON_WIDTH, {
+        defaultUnit: '%',
+    }),
     ...generateNormalBGAttributes(BUTTON_ONE_BG),
     ...generateBorderAttributies(BUTTON_ONE_BORDER),
     ...generateDimensionAttributes(BUTTON_ONE_BORDER_RADIUS),
