@@ -5,10 +5,7 @@ const {
     generateDimensionAttributes,
     generateTypographyAttributes,
     generateBoxShadowAttributies,
-    generateTextShadowAttributies,
-    generateTextStrokeAttributies,
     generateNormalBGAttributes,
-    generateMaskAttributes,
 } = window.zoloModule;
 
 import {
@@ -21,6 +18,9 @@ import {
     BUTTON_ONE_PADDING,
     BUTTON_ONE_SHADOW,
     BUTTON_ONE_ALIGN,
+    BUTTON_ONE_BG_HOVER,
+    BUTTON_ONE_BORDER_HOVER,
+    BUTTON_ONE_SHADOW_HOVER,
     BUTTON_TWO_BG,
     BUTTON_TWO_BORDER,
     BUTTON_TWO_BORDER_RADIUS,
@@ -28,12 +28,18 @@ import {
     BUTTON_TWO_PADDING,
     BUTTON_TWO_SHADOW,
     BUTTON_TWO_ALIGN,
+    BUTTON_TWO_BG_HOVER,
+    BUTTON_TWO_BORDER_HOVER,
+    BUTTON_TWO_SHADOW_HOVER,
     MIDDLE_TEXT_BG,
     MIDDLE_TEXT_MARGIN,
     MIDDLE_TEXT_PADDING,
     MIDDLE_TEXT_BORDER,
     MIDDLE_TEXT_SHADOW,
     MIDDLE_TEXT_BORDER_RADIUS,
+    MIDDLE_TEXT_BG_HOVER,
+    MIDDLE_TEXT_BORDER_HOVER,
+    MIDDLE_TEXT_SHADOW_HOVER,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -68,14 +74,6 @@ const attributes = {
         type: 'string',
         default: 'Button One',
     },
-    buttonTwoText: {
-        type: 'string',
-        default: 'Button Two',
-    },
-    middleText: {
-        type: 'boolean',
-        default: true,
-    },
     buttonOneLink: {
         type: 'object',
         default: {
@@ -94,6 +92,22 @@ const attributes = {
     buttonOneIconPosition: {
         type: 'string',
         default: 'right',
+    },
+    buttonOneColor: {
+        type: 'string',
+        default: '',
+    },
+    buttonOneColorHover: {
+        type: 'string',
+        default: '',
+    },
+    buttonTwoText: {
+        type: 'string',
+        default: 'Button Two',
+    },
+    middleText: {
+        type: 'boolean',
+        default: true,
     },
     buttonTwoLink: {
         type: 'object',
@@ -114,11 +128,11 @@ const attributes = {
         type: 'string',
         default: 'right',
     },
-    buttonOneColor: {
+    buttonTwoColor: {
         type: 'string',
         default: '',
     },
-    buttonTwoColor: {
+    buttonTwoColorHover: {
         type: 'string',
         default: '',
     },
@@ -126,7 +140,12 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    middleTextColorHover: {
+        type: 'string',
+        default: '',
+    },
 
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateResAlignmentAttributies(BUTTON_ALIGNMENT),
     ...generateResRangeAttributies(BUTTON_WIDTH, {
         defaultUnit: '%',
@@ -138,6 +157,9 @@ const attributes = {
     ...generateDimensionAttributes(BUTTON_ONE_PADDING),
     ...generateBoxShadowAttributies(BUTTON_ONE_SHADOW),
     ...generateResAlignmentAttributies(BUTTON_ONE_ALIGN),
+    ...generateNormalBGAttributes(BUTTON_ONE_BG_HOVER),
+    ...generateBorderAttributies(BUTTON_ONE_BORDER_HOVER),
+    ...generateBoxShadowAttributies(BUTTON_ONE_SHADOW_HOVER),
     ...generateNormalBGAttributes(BUTTON_TWO_BG),
     ...generateBorderAttributies(BUTTON_TWO_BORDER),
     ...generateDimensionAttributes(BUTTON_TWO_BORDER_RADIUS),
@@ -145,12 +167,18 @@ const attributes = {
     ...generateDimensionAttributes(BUTTON_TWO_PADDING),
     ...generateBoxShadowAttributies(BUTTON_TWO_SHADOW),
     ...generateResAlignmentAttributies(BUTTON_TWO_ALIGN),
+    ...generateNormalBGAttributes(BUTTON_TWO_BG_HOVER),
+    ...generateBorderAttributies(BUTTON_TWO_BORDER_HOVER),
+    ...generateBoxShadowAttributies(BUTTON_TWO_SHADOW_HOVER),
     ...generateNormalBGAttributes(MIDDLE_TEXT_BG),
     ...generateDimensionAttributes(MIDDLE_TEXT_MARGIN),
     ...generateDimensionAttributes(MIDDLE_TEXT_PADDING),
     ...generateBoxShadowAttributies(MIDDLE_TEXT_SHADOW),
     ...generateBorderAttributies(MIDDLE_TEXT_BORDER),
     ...generateDimensionAttributes(MIDDLE_TEXT_BORDER_RADIUS),
+    ...generateNormalBGAttributes(MIDDLE_TEXT_BG_HOVER),
+    ...generateBorderAttributies(MIDDLE_TEXT_BORDER_HOVER),
+    ...generateBoxShadowAttributies(MIDDLE_TEXT_SHADOW_HOVER),
 };
 
 export default attributes;

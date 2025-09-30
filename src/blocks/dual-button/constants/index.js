@@ -18,6 +18,9 @@ export const BUTTON_ONE_MARGIN = 'buttonOneMargin';
 export const BUTTON_ONE_PADDING = 'buttonOnePadding';
 export const BUTTON_ONE_SHADOW = 'buttonOneShadow';
 export const BUTTON_ONE_ALIGN = 'buttonOneAlign';
+export const BUTTON_ONE_BG_HOVER = 'buttonOneBgHover';
+export const BUTTON_ONE_BORDER_HOVER = 'buttonOneBorderHover';
+export const BUTTON_ONE_SHADOW_HOVER = 'buttonOneShadowHover';
 
 export const BUTTON_TWO_ICON_POSITIONS = [
     { label: __('Left', 'zoloblocks'), value: 'left' },
@@ -31,6 +34,9 @@ export const BUTTON_TWO_MARGIN = 'buttonTwoMargin';
 export const BUTTON_TWO_PADDING = 'buttonTwoPadding';
 export const BUTTON_TWO_SHADOW = 'buttonTwoShadow';
 export const BUTTON_TWO_ALIGN = 'buttonTwoAlign';
+export const BUTTON_TWO_BG_HOVER = 'buttonTwoBgHover';
+export const BUTTON_TWO_BORDER_HOVER = 'buttonTwoBorderHover';
+export const BUTTON_TWO_SHADOW_HOVER = 'buttonTwoShadowHover';
 
 export const MIDDLE_TEXT_BG = 'middleTextBg';
 export const MIDDLE_TEXT_MARGIN = 'middleTextMargin';
@@ -38,3 +44,6 @@ export const MIDDLE_TEXT_PADDING = 'middleTextPadding';
 export const MIDDLE_TEXT_SHADOW = 'middleTextShadow';
 export const MIDDLE_TEXT_BORDER = 'middleTextBorder';
 export const MIDDLE_TEXT_BORDER_RADIUS = 'middleTextBorderRadius';
+export const MIDDLE_TEXT_BG_HOVER = 'middleTextBgHover';
+export const MIDDLE_TEXT_BORDER_HOVER = 'middleTextBorderHover';
+export const MIDDLE_TEXT_SHADOW_HOVER = 'middleTextShadowHover';
