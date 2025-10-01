@@ -27,6 +27,7 @@ const {
     ZoloPanelBody,
     TabPanelControl,
     LinkControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -66,6 +67,7 @@ import {
     MIDDLE_TEXT_SHADOW_HOVER,
 } from './constants';
 
+import { ICON_HPOSITIONS } from '../../../src/global/constants';
 import { BUTTON_ONE_TYPO, BUTTON_TWO_TYPO, MIDDLE_TEXT_TYPO } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
@@ -154,10 +156,10 @@ function Inspector(props) {
                                         value={buttonOneIcon}
                                         onChange={(value) => setAttributes({ buttonOneIcon: value })}
                                     />
-                                    <ZoloSelectControl
+                                    <IconicBtnGroup
                                         label={__('Icon Position', 'zoloblocks')}
                                         value={buttonOneIconPosition}
-                                        options={BUTTON_ONE_ICON_POSITIONS}
+                                        options={ICON_HPOSITIONS}
                                         onChange={(value) => setAttributes({ buttonOneIconPosition: value })}
                                     />
                                 </>
@@ -187,10 +189,10 @@ function Inspector(props) {
                                         value={buttonTwoIcon}
                                         onChange={(value) => setAttributes({ buttonTwoIcon: value })}
                                     />
-                                    <ZoloSelectControl
+                                    <IconicBtnGroup
                                         label={__('Icon Position', 'zoloblocks')}
                                         value={buttonTwoIconPosition}
-                                        options={BUTTON_ONE_ICON_POSITIONS}
+                                        options={ICON_HPOSITIONS}
                                         onChange={(value) => setAttributes({ buttonTwoIconPosition: value })}
                                     />
                                 </>

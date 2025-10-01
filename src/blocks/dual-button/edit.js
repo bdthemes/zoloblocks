@@ -28,6 +28,8 @@ export default function Edit(props) {
         buttonTwoIconAdd,
         buttonOneLink,
         buttonTwoLink,
+        buttonOneIconPosition,
+        buttonTwoIconPosition,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -46,8 +48,9 @@ export default function Edit(props) {
                         rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                         target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
                     >
+                        {buttonOneIconPosition === 'left' && buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
                         <span className="zolo-btn-label">{buttonOneText}</span>
-                        {buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
+                        {buttonOneIconPosition === 'right' && buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
                     </a>
                     {middleText && (
                         <div className="zolo-btn-separator">
@@ -60,8 +63,9 @@ export default function Edit(props) {
                         rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                         target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
                     >
+                        {buttonTwoIconPosition === 'left' && buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
                         <span className="zolo-btn-label">{buttonTwoText}</span>
-                        {buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
+                        {buttonTwoIconPosition === 'right' && buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
                     </a>
                 </div>
             </div>

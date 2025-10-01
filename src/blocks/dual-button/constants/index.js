@@ -6,11 +6,6 @@ import { __ } from '@wordpress/i18n';
 export const BUTTON_ALIGNMENT = 'buttonAlignment';
 export const BUTTON_WIDTH = 'buttonWidth';
 
-export const BUTTON_ONE_ICON_POSITIONS = [
-    { label: __('Left', 'zoloblocks'), value: 'left' },
-    { label: __('Right', 'zoloblocks'), value: 'right' },
-];
-
 export const BUTTON_ONE_BG = 'buttonOneBg';
 export const BUTTON_ONE_BORDER = 'buttonOneBorder';
 export const BUTTON_ONE_BORDER_RADIUS = 'buttonOneBorderRadius';
@@ -18,14 +13,9 @@ export const BUTTON_ONE_MARGIN = 'buttonOneMargin';
 export const BUTTON_ONE_PADDING = 'buttonOnePadding';
 export const BUTTON_ONE_SHADOW = 'buttonOneShadow';
 export const BUTTON_ONE_ALIGN = 'buttonOneAlign';
-export const BUTTON_ONE_BG_HOVER = 'buttonOneBgHover';
+export const BUTTON_ONE_BG_HOVER = 'buttonOneBgHover';5555
 export const BUTTON_ONE_BORDER_HOVER = 'buttonOneBorderHover';
 export const BUTTON_ONE_SHADOW_HOVER = 'buttonOneShadowHover';
-
-export const BUTTON_TWO_ICON_POSITIONS = [
-    { label: __('Left', 'zoloblocks'), value: 'left' },
-    { label: __('Right', 'zoloblocks'), value: 'right' },
-];
 
 export const BUTTON_TWO_BG = 'buttonTwoBg';
 export const BUTTON_TWO_BORDER = 'buttonTwoBorder';
