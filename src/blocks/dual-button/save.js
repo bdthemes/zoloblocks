@@ -1,4 +1,4 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
 import classnames from 'classnames';
 
@@ -16,6 +16,8 @@ const Save = (props) => {
         buttonTwoIconAdd,
         buttonOneLink,
         buttonTwoLink,
+        buttonOneIconPosition,
+        buttonTwoIconPosition,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -31,8 +33,9 @@ const Save = (props) => {
                     rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                     target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
                 >
+                    {buttonOneIconPosition === 'left' && buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
                     <span className="zolo-btn-label">{buttonOneText}</span>
-                    {buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
+                    {buttonOneIconPosition === 'right' && buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
                 </a>
                 {middleText && (
                     <div className="zolo-btn-separator">
@@ -45,8 +48,9 @@ const Save = (props) => {
                     rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                     target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
                 >
+                    {buttonTwoIconPosition === 'left' && buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
                     <span className="zolo-btn-label">{buttonTwoText}</span>
-                    {buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
+                    {buttonTwoIconPosition === 'right' && buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
                 </a>
             </div>
         </div>
