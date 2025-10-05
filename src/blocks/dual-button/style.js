@@ -431,12 +431,22 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopRangeStyle: buttonOneIconSizeDesktop,
-        tabRangeStyle: buttonOneIconSizeTab,
-        mobRangeStyle: buttonOneIconSizeMob,
+        desktopRangeStyle: buttonOneIconHeightDesktop,
+        tabRangeStyle: buttonOneIconHeightTab,
+        mobRangeStyle: buttonOneIconHeightMob,
     } = generateResRangeStyle({
         controlName: BUTTON_ONE_ICON_SIZE,
         property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: buttonOneIconWidthDesktop,
+        tabRangeStyle: buttonOneIconWidthTab,
+        mobRangeStyle: buttonOneIconWidthMob,
+    } = generateResRangeStyle({
+        controlName: BUTTON_ONE_ICON_SIZE,
+        property: 'width',
         attributes,
     });
 
@@ -518,12 +528,22 @@ const Style = ({ props }) => {
     });
 
     const {
-        desktopRangeStyle: buttonTwoIconSizeDesktop,
-        tabRangeStyle: buttonTwoIconSizeTab,
-        mobRangeStyle: buttonTwoIconSizeMob,
+        desktopRangeStyle: buttonTwoIconHeightDesktop,
+        tabRangeStyle: buttonTwoIconHeightTab,
+        mobRangeStyle: buttonTwoIconHeightMob,
     } = generateResRangeStyle({
         controlName: BUTTON_TWO_ICON_SIZE,
         property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: buttonTwoIconWidthDesktop,
+        tabRangeStyle: buttonTwoIconWidthTab,
+        mobRangeStyle: buttonTwoIconWidthMob,
+    } = generateResRangeStyle({
+        controlName: BUTTON_TWO_ICON_SIZE,
+        property: 'width',
         attributes,
     });
 
@@ -615,6 +635,7 @@ const Style = ({ props }) => {
             ${buttonOnePaddingDesktop}
             ${buttonOneShadowDesktop}
             ${buttonOneAlignDesktop}
+            ${buttonOneIconGapDesktop}
         }
 
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first:hover {
@@ -635,6 +656,7 @@ const Style = ({ props }) => {
             ${buttonTwoPaddingDesktop}
             ${buttonTwoShadowDesktop}
             ${buttonTwoAlignDesktop}
+            ${buttonTwoIconGapDesktop}
         }
 
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second:hover {
@@ -692,8 +714,8 @@ const Style = ({ props }) => {
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo__display-icon svg{
             color: ${buttonOneIconColor ? buttonOneIconColor : ''};
             ${buttonOneIconBGDesktop}
-            ${buttonOneIconSizeDesktop}
-            ${buttonOneIconGapDesktop}
+            ${buttonOneIconHeightDesktop}
+            ${buttonOneIconWidthDesktop}
             ${buttonOneIconPaddingDesktop}
             ${buttonOneIconBorderDesktop}
             ${buttonOneIconShadowDesktop}
@@ -709,8 +731,8 @@ const Style = ({ props }) => {
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo__display-icon svg{
             color: ${buttonTwoIconColor ? buttonTwoIconColor : ''};
             ${buttonTwoIconBGDesktop}
-            ${buttonTwoIconSizeDesktop}
-            ${buttonTwoIconGapDesktop}
+            ${buttonTwoIconHeightDesktop}
+            ${buttonTwoIconWidthDesktop}
             ${buttonTwoIconPaddingDesktop}
             ${buttonTwoIconBorderDesktop}
             ${buttonTwoIconShadowDesktop}
@@ -741,6 +763,7 @@ const Style = ({ props }) => {
             ${buttonOnePaddingTab}
             ${buttonOneShadowTab}
             ${buttonOneAlignTab}
+            ${buttonOneIconGapTab}
         }
 
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first:hover {
@@ -761,6 +784,7 @@ const Style = ({ props }) => {
             ${buttonTwoPaddingTab}
             ${buttonTwoShadowTab}
             ${buttonTwoAlignTab}
+            ${buttonTwoIconGapTab}
         }
 
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second:hover {
@@ -810,8 +834,8 @@ const Style = ({ props }) => {
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo__display-icon svg{
             color: ${buttonOneIconColor ? buttonOneIconColor : ''};
             ${buttonOneIconBGTab}
-            ${buttonOneIconSizeTab}
-            ${buttonOneIconGapTab}
+            ${buttonOneIconHeightTab}
+            ${buttonOneIconWidthTab}
             ${buttonOneIconPaddingTab}
             ${buttonOneIconBorderTab}
             ${buttonOneIconShadowTab}
@@ -827,8 +851,8 @@ const Style = ({ props }) => {
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo__display-icon svg{
             color: ${buttonTwoIconColor ? buttonTwoIconColor : ''};
             ${buttonTwoIconBGTab}
-            ${buttonTwoIconSizeTab}
-            ${buttonTwoIconGapTab}
+            ${buttonTwoIconHeightTab}
+            ${buttonTwoIconWidthTab}
             ${buttonTwoIconPaddingTab}
             ${buttonTwoIconBorderTab}
             ${buttonTwoIconShadowTab}
@@ -859,6 +883,7 @@ const Style = ({ props }) => {
             ${buttonOnePaddingMob}
             ${buttonOneShadowMob}
             ${buttonOneAlignMob}
+            ${buttonOneIconGapMob}
         }
 
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first:hover {
@@ -879,6 +904,7 @@ const Style = ({ props }) => {
             ${buttonTwoPaddingMob}
             ${buttonTwoShadowMob}
             ${buttonTwoAlignMob}
+            ${buttonTwoIconGapMob}
         }
 
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second:hover {
@@ -928,8 +954,8 @@ const Style = ({ props }) => {
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo__display-icon svg{
             color: ${buttonOneIconColor ? buttonOneIconColor : ''};
             ${buttonOneIconBGMob}
-            ${buttonOneIconSizeMob}
-            ${buttonOneIconGapMob}
+            ${buttonOneIconHeightMob}
+            ${buttonOneIconWidthMob}
             ${buttonOneIconPaddingMob}
             ${buttonOneIconBorderMob}
             ${buttonOneIconShadowMob}
@@ -945,8 +971,8 @@ const Style = ({ props }) => {
         .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo__display-icon svg{
             color: ${buttonTwoIconColor ? buttonTwoIconColor : ''};
             ${buttonTwoIconBGMob}
-            ${buttonTwoIconSizeMob}
-            ${buttonTwoIconGapMob}
+            ${buttonTwoIconHeightMob}
+            ${buttonTwoIconWidthMob}
             ${buttonTwoIconPaddingMob}
             ${buttonTwoIconBorderMob}
             ${buttonTwoIconShadowMob}
