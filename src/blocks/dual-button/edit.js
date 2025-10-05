@@ -36,6 +36,11 @@ export default function Edit(props) {
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.button} alt={__('Button Preview', 'zoloblocks')} />;
+    }
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
