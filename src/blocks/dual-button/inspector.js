@@ -9,7 +9,6 @@ import { __ } from '@wordpress/i18n';
  */
 
 const {
-    ZoloSelectControl,
     ZoloToggleControl,
     ZoloCardDivider,
     ZoloTextControl,
@@ -35,7 +34,6 @@ import objAttributes from './attributes';
 import {
     BUTTON_ALIGNMENT,
     BUTTON_WIDTH,
-    BUTTON_ONE_ICON_POSITIONS,
     BUTTON_ONE_BG,
     BUTTON_ONE_BORDER,
     BUTTON_ONE_BORDER_RADIUS,
@@ -65,6 +63,24 @@ import {
     MIDDLE_TEXT_BG_HOVER,
     MIDDLE_TEXT_BORDER_HOVER,
     MIDDLE_TEXT_SHADOW_HOVER,
+    BUTTON_ONE_ICON_BG,
+    BUTTON_ONE_ICON_SIZE,
+    BUTTON_ONE_ICON_GAP,
+    BUTTON_ONE_ICON_PADDING,
+    BUTTON_ONE_ICON_BORDER,
+    BUTTON_ONE_ICON_SHADOW,
+    BUTTON_ONE_ICON_BORDER_RADIUS,
+    BUTTON_ONE_ICON_BG_HOVER,
+    BUTTON_ONE_ICON_SHADOW_HOVER,
+    BUTTON_TWO_ICON_BG,
+    BUTTON_TWO_ICON_SIZE,
+    BUTTON_TWO_ICON_GAP,
+    BUTTON_TWO_ICON_PADDING,
+    BUTTON_TWO_ICON_BORDER,
+    BUTTON_TWO_ICON_SHADOW,
+    BUTTON_TWO_ICON_BORDER_RADIUS,
+    BUTTON_TWO_ICON_BG_HOVER,
+    BUTTON_TWO_ICON_SHADOW_HOVER,
 } from './constants';
 
 import { ICON_HPOSITIONS } from '../../../src/global/constants';
@@ -91,6 +107,10 @@ function Inspector(props) {
         middleText,
         middleTextColor,
         middleTextColorHover,
+        buttonOneIconColor,
+        buttonOneIconColorHover,
+        buttonTwoIconColor,
+        buttonTwoIconColorHover,
     } = attributes;
 
     const requiredProps = {
@@ -423,7 +443,151 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Icon', 'zoloblocks')} firstOpen={false} panelProps={props}></ZoloPanelBody>
+                        {buttonOneIconAdd && (
+                            <ZoloPanelBody title={__('Button One Icon', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={buttonOneIconColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonOneIconColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={BUTTON_ONE_ICON_BG}
+                                                noMainBGImg={true}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={BUTTON_ONE_ICON_SIZE}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ZoloCardDivider />
+                                            <ResRangeControl
+                                                label={__('Gap', 'zoloblocks')}
+                                                controlName={BUTTON_ONE_ICON_GAP}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={BUTTON_ONE_ICON_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ZoloCardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={BUTTON_ONE_ICON_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl controlName={BUTTON_ONE_ICON_SHADOW} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={BUTTON_ONE_ICON_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={buttonOneIconColorHover}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonOneIconColorHover: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={BUTTON_ONE_ICON_BG_HOVER}
+                                                noMainBGImg={true}
+                                            />
+                                            <BoxShadowControl controlName={BUTTON_ONE_ICON_SHADOW_HOVER} requiredProps={requiredProps} />
+                                        </>
+                                    }
+                                />
+                            </ZoloPanelBody>
+                        )}
+
+                        {buttonTwoIconAdd && (
+                            <ZoloPanelBody title={__('Button Two Icon', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                                <TabPanelControl
+                                    normalComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={buttonTwoIconColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonTwoIconColor: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={BUTTON_TWO_ICON_BG}
+                                                noMainBGImg={true}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={BUTTON_TWO_ICON_SIZE}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ZoloCardDivider />
+                                            <ResRangeControl
+                                                label={__('Gap', 'zoloblocks')}
+                                                controlName={BUTTON_TWO_ICON_GAP}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                controlName={BUTTON_TWO_ICON_PADDING}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ZoloCardDivider />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={BUTTON_TWO_ICON_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BoxShadowControl controlName={BUTTON_TWO_ICON_SHADOW} requiredProps={requiredProps} />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={BUTTON_TWO_ICON_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                        </>
+                                    }
+                                    hoverComponents={
+                                        <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={buttonTwoIconColorHover}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        buttonTwoIconColorHover: value,
+                                                    })
+                                                }
+                                            />
+                                            <NormalBGControl
+                                                requiredProps={requiredProps}
+                                                controlName={BUTTON_TWO_ICON_BG_HOVER}
+                                                noMainBGImg={true}
+                                            />
+                                            <BoxShadowControl controlName={BUTTON_TWO_ICON_SHADOW_HOVER} requiredProps={requiredProps} />
+                                        </>
+                                    }
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 advancedTab={

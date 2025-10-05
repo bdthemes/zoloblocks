@@ -9,7 +9,7 @@ const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata, {
     icon: {
-        src: BlockIcons['video'],
+        src: BlockIcons['dual-button'],
     },
     attributes,
     edit: Edit,

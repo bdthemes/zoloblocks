@@ -40,6 +40,24 @@ import {
     MIDDLE_TEXT_BG_HOVER,
     MIDDLE_TEXT_BORDER_HOVER,
     MIDDLE_TEXT_SHADOW_HOVER,
+    BUTTON_ONE_ICON_BG,
+    BUTTON_ONE_ICON_SIZE,
+    BUTTON_ONE_ICON_GAP,
+    BUTTON_ONE_ICON_PADDING,
+    BUTTON_ONE_ICON_BORDER,
+    BUTTON_ONE_ICON_SHADOW,
+    BUTTON_ONE_ICON_BORDER_RADIUS,
+    BUTTON_ONE_ICON_BG_HOVER,
+    BUTTON_ONE_ICON_SHADOW_HOVER,
+    BUTTON_TWO_ICON_BG,
+    BUTTON_TWO_ICON_SIZE,
+    BUTTON_TWO_ICON_GAP,
+    BUTTON_TWO_ICON_PADDING,
+    BUTTON_TWO_ICON_BORDER,
+    BUTTON_TWO_ICON_SHADOW,
+    BUTTON_TWO_ICON_BORDER_RADIUS,
+    BUTTON_TWO_ICON_BG_HOVER,
+    BUTTON_TWO_ICON_SHADOW_HOVER,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -144,6 +162,22 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    buttonOneIconColor: {
+        type: 'string',
+        default: '',
+    },
+    buttonOneIconColorHover: {
+        type: 'string',
+        default: '',
+    },
+    buttonTwoIconColor: {
+        type: 'string',
+        default: '',
+    },
+    buttonTwoIconColorHover: {
+        type: 'string',
+        default: '',
+    },
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateResAlignmentAttributies(BUTTON_ALIGNMENT),
@@ -179,6 +213,26 @@ const attributes = {
     ...generateNormalBGAttributes(MIDDLE_TEXT_BG_HOVER),
     ...generateBorderAttributies(MIDDLE_TEXT_BORDER_HOVER),
     ...generateBoxShadowAttributies(MIDDLE_TEXT_SHADOW_HOVER),
+
+    ...generateNormalBGAttributes(BUTTON_ONE_ICON_BG),
+    ...generateResRangeAttributies(BUTTON_ONE_ICON_SIZE),
+    ...generateResRangeAttributies(BUTTON_ONE_ICON_GAP),
+    ...generateDimensionAttributes(BUTTON_ONE_ICON_PADDING),
+    ...generateBorderAttributies(BUTTON_ONE_ICON_BORDER),
+    ...generateBoxShadowAttributies(BUTTON_ONE_ICON_SHADOW),
+    ...generateDimensionAttributes(BUTTON_ONE_ICON_BORDER_RADIUS),
+    ...generateNormalBGAttributes(BUTTON_ONE_ICON_BG_HOVER),
+    ...generateBoxShadowAttributies(BUTTON_ONE_ICON_SHADOW_HOVER),
+
+    ...generateNormalBGAttributes(BUTTON_TWO_ICON_BG),
+    ...generateResRangeAttributies(BUTTON_TWO_ICON_SIZE),
+    ...generateResRangeAttributies(BUTTON_TWO_ICON_GAP),
+    ...generateDimensionAttributes(BUTTON_TWO_ICON_PADDING),
+    ...generateBorderAttributies(BUTTON_TWO_ICON_BORDER),
+    ...generateBoxShadowAttributies(BUTTON_TWO_ICON_SHADOW),
+    ...generateDimensionAttributes(BUTTON_TWO_ICON_BORDER_RADIUS),
+    ...generateNormalBGAttributes(BUTTON_TWO_ICON_BG_HOVER),
+    ...generateBoxShadowAttributies(BUTTON_TWO_ICON_SHADOW_HOVER),
 };
 
 export default attributes;
