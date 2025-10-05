@@ -48,10 +48,10 @@
     }
 
     .zolo__display-icon svg {
-        width: 18px;
-        height: 18px;
-        display: block;
-        fill: currentColor;
+            width: 18px;
+            height: 18px;
+            display: block;
+            fill: currentColor;
     }
     
     .zolo-btn-label {
@@ -76,6 +76,13 @@
         font-size: 14px;
         box-shadow: 0 0 0 6px hsla(0, 0%, 100%, 0.2);
         z-index: 10;
+    }
+
+    // Responsive adjustments
+    @media (max-width: 768px) {
+        .zolo-btn-group {
+            width: 100%;
+        }
     }
 }
 

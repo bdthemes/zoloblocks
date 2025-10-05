@@ -18,6 +18,7 @@ export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
     const {
         uniqueId,
+        preview,
         parentClasses,
         middleText,
         buttonOneText,
@@ -35,6 +36,11 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    // preview image
+    if (preview) {
+        return <img src={zoloParams.blocksPreview.dualButton} alt={__('Dual Button Preview', 'zoloblocks')} />;
+    }
 
     return (
         <>

@@ -369,6 +369,7 @@ if (! class_exists('ZoloEnqueues')) {
                     'notice'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/notice.svg',
                     'textPath'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/text-path.svg',
                     'qrcode'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/qrcode.svg',
+                    'dualButton'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/dual-button.svg',
                 ])
             ]);
 
