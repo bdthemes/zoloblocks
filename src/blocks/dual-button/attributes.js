@@ -183,9 +183,7 @@ const attributes = {
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateResAlignmentAttributies(BUTTON_ALIGNMENT),
-    ...generateResRangeAttributies(BUTTON_WIDTH, {
-        defaultUnit: '%',
-    }),
+    ...generateResRangeAttributies(BUTTON_WIDTH),
     ...generateNormalBGAttributes(BUTTON_ONE_BG),
     ...generateBorderAttributies(BUTTON_ONE_BORDER),
     ...generateDimensionAttributes(BUTTON_ONE_BORDER_RADIUS),

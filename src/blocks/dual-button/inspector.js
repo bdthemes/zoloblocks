@@ -139,8 +139,8 @@ function Inspector(props) {
                                 label={__('Button Width', 'zoloblocks')}
                                 controlName={BUTTON_WIDTH}
                                 requiredProps={requiredProps}
-                                min={0}
-                                max={100}
+                                min={200}
+                                max={500}
                                 step={1}
                             />
 
