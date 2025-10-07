@@ -241,8 +241,9 @@ function Inspector(props) {
                                             requiredProps={requiredProps}
                                             max={200}
                                         />
-                                        <NormalBGControl requiredProps={requiredProps} controlName={BUTTON_ONE_BG} noMainBGImg={true} />
 
+                                        <NormalBGControl requiredProps={requiredProps} controlName={BUTTON_ONE_BG} noMainBGImg={true} />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
                                             controlName={BUTTON_ONE_MARGIN}
@@ -313,6 +314,7 @@ function Inspector(props) {
                                             max={200}
                                         />
                                         <NormalBGControl requiredProps={requiredProps} controlName={BUTTON_TWO_BG} noMainBGImg={true} />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
                                             controlName={BUTTON_TWO_MARGIN}
@@ -389,6 +391,7 @@ function Inspector(props) {
                                         />
 
                                         <NormalBGControl requiredProps={requiredProps} controlName={MIDDLE_TEXT_BG} noMainBGImg={true} />
+                                        <ZoloCardDivider />
                                         <ResDimensionsControl
                                             label={__('Margin', 'zoloblocks')}
                                             controlName={MIDDLE_TEXT_MARGIN}
@@ -401,12 +404,12 @@ function Inspector(props) {
                                         />
                                         <ZoloCardDivider />
 
-                                        <BoxShadowControl controlName={MIDDLE_TEXT_SHADOW} requiredProps={requiredProps} />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
                                             controlName={MIDDLE_TEXT_BORDER}
                                             requiredProps={requiredProps}
                                         />
+                                        <BoxShadowControl controlName={MIDDLE_TEXT_SHADOW} requiredProps={requiredProps} />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
                                             controlName={MIDDLE_TEXT_BORDER_RADIUS}
