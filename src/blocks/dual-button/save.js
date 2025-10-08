@@ -1,5 +1,5 @@
 import { useBlockProps } from '@wordpress/block-editor';
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeText, sanitizeUrl } = window.zoloModule;
 import classnames from 'classnames';
 
 const Save = (props) => {
@@ -29,12 +29,12 @@ const Save = (props) => {
             <div className="zolo-btn-group">
                 <a
                     className="zolo-btn zolo-btn-first"
-                    href={buttonOneLink?.url ? buttonOneLink?.url : ''}
+                    href={sanitizeUrl(buttonOneLink?.url) ? buttonOneLink?.url : ''}
                     rel={buttonOneLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                     target={buttonOneLink?.openInNewTab ? '_blank' : undefined}
                 >
                     {buttonOneIconPosition === 'left' && buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
-                    <span className="zolo-btn-label">{buttonOneText}</span>
+                    <span className="zolo-btn-label">{sanitizeText(buttonOneText)}</span>
                     {buttonOneIconPosition === 'right' && buttonOneIconAdd && buttonOneIcon && <DisplayZoloIcon icon={buttonOneIcon} />}
                 </a>
                 {middleText && (
@@ -44,12 +44,12 @@ const Save = (props) => {
                 )}
                 <a
                     className="zolo-btn zolo-btn-second"
-                    href={buttonTwoLink?.url ? buttonTwoLink?.url : ''}
+                    href={sanitizeUrl(buttonTwoLink?.url) ? buttonTwoLink?.url : ''}
                     rel={buttonTwoLink?.openInNewTab ? 'noreferrer noopener' : undefined}
                     target={buttonTwoLink?.openInNewTab ? '_blank' : undefined}
                 >
                     {buttonTwoIconPosition === 'left' && buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
-                    <span className="zolo-btn-label">{buttonTwoText}</span>
+                    <span className="zolo-btn-label">{sanitizeText(buttonTwoText)}</span>
                     {buttonTwoIconPosition === 'right' && buttonTwoIconAdd && buttonTwoIcon && <DisplayZoloIcon icon={buttonTwoIcon} />}
                 </a>
             </div>
