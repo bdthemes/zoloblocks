@@ -52,12 +52,25 @@ import {
     ICON_BORDER_BRADIUS,
 } from './constants';
 
-import {} from './constants/typoPrefixConstant';
+import { TITLE_TYPO, TEXT_TYPO } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, circleItems, circleSize, circleIconSize, circleIconAreaSize, contentColor, photo, iconColor, iconColorHover } =
-        attributes;
+    const {
+        resMode,
+        circleItems,
+        circleSize,
+        circleIconSize,
+        circleIconAreaSize,
+        contentColor,
+        photo,
+        iconColor,
+        iconColorHover,
+        titleColor,
+        titleColorHover,
+        textColor,
+        textColorHover,
+    } = attributes;
 
     const requiredProps = {
         resMode,
@@ -244,6 +257,64 @@ function Inspector(props) {
                                             label={__('Box Shadow', 'zoloblocks')}
                                             controlName={ICON_SHADOW_HOVER}
                                             requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Title', 'zoloblocks')} panelProps={props}>
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            value={titleColor}
+                                            onChange={(value) => setAttributes({ titleColor: value })}
+                                        />
+
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            controlName={TITLE_TYPO}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            value={titleColorHover}
+                                            onChange={(value) => setAttributes({ titleColorHover: value })}
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Text', 'zoloblocks')} panelProps={props}>
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            value={textColor}
+                                            onChange={(value) => setAttributes({ textColor: value })}
+                                        />
+
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            controlName={TEXT_TYPO}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            value={textColorHover}
+                                            onChange={(value) => setAttributes({ textColorHover: value })}
                                         />
                                     </>
                                 }

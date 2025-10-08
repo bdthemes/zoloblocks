@@ -1,96 +1,87 @@
-// /**
-//  * ZoloBlocks Circle Info Block – Frontend Script
-//  */
+/**
+ * ZoloBlocks Circle Info Block – Frontend Script
+ * Interactive Circular Feature Display
+ */
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     function circleInfoInit(id, circleMoving = true, movingTime = 4000, mouseEvent = 'mouseover') {
-//         const wrapper = document.querySelector(`#${id} .zolo-circle-inner`);
-//         const circles = document.querySelectorAll(`#${id} .zolo-circle-sub`);
-//         const contents = document.querySelectorAll(`#${id} .zolo-circle-item`);
-//         let currentIndex = 1;
-//         let rotateInterval;
+document.addEventListener('DOMContentLoaded', () => {
+    /**
+     * Initialize circular feature display
+     */
+    function initCircularFeatureDisplay(container) {
+        // Get elements
+        const contentDisplay = container.querySelector('.content-display');
+        const featureIcons = container.querySelector('.feature-icons');
+        const dataScript = container.querySelector('.feature-data');
 
-//         if (!wrapper || !circles.length || !contents.length) return;
+        if (!contentDisplay || !featureIcons || !dataScript) return;
 
-//         if (!circleMoving || movingTime <= 0) movingTime = 9999999999;
+        // Parse feature data
+        let featureData = [];
+        try {
+            featureData = JSON.parse(dataScript.textContent);
+        } catch (e) {
+            console.error('Failed to parse feature data:', e);
+            return;
+        }
 
-//         // Function: Spread sub-circles around the parent circle
-//         const spreadCircles = () => {
-//             const rect = wrapper.getBoundingClientRect();
-//             const radius = rect.width / 2;
+        if (!featureData.length) return;
 
-//             circles.forEach((circle, i) => {
-//                 const angle = i * (360 / circles.length) * (Math.PI / 180);
-//                 const x = radius * Math.cos(angle);
-//                 const y = radius * Math.sin(angle);
-//                 circle.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-//             });
-//         };
+        /**
+         * Update content display with fade effect
+         */
+        function updateContent(itemId) {
+            // Find the feature data
+            const feature = featureData.find((item) => item.id == itemId);
+            if (!feature) return;
 
-//         spreadCircles();
-//         window.addEventListener('resize', () => {
-//             clearTimeout(window._zoloResizeTimer);
-//             window._zoloResizeTimer = setTimeout(spreadCircles, 100);
-//         });
+            // Fade out
+            contentDisplay.style.opacity = '0';
 
-//         // Function: Auto rotate
-//         const autoRotate = () => {
-//             const total = circles.length;
-//             if (currentIndex > total) currentIndex = 1;
+            // Update content after fade
+            setTimeout(() => {
+                const title = contentDisplay.querySelector('h3');
+                const description = contentDisplay.querySelector('p');
 
-//             circles.forEach((c) => c.classList.remove('active'));
-//             contents.forEach((c) => c.classList.remove('active'));
+                if (title) title.innerHTML = feature.title || '';
+                if (description) description.innerHTML = feature.desc || '';
 
-//             const activeCircle = circles[currentIndex - 1];
-//             const activeContent = contents[currentIndex - 1];
+                // Fade in
+                contentDisplay.style.opacity = '1';
+            }, 300);
+        }
 
-//             if (activeCircle && activeContent) {
-//                 activeCircle.classList.add('active');
-//                 activeContent.classList.add('active');
-//             }
+        /**
+         * Handle icon click
+         */
+        featureIcons.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            if (!button) return;
 
-//             wrapper.style.transform = `rotate(${(currentIndex - 1) * 36}deg)`;
-//             wrapper.style.transition = '1s';
+            const listItem = button.parentElement;
+            const itemId = listItem.getAttribute('data-item-id');
 
-//             document.querySelectorAll(`#${id} .zolo-circle-sub i, #${id} .zolo-circle-sub svg`).forEach((icon) => {
-//                 icon.style.transform = `rotate(${360 - (currentIndex - 1) * 36}deg)`;
-//                 icon.style.transition = '2s';
-//             });
+            // Remove active class from all icons
+            featureIcons.querySelectorAll('li').forEach((li) => li.classList.remove('active'));
 
-//             currentIndex++;
-//         };
+            // Add active class to clicked icon
+            listItem.classList.add('active');
 
-//         // Mouse interaction
-//         circles.forEach((circle, index) => {
-//             const activate = () => {
-//                 circles.forEach((c) => c.classList.remove('active'));
-//                 contents.forEach((c) => c.classList.remove('active'));
-//                 circle.classList.add('active');
-//                 contents[index].classList.add('active');
-//                 currentIndex = index + 1;
-//             };
+            // Update content
+            updateContent(itemId);
+        });
 
-//             if (mouseEvent === 'click') {
-//                 circle.addEventListener('click', activate);
-//             } else {
-//                 circle.addEventListener('mouseover', activate);
-//             }
-//         });
+        // Set initial state (first icon active)
+        const firstIcon = featureIcons.querySelector('li');
+        if (firstIcon) {
+            firstIcon.classList.add('active');
+        }
+    }
 
-//         // Autoplay on/off
-//         if (circleMoving) rotateInterval = setInterval(autoRotate, movingTime);
-//     }
-
-//     // Observe all Zolo Circle Info Blocks
-//     const allCircleBlocks = document.querySelectorAll('.wp-block-zolo-circle-info');
-
-//     allCircleBlocks.forEach((block) => {
-//         const settings = block.dataset.settings ? JSON.parse(block.dataset.settings) : {};
-//         circleInfoInit(
-//             settings.id || block.id,
-//             settings.circleMoving ?? true,
-//             settings.movingTime ?? 4000,
-//             settings.mouseEvent ?? 'mouseover'
-//         );
-//     });
-// });
+    /**
+     * Initialize all circular feature displays on the page
+     */
+    const allContainers = document.querySelectorAll('.circular-feature-display');
+    allContainers.forEach((container) => {
+        initCircularFeatureDisplay(container);
+    });
+});
