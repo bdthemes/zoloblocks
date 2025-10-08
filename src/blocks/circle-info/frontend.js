@@ -9,19 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function initCircularFeatureDisplay(container) {
         // Get elements
-        const contentDisplay = container.querySelector('.content-display');
-        const featureIcons = container.querySelector('.feature-icons');
-        const dataScript = container.querySelector('.feature-data');
+        const contentDisplay = container.querySelector('.zolo-content-display');
+        const featureIcons = container.querySelector('.zolo-feature-icons');
+        const dataScript = container.querySelector('.zolo-feature-data');
 
         if (!contentDisplay || !featureIcons || !dataScript) return;
 
-        // Parse feature data
         let featureData = [];
-        try {
-            featureData = JSON.parse(dataScript.textContent);
-        } catch (e) {
-            console.error('Failed to parse feature data:', e);
-            return;
+
+        const itemsData = dataScript.getAttribute('data-items');
+
+        if (itemsData) {
+            featureData = JSON.parse(itemsData);
         }
 
         if (!featureData.length) return;
@@ -80,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Initialize all circular feature displays on the page
      */
-    const allContainers = document.querySelectorAll('.circular-feature-display');
+    const allContainers = document.querySelectorAll('.zolo-circular-feature-display');
     allContainers.forEach((container) => {
         initCircularFeatureDisplay(container);
     });

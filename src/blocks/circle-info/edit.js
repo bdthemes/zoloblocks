@@ -43,9 +43,9 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className="circular-feature-display">
+                <div className="zolo-circular-feature-display">
                     {/* Central content display */}
-                    <div className="content-display">
+                    <div className="zolo-content-display">
                         {circleItems && circleItems[activeIndex] && (
                             <>
                                 <RichText
@@ -65,10 +65,9 @@ export default function Edit(props) {
                     </div>
 
                     {/* Circular feature icons */}
-                    <ul className="feature-icons">
+                    <ul className="zolo-feature-icons">
                         {circleItems &&
                             circleItems.map((item, index) => {
-                                console.log(item);
                                 const angle = (360 / circleItems.length) * index;
                                 return (
                                     <li
@@ -78,11 +77,7 @@ export default function Edit(props) {
                                         className={index === activeIndex ? 'active' : ''}
                                     >
                                         <button type="button" onClick={() => handleIconClick(index)}>
-                                            {item.icon ? (
-                                                <DisplayZoloIcon icon={item.icon} />
-                                            ) : (
-                                                <span style={{fontSize: '20px', color: '#999'}}>?</span>
-                                            )}
+                                            {item.icon && <DisplayZoloIcon icon={item.icon} />}
                                         </button>
                                     </li>
                                 );

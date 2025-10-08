@@ -12,10 +12,9 @@ const Save = (props) => {
 
     return (
         <div {...blockProps}>
-            <div className="feature-data" data-items={encodeURIComponent(JSON.stringify(circleItems || []))}></div>
-            <div className="circular-feature-display" id={uniqueId}>
+            <div className="zolo-circular-feature-display" id={uniqueId}>
                 {/* Central content display */}
-                <div className="content-display">
+                <div className="zolo-content-display">
                     {circleItems && circleItems[0] && (
                         <>
                             <RichText.Content tagName="h3" value={circleItems[0].title} />
@@ -24,8 +23,10 @@ const Save = (props) => {
                     )}
                 </div>
 
+                <div className="zolo-feature-data" data-items={JSON.stringify(circleItems || [])}></div>
+                
                 {/* Circular feature icons */}
-                <ul className="feature-icons">
+                <ul className="zolo-feature-icons">
                     {circleItems &&
                         circleItems.map((item, index) => {
                             const angle = (360 / circleItems.length) * index;
@@ -36,13 +37,7 @@ const Save = (props) => {
                                     data-item-id={item.id || index + 1}
                                     className={index === 0 ? 'active' : ''}
                                 >
-                                    <button type="button">
-                                        {item.icon ? (
-                                            <DisplayZoloIcon icon={item.icon} />
-                                        ) : (
-                                            <span style={{ fontSize: '20px', color: '#999' }}>?</span>
-                                        )}
-                                    </button>
+                                    <button type="button">{item.icon && <DisplayZoloIcon icon={item.icon} />}</button>
                                 </li>
                             );
                         })}
