@@ -59,6 +59,8 @@ function Inspector(props) {
     const {
         resMode,
         circleItems,
+        rotationMode,
+        rotationSpeed,
         circleSize,
         circleIconSize,
         circleIconAreaSize,
@@ -88,6 +90,25 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('Circle Settings', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <ZoloToggleControl
+                                label={__('Rotation Mode', 'zoloblocks')}
+                                checked={rotationMode}
+                                onChange={(value) => setAttributes({ rotationMode: value })}
+                            />
+
+                            {rotationMode && (
+                                <>
+                                    <ZoloRangeControl
+                                        className="zolo-flex-col-control"
+                                        label={__('Rotation Speed (seconds)', 'zoloblocks')}
+                                        value={rotationSpeed}
+                                        onChange={(value) => setAttributes({ rotationSpeed: value })}
+                                        min={5}
+                                        max={60}
+                                    />
+                                </>
+                            )}
+
                             <ZoloRangeControl
                                 className="zolo-flex-col-control"
                                 label={__('Circle Size', 'zoloblocks')}

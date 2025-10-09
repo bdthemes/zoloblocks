@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 const Save = (props) => {
     const { attributes } = props;
-    const { uniqueId, parentClasses, circleItems } = attributes;
+    const { uniqueId, parentClasses, circleItems, rotationMode, rotationSpeed } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
@@ -23,7 +23,12 @@ const Save = (props) => {
                     )}
                 </div>
 
-                <div className="zolo-feature-data" data-items={JSON.stringify(circleItems || [])}></div>
+                <div 
+                    className="zolo-feature-data" 
+                    data-items={JSON.stringify(circleItems || [])}
+                    data-rotation-mode={rotationMode}
+                    data-rotation-speed={rotationSpeed}
+                ></div>
                 
                 {/* Circular feature icons */}
                 <ul className="zolo-feature-icons">

@@ -16,14 +16,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!contentDisplay || !featureIcons || !dataScript) return;
 
         let featureData = [];
+        let rotationMode = false;
+        let rotationSpeed = 20;
 
         const itemsData = dataScript.getAttribute('data-items');
+        const rotationModeData = dataScript.getAttribute('data-rotation-mode');
+        const rotationSpeedData = dataScript.getAttribute('data-rotation-speed');
 
         if (itemsData) {
             featureData = JSON.parse(itemsData);
         }
 
+        if (rotationModeData) {
+            rotationMode = rotationModeData === 'true';
+        }
+
+        if (rotationSpeedData) {
+            rotationSpeed = parseInt(rotationSpeedData) || 20;
+        }
+
         if (!featureData.length) return;
+
+        // Apply rotation if enabled
+        if (rotationMode) {
+            featureIcons.classList.add('zolo-rotation-enabled');
+            featureIcons.style.setProperty('--rotation-speed', `${rotationSpeed}s`);
+        }
 
         /**
          * Update content display with fade effect

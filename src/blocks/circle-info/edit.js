@@ -17,7 +17,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { uniqueId, parentClasses, circleItems } = attributes;
+    const { uniqueId, parentClasses, circleItems, rotationMode, rotationSpeed } = attributes;
 
     // Track active item index
     const [activeIndex, setActiveIndex] = useState(0);
@@ -65,7 +65,12 @@ export default function Edit(props) {
                     </div>
 
                     {/* Circular feature icons */}
-                    <ul className="zolo-feature-icons">
+                    <ul 
+                        className={`zolo-feature-icons ${rotationMode ? 'zolo-rotation-enabled' : ''}`}
+                        style={{
+                            '--rotation-speed': rotationMode ? `${rotationSpeed || 20}s` : undefined
+                        }}
+                    >
                         {circleItems &&
                             circleItems.map((item, index) => {
                                 const angle = (360 / circleItems.length) * index;

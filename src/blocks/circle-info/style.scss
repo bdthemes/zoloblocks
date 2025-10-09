@@ -82,23 +82,28 @@
         left: 0;
         pointer-events: none;
         z-index: 2;
+        
+        /**
+         * Rotation Animation Classes
+         */
+        &.zolo-rotation-enabled {
+            animation: rotateClockwise var(--rotation-speed, 20s) linear infinite;
+        }
 
         li {
             position: absolute;
             top: 50%;
             left: 50%;
             pointer-events: all;
-            
+
             /**
              * Dynamic Positioning Using CSS Variables
              * The magic happens here: rotate -> translate -> counter-rotate
              * This places icons on a circle without manual positioning
              */
-            transform: 
-                rotate(var(--angle, 0deg))    /* Rotate to angle */
-                translate(250px)               /* Move outward (radius) */
+            transform: rotate(var(--angle, 0deg)) /* Rotate to angle */ translate(250px) /* Move outward (radius) */
                 rotate(calc(-1 * var(--angle, 0deg))); /* Counter-rotate to keep upright */
-            
+
             /**
              * Icon Button Styling
              */
@@ -116,11 +121,12 @@
                 color: #2567ff;
                 font-size: 24px;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-                
+
                 // Center the button
                 margin: -30px 0 0 -30px;
 
-                i, svg {
+                i,
+                svg {
                     font-size: 24px;
                     transition: all 0.3s ease;
                 }
@@ -147,8 +153,9 @@
                 color: #fff;
                 box-shadow: 0 6px 20px rgba(37, 103, 255, 0.4);
                 transform: scale(1.05);
-                
-                i, svg {
+
+                i,
+                svg {
                     color: #fff;
                     fill: #fff;
                 }
@@ -165,6 +172,18 @@
      */
     .zolo-feature-data {
         display: none;
+    }
+}
+
+/**
+ * Keyframes for Clockwise Rotation Animation
+ */
+@keyframes rotateClockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
 
@@ -192,10 +211,7 @@
         }
 
         .zolo-feature-icons li {
-            transform: 
-                rotate(var(--angle, 0deg))
-                translate(200px)
-                rotate(calc(-1 * var(--angle, 0deg)));
+            transform: rotate(var(--angle, 0deg)) translate(200px) rotate(calc(-1 * var(--angle, 0deg)));
 
             button {
                 width: 50px;
@@ -203,7 +219,8 @@
                 margin: -25px 0 0 -25px;
                 font-size: 20px;
 
-                i, svg {
+                i,
+                svg {
                     font-size: 20px;
                 }
             }
@@ -233,10 +250,7 @@
         }
 
         .zolo-feature-icons li {
-            transform: 
-                rotate(var(--angle, 0deg))
-                translate(150px)
-                rotate(calc(-1 * var(--angle, 0deg)));
+            transform: rotate(var(--angle, 0deg)) translate(150px) rotate(calc(-1 * var(--angle, 0deg)));
 
             button {
                 width: 40px;
@@ -244,7 +258,8 @@
                 margin: -20px 0 0 -20px;
                 font-size: 16px;
 
-                i, svg {
+                i,
+                svg {
                     font-size: 16px;
                 }
             }
@@ -258,9 +273,10 @@
 .block-editor-block-list__block {
     .zolo-circular-feature-display {
         .zolo-content-display {
-            h3, p {
+            h3,
+            p {
                 cursor: text;
-                
+
                 &:focus {
                     outline: 2px solid #2271b1;
                     outline-offset: 2px;
@@ -271,7 +287,7 @@
         // Make buttons more obvious in editor
         .zolo-feature-icons button {
             cursor: pointer;
-            
+
             &:hover {
                 transform: scale(1.15);
             }
