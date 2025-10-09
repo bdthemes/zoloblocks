@@ -22,8 +22,6 @@ use Zolo\Admin\Dashboard;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
 use Zolo\API\GetPostMetaV1;
-use Zolo\API\TemplatesV1;
-use Zolo\Templates\Templates;
 use Zolo\Popup\PopupBuilder;
 use Zolo\Form\Form;
 use Zolo\Form\Recaptcha;
