@@ -43,13 +43,13 @@ import {
     CONTENT_BG,
     CONTENT_PADDING,
     CONTENT_BORDER,
-    CONTENT_BRADIUS,
+    CONTENT_BORDER_RADIUS,
     ICON_BG,
     ICON_BG_HOVER,
     ICON_BORDER,
     ICON_SHADOW,
     ICON_SHADOW_HOVER,
-    ICON_BORDER_BRADIUS,
+    ICON_BORDER_RADIUS,
 } from './constants';
 
 import { TITLE_TYPO, TEXT_TYPO } from './constants/typoPrefixConstant';
@@ -218,7 +218,7 @@ function Inspector(props) {
                                         />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
-                                            controlName={CONTENT_BRADIUS}
+                                            controlName={CONTENT_BORDER_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />
@@ -258,7 +258,7 @@ function Inspector(props) {
 
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
-                                            controlName={ICON_BORDER_BRADIUS}
+                                            controlName={ICON_BORDER_RADIUS}
                                             requiredProps={requiredProps}
                                             forBorderRadius={true}
                                         />

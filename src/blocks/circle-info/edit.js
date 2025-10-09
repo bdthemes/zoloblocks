@@ -43,7 +43,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className="zolo-circular-feature-display">
+                <div className="zolo-circle-info">
                     {/* Central content display */}
                     <div className="zolo-content-display">
                         {circleItems && circleItems[activeIndex] && (

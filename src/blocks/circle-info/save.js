@@ -12,7 +12,7 @@ const Save = (props) => {
 
     return (
         <div {...blockProps}>
-            <div className="zolo-circular-feature-display" id={uniqueId}>
+            <div className="zolo-circle-info" id={uniqueId}>
                 {/* Central content display */}
                 <div className="zolo-content-display">
                     {circleItems && circleItems[0] && (
@@ -23,13 +23,13 @@ const Save = (props) => {
                     )}
                 </div>
 
-                <div 
-                    className="zolo-feature-data" 
+                <div
+                    className="zolo-feature-data"
                     data-items={JSON.stringify(circleItems || [])}
                     data-rotation-mode={rotationMode}
                     data-rotation-speed={rotationSpeed}
                 ></div>
-                
+
                 {/* Circular feature icons */}
                 <ul className="zolo-feature-icons">
                     {circleItems &&

@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Initialize all circular feature displays on the page
      */
-    const allContainers = document.querySelectorAll('.zolo-circular-feature-display');
+    const allContainers = document.querySelectorAll('.zolo-circle-info');
     allContainers.forEach((container) => {
         initCircularFeatureDisplay(container);
     });

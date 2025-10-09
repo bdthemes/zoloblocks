@@ -12,13 +12,13 @@ import {
     CONTENT_BG,
     CONTENT_PADDING,
     CONTENT_BORDER,
-    CONTENT_BRADIUS,
+    CONTENT_BORDER_RADIUS,
     ICON_BG,
     ICON_BG_HOVER,
     ICON_BORDER,
     ICON_SHADOW,
     ICON_SHADOW_HOVER,
-    ICON_BORDER_BRADIUS,
+    ICON_BORDER_RADIUS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -148,13 +148,13 @@ const attributes = {
     ...generateNormalBGAttributes(CONTENT_BG),
     ...generateDimensionAttributes(CONTENT_PADDING),
     ...generateBorderAttributies(CONTENT_BORDER),
-    ...generateDimensionAttributes(CONTENT_BRADIUS),
+    ...generateDimensionAttributes(CONTENT_BORDER_RADIUS),
     ...generateNormalBGAttributes(ICON_BG),
     ...generateNormalBGAttributes(ICON_BG_HOVER),
     ...generateBorderAttributies(ICON_BORDER),
     ...generateBoxShadowAttributies(ICON_SHADOW),
     ...generateBoxShadowAttributies(ICON_SHADOW_HOVER),
-    ...generateDimensionAttributes(ICON_BORDER_BRADIUS),
+    ...generateDimensionAttributes(ICON_BORDER_RADIUS),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
 };
 

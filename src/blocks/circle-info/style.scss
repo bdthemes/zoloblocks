@@ -3,7 +3,7 @@
  * Uses CSS variables and transform for dynamic icon positioning
  */
 
-.zolo-circular-feature-display {
+.zolo-circle-info {
     position: relative;
     width: 100%;
     max-width: 600px;
@@ -191,7 +191,7 @@
  * Responsive Design
  */
 @media (max-width: 768px) {
-    .zolo-circular-feature-display {
+    .zolo-circle-info {
         max-width: 500px;
         padding: 30px;
         min-height: 400px;
@@ -229,7 +229,7 @@
 }
 
 @media (max-width: 480px) {
-    .zolo-circular-feature-display {
+    .zolo-circle-info {
         max-width: 350px;
         padding: 20px;
         min-height: 350px;
@@ -271,7 +271,7 @@
  * Editor Specific Styles
  */
 .block-editor-block-list__block {
-    .zolo-circular-feature-display {
+    .zolo-circle-info {
         .zolo-content-display {
             h3,
             p {
