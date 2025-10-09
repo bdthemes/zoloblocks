@@ -95,10 +95,6 @@ class ZoloBlocks_Loader {
         // popup
         PopupBuilder::getInstance();
 
-        // Templates and Demo Import
-        TemplatesV1::getInstance();
-        Templates::getInstance();
-
         // Settings
         Settings::getInstance();
 
