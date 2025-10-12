@@ -1,3 +1,10 @@
+### 2.3.12 [October 12, 2025]
+
+**Maintenance Release:**
+Fixed vulnerabilities related to Server-Side Request Forgery (SSRF) and Cross-Site Scripting (XSS).
+Enhanced overall request handling to prevent unauthorized external requests.
+General code cleanup and minor performance improvements.
+
 ### 2.3.11 [September 28, 2025]
 
 **Maintenance Release:**
