@@ -103,7 +103,7 @@ function Inspector(props) {
                                         label={__('Rotation Speed (seconds)', 'zoloblocks')}
                                         value={rotationSpeed}
                                         onChange={(value) => setAttributes({ rotationSpeed: value })}
-                                        min={5}
+                                        min={1}
                                         max={60}
                                     />
                                 </>
