@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', function (e) {
                 const currentItem = this.closest('.zolo-navigation-item');
                 if (currentItem.classList.contains('has-submenu') || currentItem.classList.contains('has-megamenu')) {
-                    e.preventDefault();
+                    if(currentItem.classList.contains('triggerby-click')) {
+                        e.preventDefault();
+                    }
                     currentItem.classList.toggle('zolo-navigation-submenu-open');
                     currentItem.classList.toggle('submenu-open');
                 }
