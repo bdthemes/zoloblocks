@@ -596,6 +596,9 @@ Yes, the plugin is optimized to let you harvest all of your SEO goals easily. Wi
 = Will these slow down my site? =
 Not at all. We have optimized all of these blocks for better performance.
 
+= Where do I report security bugs found in this plugin? =
+Please report security bugs found in the source code of the ZoloBlocks plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/1b60e035-ed99-4a70-a2c8-5c2cf4405e68). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+
 == Screenshots ==
 
 1. ZoloBlocks Page Builder Blocks Addons for Gutenberg
@@ -713,3 +716,4 @@ This version includes minor bug fixes and improvements to maintain optimal perfo
 * Addressed theme color palette issues for consistent appearance across all blocks
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)
+
