@@ -9,6 +9,7 @@ const Save = (props) => {
         className: classnames(uniqueId, 'zolo-navigation-item', {
             'has-megamenu': attributes?.addSubmenu && attributes?.submenuType === 'megamenu',
             'has-submenu': attributes?.addSubmenu && attributes?.submenuType === 'dropdown',
+            [`triggerby-${attributes?.addSubmenuEffect}`]  : attributes?.addSubmenuEffect,
         }),
         'data-id': id,
         'data-type': type,

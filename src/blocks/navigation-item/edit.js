@@ -68,6 +68,7 @@ const Edit = (props) => {
             'has-megamenu': attributes?.addSubmenu && attributes?.submenuType === 'megamenu',
             'has-submenu': attributes?.addSubmenu && attributes?.submenuType === 'dropdown',
             'current-item': id === currentPostId && currentPostType === type,
+            [`triggerby-${attributes?.addSubmenuEffect}`]: attributes?.addSubmenuEffect,
         }),
         ref: useMergeRefs([listItemRef, setPopoverAnchor]),
         'data-id': id,
