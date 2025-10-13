@@ -608,6 +608,14 @@ Not at all. We have optimized all of these blocks for better performance.
 
 == Changelog ==
 
+### 2.3.12 [October 13, 2025]
+
+**Maintenance Release:**
+Navigation Block click issue fixed
+Fixed vulnerabilities related to Server-Side Request Forgery (SSRF) and Cross-Site Scripting (XSS).
+Enhanced overall request handling to prevent unauthorized external requests.
+General code cleanup and minor performance improvements.
+
 ### 2.3.11 [September 28, 2025]
 
 **Maintenance Release:**
