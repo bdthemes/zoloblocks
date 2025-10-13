@@ -33,7 +33,6 @@ if (! class_exists('PopupBuilder')) {
             add_action('manage_zolo-popup_posts_custom_column', [$this, 'custom_zolo_popup_column'], 10, 2);
             add_filter('manage_edit-zolo-popup_sortable_columns', [$this, 'set_custom_edit_zolo_popup_columns']);
             add_action('wp_ajax_zolo_update_popup_status', [$this, 'update_popup_status']);
-            add_action('wp_ajax_nopriv_zolo_update_popup_status', [$this, 'update_popup_status']);
             add_action('admin_enqueue_scripts', [$this, 'editor_enqueue_scripts']);
             add_action('wp_head', [$this, 'load_popup_builder']);
         }
@@ -207,6 +206,14 @@ if (! class_exists('PopupBuilder')) {
          */
         public function update_popup_status() {
             check_ajax_referer('zolo-nonce', 'nonce');
+
+            if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+                wp_send_json_error(
+                    [ 'message' => __( 'Unauthorized access!', 'zoloblocks' ) ],
+                    403
+                );
+            }
+
 
             if (empty($_POST['post_id'])) {
                 wp_send_json([
