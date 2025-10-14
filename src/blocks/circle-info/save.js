@@ -4,48 +4,75 @@ import classnames from 'classnames';
 
 const Save = (props) => {
     const { attributes } = props;
-    const { uniqueId, parentClasses, circleItems, rotationMode, rotationSpeed } = attributes;
+    const { uniqueId, parentClasses, photo, imageRes, circleItems = [] } = attributes;
 
     const blockProps = useBlockProps.save({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
+    // Group items by layer
+    const layer1Items = circleItems.filter(item => item.layer === 'layer1');
+    const layer2Items = circleItems.filter(item => item.layer === 'layer2');
+    const layer3Items = circleItems.filter(item => item.layer === 'layer3');
+
     return (
         <div {...blockProps}>
-            <div className="zolo-circle-info" id={uniqueId}>
-                {/* Central content display */}
-                <div className="zolo-content-display">
-                    {circleItems && circleItems[0] && (
-                        <>
-                            <RichText.Content tagName="h3" value={circleItems[0].title} />
-                            <RichText.Content tagName="p" value={circleItems[0].desc} />
-                        </>
+            <div className="zolo-block-circle-icon-wrap">
+                <ul className="zolo-circle-icon-wrap">
+                    <li className="zolo-main-circle-item">
+                        {photo && (
+                            <img
+                                className="zolo-circle-main-img"
+                                src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
+                                alt={photo.alt || ''}
+                            />
+                        )}
+                    </li>
+
+                    {/* Layer 1 */}
+                    {layer1Items.length > 0 && (
+                        <li>
+                            <ul className="zolo-circle-list-wrap zolo-list_one">
+                                {layer1Items.map((item, index) => (
+                                    <li key={item.id || index} className="zolo-list-item">
+                                        <a href={item.url || '#'}>
+                                            {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
                     )}
-                </div>
 
-                <div
-                    className="zolo-feature-data"
-                    data-items={JSON.stringify(circleItems || [])}
-                    data-rotation-mode={rotationMode}
-                    data-rotation-speed={rotationSpeed}
-                ></div>
+                    {/* Layer 2 */}
+                    {layer2Items.length > 0 && (
+                        <li>
+                            <ul className="zolo-circle-list-wrap zolo-list_two">
+                                {layer2Items.map((item, index) => (
+                                    <li key={item.id || index} className="zolo-list-item">
+                                        <a href={item.url || '#'}>
+                                            {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+                    )}
 
-                {/* Circular feature icons */}
-                <ul className="zolo-feature-icons">
-                    {circleItems &&
-                        circleItems.map((item, index) => {
-                            const angle = (360 / circleItems.length) * index;
-                            return (
-                                <li
-                                    key={item.id || index}
-                                    style={{ '--angle': `${angle}deg` }}
-                                    data-item-id={item.id || index + 1}
-                                    className={index === 0 ? 'active' : ''}
-                                >
-                                    <button type="button">{item.icon && <DisplayZoloIcon icon={item.icon} />}</button>
-                                </li>
-                            );
-                        })}
+                    {/* Layer 3 */}
+                    {layer3Items.length > 0 && (
+                        <li>
+                            <ul className="zolo-circle-list-wrap zolo-list_three">
+                                {layer3Items.map((item, index) => (
+                                    <li key={item.id || index} className="zolo-list-item">
+                                        <a href={item.url || '#'}>
+                                            {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>

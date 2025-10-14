@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps, MediaPlaceholder } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import classnames from 'classnames';
@@ -17,76 +17,78 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { uniqueId, parentClasses, circleItems, rotationMode, rotationSpeed } = attributes;
-
-    // Track active item index
-    const [activeIndex, setActiveIndex] = useState(0);
+    const { uniqueId, parentClasses, photo, imageRes, circleItems = [] } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
 
-    // Update circle item
-    const updateCircleItem = (index, key, value) => {
-        const updatedItems = [...circleItems];
-        updatedItems[index] = { ...updatedItems[index], [key]: value };
-        setAttributes({ circleItems: updatedItems });
-    };
-
-    // Handle icon click
-    const handleIconClick = (index) => {
-        setActiveIndex(index);
-    };
+    // Group items by layer
+    const layer1Items = circleItems.filter(item => item.layer === 'layer1');
+    const layer2Items = circleItems.filter(item => item.layer === 'layer2');
+    const layer3Items = circleItems.filter(item => item.layer === 'layer3');
 
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className="zolo-circle-info">
-                    {/* Central content display */}
-                    <div className="zolo-content-display">
-                        {circleItems && circleItems[activeIndex] && (
-                            <>
-                                <RichText
-                                    tagName="h3"
-                                    value={circleItems[activeIndex].title}
-                                    onChange={(value) => updateCircleItem(activeIndex, 'title', value)}
-                                    placeholder={__('Title', 'zoloblocks')}
+                <div className="zolo-block-circle-icon-wrap">
+                    <ul className="zolo-circle-icon-wrap">
+                        <li className="zolo-main-circle-item">
+                            {photo && (
+                                <img
+                                    className="zolo-circle-main-img"
+                                    src={photo.sizes && photo.sizes[imageRes] ? photo.sizes[imageRes].url : photo.url}
+                                    alt={photo.alt || ''}
                                 />
-                                <RichText
-                                    tagName="p"
-                                    value={circleItems[activeIndex].desc}
-                                    onChange={(value) => updateCircleItem(activeIndex, 'desc', value)}
-                                    placeholder={__('Description', 'zoloblocks')}
-                                />
-                            </>
-                        )}
-                    </div>
+                            )}
+                        </li>
 
-                    {/* Circular feature icons */}
-                    <ul 
-                        className={`zolo-feature-icons ${rotationMode ? 'zolo-rotation-enabled' : ''}`}
-                        style={{
-                            '--rotation-speed': rotationMode ? `${rotationSpeed || 20}s` : undefined
-                        }}
-                    >
-                        {circleItems &&
-                            circleItems.map((item, index) => {
-                                const angle = (360 / circleItems.length) * index;
-                                return (
-                                    <li
-                                        key={item.id || index}
-                                        style={{ '--angle': `${angle}deg` }}
-                                        data-item-id={item.id || index + 1}
-                                        className={index === activeIndex ? 'active' : ''}
-                                    >
-                                        <button type="button" onClick={() => handleIconClick(index)}>
-                                            {item.icon && <DisplayZoloIcon icon={item.icon} />}
-                                        </button>
-                                    </li>
-                                );
-                            })}
+                        {/* Layer 1 */}
+                        {layer1Items.length > 0 && (
+                            <li>
+                                <ul className="zolo-circle-list-wrap zolo-list_one">
+                                    {layer1Items.map((item, index) => (
+                                        <li key={item.id || index} className="zolo-list-item">
+                                            <a href={item.url || '#'}>
+                                                {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        )}
+
+                        {/* Layer 2 */}
+                        {layer2Items.length > 0 && (
+                            <li>
+                                <ul className="zolo-circle-list-wrap zolo-list_two">
+                                    {layer2Items.map((item, index) => (
+                                        <li key={item.id || index} className="zolo-list-item">
+                                            <a href={item.url || '#'}>
+                                                {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        )}
+
+                        {/* Layer 3 */}
+                        {layer3Items.length > 0 && (
+                            <li>
+                                <ul className="zolo-circle-list-wrap zolo-list_three">
+                                    {layer3Items.map((item, index) => (
+                                        <li key={item.id || index} className="zolo-list-item">
+                                            <a href={item.url || '#'}>
+                                                {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>
