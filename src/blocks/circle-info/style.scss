@@ -81,22 +81,22 @@ body {
     --zolo-circle-item-size: clamp(35px, 7vw, 50px);
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_three li {
+.zolo-block-circle-icon-wrap .zolo-list_one li {
     --zolo-circle-item-size: clamp(30px, 5vw, 45px);
 }
 
-/* যদি .zolo-list_two এবং .zolo-list_three দুটোই থাকে, তাহলে transition-delay হবে 0.7s */
-.zolo-circle-icon-wrap:has(.zolo-list_two li):has(.zolo-list_three li) .zolo-list_one li {
+/* যদি .zolo-list_two এবং .zolo-list_one দুটোই থাকে, তাহলে transition-delay হবে 0.7s */
+.zolo-circle-icon-wrap:has(.zolo-list_two li):has(.zolo-list_one li) .zolo-list_three li {
     transition-delay: 0.5s;
 }
 
 /* যদি শুধুমাত্র .zolo-list_two থাকে, তাহলে transition-delay হবে 0.3s */
-.zolo-circle-icon-wrap:has(.zolo-list_two li):not(:has(.zolo-list_three li)) .zolo-list_one li {
+.zolo-circle-icon-wrap:has(.zolo-list_two li):not(:has(.zolo-list_one li)) .zolo-list_three li {
     transition-delay: 0.3s;
 }
 
-/* যদি .zolo-list_two বা .zolo-list_three না থাকে, তাহলে .zolo-list_one-এর transition-delay থাকবে না */
-.zolo-circle-icon-wrap:not(:has(.zolo-list_two li, .zolo-list_three li)) .zolo-list_one li {
+/* যদি .zolo-list_two বা .zolo-list_one না থাকে, তাহলে .zolo-list_three-এর transition-delay থাকবে না */
+.zolo-circle-icon-wrap:not(:has(.zolo-list_two li, .zolo-list_one li)) .zolo-list_three li {
     transition-delay: 0s;
 }
 
@@ -154,21 +154,21 @@ body {
     transform: translate(0);
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_one,
+.zolo-block-circle-icon-wrap .zolo-list_three,
 .zolo-block-circle-icon-wrap .zolo-list_two img {
     animation: zolo_circle_one var(--zolo-circle-time) linear infinite;
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_one img,
+.zolo-block-circle-icon-wrap .zolo-list_three img,
 .zolo-block-circle-icon-wrap .zolo-list_two {
     animation: zolo_circle_two var(--zolo-circle-time) linear infinite;
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_three {
+.zolo-block-circle-icon-wrap .zolo-list_one {
     animation: zolo_circle_one var(--zolo-circle-time-last-item) linear infinite;
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_three img {
+.zolo-block-circle-icon-wrap .zolo-list_one img {
     animation: zolo_circle_two var(--zolo-circle-time-last-item) linear infinite;
 }
 
@@ -191,8 +191,8 @@ body {
     --zolo-circle-wrap-size: clamp(200px, 40vw, 450px);
 }
 
-/* .zolo-list_three এর জন্য সঠিক সাইজ */
-.zolo-block-circle-icon-wrap .zolo-list_three {
+/* .zolo-list_one এর জন্য সঠিক সাইজ */
+.zolo-block-circle-icon-wrap .zolo-list_one {
     --zolo-circle-wrap-size: clamp(120px, 25vw, 300px);
 }
 
@@ -205,7 +205,7 @@ body {
     --zolo-circle-rotation-step: 72deg;
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_three > li {
+.zolo-block-circle-icon-wrap .zolo-list_one > li {
     --zolo-circle-rotation-step: 120deg;
 }
 
