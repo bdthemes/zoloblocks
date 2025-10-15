@@ -2,31 +2,30 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: ZoloBlocks 2.3.0\n"
+"Project-Id-Version: ZoloBlocks 2.3.12\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zoloblocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-05-14T09:30:07+00:00\n"
+"POT-Creation-Date: 2025-10-15T06:25:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: zoloblocks\n"
 
 #. Plugin Name of the plugin
 #: zoloblocks.php
-#: includes/Admin/Dashboard.php:66
-#: includes/Admin/Dashboard.php:67
+#: includes/Admin/Dashboard.php:71
+#: includes/Admin/Dashboard.php:72
 #: includes/Classes/Registration.php:96
 #: src/controls/zolo-icon-picker/index.js:246
 msgid "ZoloBlocks"
 msgstr ""
 
 #. Plugin URI of the plugin
-#. Author URI of the plugin
 #: zoloblocks.php
-msgid "https://bdthemes.com/"
+msgid "https://zoloblocks.com/"
 msgstr ""
 
 #. Description of the plugin
@@ -39,6 +38,104 @@ msgstr ""
 msgid "BdThemes"
 msgstr ""
 
+#. Author URI of the plugin
+#: zoloblocks.php
+msgid "https://bdthemes.com/"
+msgstr ""
+
+#: dci/deactivate-feedback.php:48
+msgid "Give feedback"
+msgstr ""
+
+#: dci/deactivate-feedback.php:49
+msgid "Goodbyes are never easy. If you have a moment, please share your feedback on how we can improve."
+msgstr ""
+
+#: dci/deactivate-feedback.php:75
+msgid "Switching Domain"
+msgstr ""
+
+#: dci/deactivate-feedback.php:99
+msgid "Couldn't understand"
+msgstr ""
+
+#: dci/deactivate-feedback.php:147
+msgid "Found a better plugin"
+msgstr ""
+
+#: dci/deactivate-feedback.php:164
+msgid "Missing a specific feature"
+msgstr ""
+
+#: dci/deactivate-feedback.php:203
+msgid "Not working"
+msgstr ""
+
+#: dci/deactivate-feedback.php:228
+#: src/admin/dashboard/Extensions/categories.js:135
+msgid "Others"
+msgstr ""
+
+#: dci/deactivate-feedback.php:236
+msgid "What is the main reason for deactivating?"
+msgstr ""
+
+#: dci/deactivate-feedback.php:242
+msgid "Skip & Deactivate"
+msgstr ""
+
+#: dci/deactivate-feedback.php:246
+msgid "Cancel"
+msgstr ""
+
+#: dci/deactivate-feedback.php:251
+msgid "Submit & Deactivate"
+msgstr ""
+
+#: dci/notice.php:18
+msgid "Never miss an important update."
+msgstr ""
+
+#: dci/notice.php:21
+msgid "Get notified when there are new updates available for your plugins and themes. In the current version of this message it is clear that you are being sent a confirmation email to confirm your opt-in."
+msgstr ""
+
+#: dci/notice.php:39
+msgid "Allow & Continue"
+msgstr ""
+
+#: dci/notice.php:43
+msgid "Skip"
+msgstr ""
+
+#: dci/notice.php:49
+msgid "Which permission are being granted?"
+msgstr ""
+
+#: dci/notice.php:61
+msgid "View Basic Profile Info."
+msgstr ""
+
+#: dci/notice.php:64
+msgid "Your WordPress user's first & last name, and email address."
+msgstr ""
+
+#: dci/notice.php:76
+msgid "View Basic Website Info."
+msgstr ""
+
+#: dci/notice.php:79
+msgid "Homepage URL & title, WP & PHP versions, and site language."
+msgstr ""
+
+#: dci/notice.php:91
+msgid "View Basic Plugin Info."
+msgstr ""
+
+#: dci/notice.php:94
+msgid "Current Plugin & SDK versions, and if active or uninstalled."
+msgstr ""
+
 #: includes/Admin/Author.php:50
 #: includes/Blocks/Blocks.php:780
 #: includes/Form/Hooks.php:28
@@ -48,12 +145,13 @@ msgstr ""
 #: src/blocks/profile-card/inspector.js:209
 #: src/blocks/profile-card/inspector.js:372
 #: src/blocks/profile-card/inspector.js:686
+#: src/blocks/qrcode/inspector.js:131
 #: src/blocks/social-share/constants/index.js:38
 msgid "Email"
 msgstr ""
 
 #: includes/Admin/Author.php:51
-#: includes/Blocks/PostCommentsForm.php:177
+#: includes/Blocks/PostCommentsForm.php:178
 msgid "Website"
 msgstr ""
 
@@ -83,55 +181,55 @@ msgstr ""
 msgid "Dribbble"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:77
-#: includes/Admin/Dashboard.php:78
+#: includes/Admin/Dashboard.php:82
+#: includes/Admin/Dashboard.php:83
 #: src/admin/dashboard/index.js:122
 msgid "Dashboard"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:85
-#: includes/Admin/Dashboard.php:86
+#: includes/Admin/Dashboard.php:90
+#: includes/Admin/Dashboard.php:91
 #: src/admin/constants/index.js:11
 msgid "Blocks"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:96
-#: includes/Admin/Dashboard.php:97
+#: includes/Admin/Dashboard.php:101
+#: includes/Admin/Dashboard.php:102
 #: src/admin/constants/index.js:16
 #: src/admin/dashboard/Welcome/index.js:81
 msgid "Extensions"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:106
-#: includes/Admin/Dashboard.php:107
+#: includes/Admin/Dashboard.php:111
+#: includes/Admin/Dashboard.php:112
 #: src/admin/constants/index.js:21
 msgid "API Settings"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:116
-#: includes/Admin/Dashboard.php:117
+#: includes/Admin/Dashboard.php:121
+#: includes/Admin/Dashboard.php:122
 #: src/admin/constants/index.js:26
 #: src/blocks/google-map/inspector.js:250
 msgid "Settings"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:127
-#: includes/Admin/Dashboard.php:128
+#: includes/Admin/Dashboard.php:132
+#: includes/Admin/Dashboard.php:133
 #: includes/Blocks/Blocks.php:256
+#: includes/Popup/PopupBuilder.php:47
 #: includes/Popup/PopupBuilder.php:48
 #: includes/Popup/PopupBuilder.php:49
 #: includes/Popup/PopupBuilder.php:50
-#: includes/Popup/PopupBuilder.php:51
 msgid "Popup Builder"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:135
-#: includes/Admin/Dashboard.php:136
+#: includes/Admin/Dashboard.php:140
+#: includes/Admin/Dashboard.php:141
 msgid "Form Entries"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:336
-#: includes/Admin/Dashboard.php:337
+#: includes/Admin/Dashboard.php:313
+#: includes/Admin/Dashboard.php:314
 #: src/extensions/AI/popup/components/header/index.js:50
 msgid "Upgrade"
 msgstr ""
@@ -141,8 +239,8 @@ msgid "Install Gutenberg"
 msgstr ""
 
 #: includes/Admin/PostCategoryImage.php:37
-#: includes/Admin/PostCategoryImage.php:70
-#: includes/Admin/PostCategoryImage.php:118
+#: includes/Admin/PostCategoryImage.php:71
+#: includes/Admin/PostCategoryImage.php:119
 #: src/blocks/advanced-icon-box/inspector.js:395
 #: src/blocks/advanced-icon-box/inspector.js:734
 #: src/blocks/advanced-image/edit.js:225
@@ -171,17 +269,17 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: includes/Admin/PostCategoryImage.php:56
+#: includes/Admin/PostCategoryImage.php:57
 msgid "No Image"
 msgstr ""
 
-#: includes/Admin/PostCategoryImage.php:78
-#: includes/Admin/PostCategoryImage.php:132
+#: includes/Admin/PostCategoryImage.php:79
+#: includes/Admin/PostCategoryImage.php:133
 msgid "Add Image"
 msgstr ""
 
-#: includes/Admin/PostCategoryImage.php:81
-#: includes/Admin/PostCategoryImage.php:135
+#: includes/Admin/PostCategoryImage.php:82
+#: includes/Admin/PostCategoryImage.php:136
 msgid "Remove Image"
 msgstr ""
 
@@ -190,82 +288,91 @@ msgid "ZoloBlocks Site Visibility"
 msgstr ""
 
 #: includes/Admin/Settings.php:47
-#: includes/Admin/Settings.php:77
+#: includes/Admin/Settings.php:91
 #: src/admin/dashboard/Settings/index.js:274
 msgid "Site Visibility"
 msgstr ""
 
-#: includes/Admin/Settings.php:63
+#: includes/Admin/Settings.php:77
 msgid "Choose whether you want to enable Maintenance Mode or Coming Soon Mode for your site."
 msgstr ""
 
-#: includes/Admin/Settings.php:82
+#: includes/Admin/Settings.php:96
 msgid "Enable Coming Soon Mode"
 msgstr ""
 
-#: includes/Admin/Settings.php:85
+#: includes/Admin/Settings.php:99
 msgid "If your website is under construction, the 'Coming Soon' page will return an HTTP 200 status code."
 msgstr ""
 
-#: includes/Admin/Settings.php:93
+#: includes/Admin/Settings.php:107
 msgid "Enable Maintenance Mode"
 msgstr ""
 
-#: includes/Admin/Settings.php:96
+#: includes/Admin/Settings.php:110
 msgid "Maintenance Mode returns an HTTP 503 status code, signaling search engines to revisit the site shortly."
 msgstr ""
 
-#: includes/Admin/Settings.php:107
+#: includes/Admin/Settings.php:121
 msgid "Enable Private Link"
 msgstr ""
 
-#: includes/Admin/Settings.php:110
+#: includes/Admin/Settings.php:124
 msgid "When enabled, only users with the secret key can access the site. Useful for sharing previews with clients."
 msgstr ""
 
-#: includes/Admin/Settings.php:115
+#: includes/Admin/Settings.php:129
 msgid "Enter Secret Key"
 msgstr ""
 
-#: includes/Admin/Settings.php:119
+#: includes/Admin/Settings.php:133
 msgid "Select a Template"
 msgstr ""
 
-#: includes/Admin/Settings.php:122
+#: includes/Admin/Settings.php:136
 msgid "Select Template"
 msgstr ""
 
-#: includes/Admin/Settings.php:635
-#: includes/Admin/Settings.php:692
-#: includes/Admin/Settings.php:743
+#: includes/Admin/Settings.php:649
+#: includes/Admin/Settings.php:706
+#: includes/Admin/Settings.php:757
 #: includes/Helpers/Settings.php:127
 #: includes/Helpers/Settings.php:174
 #: includes/Helpers/Settings.php:223
 msgid "Invalid request."
 msgstr ""
 
-#: includes/Admin/Settings.php:670
+#: includes/Admin/Settings.php:684
 #: includes/Helpers/Settings.php:145
 #: includes/Helpers/Settings.php:241
 msgid "Invalid block name(s) provided."
 msgstr ""
 
-#: includes/Admin/Settings.php:722
+#: includes/Admin/Settings.php:736
 #: includes/Helpers/Settings.php:204
 msgid "Invalid favorite id provided."
 msgstr ""
 
-#: includes/Admin/Settings.php:778
+#: includes/Admin/Settings.php:792
 msgid "Invalid extension name(s) provided."
 msgstr ""
 
 #: includes/API/GetPostsV1.php:50
-#: includes/Classes/ZoloAJAX.php:51
+#: includes/Classes/ZoloAJAX.php:49
+#: includes/Classes/ZoloAJAX.php:86
 msgid "Session Expired!!"
 msgstr ""
 
 #: includes/API/ZoloAi.php:47
 msgid "You are not allowed to access this route."
+msgstr ""
+
+#: includes/API/ZoloAi.php:88
+msgid "Failed to connect to the Sigmative API."
+msgstr ""
+
+#: includes/API/ZoloAi.php:100
+msgid "The API returned an invalid response."
 msgstr ""
 
 #: includes/Blocks/Blocks.php:8
@@ -276,6 +383,10 @@ msgstr ""
 #: src/blocks/table-of-content/inspector.js:222
 #: src/global/constants.js:1089
 msgid "Container"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:16
+msgid "Advanced Paragraph"
 msgstr ""
 
 #: includes/Blocks/Blocks.php:24
@@ -317,6 +428,10 @@ msgstr ""
 
 #: includes/Blocks/Blocks.php:94
 msgid "Brand Carousel"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:103
+msgid "Brand Carousel Child"
 msgstr ""
 
 #: includes/Blocks/Blocks.php:111
@@ -399,8 +514,10 @@ msgstr ""
 #: src/blocks/cta/inspector.js:230
 #: src/blocks/cta/inspector.js:289
 #: src/blocks/cta/inspector.js:292
-#: src/blocks/email/inspector.js:276
-#: src/blocks/email/inspector.js:283
+#: src/blocks/dual-button/inspector.js:175
+#: src/blocks/dual-button/inspector.js:208
+#: src/blocks/email/inspector.js:277
+#: src/blocks/email/inspector.js:284
 #: src/blocks/fancy-list-child/inspector.js:161
 #: src/blocks/fancy-list-child/inspector.js:392
 #: src/blocks/fancy-list/inspector.js:395
@@ -408,7 +525,7 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:189
 #: src/blocks/flipbox/inspector.js:216
 #: src/blocks/flipbox/inspector.js:545
-#: src/blocks/form/inspector.js:502
+#: src/blocks/form/inspector.js:505
 #: src/blocks/icon/inspector.js:151
 #: src/blocks/lightbox/inspector.js:218
 #: src/blocks/list/inspector.js:181
@@ -511,8 +628,8 @@ msgid "Progress Pie"
 msgstr ""
 
 #: includes/Blocks/Blocks.php:330
-#: src/blocks/qrcode/inspector.js:94
-#: src/blocks/qrcode/inspector.js:181
+#: src/blocks/qrcode/inspector.js:121
+#: src/blocks/qrcode/inspector.js:349
 msgid "QR Code"
 msgstr ""
 
@@ -635,6 +752,18 @@ msgstr ""
 msgid "Post Title"
 msgstr ""
 
+#: includes/Blocks/Blocks.php:550
+msgid "Unfold"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:559
+msgid "Data Table"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:568
+msgid "Image Hotspot"
+msgstr ""
+
 #: includes/Blocks/Blocks.php:577
 #: src/blocks/navigation/edit.js:213
 #: src/blocks/post-carousel/inspector.js:538
@@ -664,6 +793,24 @@ msgstr ""
 msgid "Post Meta"
 msgstr ""
 
+#: includes/Blocks/Blocks.php:621
+msgid "Marquee"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:630
+msgid "Marquee Child"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:638
+#: src/blocks/table-of-content/edit.js:37
+#: src/blocks/table-of-content/save.js:84
+msgid "Table of Content"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:646
+msgid "Post Tab"
+msgstr ""
+
 #: includes/Blocks/Blocks.php:656
 msgid "Loop Builder"
 msgstr ""
@@ -681,6 +828,14 @@ msgstr ""
 msgid "Post Content"
 msgstr ""
 
+#: includes/Blocks/Blocks.php:697
+msgid "Post Video Slider"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:707
+msgid "Lottie Image"
+msgstr ""
+
 #: includes/Blocks/Blocks.php:716
 #: src/admin/dashboard/Blocks/categories.js:120
 msgid "Form"
@@ -692,6 +847,18 @@ msgstr ""
 
 #: includes/Blocks/Blocks.php:738
 msgid "Checkbox Field"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:745
+#: includes/Form/Hooks.php:36
+#: src/blocks/qrcode/inspector.js:188
+#: src/blocks/qrcode/inspector.js:213
+#: src/blocks/qrcode/inspector.js:247
+msgid "Phone Number"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:752
+msgid "Country Field"
 msgstr ""
 
 #: includes/Blocks/Blocks.php:759
@@ -712,6 +879,7 @@ msgstr ""
 
 #: includes/Blocks/Blocks.php:794
 #: src/controls/background-control/bg-control.js:143
+#: src/controls/background-control/bg-control.js:1413
 msgid "Video"
 msgstr ""
 
@@ -725,37 +893,45 @@ msgstr ""
 msgid "Error 404"
 msgstr ""
 
+#. translators: %s is the name of the current product tag term.
 #: includes/Blocks/Breadcrumbs.php:408
+#, php-format
 msgid "Products tagged &ldquo;%s&rdquo;"
 msgstr ""
 
 #. translators: %s: tag name
 #: includes/Blocks/Breadcrumbs.php:565
+#, php-format
 msgid "Posts tagged &ldquo;%s&rdquo;"
 msgstr ""
 
 #. translators: %s: author name
 #: includes/Blocks/Breadcrumbs.php:632
+#, php-format
 msgid "Author: %s"
 msgstr ""
 
 #. translators: %s: search term
 #: includes/Blocks/Breadcrumbs.php:675
+#, php-format
 msgid "Search results for &ldquo;%s&rdquo;"
 msgstr ""
 
 #. translators: %d: page number
 #: includes/Blocks/Breadcrumbs.php:685
+#, php-format
 msgid "Page %d"
 msgstr ""
 
-#: includes/Blocks/PostCommentsForm.php:69
+#. translators: %s is the number of comments.
+#: includes/Blocks/PostCommentsForm.php:70
+#, php-format
 msgid "<span>%s</span> comment"
 msgid_plural "<span>%s</span> comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Blocks/PostCommentsForm.php:175
+#: includes/Blocks/PostCommentsForm.php:176
 #: src/blocks/author/inspector.js:149
 #: src/blocks/author/inspector.js:317
 #: src/blocks/newsletter/inspector.js:366
@@ -785,22 +961,26 @@ msgstr[1] ""
 msgid "Name"
 msgstr ""
 
-#: includes/Blocks/PostCommentsForm.php:176
+#: includes/Blocks/PostCommentsForm.php:177
 msgid "Email Address *"
 msgstr ""
 
-#: includes/Blocks/PostCommentsForm.php:228
-#: src/blocks/post-comments-form/render-view.js:11
-#: src/blocks/post-comments-form/render-view.js:87
+#: includes/Blocks/PostCommentsForm.php:229
+#: src/blocks/post-comments-form/render-view.js:12
+#: src/blocks/post-comments-form/render-view.js:88
 #: src/global/constants.js:1088
 msgid "Comment"
 msgstr ""
 
-#: includes/Blocks/PostCommentsForm.php:241
+#. translators: 1: opening <a> tag linking to the login page, 2: closing </a> tag.
+#: includes/Blocks/PostCommentsForm.php:243
+#, php-format
 msgid "You must be %1$slogged in%2$s to post a comment."
 msgstr ""
 
-#: includes/Blocks/PostCommentsForm.php:262
+#. translators: 1: opening <a> tag with profile link, 2: closing </a> tag, 3: opening <a> tag with logout link, 4: logout text, 5: closing </a> tag.
+#: includes/Blocks/PostCommentsForm.php:266
+#, php-format
 msgid " %1$s%2$s. %3$s%4$s%5$s"
 msgstr ""
 
@@ -808,20 +988,22 @@ msgstr ""
 msgid "[block rendering halted]"
 msgstr ""
 
-#: includes/Blocks/PostMeta.php:161
+#: includes/Blocks/PostMeta.php:162
 msgid "No Comments"
 msgstr ""
 
-#: includes/Blocks/PostMeta.php:162
+#. translators: %s: number of comments
+#: includes/Blocks/PostMeta.php:166
+#, php-format
 msgid "%s Comment"
-msgstr ""
+msgid_plural "%s Comments"
+msgstr[0] ""
+msgstr[1] ""
 
-#: includes/Blocks/PostMeta.php:163
-msgid "%s Comments"
-msgstr ""
-
+#. translators: %d: estimated reading time in minutes
 #: includes/Blocks/PostMeta.php:183
-#: src/blocks/post-meta/meta-item.js:131
+#: src/blocks/post-meta/meta-item.js:132
+#, php-format,js-format
 msgid "%d Min Read"
 msgstr ""
 
@@ -837,11 +1019,15 @@ msgstr ""
 msgid "Sorry, the JSON file is invalid."
 msgstr ""
 
-#: includes/Classes/ZoloAJAX.php:58
+#: includes/Classes/ZoloAJAX.php:56
 msgid "Invalid input data"
 msgstr ""
 
-#: includes/Classes/ZoloAJAX.php:480
+#: includes/Classes/ZoloAJAX.php:98
+msgid "Invalid settings data"
+msgstr ""
+
+#: includes/Classes/ZoloAJAX.php:531
 msgid "Nonce did not match"
 msgstr ""
 
@@ -960,6 +1146,7 @@ msgstr ""
 
 #: includes/Form/Form.php:366
 #: includes/Form/FormEntries.php:143
+#: src/blocks/qrcode/inspector.js:233
 msgid "Subject"
 msgstr ""
 
@@ -995,7 +1182,7 @@ msgstr ""
 #: includes/Form/Hooks.php:31
 #: src/blocks/cta/inspector.js:246
 #: src/blocks/fancy-list-child/inspector.js:164
-#: src/blocks/navigation-item/inspector.js:123
+#: src/blocks/navigation-item/inspector.js:124
 #: src/blocks/navigation/inspector.js:154
 #: src/blocks/navigation/inspector.js:213
 #: src/blocks/profile-card/inspector.js:275
@@ -1029,6 +1216,8 @@ msgstr ""
 #: src/blocks/counter/inspector.js:279
 #: src/blocks/cta/inspector.js:186
 #: src/blocks/cta/inspector.js:206
+#: src/blocks/dual-button/inspector.js:156
+#: src/blocks/dual-button/inspector.js:191
 #: src/blocks/fancy-list-child/inspector.js:125
 #: src/blocks/fancy-list-child/inspector.js:137
 #: src/blocks/fancy-list-child/inspector.js:229
@@ -1075,10 +1264,11 @@ msgstr ""
 
 #: includes/Form/Hooks.php:33
 #: src/blocks/form/constants/index.js:51
-#: src/blocks/form/inspector.js:626
+#: src/blocks/form/inspector.js:629
 #: src/blocks/newsletter/inspector.js:418
 #: src/blocks/newsletter/inspector.js:836
 #: src/blocks/post-comments-form/inspector.js:310
+#: src/blocks/qrcode/inspector.js:218
 #: src/blocks/review-carousel/inspector.js:213
 #: src/blocks/review-carousel/inspector.js:622
 #: src/blocks/review-child/inspector.js:246
@@ -1094,10 +1284,6 @@ msgstr ""
 
 #: includes/Form/Hooks.php:35
 msgid "Date/Time"
-msgstr ""
-
-#: includes/Form/Hooks.php:36
-msgid "Phone Number"
 msgstr ""
 
 #: includes/Mailchimp/Mailchimp.php:48
@@ -1127,56 +1313,56 @@ msgstr ""
 msgid "Webhook URL is missing!"
 msgstr ""
 
+#: includes/Popup/PopupBuilder.php:51
 #: includes/Popup/PopupBuilder.php:52
 #: includes/Popup/PopupBuilder.php:53
-#: includes/Popup/PopupBuilder.php:54
 msgid "Create Popup"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:55
+#: includes/Popup/PopupBuilder.php:54
 msgid "Edit Popup"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:56
+#: includes/Popup/PopupBuilder.php:55
 msgid "View Popup"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:57
+#: includes/Popup/PopupBuilder.php:56
 msgid "All Popups"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:58
+#: includes/Popup/PopupBuilder.php:57
 msgid "Search Popups"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:59
+#: includes/Popup/PopupBuilder.php:58
 msgid "Parent Popups:"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:60
+#: includes/Popup/PopupBuilder.php:59
 msgid "No popups found."
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:61
+#: includes/Popup/PopupBuilder.php:60
 msgid "No popups found in Trash."
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:66
+#: includes/Popup/PopupBuilder.php:65
 msgid "Description."
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:174
+#: includes/Popup/PopupBuilder.php:173
 msgid "Trigger"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:175
+#: includes/Popup/PopupBuilder.php:174
 #: src/blocks/profile-card/inspector.js:227
 #: src/blocks/profile-card/inspector.js:403
 #: src/blocks/profile-card/inspector.js:740
 msgid "Status"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:176
+#: includes/Popup/PopupBuilder.php:175
 #: src/blocks/post-category/constants/index.js:10
 #: src/blocks/post-comments/constants/index.js:11
 #: src/blocks/post-comments/inspector.js:107
@@ -1191,21 +1377,16 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:214
+#: includes/Popup/PopupBuilder.php:212
+msgid "Unauthorized access!"
+msgstr ""
+
+#: includes/Popup/PopupBuilder.php:221
 msgid "Post ID is missing!"
 msgstr ""
 
-#: includes/Popup/PopupBuilder.php:227
+#: includes/Popup/PopupBuilder.php:234
 msgid "Popup status updated!"
-msgstr ""
-
-#: includes/Templates/Templates.php:137
-msgid "Pattern imported successfully!"
-msgstr ""
-
-#: includes/Templates/Templates.php:177
-#: includes/Templates/Templates.php:214
-msgid "Templates pulled and REST API updated successfully!"
 msgstr ""
 
 #: views/author.php:59
@@ -1216,11 +1397,21 @@ msgstr ""
 msgid "Click here to "
 msgstr ""
 
-#: views/author.php:78
+#. translators: %s: number of posts
+#: views/author.php:79
+#, php-format
 msgid "Post: %s"
 msgid_plural "Posts: %s"
 msgstr[0] ""
 msgstr[1] ""
+
+#: views/post-grid.php:53
+#: src/admin/dashboard/Blocks/categories.js:19
+#: src/admin/dashboard/Extensions/categories.js:19
+#: src/blocks/post-comments/constants/index.js:18
+#: src/blocks/post-grid/render-view.js:40
+msgid "All"
+msgstr ""
 
 #: views/post-partials/meta/comment-number.php:9
 #: src/blocks/post-meta/constants/index.js:16
@@ -1230,7 +1421,7 @@ msgstr ""
 
 #: views/post-partials/meta/reading-time.php:10
 #: src/blocks/post-carousel/render-view.js:59
-#: src/blocks/post-grid/render-view.js:180
+#: src/blocks/post-grid/render-view.js:190
 #: src/blocks/post-list/render-view.js:62
 #: src/blocks/post-timeline/render-view.js:50
 msgid "Min Read"
@@ -1266,7 +1457,7 @@ msgid "API Key"
 msgstr ""
 
 #: src/admin/dashboard/API-Settings/index.js:219
-#: src/blocks/form/inspector.js:411
+#: src/blocks/form/inspector.js:414
 msgid "Google reCaptcha"
 msgstr ""
 
@@ -1318,11 +1509,11 @@ msgstr ""
 #: src/blocks/cta/inspector.js:219
 #: src/blocks/cta/inspector.js:277
 #: src/blocks/email/edit.js:98
-#: src/blocks/email/inspector.js:187
-#: src/blocks/form/inspector.js:365
-#: src/blocks/form/inspector.js:441
+#: src/blocks/email/inspector.js:188
+#: src/blocks/form/inspector.js:368
+#: src/blocks/form/inspector.js:444
 #: src/blocks/newsletter/inspector.js:450
-#: src/blocks/number-field/edit.js:97
+#: src/blocks/number-field/edit.js:98
 #: src/blocks/number-field/inspector.js:89
 #: src/blocks/number-field/inspector.js:185
 #: src/blocks/profile-card/edit.js:236
@@ -1388,12 +1579,6 @@ msgstr ""
 #: src/admin/dashboard/Extensions/index.js:175
 #: src/admin/dashboard/Extensions/index.js:258
 msgid "Save Changes"
-msgstr ""
-
-#: src/admin/dashboard/Blocks/categories.js:19
-#: src/admin/dashboard/Extensions/categories.js:19
-#: src/blocks/post-comments/constants/index.js:18
-msgid "All"
 msgstr ""
 
 #: src/admin/dashboard/Blocks/categories.js:34
@@ -1483,7 +1668,7 @@ msgstr ""
 #: src/admin/dashboard/Blocks/single-block.js:38
 #: src/admin/dashboard/Extensions/single-extension.js:38
 #: src/controls/thumbs-control/index.js:89
-#: src/template-library/pro-popup.js:60
+#: src/template-library/pro-popup.js:65
 msgid "Get premium resources at ZoloBlocks and save more time with stunning patterns and templates"
 msgstr ""
 
@@ -1491,7 +1676,7 @@ msgstr ""
 #: src/admin/dashboard/Extensions/single-extension.js:41
 #: src/admin/dashboard/index.js:107
 #: src/controls/thumbs-control/index.js:92
-#: src/template-library/pro-popup.js:66
+#: src/template-library/pro-popup.js:71
 msgid "Upgrade Now"
 msgstr ""
 
@@ -1507,10 +1692,6 @@ msgstr ""
 
 #: src/admin/dashboard/Extensions/categories.js:120
 msgid "Social"
-msgstr ""
-
-#: src/admin/dashboard/Extensions/categories.js:135
-msgid "Others"
 msgstr ""
 
 #: src/admin/dashboard/index.js:99
@@ -1822,10 +2003,11 @@ msgstr ""
 #: src/blocks/countdown/inspector.js:135
 #: src/blocks/counter/inspector.js:151
 #: src/blocks/cta/inspector.js:117
-#: src/blocks/email/inspector.js:81
+#: src/blocks/dual-button/inspector.js:131
+#: src/blocks/email/inspector.js:82
 #: src/blocks/fancy-list/inspector.js:146
 #: src/blocks/flipbox/inspector.js:162
-#: src/blocks/form/inspector.js:179
+#: src/blocks/form/inspector.js:182
 #: src/blocks/google-map/inspector.js:77
 #: src/blocks/icon/inspector.js:78
 #: src/blocks/image-compare/inspector.js:85
@@ -1894,7 +2076,7 @@ msgstr ""
 #: src/blocks/brand-grid/inspector.js:350
 #: src/blocks/charts/inspector.js:379
 #: src/blocks/charts/inspector.js:492
-#: src/blocks/charts/inspector.js:809
+#: src/blocks/charts/inspector.js:810
 #: src/blocks/counter/inspector.js:190
 #: src/blocks/counter/inspector.js:277
 #: src/blocks/counter/inspector.js:638
@@ -2036,8 +2218,13 @@ msgstr ""
 #: src/blocks/counter/inspector.js:661
 #: src/blocks/cta/inspector.js:443
 #: src/blocks/cta/inspector.js:546
-#: src/blocks/email/inspector.js:217
-#: src/blocks/email/inspector.js:268
+#: src/blocks/dual-button/inspector.js:253
+#: src/blocks/dual-button/inspector.js:324
+#: src/blocks/dual-button/inspector.js:401
+#: src/blocks/dual-button/inspector.js:480
+#: src/blocks/dual-button/inspector.js:553
+#: src/blocks/email/inspector.js:218
+#: src/blocks/email/inspector.js:269
 #: src/blocks/fancy-list-child/inspector.js:247
 #: src/blocks/fancy-list-child/inspector.js:409
 #: src/blocks/fancy-list-child/inspector.js:480
@@ -2048,11 +2235,11 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:772
 #: src/blocks/flipbox/inspector.js:816
 #: src/blocks/flipbox/inspector.js:1029
-#: src/blocks/form/inspector.js:463
-#: src/blocks/form/inspector.js:542
-#: src/blocks/form/inspector.js:589
-#: src/blocks/form/inspector.js:647
-#: src/blocks/form/inspector.js:681
+#: src/blocks/form/inspector.js:466
+#: src/blocks/form/inspector.js:545
+#: src/blocks/form/inspector.js:592
+#: src/blocks/form/inspector.js:650
+#: src/blocks/form/inspector.js:684
 #: src/blocks/icon/inspector.js:166
 #: src/blocks/image-compare/inspector.js:381
 #: src/blocks/image-gallery/inspector.js:275
@@ -2137,9 +2324,9 @@ msgstr ""
 #: src/blocks/profile-card/inspector.js:578
 #: src/blocks/profile-card/inspector.js:809
 #: src/blocks/profile-card/inspector.js:898
-#: src/blocks/qrcode/inspector.js:161
-#: src/blocks/qrcode/inspector.js:250
-#: src/blocks/qrcode/inspector.js:312
+#: src/blocks/qrcode/inspector.js:329
+#: src/blocks/qrcode/inspector.js:418
+#: src/blocks/qrcode/inspector.js:480
 #: src/blocks/radio-field/inspector.js:215
 #: src/blocks/radio-field/inspector.js:256
 #: src/blocks/review-carousel/inspector.js:441
@@ -2250,7 +2437,10 @@ msgstr ""
 #: src/blocks/counter/inspector.js:686
 #: src/blocks/cta/inspector.js:360
 #: src/blocks/cta/inspector.js:388
-#: src/blocks/email/inspector.js:225
+#: src/blocks/dual-button/inspector.js:248
+#: src/blocks/dual-button/inspector.js:319
+#: src/blocks/dual-button/inspector.js:396
+#: src/blocks/email/inspector.js:226
 #: src/blocks/fancy-list-child/inspector.js:253
 #: src/blocks/fancy-list-child/inspector.js:317
 #: src/blocks/fancy-list-child/inspector.js:370
@@ -2259,8 +2449,8 @@ msgstr ""
 #: src/blocks/fancy-list/inspector.js:373
 #: src/blocks/flipbox/inspector.js:882
 #: src/blocks/flipbox/inspector.js:908
-#: src/blocks/form/inspector.js:471
-#: src/blocks/form/inspector.js:595
+#: src/blocks/form/inspector.js:474
+#: src/blocks/form/inspector.js:598
 #: src/blocks/icon/inspector.js:171
 #: src/blocks/image-compare/inspector.js:387
 #: src/blocks/image-gallery/inspector.js:342
@@ -2351,7 +2541,7 @@ msgstr ""
 #: src/blocks/progress-bar-child/inspector.js:153
 #: src/blocks/progress-bar/inspector.js:161
 #: src/blocks/progress-bar/inspector.js:198
-#: src/blocks/qrcode/inspector.js:291
+#: src/blocks/qrcode/inspector.js:459
 #: src/blocks/radio-field/inspector.js:223
 #: src/blocks/review-carousel/inspector.js:496
 #: src/blocks/review-carousel/inspector.js:540
@@ -2463,8 +2653,16 @@ msgstr ""
 #: src/blocks/counter/inspector.js:672
 #: src/blocks/cta/inspector.js:450
 #: src/blocks/cta/inspector.js:553
-#: src/blocks/email/inspector.js:206
-#: src/blocks/email/inspector.js:260
+#: src/blocks/dual-button/inspector.js:259
+#: src/blocks/dual-button/inspector.js:291
+#: src/blocks/dual-button/inspector.js:330
+#: src/blocks/dual-button/inspector.js:362
+#: src/blocks/dual-button/inspector.js:408
+#: src/blocks/dual-button/inspector.js:439
+#: src/blocks/dual-button/inspector.js:486
+#: src/blocks/dual-button/inspector.js:559
+#: src/blocks/email/inspector.js:207
+#: src/blocks/email/inspector.js:261
 #: src/blocks/fancy-list-child/inspector.js:260
 #: src/blocks/fancy-list-child/inspector.js:504
 #: src/blocks/fancy-list/inspector.js:264
@@ -2474,11 +2672,11 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:778
 #: src/blocks/flipbox/inspector.js:822
 #: src/blocks/flipbox/inspector.js:1035
-#: src/blocks/form/inspector.js:481
-#: src/blocks/form/inspector.js:548
-#: src/blocks/form/inspector.js:602
-#: src/blocks/form/inspector.js:654
-#: src/blocks/form/inspector.js:688
+#: src/blocks/form/inspector.js:484
+#: src/blocks/form/inspector.js:551
+#: src/blocks/form/inspector.js:605
+#: src/blocks/form/inspector.js:657
+#: src/blocks/form/inspector.js:691
 #: src/blocks/icon/inspector.js:177
 #: src/blocks/image-compare/inspector.js:395
 #: src/blocks/image-compare/inspector.js:425
@@ -2693,8 +2891,13 @@ msgstr ""
 #: src/blocks/counter/inspector.js:677
 #: src/blocks/cta/inspector.js:467
 #: src/blocks/cta/inspector.js:570
-#: src/blocks/email/inspector.js:211
-#: src/blocks/email/inspector.js:262
+#: src/blocks/dual-button/inspector.js:265
+#: src/blocks/dual-button/inspector.js:336
+#: src/blocks/dual-button/inspector.js:414
+#: src/blocks/dual-button/inspector.js:492
+#: src/blocks/dual-button/inspector.js:565
+#: src/blocks/email/inspector.js:212
+#: src/blocks/email/inspector.js:263
 #: src/blocks/fancy-list-child/inspector.js:270
 #: src/blocks/fancy-list-child/inspector.js:421
 #: src/blocks/fancy-list-child/inspector.js:514
@@ -2705,11 +2908,11 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:783
 #: src/blocks/flipbox/inspector.js:827
 #: src/blocks/flipbox/inspector.js:1040
-#: src/blocks/form/inspector.js:486
-#: src/blocks/form/inspector.js:550
-#: src/blocks/form/inspector.js:607
-#: src/blocks/form/inspector.js:659
-#: src/blocks/form/inspector.js:693
+#: src/blocks/form/inspector.js:489
+#: src/blocks/form/inspector.js:553
+#: src/blocks/form/inspector.js:610
+#: src/blocks/form/inspector.js:662
+#: src/blocks/form/inspector.js:696
 #: src/blocks/google-map/inspector.js:303
 #: src/blocks/icon/inspector.js:187
 #: src/blocks/image-gallery/inspector.js:303
@@ -2804,9 +3007,9 @@ msgstr ""
 #: src/blocks/progress-bar-child/inspector.js:134
 #: src/blocks/progress-bar/inspector.js:131
 #: src/blocks/progress-bar/inspector.js:178
-#: src/blocks/qrcode/inspector.js:155
-#: src/blocks/qrcode/inspector.js:242
-#: src/blocks/qrcode/inspector.js:306
+#: src/blocks/qrcode/inspector.js:323
+#: src/blocks/qrcode/inspector.js:410
+#: src/blocks/qrcode/inspector.js:474
 #: src/blocks/radio-field/inspector.js:209
 #: src/blocks/radio-field/inspector.js:268
 #: src/blocks/review-carousel/inspector.js:454
@@ -2953,8 +3156,8 @@ msgstr ""
 #: src/blocks/business-hour/inspector.js:208
 #: src/blocks/business-hour/inspector.js:251
 #: src/blocks/business-hour/inspector.js:302
-#: src/blocks/charts/inspector.js:811
-#: src/blocks/charts/inspector.js:837
+#: src/blocks/charts/inspector.js:812
+#: src/blocks/charts/inspector.js:838
 #: src/blocks/checkbox-field/inspector.js:187
 #: src/blocks/checkbox-field/inspector.js:294
 #: src/blocks/countdown/inspector.js:473
@@ -2970,7 +3173,17 @@ msgstr ""
 #: src/blocks/cta/inspector.js:477
 #: src/blocks/cta/inspector.js:506
 #: src/blocks/cta/inspector.js:580
-#: src/blocks/email/inspector.js:278
+#: src/blocks/dual-button/inspector.js:230
+#: src/blocks/dual-button/inspector.js:280
+#: src/blocks/dual-button/inspector.js:306
+#: src/blocks/dual-button/inspector.js:351
+#: src/blocks/dual-button/inspector.js:377
+#: src/blocks/dual-button/inspector.js:424
+#: src/blocks/dual-button/inspector.js:455
+#: src/blocks/dual-button/inspector.js:502
+#: src/blocks/dual-button/inspector.js:528
+#: src/blocks/dual-button/inspector.js:575
+#: src/blocks/email/inspector.js:279
 #: src/blocks/fancy-list-child/inspector.js:300
 #: src/blocks/fancy-list-child/inspector.js:336
 #: src/blocks/fancy-list-child/inspector.js:354
@@ -2995,15 +3208,15 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:966
 #: src/blocks/flipbox/inspector.js:1008
 #: src/blocks/flipbox/inspector.js:1049
-#: src/blocks/form/inspector.js:443
-#: src/blocks/form/inspector.js:497
-#: src/blocks/form/inspector.js:522
-#: src/blocks/form/inspector.js:558
-#: src/blocks/form/inspector.js:577
-#: src/blocks/form/inspector.js:617
-#: src/blocks/form/inspector.js:635
-#: src/blocks/form/inspector.js:669
-#: src/blocks/form/inspector.js:703
+#: src/blocks/form/inspector.js:446
+#: src/blocks/form/inspector.js:500
+#: src/blocks/form/inspector.js:525
+#: src/blocks/form/inspector.js:561
+#: src/blocks/form/inspector.js:580
+#: src/blocks/form/inspector.js:620
+#: src/blocks/form/inspector.js:638
+#: src/blocks/form/inspector.js:672
+#: src/blocks/form/inspector.js:706
 #: src/blocks/google-map/inspector.js:329
 #: src/blocks/icon/inspector.js:156
 #: src/blocks/icon/inspector.js:197
@@ -3200,8 +3413,8 @@ msgstr ""
 #: src/blocks/progress-pie/inspector.js:253
 #: src/blocks/progress-pie/inspector.js:312
 #: src/blocks/progress-pie/multicolor.js:23
-#: src/blocks/qrcode/inspector.js:186
-#: src/blocks/qrcode/inspector.js:274
+#: src/blocks/qrcode/inspector.js:354
+#: src/blocks/qrcode/inspector.js:442
 #: src/blocks/radio-field/inspector.js:186
 #: src/blocks/radio-field/inspector.js:292
 #: src/blocks/review-carousel/inspector.js:525
@@ -3309,11 +3522,9 @@ msgstr ""
 #: src/blocks/video/inspector.js:784
 #: src/blocks/video/inspector.js:797
 #: src/blocks/video/inspector.js:812
-#: src/controls/background-control/overlay-control.js:155
-#: src/controls/background-control/overlay-control.js:1329
 #: src/controls/color-control-alt/index.js:28
 #: src/controls/color-control/index.js:28
-#: src/controls/text-gradient-control/index.js:1058
+#: src/controls/text-gradient-control/index.js:1060
 #: src/extensions/particles/inspector.js:355
 #: src/extensions/particles/multicolor.js:29
 #: src/extensions/shape-divider/inspector.js:130
@@ -3353,8 +3564,8 @@ msgstr ""
 #: src/blocks/business-hour/inspector.js:217
 #: src/blocks/business-hour/inspector.js:269
 #: src/blocks/business-hour/inspector.js:311
-#: src/blocks/charts/inspector.js:826
-#: src/blocks/charts/inspector.js:852
+#: src/blocks/charts/inspector.js:827
+#: src/blocks/charts/inspector.js:853
 #: src/blocks/checkbox-field/inspector.js:197
 #: src/blocks/checkbox-field/inspector.js:299
 #: src/blocks/countdown/inspector.js:478
@@ -3367,8 +3578,11 @@ msgstr ""
 #: src/blocks/cta/inspector.js:381
 #: src/blocks/cta/inspector.js:412
 #: src/blocks/cta/inspector.js:516
-#: src/blocks/email/inspector.js:199
-#: src/blocks/email/inspector.js:256
+#: src/blocks/dual-button/inspector.js:239
+#: src/blocks/dual-button/inspector.js:311
+#: src/blocks/dual-button/inspector.js:387
+#: src/blocks/email/inspector.js:200
+#: src/blocks/email/inspector.js:257
 #: src/blocks/fancy-list-child/inspector.js:309
 #: src/blocks/fancy-list-child/inspector.js:363
 #: src/blocks/fancy-list-child/inspector.js:468
@@ -3380,11 +3594,11 @@ msgstr ""
 #: src/blocks/flipbox/inspector.js:943
 #: src/blocks/flipbox/inspector.js:961
 #: src/blocks/flipbox/inspector.js:1017
-#: src/blocks/form/inspector.js:453
-#: src/blocks/form/inspector.js:535
-#: src/blocks/form/inspector.js:582
-#: src/blocks/form/inspector.js:640
-#: src/blocks/form/inspector.js:674
+#: src/blocks/form/inspector.js:456
+#: src/blocks/form/inspector.js:538
+#: src/blocks/form/inspector.js:585
+#: src/blocks/form/inspector.js:643
+#: src/blocks/form/inspector.js:677
 #: src/blocks/google-map/inspector.js:334
 #: src/blocks/image-compare/inspector.js:368
 #: src/blocks/image-gallery/inspector.js:382
@@ -3564,6 +3778,8 @@ msgstr ""
 #: src/blocks/breadcrumbs/inspector.js:483
 #: src/blocks/counter/inspector.js:427
 #: src/blocks/counter/inspector.js:437
+#: src/blocks/dual-button/inspector.js:469
+#: src/blocks/dual-button/inspector.js:542
 #: src/blocks/fancy-list-child/inspector.js:402
 #: src/blocks/fancy-list/inspector.js:405
 #: src/blocks/flipbox/inspector.js:760
@@ -3637,15 +3853,15 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:483
 #: src/controls/background-control/bg-control.js:859
 #: src/controls/background-control/bg-control.js:1235
-#: src/controls/background-control/bg-control.js:1715
-#: src/controls/background-control/bg-control.js:2069
-#: src/controls/background-control/bg-control.js:2423
-#: src/controls/background-control/overlay-control.js:482
-#: src/controls/background-control/overlay-control.js:839
-#: src/controls/background-control/overlay-control.js:1194
-#: src/controls/background-control/overlay-control.js:1654
-#: src/controls/background-control/overlay-control.js:2015
-#: src/controls/background-control/overlay-control.js:2377
+#: src/controls/background-control/bg-control.js:1724
+#: src/controls/background-control/bg-control.js:2078
+#: src/controls/background-control/bg-control.js:2432
+#: src/controls/background-control/overlay-control.js:487
+#: src/controls/background-control/overlay-control.js:844
+#: src/controls/background-control/overlay-control.js:1199
+#: src/controls/background-control/overlay-control.js:1664
+#: src/controls/background-control/overlay-control.js:2025
+#: src/controls/background-control/overlay-control.js:2387
 #: src/controls/typography-control/index.js:178
 #: src/controls/typography-control/index.js:217
 #: src/extensions/particles/inspector.js:326
@@ -3665,7 +3881,7 @@ msgstr ""
 #: src/blocks/checkbox-field/inspector.js:122
 #: src/blocks/counter/inspector.js:247
 #: src/blocks/cta/inspector.js:179
-#: src/blocks/email/inspector.js:107
+#: src/blocks/email/inspector.js:108
 #: src/blocks/fancy-list-child/inspector.js:118
 #: src/blocks/flipbox/inspector.js:262
 #: src/blocks/image-gallery/inspector.js:332
@@ -3689,7 +3905,7 @@ msgstr ""
 #: src/blocks/progress-bar-child/inspector.js:60
 #: src/blocks/progress-bar/inspector.js:89
 #: src/blocks/progress-pie/inspector.js:237
-#: src/blocks/qrcode/inspector.js:98
+#: src/blocks/qrcode/inspector.js:140
 #: src/blocks/radio-field/inspector.js:123
 #: src/blocks/review/inspector.js:219
 #: src/blocks/review/inspector.js:387
@@ -4169,9 +4385,10 @@ msgstr ""
 #: src/blocks/countdown/inspector.js:413
 #: src/blocks/counter/inspector.js:227
 #: src/blocks/cta/inspector.js:152
+#: src/blocks/dual-button/inspector.js:148
 #: src/blocks/flipbox/inspector.js:676
 #: src/blocks/flipbox/inspector.js:706
-#: src/blocks/form/inspector.js:371
+#: src/blocks/form/inspector.js:374
 #: src/blocks/icon/inspector.js:141
 #: src/blocks/lightbox/inspector.js:302
 #: src/blocks/navigation/inspector.js:136
@@ -4186,7 +4403,7 @@ msgstr ""
 #: src/blocks/post-timeline/inspector.js:698
 #: src/blocks/post-title/inspector.js:103
 #: src/blocks/pricing-table/inspector.js:227
-#: src/blocks/qrcode/inspector.js:132
+#: src/blocks/qrcode/inspector.js:300
 #: src/blocks/review-child/inspector.js:131
 #: src/blocks/review-grid/inspector.js:273
 #: src/blocks/review/inspector.js:416
@@ -4222,10 +4439,10 @@ msgstr ""
 #: src/blocks/advanced-button/inspector.js:163
 #: src/blocks/counter/inspector.js:313
 #: src/blocks/cta/inspector.js:305
-#: src/blocks/email/inspector.js:150
+#: src/blocks/email/inspector.js:151
 #: src/blocks/flipbox/inspector.js:304
 #: src/blocks/flipbox/inspector.js:430
-#: src/blocks/form/inspector.js:388
+#: src/blocks/form/inspector.js:391
 #: src/blocks/list/sortable.js:72
 #: src/blocks/newsletter/inspector.js:350
 #: src/blocks/number-field/inspector.js:144
@@ -4242,6 +4459,8 @@ msgid "Select Icon"
 msgstr ""
 
 #: src/blocks/advanced-button/inspector.js:184
+#: src/blocks/dual-button/inspector.js:180
+#: src/blocks/dual-button/inspector.js:213
 msgid "Icon Position"
 msgstr ""
 
@@ -4356,6 +4575,8 @@ msgstr ""
 #: src/blocks/container/inspector.js:203
 #: src/blocks/countdown/inspector.js:264
 #: src/blocks/cta/inspector.js:170
+#: src/blocks/dual-button/inspector.js:475
+#: src/blocks/dual-button/inspector.js:548
 #: src/blocks/fancy-list-child/inspector.js:522
 #: src/blocks/fancy-list/inspector.js:214
 #: src/blocks/fancy-list/inspector.js:525
@@ -4422,7 +4643,7 @@ msgid "Shadow Width"
 msgstr ""
 
 #: src/blocks/advanced-button/inspector.js:474
-#: src/blocks/email/inspector.js:243
+#: src/blocks/email/inspector.js:244
 #: src/blocks/post-grid/inspector.js:926
 #: src/blocks/text-field/inspector.js:230
 #: src/blocks/textarea/inspector.js:230
@@ -4471,9 +4692,10 @@ msgstr ""
 #: src/blocks/advanced-image/constants/index.js:76
 #: src/blocks/container/constants/index.js:38
 #: src/blocks/post-meta/constants/index.js:20
+#: src/blocks/qrcode/inspector.js:169
 #: src/blocks/video/inspector.js:458
-#: src/controls/background-control/overlay-control.js:154
-#: src/controls/background-control/overlay-control.js:1328
+#: src/controls/background-control/overlay-control.js:159
+#: src/controls/background-control/overlay-control.js:1338
 #: src/controls/typography-control/constant.js:24
 #: src/controls/typography-control/constant.js:63
 #: src/global/constants.js:717
@@ -4488,7 +4710,7 @@ msgstr ""
 
 #: src/blocks/advanced-heading/edit.js:57
 #: src/blocks/megamenu/edit.js:33
-#: src/blocks/navigation-item/edit.js:115
+#: src/blocks/navigation-item/edit.js:116
 #: src/blocks/navigation/edit.js:110
 msgid "Heading Preview"
 msgstr ""
@@ -4498,7 +4720,7 @@ msgstr ""
 #: src/blocks/countdown/inspector.js:137
 #: src/blocks/cta/inspector.js:119
 #: src/blocks/fancy-list/inspector.js:148
-#: src/blocks/form/inspector.js:181
+#: src/blocks/form/inspector.js:184
 #: src/blocks/list/inspector.js:165
 #: src/blocks/newsletter/inspector.js:219
 #: src/blocks/post-list/inspector.js:201
@@ -4521,7 +4743,7 @@ msgstr ""
 #: src/blocks/countdown/inspector.js:151
 #: src/blocks/fancy-list/inspector.js:171
 #: src/blocks/flipbox/inspector.js:185
-#: src/blocks/form/inspector.js:189
+#: src/blocks/form/inspector.js:192
 #: src/blocks/image-gallery/inspector.js:126
 #: src/blocks/lightbox/inspector.js:233
 #: src/blocks/newsletter/inspector.js:292
@@ -4604,12 +4826,14 @@ msgstr ""
 #: src/blocks/advanced-paragraph/inspector.js:164
 #: src/blocks/brand-child/inspector.js:157
 #: src/blocks/brand-child/inspector.js:218
+#: src/blocks/dual-button/inspector.js:161
+#: src/blocks/dual-button/inspector.js:196
 #: src/blocks/icon/inspector.js:99
 #: src/blocks/list/sortable.js:79
-#: src/blocks/navigation-item/edit.js:129
+#: src/blocks/navigation-item/edit.js:130
 #: src/blocks/post-content/inspector.js:167
 #: src/blocks/post-content/inspector.js:611
-#: src/blocks/post-meta/sortable.js:115
+#: src/blocks/post-meta/sortable.js:120
 #: src/blocks/profile-card/sortable.js:85
 #: src/blocks/social-count-child/inspector.js:87
 #: src/blocks/social-links/sortable.js:80
@@ -4635,7 +4859,7 @@ msgstr ""
 #: src/blocks/countdown/inspector.js:502
 #: src/blocks/cta/inspector.js:258
 #: src/blocks/cta/inspector.js:317
-#: src/blocks/form/inspector.js:398
+#: src/blocks/form/inspector.js:401
 #: src/blocks/image-compare/inspector.js:289
 #: src/blocks/image-compare/inspector.js:305
 #: src/blocks/popup-builder/inspector.js:134
@@ -4649,15 +4873,15 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:221
 #: src/controls/background-control/bg-control.js:586
 #: src/controls/background-control/bg-control.js:963
-#: src/controls/background-control/bg-control.js:1475
-#: src/controls/background-control/bg-control.js:1821
-#: src/controls/background-control/bg-control.js:2175
-#: src/controls/background-control/overlay-control.js:233
-#: src/controls/background-control/overlay-control.js:588
-#: src/controls/background-control/overlay-control.js:946
-#: src/controls/background-control/overlay-control.js:1406
-#: src/controls/background-control/overlay-control.js:1760
-#: src/controls/background-control/overlay-control.js:2126
+#: src/controls/background-control/bg-control.js:1484
+#: src/controls/background-control/bg-control.js:1830
+#: src/controls/background-control/bg-control.js:2184
+#: src/controls/background-control/overlay-control.js:238
+#: src/controls/background-control/overlay-control.js:593
+#: src/controls/background-control/overlay-control.js:951
+#: src/controls/background-control/overlay-control.js:1416
+#: src/controls/background-control/overlay-control.js:1770
+#: src/controls/background-control/overlay-control.js:2136
 #: src/global/components/advancedOptions.js:197
 #: src/global/components/advancedOptions.js:226
 msgid "Position"
@@ -4667,7 +4891,7 @@ msgstr ""
 #: src/blocks/advanced-heading/inspector.js:313
 #: src/blocks/profile-card/inspector.js:173
 #: src/blocks/profile-card/inspector.js:258
-#: src/blocks/qrcode/inspector.js:272
+#: src/blocks/qrcode/inspector.js:440
 msgid "Badge"
 msgstr ""
 
@@ -4771,7 +4995,7 @@ msgstr ""
 #: src/blocks/author/inspector.js:270
 #: src/blocks/fancy-list-child/inspector.js:489
 #: src/blocks/fancy-list/inspector.js:493
-#: src/blocks/form/inspector.js:564
+#: src/blocks/form/inspector.js:567
 #: src/blocks/image-compare/inspector.js:489
 #: src/blocks/list/inspector.js:220
 #: src/blocks/megamenu/inspector.js:79
@@ -4805,15 +5029,15 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:548
 #: src/controls/background-control/bg-control.js:924
 #: src/controls/background-control/bg-control.js:1300
-#: src/controls/background-control/bg-control.js:1780
-#: src/controls/background-control/bg-control.js:2134
-#: src/controls/background-control/bg-control.js:2488
-#: src/controls/background-control/overlay-control.js:547
-#: src/controls/background-control/overlay-control.js:904
-#: src/controls/background-control/overlay-control.js:1259
-#: src/controls/background-control/overlay-control.js:1719
-#: src/controls/background-control/overlay-control.js:2080
-#: src/controls/background-control/overlay-control.js:2441
+#: src/controls/background-control/bg-control.js:1789
+#: src/controls/background-control/bg-control.js:2143
+#: src/controls/background-control/bg-control.js:2497
+#: src/controls/background-control/overlay-control.js:552
+#: src/controls/background-control/overlay-control.js:909
+#: src/controls/background-control/overlay-control.js:1264
+#: src/controls/background-control/overlay-control.js:1729
+#: src/controls/background-control/overlay-control.js:2090
+#: src/controls/background-control/overlay-control.js:2451
 #: src/extensions/shape-divider/inspector.js:146
 #: src/extensions/shape-divider/inspector.js:250
 #: src/global/components/advancedOptions.js:170
@@ -4873,7 +5097,7 @@ msgstr ""
 #: src/blocks/countdown/inspector.js:564
 #: src/blocks/cta/inspector.js:431
 #: src/blocks/cta/inspector.js:534
-#: src/blocks/form/inspector.js:511
+#: src/blocks/form/inspector.js:514
 #: src/blocks/newsletter/inspector.js:519
 #: src/blocks/newsletter/inspector.js:640
 #: src/blocks/newsletter/inspector.js:793
@@ -4918,21 +5142,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:260
 #: src/controls/background-control/bg-control.js:625
 #: src/controls/background-control/bg-control.js:1002
-#: src/controls/background-control/bg-control.js:1505
-#: src/controls/background-control/bg-control.js:1851
-#: src/controls/background-control/bg-control.js:2205
-#: src/controls/background-control/overlay-control.js:263
-#: src/controls/background-control/overlay-control.js:618
-#: src/controls/background-control/overlay-control.js:976
-#: src/controls/background-control/overlay-control.js:1436
-#: src/controls/background-control/overlay-control.js:1790
-#: src/controls/background-control/overlay-control.js:2155
+#: src/controls/background-control/bg-control.js:1514
+#: src/controls/background-control/bg-control.js:1860
+#: src/controls/background-control/bg-control.js:2214
+#: src/controls/background-control/overlay-control.js:268
+#: src/controls/background-control/overlay-control.js:623
+#: src/controls/background-control/overlay-control.js:981
+#: src/controls/background-control/overlay-control.js:1446
+#: src/controls/background-control/overlay-control.js:1800
+#: src/controls/background-control/overlay-control.js:2165
 #: src/controls/normal-bg-control/index.js:215
 #: src/controls/normal-bg-control/index.js:535
 #: src/controls/normal-bg-control/index.js:863
-#: src/controls/text-gradient-control/index.js:169
-#: src/controls/text-gradient-control/index.js:458
-#: src/controls/text-gradient-control/index.js:746
+#: src/controls/text-gradient-control/index.js:172
+#: src/controls/text-gradient-control/index.js:461
+#: src/controls/text-gradient-control/index.js:749
 msgid "Top Left"
 msgstr ""
 
@@ -4944,21 +5168,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:264
 #: src/controls/background-control/bg-control.js:629
 #: src/controls/background-control/bg-control.js:1006
-#: src/controls/background-control/bg-control.js:1509
-#: src/controls/background-control/bg-control.js:1855
-#: src/controls/background-control/bg-control.js:2209
-#: src/controls/background-control/overlay-control.js:267
-#: src/controls/background-control/overlay-control.js:622
-#: src/controls/background-control/overlay-control.js:980
-#: src/controls/background-control/overlay-control.js:1440
-#: src/controls/background-control/overlay-control.js:1794
-#: src/controls/background-control/overlay-control.js:2159
+#: src/controls/background-control/bg-control.js:1518
+#: src/controls/background-control/bg-control.js:1864
+#: src/controls/background-control/bg-control.js:2218
+#: src/controls/background-control/overlay-control.js:272
+#: src/controls/background-control/overlay-control.js:627
+#: src/controls/background-control/overlay-control.js:985
+#: src/controls/background-control/overlay-control.js:1450
+#: src/controls/background-control/overlay-control.js:1804
+#: src/controls/background-control/overlay-control.js:2169
 #: src/controls/normal-bg-control/index.js:219
 #: src/controls/normal-bg-control/index.js:539
 #: src/controls/normal-bg-control/index.js:867
-#: src/controls/text-gradient-control/index.js:173
-#: src/controls/text-gradient-control/index.js:462
-#: src/controls/text-gradient-control/index.js:750
+#: src/controls/text-gradient-control/index.js:176
+#: src/controls/text-gradient-control/index.js:465
+#: src/controls/text-gradient-control/index.js:753
 msgid "Top Right"
 msgstr ""
 
@@ -4970,21 +5194,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:278
 #: src/controls/background-control/bg-control.js:643
 #: src/controls/background-control/bg-control.js:1020
-#: src/controls/background-control/bg-control.js:1520
-#: src/controls/background-control/bg-control.js:1866
-#: src/controls/background-control/bg-control.js:2220
-#: src/controls/background-control/overlay-control.js:278
-#: src/controls/background-control/overlay-control.js:633
-#: src/controls/background-control/overlay-control.js:991
-#: src/controls/background-control/overlay-control.js:1451
-#: src/controls/background-control/overlay-control.js:1805
-#: src/controls/background-control/overlay-control.js:2170
+#: src/controls/background-control/bg-control.js:1529
+#: src/controls/background-control/bg-control.js:1875
+#: src/controls/background-control/bg-control.js:2229
+#: src/controls/background-control/overlay-control.js:283
+#: src/controls/background-control/overlay-control.js:638
+#: src/controls/background-control/overlay-control.js:996
+#: src/controls/background-control/overlay-control.js:1461
+#: src/controls/background-control/overlay-control.js:1815
+#: src/controls/background-control/overlay-control.js:2180
 #: src/controls/normal-bg-control/index.js:227
 #: src/controls/normal-bg-control/index.js:547
 #: src/controls/normal-bg-control/index.js:875
-#: src/controls/text-gradient-control/index.js:181
-#: src/controls/text-gradient-control/index.js:470
-#: src/controls/text-gradient-control/index.js:758
+#: src/controls/text-gradient-control/index.js:184
+#: src/controls/text-gradient-control/index.js:473
+#: src/controls/text-gradient-control/index.js:761
 msgid "Bottom Left"
 msgstr ""
 
@@ -4996,21 +5220,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:285
 #: src/controls/background-control/bg-control.js:650
 #: src/controls/background-control/bg-control.js:1027
-#: src/controls/background-control/bg-control.js:1524
-#: src/controls/background-control/bg-control.js:1870
-#: src/controls/background-control/bg-control.js:2224
-#: src/controls/background-control/overlay-control.js:282
-#: src/controls/background-control/overlay-control.js:637
-#: src/controls/background-control/overlay-control.js:995
-#: src/controls/background-control/overlay-control.js:1455
-#: src/controls/background-control/overlay-control.js:1809
-#: src/controls/background-control/overlay-control.js:2174
+#: src/controls/background-control/bg-control.js:1533
+#: src/controls/background-control/bg-control.js:1879
+#: src/controls/background-control/bg-control.js:2233
+#: src/controls/background-control/overlay-control.js:287
+#: src/controls/background-control/overlay-control.js:642
+#: src/controls/background-control/overlay-control.js:1000
+#: src/controls/background-control/overlay-control.js:1465
+#: src/controls/background-control/overlay-control.js:1819
+#: src/controls/background-control/overlay-control.js:2184
 #: src/controls/normal-bg-control/index.js:231
 #: src/controls/normal-bg-control/index.js:551
 #: src/controls/normal-bg-control/index.js:879
-#: src/controls/text-gradient-control/index.js:185
-#: src/controls/text-gradient-control/index.js:474
-#: src/controls/text-gradient-control/index.js:762
+#: src/controls/text-gradient-control/index.js:188
+#: src/controls/text-gradient-control/index.js:477
+#: src/controls/text-gradient-control/index.js:765
 msgid "Bottom Right"
 msgstr ""
 
@@ -5061,15 +5285,15 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: src/blocks/advanced-icon-box/edit.js:85
+#: src/blocks/advanced-icon-box/edit.js:86
 #: src/blocks/icon/edit.js:54
 msgid "Icon Box Preview"
 msgstr ""
 
-#: src/blocks/advanced-icon-box/edit.js:108
+#: src/blocks/advanced-icon-box/edit.js:109
 #: src/blocks/brand-child/edit.js:104
 #: src/blocks/counter/edit.js:79
-#: src/blocks/image-gallery/edit.js:62
+#: src/blocks/image-gallery/edit.js:63
 #: src/blocks/navigation/edit.js:137
 #: src/blocks/notice/edit.js:81
 #: src/blocks/profile-card/edit.js:87
@@ -5080,7 +5304,7 @@ msgstr ""
 msgid "Replace Photo"
 msgstr ""
 
-#: src/blocks/advanced-icon-box/edit.js:153
+#: src/blocks/advanced-icon-box/edit.js:154
 #: src/blocks/flipbox/edit.js:123
 #: src/blocks/flipbox/edit.js:180
 #: src/blocks/notice/edit.js:130
@@ -5092,16 +5316,16 @@ msgstr ""
 msgid "Add Photo"
 msgstr ""
 
-#: src/blocks/advanced-icon-box/edit.js:178
+#: src/blocks/advanced-icon-box/edit.js:179
 #: src/blocks/notice/edit.js:156
 msgid "The Title Goes Here"
 msgstr ""
 
-#: src/blocks/advanced-icon-box/edit.js:191
+#: src/blocks/advanced-icon-box/edit.js:192
 msgid "The Description Goes Here"
 msgstr ""
 
-#: src/blocks/advanced-icon-box/edit.js:206
+#: src/blocks/advanced-icon-box/edit.js:207
 #: src/blocks/advanced-icon-box/inspector.js:514
 msgid "Read More"
 msgstr ""
@@ -5205,7 +5429,7 @@ msgstr ""
 #: src/blocks/notice/inspector.js:233
 #: src/blocks/post-grid/inspector.js:408
 #: src/blocks/post-list/inspector.js:365
-#: src/blocks/post-meta/sortable.js:69
+#: src/blocks/post-meta/sortable.js:74
 #: src/blocks/slider/inspector.js:689
 #: src/blocks/social-links/inspector.js:127
 #: src/blocks/social-share/inspector.js:128
@@ -5314,7 +5538,7 @@ msgstr ""
 #: src/blocks/navigation-submenu/inspector.js:79
 #: src/blocks/navigation/inspector.js:226
 #: src/blocks/navigation/inspector.js:363
-#: src/blocks/qrcode/inspector.js:144
+#: src/blocks/qrcode/inspector.js:312
 #: src/global/components/advancedOptions.js:139
 msgid "Wrapper"
 msgstr ""
@@ -5572,7 +5796,7 @@ msgstr ""
 
 #: src/blocks/advanced-search/inspector.js:190
 #: src/blocks/advanced-search/inspector.js:352
-#: src/blocks/email/inspector.js:119
+#: src/blocks/email/inspector.js:120
 #: src/blocks/number-field/inspector.js:126
 #: src/blocks/text-field/inspector.js:119
 #: src/blocks/textarea/inspector.js:118
@@ -5589,7 +5813,7 @@ msgstr ""
 
 #: src/blocks/advanced-search/inspector.js:300
 #: src/blocks/checkbox-field/inspector.js:236
-#: src/blocks/email/inspector.js:237
+#: src/blocks/email/inspector.js:238
 #: src/blocks/newsletter/inspector.js:564
 #: src/blocks/number-field/inspector.js:236
 #: src/blocks/radio-field/inspector.js:235
@@ -5810,7 +6034,7 @@ msgstr ""
 #: src/blocks/brand-grid/inspector.js:126
 #: src/blocks/brand-grid/inspector.js:411
 #: src/blocks/charts/inspector.js:524
-#: src/blocks/charts/inspector.js:835
+#: src/blocks/charts/inspector.js:836
 #: src/blocks/image-gallery/inspector.js:139
 #: src/blocks/image-gallery/inspector.js:440
 #: src/blocks/lightbox/inspector.js:244
@@ -5860,36 +6084,36 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:882
 #: src/controls/background-control/bg-control.js:1034
 #: src/controls/background-control/bg-control.js:1258
-#: src/controls/background-control/bg-control.js:1528
-#: src/controls/background-control/bg-control.js:1738
-#: src/controls/background-control/bg-control.js:1874
-#: src/controls/background-control/bg-control.js:2092
-#: src/controls/background-control/bg-control.js:2228
-#: src/controls/background-control/bg-control.js:2446
-#: src/controls/background-control/overlay-control.js:286
-#: src/controls/background-control/overlay-control.js:505
-#: src/controls/background-control/overlay-control.js:641
-#: src/controls/background-control/overlay-control.js:862
-#: src/controls/background-control/overlay-control.js:999
-#: src/controls/background-control/overlay-control.js:1217
-#: src/controls/background-control/overlay-control.js:1459
-#: src/controls/background-control/overlay-control.js:1677
-#: src/controls/background-control/overlay-control.js:1813
-#: src/controls/background-control/overlay-control.js:2038
-#: src/controls/background-control/overlay-control.js:2178
-#: src/controls/background-control/overlay-control.js:2399
+#: src/controls/background-control/bg-control.js:1537
+#: src/controls/background-control/bg-control.js:1747
+#: src/controls/background-control/bg-control.js:1883
+#: src/controls/background-control/bg-control.js:2101
+#: src/controls/background-control/bg-control.js:2237
+#: src/controls/background-control/bg-control.js:2455
+#: src/controls/background-control/overlay-control.js:291
+#: src/controls/background-control/overlay-control.js:510
+#: src/controls/background-control/overlay-control.js:646
+#: src/controls/background-control/overlay-control.js:867
+#: src/controls/background-control/overlay-control.js:1004
+#: src/controls/background-control/overlay-control.js:1222
+#: src/controls/background-control/overlay-control.js:1469
+#: src/controls/background-control/overlay-control.js:1687
+#: src/controls/background-control/overlay-control.js:1823
+#: src/controls/background-control/overlay-control.js:2048
+#: src/controls/background-control/overlay-control.js:2188
+#: src/controls/background-control/overlay-control.js:2409
 #: src/controls/normal-bg-control/index.js:235
 #: src/controls/normal-bg-control/index.js:436
 #: src/controls/normal-bg-control/index.js:555
 #: src/controls/normal-bg-control/index.js:761
 #: src/controls/normal-bg-control/index.js:883
 #: src/controls/normal-bg-control/index.js:1089
-#: src/controls/text-gradient-control/index.js:189
-#: src/controls/text-gradient-control/index.js:373
-#: src/controls/text-gradient-control/index.js:478
-#: src/controls/text-gradient-control/index.js:661
-#: src/controls/text-gradient-control/index.js:766
-#: src/controls/text-gradient-control/index.js:952
+#: src/controls/text-gradient-control/index.js:192
+#: src/controls/text-gradient-control/index.js:376
+#: src/controls/text-gradient-control/index.js:481
+#: src/controls/text-gradient-control/index.js:664
+#: src/controls/text-gradient-control/index.js:769
+#: src/controls/text-gradient-control/index.js:955
 #: src/global/constants.js:719
 #: src/global/constants.js:1034
 #: src/global/constants.js:1179
@@ -6182,17 +6406,17 @@ msgstr ""
 msgid "yAxis Color"
 msgstr ""
 
-#: src/blocks/charts/inspector.js:861
-#: src/blocks/charts/inspector.js:880
+#: src/blocks/charts/inspector.js:862
+#: src/blocks/charts/inspector.js:881
 msgid "Legend Color"
 msgstr ""
 
-#: src/blocks/charts/inspector.js:863
+#: src/blocks/charts/inspector.js:864
 msgid "Use series colors"
 msgstr ""
 
 #: src/blocks/checkbox-field/edit.js:59
-#: src/blocks/number-field/edit.js:67
+#: src/blocks/number-field/edit.js:68
 #: src/blocks/radio-field/edit.js:59
 #: src/blocks/select-field/edit.js:70
 #: src/blocks/text-field/edit.js:68
@@ -6204,7 +6428,7 @@ msgstr ""
 #: src/blocks/email/deprecated/versions/v1.js:44
 #: src/blocks/email/edit.js:100
 #: src/blocks/email/save.js:40
-#: src/blocks/number-field/edit.js:99
+#: src/blocks/number-field/edit.js:100
 #: src/blocks/number-field/save.js:40
 #: src/blocks/radio-field/edit.js:92
 #: src/blocks/radio-field/save.js:41
@@ -6220,7 +6444,7 @@ msgid "*"
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:92
-#: src/blocks/email/inspector.js:95
+#: src/blocks/email/inspector.js:96
 #: src/blocks/number-field/inspector.js:94
 #: src/blocks/radio-field/inspector.js:92
 #: src/blocks/select-field/inspector.js:91
@@ -6247,7 +6471,7 @@ msgid "Layout Type"
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:125
-#: src/blocks/email/inspector.js:110
+#: src/blocks/email/inspector.js:111
 #: src/blocks/number-field/inspector.js:117
 #: src/blocks/radio-field/inspector.js:126
 #: src/blocks/select-field/inspector.js:116
@@ -6261,7 +6485,7 @@ msgid "Enter Label.."
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:129
-#: src/blocks/email/inspector.js:114
+#: src/blocks/email/inspector.js:115
 #: src/blocks/number-field/inspector.js:121
 #: src/blocks/radio-field/inspector.js:130
 #: src/blocks/select-field/inspector.js:120
@@ -6271,7 +6495,7 @@ msgid "This will be used as the label for the field"
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:134
-#: src/blocks/email/inspector.js:161
+#: src/blocks/email/inspector.js:162
 #: src/blocks/number-field/inspector.js:156
 #: src/blocks/radio-field/inspector.js:135
 #: src/blocks/select-field/inspector.js:125
@@ -6285,7 +6509,7 @@ msgid "Leave empty if no default value is needed; set defaults as \"option 1 | o
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:144
-#: src/blocks/email/inspector.js:169
+#: src/blocks/email/inspector.js:170
 #: src/blocks/number-field/inspector.js:167
 #: src/blocks/radio-field/inspector.js:143
 #: src/blocks/select-field/inspector.js:147
@@ -6295,7 +6519,7 @@ msgid "Custom Name Attribute"
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:150
-#: src/blocks/email/inspector.js:175
+#: src/blocks/email/inspector.js:176
 #: src/blocks/number-field/inspector.js:173
 #: src/blocks/radio-field/inspector.js:149
 #: src/blocks/select-field/inspector.js:153
@@ -6305,7 +6529,7 @@ msgid "Each name attribute must be unique to submit form data correctly. Leave t
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:159
-#: src/blocks/email/inspector.js:136
+#: src/blocks/email/inspector.js:137
 #: src/blocks/number-field/inspector.js:135
 #: src/blocks/radio-field/inspector.js:158
 #: src/blocks/select-field/inspector.js:165
@@ -6315,7 +6539,7 @@ msgid "Required Message"
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:160
-#: src/blocks/email/inspector.js:137
+#: src/blocks/email/inspector.js:138
 #: src/blocks/number-field/inspector.js:136
 #: src/blocks/radio-field/inspector.js:159
 #: src/blocks/select-field/inspector.js:166
@@ -6343,8 +6567,8 @@ msgid ""
 msgstr ""
 
 #: src/blocks/checkbox-field/inspector.js:192
-#: src/blocks/email/inspector.js:194
-#: src/blocks/form/inspector.js:448
+#: src/blocks/email/inspector.js:195
+#: src/blocks/form/inspector.js:451
 #: src/blocks/number-field/inspector.js:192
 #: src/blocks/radio-field/inspector.js:191
 #: src/blocks/select-field/inspector.js:204
@@ -6376,13 +6600,13 @@ msgstr ""
 #: src/blocks/lightbox/inspector.js:720
 #: src/blocks/post-list/inspector.js:1031
 #: src/blocks/post-list/inspector.js:1066
-#: src/blocks/qrcode/inspector.js:167
-#: src/blocks/qrcode/inspector.js:329
+#: src/blocks/qrcode/inspector.js:335
+#: src/blocks/qrcode/inspector.js:497
 #: src/blocks/radio-field/inspector.js:283
 #: src/blocks/video/inspector.js:679
 #: src/blocks/video/inspector.js:727
 #: src/controls/background-control/bg-control.js:154
-#: src/controls/background-control/bg-control.js:1415
+#: src/controls/background-control/bg-control.js:1424
 #: src/controls/normal-bg-control/index.js:129
 msgid "Background Color"
 msgstr ""
@@ -6462,7 +6686,7 @@ msgstr ""
 msgid "Select a container column layout to start with."
 msgstr ""
 
-#: src/blocks/countdown/edit.js:68
+#: src/blocks/countdown/edit.js:77
 msgid "Count down Preview"
 msgstr ""
 
@@ -6641,8 +6865,8 @@ msgstr ""
 #: src/blocks/cta/inspector.js:526
 #: src/blocks/lightbox/inspector.js:665
 #: src/blocks/popup-builder/inspector.js:259
-#: src/blocks/qrcode/inspector.js:110
-#: src/blocks/qrcode/inspector.js:320
+#: src/blocks/qrcode/inspector.js:278
+#: src/blocks/qrcode/inspector.js:488
 #: src/blocks/social-links/inspector.js:235
 #: src/blocks/social-links/inspector.js:245
 #: src/blocks/social-share/inspector.js:245
@@ -6651,63 +6875,105 @@ msgstr ""
 msgid "Icon Size"
 msgstr ""
 
+#: src/blocks/dual-button/edit.js:42
+msgid "Dual Button Preview"
+msgstr ""
+
+#: src/blocks/dual-button/inspector.js:133
+#: src/blocks/dual-button/inspector.js:372
+#: src/blocks/post-comments/inspector.js:96
+msgid "Middle Text"
+msgstr ""
+
+#: src/blocks/dual-button/inspector.js:139
+#: src/blocks/newsletter/inspector.js:262
+msgid "Button Width"
+msgstr ""
+
+#: src/blocks/dual-button/inspector.js:154
+msgid "Button One"
+msgstr ""
+
+#: src/blocks/dual-button/inspector.js:167
+#: src/blocks/dual-button/inspector.js:201
+msgid "Add Icon"
+msgstr ""
+
+#: src/blocks/dual-button/inspector.js:189
+#: src/blocks/dual-button/inspector.js:301
+msgid "Button Two"
+msgstr ""
+
+#: src/blocks/dual-button/inspector.js:271
+#: src/blocks/dual-button/inspector.js:342
+msgid "Text Alignment"
+msgstr ""
+
+#: src/blocks/dual-button/inspector.js:450
+msgid "Button One Icon"
+msgstr ""
+
+#: src/blocks/dual-button/inspector.js:523
+msgid "Button Two Icon"
+msgstr ""
+
 #: src/blocks/email/edit.js:68
 msgid "Email Preview"
 msgstr ""
 
-#: src/blocks/email/inspector.js:83
+#: src/blocks/email/inspector.js:84
 #: src/blocks/text-field/inspector.js:82
 #: src/blocks/textarea/inspector.js:82
 msgid "Show Label"
 msgstr ""
 
-#: src/blocks/email/inspector.js:89
+#: src/blocks/email/inspector.js:90
 #: src/blocks/textarea/inspector.js:88
 msgid "Show Field Icon"
 msgstr ""
 
-#: src/blocks/email/inspector.js:101
+#: src/blocks/email/inspector.js:102
 #: src/blocks/text-field/inspector.js:101
 #: src/blocks/textarea/inspector.js:100
 msgid "Show Required Symbol"
 msgstr ""
 
-#: src/blocks/email/inspector.js:113
+#: src/blocks/email/inspector.js:114
 msgid "Enter label"
 msgstr ""
 
-#: src/blocks/email/inspector.js:126
+#: src/blocks/email/inspector.js:127
 msgid "Email Validation Message"
 msgstr ""
 
-#: src/blocks/email/inspector.js:129
+#: src/blocks/email/inspector.js:130
 msgid "This message will be shown when the email is invalid"
 msgstr ""
 
-#: src/blocks/email/inspector.js:130
+#: src/blocks/email/inspector.js:131
 msgid "Enter validation message.."
 msgstr ""
 
-#: src/blocks/email/inspector.js:144
+#: src/blocks/email/inspector.js:145
 #: src/blocks/textarea/inspector.js:131
 msgid "Enter required message.."
 msgstr ""
 
-#: src/blocks/email/inspector.js:164
+#: src/blocks/email/inspector.js:165
 #: src/blocks/select-field/inspector.js:128
 #: src/blocks/text-field/inspector.js:151
 #: src/blocks/textarea/inspector.js:151
 msgid "Leave empty if no default value is needed."
 msgstr ""
 
-#: src/blocks/email/inspector.js:189
+#: src/blocks/email/inspector.js:190
 #: src/blocks/text-field/inspector.js:176
 #: src/blocks/textarea/inspector.js:176
 msgid "Label Color"
 msgstr ""
 
-#: src/blocks/email/inspector.js:249
-#: src/blocks/form/inspector.js:528
+#: src/blocks/email/inspector.js:250
+#: src/blocks/form/inspector.js:531
 #: src/blocks/newsletter/inspector.js:589
 #: src/blocks/number-field/inspector.js:248
 #: src/blocks/text-field/inspector.js:236
@@ -6935,108 +7201,108 @@ msgstr ""
 msgid "Form Preview"
 msgstr ""
 
-#: src/blocks/form/inspector.js:191
+#: src/blocks/form/inspector.js:194
 msgid "Fields Icon"
 msgstr ""
 
-#: src/blocks/form/inspector.js:202
+#: src/blocks/form/inspector.js:205
 msgid "Form Settings"
 msgstr ""
 
-#: src/blocks/form/inspector.js:204
+#: src/blocks/form/inspector.js:207
 #: src/blocks/post-comments-form/inspector.js:149
 msgid "Form Title"
 msgstr ""
 
-#: src/blocks/form/inspector.js:214
+#: src/blocks/form/inspector.js:217
 msgid "Enter title.."
 msgstr ""
 
-#: src/blocks/form/inspector.js:217
+#: src/blocks/form/inspector.js:220
 msgid "Notification"
 msgstr ""
 
-#: src/blocks/form/inspector.js:230
+#: src/blocks/form/inspector.js:233
 msgid "Email To"
 msgstr ""
 
-#: src/blocks/form/inspector.js:240
-#: src/blocks/form/inspector.js:254
-#: src/blocks/form/inspector.js:268
+#: src/blocks/form/inspector.js:243
+#: src/blocks/form/inspector.js:257
+#: src/blocks/form/inspector.js:271
 msgid "Enter email.."
 msgstr ""
 
-#: src/blocks/form/inspector.js:241
-#: src/blocks/form/inspector.js:255
-#: src/blocks/form/inspector.js:269
+#: src/blocks/form/inspector.js:244
+#: src/blocks/form/inspector.js:258
+#: src/blocks/form/inspector.js:272
 msgid "This email will receive the form submission."
 msgstr ""
 
-#: src/blocks/form/inspector.js:244
+#: src/blocks/form/inspector.js:247
 msgid "Email CC (optional)"
 msgstr ""
 
-#: src/blocks/form/inspector.js:258
+#: src/blocks/form/inspector.js:261
 msgid "Email BCC (optional)"
 msgstr ""
 
-#: src/blocks/form/inspector.js:272
+#: src/blocks/form/inspector.js:275
 msgid "Email Subject"
 msgstr ""
 
-#: src/blocks/form/inspector.js:273
+#: src/blocks/form/inspector.js:276
 msgid "This will be the subject of the email."
 msgstr ""
 
-#: src/blocks/form/inspector.js:285
+#: src/blocks/form/inspector.js:288
 msgid "Form Submission"
 msgstr ""
 
-#: src/blocks/form/inspector.js:287
+#: src/blocks/form/inspector.js:290
 msgid "Success Type"
 msgstr ""
 
-#: src/blocks/form/inspector.js:301
+#: src/blocks/form/inspector.js:304
 msgid "Message Position"
 msgstr ""
 
-#: src/blocks/form/inspector.js:312
+#: src/blocks/form/inspector.js:315
 msgid "Success Message"
 msgstr ""
 
-#: src/blocks/form/inspector.js:314
+#: src/blocks/form/inspector.js:317
 msgid "This message will be shown when the form is submitted successfully."
 msgstr ""
 
-#: src/blocks/form/inspector.js:323
-#: src/blocks/form/inspector.js:341
-#: src/blocks/form/inspector.js:358
+#: src/blocks/form/inspector.js:326
+#: src/blocks/form/inspector.js:344
+#: src/blocks/form/inspector.js:361
 msgid "Enter message.."
 msgstr ""
 
-#: src/blocks/form/inspector.js:330
+#: src/blocks/form/inspector.js:333
 msgid "Fail Message"
 msgstr ""
 
-#: src/blocks/form/inspector.js:332
+#: src/blocks/form/inspector.js:335
 msgid "This message will be shown when the form submission fails."
 msgstr ""
 
-#: src/blocks/form/inspector.js:347
+#: src/blocks/form/inspector.js:350
 msgid "Validation Message"
 msgstr ""
 
-#: src/blocks/form/inspector.js:349
+#: src/blocks/form/inspector.js:352
 msgid "This message will be shown when the form validation fails."
 msgstr ""
 
-#: src/blocks/form/inspector.js:363
-#: src/blocks/form/inspector.js:572
+#: src/blocks/form/inspector.js:366
+#: src/blocks/form/inspector.js:575
 #: src/blocks/post-comments-form/inspector.js:614
 msgid "Submit Button"
 msgstr ""
 
-#: src/blocks/form/inspector.js:368
+#: src/blocks/form/inspector.js:371
 #: src/blocks/number-field/inspector.js:120
 #: src/blocks/radio-field/inspector.js:129
 #: src/blocks/select-field/inspector.js:119
@@ -7045,45 +7311,45 @@ msgstr ""
 msgid "Enter label.."
 msgstr ""
 
-#: src/blocks/form/inspector.js:377
+#: src/blocks/form/inspector.js:380
 msgid "Show Icon"
 msgstr ""
 
-#: src/blocks/form/inspector.js:413
+#: src/blocks/form/inspector.js:416
 msgid "Enable Google reCaptcha"
 msgstr ""
 
-#: src/blocks/form/inspector.js:425
+#: src/blocks/form/inspector.js:428
 msgid "Please make sure to enter the site key and secret key in the ZoloBlocks settings."
 msgstr ""
 
-#: src/blocks/form/inspector.js:431
+#: src/blocks/form/inspector.js:434
 msgid "Click here to go to settings."
 msgstr ""
 
-#: src/blocks/form/inspector.js:495
+#: src/blocks/form/inspector.js:498
 msgid "Field Icons"
 msgstr ""
 
-#: src/blocks/form/inspector.js:520
+#: src/blocks/form/inspector.js:523
 msgid "Input Fields"
 msgstr ""
 
-#: src/blocks/form/inspector.js:556
+#: src/blocks/form/inspector.js:559
 msgid "Field Focus"
 msgstr ""
 
-#: src/blocks/form/inspector.js:629
+#: src/blocks/form/inspector.js:632
 #: src/blocks/newsletter/inspector.js:888
 msgid "Success"
 msgstr ""
 
-#: src/blocks/form/inspector.js:630
+#: src/blocks/form/inspector.js:633
 #: src/blocks/newsletter/inspector.js:896
 msgid "Error"
 msgstr ""
 
-#: src/blocks/form/inspector.js:701
+#: src/blocks/form/inspector.js:704
 #: src/blocks/notice/inspector.js:699
 #: src/blocks/popup-builder/inspector.js:184
 #: src/blocks/popup-builder/inspector.js:257
@@ -7396,12 +7662,14 @@ msgstr ""
 
 #: src/blocks/google-map/inspector.js:79
 #: src/blocks/google-map/repeater.js:53
+#: src/blocks/qrcode/inspector.js:133
 #: src/controls/google-map-autocomplete/index.js:24
 msgid "Location"
 msgstr ""
 
 #: src/blocks/google-map/inspector.js:91
 #: src/blocks/google-map/repeater.js:73
+#: src/blocks/qrcode/inspector.js:256
 msgid "Latitude"
 msgstr ""
 
@@ -7411,6 +7679,7 @@ msgstr ""
 
 #: src/blocks/google-map/inspector.js:98
 #: src/blocks/google-map/repeater.js:80
+#: src/blocks/qrcode/inspector.js:262
 msgid "Longitude"
 msgstr ""
 
@@ -7485,42 +7754,42 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:1157
 #: src/controls/background-control/bg-control.js:1200
 #: src/controls/background-control/bg-control.js:1242
-#: src/controls/background-control/bg-control.js:1482
-#: src/controls/background-control/bg-control.js:1643
-#: src/controls/background-control/bg-control.js:1683
-#: src/controls/background-control/bg-control.js:1722
-#: src/controls/background-control/bg-control.js:1828
-#: src/controls/background-control/bg-control.js:1997
-#: src/controls/background-control/bg-control.js:2037
-#: src/controls/background-control/bg-control.js:2076
-#: src/controls/background-control/bg-control.js:2182
-#: src/controls/background-control/bg-control.js:2351
-#: src/controls/background-control/bg-control.js:2391
-#: src/controls/background-control/bg-control.js:2430
-#: src/controls/background-control/overlay-control.js:240
-#: src/controls/background-control/overlay-control.js:410
-#: src/controls/background-control/overlay-control.js:450
-#: src/controls/background-control/overlay-control.js:489
-#: src/controls/background-control/overlay-control.js:595
-#: src/controls/background-control/overlay-control.js:766
-#: src/controls/background-control/overlay-control.js:807
-#: src/controls/background-control/overlay-control.js:846
-#: src/controls/background-control/overlay-control.js:953
-#: src/controls/background-control/overlay-control.js:1122
-#: src/controls/background-control/overlay-control.js:1162
-#: src/controls/background-control/overlay-control.js:1201
-#: src/controls/background-control/overlay-control.js:1413
-#: src/controls/background-control/overlay-control.js:1582
-#: src/controls/background-control/overlay-control.js:1622
-#: src/controls/background-control/overlay-control.js:1661
-#: src/controls/background-control/overlay-control.js:1767
-#: src/controls/background-control/overlay-control.js:1943
-#: src/controls/background-control/overlay-control.js:1983
-#: src/controls/background-control/overlay-control.js:2022
-#: src/controls/background-control/overlay-control.js:2132
-#: src/controls/background-control/overlay-control.js:2306
-#: src/controls/background-control/overlay-control.js:2345
-#: src/controls/background-control/overlay-control.js:2383
+#: src/controls/background-control/bg-control.js:1491
+#: src/controls/background-control/bg-control.js:1652
+#: src/controls/background-control/bg-control.js:1692
+#: src/controls/background-control/bg-control.js:1731
+#: src/controls/background-control/bg-control.js:1837
+#: src/controls/background-control/bg-control.js:2006
+#: src/controls/background-control/bg-control.js:2046
+#: src/controls/background-control/bg-control.js:2085
+#: src/controls/background-control/bg-control.js:2191
+#: src/controls/background-control/bg-control.js:2360
+#: src/controls/background-control/bg-control.js:2400
+#: src/controls/background-control/bg-control.js:2439
+#: src/controls/background-control/overlay-control.js:245
+#: src/controls/background-control/overlay-control.js:415
+#: src/controls/background-control/overlay-control.js:455
+#: src/controls/background-control/overlay-control.js:494
+#: src/controls/background-control/overlay-control.js:600
+#: src/controls/background-control/overlay-control.js:771
+#: src/controls/background-control/overlay-control.js:812
+#: src/controls/background-control/overlay-control.js:851
+#: src/controls/background-control/overlay-control.js:958
+#: src/controls/background-control/overlay-control.js:1127
+#: src/controls/background-control/overlay-control.js:1167
+#: src/controls/background-control/overlay-control.js:1206
+#: src/controls/background-control/overlay-control.js:1423
+#: src/controls/background-control/overlay-control.js:1592
+#: src/controls/background-control/overlay-control.js:1632
+#: src/controls/background-control/overlay-control.js:1671
+#: src/controls/background-control/overlay-control.js:1777
+#: src/controls/background-control/overlay-control.js:1953
+#: src/controls/background-control/overlay-control.js:1993
+#: src/controls/background-control/overlay-control.js:2032
+#: src/controls/background-control/overlay-control.js:2142
+#: src/controls/background-control/overlay-control.js:2316
+#: src/controls/background-control/overlay-control.js:2355
+#: src/controls/background-control/overlay-control.js:2393
 #: src/controls/normal-bg-control/index.js:195
 #: src/controls/normal-bg-control/index.js:343
 #: src/controls/normal-bg-control/index.js:382
@@ -7533,18 +7802,18 @@ msgstr ""
 #: src/controls/normal-bg-control/index.js:995
 #: src/controls/normal-bg-control/index.js:1034
 #: src/controls/normal-bg-control/index.js:1073
-#: src/controls/text-gradient-control/index.js:149
-#: src/controls/text-gradient-control/index.js:287
-#: src/controls/text-gradient-control/index.js:322
-#: src/controls/text-gradient-control/index.js:357
-#: src/controls/text-gradient-control/index.js:438
-#: src/controls/text-gradient-control/index.js:576
-#: src/controls/text-gradient-control/index.js:611
-#: src/controls/text-gradient-control/index.js:645
-#: src/controls/text-gradient-control/index.js:726
-#: src/controls/text-gradient-control/index.js:866
-#: src/controls/text-gradient-control/index.js:901
-#: src/controls/text-gradient-control/index.js:936
+#: src/controls/text-gradient-control/index.js:152
+#: src/controls/text-gradient-control/index.js:290
+#: src/controls/text-gradient-control/index.js:325
+#: src/controls/text-gradient-control/index.js:360
+#: src/controls/text-gradient-control/index.js:441
+#: src/controls/text-gradient-control/index.js:579
+#: src/controls/text-gradient-control/index.js:614
+#: src/controls/text-gradient-control/index.js:648
+#: src/controls/text-gradient-control/index.js:729
+#: src/controls/text-gradient-control/index.js:869
+#: src/controls/text-gradient-control/index.js:904
+#: src/controls/text-gradient-control/index.js:939
 #: src/controls/typography-control/constant.js:10
 #: src/global/constants.js:1004
 #: src/global/constants.js:1051
@@ -7605,11 +7874,11 @@ msgstr ""
 msgid "Marker Info"
 msgstr ""
 
-#: src/blocks/google-map/render-maps.js:80
+#: src/blocks/google-map/render-maps.js:81
 msgid "No Google API Key Found. Please add google api key in the"
 msgstr ""
 
-#: src/blocks/google-map/render-maps.js:82
+#: src/blocks/google-map/render-maps.js:83
 #: src/blocks/newsletter/inspector.js:210
 msgid "ZoloBlocks settings"
 msgstr ""
@@ -7710,20 +7979,20 @@ msgstr ""
 msgid "3d Unfold"
 msgstr ""
 
-#: src/blocks/image-gallery/edit.js:38
+#: src/blocks/image-gallery/edit.js:39
 msgid "Gallery Preview"
 msgstr ""
 
-#: src/blocks/image-gallery/edit.js:102
-#: src/blocks/image-gallery/save.js:86
+#: src/blocks/image-gallery/edit.js:103
+#: src/blocks/image-gallery/save.js:88
 msgid "No Alt Text"
 msgstr ""
 
-#: src/blocks/image-gallery/edit.js:131
+#: src/blocks/image-gallery/edit.js:137
 msgid "Upload Gallery Photos"
 msgstr ""
 
-#: src/blocks/image-gallery/edit.js:132
+#: src/blocks/image-gallery/edit.js:138
 msgid "Drag images, upload new ones or select files from your library."
 msgstr ""
 
@@ -7914,41 +8183,41 @@ msgid "Center"
 msgstr ""
 
 #: src/blocks/navigation-item/components/appender-button.js:8
-#: src/blocks/navigation-item/edit.js:158
+#: src/blocks/navigation-item/edit.js:159
 msgid "Add Mega Menu"
 msgstr ""
 
 #: src/blocks/navigation-item/components/appender-button.js:8
-#: src/blocks/navigation-item/edit.js:144
+#: src/blocks/navigation-item/edit.js:145
 #: src/blocks/navigation-item/inspector.js:88
 msgid "Add Submenu"
 msgstr ""
 
-#: src/blocks/navigation-item/edit.js:244
+#: src/blocks/navigation-item/edit.js:255
 msgid "Add Link"
 msgstr ""
 
-#: src/blocks/navigation-item/edit.js:247
+#: src/blocks/navigation-item/edit.js:258
 msgid "Submenu Arrow"
 msgstr ""
 
-#: src/blocks/navigation-item/inspector.js:94
+#: src/blocks/navigation-item/inspector.js:95
 msgid "Event Type"
 msgstr ""
 
-#: src/blocks/navigation-item/inspector.js:109
+#: src/blocks/navigation-item/inspector.js:110
 msgid "Submenu Type"
 msgstr ""
 
-#: src/blocks/navigation-item/inspector.js:113
+#: src/blocks/navigation-item/inspector.js:114
 msgid "Dropdown"
 msgstr ""
 
-#: src/blocks/navigation-item/inspector.js:114
+#: src/blocks/navigation-item/inspector.js:115
 msgid "Megamenu"
 msgstr ""
 
-#: src/blocks/navigation-item/inspector.js:121
+#: src/blocks/navigation-item/inspector.js:122
 #: src/blocks/navigation/inspector.js:573
 #: src/blocks/post-carousel/inspector.js:345
 #: src/blocks/post-grid/inspector.js:347
@@ -8092,10 +8361,6 @@ msgstr ""
 msgid "Button Style"
 msgstr ""
 
-#: src/blocks/newsletter/inspector.js:262
-msgid "Button Width"
-msgstr ""
-
 #: src/blocks/newsletter/inspector.js:271
 #: src/global/constants.js:1008
 #: src/global/constants.js:1026
@@ -8108,21 +8373,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:494
 #: src/controls/background-control/bg-control.js:870
 #: src/controls/background-control/bg-control.js:1246
-#: src/controls/background-control/bg-control.js:1726
-#: src/controls/background-control/bg-control.js:2080
-#: src/controls/background-control/bg-control.js:2434
-#: src/controls/background-control/overlay-control.js:493
-#: src/controls/background-control/overlay-control.js:850
-#: src/controls/background-control/overlay-control.js:1205
-#: src/controls/background-control/overlay-control.js:1665
-#: src/controls/background-control/overlay-control.js:2026
-#: src/controls/background-control/overlay-control.js:2387
+#: src/controls/background-control/bg-control.js:1735
+#: src/controls/background-control/bg-control.js:2089
+#: src/controls/background-control/bg-control.js:2443
+#: src/controls/background-control/overlay-control.js:498
+#: src/controls/background-control/overlay-control.js:855
+#: src/controls/background-control/overlay-control.js:1210
+#: src/controls/background-control/overlay-control.js:1675
+#: src/controls/background-control/overlay-control.js:2036
+#: src/controls/background-control/overlay-control.js:2397
 #: src/controls/normal-bg-control/index.js:424
 #: src/controls/normal-bg-control/index.js:749
 #: src/controls/normal-bg-control/index.js:1077
-#: src/controls/text-gradient-control/index.js:361
-#: src/controls/text-gradient-control/index.js:649
-#: src/controls/text-gradient-control/index.js:940
+#: src/controls/text-gradient-control/index.js:364
+#: src/controls/text-gradient-control/index.js:652
+#: src/controls/text-gradient-control/index.js:943
 #: src/global/constants.js:1052
 #: src/global/constants.js:1132
 msgid "Auto"
@@ -8219,21 +8484,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:253
 #: src/controls/background-control/bg-control.js:618
 #: src/controls/background-control/bg-control.js:995
-#: src/controls/background-control/bg-control.js:1501
-#: src/controls/background-control/bg-control.js:1847
-#: src/controls/background-control/bg-control.js:2201
-#: src/controls/background-control/overlay-control.js:259
-#: src/controls/background-control/overlay-control.js:614
-#: src/controls/background-control/overlay-control.js:972
-#: src/controls/background-control/overlay-control.js:1432
-#: src/controls/background-control/overlay-control.js:1786
-#: src/controls/background-control/overlay-control.js:2151
+#: src/controls/background-control/bg-control.js:1510
+#: src/controls/background-control/bg-control.js:1856
+#: src/controls/background-control/bg-control.js:2210
+#: src/controls/background-control/overlay-control.js:264
+#: src/controls/background-control/overlay-control.js:619
+#: src/controls/background-control/overlay-control.js:977
+#: src/controls/background-control/overlay-control.js:1442
+#: src/controls/background-control/overlay-control.js:1796
+#: src/controls/background-control/overlay-control.js:2161
 #: src/controls/normal-bg-control/index.js:211
 #: src/controls/normal-bg-control/index.js:531
 #: src/controls/normal-bg-control/index.js:859
-#: src/controls/text-gradient-control/index.js:165
-#: src/controls/text-gradient-control/index.js:454
-#: src/controls/text-gradient-control/index.js:742
+#: src/controls/text-gradient-control/index.js:168
+#: src/controls/text-gradient-control/index.js:457
+#: src/controls/text-gradient-control/index.js:745
 msgid "Top Center"
 msgstr ""
 
@@ -8243,21 +8508,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:239
 #: src/controls/background-control/bg-control.js:604
 #: src/controls/background-control/bg-control.js:981
-#: src/controls/background-control/bg-control.js:1493
-#: src/controls/background-control/bg-control.js:1839
-#: src/controls/background-control/bg-control.js:2193
-#: src/controls/background-control/overlay-control.js:251
-#: src/controls/background-control/overlay-control.js:606
-#: src/controls/background-control/overlay-control.js:964
-#: src/controls/background-control/overlay-control.js:1424
-#: src/controls/background-control/overlay-control.js:1778
-#: src/controls/background-control/overlay-control.js:2143
+#: src/controls/background-control/bg-control.js:1502
+#: src/controls/background-control/bg-control.js:1848
+#: src/controls/background-control/bg-control.js:2202
+#: src/controls/background-control/overlay-control.js:256
+#: src/controls/background-control/overlay-control.js:611
+#: src/controls/background-control/overlay-control.js:969
+#: src/controls/background-control/overlay-control.js:1434
+#: src/controls/background-control/overlay-control.js:1788
+#: src/controls/background-control/overlay-control.js:2153
 #: src/controls/normal-bg-control/index.js:203
 #: src/controls/normal-bg-control/index.js:523
 #: src/controls/normal-bg-control/index.js:851
-#: src/controls/text-gradient-control/index.js:157
-#: src/controls/text-gradient-control/index.js:446
-#: src/controls/text-gradient-control/index.js:734
+#: src/controls/text-gradient-control/index.js:160
+#: src/controls/text-gradient-control/index.js:449
+#: src/controls/text-gradient-control/index.js:737
 msgid "Center Left"
 msgstr ""
 
@@ -8267,21 +8532,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:232
 #: src/controls/background-control/bg-control.js:597
 #: src/controls/background-control/bg-control.js:974
-#: src/controls/background-control/bg-control.js:1486
-#: src/controls/background-control/bg-control.js:1832
-#: src/controls/background-control/bg-control.js:2186
-#: src/controls/background-control/overlay-control.js:244
-#: src/controls/background-control/overlay-control.js:599
-#: src/controls/background-control/overlay-control.js:957
-#: src/controls/background-control/overlay-control.js:1417
-#: src/controls/background-control/overlay-control.js:1771
-#: src/controls/background-control/overlay-control.js:2136
+#: src/controls/background-control/bg-control.js:1495
+#: src/controls/background-control/bg-control.js:1841
+#: src/controls/background-control/bg-control.js:2195
+#: src/controls/background-control/overlay-control.js:249
+#: src/controls/background-control/overlay-control.js:604
+#: src/controls/background-control/overlay-control.js:962
+#: src/controls/background-control/overlay-control.js:1427
+#: src/controls/background-control/overlay-control.js:1781
+#: src/controls/background-control/overlay-control.js:2146
 #: src/controls/normal-bg-control/index.js:199
 #: src/controls/normal-bg-control/index.js:519
 #: src/controls/normal-bg-control/index.js:847
-#: src/controls/text-gradient-control/index.js:153
-#: src/controls/text-gradient-control/index.js:442
-#: src/controls/text-gradient-control/index.js:730
+#: src/controls/text-gradient-control/index.js:156
+#: src/controls/text-gradient-control/index.js:445
+#: src/controls/text-gradient-control/index.js:733
 #: src/global/constants.js:1112
 msgid "Center Center"
 msgstr ""
@@ -8292,21 +8557,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:246
 #: src/controls/background-control/bg-control.js:611
 #: src/controls/background-control/bg-control.js:988
-#: src/controls/background-control/bg-control.js:1497
-#: src/controls/background-control/bg-control.js:1843
-#: src/controls/background-control/bg-control.js:2197
-#: src/controls/background-control/overlay-control.js:255
-#: src/controls/background-control/overlay-control.js:610
-#: src/controls/background-control/overlay-control.js:968
-#: src/controls/background-control/overlay-control.js:1428
-#: src/controls/background-control/overlay-control.js:1782
-#: src/controls/background-control/overlay-control.js:2147
+#: src/controls/background-control/bg-control.js:1506
+#: src/controls/background-control/bg-control.js:1852
+#: src/controls/background-control/bg-control.js:2206
+#: src/controls/background-control/overlay-control.js:260
+#: src/controls/background-control/overlay-control.js:615
+#: src/controls/background-control/overlay-control.js:973
+#: src/controls/background-control/overlay-control.js:1438
+#: src/controls/background-control/overlay-control.js:1792
+#: src/controls/background-control/overlay-control.js:2157
 #: src/controls/normal-bg-control/index.js:207
 #: src/controls/normal-bg-control/index.js:527
 #: src/controls/normal-bg-control/index.js:855
-#: src/controls/text-gradient-control/index.js:161
-#: src/controls/text-gradient-control/index.js:450
-#: src/controls/text-gradient-control/index.js:738
+#: src/controls/text-gradient-control/index.js:164
+#: src/controls/text-gradient-control/index.js:453
+#: src/controls/text-gradient-control/index.js:741
 msgid "Center Right"
 msgstr ""
 
@@ -8317,21 +8582,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:271
 #: src/controls/background-control/bg-control.js:636
 #: src/controls/background-control/bg-control.js:1013
-#: src/controls/background-control/bg-control.js:1513
-#: src/controls/background-control/bg-control.js:1859
-#: src/controls/background-control/bg-control.js:2213
-#: src/controls/background-control/overlay-control.js:271
-#: src/controls/background-control/overlay-control.js:626
-#: src/controls/background-control/overlay-control.js:984
-#: src/controls/background-control/overlay-control.js:1444
-#: src/controls/background-control/overlay-control.js:1798
-#: src/controls/background-control/overlay-control.js:2163
+#: src/controls/background-control/bg-control.js:1522
+#: src/controls/background-control/bg-control.js:1868
+#: src/controls/background-control/bg-control.js:2222
+#: src/controls/background-control/overlay-control.js:276
+#: src/controls/background-control/overlay-control.js:631
+#: src/controls/background-control/overlay-control.js:989
+#: src/controls/background-control/overlay-control.js:1454
+#: src/controls/background-control/overlay-control.js:1808
+#: src/controls/background-control/overlay-control.js:2173
 #: src/controls/normal-bg-control/index.js:223
 #: src/controls/normal-bg-control/index.js:543
 #: src/controls/normal-bg-control/index.js:871
-#: src/controls/text-gradient-control/index.js:177
-#: src/controls/text-gradient-control/index.js:466
-#: src/controls/text-gradient-control/index.js:754
+#: src/controls/text-gradient-control/index.js:180
+#: src/controls/text-gradient-control/index.js:469
+#: src/controls/text-gradient-control/index.js:757
 msgid "Bottom Center"
 msgstr ""
 
@@ -8460,7 +8725,7 @@ msgid "Post Carousel Preview"
 msgstr ""
 
 #: src/blocks/post-carousel/edit.js:166
-#: src/blocks/post-grid/render-view.js:308
+#: src/blocks/post-grid/render-view.js:316
 #: src/blocks/post-list/edit.js:100
 #: src/blocks/post-timeline/edit.js:106
 msgid "No posts found."
@@ -8745,10 +9010,10 @@ msgstr ""
 msgid "Posted By"
 msgstr ""
 
-#: src/blocks/post-carousel/render-view.js:89
-#: src/blocks/post-carousel/render-view.js:104
-#: src/blocks/post-grid/render-view.js:218
-#: src/blocks/post-grid/render-view.js:240
+#: src/blocks/post-carousel/render-view.js:91
+#: src/blocks/post-carousel/render-view.js:108
+#: src/blocks/post-grid/render-view.js:228
+#: src/blocks/post-grid/render-view.js:250
 #: src/blocks/post-list/render-view.js:79
 #: src/blocks/post-timeline/render-view.js:72
 msgid "Thumbnail Placeholder"
@@ -8844,7 +9109,7 @@ msgid "Comment List"
 msgstr ""
 
 #: src/blocks/post-comments-form/inspector.js:242
-#: src/blocks/post-meta/meta-item.js:8
+#: src/blocks/post-meta/meta-item.js:9
 msgid "Author Name"
 msgstr ""
 
@@ -8864,7 +9129,7 @@ msgstr ""
 msgid "Form Fields"
 msgstr ""
 
-#: src/blocks/post-comments-form/render-view.js:79
+#: src/blocks/post-comments-form/render-view.js:80
 msgid "Admin."
 msgstr ""
 
@@ -8882,10 +9147,6 @@ msgstr ""
 
 #: src/blocks/post-comments/edit.js:41
 msgid "Post Comments Preview"
-msgstr ""
-
-#: src/blocks/post-comments/inspector.js:96
-msgid "Middle Text"
 msgstr ""
 
 #: src/blocks/post-comments/inspector.js:136
@@ -9054,6 +9315,7 @@ msgid "Image Placeholder"
 msgstr ""
 
 #: src/blocks/post-featured-image/render-view.js:70
+#, js-format
 msgid "Featured image: %s"
 msgstr ""
 
@@ -9071,7 +9333,7 @@ msgstr ""
 msgid "Style 6 (Pro)"
 msgstr ""
 
-#: src/blocks/post-grid/edit.js:59
+#: src/blocks/post-grid/edit.js:60
 msgid "Post Grid Preview"
 msgstr ""
 
@@ -9154,7 +9416,7 @@ msgid "Hover Background Color"
 msgstr ""
 
 #: src/blocks/post-meta/constants/index.js:14
-#: src/blocks/post-meta/meta-item.js:59
+#: src/blocks/post-meta/meta-item.js:60
 msgid "Time"
 msgstr ""
 
@@ -9164,7 +9426,7 @@ msgstr ""
 msgid "Terms"
 msgstr ""
 
-#: src/blocks/post-meta/edit.js:60
+#: src/blocks/post-meta/edit.js:62
 msgid "No metadata available"
 msgstr ""
 
@@ -9172,13 +9434,14 @@ msgstr ""
 msgid "Indent"
 msgstr ""
 
-#: src/blocks/post-meta/meta-item.js:97
+#: src/blocks/post-meta/meta-item.js:98
 #: src/template-library/components/sidebar/index.js:45
 #: src/template-library/page-templates/index.js:79
 msgid "Categories"
 msgstr ""
 
-#: src/blocks/post-meta/meta-item.js:109
+#: src/blocks/post-meta/meta-item.js:110
+#, js-format
 msgid "%d Comments"
 msgstr ""
 
@@ -9186,19 +9449,19 @@ msgstr ""
 msgid "Add a Meta Data"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:83
+#: src/blocks/post-meta/sortable.js:88
 msgid "Date Type"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:93
+#: src/blocks/post-meta/sortable.js:98
 msgid "Post Published"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:94
+#: src/blocks/post-meta/sortable.js:99
 msgid "Post Modified"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:100
+#: src/blocks/post-meta/sortable.js:105
 msgid "Taxonomy"
 msgstr ""
 
@@ -9606,42 +9869,115 @@ msgstr ""
 msgid "Circle"
 msgstr ""
 
-#: src/blocks/qrcode/edit.js:62
+#: src/blocks/qrcode/edit.js:130
 msgid "QR Code Preview"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:118
+#: src/blocks/qrcode/inspector.js:123
+msgid "QR Code Type"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:127
+msgid "URL/Text"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:128
+msgid "WiFi"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:129
+msgid "Contact (vCard)"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:130
+msgid "SMS"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:132
+msgid "Phone"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:153
+msgid "WiFi Network Name (SSID)"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:158
+msgid "WiFi Password"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:163
+msgid "Security Type"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:167
+msgid "WPA/WPA2"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:168
+msgid "WEP"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:173
+msgid "Hidden Network"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:183
+msgid "Full Name"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:193
+#: src/blocks/qrcode/inspector.js:228
+msgid "Email Address"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:198
+msgid "Organization"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:203
+msgid "Website URL"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:238
+msgid "Message Body"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:268
+msgid "Location Name (Optional)"
+msgstr ""
+
+#: src/blocks/qrcode/inspector.js:286
 msgid "Error Level"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:150
-#: src/blocks/qrcode/inspector.js:236
-#: src/blocks/qrcode/inspector.js:300
+#: src/blocks/qrcode/inspector.js:318
+#: src/blocks/qrcode/inspector.js:404
+#: src/blocks/qrcode/inspector.js:468
 msgid "Border Type"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:196
+#: src/blocks/qrcode/inspector.js:364
 msgid "Eye Color"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:207
+#: src/blocks/qrcode/inspector.js:375
 msgid "Eye Radius"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:226
+#: src/blocks/qrcode/inspector.js:394
 #: src/controls/background-control/bg-control.js:124
 #: src/controls/background-control/bg-control.js:1394
 #: src/controls/background-control/overlay-control.js:152
-#: src/controls/background-control/overlay-control.js:1326
+#: src/controls/background-control/overlay-control.js:1331
 #: src/controls/normal-bg-control/index.js:110
 msgid "Background Type"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:284
+#: src/blocks/qrcode/inspector.js:452
 msgid "Title Typography"
 msgstr ""
 
-#: src/blocks/qrcode/inspector.js:338
+#: src/blocks/qrcode/inspector.js:506
 #: src/blocks/review-carousel/inspector.js:589
 #: src/blocks/review-child/inspector.js:454
 #: src/blocks/review-grid/inspector.js:473
@@ -10134,11 +10470,6 @@ msgstr ""
 msgid "Unordered List"
 msgstr ""
 
-#: src/blocks/table-of-content/edit.js:37
-#: src/blocks/table-of-content/save.js:84
-msgid "Table of Content"
-msgstr ""
-
 #: src/blocks/table-of-content/edit.js:50
 msgid "Table of content"
 msgstr ""
@@ -10575,26 +10906,26 @@ msgid "Please check this page in preview and update this page."
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:179
-#: src/controls/background-control/bg-control.js:1440
-#: src/controls/background-control/overlay-control.js:190
-#: src/controls/background-control/overlay-control.js:1364
+#: src/controls/background-control/bg-control.js:1449
+#: src/controls/background-control/overlay-control.js:195
+#: src/controls/background-control/overlay-control.js:1374
 #: src/controls/normal-bg-control/index.js:153
-#: src/controls/text-gradient-control/index.js:114
+#: src/controls/text-gradient-control/index.js:117
 msgid "Upload Image"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:215
 #: src/controls/background-control/bg-control.js:580
 #: src/controls/background-control/bg-control.js:957
-#: src/controls/background-control/bg-control.js:1469
-#: src/controls/background-control/bg-control.js:1815
-#: src/controls/background-control/bg-control.js:2169
-#: src/controls/background-control/overlay-control.js:227
-#: src/controls/background-control/overlay-control.js:582
-#: src/controls/background-control/overlay-control.js:940
-#: src/controls/background-control/overlay-control.js:1400
-#: src/controls/background-control/overlay-control.js:1754
-#: src/controls/background-control/overlay-control.js:2120
+#: src/controls/background-control/bg-control.js:1478
+#: src/controls/background-control/bg-control.js:1824
+#: src/controls/background-control/bg-control.js:2178
+#: src/controls/background-control/overlay-control.js:232
+#: src/controls/background-control/overlay-control.js:587
+#: src/controls/background-control/overlay-control.js:945
+#: src/controls/background-control/overlay-control.js:1410
+#: src/controls/background-control/overlay-control.js:1764
+#: src/controls/background-control/overlay-control.js:2130
 #: src/controls/normal-bg-control/index.js:182
 #: src/controls/normal-bg-control/index.js:502
 #: src/controls/normal-bg-control/index.js:830
@@ -10604,65 +10935,65 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:334
 #: src/controls/background-control/bg-control.js:699
 #: src/controls/background-control/bg-control.js:1076
-#: src/controls/background-control/bg-control.js:1570
-#: src/controls/background-control/bg-control.js:1916
-#: src/controls/background-control/bg-control.js:2270
-#: src/controls/background-control/overlay-control.js:328
-#: src/controls/background-control/overlay-control.js:683
-#: src/controls/background-control/overlay-control.js:1041
-#: src/controls/background-control/overlay-control.js:1501
-#: src/controls/background-control/overlay-control.js:1855
-#: src/controls/background-control/overlay-control.js:2220
+#: src/controls/background-control/bg-control.js:1579
+#: src/controls/background-control/bg-control.js:1925
+#: src/controls/background-control/bg-control.js:2279
+#: src/controls/background-control/overlay-control.js:333
+#: src/controls/background-control/overlay-control.js:688
+#: src/controls/background-control/overlay-control.js:1046
+#: src/controls/background-control/overlay-control.js:1511
+#: src/controls/background-control/overlay-control.js:1865
+#: src/controls/background-control/overlay-control.js:2230
 msgid "X Position"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:377
 #: src/controls/background-control/bg-control.js:746
 #: src/controls/background-control/bg-control.js:1123
-#: src/controls/background-control/bg-control.js:1613
-#: src/controls/background-control/bg-control.js:1963
-#: src/controls/background-control/bg-control.js:2317
-#: src/controls/background-control/overlay-control.js:376
-#: src/controls/background-control/overlay-control.js:731
-#: src/controls/background-control/overlay-control.js:1088
-#: src/controls/background-control/overlay-control.js:1548
-#: src/controls/background-control/overlay-control.js:1905
-#: src/controls/background-control/overlay-control.js:2269
+#: src/controls/background-control/bg-control.js:1622
+#: src/controls/background-control/bg-control.js:1972
+#: src/controls/background-control/bg-control.js:2326
+#: src/controls/background-control/overlay-control.js:381
+#: src/controls/background-control/overlay-control.js:736
+#: src/controls/background-control/overlay-control.js:1093
+#: src/controls/background-control/overlay-control.js:1558
+#: src/controls/background-control/overlay-control.js:1915
+#: src/controls/background-control/overlay-control.js:2279
 msgid "Y Position"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:402
 #: src/controls/background-control/bg-control.js:1153
-#: src/controls/background-control/bg-control.js:1639
-#: src/controls/background-control/bg-control.js:1993
-#: src/controls/background-control/bg-control.js:2347
-#: src/controls/background-control/overlay-control.js:406
-#: src/controls/background-control/overlay-control.js:762
-#: src/controls/background-control/overlay-control.js:1118
-#: src/controls/background-control/overlay-control.js:1578
-#: src/controls/background-control/overlay-control.js:1939
-#: src/controls/background-control/overlay-control.js:2302
+#: src/controls/background-control/bg-control.js:1648
+#: src/controls/background-control/bg-control.js:2002
+#: src/controls/background-control/bg-control.js:2356
+#: src/controls/background-control/overlay-control.js:411
+#: src/controls/background-control/overlay-control.js:767
+#: src/controls/background-control/overlay-control.js:1123
+#: src/controls/background-control/overlay-control.js:1588
+#: src/controls/background-control/overlay-control.js:1949
+#: src/controls/background-control/overlay-control.js:2312
 msgid "Attachment"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:410
 #: src/controls/background-control/bg-control.js:784
 #: src/controls/background-control/bg-control.js:1161
-#: src/controls/background-control/bg-control.js:1647
-#: src/controls/background-control/bg-control.js:2001
-#: src/controls/background-control/bg-control.js:2355
-#: src/controls/background-control/overlay-control.js:414
-#: src/controls/background-control/overlay-control.js:770
-#: src/controls/background-control/overlay-control.js:1126
-#: src/controls/background-control/overlay-control.js:1586
-#: src/controls/background-control/overlay-control.js:1947
-#: src/controls/background-control/overlay-control.js:2310
+#: src/controls/background-control/bg-control.js:1656
+#: src/controls/background-control/bg-control.js:2010
+#: src/controls/background-control/bg-control.js:2364
+#: src/controls/background-control/overlay-control.js:419
+#: src/controls/background-control/overlay-control.js:775
+#: src/controls/background-control/overlay-control.js:1131
+#: src/controls/background-control/overlay-control.js:1596
+#: src/controls/background-control/overlay-control.js:1957
+#: src/controls/background-control/overlay-control.js:2320
 #: src/controls/normal-bg-control/index.js:347
 #: src/controls/normal-bg-control/index.js:671
 #: src/controls/normal-bg-control/index.js:999
-#: src/controls/text-gradient-control/index.js:291
-#: src/controls/text-gradient-control/index.js:580
-#: src/controls/text-gradient-control/index.js:870
+#: src/controls/text-gradient-control/index.js:294
+#: src/controls/text-gradient-control/index.js:583
+#: src/controls/text-gradient-control/index.js:873
 #: src/global/constants.js:1054
 msgid "Scroll"
 msgstr ""
@@ -10670,21 +11001,21 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:414
 #: src/controls/background-control/bg-control.js:788
 #: src/controls/background-control/bg-control.js:1165
-#: src/controls/background-control/bg-control.js:1651
-#: src/controls/background-control/bg-control.js:2005
-#: src/controls/background-control/bg-control.js:2359
-#: src/controls/background-control/overlay-control.js:418
-#: src/controls/background-control/overlay-control.js:774
-#: src/controls/background-control/overlay-control.js:1130
-#: src/controls/background-control/overlay-control.js:1590
-#: src/controls/background-control/overlay-control.js:1951
-#: src/controls/background-control/overlay-control.js:2314
+#: src/controls/background-control/bg-control.js:1660
+#: src/controls/background-control/bg-control.js:2014
+#: src/controls/background-control/bg-control.js:2368
+#: src/controls/background-control/overlay-control.js:423
+#: src/controls/background-control/overlay-control.js:779
+#: src/controls/background-control/overlay-control.js:1135
+#: src/controls/background-control/overlay-control.js:1600
+#: src/controls/background-control/overlay-control.js:1961
+#: src/controls/background-control/overlay-control.js:2324
 #: src/controls/normal-bg-control/index.js:351
 #: src/controls/normal-bg-control/index.js:675
 #: src/controls/normal-bg-control/index.js:1003
-#: src/controls/text-gradient-control/index.js:295
-#: src/controls/text-gradient-control/index.js:584
-#: src/controls/text-gradient-control/index.js:874
+#: src/controls/text-gradient-control/index.js:298
+#: src/controls/text-gradient-control/index.js:587
+#: src/controls/text-gradient-control/index.js:877
 #: src/global/constants.js:1061
 msgid "Fixed"
 msgstr ""
@@ -10695,30 +11026,30 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:834
 #: src/controls/background-control/bg-control.js:1193
 #: src/controls/background-control/bg-control.js:1211
-#: src/controls/background-control/bg-control.js:1676
-#: src/controls/background-control/bg-control.js:1691
-#: src/controls/background-control/bg-control.js:2030
-#: src/controls/background-control/bg-control.js:2045
-#: src/controls/background-control/bg-control.js:2384
-#: src/controls/background-control/bg-control.js:2399
-#: src/controls/background-control/overlay-control.js:443
-#: src/controls/background-control/overlay-control.js:458
-#: src/controls/background-control/overlay-control.js:800
-#: src/controls/background-control/overlay-control.js:815
-#: src/controls/background-control/overlay-control.js:1155
-#: src/controls/background-control/overlay-control.js:1170
-#: src/controls/background-control/overlay-control.js:1615
-#: src/controls/background-control/overlay-control.js:1630
-#: src/controls/background-control/overlay-control.js:1976
-#: src/controls/background-control/overlay-control.js:1991
-#: src/controls/background-control/overlay-control.js:2339
-#: src/controls/background-control/overlay-control.js:2353
+#: src/controls/background-control/bg-control.js:1685
+#: src/controls/background-control/bg-control.js:1700
+#: src/controls/background-control/bg-control.js:2039
+#: src/controls/background-control/bg-control.js:2054
+#: src/controls/background-control/bg-control.js:2393
+#: src/controls/background-control/bg-control.js:2408
+#: src/controls/background-control/overlay-control.js:448
+#: src/controls/background-control/overlay-control.js:463
+#: src/controls/background-control/overlay-control.js:805
+#: src/controls/background-control/overlay-control.js:820
+#: src/controls/background-control/overlay-control.js:1160
+#: src/controls/background-control/overlay-control.js:1175
+#: src/controls/background-control/overlay-control.js:1625
+#: src/controls/background-control/overlay-control.js:1640
+#: src/controls/background-control/overlay-control.js:1986
+#: src/controls/background-control/overlay-control.js:2001
+#: src/controls/background-control/overlay-control.js:2349
+#: src/controls/background-control/overlay-control.js:2363
 #: src/controls/normal-bg-control/index.js:390
 #: src/controls/normal-bg-control/index.js:714
 #: src/controls/normal-bg-control/index.js:1042
-#: src/controls/text-gradient-control/index.js:330
-#: src/controls/text-gradient-control/index.js:619
-#: src/controls/text-gradient-control/index.js:909
+#: src/controls/text-gradient-control/index.js:333
+#: src/controls/text-gradient-control/index.js:622
+#: src/controls/text-gradient-control/index.js:912
 #: src/global/constants.js:1125
 msgid "Repeat"
 msgstr ""
@@ -10726,84 +11057,84 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:452
 #: src/controls/background-control/bg-control.js:827
 #: src/controls/background-control/bg-control.js:1204
-#: src/controls/background-control/bg-control.js:1687
-#: src/controls/background-control/bg-control.js:2041
-#: src/controls/background-control/bg-control.js:2395
-#: src/controls/background-control/overlay-control.js:454
-#: src/controls/background-control/overlay-control.js:811
-#: src/controls/background-control/overlay-control.js:1166
-#: src/controls/background-control/overlay-control.js:1626
-#: src/controls/background-control/overlay-control.js:1987
-#: src/controls/background-control/overlay-control.js:2349
+#: src/controls/background-control/bg-control.js:1696
+#: src/controls/background-control/bg-control.js:2050
+#: src/controls/background-control/bg-control.js:2404
+#: src/controls/background-control/overlay-control.js:459
+#: src/controls/background-control/overlay-control.js:816
+#: src/controls/background-control/overlay-control.js:1171
+#: src/controls/background-control/overlay-control.js:1636
+#: src/controls/background-control/overlay-control.js:1997
+#: src/controls/background-control/overlay-control.js:2359
 #: src/controls/normal-bg-control/index.js:386
 #: src/controls/normal-bg-control/index.js:710
 #: src/controls/normal-bg-control/index.js:1038
-#: src/controls/text-gradient-control/index.js:326
-#: src/controls/text-gradient-control/index.js:615
-#: src/controls/text-gradient-control/index.js:905
+#: src/controls/text-gradient-control/index.js:329
+#: src/controls/text-gradient-control/index.js:618
+#: src/controls/text-gradient-control/index.js:908
 msgid "No-repeat"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:463
 #: src/controls/background-control/bg-control.js:838
 #: src/controls/background-control/bg-control.js:1215
-#: src/controls/background-control/bg-control.js:1695
-#: src/controls/background-control/bg-control.js:2049
-#: src/controls/background-control/bg-control.js:2403
-#: src/controls/background-control/overlay-control.js:462
-#: src/controls/background-control/overlay-control.js:819
-#: src/controls/background-control/overlay-control.js:1174
-#: src/controls/background-control/overlay-control.js:1634
-#: src/controls/background-control/overlay-control.js:1995
-#: src/controls/background-control/overlay-control.js:2357
+#: src/controls/background-control/bg-control.js:1704
+#: src/controls/background-control/bg-control.js:2058
+#: src/controls/background-control/bg-control.js:2412
+#: src/controls/background-control/overlay-control.js:467
+#: src/controls/background-control/overlay-control.js:824
+#: src/controls/background-control/overlay-control.js:1179
+#: src/controls/background-control/overlay-control.js:1644
+#: src/controls/background-control/overlay-control.js:2005
+#: src/controls/background-control/overlay-control.js:2367
 #: src/controls/normal-bg-control/index.js:394
 #: src/controls/normal-bg-control/index.js:718
 #: src/controls/normal-bg-control/index.js:1046
-#: src/controls/text-gradient-control/index.js:334
-#: src/controls/text-gradient-control/index.js:623
-#: src/controls/text-gradient-control/index.js:913
+#: src/controls/text-gradient-control/index.js:337
+#: src/controls/text-gradient-control/index.js:626
+#: src/controls/text-gradient-control/index.js:916
 msgid "Repeat-x"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:467
 #: src/controls/background-control/bg-control.js:842
 #: src/controls/background-control/bg-control.js:1219
-#: src/controls/background-control/bg-control.js:1699
-#: src/controls/background-control/bg-control.js:2053
-#: src/controls/background-control/bg-control.js:2407
-#: src/controls/background-control/overlay-control.js:466
-#: src/controls/background-control/overlay-control.js:823
-#: src/controls/background-control/overlay-control.js:1178
-#: src/controls/background-control/overlay-control.js:1638
-#: src/controls/background-control/overlay-control.js:1999
-#: src/controls/background-control/overlay-control.js:2361
+#: src/controls/background-control/bg-control.js:1708
+#: src/controls/background-control/bg-control.js:2062
+#: src/controls/background-control/bg-control.js:2416
+#: src/controls/background-control/overlay-control.js:471
+#: src/controls/background-control/overlay-control.js:828
+#: src/controls/background-control/overlay-control.js:1183
+#: src/controls/background-control/overlay-control.js:1648
+#: src/controls/background-control/overlay-control.js:2009
+#: src/controls/background-control/overlay-control.js:2371
 #: src/controls/normal-bg-control/index.js:398
 #: src/controls/normal-bg-control/index.js:722
 #: src/controls/normal-bg-control/index.js:1050
-#: src/controls/text-gradient-control/index.js:338
-#: src/controls/text-gradient-control/index.js:627
-#: src/controls/text-gradient-control/index.js:917
+#: src/controls/text-gradient-control/index.js:341
+#: src/controls/text-gradient-control/index.js:630
+#: src/controls/text-gradient-control/index.js:920
 msgid "Repeat-y"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:498
 #: src/controls/background-control/bg-control.js:874
 #: src/controls/background-control/bg-control.js:1250
-#: src/controls/background-control/bg-control.js:1730
-#: src/controls/background-control/bg-control.js:2084
-#: src/controls/background-control/bg-control.js:2438
-#: src/controls/background-control/overlay-control.js:497
-#: src/controls/background-control/overlay-control.js:854
-#: src/controls/background-control/overlay-control.js:1209
-#: src/controls/background-control/overlay-control.js:1669
-#: src/controls/background-control/overlay-control.js:2030
-#: src/controls/background-control/overlay-control.js:2391
+#: src/controls/background-control/bg-control.js:1739
+#: src/controls/background-control/bg-control.js:2093
+#: src/controls/background-control/bg-control.js:2447
+#: src/controls/background-control/overlay-control.js:502
+#: src/controls/background-control/overlay-control.js:859
+#: src/controls/background-control/overlay-control.js:1214
+#: src/controls/background-control/overlay-control.js:1679
+#: src/controls/background-control/overlay-control.js:2040
+#: src/controls/background-control/overlay-control.js:2401
 #: src/controls/normal-bg-control/index.js:428
 #: src/controls/normal-bg-control/index.js:753
 #: src/controls/normal-bg-control/index.js:1081
-#: src/controls/text-gradient-control/index.js:365
-#: src/controls/text-gradient-control/index.js:653
-#: src/controls/text-gradient-control/index.js:944
+#: src/controls/text-gradient-control/index.js:368
+#: src/controls/text-gradient-control/index.js:656
+#: src/controls/text-gradient-control/index.js:947
 #: src/global/constants.js:1075
 #: src/global/constants.js:1133
 msgid "Cover"
@@ -10812,82 +11143,88 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:502
 #: src/controls/background-control/bg-control.js:878
 #: src/controls/background-control/bg-control.js:1254
-#: src/controls/background-control/bg-control.js:1734
-#: src/controls/background-control/bg-control.js:2088
-#: src/controls/background-control/bg-control.js:2442
-#: src/controls/background-control/overlay-control.js:501
-#: src/controls/background-control/overlay-control.js:858
-#: src/controls/background-control/overlay-control.js:1213
-#: src/controls/background-control/overlay-control.js:1673
-#: src/controls/background-control/overlay-control.js:2034
-#: src/controls/background-control/overlay-control.js:2395
+#: src/controls/background-control/bg-control.js:1743
+#: src/controls/background-control/bg-control.js:2097
+#: src/controls/background-control/bg-control.js:2451
+#: src/controls/background-control/overlay-control.js:506
+#: src/controls/background-control/overlay-control.js:863
+#: src/controls/background-control/overlay-control.js:1218
+#: src/controls/background-control/overlay-control.js:1683
+#: src/controls/background-control/overlay-control.js:2044
+#: src/controls/background-control/overlay-control.js:2405
 #: src/controls/normal-bg-control/index.js:432
 #: src/controls/normal-bg-control/index.js:757
 #: src/controls/normal-bg-control/index.js:1085
-#: src/controls/text-gradient-control/index.js:369
-#: src/controls/text-gradient-control/index.js:657
-#: src/controls/text-gradient-control/index.js:948
+#: src/controls/text-gradient-control/index.js:372
+#: src/controls/text-gradient-control/index.js:660
+#: src/controls/text-gradient-control/index.js:951
 #: src/global/constants.js:1074
 #: src/global/constants.js:1134
 msgid "Contain"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:1343
-#: src/controls/background-control/bg-control.js:2529
+#: src/controls/background-control/bg-control.js:2538
 #: src/controls/normal-bg-control/index.js:1165
-#: src/controls/text-gradient-control/index.js:1016
+#: src/controls/text-gradient-control/index.js:1018
 msgid "Add Custom Gradient"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:1356
-#: src/controls/background-control/bg-control.js:2542
+#: src/controls/background-control/bg-control.js:2551
 #: src/controls/normal-bg-control/index.js:1178
-#: src/controls/text-gradient-control/index.js:1029
+#: src/controls/text-gradient-control/index.js:1031
 msgid "Add your gradient color here. Get Sample"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:1362
-#: src/controls/background-control/bg-control.js:2548
+#: src/controls/background-control/bg-control.js:2557
 #: src/controls/normal-bg-control/index.js:1184
-#: src/controls/text-gradient-control/index.js:1031
+#: src/controls/text-gradient-control/index.js:1033
 msgid "CSS Gradients"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:1366
-#: src/controls/background-control/bg-control.js:2552
+#: src/controls/background-control/bg-control.js:2561
 #: src/controls/normal-bg-control/index.js:1188
-#: src/controls/text-gradient-control/index.js:1035
+#: src/controls/text-gradient-control/index.js:1037
 msgid "Custom Gradient"
 msgstr ""
 
 #: src/controls/background-control/bg-control.js:1377
-#: src/controls/background-control/bg-control.js:2563
-#: src/controls/background-control/overlay-control.js:1300
-#: src/controls/background-control/overlay-control.js:2485
+#: src/controls/background-control/bg-control.js:2572
+#: src/controls/background-control/overlay-control.js:1305
+#: src/controls/background-control/overlay-control.js:2495
 #: src/controls/normal-bg-control/index.js:1199
-#: src/controls/text-gradient-control/index.js:1046
+#: src/controls/text-gradient-control/index.js:1048
 msgid "Gradient Color"
 msgstr ""
 
 #: src/controls/background-control/overlay-control.js:145
-#: src/controls/background-control/overlay-control.js:1315
+#: src/controls/background-control/overlay-control.js:1320
 msgid "Overlay Opacity"
 msgstr ""
 
-#: src/controls/background-control/overlay-control.js:156
-#: src/controls/background-control/overlay-control.js:1330
+#: src/controls/background-control/overlay-control.js:160
+#: src/controls/background-control/overlay-control.js:1339
+#: src/global/constants.js:733
+msgid "Classic"
+msgstr ""
+
+#: src/controls/background-control/overlay-control.js:161
+#: src/controls/background-control/overlay-control.js:1340
 #: src/global/constants.js:738
 #: src/global/constants.js:750
 msgid "Gradient"
 msgstr ""
 
-#: src/controls/background-control/overlay-control.js:163
-#: src/controls/background-control/overlay-control.js:1337
+#: src/controls/background-control/overlay-control.js:168
+#: src/controls/background-control/overlay-control.js:1347
 msgid "Overlay Color"
 msgstr ""
 
-#: src/controls/background-control/overlay-control.js:174
-#: src/controls/background-control/overlay-control.js:1348
+#: src/controls/background-control/overlay-control.js:179
+#: src/controls/background-control/overlay-control.js:1358
 msgid "Overlay Image"
 msgstr ""
 
@@ -10905,15 +11242,15 @@ msgstr ""
 msgid "Spread"
 msgstr ""
 
-#: src/controls/color-btn/index.js:37
+#: src/controls/color-btn/index.js:39
 #: src/controls/color-control-alt/index.js:67
 #: src/controls/color-control/index.js:71
 msgid "Theme Colors"
 msgstr ""
 
-#: src/controls/color-btn/index.js:79
+#: src/controls/color-btn/index.js:84
 #: src/controls/color-control-alt/index.js:105
-#: src/controls/color-control/index.js:111
+#: src/controls/color-control/index.js:114
 msgid "Default Colors"
 msgstr ""
 
@@ -11269,7 +11606,7 @@ msgstr ""
 msgid "Beta"
 msgstr ""
 
-#: src/extensions/AI/popup/components/prompt/index.js:55
+#: src/extensions/AI/popup/components/prompt/index.js:56
 msgid "Type your content here..."
 msgstr ""
 
@@ -11573,10 +11910,6 @@ msgstr ""
 
 #: src/global/constants.js:728
 msgid "Ridge"
-msgstr ""
-
-#: src/global/constants.js:733
-msgid "Classic"
 msgstr ""
 
 #: src/global/constants.js:763
@@ -11924,7 +12257,7 @@ msgstr ""
 msgid "1 Page"
 msgstr ""
 
-#: src/template-library/pro-popup.js:27
+#: src/template-library/pro-popup.js:61
 msgid "Upgrade to Pro"
 msgstr ""
 
@@ -11997,6 +12330,7 @@ msgstr ""
 
 #: src/blocks/advanced-button/block.json
 #: src/blocks/cta/block.json
+#: src/blocks/dual-button/block.json
 msgctxt "block keyword"
 msgid "button"
 msgstr ""
@@ -12014,12 +12348,14 @@ msgstr ""
 
 #: src/blocks/advanced-button/block.json
 #: src/blocks/cta/block.json
+#: src/blocks/dual-button/block.json
 msgctxt "block keyword"
 msgid "cta"
 msgstr ""
 
 #: src/blocks/advanced-button/block.json
 #: src/blocks/cta/block.json
+#: src/blocks/dual-button/block.json
 #: src/blocks/post-meta/block.json
 #: src/blocks/qrcode/block.json
 msgctxt "block keyword"
@@ -12701,6 +13037,21 @@ msgstr ""
 #: src/blocks/cta/block.json
 msgctxt "block description"
 msgid "Design compelling CTAs to boost user engagement and conversions."
+msgstr ""
+
+#: src/blocks/dual-button/block.json
+msgctxt "block title"
+msgid "Dual Button"
+msgstr ""
+
+#: src/blocks/dual-button/block.json
+msgctxt "block keyword"
+msgid "dual"
+msgstr ""
+
+#: src/blocks/dual-button/block.json
+msgctxt "block description"
+msgid " Display interactive dual buttons for key metrics or achievements."
 msgstr ""
 
 #: src/blocks/email/block.json
