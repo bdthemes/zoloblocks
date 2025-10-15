@@ -23,13 +23,6 @@ class PostTitle {
 	];
 
 	/**
-	 * Allowed HTML tags for post title
-	 *
-	 * @var string[]
-	 */
-	protected $allowed_tags = [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span' ];
-
-	/**
 	 * PostTitle block frontend.
 	 *
 	 * @param array  $attributes .
@@ -51,7 +44,7 @@ class PostTitle {
 		$wrapper_class      = trim( ZoloHelpers::get_wrapper_class( $settings, '' ) . ' ' . implode( ' ', $settings['parentClasses'] ?? [] ) );
 		$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => esc_attr( $wrapper_class ) ] );
 		$title              = ! empty( $settings['titleWords'] ) ? ZoloHelpers::wordcount( $title, $settings['titleWords'] ) : $title;
-		$tag_name           = $this->sanitize_tag_name( $settings['titleTag'] ?? 'h2' );
+		$tag_name           = ZoloHelpers::sanitize_html_tag( $settings['titleTag'] ?? 'h2' );
 
 		if ( ! empty( $settings['isLink'] ) ) {
 			$rel   = ! empty( $settings['linkRel'] ) ? 'rel="' . esc_attr( $settings['linkRel'] ) . '"' : '';
@@ -64,30 +57,5 @@ class PostTitle {
 			$wrapper_attributes,
 			$title
 		);
-	}
-
-	/**
-	 * Sanitize HTML tag name to prevent XSS attacks.
-	 *
-	 * Only allows whitelisted HTML tags. Any invalid input defaults to 'h2'.
-	 * Prevents malicious payloads like "h3 onmouseover=alert(1)".
-	 *
-	 * @param string $tag The tag name to sanitize.
-	 * @return string Sanitized tag name.
-	 * @since 1.0.1
-	 */
-	private function sanitize_tag_name( $tag ) {
-		// Remove whitespace and convert to lowercase
-		$tag = strtolower( trim( $tag ) );
-
-		// Use tag_escape to remove any HTML/attributes
-		$tag = tag_escape( $tag );
-
-		// Whitelist validation - only allow specific tags
-		if ( ! in_array( $tag, $this->allowed_tags, true ) ) {
-			return 'h2'; // Default fallback
-		}
-
-		return $tag;
 	}
 }
