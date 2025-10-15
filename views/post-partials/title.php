@@ -11,7 +11,7 @@ if ( ! empty( $settings['showTitle'] ) ) {
 		'<%1$s class="zolo-post-title">
             <a href="%2$s" title="%3$s">%4$s</a>
         </%1$s>',
-		$settings['titleTag'],
+		ZoloHelpers::sanitize_html_tag( $settings['titleTag'] ),
 		get_permalink( $result->ID ),
 		esc_attr( $post_title ),
 		$post_title
