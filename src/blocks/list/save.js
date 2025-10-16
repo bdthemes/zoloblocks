@@ -56,16 +56,19 @@ const Save = (props) => {
                         commonProps.rel = profile.link?.openInNewTab ? 'noopener noreferrer' : undefined;
                     }
 
-                    return (
+                    return preset === 'zolo-list-style-1' ? (
+                        <div key={index} className="zolo-list-item-wrapper">
+                            <ContainerTag {...commonProps}>
+                                <RawHTML>{profile.text}</RawHTML>
+                            </ContainerTag>
+                            {showBadge && profile.badge && (
+                                <span className="zolo-list-badge" style={{ color: profile.badgeColor, background: profile.badgeBgColor }}>
+                                    {profile.badge}
+                                </span>
+                            )}
+                        </div>
+                    ) : (
                         <ContainerTag key={index} {...commonProps}>
-                            {preset === 'zolo-list-style-1' ? (
-                                <>
-                                    <RawHTML>{profile.text}</RawHTML>
-                                    {showBadge && profile.badge && (
-                                        <span className="zolo-list-badge" style={{ color: profile.badgeColor, background: profile.badgeBgColor }}>{profile.badge}</span>
-                                    )}
-                                </>
-                            ) : (
                                 <>
                                     {preset === 'zolo-list-style-4' ? (
                                         <div className="zolo-list-icon-and-content-wrap">
@@ -137,7 +140,6 @@ const Save = (props) => {
                                         </>
                                     )}
                                 </>
-                            )}
 
                             {preset === 'zolo-list-style-4' && (
                                 <>
