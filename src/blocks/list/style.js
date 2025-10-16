@@ -559,6 +559,18 @@ const Style = ({ props }) => {
             `
             : ''
     }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper{
+        ${badgeGapTab}
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-badge{
+        ${TabBadgeBg}
+        ${TabBadgeTypo}
+        ${tabBadgeBorder}
+        ${TabBadgePadding}
+        ${TabBadgeRadius}
+    }
   		
 	`;
 
@@ -626,6 +638,18 @@ const Style = ({ props }) => {
                 }
             `
             : ''
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper{
+        ${badgeGapMob}
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-badge{
+        ${MobBadgeBg}
+        ${MobBadgeTypo}
+        ${mobBadgeBorder}
+        ${MobBadgePadding}
+        ${MobBadgeRadius}
     }
   	`;
     return (
