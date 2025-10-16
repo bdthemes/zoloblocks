@@ -151,6 +151,10 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    showBadge: {
+        type: 'boolean',
+        default: false,
+    },
     listProfiles: {
         type: 'array',
         default: [
@@ -162,6 +166,8 @@ const attributes = {
                     openInNewTab: false,
                 },
                 text: 'List Item 1',
+                badge: 'New',
+                badgeColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -172,6 +178,8 @@ const attributes = {
                     openInNewTab: false,
                 },
                 text: 'List Item 2',
+                badge: 'New',
+                badgeColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -182,6 +190,8 @@ const attributes = {
                     openInNewTab: false,
                 },
                 text: 'List Item 3',
+                badge: 'New',
+                badgeColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -192,6 +202,8 @@ const attributes = {
                     openInNewTab: false,
                 },
                 text: 'List Item 4',
+                badge: 'New',
+                badgeColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
         ],
@@ -239,6 +251,7 @@ const attributes = {
     listIconBorderHover: {
         type: 'string',
     },
+    
 };
 
 export default attributes;

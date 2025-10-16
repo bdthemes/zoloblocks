@@ -71,7 +71,7 @@ import {
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
-import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
@@ -96,7 +96,9 @@ function Inspector(props) {
         BorderHovColor,
         globalIcon,
         isLinkable,
+        showBadge,
         listIconBorderHover,
+        badgeColor,
     } = attributes;
 
     const requiredProps = {
@@ -172,6 +174,12 @@ function Inspector(props) {
                                 label={__('Enable Link', 'zoloblocks')}
                                 checked={isLinkable}
                                 onChange={() => setAttributes({ isLinkable: !isLinkable })}
+                            />
+
+                            <ZoloToggleControl
+                                label={__('Show Badge', 'zoloblocks')}
+                                checked={showBadge}
+                                onChange={() => setAttributes({ showBadge: !showBadge })}
                             />
 
                             {preset !== 'zolo-list-style-1' && (
@@ -695,6 +703,26 @@ function Inspector(props) {
                                     controlName={ICON_LINKVERTICAL_ALIGN}
                                     requiredProps={requiredProps}
                                     alignOptions={FLEX_ALIGN_OPTIONS}
+                                />
+                            </ZoloPanelBody>
+                        )}
+
+                        {showBadge && (
+                            <ZoloPanelBody title={__('Badge', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                {/* <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={badgeColor}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            badgeColor: value,
+                                        })
+                                    }
+                                /> */}
+                                
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={BADGE_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
                                 />
                             </ZoloPanelBody>
                         )}

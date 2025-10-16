@@ -196,6 +196,14 @@
     }
 }
 
+.zolo-list-item-wrapper{
+    display: flex;
+}
+
+.zolo-list-badge{
+   padding-left: 20px;
+}
+
 @media (min-width: 768px) {
     .wp-block-zolo-list {
         &.horizontal {

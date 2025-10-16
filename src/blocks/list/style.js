@@ -54,7 +54,7 @@ import {
     ICON_LIST_HOVER_SHADOW,
 } from './constants';
 
-import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
@@ -74,6 +74,7 @@ const Style = ({ props }) => {
         iconToggle,
         BorderHovColor,
         listIconBorderHover,
+        listProfiles,
     } = attributes;
 
     //desc
@@ -308,6 +309,13 @@ const Style = ({ props }) => {
     const { boxShadowStyle: iconListShadow } = generateBoxShadowStyles({ controlName: ICON_LIST_SHADOW, attributes });
     const { boxShadowStyle: iconHoverListShadow } = generateBoxShadowStyles({ controlName: ICON_LIST_HOVER_SHADOW, attributes });
 
+    //badgee
+    const {
+        typoStylesDesktop: DesktopBadgeTypo,
+        typoStylesTab: TabBadgeTypo,
+        typoStylesMobile: MobBadgeTypo,
+    } = generateTypographyStyles({ prefixConstant: BADGE_TYPOGRAPHY, attributes });
+
     /**
      * All Style Combination
      */
@@ -403,6 +411,22 @@ const Style = ({ props }) => {
             `
             : ''
     }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-badge{
+        ${DesktopBadgeTypo}
+    }
+
+    ${listProfiles && listProfiles.map((profile, index) => {
+        if (profile.badgeColor) {
+            return `
+            .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper:nth-child(${index + 1}) .zolo-list-badge,
+            .wp-block-zolo-list.${uniqueId} .zolo-list-item:nth-child(${index + 1}) .zolo-list-badge {
+                color: ${profile.badgeColor};
+            }
+            `;
+        }
+        return '';
+    }).join('')}
 
   	`;
     const tabletAllStyle = `

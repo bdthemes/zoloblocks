@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Navigation Item",
+    "title": "Mega Menu Item",
     "name": "zolo/navigation-item",
     "category": "zoloblocks",
     "keywords": ["menu", "navigation", "navigation", "dropdown", "submenu", "subnav", "megamenu", "mega"],

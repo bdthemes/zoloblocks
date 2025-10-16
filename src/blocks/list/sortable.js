@@ -1,13 +1,22 @@
 /**
  * Internal dependencies
  */
-const { ZoloIconPicker, SortableControl, SortableItem, LinkControl, ZoloButton, ZoloCorePanelBody, ZoloTextControl, ZoloTextareaControl } =
-    window.zoloModule;
+const {
+    ZoloIconPicker,
+    ColorControl,
+    SortableControl,
+    SortableItem,
+    LinkControl,
+    ZoloButton,
+    ZoloCorePanelBody,
+    ZoloTextControl,
+    ZoloTextareaControl,
+} = window.zoloModule;
 import { cloneDeep } from 'lodash';
 import { __ } from '@wordpress/i18n';
 
 const Sortable = ({ listProfiles, setAttributes, attributes }) => {
-    const { DscToggle, preset, isLinkable } = attributes;
+    const { DscToggle, preset, isLinkable, showBadge } = attributes;
 
     // add a new profile
     const addProfile = () => {
@@ -16,6 +25,8 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
             icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>',
             link: { url: '#', openInNewTab: false },
             text: `List Item ${listProfiles.length + 1}`,
+            badge: 'New',
+            badgeColor: '',
             desc: 'Customize widget dimension beyond normal scale',
         };
         setAttributes({ listProfiles: [...listProfiles, newProfile] });
@@ -80,6 +91,21 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         value={profile.link}
                                         onChange={(value) => updateProfiles(index, 'link', value)}
                                     />
+                                )}
+                                {showBadge && (
+                                    <>
+                                        <ZoloTextControl
+                                            label={__('Badge', 'zoloblocks')}
+                                            value={profile.badge}
+                                            onChange={(value) => updateProfiles(index, 'badge', value)}
+                                        />
+
+                                        <ColorControl
+                                            label={__('Badge Color', 'zoloblocks')}
+                                            color={profile.badgeColor}
+                                            onChange={(value) => updateProfiles(index, 'badgeColor', value)}
+                                        />
+                                    </>
                                 )}
                             </ZoloCorePanelBody>
                         </SortableItem>

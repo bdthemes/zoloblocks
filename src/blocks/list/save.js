@@ -23,6 +23,7 @@ const Save = (props) => {
         linkHoverIcon,
         globalIcon,
         isLinkable = false,
+        showBadge,
     } = attributes;
 
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
@@ -58,7 +59,12 @@ const Save = (props) => {
                     return (
                         <ContainerTag key={index} {...commonProps}>
                             {preset === 'zolo-list-style-1' ? (
-                                <RawHTML>{profile.text}</RawHTML>
+                                <>
+                                    <RawHTML>{profile.text}</RawHTML>
+                                    {showBadge && profile.badge && (
+                                        <span className="zolo-list-badge" style={{ color: profile.badgeColor }}>{profile.badge}</span>
+                                    )}
+                                </>
                             ) : (
                                 <>
                                     {preset === 'zolo-list-style-4' ? (
