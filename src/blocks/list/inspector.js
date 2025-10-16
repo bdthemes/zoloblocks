@@ -68,6 +68,13 @@ import {
     ITEM_ALIGNS_OPTION,
     ICON_LIST_SHADOW,
     ICON_LIST_HOVER_SHADOW,
+
+    //badge
+    BADGE_BG,
+    BADGE_GAP,
+    BADGE_BORDER,
+    BADGE_PADDING,
+    BADGE_BORDER_RADIUS,
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
@@ -709,16 +716,30 @@ function Inspector(props) {
 
                         {showBadge && (
                             <ZoloPanelBody title={__('Badge', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                                {/* <ColorControl
-                                    label={__('Color', 'zoloblocks')}
-                                    color={badgeColor}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            badgeColor: value,
-                                        })
-                                    }
-                                /> */}
-                                
+                                <NormalBGControl controlName={BADGE_BG} requiredProps={requiredProps} noMainBGImg={true} />
+
+                                <ResGapControl label={__('Gap', 'zoloblocks')} controlName={BADGE_GAP} requiredProps={requiredProps} />
+
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={BADGE_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={BADGE_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={BADGE_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+
                                 <TypographyDropdown
                                     label={__('Typography', 'zoloblocks')}
                                     typoPrefixConstant={BADGE_TYPOGRAPHY}

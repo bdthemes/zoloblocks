@@ -27,6 +27,7 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
             text: `List Item ${listProfiles.length + 1}`,
             badge: 'New',
             badgeColor: '',
+            badgeBgColor: '',
             desc: 'Customize widget dimension beyond normal scale',
         };
         setAttributes({ listProfiles: [...listProfiles, newProfile] });
@@ -101,9 +102,15 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         />
 
                                         <ColorControl
-                                            label={__('Badge Color', 'zoloblocks')}
+                                            label={__('Color', 'zoloblocks')}
                                             color={profile.badgeColor}
                                             onChange={(value) => updateProfiles(index, 'badgeColor', value)}
+                                        />
+
+                                        <ColorControl
+                                            label={__('Background Color', 'zoloblocks')}
+                                            color={profile.badgeBgColor}
+                                            onChange={(value) => updateProfiles(index, 'badgeBgColor', value)}
                                         />
                                     </>
                                 )}

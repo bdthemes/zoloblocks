@@ -4,3 +4,5 @@ export const DSC_TYPOGRAPHY = 'dscTypography';
 export const TEXT_LIST_TYPOGRAPHY = 'textListTypography';
 // badge
 export const BADGE_TYPOGRAPHY = 'badgeTypography';
+export const BADGE_BORDER = 'badgeBorder';
+

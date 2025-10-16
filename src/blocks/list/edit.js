@@ -72,6 +72,7 @@ export default function Edit(props) {
                     text: sanitizeText('List Item ' + Number(listProfiles.length + 1)),
                     badge: sanitizeText('New'),
                     badgeColor: '',
+                    badgeBgColor: '',
                     desc: sanitizeText('Customize widget dimension beyond normal scale'),
                 },
             ],
@@ -111,7 +112,12 @@ export default function Edit(props) {
                                             }}
                                         />
                                         {showBadge && profile.badge && (
-                                            <span className="zolo-list-badge" style={{ color: profile.badgeColor }}>{profile.badge}</span>
+                                            <span
+                                                className="zolo-list-badge"
+                                                style={{ color: profile.badgeColor, background: profile.badgeBgColor }}
+                                            >
+                                                {profile.badge}
+                                            </span>
                                         )}
                                     </div>
                                 )}

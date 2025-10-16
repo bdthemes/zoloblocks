@@ -62,7 +62,7 @@ const Save = (props) => {
                                 <>
                                     <RawHTML>{profile.text}</RawHTML>
                                     {showBadge && profile.badge && (
-                                        <span className="zolo-list-badge" style={{ color: profile.badgeColor }}>{profile.badge}</span>
+                                        <span className="zolo-list-badge" style={{ color: profile.badgeColor, background: profile.badgeBgColor }}>{profile.badge}</span>
                                     )}
                                 </>
                             ) : (

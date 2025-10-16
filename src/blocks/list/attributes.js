@@ -44,6 +44,12 @@ import {
     //icon
     ICON_LIST_SHADOW,
     ICON_LIST_HOVER_SHADOW,
+    //badge
+    BADGE_BG,
+    BADGE_GAP,
+    BADGE_BORDER,
+    BADGE_PADDING,
+    BADGE_BORDER_RADIUS
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -120,6 +126,12 @@ const attributes = {
     ...generateBoxShadowAttributies(ICON_LIST_SHADOW),
     ...generateBoxShadowAttributies(ICON_LIST_HOVER_SHADOW),
 
+    ...generateNormalBGAttributes(BADGE_BG),
+    ...generateGapAttributes(BADGE_GAP),
+    ...generateBorderAttributies(BADGE_BORDER),
+    ...generateDimensionAttributes(BADGE_PADDING),
+    ...generateDimensionAttributes(BADGE_BORDER_RADIUS),
+
     preset: {
         type: 'string',
         default: 'zolo-list-style-1',
@@ -168,6 +180,7 @@ const attributes = {
                 text: 'List Item 1',
                 badge: 'New',
                 badgeColor: '',
+                badgeBgColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -180,6 +193,7 @@ const attributes = {
                 text: 'List Item 2',
                 badge: 'New',
                 badgeColor: '',
+                badgeBgColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -192,6 +206,7 @@ const attributes = {
                 text: 'List Item 3',
                 badge: 'New',
                 badgeColor: '',
+                badgeBgColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -204,6 +219,7 @@ const attributes = {
                 text: 'List Item 4',
                 badge: 'New',
                 badgeColor: '',
+                badgeBgColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
         ],

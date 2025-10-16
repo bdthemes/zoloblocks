@@ -198,10 +198,7 @@
 
 .zolo-list-item-wrapper{
     display: flex;
-}
-
-.zolo-list-badge{
-   padding-left: 20px;
+    gap: 5px;
 }
 
 @media (min-width: 768px) {
