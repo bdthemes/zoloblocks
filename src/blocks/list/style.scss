@@ -197,11 +197,19 @@
 
     .zolo-list-item-wrapper {
         display: flex;
-        gap: 5px;
     }
 
     .zolo-list-badge {
-        font-size: 15px;
+        background-color: #f7034e;
+        font-size: 9px;
+        font-weight: 400;
+        text-transform: uppercase;
+        padding-top: 7px;
+        padding-right: 3px;
+        padding-left: 3px;
+        color: #ffffff;
+        margin-left: 10px;
+        border-radius: 3px;
     }
 }
 
