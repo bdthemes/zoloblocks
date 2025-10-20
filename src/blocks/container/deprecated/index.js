@@ -1,2 +1,4 @@
-import v1 from './v1';
-export default [ v1 ];
+import v1 from './versions/v1';
+
+const deprecated = [v1];
+export default deprecated;
