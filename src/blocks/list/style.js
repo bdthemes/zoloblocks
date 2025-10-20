@@ -501,7 +501,7 @@ const Style = ({ props }) => {
                       return `
             .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper:nth-child(${num}) .zolo-list-title,
             .wp-block-zolo-list.${uniqueId} .zolo-list-item:nth-child(${num}) .zolo-list-title {
-                color: ${highlightTextColor} !important;
+                color: ${highlightTextColor};
             }
             `;
                   })

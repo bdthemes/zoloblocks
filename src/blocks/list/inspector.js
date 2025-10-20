@@ -441,7 +441,22 @@ function Inspector(props) {
                                 <TabPanelControl
                                     normalComponents={
                                         <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={textListColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        textListColor: value,
+                                                    })
+                                                }
+                                            />
                                             <NormalBGControl requiredProps={requiredProps} controlName={LIST_BG} noOverlay={true} />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={TEXT_LIST_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                                max={36}
+                                            />
                                             <ResDimensionsControl
                                                 label={__('Padding', 'zoloblocks')}
                                                 controlName={LIST_ALLBOX_PADDING}
@@ -449,27 +464,7 @@ function Inspector(props) {
                                                 forBorderRadius={false}
                                                 max={100}
                                             />
-                                            <ZoloTextControl
-                                                label={__("Highlight List Items", "zoloblocks")}
-                                                value={highlightText}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        highlightText: value,
-                                                    })
-                                                }
-                                                help={__("Enter item numbers separated by comma (e.g., 1,2,3,4)", "zoloblocks")}
-                                            />
-                                            {highlightText && (
-                                                <ColorControl
-                                                    label={__("Highlight Color", "zoloblocks")}
-                                                    color={highlightTextColor}
-                                                    onChange={(value) =>
-                                                        setAttributes({
-                                                            highlightTextColor: value,
-                                                        })
-                                                    }
-                                                />
-                                            )}
+
                                             <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
@@ -488,10 +483,40 @@ function Inspector(props) {
                                                 forBorderRadius={true}
                                                 max={100}
                                             />
+                                            <ZoloTextControl
+                                                label={__('Highlight List', 'zoloblocks')}
+                                                value={highlightText}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        highlightText: value,
+                                                    })
+                                                }
+                                                help={__('Enter item numbers separated by punctuation (e.g., 1,2,3,4)', 'zoloblocks')}
+                                            />
+                                            {highlightText && (
+                                                <ColorControl
+                                                    label={__('Highlight Color', 'zoloblocks')}
+                                                    color={highlightTextColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            highlightTextColor: value,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </>
                                     }
                                     hoverComponents={
                                         <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={txtHListColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        txtHListColor: value,
+                                                    })
+                                                }
+                                            />
                                             <NormalBGControl requiredProps={requiredProps} controlName={LIST_HOVER_BG} noOverlay={true} />
                                             <ColorControl
                                                 label={__('Border Color', 'zoloblocks')}
@@ -511,40 +536,6 @@ function Inspector(props) {
                                     }
                                 />
                             </>
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={textListColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    textListColor: value,
-                                                })
-                                            }
-                                        />
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={TEXT_LIST_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <ColorControl
-                                        label={__('Color', 'zoloblocks')}
-                                        color={txtHListColor}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                txtHListColor: value,
-                                            })
-                                        }
-                                    />
-                                }
-                            />
                         </ZoloPanelBody>
                         {DscToggle && (
                             <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>

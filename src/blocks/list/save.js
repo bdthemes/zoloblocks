@@ -61,85 +61,81 @@ const Save = (props) => {
                             <ContainerTag {...commonProps}>
                                 <RawHTML>{profile.text}</RawHTML>
                             </ContainerTag>
-                            {showBadge && profile.badge && (
-                                <span className="zolo-list-badge">
-                                    {profile.badge}
-                                </span>
-                            )}
+                            {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
                         </div>
                     ) : (
                         <ContainerTag key={index} {...commonProps}>
-                                <>
-                                    {preset === 'zolo-list-style-4' ? (
-                                        <div className="zolo-list-icon-and-content-wrap">
-                                            {iconToggle && (
-                                                <div className="zolo-list-icon">
-                                                    {profile.icon ? (
-                                                        <DisplayZoloIcon icon={profile.icon} />
-                                                    ) : (
-                                                        <DisplayZoloIcon icon={globalIcon} />
-                                                    )}
+                            <>
+                                {preset === 'zolo-list-style-4' ? (
+                                    <div className="zolo-list-icon-and-content-wrap">
+                                        {iconToggle && (
+                                            <div className="zolo-list-icon">
+                                                {profile.icon ? (
+                                                    <DisplayZoloIcon icon={profile.icon} />
+                                                ) : (
+                                                    <DisplayZoloIcon icon={globalIcon} />
+                                                )}
+                                            </div>
+                                        )}
+                                        <div className="zolo-list-content">
+                                            {titleToggle && (
+                                                <div className="zolo-list-title">
+                                                    <RawHTML>{sanitizeText(profile.text)}</RawHTML>
                                                 </div>
                                             )}
-                                            <div className="zolo-list-content">
+                                            {DscToggle && contentLayout !== 'horizontal' && (
+                                                <span className="zolo-list-desc">
+                                                    <RawHTML>{sanitizeText(profile.desc)}</RawHTML>
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <>
+                                        {iconToggle && contentLayout !== 'horizontal' && (
+                                            <div className="zolo-list-icon">
+                                                {profile.icon ? (
+                                                    <DisplayZoloIcon icon={profile.icon} />
+                                                ) : (
+                                                    <DisplayZoloIcon icon={globalIcon} />
+                                                )}
+                                            </div>
+                                        )}
+
+                                        {contentLayout === 'horizontal' && (
+                                            <div className="zolo-list-icon-title-wrap">
+                                                {iconToggle && (
+                                                    <div className="zolo-list-icon">
+                                                        {profile.icon ? (
+                                                            <DisplayZoloIcon icon={profile.icon} />
+                                                        ) : (
+                                                            <DisplayZoloIcon icon={globalIcon} />
+                                                        )}
+                                                    </div>
+                                                )}
                                                 {titleToggle && (
                                                     <div className="zolo-list-title">
                                                         <RawHTML>{sanitizeText(profile.text)}</RawHTML>
                                                     </div>
                                                 )}
-                                                {DscToggle && contentLayout !== 'horizontal' && (
-                                                    <span className="zolo-list-desc">
-                                                        <RawHTML>{sanitizeText(profile.desc)}</RawHTML>
-                                                    </span>
-                                                )}
                                             </div>
+                                        )}
+
+                                        <div className="zolo-list-content">
+                                            {titleToggle && contentLayout !== 'horizontal' && (
+                                                <div className="zolo-list-title">
+                                                    <RawHTML>{sanitizeText(profile.text)}</RawHTML>
+                                                </div>
+                                            )}
+                                            {DscToggle && (
+                                                <p className="zolo-list-desc">
+                                                    <RawHTML>{sanitizeText(profile.desc)}</RawHTML>
+                                                </p>
+                                            )}
                                         </div>
-                                    ) : (
-                                        <>
-                                            {iconToggle && contentLayout !== 'horizontal' && (
-                                                <div className="zolo-list-icon">
-                                                    {profile.icon ? (
-                                                        <DisplayZoloIcon icon={profile.icon} />
-                                                    ) : (
-                                                        <DisplayZoloIcon icon={globalIcon} />
-                                                    )}
-                                                </div>
-                                            )}
-
-                                            {contentLayout === 'horizontal' && (
-                                                <div className="zolo-list-icon-title-wrap">
-                                                    {iconToggle && (
-                                                        <div className="zolo-list-icon">
-                                                            {profile.icon ? (
-                                                                <DisplayZoloIcon icon={profile.icon} />
-                                                            ) : (
-                                                                <DisplayZoloIcon icon={globalIcon} />
-                                                            )}
-                                                        </div>
-                                                    )}
-                                                    {titleToggle && (
-                                                        <div className="zolo-list-title">
-                                                            <RawHTML>{sanitizeText(profile.text)}</RawHTML>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            )}
-
-                                            <div className="zolo-list-content">
-                                                {titleToggle && contentLayout !== 'horizontal' && (
-                                                    <div className="zolo-list-title">
-                                                        <RawHTML>{sanitizeText(profile.text)}</RawHTML>
-                                                    </div>
-                                                )}
-                                                {DscToggle && (
-                                                    <p className="zolo-list-desc">
-                                                        <RawHTML>{sanitizeText(profile.desc)}</RawHTML>
-                                                    </p>
-                                                )}
-                                            </div>
-                                        </>
-                                    )}
-                                </>
+                                    </>
+                                )}
+                            </>
 
                             {preset === 'zolo-list-style-4' && (
                                 <>

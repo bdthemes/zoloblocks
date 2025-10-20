@@ -111,11 +111,7 @@ export default function Edit(props) {
                                                 setAttributes({ listProfiles: newItems });
                                             }}
                                         />
-                                        {showBadge && profile.badge && (
-                                            <span className="zolo-list-badge">
-                                                {profile.badge}
-                                            </span>
-                                        )}
+                                        {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
                                     </div>
                                 )}
                                 {preset !== 'zolo-list-style-1' && (
