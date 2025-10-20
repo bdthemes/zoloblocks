@@ -49,7 +49,7 @@ import {
     BADGE_GAP,
     BADGE_BORDER,
     BADGE_PADDING,
-    BADGE_BORDER_RADIUS
+    BADGE_BORDER_RADIUS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -181,6 +181,7 @@ const attributes = {
                 badge: 'New',
                 badgeColor: '',
                 badgeBgColor: '',
+                textHighlightColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -194,6 +195,7 @@ const attributes = {
                 badge: 'New',
                 badgeColor: '',
                 badgeBgColor: '',
+                textHighlightColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -207,6 +209,7 @@ const attributes = {
                 badge: 'New',
                 badgeColor: '',
                 badgeBgColor: '',
+                textHighlightColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
             {
@@ -220,6 +223,7 @@ const attributes = {
                 badge: 'New',
                 badgeColor: '',
                 badgeBgColor: '',
+                textHighlightColor: '',
                 desc: 'Customize widget dimension beyond normal scale',
             },
         ],
@@ -267,7 +271,6 @@ const attributes = {
     listIconBorderHover: {
         type: 'string',
     },
-    
 };
 
 export default attributes;

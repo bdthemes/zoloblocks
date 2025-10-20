@@ -81,6 +81,7 @@ const Style = ({ props }) => {
         BorderHovColor,
         listIconBorderHover,
         listProfiles,
+        textHighlightColor,
     } = attributes;
 
     //desc

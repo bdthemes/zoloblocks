@@ -112,10 +112,7 @@ export default function Edit(props) {
                                             }}
                                         />
                                         {showBadge && profile.badge && (
-                                            <span
-                                                className="zolo-list-badge"
-                                                style={{ color: profile.badgeColor, background: profile.badgeBgColor }}
-                                            >
+                                            <span className="zolo-list-badge">
                                                 {profile.badge}
                                             </span>
                                         )}

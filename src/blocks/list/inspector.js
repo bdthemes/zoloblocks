@@ -105,7 +105,6 @@ function Inspector(props) {
         isLinkable,
         showBadge,
         listIconBorderHover,
-        badgeColor,
     } = attributes;
 
     const requiredProps = {
