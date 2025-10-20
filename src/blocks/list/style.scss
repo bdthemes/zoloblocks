@@ -194,15 +194,15 @@
             width: 100%;
         }
     }
-}
 
-.zolo-list-item-wrapper{
-    display: flex;
-    gap: 5px;
-}
+    .zolo-list-item-wrapper {
+        display: flex;
+        gap: 5px;
+    }
 
-.zolo-list-badge{
-    font-size: 15px;
+    .zolo-list-badge {
+        font-size: 15px;
+    }
 }
 
 @media (min-width: 768px) {
