@@ -27,6 +27,7 @@ const {
     IconicBtnGroup,
     ZoloIconPicker,
     generateResCounterStyle,
+    ZoloTextControl,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -105,6 +106,8 @@ function Inspector(props) {
         isLinkable,
         showBadge,
         listIconBorderHover,
+        highlightText,
+        highlightTextColor,
     } = attributes;
 
     const requiredProps = {
@@ -446,6 +449,27 @@ function Inspector(props) {
                                                 forBorderRadius={false}
                                                 max={100}
                                             />
+                                            <ZoloTextControl
+                                                label={__("Highlight List Items", "zoloblocks")}
+                                                value={highlightText}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        highlightText: value,
+                                                    })
+                                                }
+                                                help={__("Enter item numbers separated by comma (e.g., 1,2,3,4)", "zoloblocks")}
+                                            />
+                                            {highlightText && (
+                                                <ColorControl
+                                                    label={__("Highlight Color", "zoloblocks")}
+                                                    color={highlightTextColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            highlightTextColor: value,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                             <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
@@ -458,7 +482,7 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                             />
                                             <ResDimensionsControl
-                                                label={__('Radius', 'zoloblocks')}
+                                                label={__('Border Radius', 'zoloblocks')}
                                                 controlName={LIST_BOX_RADIUS}
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}

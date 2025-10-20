@@ -81,7 +81,8 @@ const Style = ({ props }) => {
         BorderHovColor,
         listIconBorderHover,
         listProfiles,
-        textHighlightColor,
+        highlightText,
+        highlightTextColor,
     } = attributes;
 
     //desc
@@ -488,6 +489,24 @@ const Style = ({ props }) => {
                 return '';
             })
             .join('')
+    }
+
+    ${
+        highlightText && highlightTextColor
+            ? highlightText
+                  .split(',')
+                  .map((num) => parseInt(num.trim()))
+                  .filter((num) => !isNaN(num) && num > 0 && num <= listProfiles.length)
+                  .map((num) => {
+                      return `
+            .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper:nth-child(${num}) .zolo-list-title,
+            .wp-block-zolo-list.${uniqueId} .zolo-list-item:nth-child(${num}) .zolo-list-title {
+                color: ${highlightTextColor} !important;
+            }
+            `;
+                  })
+                  .join('')
+            : ''
     }
   	`;
 
