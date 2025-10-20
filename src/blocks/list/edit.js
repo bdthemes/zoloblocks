@@ -130,16 +130,19 @@ export default function Edit(props) {
                                                 {preset !== 'zolo-list-style-1' && (
                                                     <div className="zolo-list-content">
                                                         {titleToggle && (
-                                                            <RichText
-                                                                tagName="div"
-                                                                className="zolo-list-title"
-                                                                value={profile.text}
-                                                                onChange={(v) => {
-                                                                    const newItems = [...deepCloneProfiles];
-                                                                    newItems[index].text = v;
-                                                                    setAttributes({ listProfiles: newItems });
-                                                                }}
-                                                            />
+                                                            <div className="zolo-list-title-wrapper">
+                                                                <RichText
+                                                                    tagName="div"
+                                                                    className="zolo-list-title"
+                                                                    value={profile.text}
+                                                                    onChange={(v) => {
+                                                                        const newItems = [...deepCloneProfiles];
+                                                                        newItems[index].text = v;
+                                                                        setAttributes({ listProfiles: newItems });
+                                                                    }}
+                                                                />
+                                                                {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                            </div>
                                                         )}
                                                         {DscToggle && contentLayout !== 'horizontal' && (
                                                             <RichText
@@ -181,6 +184,28 @@ export default function Edit(props) {
                                                                 </div>
                                                             )}
                                                             {titleToggle && (
+                                                                <div className="zolo-list-title-wrapper">
+                                                                    <RichText
+                                                                        tagName="div"
+                                                                        className="zolo-list-title"
+                                                                        value={profile.text}
+                                                                        onChange={(v) => {
+                                                                            const newItems = [...deepCloneProfiles];
+                                                                            newItems[index].text = v;
+                                                                            setAttributes({ listProfiles: newItems });
+                                                                        }}
+                                                                    />
+                                                                    {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </>
+                                                )}
+
+                                                {preset !== 'zolo-list-style-1' && (
+                                                    <div className="zolo-list-content">
+                                                        {titleToggle && contentLayout !== 'horizontal' && (
+                                                            <div className="zolo-list-title-wrapper">
                                                                 <RichText
                                                                     tagName="div"
                                                                     className="zolo-list-title"
@@ -191,24 +216,8 @@ export default function Edit(props) {
                                                                         setAttributes({ listProfiles: newItems });
                                                                     }}
                                                                 />
-                                                            )}
-                                                        </div>
-                                                    </>
-                                                )}
-
-                                                {preset !== 'zolo-list-style-1' && (
-                                                    <div className="zolo-list-content">
-                                                        {titleToggle && contentLayout !== 'horizontal' && (
-                                                            <RichText
-                                                                tagName="div"
-                                                                className="zolo-list-title"
-                                                                value={profile.text}
-                                                                onChange={(v) => {
-                                                                    const newItems = [...deepCloneProfiles];
-                                                                    newItems[index].text = v;
-                                                                    setAttributes({ listProfiles: newItems });
-                                                                }}
-                                                            />
+                                                                {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                            </div>
                                                         )}
                                                         {DscToggle && (
                                                             <RichText

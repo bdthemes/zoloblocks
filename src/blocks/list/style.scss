@@ -123,6 +123,12 @@
     }
 
     /* Demo css style 2,3  */
+    &.zolo-list-style-2 .zolo-list-title-wrapper {
+        width: 100%;
+    }
+    &.zolo-list-style-2 .zolo-list-badge {
+        margin-top: 10px;
+    }
     &.zolo-list-style-3 .zolo-list-item,
     &.zolo-list-style-4 .zolo-list-item {
         display: inline-flex;
@@ -135,6 +141,11 @@
         --zolo-title-margin: 0;
         margin: var(--zolo-title-margin);
         line-height: 1;
+    }
+
+    &.zolo-list-style-3 .zolo-list-title-wrapper,
+    &.zolo-list-style-4 .zolo-list-title-wrapper {
+        width: 100%;
     }
 
     /* Demo css style 4  */
@@ -195,8 +206,11 @@
         }
     }
 
-    .zolo-list-item-wrapper {
+    .zolo-list-item-wrapper,
+    .zolo-list-title-wrapper {
         display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
     .zolo-list-badge {
@@ -204,12 +218,11 @@
         font-size: 9px;
         font-weight: 400;
         text-transform: uppercase;
-        padding-top: 7px;
-        padding-right: 3px;
-        padding-left: 3px;
+        padding: 4px 6px;
         color: #ffffff;
-        margin-left: 10px;
         border-radius: 3px;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 }
 

@@ -108,17 +108,12 @@ const Sortable = ({ listProfiles, setAttributes, attributes }) => {
                                         />
 
                                         <ColorControl
-                                            label={__('Background Color', 'zoloblocks')}
+                                            label={__('Background', 'zoloblocks')}
                                             color={profile.badgeBgColor}
                                             onChange={(value) => updateProfiles(index, 'badgeBgColor', value)}
                                         />
                                     </>
                                 )}
-                                <ColorControl
-                                    label={__('Highlight Color', 'zoloblocks')}
-                                    color={profile.textHighlightColor}
-                                    onChange={(value) => updateProfiles(index, 'textHighlightColor', value)}
-                                />
                             </ZoloCorePanelBody>
                         </SortableItem>
                     </div>

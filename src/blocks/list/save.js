@@ -79,8 +79,11 @@ const Save = (props) => {
                                         )}
                                         <div className="zolo-list-content">
                                             {titleToggle && (
-                                                <div className="zolo-list-title">
-                                                    <RawHTML>{sanitizeText(profile.text)}</RawHTML>
+                                                <div className="zolo-list-title-wrapper">
+                                                    <div className="zolo-list-title">
+                                                        <RawHTML>{sanitizeText(profile.text)}</RawHTML>
+                                                    </div>
+                                                    {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
                                                 </div>
                                             )}
                                             {DscToggle && contentLayout !== 'horizontal' && (
@@ -114,8 +117,11 @@ const Save = (props) => {
                                                     </div>
                                                 )}
                                                 {titleToggle && (
-                                                    <div className="zolo-list-title">
-                                                        <RawHTML>{sanitizeText(profile.text)}</RawHTML>
+                                                    <div className="zolo-list-title-wrapper">
+                                                        <div className="zolo-list-title">
+                                                            <RawHTML>{sanitizeText(profile.text)}</RawHTML>
+                                                        </div>
+                                                        {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
                                                     </div>
                                                 )}
                                             </div>
@@ -123,8 +129,11 @@ const Save = (props) => {
 
                                         <div className="zolo-list-content">
                                             {titleToggle && contentLayout !== 'horizontal' && (
-                                                <div className="zolo-list-title">
-                                                    <RawHTML>{sanitizeText(profile.text)}</RawHTML>
+                                                <div className="zolo-list-title-wrapper">
+                                                    <div className="zolo-list-title">
+                                                        <RawHTML>{sanitizeText(profile.text)}</RawHTML>
+                                                    </div>
+                                                    {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
                                                 </div>
                                             )}
                                             {DscToggle && (
