@@ -461,7 +461,8 @@ const Style = ({ props }) => {
             : ''
     }
 
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper{
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper,
+    .wp-block-zolo-list.${uniqueId} .zolo-list-title-wrapper{
         ${badgeGapDesk}
     }
 
@@ -580,7 +581,8 @@ const Style = ({ props }) => {
             : ''
     }
 
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper{
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper,
+    .wp-block-zolo-list.${uniqueId} .zolo-list-title-wrapper{
         ${badgeGapTab}
     }
 
@@ -660,7 +662,8 @@ const Style = ({ props }) => {
             : ''
     }
 
-    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper{
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper,
+    .wp-block-zolo-list.${uniqueId} .zolo-list-title-wrapper{
         ${badgeGapMob}
     }
 

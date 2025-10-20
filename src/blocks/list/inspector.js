@@ -484,7 +484,7 @@ function Inspector(props) {
                                                 max={100}
                                             />
                                             <ZoloTextControl
-                                                label={__('Highlight List', 'zoloblocks')}
+                                                label={__('Highlight Item', 'zoloblocks')}
                                                 value={highlightText}
                                                 onChange={(value) =>
                                                     setAttributes({
