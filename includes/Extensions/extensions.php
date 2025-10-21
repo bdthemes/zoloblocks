@@ -174,7 +174,7 @@ return apply_filters('zolo_extensions', [
     'transform' => [
         'name' => 'transform',
         'title' => __('Transform', 'zoloblocks'),
-        'status' => false,
+        'status' => true,
         'is_pro' => false,
         'demo' => 'https://demo.zoloblocks.com/transform',
         'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
