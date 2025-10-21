@@ -25,5 +25,6 @@ class ExtensionsLoader {
         ExportPattern::getInstance();
         ImportPattern::getInstance();
         ShapeDivider::getInstance();
+        Transform::getInstance();
     }
 }

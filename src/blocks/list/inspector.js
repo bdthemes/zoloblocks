@@ -27,6 +27,7 @@ const {
     IconicBtnGroup,
     ZoloIconPicker,
     generateResCounterStyle,
+    ZoloTextControl,
 } = window.zoloModule;
 
 import Sortable from './sortable';
@@ -68,10 +69,17 @@ import {
     ITEM_ALIGNS_OPTION,
     ICON_LIST_SHADOW,
     ICON_LIST_HOVER_SHADOW,
+
+    //badge
+    BADGE_BG,
+    BADGE_GAP,
+    BADGE_BORDER,
+    BADGE_PADDING,
+    BADGE_BORDER_RADIUS,
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
-import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
@@ -96,7 +104,10 @@ function Inspector(props) {
         BorderHovColor,
         globalIcon,
         isLinkable,
+        showBadge,
         listIconBorderHover,
+        highlightText,
+        highlightTextColor,
     } = attributes;
 
     const requiredProps = {
@@ -172,6 +183,12 @@ function Inspector(props) {
                                 label={__('Enable Link', 'zoloblocks')}
                                 checked={isLinkable}
                                 onChange={() => setAttributes({ isLinkable: !isLinkable })}
+                            />
+
+                            <ZoloToggleControl
+                                label={__('Show Badge', 'zoloblocks')}
+                                checked={showBadge}
+                                onChange={() => setAttributes({ showBadge: !showBadge })}
                             />
 
                             {preset !== 'zolo-list-style-1' && (
@@ -424,7 +441,22 @@ function Inspector(props) {
                                 <TabPanelControl
                                     normalComponents={
                                         <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={textListColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        textListColor: value,
+                                                    })
+                                                }
+                                            />
                                             <NormalBGControl requiredProps={requiredProps} controlName={LIST_BG} noOverlay={true} />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={TEXT_LIST_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                                max={36}
+                                            />
                                             <ResDimensionsControl
                                                 label={__('Padding', 'zoloblocks')}
                                                 controlName={LIST_ALLBOX_PADDING}
@@ -432,6 +464,7 @@ function Inspector(props) {
                                                 forBorderRadius={false}
                                                 max={100}
                                             />
+
                                             <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
@@ -444,16 +477,46 @@ function Inspector(props) {
                                                 requiredProps={requiredProps}
                                             />
                                             <ResDimensionsControl
-                                                label={__('Radius', 'zoloblocks')}
+                                                label={__('Border Radius', 'zoloblocks')}
                                                 controlName={LIST_BOX_RADIUS}
                                                 requiredProps={requiredProps}
                                                 forBorderRadius={true}
                                                 max={100}
                                             />
+                                            <ZoloTextControl
+                                                label={__('Highlight Item', 'zoloblocks')}
+                                                value={highlightText}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        highlightText: value,
+                                                    })
+                                                }
+                                                help={__('Enter item numbers separated by punctuation (e.g., 1,2,3,4)', 'zoloblocks')}
+                                            />
+                                            {highlightText && (
+                                                <ColorControl
+                                                    label={__('Highlight Color', 'zoloblocks')}
+                                                    color={highlightTextColor}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            highlightTextColor: value,
+                                                        })
+                                                    }
+                                                />
+                                            )}
                                         </>
                                     }
                                     hoverComponents={
                                         <>
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={txtHListColor}
+                                                onChange={(value) =>
+                                                    setAttributes({
+                                                        txtHListColor: value,
+                                                    })
+                                                }
+                                            />
                                             <NormalBGControl requiredProps={requiredProps} controlName={LIST_HOVER_BG} noOverlay={true} />
                                             <ColorControl
                                                 label={__('Border Color', 'zoloblocks')}
@@ -473,40 +536,6 @@ function Inspector(props) {
                                     }
                                 />
                             </>
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Title', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <TabPanelControl
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={textListColor}
-                                            onChange={(value) =>
-                                                setAttributes({
-                                                    textListColor: value,
-                                                })
-                                            }
-                                        />
-                                        <TypographyDropdown
-                                            label={__('Typography', 'zoloblocks')}
-                                            typoPrefixConstant={TEXT_LIST_TYPOGRAPHY}
-                                            requiredProps={requiredProps}
-                                            max={36}
-                                        />
-                                    </>
-                                }
-                                hoverComponents={
-                                    <ColorControl
-                                        label={__('Color', 'zoloblocks')}
-                                        color={txtHListColor}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                txtHListColor: value,
-                                            })
-                                        }
-                                    />
-                                }
-                            />
                         </ZoloPanelBody>
                         {DscToggle && (
                             <ZoloPanelBody title={__('Description', 'zoloblocks')} stylePanel={true} panelProps={props}>
@@ -695,6 +724,40 @@ function Inspector(props) {
                                     controlName={ICON_LINKVERTICAL_ALIGN}
                                     requiredProps={requiredProps}
                                     alignOptions={FLEX_ALIGN_OPTIONS}
+                                />
+                            </ZoloPanelBody>
+                        )}
+
+                        {showBadge && (
+                            <ZoloPanelBody title={__('Badge', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <NormalBGControl controlName={BADGE_BG} requiredProps={requiredProps} noMainBGImg={true} />
+
+                                <ResGapControl label={__('Gap', 'zoloblocks')} controlName={BADGE_GAP} requiredProps={requiredProps} />
+
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={BADGE_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={BADGE_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={BADGE_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={BADGE_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
                                 />
                             </ZoloPanelBody>
                         )}

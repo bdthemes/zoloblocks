@@ -21,7 +21,7 @@ export const GlobalStyleHanlder = (props) => {
     }
 
     const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {}, blockName = '' } = props;
-    
+
     const {
         uniqueId,
         zIndex,
@@ -44,7 +44,7 @@ export const GlobalStyleHanlder = (props) => {
     useEffect(() => {
         // This will be called after the component body has executed and styles are generated
         if (!uniqueId) return; // Skip effect if no uniqueId
-        
+
         const {
             desktopBorderStyle: desktopBorderStyles,
             tabBorderStyle: tabBorderStyles,
@@ -767,7 +767,7 @@ export const GlobalStyleHanlder = (props) => {
         const softMinifyDeskStrings = softMinifyCssStrings(filteredDesktopAllStyle + desktopGlobalStyles);
         const softMinifyTabStrings = softMinifyCssStrings(filteredTabAllStyle + tabGlobalStyles);
         const softMinifyMobStrings = softMinifyCssStrings(filteredMobileAllStyle + mobileGlobalStyles);
-        
+
         const styleAttributes = {
             ...(softMinifyDeskStrings && softMinifyDeskStrings !== '' ? { desktop: softMinifyDeskStrings } : {}),
             ...(softMinifyTabStrings && softMinifyTabStrings !== '' ? { tab: softMinifyTabStrings } : {}),

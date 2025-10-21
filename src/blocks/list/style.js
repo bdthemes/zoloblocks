@@ -52,9 +52,15 @@ import {
     //icon
     ICON_LIST_SHADOW,
     ICON_LIST_HOVER_SHADOW,
+    //badge
+    BADGE_BG,
+    BADGE_GAP,
+    BADGE_BORDER,
+    BADGE_PADDING,
+    BADGE_BORDER_RADIUS,
 } from './constants';
 
-import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
@@ -74,6 +80,9 @@ const Style = ({ props }) => {
         iconToggle,
         BorderHovColor,
         listIconBorderHover,
+        listProfiles,
+        highlightText,
+        highlightTextColor,
     } = attributes;
 
     //desc
@@ -308,6 +317,54 @@ const Style = ({ props }) => {
     const { boxShadowStyle: iconListShadow } = generateBoxShadowStyles({ controlName: ICON_LIST_SHADOW, attributes });
     const { boxShadowStyle: iconHoverListShadow } = generateBoxShadowStyles({ controlName: ICON_LIST_HOVER_SHADOW, attributes });
 
+    //badge
+    const {
+        backgroundStylesDesktop: DeskBadgeBg,
+        backgroundStylesTab: TabBadgeBg,
+        backgroundStylesMobile: MobBadgeBg,
+    } = generateNormalBGControlStyles({ controlName: BADGE_BG, attributes });
+
+    const {
+        gapStylesDesktop: badgeGapDesk,
+        gapStylesTab: badgeGapTab,
+        gapStylesMobile: badgeGapMob,
+    } = generateGapStyle({
+        controlName: BADGE_GAP,
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: DesktopBadgeTypo,
+        typoStylesTab: TabBadgeTypo,
+        typoStylesMobile: MobBadgeTypo,
+    } = generateTypographyStyles({ prefixConstant: BADGE_TYPOGRAPHY, attributes });
+
+    const {
+        desktopBorderStyle: desktopBadgeBorder,
+        tabBorderStyle: tabBadgeBorder,
+        mobBorderStyle: mobBadgeBorder,
+    } = generateBorderStyle({ controlName: BADGE_BORDER, attributes });
+
+    const {
+        dimensionStylesDesktop: DesktopBadgePadding,
+        dimensionStylesTab: TabBadgePadding,
+        dimensionStylesMobile: MobBadgePadding,
+    } = generateDimensionStyle({
+        controlName: BADGE_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: DesktopBadgeRadius,
+        dimensionStylesTab: TabBadgeRadius,
+        dimensionStylesMobile: MobBadgeRadius,
+    } = generateDimensionStyle({
+        controlName: BADGE_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -404,7 +461,56 @@ const Style = ({ props }) => {
             : ''
     }
 
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper,
+    .wp-block-zolo-list.${uniqueId} .zolo-list-title-wrapper{
+        ${badgeGapDesk}
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-badge{
+        ${DeskBadgeBg}
+        ${DesktopBadgeTypo}
+        ${desktopBadgeBorder}
+        ${DesktopBadgePadding}
+        ${DesktopBadgeRadius}
+    }
+
+    ${
+        listProfiles &&
+        listProfiles
+            .map((profile, index) => {
+                if (profile.badgeColor) {
+                    return `
+            .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper:nth-child(${index + 1}) .zolo-list-badge,
+            .wp-block-zolo-list.${uniqueId} .zolo-list-item:nth-child(${index + 1}) .zolo-list-badge {
+                color: ${profile.badgeColor};
+                background: ${profile.badgeBgColor};
+            }
+            `;
+                }
+                return '';
+            })
+            .join('')
+    }
+
+    ${
+        highlightText && highlightTextColor
+            ? highlightText
+                  .split(',')
+                  .map((num) => parseInt(num.trim()))
+                  .filter((num) => !isNaN(num) && num > 0 && num <= listProfiles.length)
+                  .map((num) => {
+                      return `
+            .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper:nth-child(${num}) .zolo-list-title,
+            .wp-block-zolo-list.${uniqueId} .zolo-list-item:nth-child(${num}) .zolo-list-title {
+                color: ${highlightTextColor};
+            }
+            `;
+                  })
+                  .join('')
+            : ''
+    }
   	`;
+
     const tabletAllStyle = `
     .wp-block-zolo-list.${uniqueId} {
         ${layout == 'flex' ? 'display:flex' : `grid-template-columns: repeat(${listGridTabStyle}, 1fr)`};
@@ -474,6 +580,19 @@ const Style = ({ props }) => {
             `
             : ''
     }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper,
+    .wp-block-zolo-list.${uniqueId} .zolo-list-title-wrapper{
+        ${badgeGapTab}
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-badge{
+        ${TabBadgeBg}
+        ${TabBadgeTypo}
+        ${tabBadgeBorder}
+        ${TabBadgePadding}
+        ${TabBadgeRadius}
+    }
   		
 	`;
 
@@ -541,6 +660,19 @@ const Style = ({ props }) => {
                 }
             `
             : ''
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-item-wrapper,
+    .wp-block-zolo-list.${uniqueId} .zolo-list-title-wrapper{
+        ${badgeGapMob}
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-badge{
+        ${MobBadgeBg}
+        ${MobBadgeTypo}
+        ${mobBadgeBorder}
+        ${MobBadgePadding}
+        ${MobBadgeRadius}
     }
   	`;
     return (

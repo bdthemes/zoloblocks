@@ -574,7 +574,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'navigation' => [
         'name' => 'navigation',
-        'title' => __('Navigation', 'zoloblocks'),
+        'title' => __('Mega Menu', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'demo' => 'https://demo.zoloblocks.com/navigation',
@@ -582,7 +582,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'navigation-item' => [
         'name' => 'navigation-item',
-        'title' => __('Navigation Item', 'zoloblocks'),
+        'title' => __('Mega Menu Item', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'demo' => 'https://demo.zoloblocks.com/navigation-item',
@@ -591,7 +591,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'navigation-submenu' => [
         'name' => 'navigation-submenu',
-        'title' => __('Navigation Submenu', 'zoloblocks'),
+        'title' => __('Mega Menu Submenu', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
         'demo' => 'https://demo.zoloblocks.com/navigation-submenu',
@@ -713,7 +713,7 @@ return apply_filters('zolo_blocks_list_data', [
     ],
     'form' => [
         'name' => 'form',
-        'title' => __('Form', 'zoloblocks'),
+        'title' => __('Form Builder', 'zoloblocks'),
         'categories' => ['form'],
         'status' => true,
         'demo' => 'https://demo.zoloblocks.com/form',
