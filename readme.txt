@@ -611,8 +611,12 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
-### 2.3.13 [October 15, 2025]
-Title Block Vulnerability issues are fixed.
+### Version 2.3.13 - October 21, 2025
+
+- **Bug Fixes:**
+  - Resolved vulnerability in the Title Block.
+  - The Transform Effect is now treated as a separate extension.
+  - Fixed issues with the Particles extension.
 
 ### 2.3.12 [October 13, 2025]
 
