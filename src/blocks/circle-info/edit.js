@@ -8,7 +8,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, sanitizeUrl } = window.zoloModule;
 
 import Inspector from './inspector';
 
@@ -24,9 +24,9 @@ export default function Edit(props) {
     });
 
     // Group items by layer
-    const layer1Items = circleItems.filter(item => item.layer === 'layer1');
-    const layer2Items = circleItems.filter(item => item.layer === 'layer2');
-    const layer3Items = circleItems.filter(item => item.layer === 'layer3');
+    const layer1Items = circleItems.filter((item) => item.layer === 'layer1');
+    const layer2Items = circleItems.filter((item) => item.layer === 'layer2');
+    const layer3Items = circleItems.filter((item) => item.layer === 'layer3');
 
     return (
         <>
@@ -51,7 +51,11 @@ export default function Edit(props) {
                                 <ul className="zolo-circle-list-wrap zolo-list_one">
                                     {layer1Items.map((item, index) => (
                                         <li key={item.id || index} className="zolo-list-item">
-                                            <a href={item.url || '#'}>
+                                            <a
+                                                href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
+                                                rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
+                                                target={item.link?.openInNewTab ? '_blank' : undefined}
+                                            >
                                                 {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
                                             </a>
                                         </li>
@@ -66,7 +70,11 @@ export default function Edit(props) {
                                 <ul className="zolo-circle-list-wrap zolo-list_two">
                                     {layer2Items.map((item, index) => (
                                         <li key={item.id || index} className="zolo-list-item">
-                                            <a href={item.url || '#'}>
+                                            <a
+                                                href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
+                                                rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
+                                                target={item.link?.openInNewTab ? '_blank' : undefined}
+                                            >
                                                 {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
                                             </a>
                                         </li>
@@ -81,7 +89,11 @@ export default function Edit(props) {
                                 <ul className="zolo-circle-list-wrap zolo-list_three">
                                     {layer3Items.map((item, index) => (
                                         <li key={item.id || index} className="zolo-list-item">
-                                            <a href={item.url || '#'}>
+                                            <a
+                                                href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
+                                                rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
+                                                target={item.link?.openInNewTab ? '_blank' : undefined}
+                                            >
                                                 {item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
                                             </a>
                                         </li>

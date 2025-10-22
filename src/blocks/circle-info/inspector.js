@@ -40,7 +40,7 @@ const {
 
 import objAttributes from './attributes';
 
-import {} from './constants';
+import { MAIN_IMAGE_WIDTH, MAIN_IMAGE_HEIGHT, MAIN_IMAGE_BORDER, MAIN_IMAGE_SHADOW, MAIN_IMAGE_RADIUS } from './constants';
 
 import {} from './constants/typoPrefixConstant';
 
@@ -129,7 +129,13 @@ function Inspector(props) {
                         </ZoloPanelBody>
                     </>
                 }
-                styleTab={<></>}
+                styleTab={
+                    <>
+                        <ZoloPanelBody title={__('Main Circle', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                            <TabPanelControl normalComponents={<></>} hoverComponents={<></>} />
+                        </ZoloPanelBody>
+                    </>
+                }
                 advancedTab={
                     <>
                         <AdvancedOptions
