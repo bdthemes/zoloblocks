@@ -1,191 +1,248 @@
 import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix } from './options';
 
-document.addEventListener('DOMContentLoaded', function () {
-    const zoloParticles = document.querySelectorAll('.zolo-block');
-    if (zoloParticles && zoloParticles.length > 0) {
-        zoloParticles.forEach((particles) => {
-            const particlesOptions = particles.dataset.particles;
-            if (!particlesOptions) return;
-            const particlesData = JSON.parse(particlesOptions);
-            // active check for particles
-            if (!particlesData.active) {
-                return;
+// Track initialized particles to prevent duplicates
+const initializedParticles = new Set();
+
+// Preset configuration mapping
+const presetConfigs = {
+    hover_bubble: optionOne,
+    dust_wind: optionTwo,
+    flying_bubble: optionThree,
+    snow_fall: optionFour,
+    flying_shape: optionFive,
+    polygonal_move: optionSix
+};
+
+/**
+ * Deep clone an object to prevent reference sharing
+ * @param {Object} obj - Object to clone
+ * @returns {Object} - Deep cloned object
+ */
+function deepClone(obj) {
+    if (obj === null || typeof obj !== 'object') return obj;
+    if (obj instanceof Date) return new Date(obj.getTime());
+    if (obj instanceof Array) return obj.map(item => deepClone(item));
+    if (typeof obj === 'object') {
+        const clonedObj = {};
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                clonedObj[key] = deepClone(obj[key]);
             }
+        }
+        return clonedObj;
+    }
+}
 
-            const { particlesId, preset, colors, particleOptions, speed } = particlesData;
-            const { shapes, direction, shapeSize, customOptions } = particleOptions;
+/**
+ * Safely parse JSON with error handling
+ * @param {string} jsonString - JSON string to parse
+ * @returns {Object|null} - Parsed object or null if invalid
+ */
+function safeJsonParse(jsonString) {
+    if (!jsonString) return null;
 
-            const color = colors && colors.map((color) => color.color);
-            function createObject(customOptions) {
-                if (!customOptions) {
-                    return false;
-                }
-                try {
-                    let obj = JSON.parse(customOptions);
-                    return obj;
-                } catch (error) {
-                    return false;
-                }
-            }
-            const mainOptions = {
-                ...(preset === 'hover_bubble' && {
-                    particles: {
-                        ...optionOne?.particles,
-                        color: {
-                            value: color && color.length > 0 && color[0] !== '' ? color : optionOne?.particles.color?.value,
-                        },
-                        size: {
-                            ...optionOne?.particles?.size,
-                            value: shapeSize ? shapeSize : optionOne?.particles.size?.value,
-                        },
+    try {
+        return JSON.parse(jsonString);
+    } catch (error) {
+        console.warn('ZoloBlocks Particles: Invalid JSON data', error);
+        return null;
+    }
+}
 
-                        shape: {
-                            type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
-                        },
-                        ...(preset === 'hover_bubble' && {
-                            move: {
-                                ...optionOne?.particles?.move,
-                                direction: direction || 'none',
-                                speed: speed || optionOne?.particles?.move?.speed,
-                            },
-                        }),
-                    },
-                }),
-                ...(preset === 'hover_bubble' && { interactivity: optionOne?.interactivity }),
+/**
+ * Extract and validate colors from color data
+ * @param {Array} colors - Color array from particle data
+ * @returns {Array|null} - Valid colors or null
+ */
+function extractColors(colors) {
+    if (!colors || !Array.isArray(colors) || colors.length === 0) {
+        return null;
+    }
 
-                // dust_wind
-                ...(preset === 'dust_wind' && {
-                    particles: {
-                        ...optionTwo?.particles,
-                        color: {
-                            value: color && color.length > 0 && color[0] !== '' ? color : optionTwo?.particles.color?.value || '#000000',
-                        },
-                        size: {
-                            ...optionTwo?.particles?.size,
-                            value: shapeSize ? shapeSize : optionTwo?.particles.size?.value,
-                        },
-                        shape: {
-                            type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
-                        },
-                        move: {
-                            ...optionTwo?.particles?.move,
-                            direction: direction || 'none',
-                            speed: speed || optionTwo?.particles?.move?.speed,
-                        },
-                    },
-                    //interactivity
-                    ...(preset === 'dust_wind' && { interactivity: optionTwo?.interactivity }),
-                }),
-                //Flying Bubble
-                ...(preset === 'flying_bubble' && {
-                    particles: {
-                        ...optionThree?.particles,
-                        color: {
-                            value: color && color.length > 0 && color[0] !== '' ? color : optionThree?.particles.color?.value || '#000000',
-                        },
-                        size: {
-                            ...optionThree?.particles?.size,
-                            value: shapeSize ? shapeSize : optionThree?.particles.size?.value,
-                        },
-                        shape: {
-                            type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
-                        },
+    const validColors = colors
+        .map(colorObj => colorObj?.color)
+        .filter(color => color && color !== '');
 
-                        move: {
-                            ...optionThree?.particles?.move,
-                            direction: direction || 'none',
-                            speed: speed || optionThree?.particles?.move?.speed,
-                        },
-                    },
-                    //interactivity
-                    ...(preset === 'flying_bubble' && { interactivity: optionThree?.interactivity }),
-                }),
-                //snow fall
-                ...(preset === 'snow_fall' && {
-                    particles: {
-                        ...optionFour?.particles,
-                        color: {
-                            value: color && color.length > 0 && color[0] !== '' ? color : optionFour?.particles.color?.value || '#000000',
-                        },
-                        size: {
-                            ...optionFour?.particles?.size,
-                            value: shapeSize ? shapeSize : optionFour?.particles.size?.value,
-                        },
-                        shape: {
-                            type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : ['circle'],
-                        },
-                        move: {
-                            ...optionFour?.particles?.move,
-                            direction: direction || 'none',
-                            speed: speed || optionFour?.particles?.move?.speed,
-                        },
-                    },
-                    //interactivity
-                    ...(preset === 'snow_fall' && { interactivity: optionFour?.interactivity }),
-                }),
+    return validColors.length > 0 ? validColors : null;
+}
 
-                // flying shape
-                ...(preset === 'flying_shape' && {
-                    particles: {
-                        ...optionFive?.particles,
-                        color: {
-                            value: color && color.length > 0 && color[0] !== '' ? color : optionFive?.particles.color?.value || '#000000',
-                        },
-                        size: {
-                            ...optionFive?.particles?.shapeSize,
-                            value: shapeSize ? shapeSize : optionFive?.particles.size?.value,
-                        },
-                        shape: {
-                            type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : optionFive?.particles.shape?.type,
-                        },
-                        move: {
-                            ...optionFive?.particles?.move,
-                            direction: direction || 'none',
-                            speed: speed || optionFive?.particles?.move?.speed,
-                        },
-                        line_linked: {
-                            enable: false,
-                        },
-                    },
-                    //interactivity
-                    ...(preset === 'flying_shape' && { interactivity: optionFive?.interactivity }),
-                }),
-                // polygon Move
-                ...(preset === 'polygonal_move' && {
-                    particles: {
-                        ...optionSix?.particles,
-                        color: {
-                            value: color && color.length > 0 && color[0] !== '' ? color : optionSix?.particles.color?.value || '#000000',
-                        },
-                        size: {
-                            ...optionSix?.particles.size,
-                            value: shapeSize ? shapeSize : optionSix?.particles.size?.value,
-                        },
+/**
+ * Extract and validate shapes from particle options
+ * @param {Array} shapes - Shapes array from particle options
+ * @returns {Array} - Valid shapes or default
+ */
+function extractShapes(shapes) {
+    if (!shapes || !Array.isArray(shapes) || shapes.length === 0 || shapes[0] === '') {
+        return ['circle'];
+    }
+    return shapes;
+}
 
-                        shape: {
-                            type: shapes != undefined && shapes.length > 0 && shapes[0] !== '' ? shapes : optionSix?.particles.shape?.type,
-                        },
-                        ...optionSix?.particles?.opacity,
-                        move: {
-                            ...optionSix?.particles?.move,
-                            direction: direction || 'none',
-                            speed: speed || optionSix?.particles?.move?.speed,
-                        },
-                    },
-                }),
+/**
+ * Build particle configuration for a specific preset
+ * @param {string} preset - Preset name
+ * @param {Object} particleData - Particle configuration data
+ * @returns {Object} - Complete particle configuration
+ */
+function buildParticleConfig(preset, particleData) {
+    const { colors, particleOptions = {}, speed } = particleData;
+    const { shapes, direction, shapeSize, customOptions } = particleOptions;
 
-                retina_detect: true,
-            };
+    // Handle custom options
+    if (preset === 'custom_options' && customOptions) {
+        const customConfig = safeJsonParse(customOptions);
+        if (customConfig) {
+            return { ...customConfig, retina_detect: true };
+        }
+    }
 
-            const optionData = preset === 'custom_options' && customOptions ? createObject(customOptions) : preset !== 'custom_options' && mainOptions;
+    // Get base configuration for preset and deep clone it to prevent reference sharing
+    const baseConfig = presetConfigs[preset];
+    if (!baseConfig) {
+        console.warn(`ZoloBlocks Particles: Unknown preset "${preset}"`);
+        return null;
+    }
 
-            try {
-                particlesJS(`zolo-particles-${particlesId}`, optionData);
+    // Deep clone the base configuration to ensure isolation between particles
+    const config = deepClone(baseConfig);
 
-            } catch (error) {
-                console.log(error);
+    // Extract processed values
+    const processedColors = extractColors(colors);
+    const processedShapes = extractShapes(shapes);
 
+    // Override with custom values
+    if (processedColors) {
+        config.particles.color.value = processedColors;
+    }
+
+    if (shapeSize) {
+        config.particles.size.value = shapeSize;
+    }
+
+    if (processedShapes) {
+        config.particles.shape.type = processedShapes;
+    }
+
+    if (direction) {
+        config.particles.move.direction = direction;
+    }
+
+    if (speed) {
+        config.particles.move.speed = speed;
+    }
+
+    // Ensure retina_detect is set
+    config.retina_detect = true;
+
+    // Handle special cases for flying_shape
+    if (preset === 'flying_shape') {
+        config.particles.line_linked = { enable: false };
+    }
+
+    // Handle special cases for polygonal_move
+    if (preset === 'polygonal_move' && baseConfig.particles.opacity) {
+        // The opacity is already included in the deep clone, no need to merge again
+        // This was causing the reference sharing issue
+    }
+
+    return config;
+}
+
+/**
+ * Initialize particles for a single element
+ * @param {HTMLElement} element - DOM element containing particle data
+ */
+function initializeParticles(element) {
+    const particlesOptions = element.dataset.particles;
+    const particlesData = safeJsonParse(particlesOptions);
+
+    if (!particlesData || !particlesData.active) {
+        return;
+    }
+
+    const { particlesId, preset } = particlesData;
+    const particleElementId = `zolo-particles-${particlesId}`;
+
+    // Prevent duplicate initialization
+    if (initializedParticles.has(particleElementId)) {
+        return;
+    }
+
+    // Check if target element exists
+    const targetElement = document.getElementById(particleElementId);
+    if (!targetElement) {
+        console.warn(`ZoloBlocks Particles: Target element "${particleElementId}" not found`);
+        return;
+    }
+
+    // Build configuration
+    const config = buildParticleConfig(preset, particlesData);
+    if (!config) {
+        return;
+    }
+
+    try {
+        // Destroy existing particles if any (cleanup)
+        if (window.pJSDom && window.pJSDom.find(item => item.pJS.canvas.el.id === particleElementId)) {
+            window.pJSDom = window.pJSDom.filter(item => item.pJS.canvas.el.id !== particleElementId);
+        }
+
+        // Initialize particles with isolated configuration
+        particlesJS(particleElementId, config);
+        initializedParticles.add(particleElementId);
+    } catch (error) {
+        console.error(`ZoloBlocks Particles: Failed to initialize "${particleElementId}"`, error);
+    }
+}
+
+/**
+ * Initialize all particles on the page
+ */
+function initializeAllParticles() {
+    const zoloParticles = document.querySelectorAll('.zolo-block[data-particles]');
+
+    if (zoloParticles.length === 0) {
+        return;
+    }
+
+
+    zoloParticles.forEach((element, index) => {
+        // Add small delay between initializations to prevent conflicts
+        setTimeout(() => {
+            initializeParticles(element);
+        }, index * 50);
+    });
+}
+
+// Initialize particles when DOM is ready
+document.addEventListener('DOMContentLoaded', initializeAllParticles);
+
+// Re-initialize on dynamic content changes (optional)
+if (typeof MutationObserver !== 'undefined') {
+    const observer = new MutationObserver((mutations) => {
+        let hasNewParticles = false;
+
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        if (node.classList?.contains('zolo-block') && node.dataset?.particles) {
+                            hasNewParticles = true;
+                        } else if (node.querySelector?.('.zolo-block[data-particles]')) {
+                            hasNewParticles = true;
+                        }
+                    }
+                });
             }
         });
-    }
-});
+
+        if (hasNewParticles) {
+            setTimeout(initializeAllParticles, 100);
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+}

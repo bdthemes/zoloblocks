@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Form",
+    "title": "Form Builder",
     "name": "zolo/form",
     "category": "zoloblocks",
     "keywords": ["form", "input", "field", "data", "collection", "survey"],

@@ -640,6 +640,33 @@ class ZoloHelpers {
     }
 
     /**
+     * Sanitize HTML tag name to prevent XSS attacks.
+     * Only allows whitelisted HTML tags. Any invalid input defaults to 'h2'.
+     * Prevents malicious payloads like "h3 onmouseover=alert(1)".
+     *
+     * @param string $tag The tag name to sanitize.
+     * @param string $default Default tag if sanitization fails.
+     * @return string Sanitized tag name.
+     * @since 1.0.1
+     */
+    public static function sanitize_html_tag($tag, $default = 'h2') {
+        $allowed_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'];
+        
+        // Remove whitespace and convert to lowercase
+        $tag = strtolower(trim($tag));
+        
+        // Use tag_escape to remove any HTML/attributes
+        $tag = tag_escape($tag);
+        
+        // Whitelist validation - only allow specific tags
+        if (!in_array($tag, $allowed_tags, true)) {
+            return $default; // Default fallback
+        }
+        
+        return $tag;
+    }
+
+    /**
      * WordCount function
      *
      * @param string $phrase .

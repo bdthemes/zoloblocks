@@ -101,3 +101,9 @@ export const ITEM_ALIGNS_OPTION = [
         ),
     },
 ];
+
+export const BADGE_BG = 'badgeBg';
+export const BADGE_GAP = 'badgeGap';
+export const BADGE_BORDER = 'badgeBorder';
+export const BADGE_PADDING = 'badgePadding';
+export const BADGE_BORDER_RADIUS = 'badgeBorderRadius';

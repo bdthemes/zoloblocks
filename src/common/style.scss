@@ -30,6 +30,25 @@
     --zolo-badge-pro-alpha-color: rgba(255, 168, 38, 0.2);
 }
 
+
+// SCSS Mixin for display condition before pseudo-element
+@mixin display-condition-before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 1px, transparent 2px, transparent 9px);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+@mixin display-condition-opacity {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
 .zolo-appender-btn {
     margin-top: 30px;
     color: #000;
@@ -57,15 +76,15 @@
 .zolo-hide-tab,
 .zolo-hide-mobile {
     position: relative;
+}
 
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
+.zolo-frontend {
+    .zolo-hide-mobile,
+    .zolo-hide-tab,
+    .zolo-hide-desktop {
+       &:before {
+         display: none;
+       }
     }
 }
 
@@ -77,11 +96,9 @@
         }
     }
     .zolo-hide-desktop {
-        filter: grayscale(100%);
-        opacity: 0.5;
+        @include display-condition-opacity;
         &:before {
-            background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 1px, transparent 2px, transparent 9px);
-            border: 1px solid rgba(0, 0, 0, 0.02);
+            @include display-condition-before;
         }
     }
 }
@@ -94,11 +111,9 @@
         }
     }
     .zolo-hide-tab {
-        filter: grayscale(100%);
-        opacity: 0.5;
+        @include display-condition-opacity;
         &:before {
-            background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 1px, transparent 2px, transparent 9px);
-            border: 1px solid rgba(0, 0, 0, 0.02);
+            @include display-condition-before;
         }
     }
 }
@@ -111,11 +126,9 @@
         }
     }
     .zolo-hide-mobile {
-        filter: grayscale(100%);
-        opacity: 0.5;
+        @include display-condition-opacity;
         &:before {
-            background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 1px, transparent 2px, transparent 9px);
-            border: 1px solid rgba(0, 0, 0, 0.02);
+            @include display-condition-before;
         }
     }
 }
@@ -254,16 +267,6 @@ span.zolo-pro-badge {
     font-weight: 700;
     background: var(--zolo-badge-pro-color);
     margin-left: 10px;
-}
-.zolo-transform-animation {
-    --zolo-transform-perspective: 1000px;
-    transform: perspective(var(--zolo-transform-perspective, 0)) rotate(var(--zolo-transform-rotate, 0))
-        rotateX(var(--zolo-transform-rotateX, 0)) rotateY(var(--zolo-transform-rotateY, 0)) translate(var(--zolo-transform-translate, 0))
-        translateX(var(--zolo-transform-translateX, 0)) translateY(var(--zolo-transform-translateY, 0))
-        scaleX(calc(var(--zolo-transform-flipX, 1) * var(--zolo-transform-scaleX, var(--zolo-transform-scale, 1))))
-        scaleY(calc(var(--zolo-transform-flipY, 1) * var(--zolo-transform-scaleY, var(--zolo-transform-scale, 1))))
-        skewX(var(--zolo-transform-skewX, 0)) skewY(var(--zolo-transform-skewY, 0));
-    transform-origin: var(--zolo-transform-originY) var(--zolo-transform-originX);
 }
 
 .block-editor-block-breadcrumb li {
