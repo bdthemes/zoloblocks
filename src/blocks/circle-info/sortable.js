@@ -19,10 +19,20 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
     // Ensure circleItems is always an array
     const items = Array.isArray(circleItems) ? circleItems : [];
 
+    // Convert layer value to display text
+    const layerLabel = (layer) => {
+        const layerMap = {
+            layer1: 'Layer 1',
+            layer2: 'Layer 2',
+            layer3: 'Layer 3',
+        };
+        return layerMap[layer] || 'Layer 1';
+    };
+
     // add a new circle item
     const addCircleItem = () => {
         const newItem = {
-            id: items.length + 1,
+            id: Date.now() + Math.random(), // Generate unique ID
             layer: 'layer1',
             link: {
                 url: '#',
@@ -40,9 +50,9 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
         setAttributes({ [attributeName]: updatedItems });
     };
 
-    // remove a circle item
-    const removeCircleItem = (index) => {
-        setAttributes({ [attributeName]: items.filter((_, i) => i !== index) });
+    // remove a circle item by ID (not index) to handle sorting correctly
+    const removeCircleItem = (itemId) => {
+        setAttributes({ [attributeName]: items.filter((item) => item.id !== itemId) });
     };
 
     return (
@@ -59,9 +69,9 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
             <SortableControl defaultItems={items} attributeName={attributeName} setAttributes={setAttributes}>
                 {items.map((item, index) => (
                     <div className="dnd-container" key={item.id || index}>
-                        <ZoloButton className="dnd-trash" icon="trash" onClick={() => removeCircleItem(index)} />
+                        <ZoloButton className="dnd-trash" icon="trash" onClick={() => removeCircleItem(item.id)} />
                         <SortableItem id={item.id || index}>
-                            <ZoloCorePanelBody title={`Circle Item ${index + 1} - ${item.layer || 'Layer 1'}`} initialOpen={false}>
+                            <ZoloCorePanelBody title={`Circle Item ${index + 1} - ${layerLabel(item.layer)}`} initialOpen={false}>
                                 <ZoloSelectControl
                                     label={__('Select Layer', 'zoloblocks')}
                                     value={item.layer || ''}
