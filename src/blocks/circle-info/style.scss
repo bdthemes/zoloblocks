@@ -14,6 +14,7 @@ body {
 }
 
 .zolo-block-circle-icon-wrap {
+    position: relative; // Establishes stacking context
     .zolo-circle-icon-wrap {
         margin: 0;
         padding: 0;
@@ -38,6 +39,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1; // Base z-index for all layers
 }
 
 .zolo-circle-icon-wrap > li:hover ul {
@@ -61,12 +63,11 @@ body {
 }
 
 .zolo-block-circle-icon-wrap .zolo-circle-list-wrap li {
-    display: block;
+    display: flex;
     position: absolute;
     top: 50%;
     left: 50%;
     transition: all 0.3s ease-in-out;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -114,14 +115,17 @@ body {
     border: 1px solid #efecff;
     border-radius: 50%;
     transition: transform 0.3s ease;
+    position: relative; // For z-index to work
+    z-index: 1; // Ensures links are clickable
 }
 
 .zolo-circle-icon-wrap .zolo-list-item a:hover {
     transform: scale(1.2);
+    z-index: 10; // Bring to front on hover
 }
 
 .zolo-block-circle-icon-wrap .zolo-main-circle-item {
-    z-index: 5;
+    z-index: 5; // Center circle - always on top
     width: var(--zolo-circle-main-item-size);
     height: var(--zolo-circle-main-item-size);
     background: #fff;
@@ -184,6 +188,19 @@ body {
 .zolo-block-circle-icon-wrap .zolo-circle-list-wrap {
     width: var(--zolo-circle-wrap-size);
     height: var(--zolo-circle-wrap-size);
+}
+
+/* Layer specific z-index for proper stacking */
+.zolo-circle-icon-wrap > li:has(.zolo-list_three) {
+    z-index: 1; // Outermost layer - lowest
+}
+
+.zolo-circle-icon-wrap > li:has(.zolo-list_two) {
+    z-index: 2; // Middle layer
+}
+
+.zolo-circle-icon-wrap > li:has(.zolo-list_one) {
+    z-index: 3; // Innermost layer - highest (except main circle)
 }
 
 /* .zolo-list_two এর জন্য আলাদা সাইজ */
@@ -249,6 +266,17 @@ body {
     --index: 9;
 }
 
+.zolo-block-circle-icon-wrap .zolo__display-icon {
+    padding: 20px;
+}
+
+.zolo-block-circle-icon-wrap .zolo__display-icon svg{
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+
 @keyframes zolo_circle_one {
     0% {
         transform: rotate(0deg);
@@ -267,8 +295,4 @@ body {
     to {
         transform: rotate(-1turn);
     }
-}
-
-.zolo__display-icon {
-    width: 35px;
 }
