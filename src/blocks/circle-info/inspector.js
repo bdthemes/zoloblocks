@@ -60,7 +60,7 @@ import {} from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { block, attributes, setAttributes } = props;
-    const { resMode, photo, imageRes, circleItems, iconColor, hoverIconColor, animation, animationDuration } = attributes;
+    const { resMode, photo, imageRes, circleItems, iconColor, hoverIconColor, animation, animationDuration, hoverAnimation } = attributes;
 
     const requiredProps = {
         resMode,
@@ -90,22 +90,32 @@ function Inspector(props) {
                                     })
                                 }
                             />
+                            <ZoloToggleControl
+                                label={__('Hover Animation', 'zoloblocks')}
+                                checked={hoverAnimation}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        hoverAnimation: value,
+                                    })
+                                }
+                            />
                             {animation && (
                                 <div className="zolo-flex-col-control">
                                     <ZoloRangeControl
-                                        label={__('Speed', 'zoloblocks')}
-                                        value={animationDuration}
+                                        label={__('Speed (seconds)', 'zoloblocks')}
+                                        value={animationDuration / 1000}
                                         onChange={(value) =>
                                             setAttributes({
-                                                animationDuration: value,
+                                                animationDuration: value * 1000,
                                             })
                                         }
-                                        min={0}
+                                        min={1}
                                         max={100}
                                         step={1}
                                     />
                                 </div>
                             )}
+
                             <ZoloBaseControl label={__('Photo', 'zoloblocks')} className="zolo-flex-col-control">
                                 {photo ? (
                                     <ImageAvatar

@@ -4,10 +4,13 @@ import classnames from 'classnames';
 
 const Save = (props) => {
     const { attributes } = props;
-    const { uniqueId, parentClasses, photo, imageRes, circleItems = [] } = attributes;
+    const { uniqueId, parentClasses, photo, imageRes, circleItems = [], animation, hoverAnimation } = attributes;
 
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), {
+            'zolo-circle-animation-enabled': animation,
+            'zolo-hover-animation-enabled': hoverAnimation,
+        }),
     });
 
     // Group items by layer

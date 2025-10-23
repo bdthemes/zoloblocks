@@ -17,10 +17,13 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { uniqueId, parentClasses, photo, imageRes, circleItems = [] } = attributes;
+    const { uniqueId, parentClasses, photo, imageRes, circleItems = [], animation, hoverAnimation } = attributes;
 
     const blockProps = useBlockProps({
-        className: classnames(uniqueId, classArrayToStr(parentClasses)),
+        className: classnames(uniqueId, classArrayToStr(parentClasses), {
+            'zolo-circle-animation-enabled': animation,
+            'zolo-hover-animation-enabled': hoverAnimation,
+        }),
     });
 
     // Group items by layer

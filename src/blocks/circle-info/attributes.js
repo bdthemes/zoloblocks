@@ -98,17 +98,17 @@ const attributes = {
         type: 'string',
         default: '#000000',
     },
-    hoverIconColor: {
-        type: 'string',
-        default: '#000000',
-    },
     animation: {
         type: 'boolean',
-        default: false,
+        default: true,
     },
     animationDuration: {
         type: 'number',
-        default: 1000,
+        default: 100000, // 100 seconds in milliseconds
+    },
+    hoverAnimation: {
+        type: 'boolean',
+        default: true,
     },
 
     ...generateDimensionAttributes(MAIN_IMAGE_WIDTH),

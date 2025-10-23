@@ -17,15 +17,53 @@ const {
     generateResAlignmentStyle,
 } = window.zoloModule;
 
-import {} from './constants';
+import {
+    MAIN_IMAGE_WIDTH,
+    MAIN_IMAGE_HEIGHT,
+    MAIN_IMAGE_BORDER,
+    MAIN_IMAGE_SHADOW,
+    MAIN_IMAGE_RADIUS,
+    ICON_BG,
+    ICON_PADDING,
+    ICON_BORDER,
+    ICON_SHADOW,
+    ICON_RADIUS,
+    HOVER_ICON_BG,
+    HOVER_ICON_SHADOW,
+} from './constants';
 
-import { } from './constants/typoPrefixConstant';
+import {} from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId } = attributes;
+    const { uniqueId, animation, animationDuration } = attributes;
 
-    const desktopAllStyle = '';
+    const {
+        desktopRangeStyle: mainImageWidthDesk,
+        tabRangeStyle: mainImageWidthTab,
+        mobRangeStyle: mainImageWidthMob,
+    } = generateResRangeStyle({
+        controlName: MAIN_IMAGE_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    // Animation styles - convert milliseconds to seconds
+    const animationSpeed = animationDuration ? animationDuration / 1000 : 100;
+    const animationSpeedHalf = animationSpeed / 2;
+
+    const animationStyles = animation
+        ? `
+        .${uniqueId}.zolo-circle-animation-enabled {
+            --zolo-circle-time: ${animationSpeed}s;
+            --zolo-circle-time-last-item: ${animationSpeedHalf}s;
+        }
+    `
+        : '';
+
+    const desktopAllStyle = `
+        ${animationStyles}
+    `;
     const tabletAllStyle = '';
     const mobileAllStyle = '';
 

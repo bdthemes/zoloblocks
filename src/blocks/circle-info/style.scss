@@ -42,13 +42,13 @@ body {
     z-index: 1; // Base z-index for all layers
 }
 
-.zolo-circle-icon-wrap > li:hover ul {
+.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover ul {
     border-width: 2px;
     border-color: #d2c8ff;
     animation-play-state: paused;
 }
 
-.zolo-circle-icon-wrap > li:hover ul li img {
+.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover ul li img {
     animation-play-state: paused;
 }
 
@@ -138,50 +138,56 @@ body {
     box-shadow: unset;
 }
 
-.zolo-block-circle-icon-wrap .zolo-main-circle-item:hover .zolo-circle-main-img {
+// Main image rotation stop on hover - only when hover animation is enabled
+.zolo-hover-animation-enabled.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-main-circle-item:hover .zolo-circle-main-img {
     transform: rotate(0deg);
 }
 
 .zolo-circle-main-img {
-    transform: rotate(-1turn);
-    transition: all 0.3s ease-in-out;
     width: 100%;
     height: 100%;
+    transition: all 0.3s ease-in-out;
 }
 
-.zolo-circle-icon-wrap > li.zolo-main-circle-item:hover ~ li > ul {
+.zolo-circle-animation-enabled .zolo-circle-main-img {
+    transform: rotate(-1turn);
+}
+
+// Hover animation - only apply when hover animation is enabled
+.zolo-hover-animation-enabled .zolo-circle-icon-wrap > li.zolo-main-circle-item:hover ~ li > ul {
     width: 0;
     height: 0;
 }
 
-.zolo-circle-icon-wrap > li.zolo-main-circle-item:hover ~ li > ul * {
+.zolo-hover-animation-enabled .zolo-circle-icon-wrap > li.zolo-main-circle-item:hover ~ li > ul * {
     transform: translate(0);
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_three,
-.zolo-block-circle-icon-wrap .zolo-list_two img {
+// Animation styles - only apply when animation is enabled
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two img {
     animation: zolo_circle_one var(--zolo-circle-time) linear infinite;
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_three img,
-.zolo-block-circle-icon-wrap .zolo-list_two {
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two {
     animation: zolo_circle_two var(--zolo-circle-time) linear infinite;
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_one {
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one {
     animation: zolo_circle_one var(--zolo-circle-time-last-item) linear infinite;
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_one img {
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one img {
     animation: zolo_circle_two var(--zolo-circle-time-last-item) linear infinite;
 }
 
-.zolo-block-circle-icon-wrap .zolo-list_one,
-.zolo-block-circle-icon-wrap .zolo-list_one img,
-.zolo-block-circle-icon-wrap .zolo-list_two,
-.zolo-block-circle-icon-wrap .zolo-list_two img,
-.zolo-block-circle-icon-wrap .zolo-list_three,
-.zolo-block-circle-icon-wrap .zolo-list_three img {
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three img {
     animation-play-state: running;
 }
 
@@ -270,12 +276,11 @@ body {
     padding: 20px;
 }
 
-.zolo-block-circle-icon-wrap .zolo__display-icon svg{
+.zolo-block-circle-icon-wrap .zolo__display-icon svg {
     width: 16px;
     height: 16px;
     display: block;
 }
-
 
 @keyframes zolo_circle_one {
     0% {
