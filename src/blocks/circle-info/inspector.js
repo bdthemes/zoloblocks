@@ -42,11 +42,17 @@ const {
 import objAttributes from './attributes';
 
 import {
-    MAIN_IMAGE_WIDTH,
-    MAIN_IMAGE_HEIGHT,
-    MAIN_IMAGE_BORDER,
-    MAIN_IMAGE_SHADOW,
-    MAIN_IMAGE_RADIUS,
+    CIRCLE_SIZE,
+    MAIN_CIRCLE_SIZE,
+    MAIN_CIRCLE_BORDER,
+    MAIN_CIRCLE_SHADOW,
+    MAIN_CIRCLE_RADIUS,
+    IMAGE_SIZE,
+    IMAGE_BORDER,
+    IMAGE_SHADOW,
+    IMAGE_RADIUS,
+    HOVER_IMAGE_SHADOW,
+    ICON_SIZE,
     ICON_BG,
     ICON_PADDING,
     ICON_BORDER,
@@ -115,6 +121,14 @@ function Inspector(props) {
                                     />
                                 </div>
                             )}
+
+                            <ResRangeControl
+                                label={__('Circle Size', 'zoloblocks')}
+                                controlName={CIRCLE_SIZE}
+                                requiredProps={requiredProps}
+                                min={50}
+                                max={500}
+                            />
 
                             <ZoloBaseControl label={__('Photo', 'zoloblocks')} className="zolo-flex-col-control">
                                 {photo ? (
@@ -188,37 +202,72 @@ function Inspector(props) {
                                 normalComponents={
                                     <>
                                         <ResRangeControl
-                                            label={__('Width', 'zoloblocks')}
-                                            controlName={MAIN_IMAGE_WIDTH}
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={MAIN_CIRCLE_SIZE}
                                             requiredProps={requiredProps}
-                                            max={100}
-                                        />
-                                        <ResRangeControl
-                                            label={__('Height', 'zoloblocks')}
-                                            controlName={MAIN_IMAGE_HEIGHT}
-                                            requiredProps={requiredProps}
-                                            max={100}
+                                            max={500}
                                         />
                                         <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
-                                            controlName={MAIN_IMAGE_BORDER}
+                                            controlName={MAIN_CIRCLE_BORDER}
                                             requiredProps={requiredProps}
                                         />
                                         <BoxShadowControl
                                             label={__('Box Shadow', 'zoloblocks')}
-                                            controlName={MAIN_IMAGE_SHADOW}
+                                            controlName={MAIN_CIRCLE_SHADOW}
                                             requiredProps={requiredProps}
                                         />
                                         <ResDimensionsControl
                                             label={__('Border Radius', 'zoloblocks')}
-                                            controlName={MAIN_IMAGE_RADIUS}
+                                            controlName={MAIN_CIRCLE_RADIUS}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={<></>}
+                            />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={IMAGE_SIZE}
+                                            requiredProps={requiredProps}
+                                            max={500}
+                                        />
+                                        <ZoloCardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={IMAGE_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            label={__('Box Shadow', 'zoloblocks')}
+                                            controlName={IMAGE_SHADOW}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={IMAGE_RADIUS}
                                             requiredProps={requiredProps}
                                         />
                                         {cssFilters && cssFilters.length > 0 && cssFilters}
                                     </>
                                 }
-                                hoverComponents={<></>}
+                                hoverComponents={
+                                    <>
+                                        <BoxShadowControl
+                                            label={__('Box Shadow', 'zoloblocks')}
+                                            controlName={HOVER_IMAGE_SHADOW}
+                                            requiredProps={requiredProps}
+                                        />
+                                        {cssFilters && cssFilters.length > 0 && cssFilters}
+                                    </>
+                                }
                             />
                         </ZoloPanelBody>
 
@@ -226,9 +275,17 @@ function Inspector(props) {
                             <TabPanelControl
                                 normalComponents={
                                     <>
+                                        <ResRangeControl
+                                            label={__('Icon Size', 'zoloblocks')}
+                                            controlName={ICON_SIZE}
+                                            requiredProps={requiredProps}
+                                            min={10}
+                                            max={200}
+                                        />
+                                        <ZoloCardDivider />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
-                                            value={iconColor}
+                                            color={iconColor}
                                             onChange={(value) => setAttributes({ iconColor: value })}
                                         />
                                         <NormalBGControl
@@ -263,7 +320,7 @@ function Inspector(props) {
                                     <>
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
-                                            value={hoverIconColor}
+                                            color={hoverIconColor}
                                             onChange={(value) => setAttributes({ hoverIconColor: value })}
                                         />
                                         <NormalBGControl
