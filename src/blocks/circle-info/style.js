@@ -286,7 +286,7 @@ const Style = ({ props }) => {
             ${hoverImageBoxShadow}
         }
 
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-list-icon .zolo__display-icon {
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo__display-icon {
             ${iconDeskBGStyle}
             ${iconPaddingDesk}
             ${iconBorderDesk}
@@ -294,19 +294,19 @@ const Style = ({ props }) => {
             ${iconRadiusDesk}
         }
 
-        .${uniqueId} .zolo-block-circle-icon-wrap .zolo__display-icon {
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo__display-icon svg{
             ${iconSizeWidthDesk}
             ${iconSizeHeightDesk}
             ${iconColor ? `fill: ${iconColor};` : ''}
         }
 
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-list-item:hover .zolo-list-icon .zolo__display-icon {
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo__display-icon:hover  {
             ${hoverIconDeskBGStyle}
             ${hoverIconBoxShadow}
         }
 
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-list-item:hover .zolo-list-icon .zolo__display-icon svg {
-            ${hoverIconColor ? `color: ${hoverIconColor};` : ''}
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo__display-icon:hover svg{
+            ${hoverIconColor ? `fill: ${hoverIconColor};` : ''}
         }
 
         ${
