@@ -71,7 +71,7 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
                     <div className="dnd-container" key={item.id || index}>
                         <ZoloButton className="dnd-trash" icon="trash" onClick={() => removeCircleItem(item.id)} />
                         <SortableItem id={item.id || index}>
-                            <ZoloCorePanelBody title={`Circle Item ${index + 1} - ${layerLabel(item.layer)}`} initialOpen={false}>
+                            <ZoloCorePanelBody title={`Item ${index + 1} - ${layerLabel(item.layer)}`} initialOpen={false}>
                                 <ZoloSelectControl
                                     label={__('Select Layer', 'zoloblocks')}
                                     value={item.layer || ''}
