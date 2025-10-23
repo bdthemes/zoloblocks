@@ -10,7 +10,20 @@ const {
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
-import { MAIN_IMAGE_WIDTH, MAIN_IMAGE_HEIGHT, MAIN_IMAGE_BORDER, MAIN_IMAGE_SHADOW, MAIN_IMAGE_RADIUS } from './constants';
+import {
+    MAIN_IMAGE_WIDTH,
+    MAIN_IMAGE_HEIGHT,
+    MAIN_IMAGE_BORDER,
+    MAIN_IMAGE_SHADOW,
+    MAIN_IMAGE_RADIUS,
+    ICON_BG,
+    ICON_PADDING,
+    ICON_BORDER,
+    ICON_SHADOW,
+    ICON_RADIUS,
+    HOVER_ICON_BG,
+    HOVER_ICON_SHADOW,
+} from './constants';
 
 const attributes = {
     // global Attributes
@@ -77,12 +90,39 @@ const attributes = {
         type: 'string',
         default: 'full',
     },
+    iconColor: {
+        type: 'string',
+        default: '#000000',
+    },
+    hoverIconColor: {
+        type: 'string',
+        default: '#000000',
+    },
+    hoverIconColor: {
+        type: 'string',
+        default: '#000000',
+    },
+    animation: {
+        type: 'boolean',
+        default: false,
+    },
+    animationDuration: {
+        type: 'number',
+        default: 1000,
+    },
 
     ...generateDimensionAttributes(MAIN_IMAGE_WIDTH),
     ...generateDimensionAttributes(MAIN_IMAGE_HEIGHT),
     ...generateBorderAttributies(MAIN_IMAGE_BORDER),
     ...generateBoxShadowAttributies(MAIN_IMAGE_SHADOW),
     ...generateDimensionAttributes(MAIN_IMAGE_RADIUS),
+    ...generateNormalBGAttributes(ICON_BG),
+    ...generateDimensionAttributes(ICON_PADDING),
+    ...generateBorderAttributies(ICON_BORDER),
+    ...generateBoxShadowAttributies(ICON_SHADOW),
+    ...generateDimensionAttributes(ICON_RADIUS),
+    ...generateNormalBGAttributes(HOVER_ICON_BG),
+    ...generateBoxShadowAttributies(HOVER_ICON_SHADOW),
 };
 
 export default attributes;
