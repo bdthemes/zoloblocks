@@ -3,8 +3,6 @@
  */
 import { __ } from '@wordpress/i18n';
 
-export const CIRCLE_SIZE = 'circleSize';
-
 export const MAIN_CIRCLE_SIZE = 'mainCircleSize';
 export const MAIN_CIRCLE_BORDER = 'mainCircleBorder';
 export const MAIN_CIRCLE_SHADOW = 'mainCircleShadow';

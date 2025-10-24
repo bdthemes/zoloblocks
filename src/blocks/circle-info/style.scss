@@ -139,7 +139,10 @@ body {
 }
 
 // Main image rotation stop on hover - only when hover animation is enabled
-.zolo-hover-animation-enabled.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-main-circle-item:hover .zolo-circle-main-img {
+.zolo-hover-animation-enabled.zolo-circle-animation-enabled
+    .zolo-block-circle-icon-wrap
+    .zolo-main-circle-item:hover
+    .zolo-circle-main-img {
     transform: rotate(0deg);
 }
 
@@ -280,6 +283,12 @@ body {
     width: 16px;
     height: 16px;
     display: block;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-item-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
 }
 
 @keyframes zolo_circle_one {

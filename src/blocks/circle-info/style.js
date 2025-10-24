@@ -18,7 +18,6 @@ const {
 } = window.zoloModule;
 
 import {
-    CIRCLE_SIZE,
     MAIN_CIRCLE_SIZE,
     MAIN_CIRCLE_BORDER,
     MAIN_CIRCLE_SHADOW,
