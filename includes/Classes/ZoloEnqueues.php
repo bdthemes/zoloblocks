@@ -44,6 +44,31 @@ if (! class_exists('ZoloEnqueues')) {
         }
 
         /**
+         * Check if current page needs nonce for frontend AJAX
+         *
+         * @since 1.0.0
+         * @return bool
+         */
+        private function page_needs_nonce() {
+            global $post;
+
+            if ( ! $post || ! isset( $post->post_content ) ) {
+                return false;
+            }
+
+            // Blocks that require frontend AJAX nonce
+            $ajax_blocks = [ 'zolo/form', 'zolo/newsletter' ];
+
+            foreach ( $ajax_blocks as $block_type ) {
+                if ( has_block( $block_type, $post ) ) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /**
          * Load Block Assets for both editor and frontend
          * @since 0.0.1
          * @return void
@@ -63,12 +88,15 @@ if (! class_exists('ZoloEnqueues')) {
             // Check if Zoloblocks Pro is activated
             $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? 'active' : 'inactive';
 
+            // Determine if current page actually needs frontend AJAX nonce
+            $needs_nonce = method_exists( $this, 'page_needs_nonce' ) && $this->page_needs_nonce();
+
             // wp localize script
-            wp_localize_script('zolo-block-localize', 'zoloSettings', [
+            $localize = [
                 'ajaxurl'                 => admin_url('admin-ajax.php'),
                 'zolo_pro_status'         => $zolo_pro_status,
                 'home_url'                => home_url(),
-                'zolo_nonce'              => wp_create_nonce('zolo-nonce'),
+                'zolo_nonce'              => $needs_nonce ? wp_create_nonce('zolo-nonce') : '',
                 'theme_fonts'             => ZoloHelpers::zolo_get_theme_fonts(),
                 'googleAPIKey'            => get_option('zolo_google_api_key'),
                 'svg_upload'              => get_option('zolo_support_svg'),
@@ -100,7 +128,15 @@ if (! class_exists('ZoloEnqueues')) {
                     'testimonial'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/testimonial.svg',
                     'triangle-blob'    => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/triangle-blob.svg'
                 ]
-            ]);
+            ];
+
+            // Attach nonce only when the page needs it AND user is logged in
+            if ( $needs_nonce && is_user_logged_in() ) {
+                $localize['zolo_nonce'] = wp_create_nonce( 'zolo-nonce' );
+            }
+
+            // Localize script (guests will NOT receive zolo_nonce)
+            wp_localize_script( 'zolo-block-localize', 'zoloSettings', $localize );
 
             // common script + style for both frontend and editor
             $common_dep = trailingslashit(ZOLO_DIR_PATH) . 'build/common/index.asset.php';
