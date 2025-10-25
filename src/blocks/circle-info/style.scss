@@ -310,3 +310,49 @@ body {
         transform: rotate(-1turn);
     }
 }
+
+// Tooltip styles
+.zolo-list-item a[data-tooltip] {
+    position: relative;
+}
+
+.zolo-list-item a[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: nowrap;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.zolo-list-item a[data-tooltip]:after {
+    content: '';
+    position: absolute;
+    bottom: calc(120% - 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.85);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.zolo-list-item a[data-tooltip]:hover:before,
+.zolo-list-item a[data-tooltip]:hover:after {
+    opacity: 1;
+    visibility: visible;
+}

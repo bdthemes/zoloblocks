@@ -23,10 +23,6 @@ import {
     MAIN_CIRCLE_SHADOW,
     MAIN_CIRCLE_RADIUS,
     IMAGE_SIZE,
-    IMAGE_BORDER,
-    IMAGE_SHADOW,
-    IMAGE_RADIUS,
-    HOVER_IMAGE_SHADOW,
     ICON_SIZE,
     ICON_BG,
     ICON_PADDING,
@@ -140,35 +136,6 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    const {
-        desktopBorderStyle: imageBorderDesk,
-        tabBorderStyle: imageBorderTab,
-        mobBorderStyle: imageBorderMob,
-    } = generateBorderStyle({
-        controlName: IMAGE_BORDER,
-        attributes,
-    });
-
-    const { boxShadowStyle: imageBoxShadow } = generateBoxShadowStyles({
-        controlName: IMAGE_SHADOW,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: imageRadiusDesk,
-        dimensionStylesTab: imageRadiusTab,
-        dimensionStylesMobile: imageRadiusMob,
-    } = generateDimensionStyle({
-        controlName: IMAGE_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const { boxShadowStyle: hoverImageBoxShadow } = generateBoxShadowStyles({
-        controlName: HOVER_IMAGE_SHADOW,
-        attributes,
-    });
-
     //icon
 
     const {
@@ -276,13 +243,6 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
             ${imageWidthDesk}
             ${imageHeightDesk}
-            ${imageBorderDesk}
-            ${imageRadiusDesk}
-            ${imageBoxShadow}
-        }
-
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item:hover img {
-            ${hoverImageBoxShadow}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo__display-icon {
@@ -353,13 +313,6 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
             ${imageWidthTab}
             ${imageHeightTab}
-            ${imageBorderTab}
-            ${imageRadiusTab}
-            ${imageBoxShadow}
-        }
-
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item:hover img {
-            ${hoverImageBoxShadow}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-list-icon .zolo__display-icon {
@@ -399,13 +352,6 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
             ${imageWidthMob}
             ${imageHeightMob}
-            ${imageBorderMob}
-            ${imageRadiusMob}
-            ${imageBoxShadow}
-        }
-
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item:hover img {
-            ${hoverImageBoxShadow}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-list-icon .zolo__display-icon {

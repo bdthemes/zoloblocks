@@ -58,6 +58,7 @@ export default function Edit(props) {
                                                 href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
                                                 rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
                                                 target={item.link?.openInNewTab ? '_blank' : undefined}
+                                                data-tooltip={item.enableTooltip && item.tooltipText ? item.tooltipText : undefined}
                                             >
                                                 {(item.iconType || 'icon') === 'image' ? (
                                                     item.photo && item.photo.url && (
@@ -89,6 +90,7 @@ export default function Edit(props) {
                                                 href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
                                                 rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
                                                 target={item.link?.openInNewTab ? '_blank' : undefined}
+                                                data-tooltip={item.enableTooltip && item.tooltipText ? item.tooltipText : undefined}
                                             >
                                                 {(item.iconType || 'icon') === 'image' ? (
                                                     item.photo && item.photo.url && (
@@ -120,6 +122,7 @@ export default function Edit(props) {
                                                 href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
                                                 rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
                                                 target={item.link?.openInNewTab ? '_blank' : undefined}
+                                                data-tooltip={item.enableTooltip && item.tooltipText ? item.tooltipText : undefined}
                                             >
                                                 {(item.iconType || 'icon') === 'image' ? (
                                                     item.photo && item.photo.url && (
