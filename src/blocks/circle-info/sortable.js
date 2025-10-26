@@ -79,6 +79,16 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
             }
         }
 
+        // If circleSize is being updated, sync all items in the same layer
+        if (key === 'circleSize') {
+            const currentLayer = updatedItems[index].layer;
+            updatedItems.forEach((item, i) => {
+                if (item.layer === currentLayer) {
+                    updatedItems[i].circleSize = value;
+                }
+            });
+        }
+
         setAttributes({ [attributeName]: updatedItems });
     };
 

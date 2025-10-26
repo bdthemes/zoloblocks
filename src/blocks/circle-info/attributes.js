@@ -59,7 +59,7 @@ const attributes = {
         type: 'array',
         default: [
             {
-                id: 1,
+                id: '',
                 layer: 'layer1',
                 circleSize: 15,
                 link: {
@@ -79,7 +79,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 2,
+                id: '',
                 layer: 'layer1',
                 circleSize: 15,
                 link: {
@@ -99,9 +99,9 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 3,
+                id: '',
                 layer: 'layer1',
-                circleSize: 25,
+                circleSize: 15,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -119,7 +119,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 4,
+                id: '',
                 layer: 'layer2',
                 circleSize: 25,
                 link: {
@@ -139,7 +139,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 5,
+                id: '',
                 layer: 'layer2',
                 circleSize: 25,
                 link: {
@@ -159,7 +159,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 6,
+                id: '',
                 layer: 'layer2',
                 circleSize: 25,
                 link: {
@@ -179,7 +179,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 7,
+                id: '',
                 layer: 'layer2',
                 circleSize: 25,
                 link: {
@@ -199,7 +199,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 8,
+                id: '',
                 layer: 'layer2',
                 circleSize: 25,
                 link: {
@@ -219,7 +219,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 9,
+                id: '',
                 layer: 'layer2',
                 circleSize: 25,
                 link: {
@@ -239,7 +239,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 10,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {
@@ -259,7 +259,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 11,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {
@@ -279,7 +279,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 12,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {
@@ -299,7 +299,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 13,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {
@@ -319,7 +319,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 14,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {
@@ -339,7 +339,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 15,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {
@@ -359,7 +359,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 16,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {
@@ -379,7 +379,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 17,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {
@@ -399,7 +399,7 @@ const attributes = {
                 tooltipText: 'Zoloblocks',
             },
             {
-                id: 18,
+                id: '',
                 layer: 'layer3',
                 circleSize: 35,
                 link: {

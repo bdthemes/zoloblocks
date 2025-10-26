@@ -65,17 +65,12 @@ const Style = ({ props }) => {
         hueRotate: hueRotateHover = 0,
     } = attributes?.cssFiltersHover || {};
 
-    // Generate dynamic circle sizes for each layer based on circleItems
     const getLayerCircleSize = (layer) => {
         const layerItems = circleItems.filter((item) => item.layer === layer);
-        if (layerItems.length > 0 && layerItems[0].circleSize) {
-            return layerItems[0].circleSize;
+        if (layerItems.length === 0) {
+            return 0;
         }
-        // Default values for each layer
-        if (layer === 'layer1') return 15;
-        if (layer === 'layer2') return 25;
-        if (layer === 'layer3') return 35;
-        return 15;
+        return layerItems[0].circleSize || (layer === 'layer1' ? 15 : layer === 'layer2' ? 25 : 35);
     };
 
     const layer1Size = getLayerCircleSize('layer1');
