@@ -46,7 +46,7 @@ import {
     MAIN_CIRCLE_BORDER,
     MAIN_CIRCLE_SHADOW,
     MAIN_CIRCLE_RADIUS,
-    IMAGE_SIZE,
+    MAIN_IMAGE_SIZE,
     ICON_SIZE,
     ICON_BG,
     ICON_PADDING,
@@ -55,6 +55,11 @@ import {
     ICON_RADIUS,
     HOVER_ICON_BG,
     HOVER_ICON_SHADOW,
+    IMAGE_SIZE,
+    IMAGE_BORDER,
+    IMAGE_SHADOW,
+    IMAGE_RADIUS,
+    HOVER_IMAGE_SHADOW,
 } from './constants';
 
 import {} from './constants/typoPrefixConstant';
@@ -201,7 +206,7 @@ function Inspector(props) {
                                         />
                                         <ResRangeControl
                                             label={__('Image Size', 'zoloblocks')}
-                                            controlName={IMAGE_SIZE}
+                                            controlName={MAIN_IMAGE_SIZE}
                                             requiredProps={requiredProps}
                                             max={500}
                                         />
@@ -225,7 +230,7 @@ function Inspector(props) {
                                         {cssFilters && cssFilters.length > 0 && cssFilters}
                                     </>
                                 }
-                                hoverComponents={<>{cssFilters && cssFilters.length > 0 && cssFilters}</>}
+                                hoverComponents={<>{cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}</>}
                             />
                         </ZoloPanelBody>
 
@@ -296,6 +301,53 @@ function Inspector(props) {
                                     }
                                 />
                             </ZoloPanelBody>
+                        )}
+
+                        {imageItems && (
+                            <>
+                                <ZoloPanelBody title={__('Image', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                                    <TabPanelControl
+                                        normalComponents={
+                                            <>
+                                                <ResRangeControl
+                                                    label={__('Size', 'zoloblocks')}
+                                                    controlName={IMAGE_SIZE}
+                                                    requiredProps={requiredProps}
+                                                    min={10}
+                                                    max={200}
+                                                />
+                                                <ZoloCardDivider />
+                                                <BorderControl
+                                                    label={__('Border', 'zoloblocks')}
+                                                    controlName={IMAGE_BORDER}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <BoxShadowControl
+                                                    label={__('Box Shadow', 'zoloblocks')}
+                                                    controlName={IMAGE_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                <ResDimensionsControl
+                                                    label={__('Border Radius', 'zoloblocks')}
+                                                    controlName={IMAGE_RADIUS}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                {cssFilters && cssFilters.length > 0 && cssFilters}
+                                            </>
+                                        }
+                                        hoverComponents={
+                                            <>
+                                                <BoxShadowControl
+                                                    label={__('Box Shadow', 'zoloblocks')}
+                                                    controlName={HOVER_IMAGE_SHADOW}
+                                                    requiredProps={requiredProps}
+                                                />
+                                                {cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}
+                                            </>
+                                        }
+                                    />
+                                </ZoloPanelBody>
+                            </>
                         )}
                     </>
                 }

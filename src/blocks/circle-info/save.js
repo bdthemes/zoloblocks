@@ -44,19 +44,22 @@ const Save = (props) => {
                                             target={item.link?.openInNewTab ? '_blank' : undefined}
                                             data-tooltip={item.enableTooltip && item.tooltipText ? item.tooltipText : undefined}
                                         >
-                                            {(item.iconType || 'icon') === 'image' ? (
-                                                item.photo && item.photo.url && (
-                                                    <span className="zolo-list-image">
-                                                        <img
-                                                            className="zolo-circle-item-img"
-                                                            src={item.photo.sizes && item.photo.sizes[imageRes] ? item.photo.sizes[imageRes].url : item.photo.url}
-                                                            alt={item.photo.alt || ''}
-                                                        />
-                                                    </span>
-                                                )
-                                            ) : (
-                                                item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />
-                                            )}
+                                            {(item.iconType || 'icon') === 'image'
+                                                ? item.photo &&
+                                                  item.photo.url && (
+                                                      <span className="zolo-list-image">
+                                                          <img
+                                                              className="zolo-circle-item-img"
+                                                              src={
+                                                                  item.photo.sizes && item.photo.sizes[imageRes]
+                                                                      ? item.photo.sizes[imageRes].url
+                                                                      : item.photo.url
+                                                              }
+                                                              alt={item.photo.alt || ''}
+                                                          />
+                                                      </span>
+                                                  )
+                                                : item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
                                         </a>
                                     </li>
                                 ))}
@@ -76,19 +79,22 @@ const Save = (props) => {
                                             target={item.link?.openInNewTab ? '_blank' : undefined}
                                             data-tooltip={item.enableTooltip && item.tooltipText ? item.tooltipText : undefined}
                                         >
-                                            {(item.iconType || 'icon') === 'image' ? (
-                                                item.photo && item.photo.url && (
-                                                    <span className="zolo-list-image">
-                                                        <img
-                                                            className="zolo-circle-item-img"
-                                                            src={item.photo.sizes && item.photo.sizes[imageRes] ? item.photo.sizes[imageRes].url : item.photo.url}
-                                                            alt={item.photo.alt || ''}
-                                                        />
-                                                    </span>
-                                                )
-                                            ) : (
-                                                item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />
-                                            )}
+                                            {(item.iconType || 'icon') === 'image'
+                                                ? item.photo &&
+                                                  item.photo.url && (
+                                                      <span className="zolo-list-image">
+                                                          <img
+                                                              className="zolo-circle-item-img"
+                                                              src={
+                                                                  item.photo.sizes && item.photo.sizes[imageRes]
+                                                                      ? item.photo.sizes[imageRes].url
+                                                                      : item.photo.url
+                                                              }
+                                                              alt={item.photo.alt || ''}
+                                                          />
+                                                      </span>
+                                                  )
+                                                : item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
                                         </a>
                                     </li>
                                 ))}
@@ -108,19 +114,22 @@ const Save = (props) => {
                                             target={item.link?.openInNewTab ? '_blank' : undefined}
                                             data-tooltip={item.enableTooltip && item.tooltipText ? item.tooltipText : undefined}
                                         >
-                                            {(item.iconType || 'icon') === 'image' ? (
-                                                item.photo && item.photo.url && (
-                                                    <span className="zolo-list-image">
-                                                        <img
-                                                            className="zolo-circle-item-img"
-                                                            src={item.photo.sizes && item.photo.sizes[imageRes] ? item.photo.sizes[imageRes].url : item.photo.url}
-                                                            alt={item.photo.alt || ''}
-                                                        />
-                                                    </span>
-                                                )
-                                            ) : (
-                                                item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />
-                                            )}
+                                            {(item.iconType || 'icon') === 'image'
+                                                ? item.photo &&
+                                                  item.photo.url && (
+                                                      <span className="zolo-list-image">
+                                                          <img
+                                                              className="zolo-circle-item-img"
+                                                              src={
+                                                                  item.photo.sizes && item.photo.sizes[imageRes]
+                                                                      ? item.photo.sizes[imageRes].url
+                                                                      : item.photo.url
+                                                              }
+                                                              alt={item.photo.alt || ''}
+                                                          />
+                                                      </span>
+                                                  )
+                                                : item.icon && <DisplayZoloIcon icon={item.icon} className="zolo-list-icon" />}
                                         </a>
                                     </li>
                                 ))}

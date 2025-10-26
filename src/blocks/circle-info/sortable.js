@@ -11,7 +11,7 @@ const {
     ZoloBaseControl,
     ImageAvatar,
     ZoloTextControl,
-    ZoloTextareaControl,
+    ZoloRangeControl,
     LinkControl,
     IconicBtnGroup,
     ZoloToggleControl,
@@ -42,17 +42,18 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
         const newItem = {
             id: Date.now() + Math.random(), // Generate unique ID
             layer: 'layer1',
+            circleSize: 15,
             link: {
                 url: '#',
                 openInNewTab: false,
             },
             iconType: 'icon',
             photo: {
-                id: null,
-                url: null,
-                sizes: null,
-                alt: null,
-                caption: null,
+                id: '',
+                url: '',
+                sizes: '',
+                alt: '',
+                caption: '',
             },
             icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>',
             enableTooltip: false,
@@ -65,6 +66,18 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
     const updateCircleItem = (index, key, value) => {
         const updatedItems = cloneDeep(items);
         updatedItems[index][key] = value;
+
+        // Auto-update circleSize when layer changes
+        if (key === 'layer') {
+            if (value === 'layer1') {
+                updatedItems[index]['circleSize'] = 15;
+            } else if (value === 'layer2') {
+                updatedItems[index]['circleSize'] = 25;
+            } else if (value === 'layer3') {
+                updatedItems[index]['circleSize'] = 35;
+            }
+        }
+
         setAttributes({ [attributeName]: updatedItems });
     };
 
@@ -100,6 +113,16 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
                                         { label: __('Layer 3', 'zoloblocks'), value: 'layer3' },
                                     ]}
                                 />
+                                <div className="zolo-flex-col-control">
+                                    <ZoloRangeControl
+                                        label={__('Circle Size', 'zoloblocks')}
+                                        value={item.circleSize || (item.layer === 'layer1' ? 15 : item.layer === 'layer2' ? 25 : 35)}
+                                        onChange={(value) => updateCircleItem(index, 'circleSize', value)}
+                                        min={1}
+                                        max={100}
+                                        step={1}
+                                    />
+                                </div>
                                 <LinkControl
                                     label={__('Link', 'zoloblocks')}
                                     value={item.link || { url: '', openInNewTab: false }}

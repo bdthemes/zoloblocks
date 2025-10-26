@@ -22,7 +22,7 @@ import {
     MAIN_CIRCLE_BORDER,
     MAIN_CIRCLE_SHADOW,
     MAIN_CIRCLE_RADIUS,
-    IMAGE_SIZE,
+    MAIN_IMAGE_SIZE,
     ICON_SIZE,
     ICON_BG,
     ICON_PADDING,
@@ -31,13 +31,18 @@ import {
     ICON_RADIUS,
     HOVER_ICON_BG,
     HOVER_ICON_SHADOW,
+    IMAGE_SIZE,
+    IMAGE_BORDER,
+    IMAGE_SHADOW,
+    IMAGE_RADIUS,
+    HOVER_IMAGE_SHADOW,
 } from './constants';
 
 import {} from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, animation, animationDuration, iconColor, hoverIconColor } = attributes;
+    const { uniqueId, animation, animationDuration, iconColor, hoverIconColor, circleItems = [] } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
 
@@ -50,32 +55,49 @@ const Style = ({ props }) => {
         hueRotate: hueRotateHover = 0,
     } = attributes?.cssFiltersHover || {};
 
-    // const {
-    //     desktopRangeStyle: circleSizeWidthDesk,
-    //     tabRangeStyle: circleSizeWidthTab,
-    //     mobRangeStyle: circleSizeWidthMob,
-    // } = generateResRangeStyle({
-    //     controlName: CIRCLE_SIZE,
-    //     property: 'width',
-    //     attributes,
-    // });
+    // Generate dynamic circle sizes for each layer based on circleItems
+    const getLayerCircleSize = (layer) => {
+        const layerItems = circleItems.filter((item) => item.layer === layer);
+        if (layerItems.length > 0 && layerItems[0].circleSize) {
+            return layerItems[0].circleSize;
+        }
+        // Default values for each layer
+        if (layer === 'layer1') return 15;
+        if (layer === 'layer2') return 25;
+        if (layer === 'layer3') return 35;
+        return 15;
+    };
 
-    // const {
-    //     desktopRangeStyle: circleSizeHeightDesk,
-    //     tabRangeStyle: circleSizeHeightTab,
-    //     mobRangeStyle: circleSizeHeightMob,
-    // } = generateResRangeStyle({
-    //     controlName: CIRCLE_SIZE,
-    //     property: 'height',
-    //     attributes,
-    // });
+    const layer1Size = getLayerCircleSize('layer1');
+    const layer2Size = getLayerCircleSize('layer2');
+    const layer3Size = getLayerCircleSize('layer3');
+
+    const {
+        desktopRangeStyle: mainCircleWidthDesk,
+        tabRangeStyle: mainCircleWidthTab,
+        mobRangeStyle: mainCircleWidthMob,
+    } = generateResRangeStyle({
+        controlName: MAIN_CIRCLE_SIZE,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: mainCircleHeightDesk,
+        tabRangeStyle: mainCircleHeightTab,
+        mobRangeStyle: mainCircleHeightMob,
+    } = generateResRangeStyle({
+        controlName: MAIN_CIRCLE_SIZE,
+        property: 'height',
+        attributes,
+    });
 
     const {
         desktopRangeStyle: mainImageWidthDesk,
         tabRangeStyle: mainImageWidthTab,
         mobRangeStyle: mainImageWidthMob,
     } = generateResRangeStyle({
-        controlName: MAIN_CIRCLE_SIZE,
+        controlName: MAIN_IMAGE_SIZE,
         property: 'width',
         attributes,
     });
@@ -85,15 +107,15 @@ const Style = ({ props }) => {
         tabRangeStyle: mainImageHeightTab,
         mobRangeStyle: mainImageHeightMob,
     } = generateResRangeStyle({
-        controlName: MAIN_CIRCLE_SIZE,
+        controlName: MAIN_IMAGE_SIZE,
         property: 'height',
         attributes,
     });
 
     const {
-        desktopBorderStyle: mainImageBorderDesk,
-        tabBorderStyle: mainImageBorderTab,
-        mobBorderStyle: mainImageBorderMob,
+        desktopBorderStyle: mainCircleBorderDesk,
+        tabBorderStyle: mainCircleBorderTab,
+        mobBorderStyle: mainCircleBorderMob,
     } = generateBorderStyle({
         controlName: MAIN_CIRCLE_BORDER,
         attributes,
@@ -133,6 +155,35 @@ const Style = ({ props }) => {
     } = generateResRangeStyle({
         controlName: IMAGE_SIZE,
         property: 'height',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: imageBorderDesk,
+        tabBorderStyle: imageBorderTab,
+        mobBorderStyle: imageBorderMob,
+    } = generateBorderStyle({
+        controlName: IMAGE_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: imageBoxShadow } = generateBoxShadowStyles({
+        controlName: IMAGE_SHADOW,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: imageRadiusDesk,
+        dimensionStylesTab: imageRadiusTab,
+        dimensionStylesMobile: imageRadiusMob,
+    } = generateDimensionStyle({
+        controlName: IMAGE_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const { boxShadowStyle: hoverImageBoxShadow } = generateBoxShadowStyles({
+        controlName: HOVER_IMAGE_SHADOW,
         attributes,
     });
 
@@ -232,17 +283,30 @@ const Style = ({ props }) => {
 
     const desktopAllStyle = `
         ${animationStyles}
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
+            --zolo-circle-wrap-size: ${layer1Size}rem;
+        }
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_two {
+            --zolo-circle-wrap-size: ${layer2Size}rem;
+        }
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_three {
+            --zolo-circle-wrap-size: ${layer3Size}rem;
+        }
+        
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item {
-            ${mainImageWidthDesk}
-            ${mainImageHeightDesk}
-            ${mainImageBorderDesk}
+            ${mainCircleWidthDesk}
+            ${mainCircleHeightDesk}
+            ${mainCircleBorderDesk}
             ${mainCircleRadiusDesk}
             ${mainCircleBoxShadow}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
-            ${imageWidthDesk}
-            ${imageHeightDesk}
+            ${mainImageWidthDesk}
+            ${mainImageHeightDesk}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo__display-icon {
@@ -298,21 +362,46 @@ const Style = ({ props }) => {
                `
                 : ''
         }
+
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-circle-item-img {
+            ${imageWidthDesk}
+            ${imageHeightDesk}
+            ${imageBorderDesk}
+            ${imageRadiusDesk}
+            ${imageBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-list-item:hover .zolo-circle-item-img {
+            ${hoverImageBoxShadow}
+        }
     `;
 
     const tabletAllStyle = `
         ${animationStyles}
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
+            --zolo-circle-wrap-size: ${layer1Size}rem;
+        }
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_two {
+            --zolo-circle-wrap-size: ${layer2Size}rem;
+        }
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_three {
+            --zolo-circle-wrap-size: ${layer3Size}rem;
+        }
+        
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item {
-            ${mainImageWidthTab}
-            ${mainImageHeightTab}
-            ${mainImageBorderTab}
+            ${mainCircleWidthTab}
+            ${mainCircleHeightTab}
+            ${mainCircleBorderTab}
             ${mainCircleRadiusTab}
             ${mainCircleBoxShadow}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
-            ${imageWidthTab}
-            ${imageHeightTab}
+            ${mainImageWidthTab}
+            ${mainImageHeightTab}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-list-icon .zolo__display-icon {
@@ -337,21 +426,46 @@ const Style = ({ props }) => {
         .${uniqueId}.wp-block-zolo-circle-info .zolo-list-item:hover .zolo-list-icon .zolo__display-icon svg {
             ${hoverIconColor ? `color: ${hoverIconColor};` : ''}
         }
+
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-circle-item-img {
+            ${imageWidthTab}
+            ${imageHeightTab}
+            ${imageBorderTab}
+            ${imageRadiusTab}
+            ${imageBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-list-item:hover .zolo-circle-item-img {
+            ${hoverImageBoxShadow}
+        }
     `;
 
     const mobileAllStyle = `
         ${animationStyles}
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
+            --zolo-circle-wrap-size: ${layer1Size}rem;
+        }
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_two {
+            --zolo-circle-wrap-size: ${layer2Size}rem;
+        }
+        
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_three {
+            --zolo-circle-wrap-size: ${layer3Size}rem;
+        }
+        
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item {
-            ${mainImageWidthMob}
-            ${mainImageHeightMob}
-            ${mainImageBorderMob}
+            ${mainCircleWidthMob}
+            ${mainCircleHeightMob}
+            ${mainCircleBorderMob}
             ${mainCircleRadiusMob}
             ${mainCircleBoxShadow}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
-            ${imageWidthMob}
-            ${imageHeightMob}
+            ${mainImageWidthMob}
+            ${mainImageHeightMob}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-list-icon .zolo__display-icon {
@@ -375,6 +489,18 @@ const Style = ({ props }) => {
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-list-item:hover .zolo-list-icon .zolo__display-icon svg {
             ${hoverIconColor ? `color: ${hoverIconColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-circle-item-img {
+            ${imageWidthMob}
+            ${imageHeightMob}
+            ${imageBorderMob}
+            ${imageRadiusMob}
+            ${imageBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-list-item:hover .zolo-circle-item-img {
+            ${hoverImageBoxShadow}
         }
     `;
 
