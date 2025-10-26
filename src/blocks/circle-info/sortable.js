@@ -112,7 +112,7 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
             </div>
             <SortableControl defaultItems={items} attributeName={attributeName} setAttributes={setAttributes}>
                 {deepCloneItems.map((item, index) => (
-                    <div className="dnd-container" key={index}>
+                    <div className="dnd-container" key={item.id}>
                         <ZoloButton className="dnd-trash" icon="trash" onClick={() => removeCircleItem(index)} />
                         <SortableItem key={item.id} id={item.id}>
                             <ZoloCorePanelBody title={`Item ${index + 1} - ${layerLabel(item.layer)}`} initialOpen={false}>
