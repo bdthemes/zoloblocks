@@ -66,8 +66,20 @@ import {} from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { block, attributes, setAttributes } = props;
-    const { resMode, photo, imageRes, circleItems, iconColor, hoverIconColor, animation, animationDuration, hoverAnimation, item } =
-        attributes;
+    const {
+        resMode,
+        photo,
+        imageRes,
+        circleItems,
+        iconColor,
+        hoverIconColor,
+        animation,
+        animationDuration,
+        hoverAnimation,
+        layer1Degree,
+        layer2Degree,
+        layer3Degree,
+    } = attributes;
 
     const requiredProps = {
         resMode,
@@ -126,6 +138,8 @@ function Inspector(props) {
                                     />
                                 </div>
                             )}
+
+                            <ZoloCardDivider />
 
                             <ZoloBaseControl label={__('Main Photo', 'zoloblocks')} className="zolo-flex-col-control">
                                 {photo ? (
@@ -189,6 +203,53 @@ function Inspector(props) {
 
                         <ZoloPanelBody title={__('Circle Item', 'zoloblocks')} firstOpen={false} panelProps={props}>
                             <Sortable circleItems={circleItems} attributes={attributes} setAttributes={setAttributes} />
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Layer Degree', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                            <div className="zolo-flex-col-control">
+                                <ZoloRangeControl
+                                    label={__('Layer 1 Degree', 'zoloblocks')}
+                                    value={layer1Degree}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            layer1Degree: value,
+                                        })
+                                    }
+                                    min={0}
+                                    max={360}
+                                    step={1}
+                                />
+                            </div>
+
+                            <div className="zolo-flex-col-control">
+                                <ZoloRangeControl
+                                    label={__('Layer 2 Degree', 'zoloblocks')}
+                                    value={layer2Degree}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            layer2Degree: value,
+                                        })
+                                    }
+                                    min={0}
+                                    max={360}
+                                    step={1}
+                                />
+                            </div>
+
+                            <div className="zolo-flex-col-control">
+                                <ZoloRangeControl
+                                    label={__('Layer 3 Degree', 'zoloblocks')}
+                                    value={layer3Degree}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            layer3Degree: value,
+                                        })
+                                    }
+                                    min={0}
+                                    max={360}
+                                    step={1}
+                                />
+                            </div>
                         </ZoloPanelBody>
                     </>
                 }

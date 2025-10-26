@@ -42,7 +42,17 @@ import {} from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, animation, animationDuration, iconColor, hoverIconColor, circleItems = [] } = attributes;
+    const {
+        uniqueId,
+        animation,
+        animationDuration,
+        iconColor,
+        hoverIconColor,
+        circleItems = [],
+        layer1Degree,
+        layer2Degree,
+        layer3Degree,
+    } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
 
@@ -281,8 +291,22 @@ const Style = ({ props }) => {
     `
         : '';
 
+    // Generate layer degree styles
+    const layerDegreeStyles = `
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one > li {
+            --zolo-circle-rotation-step: ${layer1Degree || 0}deg;
+        }
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_two > li {
+            --zolo-circle-rotation-step: ${layer2Degree || 0}deg;
+        }
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_three > li {
+            --zolo-circle-rotation-step: ${layer3Degree || 0}deg;
+        }
+    `;
+
     const desktopAllStyle = `
         ${animationStyles}
+        ${layerDegreeStyles}
         
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
             --zolo-circle-wrap-size: ${layer1Size}rem;
@@ -378,6 +402,7 @@ const Style = ({ props }) => {
 
     const tabletAllStyle = `
         ${animationStyles}
+        ${layerDegreeStyles}
         
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
             --zolo-circle-wrap-size: ${layer1Size}rem;
@@ -442,6 +467,7 @@ const Style = ({ props }) => {
 
     const mobileAllStyle = `
         ${animationStyles}
+        ${layerDegreeStyles}
         
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
             --zolo-circle-wrap-size: ${layer1Size}rem;

@@ -147,6 +147,18 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    layer1Degree: {
+        type: 'number',
+        default: 120,
+    },
+    layer2Degree: {
+        type: 'number',
+        default: 240,
+    },
+    layer3Degree: {
+        type: 'number',
+        default: 360,
+    },
 
     ...generateResRangeAttributies(MAIN_CIRCLE_SIZE),
     ...generateBorderAttributies(MAIN_CIRCLE_BORDER),
