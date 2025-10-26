@@ -18,14 +18,15 @@ const {
     ZoloCardDivider,
 } = window.zoloModule;
 
-import { MediaUpload } from '@wordpress/block-editor';
 import { ICON_BOX_OPTIONS } from '../../../src/global/constants';
+import { MediaUpload } from '@wordpress/block-editor';
 import { cloneDeep } from 'lodash';
 import { __ } from '@wordpress/i18n';
 
 const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItems' }) => {
     // Ensure circleItems is always an array
     const items = Array.isArray(circleItems) ? circleItems : [];
+    const deepCloneItems = cloneDeep(items);
 
     // Convert layer value to display text
     const layerLabel = (layer) => {
@@ -47,24 +48,24 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
                 url: '#',
                 openInNewTab: false,
             },
-            iconType: 'icon',
+            iconType: 'image',
             photo: {
                 id: '',
-                url: '',
+                url: zoloPlaceholders?.zoloImage,
                 sizes: '',
                 alt: '',
                 caption: '',
             },
             icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>',
             enableTooltip: false,
-            tooltipText: '',
+            tooltipText: 'Zoloblocks',
         };
         setAttributes({ [attributeName]: [...items, newItem] });
     };
 
     // update the circle item
     const updateCircleItem = (index, key, value) => {
-        const updatedItems = cloneDeep(items);
+        const updatedItems = [...deepCloneItems];
         updatedItems[index][key] = value;
 
         // Auto-update circleSize when layer changes
@@ -81,9 +82,11 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
         setAttributes({ [attributeName]: updatedItems });
     };
 
-    // remove a circle item by ID (not index) to handle sorting correctly
-    const removeCircleItem = (itemId) => {
-        setAttributes({ [attributeName]: items.filter((item) => item.id !== itemId) });
+    // remove a circle item by index
+    const removeCircleItem = (index) => {
+        const updatedItems = [...deepCloneItems];
+        updatedItems.splice(index, 1);
+        setAttributes({ [attributeName]: updatedItems });
     };
 
     return (
@@ -98,10 +101,10 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
                 </ZoloButton>
             </div>
             <SortableControl defaultItems={items} attributeName={attributeName} setAttributes={setAttributes}>
-                {items.map((item, index) => (
-                    <div className="dnd-container" key={item.id || index}>
-                        <ZoloButton className="dnd-trash" icon="trash" onClick={() => removeCircleItem(item.id)} />
-                        <SortableItem id={item.id || index}>
+                {deepCloneItems.map((item, index) => (
+                    <div className="dnd-container" key={index}>
+                        <ZoloButton className="dnd-trash" icon="trash" onClick={() => removeCircleItem(index)} />
+                        <SortableItem key={item.id} id={item.id}>
                             <ZoloCorePanelBody title={`Item ${index + 1} - ${layerLabel(item.layer)}`} initialOpen={false}>
                                 <ZoloSelectControl
                                     label={__('Select Layer', 'zoloblocks')}

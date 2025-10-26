@@ -53,7 +53,7 @@ export default function Edit(props) {
                             <li>
                                 <ul className="zolo-circle-list-wrap zolo-list_one">
                                     {layer1Items.map((item, index) => (
-                                        <li key={item.id || index} className="zolo-list-item">
+                                        <li key={index} className="zolo-list-item">
                                             <a
                                                 href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
                                                 rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
@@ -88,7 +88,7 @@ export default function Edit(props) {
                             <li>
                                 <ul className="zolo-circle-list-wrap zolo-list_two">
                                     {layer2Items.map((item, index) => (
-                                        <li key={item.id || index} className="zolo-list-item">
+                                        <li key={index} className="zolo-list-item">
                                             <a
                                                 href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
                                                 rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
@@ -123,7 +123,7 @@ export default function Edit(props) {
                             <li>
                                 <ul className="zolo-circle-list-wrap zolo-list_three">
                                     {layer3Items.map((item, index) => (
-                                        <li key={item.id || index} className="zolo-list-item">
+                                        <li key={index} className="zolo-list-item">
                                             <a
                                                 href={sanitizeUrl(item.link?.url) ? item.link.url : '#'}
                                                 rel={item.link?.openInNewTab ? 'noreferrer noopener' : undefined}
