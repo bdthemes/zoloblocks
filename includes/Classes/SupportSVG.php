@@ -2,7 +2,6 @@
 
 namespace Zolo\Classes;
 
-use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
@@ -10,8 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class SupportSVG
-{
+class SupportSVG {
     /**
      * Singleton Instance
      */
@@ -22,193 +20,158 @@ class SupportSVG
      * @var object|null
      */
 
-    /**
-     * Constructor.
-     * Register hooks and actions.
-     */
-    private function __construct()
-    {
-        add_filter('upload_mimes', [$this, 'modify_upload_mime_types']);
-        add_filter('wp_handle_upload_prefilter', [$this, 'sanitize_uploaded_file'], 10);
-        add_action('admin_head', [$this, 'add_svg_support_style']);
-        add_filter( 'safe_style_css', [$this, 'sanitize_style_css'], 10 );
+    public function __construct() {
+        add_filter('upload_mimes', [$this, 'set_svg_mimes']);
+        add_filter('wp_prepare_attachment_for_js', [$this, 'prepare_attachment_modal_for_svg'], 10, 3);
+        add_filter('wp_generate_attachment_metadata', [$this, 'svg_attachment_metadata'], 10, 3);
+        add_filter('wp_get_attachment_metadata', [$this, 'get_attachment_metadata'], 10, 2);
     }
 
     /**
-     * Sanitize uploaded SVG.
-     *
-     * @param array $file Uploaded file details.
+     * Add Mime Types
      * @return array
      */
-    public function sanitize_uploaded_file($file)
-    {
-        // Check user permission
-        if (!current_user_can('upload_files') || !isset($file['tmp_name'])) {
-            $file['error'] = esc_html__('You do not have permission to upload files.', 'zoloblocks');
-            return $file; // Return file as is if permission is not granted or no file exists
+    public function set_svg_mimes($mimes = []) {
+
+        if (current_user_can('administrator')) {
+
+            // allow SVG file upload
+            $mimes['svg']  = 'image/svg+xml';
+            $mimes['svgz'] = 'image/svg+xml';
+
+            return $mimes;
+        } else {
+
+            return $mimes;
         }
+    }
 
-        $file_name   = isset($file['name']) ? $file['name'] : '';
-        $wp_filetype = wp_check_filetype_and_ext($file['tmp_name'], $file_name);
-        $type        = !empty($wp_filetype['type']) ? $wp_filetype['type'] : '';
+    public function prepare_attachment_modal_for_svg($response, $attachment, $meta) {
 
-        // Handle SVG files
-        if ('image/svg+xml' === $type) {
-            if (! $this->sanitize_svg_file($file['tmp_name'])) {
-                $file['error'] = esc_html__('Sorry, the SVG file contains disallowed content.', 'zoloblocks');
-                return $file; // Return the file with error if sanitization fails
+        if ($response['mime'] == 'image/svg+xml' && empty($response['sizes'])) {
+
+            $svg_path = get_attached_file($attachment->ID);
+
+            if (!file_exists($svg_path)) {
+                // If SVG is external, use the URL instead of the path
+                $svg_path = $response['url'];
             }
+
+            $dimensions = $this->get_dimensions($svg_path);
+
+            $response['sizes'] = [
+                'full' => [
+                    'url'         => $response['url'],
+                    'width'       => $dimensions->width,
+                    'height'      => $dimensions->height,
+                    'orientation' => $dimensions->width > $dimensions->height ? 'landscape' : 'portrait',
+                ],
+            ];
         }
-        // Handle JSON files
-        elseif ('application/json' === $type) {
-            // Validate JSON content
-            $json_content = file_get_contents($file['tmp_name']);
-            if (!$this->is_valid_json($json_content)) {
-                $file['error'] = esc_html__('Sorry, the JSON file is invalid.', 'zoloblocks');
-                return $file; // Return the file with error if JSON is invalid
+
+        return $response;
+    }
+
+    /**
+     * Generate attachment metadata (Thanks @surml)
+     * Fixes Illegal String Offset Warning for Height & Width
+     */
+    public function svg_attachment_metadata($metadata, $attachment_id) {
+
+        $mime = get_post_mime_type($attachment_id);
+
+        if ($mime == 'image/svg+xml') {
+
+            $svg_path   = get_attached_file($attachment_id);
+            $upload_dir = wp_upload_dir();
+            // get the path relative to /uploads/ - found no better way:
+            $relative_path = str_replace($upload_dir['basedir'], '', $svg_path);
+            $filename      = basename($svg_path);
+
+            $dimensions = $this->get_dimensions($svg_path);
+
+            $metadata = [
+                'width'  => intval($dimensions->width),
+                'height' => intval($dimensions->height),
+                'file'   => $relative_path,
+            ];
+
+            // Might come in handy to create the sizes array too - But it's not needed for this workaround! Always links to original svg-file => Hey, it's a vector graphic! ;)
+            $sizes = [];
+
+            foreach (get_intermediate_image_sizes() as $s) {
+                $sizes[$s] = ['width' => '', 'height' => '', 'crop' => false];
+
+                if (isset($_wp_additional_image_sizes[$s]['width'])) {
+                    $sizes[$s]['width'] = intval($_wp_additional_image_sizes[$s]['width']);
+                }
+                // For theme-added sizes
+                else {
+                    $sizes[$s]['width'] = get_option("{$s}_size_w");
+                }
+
+                // For default sizes set in options
+                if (isset($_wp_additional_image_sizes[$s]['height'])) {
+                    $sizes[$s]['height'] = intval($_wp_additional_image_sizes[$s]['height']);
+                }
+                // For theme-added sizes
+                else {
+                    $sizes[$s]['height'] = get_option("{$s}_size_h");
+                }
+
+                // For default sizes set in options
+                if (isset($_wp_additional_image_sizes[$s]['crop'])) {
+                    $sizes[$s]['crop'] = intval($_wp_additional_image_sizes[$s]['crop']);
+                }
+                // For theme-added sizes
+                else {
+                    $sizes[$s]['crop'] = get_option("{$s}_crop");
+                }
+                // For default sizes set in options
+
+                $sizes[$s]['file']      = $filename;
+                $sizes[$s]['mime-type'] = 'image/svg+xml';
             }
+
+            $metadata['sizes'] = $sizes;
         }
 
-        return $file; // Return the file if everything is fine
+        return $metadata;
     }
 
+    // Fix image widget PHP warnings
+    public function get_attachment_metadata($data, $attachment_id) {
 
+        $mime = get_post_mime_type($attachment_id);
+        $type = current(explode('/', $mime));
 
-    /**
-     * Validate JSON content.
-     *
-     * @param string $json_content Raw JSON content.
-     * @return bool True if valid, false otherwise.
-     */
-    private function is_valid_json($json_content)
-    {
-        if (empty($json_content)) {
-            return false;  // or true, depending on your requirements.
+        if ($type !== 'image') {
+            return $data;
         }
 
-        json_decode($json_content);
-        return json_last_error() === JSON_ERROR_NONE;
-    }
-
-
-    /**
-     * Sanitize SVG content to remove potentially harmful elements.
-     * @param string $content
-     * @return string
-     */
-    private function sanitize_svg_file($file)
-    {
-        $this->initialize_wp_filesystem();
-        global $wp_filesystem;
-
-        $svg_content = $wp_filesystem->get_contents($file);
-
-        if ($this->is_gzipped($svg_content)) {
-            $svg_content = gzdecode($svg_content);
-
-            if (false === $svg_content) {
-                return false;
-            }
+        if (!isset($data['width']) || !isset($data['height'])) {
+            return false;
         }
 
-        $sanitized_content = $this->sanitize_svg_content($svg_content);
-        $wp_filesystem->put_contents($file, $sanitized_content);
-
-        return true;
+        return $data;
     }
 
-    /**
-     * Check if a string is gzipped.
-     *
-     * @param string $contents File contents.
-     * @return bool
-     */
-    private function is_gzipped($contents)
-    {
-        return 0 === strpos($contents, "\x1f\x8b\x08");
-    }
+    private function get_dimensions($svg) {
 
-    private function sanitize_svg_content($content)
-    {
-        // Remove comments (both HTML and XML style).
-        $content = preg_replace('/<!--(.*?)-->/s', '', $content);
+        $svg = simplexml_load_file($svg);
 
-        // Remove XML declaration (e.g., <?xml version="1.0" encoding="UTF-8"
-        $content = preg_replace('/<\?xml.*?\?>/s', '', $content);
+        if ($svg === false) {
 
-        // Remove doctype declaration (e.g., <!DOCTYPE svg PUBLIC ...>).
-        $content = preg_replace('/<!DOCTYPE[^>]+>/s', '', $content);
+            $width  = '0';
+            $height = '0';
+        } else {
 
-        // Use wp_kses to allow only defined SVG tags and attributes.
-        $allowed_html = ZoloHelpers::wp_kses_allowed_svg();
-        $sanitized    = wp_kses($content, $allowed_html);
-        // Minify by removing extra spaces, newlines, and tabs.
-        return preg_replace('/\s+/', ' ', trim($sanitized));
-    }
-
-    /**
-     * Add SVG-specific CSS properties to the allowed list.
-     *
-     * @param string[] $styles Existing list of allowed CSS properties.
-     * @return string[] Updated list of allowed CSS properties.
-     */
-    public function sanitize_style_css($styles) {
-        $svg_styles = [
-            'fill',
-            'stroke-width',
-            'stroke-linecap',
-            'stroke-linejoin',
-            'stroke-dasharray',
-            'stroke-dashoffset',
-            'stroke',
-            'opacity',
-        ];
-        $styles = array_merge($styles, $svg_styles);
-        return $styles;
-    }
-
-    
-    /**
-     * Initializes the WordPress filesystem, making sure WP_Filesystem is available.
-     *
-     * @return void
-     */
-    private function initialize_wp_filesystem()
-    {
-        if (! function_exists('WP_Filesystem')) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
+            $attributes = $svg->attributes();
+            $width      = (string) $attributes->width;
+            $height     = (string) $attributes->height;
         }
-        WP_Filesystem();
-    }
 
-    /**
-     * Output CSS to make SVGs display correctly in the media library.
-     *
-     * This is a temporary fix until WordPress core is updated to include this
-     * CSS by default.
-     *
-     * @return void
-     */
-    public function add_svg_support_style()
-    {
-        echo '<style>.media-modal-content ul.attachments li.attachment img[src$=".svg"],.media-frame ul.attachments li.attachment img[src$=".svg"],table.media img[src$=".svg"]{width: 100% !important;height: auto !important;}</style>';
-    }
-
-    /**
-     * Modify MIME types to allow additional uploads.
-     * @param array $types
-     * @return array
-     */
-    public function modify_upload_mime_types($types)
-    {
-
-        if (! isset($types['svg'])) {
-            $types['svg'] = 'image/svg+xml';
-        }
-        if (! isset($types['json'])) {
-            $types['json'] = 'application/json';
-        }
-        return $types;
+        return (object) ['width' => $width, 'height' => $height];
     }
 }
 
