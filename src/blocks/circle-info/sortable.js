@@ -43,7 +43,7 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
         const newItem = {
             id: Date.now() + Math.random(), // Generate unique ID
             layer: 'layer1',
-            circleSize: 15,
+            // circleSize: '',
             link: {
                 url: '#',
                 openInNewTab: false,
@@ -67,28 +67,6 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
     const updateCircleItem = (index, key, value) => {
         const updatedItems = [...deepCloneItems];
         updatedItems[index][key] = value;
-
-        // Auto-update circleSize when layer changes
-        if (key === 'layer') {
-            if (value === 'layer1') {
-                updatedItems[index]['circleSize'] = 15;
-            } else if (value === 'layer2') {
-                updatedItems[index]['circleSize'] = 25;
-            } else if (value === 'layer3') {
-                updatedItems[index]['circleSize'] = 35;
-            }
-        }
-
-        // If circleSize is being updated, sync all items in the same layer
-        if (key === 'circleSize') {
-            const currentLayer = updatedItems[index].layer;
-            updatedItems.forEach((item, i) => {
-                if (item.layer === currentLayer) {
-                    updatedItems[i].circleSize = value;
-                }
-            });
-        }
-
         setAttributes({ [attributeName]: updatedItems });
     };
 
@@ -126,16 +104,6 @@ const Sortable = ({ circleItems = [], setAttributes, attributeName = 'circleItem
                                         { label: __('Layer 3', 'zoloblocks'), value: 'layer3' },
                                     ]}
                                 />
-                                <div className="zolo-flex-col-control">
-                                    <ZoloRangeControl
-                                        label={__('Circle Size', 'zoloblocks')}
-                                        value={item.circleSize || (item.layer === 'layer1' ? 15 : item.layer === 'layer2' ? 25 : 35)}
-                                        onChange={(value) => updateCircleItem(index, 'circleSize', value)}
-                                        min={1}
-                                        max={100}
-                                        step={1}
-                                    />
-                                </div>
                                 <LinkControl
                                     label={__('Link', 'zoloblocks')}
                                     value={item.link || { url: '', openInNewTab: false }}

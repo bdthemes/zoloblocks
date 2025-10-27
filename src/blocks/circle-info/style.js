@@ -36,6 +36,12 @@ import {
     IMAGE_SHADOW,
     IMAGE_RADIUS,
     HOVER_IMAGE_SHADOW,
+    LAYER_1_CIRCLE_SIZE,
+    LAYER_2_CIRCLE_SIZE,
+    LAYER_3_CIRCLE_SIZE,
+    LAYER_1_CIRCLE_BORDER,
+    LAYER_2_CIRCLE_BORDER,
+    LAYER_3_CIRCLE_BORDER,
 } from './constants';
 
 import {} from './constants/typoPrefixConstant';
@@ -46,12 +52,15 @@ const Style = ({ props }) => {
         uniqueId,
         animation,
         animationDuration,
+        layer1AnimationDuration,
+        layer2AnimationDuration,
+        layer3AnimationDuration,
         iconColor,
         hoverIconColor,
         circleItems = [],
-        layer1Degree,
-        layer2Degree,
-        layer3Degree,
+        layer1HoverColor,
+        layer2HoverColor,
+        layer3HoverColor,
     } = attributes;
 
     const { active = false, blur = 0, brightness = 100, contrast = 100, saturate = 100, hueRotate = 0 } = attributes?.cssFilters || {};
@@ -72,10 +81,6 @@ const Style = ({ props }) => {
         }
         return layerItems[0].circleSize || (layer === 'layer1' ? 15 : layer === 'layer2' ? 25 : 35);
     };
-
-    const layer1Size = getLayerCircleSize('layer1');
-    const layer2Size = getLayerCircleSize('layer2');
-    const layer3Size = getLayerCircleSize('layer3');
 
     const {
         desktopRangeStyle: mainCircleWidthDesk,
@@ -273,48 +278,108 @@ const Style = ({ props }) => {
         attributes,
     });
 
-    // Animation styles
-    const animationSpeed = animationDuration ? animationDuration / 1000 : 100;
-    const animationSpeedHalf = animationSpeed / 2;
+    // layer circle styles - using CSS variables for size control
+
+    const {
+        desktopRangeStyle: layer1CircleSizeDesk,
+        tabRangeStyle: layer1CircleSizeTab,
+        mobRangeStyle: layer1CircleSizeMob,
+    } = generateResRangeStyle({
+        controlName: LAYER_1_CIRCLE_SIZE,
+        property: '--zolo-circle-wrap-size',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: layer2CircleSizeDesk,
+        tabRangeStyle: layer2CircleSizeTab,
+        mobRangeStyle: layer2CircleSizeMob,
+    } = generateResRangeStyle({
+        controlName: LAYER_2_CIRCLE_SIZE,
+        property: '--zolo-circle-wrap-size',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: layer3CircleSizeDesk,
+        tabRangeStyle: layer3CircleSizeTab,
+        mobRangeStyle: layer3CircleSizeMob,
+    } = generateResRangeStyle({
+        controlName: LAYER_3_CIRCLE_SIZE,
+        property: '--zolo-circle-wrap-size',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: layer1CircleBorderDesk,
+        tabBorderStyle: layer1CircleBorderTab,
+        mobBorderStyle: layer1CircleBorderMob,
+    } = generateBorderStyle({
+        controlName: LAYER_1_CIRCLE_BORDER,
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: layer2CircleBorderDesk,
+        tabBorderStyle: layer2CircleBorderTab,
+        mobBorderStyle: layer2CircleBorderMob,
+    } = generateBorderStyle({
+        controlName: LAYER_2_CIRCLE_BORDER,
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: layer3CircleBorderDesk,
+        tabBorderStyle: layer3CircleBorderTab,
+        mobBorderStyle: layer3CircleBorderMob,
+    } = generateBorderStyle({
+        controlName: LAYER_3_CIRCLE_BORDER,
+        attributes,
+    });
+    // Animation styles - layer-specific speeds
+    const layer1Speed = layer1AnimationDuration ? layer1AnimationDuration / 1000 : 50;
+    const layer2Speed = layer2AnimationDuration ? layer2AnimationDuration / 1000 : 100;
+    const layer3Speed = layer3AnimationDuration ? layer3AnimationDuration / 1000 : 100;
 
     const animationStyles = animation
         ? `
         .${uniqueId}.zolo-circle-animation-enabled {
-            --zolo-circle-time: ${animationSpeed}s;
-            --zolo-circle-time-last-item: ${animationSpeedHalf}s;
+            --zolo-layer1-time: ${layer1Speed}s;
+            --zolo-layer2-time: ${layer2Speed}s;
+            --zolo-layer3-time: ${layer3Speed}s;
         }
     `
         : '';
 
-    // Generate layer degree styles
-    const layerDegreeStyles = `
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one > li {
-            --zolo-circle-rotation-step: ${layer1Degree || 0}deg;
-        }
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_two > li {
-            --zolo-circle-rotation-step: ${layer2Degree || 0}deg;
-        }
-        .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_three > li {
-            --zolo-circle-rotation-step: ${layer3Degree || 0}deg;
-        }
-    `;
-
     const desktopAllStyle = `
         ${animationStyles}
-        ${layerDegreeStyles}
         
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
-            --zolo-circle-wrap-size: ${layer1Size}rem;
+            ${layer1CircleSizeDesk}
+            ${layer1CircleBorderDesk}
         }
-        
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_two {
-            --zolo-circle-wrap-size: ${layer2Size}rem;
+            ${layer2CircleSizeDesk}
+            ${layer2CircleBorderDesk}
         }
-        
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_three {
-            --zolo-circle-wrap-size: ${layer3Size}rem;
+            ${layer3CircleSizeDesk}
+            ${layer3CircleBorderDesk}
+        }
+        .${uniqueId}.wp-block-zolo-circle-info.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover .zolo-list_one {
+            ${layer1HoverColor ? `border-color: ${layer1HoverColor};` : ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-circle-info.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover .zolo-list_two {
+            ${layer2HoverColor ? `border-color: ${layer2HoverColor};` : ''}
         }
         
+        .${uniqueId}.wp-block-zolo-circle-info.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover .zolo-list_three {
+            ${layer3HoverColor ? `border-color: ${layer3HoverColor};` : ''}
+        }
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item {
             ${mainCircleWidthDesk}
             ${mainCircleHeightDesk}
@@ -397,18 +462,20 @@ const Style = ({ props }) => {
 
     const tabletAllStyle = `
         ${animationStyles}
-        ${layerDegreeStyles}
-        
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
-            --zolo-circle-wrap-size: ${layer1Size}rem;
+            ${layer1CircleSizeTab}
+            ${layer1CircleBorderTab}
         }
-        
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_two {
-            --zolo-circle-wrap-size: ${layer2Size}rem;
+            ${layer2CircleSizeTab}
+            ${layer2CircleBorderTab}
         }
-        
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_three {
-            --zolo-circle-wrap-size: ${layer3Size}rem;
+            ${layer3CircleSizeTab}
+            ${layer3CircleBorderTab}
         }
         
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item {
@@ -462,18 +529,20 @@ const Style = ({ props }) => {
 
     const mobileAllStyle = `
         ${animationStyles}
-        ${layerDegreeStyles}
         
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_one {
-            --zolo-circle-wrap-size: ${layer1Size}rem;
+            ${layer1CircleSizeMob}
+            ${layer1CircleBorderMob}
         }
-        
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_two {
-            --zolo-circle-wrap-size: ${layer2Size}rem;
+            ${layer2CircleSizeTab}
+            ${layer2CircleBorderMob}
         }
-        
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-block-circle-icon-wrap .zolo-list_three {
-            --zolo-circle-wrap-size: ${layer3Size}rem;
+            ${layer3CircleSizeTab}
+            ${layer3CircleBorderMob}
         }
         
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item {

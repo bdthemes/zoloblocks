@@ -3,8 +3,9 @@
  */
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
 import { applyFilters } from '@wordpress/hooks';
-import {} from '@wordpress/components';
+import { } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useEffect } from '@wordpress/element';
 import Sortable from './sortable';
 
 /**
@@ -60,9 +61,15 @@ import {
     IMAGE_SHADOW,
     IMAGE_RADIUS,
     HOVER_IMAGE_SHADOW,
+    LAYER_1_CIRCLE_SIZE,
+    LAYER_2_CIRCLE_SIZE,
+    LAYER_3_CIRCLE_SIZE,
+    LAYER_1_CIRCLE_BORDER,
+    LAYER_2_CIRCLE_BORDER,
+    LAYER_3_CIRCLE_BORDER,
 } from './constants';
 
-import {} from './constants/typoPrefixConstant';
+import { } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { block, attributes, setAttributes } = props;
@@ -75,10 +82,14 @@ function Inspector(props) {
         hoverIconColor,
         animation,
         animationDuration,
+        layer1AnimationDuration,
+        layer2AnimationDuration,
+        layer3AnimationDuration,
         hoverAnimation,
-        layer1Degree,
-        layer2Degree,
-        layer3Degree,
+        circleLayer,
+        layer1HoverColor,
+        layer2HoverColor,
+        layer3HoverColor,
     } = attributes;
 
     const requiredProps = {
@@ -92,6 +103,32 @@ function Inspector(props) {
     const iconItems = circleItems.some((item) => !item.iconType || item.iconType === 'icon');
     const imageItems = circleItems.some((item) => item.iconType === 'image');
 
+    // Check which layers have items
+    const hasLayer1 = circleItems.some((item) => item.layer === 'layer1');
+    const hasLayer2 = circleItems.some((item) => item.layer === 'layer2');
+    const hasLayer3 = circleItems.some((item) => item.layer === 'layer3');
+
+    // Count how many layers have items
+    const layerCount = [hasLayer1, hasLayer2, hasLayer3].filter(Boolean).length;
+
+    // Auto-select the first available layer if current selection is invalid
+    useEffect(() => {
+        const currentLayerHasItems =
+            (circleLayer === 'layer1' && hasLayer1) ||
+            (circleLayer === 'layer2' && hasLayer2) ||
+            (circleLayer === 'layer3' && hasLayer3);
+
+        if (!currentLayerHasItems) {
+            if (hasLayer1) {
+                setAttributes({ circleLayer: 'layer1' });
+            } else if (hasLayer2) {
+                setAttributes({ circleLayer: 'layer2' });
+            } else if (hasLayer3) {
+                setAttributes({ circleLayer: 'layer3' });
+            }
+        }
+    }, [hasLayer1, hasLayer2, hasLayer3, circleLayer]);
+
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
     const cssFiltersHover = applyFilters('zolo.extensions.controls.cssFiltersHover', [], block, props);
 
@@ -104,6 +141,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('Circle', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                        <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>{__('Show/hide elements', 'zoloblocks')}</div>
                             <ZoloToggleControl
                                 label={__('Animation', 'zoloblocks')}
                                 checked={animation}
@@ -122,23 +160,106 @@ function Inspector(props) {
                                     })
                                 }
                             />
-                            {animation && (
-                                <div className="zolo-flex-col-control">
-                                    <ZoloRangeControl
-                                        label={__('Speed (seconds)', 'zoloblocks')}
-                                        value={animationDuration / 1000}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                animationDuration: value * 1000,
-                                            })
-                                        }
-                                        min={1}
-                                        max={100}
-                                        step={1}
-                                    />
-                                </div>
-                            )}
 
+                            {(hasLayer1 || hasLayer2 || hasLayer3) && (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Layer Circle Size', 'zoloblocks')}</div>
+                                    {layerCount > 1 && (
+                                        <IconicBtnGroup
+                                            value={circleLayer}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    circleLayer: value,
+                                                })
+                                            }
+                                            options={[
+                                                hasLayer1 && { label: 'Layer 1', value: 'layer1' },
+                                                hasLayer2 && { label: 'Layer 2', value: 'layer2' },
+                                                hasLayer3 && { label: 'Layer 3', value: 'layer3' },
+                                            ].filter(Boolean)}
+                                        />
+                                    )}
+                                    {circleLayer === 'layer1' && hasLayer1 && (
+                                        <>
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={LAYER_1_CIRCLE_SIZE}
+                                                requiredProps={requiredProps}
+                                                max={500}
+                                            />
+                                            {animation && (
+                                                <div className="zolo-flex-col-control">
+                                                    <ZoloRangeControl
+                                                    label={__('Speed (seconds)', 'zoloblocks')}
+                                                    value={layer1AnimationDuration / 1000}
+                                                    onChange={(value) =>
+                                                        setAttributes({
+                                                            layer1AnimationDuration: value * 1000,
+                                                        })
+                                                    }
+                                                    min={1}
+                                                    max={100}
+                                                    step={1}
+                                                />
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+                                    {circleLayer === 'layer2' && hasLayer2 && (
+                                        <>
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={LAYER_2_CIRCLE_SIZE}
+                                                requiredProps={requiredProps}
+                                                max={500}
+                                            />
+                                            {animation && (
+                                                <div className="zolo-flex-col-control">
+                                                    <ZoloRangeControl
+                                                        label={__('Speed (seconds)', 'zoloblocks')}
+                                                        value={layer2AnimationDuration / 1000}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                layer2AnimationDuration: value * 1000,
+                                                            })
+                                                        }
+                                                        min={1}
+                                                        max={100}
+                                                        step={1}
+                                                    />
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+                                    {circleLayer === 'layer3' && hasLayer3 && (
+                                        <>
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={LAYER_3_CIRCLE_SIZE}
+                                                requiredProps={requiredProps}
+                                                max={500}
+                                            />
+                                            {animation && (
+                                                <div className="zolo-flex-col-control">
+                                                    <ZoloRangeControl
+                                                        label={__('Speed (seconds)', 'zoloblocks')}
+                                                        value={layer3AnimationDuration / 1000}
+                                                        onChange={(value) =>
+                                                            setAttributes({
+                                                                layer3AnimationDuration: value * 1000,
+                                                            })
+                                                        }
+                                                        min={1}
+                                                        max={100}
+                                                        step={1}
+                                                    />
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+                                </>
+                            )}
+                            
                             <ZoloCardDivider />
 
                             <ZoloBaseControl label={__('Main Photo', 'zoloblocks')} className="zolo-flex-col-control">
@@ -204,53 +325,6 @@ function Inspector(props) {
                         <ZoloPanelBody title={__('Circle Item', 'zoloblocks')} firstOpen={false} panelProps={props}>
                             <Sortable circleItems={circleItems} attributes={attributes} setAttributes={setAttributes} />
                         </ZoloPanelBody>
-
-                        <ZoloPanelBody title={__('Layer Degree', 'zoloblocks')} firstOpen={false} panelProps={props}>
-                            <div className="zolo-flex-col-control">
-                                <ZoloRangeControl
-                                    label={__('Layer 1 Degree', 'zoloblocks')}
-                                    value={layer1Degree}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            layer1Degree: value,
-                                        })
-                                    }
-                                    min={0}
-                                    max={360}
-                                    step={1}
-                                />
-                            </div>
-
-                            <div className="zolo-flex-col-control">
-                                <ZoloRangeControl
-                                    label={__('Layer 2 Degree', 'zoloblocks')}
-                                    value={layer2Degree}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            layer2Degree: value,
-                                        })
-                                    }
-                                    min={0}
-                                    max={360}
-                                    step={1}
-                                />
-                            </div>
-
-                            <div className="zolo-flex-col-control">
-                                <ZoloRangeControl
-                                    label={__('Layer 3 Degree', 'zoloblocks')}
-                                    value={layer3Degree}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            layer3Degree: value,
-                                        })
-                                    }
-                                    min={0}
-                                    max={360}
-                                    step={1}
-                                />
-                            </div>
-                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
@@ -294,7 +368,78 @@ function Inspector(props) {
                                 hoverComponents={<>{cssFiltersHover && cssFiltersHover.length > 0 && cssFiltersHover}</>}
                             />
                         </ZoloPanelBody>
+                        
+                        <ZoloPanelBody title={__('Layer Circle', 'zoloblocks')} firstOpen={false} panelProps={props}>
+                                <>
 
+                                {(hasLayer1 || hasLayer2 || hasLayer3) && (
+                                <>
+                                    {layerCount > 1 && (
+                                        <IconicBtnGroup
+                                            value={circleLayer}
+                                            onChange={(value) =>
+                                                setAttributes({
+                                                    circleLayer: value,
+                                                })
+                                            }
+                                            options={[
+                                                hasLayer1 && { label: 'Layer 1', value: 'layer1' },
+                                                hasLayer2 && { label: 'Layer 2', value: 'layer2' },
+                                                hasLayer3 && { label: 'Layer 3', value: 'layer3' },
+                                            ].filter(Boolean)}
+                                        />
+                                    )}
+                                    {circleLayer === 'layer1' && hasLayer1 && (
+                                        <>
+                                        <div className="zolo-custom-heading">{__('Layer 1 Border', 'zoloblocks')}</div>
+                                             <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={LAYER_1_CIRCLE_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={layer1HoverColor}
+                                                onChange={(value) => setAttributes({ layer1HoverColor: value })}
+                                            />
+                                        </>
+                                    )}
+                                    {circleLayer === 'layer2' && hasLayer2 && (
+                                        <>
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={LAYER_2_CIRCLE_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={layer2HoverColor}
+                                                onChange={(value) => setAttributes({ layer2HoverColor: value })}
+                                            />
+                                        </>
+                                    )}
+                                    {circleLayer === 'layer3' && hasLayer3 && (
+                                        <>
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={LAYER_3_CIRCLE_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
+                                            <ColorControl
+                                                label={__('Border Color', 'zoloblocks')}
+                                                color={layer3HoverColor}
+                                                onChange={(value) => setAttributes({ layer3HoverColor: value })}
+                                            />
+                                        </>
+                                    )}
+                                </>
+                            )}
+
+                                </>
+                         </ZoloPanelBody>
                         {iconItems && (
                             <ZoloPanelBody title={__('Icon', 'zoloblocks')} firstOpen={false} panelProps={props}>
                                 <TabPanelControl

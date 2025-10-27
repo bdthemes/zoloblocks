@@ -27,6 +27,12 @@ import {
     IMAGE_SHADOW,
     IMAGE_RADIUS,
     HOVER_IMAGE_SHADOW,
+    LAYER_1_CIRCLE_SIZE,
+    LAYER_2_CIRCLE_SIZE,
+    LAYER_3_CIRCLE_SIZE,
+    LAYER_1_CIRCLE_BORDER,
+    LAYER_2_CIRCLE_BORDER,
+    LAYER_3_CIRCLE_BORDER,
 } from './constants';
 
 const attributes = {
@@ -61,7 +67,6 @@ const attributes = {
             {
                 id: 1,
                 layer: 'layer1',
-                circleSize: 15,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -81,7 +86,6 @@ const attributes = {
             {
                 id: 2,
                 layer: 'layer1',
-                circleSize: 15,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -101,7 +105,6 @@ const attributes = {
             {
                 id: 3,
                 layer: 'layer1',
-                circleSize: 15,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -121,7 +124,6 @@ const attributes = {
             {
                 id: 4,
                 layer: 'layer2',
-                circleSize: 25,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -141,7 +143,6 @@ const attributes = {
             {
                 id: 5,
                 layer: 'layer2',
-                circleSize: 25,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -161,7 +162,6 @@ const attributes = {
             {
                 id: 6,
                 layer: 'layer2',
-                circleSize: 25,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -181,7 +181,6 @@ const attributes = {
             {
                 id: 7,
                 layer: 'layer2',
-                circleSize: 25,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -201,7 +200,6 @@ const attributes = {
             {
                 id: 8,
                 layer: 'layer2',
-                circleSize: 25,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -221,7 +219,6 @@ const attributes = {
             {
                 id: 9,
                 layer: 'layer2',
-                circleSize: 25,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -241,7 +238,6 @@ const attributes = {
             {
                 id: 10,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -261,7 +257,6 @@ const attributes = {
             {
                 id: 11,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -281,7 +276,6 @@ const attributes = {
             {
                 id: 12,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -301,7 +295,6 @@ const attributes = {
             {
                 id: 13,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -321,7 +314,6 @@ const attributes = {
             {
                 id: 14,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -341,7 +333,6 @@ const attributes = {
             {
                 id: 15,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -361,7 +352,6 @@ const attributes = {
             {
                 id: 16,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -381,7 +371,6 @@ const attributes = {
             {
                 id: 17,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -401,7 +390,6 @@ const attributes = {
             {
                 id: 18,
                 layer: 'layer3',
-                circleSize: 35,
                 link: {
                     url: '#',
                     openInNewTab: false,
@@ -436,11 +424,9 @@ const attributes = {
     },
     iconColor: {
         type: 'string',
-        default: '#000000',
     },
     hoverIconColor: {
         type: 'string',
-        default: '#000000',
     },
     animation: {
         type: 'boolean',
@@ -450,23 +436,37 @@ const attributes = {
         type: 'number',
         default: 100000, // 100 seconds in milliseconds
     },
+    layer1AnimationDuration: {
+        type: 'number',
+        default: 50000, // 50 seconds in milliseconds
+    },
+    layer2AnimationDuration: {
+        type: 'number',
+        default: 100000, // 100 seconds in milliseconds
+    },
+    layer3AnimationDuration: {
+        type: 'number',
+        default: 100000, // 100 seconds in milliseconds
+    },
     hoverAnimation: {
         type: 'boolean',
         default: true,
     },
-    layer1Degree: {
-        type: 'number',
-        default: 120,
-    },
-    layer2Degree: {
-        type: 'number',
-        default: 72,
-    },
-    layer3Degree: {
-        type: 'number',
-        default: 40,
+
+    circleLayer: {
+        type: 'string',
+        default: 'layer1',
     },
 
+    layer1HoverColor: {
+        type: 'string',
+    },
+    layer2HoverColor: {
+        type: 'string',
+    },
+    layer3HoverColor: {
+        type: 'string',
+    },
     ...generateResRangeAttributies(MAIN_CIRCLE_SIZE),
     ...generateBorderAttributies(MAIN_CIRCLE_BORDER),
     ...generateBoxShadowAttributies(MAIN_CIRCLE_SHADOW),
@@ -485,6 +485,13 @@ const attributes = {
     ...generateBoxShadowAttributies(IMAGE_SHADOW),
     ...generateDimensionAttributes(IMAGE_RADIUS),
     ...generateBoxShadowAttributies(HOVER_IMAGE_SHADOW),
+
+    ...generateResRangeAttributies(LAYER_1_CIRCLE_SIZE),
+    ...generateResRangeAttributies(LAYER_2_CIRCLE_SIZE),
+    ...generateResRangeAttributies(LAYER_3_CIRCLE_SIZE),
+    ...generateBorderAttributies(LAYER_1_CIRCLE_BORDER),
+    ...generateBorderAttributies(LAYER_2_CIRCLE_BORDER),
+    ...generateBorderAttributies(LAYER_3_CIRCLE_BORDER),
 };
 
 export default attributes;

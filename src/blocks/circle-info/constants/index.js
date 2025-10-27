@@ -25,3 +25,9 @@ export const IMAGE_SHADOW = 'imageShadow';
 export const IMAGE_RADIUS = 'imageRadius';
 export const HOVER_IMAGE_SHADOW = 'hoverImageShadow';
 
+export const LAYER_1_CIRCLE_SIZE = 'layer1CircleSize';
+export const LAYER_2_CIRCLE_SIZE = 'layer2CircleSize';
+export const LAYER_3_CIRCLE_SIZE = 'layer3CircleSize';
+export const LAYER_1_CIRCLE_BORDER = 'layer1CircleBorder';
+export const LAYER_2_CIRCLE_BORDER = 'layer2CircleBorder';
+export const LAYER_3_CIRCLE_BORDER = 'layer3CircleBorder';
