@@ -1,0 +1,204 @@
+:root {
+    --zolo-bg1: #3b0066;
+    --zolo-bg2: #6b1aa8;
+    --zolo-accent1: #ff33c4;
+    --zolo-accent2: #15e0d6;
+    --zolo-card-radius: 18px;
+    --zolo-glass-border: rgba(255, 255, 255, 0.08);
+    --zolo-text: #000000;
+    --zolo-muted: #000000;
+    --zolo-shadow: 0 12px 30px rgba(11, 6, 25, 0.6);
+    --zolo-glow: 0 8px 40px rgba(83, 12, 160, 0.35);
+}
+
+/* card */
+.zolo-pricing-card {
+    width: 340px;
+    max-width: 92vw;
+    border-radius: var(--zolo-card-radius);
+    position: relative;
+    overflow: hidden;
+    padding: 28px 22px;
+    box-shadow: var(--zolo-shadow);
+    border: 1px solid var(--zolo-glass-border);
+    backdrop-filter: blur(6px);
+}
+
+/* decorative purple gradient blur shapes */
+.zolo-pricing-card::before,
+.zolo-pricing-card::after {
+    content: '';
+    position: absolute;
+    filter: blur(36px) saturate(120%);
+    z-index: 0;
+    pointer-events: none;
+}
+.zolo-pricing-card::before {
+    width: 260px;
+    height: 260px;
+    right: -60px;
+    top: -60px;
+}
+.zolo-pricing-card::after {
+    width: 220px;
+    height: 220px;
+    left: -40px;
+    bottom: -40px;
+}
+
+/* inner content sits above decorations */
+.zolo-pricing-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* toggle */
+.zolo-toggle-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    color: var(--zolo-muted);
+    font-weight: 600;
+}
+
+.zolo-toggle-label {
+    font-weight: 700;
+    color: var(--zolo-muted);
+}
+
+.zolo-toggle-label.zolo-toggle-active {
+    color: var(--zolo-text);
+}
+
+.zolo-switch {
+    width: 48px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+.zolo-switch .zolo-knob {
+    position: absolute;
+    top: 3px;
+    left: 1px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #000;
+    transform: translateX(0);
+    transition: all 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+.zolo-switch.on {
+    background: linear-gradient(90deg, var(--zolo-accent2), #00c6ff);
+}
+.zolo-switch.on .zolo-knob {
+    background: linear-gradient(180deg, #001111, #001f1f);
+    transform: translateX(22px);
+    box-shadow: 0 6px 18px rgba(21, 224, 214, 0.25);
+}
+
+/* heading & price */
+.lead {
+    font-size: 13px;
+    color: var(--zolo-muted);
+    margin-top: 10px;
+}
+.zolo-price-wrap {
+    margin: 10px 0 8px;
+}
+.zolo-starting {
+    font-size: 13px;
+    color: var(--zolo-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.zolo-price {
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--zolo-text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.zolo-price small {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--zolo-muted);
+    transform: translateY(-6px);
+}
+
+.zolo-price-period {
+    font-size: 14px;
+    color: var(--zolo-muted);
+    font-weight: 600;
+}
+
+.zolo-price-original {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--zolo-muted);
+    text-decoration: line-through;
+    margin-right: 8px;
+    opacity: 0.6;
+}
+
+.zolo-subtext {
+    font-size: 13px;
+    color: var(--zolo-muted);
+    margin-top: 10px;
+}
+
+/* CTA button */
+.zolo-cta {
+    margin-top: 18px;
+    display: block;
+    text-decoration: none;
+    padding: 12px 0px;
+    border-radius: 14px;
+    font-weight: 700;
+    color: #000000;
+    box-shadow: var(--zolo-glow);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.12s;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+}
+.zolo-cta:active {
+    transform: translateY(1px) scale(0.997);
+}
+.zolo-cta:hover {
+    box-shadow: 0 18px 60px rgba(21, 224, 214, 0.14);
+    opacity: 0.98;
+}
+
+/* footer tiny note */
+.zolo-note {
+    font-size: 12px;
+    color: #000000;
+    margin-top: 12px;
+}
+
+/* small responsive */
+@media (max-width: 420px) {
+    .zolo-price {
+        font-size: 48px;
+    }
+    .zolo-pricing-card {
+        padding: 20px;
+    }
+}
