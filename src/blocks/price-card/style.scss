@@ -74,6 +74,7 @@
     color: var(--zolo-text);
 }
 
+/* Base Switch Styles */
 .zolo-switch {
     width: 48px;
     height: 30px;
@@ -83,11 +84,13 @@
     display: inline-block;
     cursor: pointer;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+    border: none;
+    transition: all 0.3s ease;
 }
 .zolo-switch .zolo-knob {
     position: absolute;
-    top: 3px;
-    left: 1px;
+    top: 5px;
+    left: 0px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -103,6 +106,212 @@
     background: linear-gradient(180deg, #001111, #001f1f);
     transform: translateX(22px);
     box-shadow: 0 6px 18px rgba(21, 224, 214, 0.25);
+}
+
+/* 1. Classic Toggle (Default) - Uses base styles */
+
+/* 2. Rectangle Switch */
+.zolo-switch-rectangleSwitch {
+    border-radius: 8px;
+    width: 52px;
+    height: 28px;
+    background: #e0e0e0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.zolo-switch-rectangleSwitch .zolo-knob {
+    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    top: 3px;
+    left: 3px;
+}
+.zolo-switch-rectangleSwitch.on {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.zolo-switch-rectangleSwitch.on .zolo-knob {
+    transform: translateX(24px);
+    background: #fff;
+}
+
+/* 3. Round Slide */
+.zolo-switch-roundSlide {
+    width: 56px;
+    height: 32px;
+    border-radius: 50px;
+    background: linear-gradient(180deg, #d1d5db, #9ca3af);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.zolo-switch-roundSlide .zolo-knob {
+    width: 26px;
+    height: 26px;
+    background: linear-gradient(180deg, #ffffff, #f3f4f6);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    top: 3px;
+    left: 3px;
+}
+.zolo-switch-roundSlide.on {
+    background: linear-gradient(180deg, #10b981, #059669);
+}
+.zolo-switch-roundSlide.on .zolo-knob {
+    transform: translateX(24px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
+}
+
+/* 4. Flat Modern */
+.zolo-switch-flatModern {
+    width: 50px;
+    height: 26px;
+    border-radius: 13px;
+    background: #f0f0f0;
+    box-shadow: none;
+    border: 2px solid #e0e0e0;
+}
+.zolo-switch-flatModern .zolo-knob {
+    width: 18px;
+    height: 18px;
+    background: #6b7280;
+    top: 2px;
+    left: 2px;
+    box-shadow: none;
+}
+.zolo-switch-flatModern.on {
+    background: #f0f0f0;
+    border-color: #3b82f6;
+}
+.zolo-switch-flatModern.on .zolo-knob {
+    transform: translateX(24px);
+    background: #3b82f6;
+}
+
+/* 5. Sleek Slider */
+.zolo-switch-sleekSlider {
+    width: 54px;
+    height: 24px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #374151, #1f2937);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.zolo-switch-sleekSlider .zolo-knob {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    top: 3px;
+    left: 3px;
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.5);
+}
+.zolo-switch-sleekSlider.on {
+    background: linear-gradient(90deg, #1f2937, #111827);
+}
+.zolo-switch-sleekSlider.on .zolo-knob {
+    transform: translateX(30px);
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.6);
+}
+
+/* 6. Diamond Toggle */
+.zolo-switch-diamondToggle {
+    width: 50px;
+    height: 30px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #ec4899, #be185d);
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+    transform: rotate(0deg);
+}
+.zolo-switch-diamondToggle .zolo-knob {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    top: 5px;
+    left: 4px;
+    border-radius: 4px;
+    transform: translateX(0) rotate(45deg);
+    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.zolo-switch-diamondToggle.on {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.5);
+}
+.zolo-switch-diamondToggle.on .zolo-knob {
+    transform: translateX(20px) rotate(135deg);
+}
+
+/* 7. Clean Circle */
+.zolo-switch-cleanCircle {
+    width: 52px;
+    height: 28px;
+    border-radius: 50px;
+    background: #e5e7eb;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+.zolo-switch-cleanCircle .zolo-knob {
+    width: 24px;
+    height: 24px;
+    background: #ffffff;
+    border: 2px solid #d1d5db;
+    left: 2px;
+    top: 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.zolo-switch-cleanCircle.on {
+    background: #6366f1;
+}
+.zolo-switch-cleanCircle.on .zolo-knob {
+    transform: translateX(24px);
+    border-color: #818cf8;
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
+}
+
+/* 8. Soft Curve */
+.zolo-switch-softCurve {
+    width: 58px;
+    height: 30px;
+    border-radius: 50px;
+    background: linear-gradient(180deg, #fbbf24, #f59e0b);
+    box-shadow: 0 4px 10px rgba(251, 191, 36, 0.3);
+}
+.zolo-switch-softCurve .zolo-knob {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(180deg, #ffffff, #fef3c7);
+    top: 3px;
+    left: 3px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.zolo-switch-softCurve.on {
+    background: linear-gradient(180deg, #14b8a6, #0d9488);
+    box-shadow: 0 4px 10px rgba(20, 184, 166, 0.4);
+}
+.zolo-switch-softCurve.on .zolo-knob {
+    transform: translateX(28px) scale(1.1);
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.5);
+}
+
+/* 9. Square Rotate */
+.zolo-switch-squareRotate {
+    width: 50px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    box-shadow: 0 3px 8px rgba(244, 63, 94, 0.4);
+}
+.zolo-switch-squareRotate .zolo-knob {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 3px;
+    top: 4px;
+    left: 4px;
+    transform: translateX(0) rotate(0deg);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.zolo-switch-squareRotate.on {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    box-shadow: 0 3px 8px rgba(14, 165, 233, 0.5);
+}
+.zolo-switch-squareRotate.on .zolo-knob {
+    transform: translateX(22px) rotate(180deg);
 }
 
 /* heading & price */

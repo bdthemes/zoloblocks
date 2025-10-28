@@ -17,9 +17,10 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { 
-        uniqueId, 
+    const {
+        uniqueId,
         parentClasses,
+        toggleStyle,
         primaryTitle,
         secondaryTitle,
         // Primary
@@ -41,34 +42,40 @@ export default function Edit(props) {
         // Common Button
         buttonText,
         buttonLink,
+        primaryFooterText,
+        secondaryFooterText,
     } = attributes;
-    
+
     // Toggle state (false = primary, true = secondary)
     const [isSecondary, setIsSecondary] = useState(false);
 
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
-    
+
     // Get current content based on toggle state
-    const currentContent = isSecondary ? {
-        priceTitle: secondaryPriceTitle,
-        prefix: secondaryPrefix,
-        price: secondaryPrice,
-        suffix: secondarySuffix,
-        showOriginalPrice: secondaryShowOriginalPrice,
-        originalPrice: secondaryOriginalPrice,
-        description: secondaryDescription,
-    } : {
-        priceTitle: primaryPriceTitle,
-        prefix: primaryPrefix,
-        price: primaryPrice,
-        suffix: primarySuffix,
-        showOriginalPrice: primaryShowOriginalPrice,
-        originalPrice: primaryOriginalPrice,
-        description: primaryDescription,
-    };
-    
+    const currentContent = isSecondary
+        ? {
+              priceTitle: secondaryPriceTitle,
+              prefix: secondaryPrefix,
+              price: secondaryPrice,
+              suffix: secondarySuffix,
+              showOriginalPrice: secondaryShowOriginalPrice,
+              originalPrice: secondaryOriginalPrice,
+              description: secondaryDescription,
+              footerText: secondaryFooterText,
+          }
+        : {
+              priceTitle: primaryPriceTitle,
+              prefix: primaryPrefix,
+              price: primaryPrice,
+              suffix: primarySuffix,
+              showOriginalPrice: primaryShowOriginalPrice,
+              originalPrice: primaryOriginalPrice,
+              description: primaryDescription,
+              footerText: primaryFooterText,
+          };
+
     // Toggle handler
     const handleToggle = () => {
         setIsSecondary(!isSecondary);
@@ -83,8 +90,8 @@ export default function Edit(props) {
                     <div className="zolo-pricing-inner">
                         <div className="zolo-toggle-wrap">
                             <div className={`zolo-toggle-label ${!isSecondary ? 'zolo-toggle-active' : ''}`}>{primaryTitle}</div>
-                            <button 
-                                className={`zolo-switch ${isSecondary ? 'on' : ''}`}
+                            <button
+                                className={`zolo-switch zolo-switch-${toggleStyle} ${isSecondary ? 'on' : ''}`}
                                 onClick={handleToggle}
                                 type="button"
                             >
@@ -96,20 +103,21 @@ export default function Edit(props) {
                         <div className="zolo-price-wrap">
                             <p className="zolo-price">
                                 {currentContent.showOriginalPrice && currentContent.originalPrice && (
-                                    <small className="zolo-price-original">{currentContent.prefix}{currentContent.originalPrice}</small>
+                                    <small className="zolo-price-original">
+                                        {currentContent.prefix}
+                                        {currentContent.originalPrice}
+                                    </small>
                                 )}
                                 {currentContent.prefix && <small>{currentContent.prefix}</small>}
                                 <span className="zolo-price-value">{currentContent.price}</span>
                                 {currentContent.suffix && <small className="zolo-price-period">{currentContent.suffix}</small>}
                             </p>
                         </div>
-                        <div className="zolo-subtext">
-                            {currentContent.description}
-                        </div>
+                        <div className="zolo-subtext">{currentContent.description}</div>
                         <a className="zolo-cta zolo-button" href={buttonLink?.url || '#'}>
                             {buttonText}
                         </a>
-                        <div className="zolo-note">Billed yearly. Cancel anytime.</div>
+                        <div className="zolo-note">{currentContent.footerText}</div>
                     </div>
                 </div>
             </div>

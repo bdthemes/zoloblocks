@@ -17,6 +17,7 @@ const {
     BorderControl,
     ResDimensionsControl,
     TypographyDropdown,
+    TextShadowControl,
     ZoloIconPicker,
     BoxShadowControl,
     HeaderTabs,
@@ -32,17 +33,51 @@ const {
 
 import objAttributes from './attributes';
 
-import { PRICE_CART, PRICE_CART_ALIGN } from './constants';
+import {
+    PRICE_CART,
+    PRICE_CART_ALIGN,
+    TOGGLE_STYLE,
+    CARD_BG,
+    CARD_MARGIN,
+    CARD_PADDING,
+    CARD_BORDER,
+    CARD_SHADOW,
+    CARD_RADIUS,
+    PRIMARY_TEXT_BG,
+    PRIMARY_TEXT_PADDING,
+    PRIMARY_TEXT_MARGIN,
+    PRIMARY_TEXT_BORDER,
+    PRIMARY_TEXT_RADIUS,
+    PRIMARY_TEXT_SHADOW,
+    SECONDARY_TEXT_BG,
+    SECONDARY_TEXT_PADDING,
+    SECONDARY_TEXT_MARGIN,
+    SECONDARY_TEXT_BORDER,
+    SECONDARY_TEXT_RADIUS,
+    SECONDARY_TEXT_SHADOW,
+    PRIMARY_TITLE_BG,
+    PRIMARY_TITLE_PADDING,
+    PRIMARY_TITLE_MARGIN,
+    PRIMARY_TITLE_BORDER,
+    PRIMARY_TITLE_RADIUS,
+    PRIMARY_TITLE_SHADOW,
+    SECONDARY_TITLE_BG,
+    SECONDARY_TITLE_PADDING,
+    SECONDARY_TITLE_MARGIN,
+    SECONDARY_TITLE_BORDER,
+    SECONDARY_TITLE_RADIUS,
+    SECONDARY_TITLE_SHADOW,
+} from './constants';
 
-import {} from './constants/typoPrefixConstant';
+import { PRIMARY_TEXT_TYPO, SECONDARY_TEXT_TYPO, PRIMARY_TITLE_TYPO, SECONDARY_TITLE_TYPO } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const {
         resMode,
         preset,
+        toggleStyle,
         ribbonToggle,
-        buttonToggle,
         primaryTitle,
         secondaryTitle,
         // Primary
@@ -64,6 +99,8 @@ function Inspector(props) {
         // Common Button
         buttonText,
         buttonLink,
+        primaryFooterText,
+        secondaryFooterText,
     } = attributes;
 
     const requiredProps = {
@@ -91,6 +128,12 @@ function Inspector(props) {
                                     { label: __('Preset 2', 'zoloblocks'), value: 'preset2' },
                                 ]}
                             />
+                            <ZoloSelectControl
+                                label={__('Toggle Style', 'zoloblocks')}
+                                value={toggleStyle}
+                                onChange={(value) => setAttributes({ toggleStyle: value })}
+                                options={TOGGLE_STYLE}
+                            />
                             <div className="zolo-custom-heading">{__('Show/hide Elements', 'zoloblocks')}</div>
                             <ZoloToggleControl
                                 label={__('Ribbon', 'zoloblocks')}
@@ -107,12 +150,12 @@ function Inspector(props) {
 
                         <ZoloPanelBody title={__('Primary', 'zoloblocks')} panelProps={requiredProps}>
                             <ZoloTextControl
-                                label={__('Title', 'zoloblocks')}
+                                label={__('Toggle Text', 'zoloblocks')}
                                 value={primaryTitle}
                                 onChange={(value) => setAttributes({ primaryTitle: value })}
                             />
                             <ZoloTextControl
-                                label={__('Price Title', 'zoloblocks')}
+                                label={__('Before Title', 'zoloblocks')}
                                 value={primaryPriceTitle}
                                 onChange={(value) => setAttributes({ primaryPriceTitle: value })}
                             />
@@ -131,6 +174,11 @@ function Inspector(props) {
                                 value={primarySuffix}
                                 onChange={(value) => setAttributes({ primarySuffix: value })}
                             />
+                            <ZoloTextControl
+                                label={__('Description', 'zoloblocks')}
+                                value={primaryDescription}
+                                onChange={(value) => setAttributes({ primaryDescription: value })}
+                            />
                             <ZoloToggleControl
                                 label={__('Original Price', 'zoloblocks')}
                                 checked={primaryShowOriginalPrice}
@@ -144,15 +192,15 @@ function Inspector(props) {
                                 />
                             )}
                             <ZoloTextControl
-                                label={__('Description', 'zoloblocks')}
-                                value={primaryDescription}
-                                onChange={(value) => setAttributes({ primaryDescription: value })}
+                                label={__('Footer Text', 'zoloblocks')}
+                                value={primaryFooterText}
+                                onChange={(value) => setAttributes({ primaryFooterText: value })}
                             />
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Secondary', 'zoloblocks')} panelProps={requiredProps}>
                             <ZoloTextControl
-                                label={__('Title', 'zoloblocks')}
+                                label={__('Toggle Text', 'zoloblocks')}
                                 value={secondaryTitle}
                                 onChange={(value) => setAttributes({ secondaryTitle: value })}
                             />
@@ -176,6 +224,11 @@ function Inspector(props) {
                                 value={secondarySuffix}
                                 onChange={(value) => setAttributes({ secondarySuffix: value })}
                             />
+                            <ZoloTextControl
+                                label={__('Description', 'zoloblocks')}
+                                value={secondaryDescription}
+                                onChange={(value) => setAttributes({ secondaryDescription: value })}
+                            />
                             <ZoloToggleControl
                                 label={__('Original Price', 'zoloblocks')}
                                 checked={secondaryShowOriginalPrice}
@@ -189,9 +242,9 @@ function Inspector(props) {
                                 />
                             )}
                             <ZoloTextControl
-                                label={__('Description', 'zoloblocks')}
-                                value={secondaryDescription}
-                                onChange={(value) => setAttributes({ secondaryDescription: value })}
+                                label={__('Footer Text', 'zoloblocks')}
+                                value={secondaryFooterText}
+                                onChange={(value) => setAttributes({ secondaryFooterText: value })}
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Button', 'zoloblocks')} panelProps={requiredProps}>
@@ -208,7 +261,36 @@ function Inspector(props) {
                         </ZoloPanelBody>
                     </>
                 }
-                styleTab={<></>}
+                styleTab={
+                    <>
+                        <ZoloPanelBody title={__('Card', 'zoloblocks')} panelProps={requiredProps}>
+                            <NormalBGControl label={__('Background', 'zoloblocks')} controlName={CARD_BG} requiredProps={requiredProps} />
+                            <ResDimensionsControl
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={CARD_MARGIN}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={CARD_PADDING}
+                                requiredProps={requiredProps}
+                            />
+                            <ZoloCardDivider />
+                            <BorderControl label={__('Border', 'zoloblocks')} controlName={CARD_BORDER} requiredProps={requiredProps} />
+                            <BoxShadowControl
+                                label={__('Box Shadow', 'zoloblocks')}
+                                controlName={CARD_SHADOW}
+                                requiredProps={requiredProps}
+                            />
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={CARD_RADIUS}
+                                requiredProps={requiredProps}
+                                forBorderRadius={true}
+                            />
+                        </ZoloPanelBody>
+                    </>
+                }
                 advancedTab={
                     <>
                         <AdvancedOptions

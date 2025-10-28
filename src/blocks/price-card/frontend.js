@@ -11,8 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const originalPriceEl = card.querySelector('.zolo-original-value');
         const description = card.querySelector('.zolo-description');
         const toggleLabels = card.querySelectorAll('.zolo-toggle-label');
+        const footerText = card.querySelector('.zolo-note');
 
         if (!toggleBtn || !priceValue || !toggleLabels.length) return;
+
+        // Get toggle style from data attribute
+        const toggleStyle = card.dataset.toggleStyle || 'classicToggle';
+        
+        // Apply toggle style class if not already present
+        if (!toggleBtn.classList.contains(`zolo-switch-${toggleStyle}`)) {
+            toggleBtn.className = `zolo-switch zolo-switch-${toggleStyle}`;
+        }
 
         // Get data attributes
         const primaryData = {
@@ -23,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             showOriginal: card.dataset.primaryShowOriginal === 'true',
             originalPrice: card.dataset.primaryOriginalPrice || '',
             description: card.dataset.primaryDescription || '',
+            footerText: card.dataset.primaryFooterText || '',
         };
 
         const secondaryData = {
@@ -33,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             showOriginal: card.dataset.secondaryShowOriginal === 'true',
             originalPrice: card.dataset.secondaryOriginalPrice || '',
             description: card.dataset.secondaryDescription || '',
+            footerText: card.dataset.secondaryFooterText || '',
         };
 
         // Initial state (false = primary, true = secondary)
@@ -45,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (priceValue) priceValue.textContent = data.price;
             if (suffix) suffix.textContent = data.suffix;
             if (description) description.textContent = data.description;
+            if (footerText) footerText.textContent = data.footerText;
 
             // Handle original price
             if (originalPriceEl) {

@@ -6,9 +6,10 @@ const {
     generateTypographyAttributes,
     generateBoxShadowAttributies,
     generateNormalBGAttributes,
+    generateTextShadowAttributies,
 } = window.zoloModule;
 
-import { PRICE_CART, PRICE_CART_ALIGN } from './constants';
+import { PRICE_CART, PRICE_CART_ALIGN, CARD_BG, CARD_MARGIN, CARD_PADDING, CARD_BORDER, CARD_SHADOW, CARD_RADIUS } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -42,6 +43,10 @@ const attributes = {
         type: 'string',
         default: 'preset1',
     },
+    toggleStyle: {
+        type: 'string',
+        default: 'classicToggle',
+    },
     ribbonToggle: {
         type: 'boolean',
         default: false,
@@ -73,7 +78,7 @@ const attributes = {
     },
     primarySuffix: {
         type: 'string',
-        default: '',
+        default: 'only',
     },
     primaryShowOriginalPrice: {
         type: 'boolean',
@@ -102,7 +107,7 @@ const attributes = {
     },
     secondarySuffix: {
         type: 'string',
-        default: '',
+        default: 'only',
     },
     secondaryShowOriginalPrice: {
         type: 'boolean',
@@ -114,7 +119,7 @@ const attributes = {
     },
     secondaryDescription: {
         type: 'string',
-        default: 'One-time payment, lifetime access.',
+        default: 'Enjoy Up To 87% OFF on Premium Products.',
     },
     // Common Button
     buttonText: {
@@ -128,8 +133,25 @@ const attributes = {
             openInNewTab: false,
         },
     },
+    primaryFooterText: {
+        type: 'string',
+        default: 'Billed yearly. Cancel anytime.',
+    },
+    secondaryFooterText: {
+        type: 'string',
+        default: 'One-time payment, lifetime access.',
+    },
+
     ...generateResAlignmentAttributies(PRICE_CART),
     ...generateResRangeAttributies(PRICE_CART_ALIGN),
+    ...generateNormalBGAttributes(CARD_BG),
+    ...generateDimensionAttributes(CARD_MARGIN),
+    ...generateDimensionAttributes(CARD_PADDING),
+    ...generateBorderAttributies(CARD_BORDER),
+    ...generateBoxShadowAttributies(CARD_SHADOW),
+    ...generateDimensionAttributes(CARD_RADIUS),
+
+    ...generateTypographyAttributes(Object.values(typographyObjs)),
 };
 
 export default attributes;
