@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Get toggle style from data attribute
         const toggleStyle = card.dataset.toggleStyle || 'classicToggle';
-        
+
         // Apply toggle style class if not already present
         if (!toggleBtn.classList.contains(`zolo-switch-${toggleStyle}`)) {
             toggleBtn.className = `zolo-switch zolo-switch-${toggleStyle}`;
@@ -76,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update switch state
             toggleBtn.classList.toggle('on');
+
+            // Toggle secondary-active class for styling
+            card.classList.toggle('secondary-active');
 
             // Update active labels
             toggleLabels[0].classList.toggle('zolo-toggle-active');

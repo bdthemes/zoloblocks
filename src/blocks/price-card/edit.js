@@ -86,7 +86,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className="zolo-pricing-card">
+                <div className={`zolo-pricing-card ${isSecondary ? 'secondary-active' : ''}`}>
                     <div className="zolo-pricing-inner">
                         <div className="zolo-toggle-wrap">
                             <div className={`zolo-toggle-label ${!isSecondary ? 'zolo-toggle-active' : ''}`}>{primaryTitle}</div>
@@ -108,7 +108,7 @@ export default function Edit(props) {
                                         {currentContent.originalPrice}
                                     </small>
                                 )}
-                                {currentContent.prefix && <small>{currentContent.prefix}</small>}
+                                {currentContent.prefix && <small className="zolo-prefix">{currentContent.prefix}</small>}
                                 <span className="zolo-price-value">{currentContent.price}</span>
                                 {currentContent.suffix && <small className="zolo-price-period">{currentContent.suffix}</small>}
                             </p>

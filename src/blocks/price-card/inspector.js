@@ -12,23 +12,19 @@ const {
     ZoloToggleControl,
     ZoloCardDivider,
     ZoloTextControl,
-    ResRangeControl,
     ColorControl,
     BorderControl,
     ResDimensionsControl,
     TypographyDropdown,
-    TextShadowControl,
-    ZoloIconPicker,
     BoxShadowControl,
     HeaderTabs,
     NormalBGControl,
     AdvancedOptions,
     ResAlignmentControl,
     ZoloPanelBody,
-    TabPanelControl,
     LinkControl,
-    IconicBtnGroup,
     ZoloSelectControl,
+    TabPanelControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -43,33 +39,33 @@ import {
     CARD_BORDER,
     CARD_SHADOW,
     CARD_RADIUS,
-    PRIMARY_TEXT_BG,
-    PRIMARY_TEXT_PADDING,
-    PRIMARY_TEXT_MARGIN,
-    PRIMARY_TEXT_BORDER,
-    PRIMARY_TEXT_RADIUS,
-    PRIMARY_TEXT_SHADOW,
-    SECONDARY_TEXT_BG,
-    SECONDARY_TEXT_PADDING,
-    SECONDARY_TEXT_MARGIN,
-    SECONDARY_TEXT_BORDER,
-    SECONDARY_TEXT_RADIUS,
-    SECONDARY_TEXT_SHADOW,
-    PRIMARY_TITLE_BG,
-    PRIMARY_TITLE_PADDING,
-    PRIMARY_TITLE_MARGIN,
-    PRIMARY_TITLE_BORDER,
-    PRIMARY_TITLE_RADIUS,
-    PRIMARY_TITLE_SHADOW,
-    SECONDARY_TITLE_BG,
-    SECONDARY_TITLE_PADDING,
-    SECONDARY_TITLE_MARGIN,
-    SECONDARY_TITLE_BORDER,
-    SECONDARY_TITLE_RADIUS,
-    SECONDARY_TITLE_SHADOW,
+    BUTTON_BG,
+    BUTTON_PADDING,
+    BUTTON_BORDER,
+    BUTTON_SHADOW,
+    BUTTON_RADIUS,
+    HOVER_BUTTON_BG,
+    HOVER_BUTTON_SHADOW,
 } from './constants';
 
-import { PRIMARY_TEXT_TYPO, SECONDARY_TEXT_TYPO, PRIMARY_TITLE_TYPO, SECONDARY_TITLE_TYPO } from './constants/typoPrefixConstant';
+import {
+    PRIMARY_TOOGLE_TYPO,
+    PRIMARY_BEFORE_TYPO,
+    PRIMARY_PREFIX_TYPO,
+    PRIMARY_PRICE_TYPO,
+    PRIMARY_SUFFIX_TYPO,
+    PRIMARY_DES_TYPO,
+    PRIMARY_ORIGINAL_PRICE_TYPO,
+    PRIMARY_FOOTER_TYPO,
+    BUTTON_TYPO,
+    SECONDARY_TOOGLE_TYPO,
+    SECONDARY_BEFORE_TYPO,
+    SECONDARY_PREFIX_TYPO,
+    SECONDARY_PRICE_TYPO,
+    SECONDARY_SUFFIX_TYPO,
+    SECONDARY_DES_TYPO,
+    SECONDARY_FOOTER_TYPO,
+} from './constants/typoPrefixConstant';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -101,6 +97,26 @@ function Inspector(props) {
         buttonLink,
         primaryFooterText,
         secondaryFooterText,
+        //Primary
+        primaryToggleTextColor,
+        primaryBeforeTitleColor,
+        primaryPrefixColor,
+        primaryPriceColor,
+        primarySuffixColor,
+        primaryDescriptionColor,
+        primaryOriginalPriceColor,
+        primaryFooterTextColor,
+        //Secondary
+        secondaryToggleTextColor,
+        secondaryBeforeTitleColor,
+        secondaryPrefixColor,
+        secondaryPriceColor,
+        secondarySuffixColor,
+        secondaryDescriptionColor,
+        secondaryFooterTextColor,
+        //Button
+        buttonColor,
+        hoverButtonColor,
     } = attributes;
 
     const requiredProps = {
@@ -263,7 +279,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Card', 'zoloblocks')} panelProps={requiredProps}>
+                        <ZoloPanelBody title={__('Card', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
                             <NormalBGControl label={__('Background', 'zoloblocks')} controlName={CARD_BG} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
@@ -287,6 +303,265 @@ function Inspector(props) {
                                 controlName={CARD_RADIUS}
                                 requiredProps={requiredProps}
                                 forBorderRadius={true}
+                            />
+                        </ZoloPanelBody>
+                        <ZoloPanelBody title={__('Price', 'zoloblocks')} panelProps={requiredProps}>
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('Toggle Text', 'zoloblocks')}
+                            </div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={primaryToggleTextColor}
+                                onChange={(value) => setAttributes({ primaryToggleTextColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={PRIMARY_TOOGLE_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Before Title', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={primaryBeforeTitleColor}
+                                onChange={(value) => setAttributes({ primaryBeforeTitleColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={PRIMARY_BEFORE_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Prefix', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={primaryPrefixColor}
+                                onChange={(value) => setAttributes({ primaryPrefixColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={PRIMARY_PREFIX_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Price', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={primaryPriceColor}
+                                onChange={(value) => setAttributes({ primaryPriceColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={PRIMARY_PRICE_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Suffix', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={primarySuffixColor}
+                                onChange={(value) => setAttributes({ primarySuffixColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={PRIMARY_SUFFIX_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Description', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={primaryDescriptionColor}
+                                onChange={(value) => setAttributes({ primaryDescriptionColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={PRIMARY_DES_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            {primaryOriginalPrice && (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Original Price', 'zoloblocks')}</div>
+                                    <ColorControl
+                                        label={__('Color', 'zoloblocks')}
+                                        color={primaryOriginalPriceColor}
+                                        onChange={(value) => setAttributes({ primaryOriginalPriceColor: value })}
+                                    />
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zoloblocks')}
+                                        typoPrefixConstant={PRIMARY_ORIGINAL_PRICE_TYPO}
+                                        requiredProps={requiredProps}
+                                    />
+                                </>
+                            )}
+
+                            <div className="zolo-custom-heading">{__('Footer Text', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={primaryFooterTextColor}
+                                onChange={(value) => setAttributes({ primaryFooterTextColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={PRIMARY_FOOTER_TYPO}
+                                requiredProps={requiredProps}
+                            />
+                        </ZoloPanelBody>
+
+                        {/* <ZoloPanelBody title={__('Secondary', 'zoloblocks')} panelProps={requiredProps}>
+                            <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                {__('Toggle Text', 'zoloblocks')}
+                            </div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={secondaryToggleTextColor}
+                                onChange={(value) => setAttributes({ secondaryToggleTextColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={SECONDARY_TOOGLE_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Before Title', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={secondaryBeforeTitleColor}
+                                onChange={(value) => setAttributes({ secondaryBeforeTitleColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={SECONDARY_BEFORE_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Prefix', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={secondaryPrefixColor}
+                                onChange={(value) => setAttributes({ secondaryPrefixColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={SECONDARY_PREFIX_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Price', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={secondaryPriceColor}
+                                onChange={(value) => setAttributes({ secondaryPriceColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={SECONDARY_PRICE_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Suffix', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={secondarySuffixColor}
+                                onChange={(value) => setAttributes({ secondarySuffixColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={SECONDARY_SUFFIX_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Description', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={secondaryDescriptionColor}
+                                onChange={(value) => setAttributes({ secondaryDescriptionColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={SECONDARY_DES_TYPO}
+                                requiredProps={requiredProps}
+                            />
+
+                            <div className="zolo-custom-heading">{__('Footer Text', 'zoloblocks')}</div>
+                            <ColorControl
+                                label={__('Color', 'zoloblocks')}
+                                color={secondaryFooterTextColor}
+                                onChange={(value) => setAttributes({ secondaryFooterTextColor: value })}
+                            />
+                            <TypographyDropdown
+                                label={__('Typography', 'zoloblocks')}
+                                typoPrefixConstant={SECONDARY_FOOTER_TYPO}
+                                requiredProps={requiredProps}
+                            />
+                        </ZoloPanelBody> */}
+
+                        <ZoloPanelBody title={__('Button', 'zoloblocks')} panelProps={requiredProps}>
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={buttonColor}
+                                            onChange={(value) => setAttributes({ buttonColor: value })}
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={BUTTON_TYPO}
+                                            requiredProps={requiredProps}
+                                        />
+
+                                        <ZoloCardDivider />
+
+                                        <NormalBGControl
+                                            label={__('Background', 'zoloblocks')}
+                                            controlName={BUTTON_BG}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            controlName={BUTTON_PADDING}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ZoloCardDivider />
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={BUTTON_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+
+                                        <BoxShadowControl
+                                            label={__('Box Shadow', 'zoloblocks')}
+                                            controlName={BUTTON_SHADOW}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={BUTTON_RADIUS}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={hoverButtonColor}
+                                            onChange={(value) => setAttributes({ hoverButtonColor: value })}
+                                        />
+                                        <NormalBGControl
+                                            label={__('Background', 'zoloblocks')}
+                                            controlName={HOVER_BUTTON_BG}
+                                            requiredProps={requiredProps}
+                                        />
+                                        <BoxShadowControl
+                                            label={__('Box Shadow', 'zoloblocks')}
+                                            controlName={HOVER_BUTTON_SHADOW}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
                             />
                         </ZoloPanelBody>
                     </>

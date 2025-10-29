@@ -25,30 +25,19 @@ export const CARD_BORDER = 'cardBorder';
 export const CARD_SHADOW = 'cardShadow';
 export const CARD_RADIUS = 'cardRadius';
 
-export const PRIMARY_TEXT_BG = 'primaryTextBg';
-export const PRIMARY_TEXT_SHADOW = 'primaryTextShadow';
-export const PRIMARY_TEXT_PADDING = 'primaryTextPadding';
-export const PRIMARY_TEXT_MARGIN = 'primaryTextMargin';
-export const PRIMARY_TEXT_BORDER = 'primaryTextBorder';
-export const PRIMARY_TEXT_RADIUS = 'primaryTextRadius';
+export const BUTTON_BG = 'buttonBg';
+export const BUTTON_PADDING = 'buttonPadding';
+export const BUTTON_BORDER = 'buttonBorder';
+export const BUTTON_SHADOW = 'buttonShadow';
+export const BUTTON_RADIUS = 'buttonRadius';
 
-export const SECONDARY_TEXT_BG = 'secondaryTextBg';
-export const SECONDARY_TEXT_SHADOW = 'secondaryTextShadow';
-export const SECONDARY_TEXT_PADDING = 'secondaryTextPadding';
-export const SECONDARY_TEXT_MARGIN = 'secondaryTextMargin';
-export const SECONDARY_TEXT_BORDER = 'secondaryTextBorder';
-export const SECONDARY_TEXT_RADIUS = 'secondaryTextRadius';
+export const HOVER_BUTTON_BG = 'hoverButtonBg';
+export const HOVER_BUTTON_SHADOW = 'hoverButtonShadow';
 
-export const PRIMARY_TITLE_BG = 'primaryTitleBg';
-export const PRIMARY_TITLE_SHADOW = 'primaryTitleShadow';
-export const PRIMARY_TITLE_PADDING = 'primaryTitlePadding';
-export const PRIMARY_TITLE_MARGIN = 'primaryTitleMargin';
-export const PRIMARY_TITLE_BORDER = 'primaryTitleBorder';
-export const PRIMARY_TITLE_RADIUS = 'primaryTitleRadius';
 
-export const SECONDARY_TITLE_BG = 'secondaryTitleBg';
-export const SECONDARY_TITLE_SHADOW = 'secondaryTitleShadow';
-export const SECONDARY_TITLE_PADDING = 'secondaryTitlePadding';
-export const SECONDARY_TITLE_MARGIN = 'secondaryTitleMargin';
-export const SECONDARY_TITLE_BORDER = 'secondaryTitleBorder';
-export const SECONDARY_TITLE_RADIUS = 'secondaryTitleRadius';
+
+
+
+
+
+

@@ -9,7 +9,23 @@ const {
     generateTextShadowAttributies,
 } = window.zoloModule;
 
-import { PRICE_CART, PRICE_CART_ALIGN, CARD_BG, CARD_MARGIN, CARD_PADDING, CARD_BORDER, CARD_SHADOW, CARD_RADIUS } from './constants';
+import {
+    PRICE_CART,
+    PRICE_CART_ALIGN,
+    CARD_BG,
+    CARD_MARGIN,
+    CARD_PADDING,
+    CARD_BORDER,
+    CARD_SHADOW,
+    CARD_RADIUS,
+    BUTTON_BG,
+    BUTTON_PADDING,
+    BUTTON_BORDER,
+    BUTTON_SHADOW,
+    BUTTON_RADIUS,
+    HOVER_BUTTON_BG,
+    HOVER_BUTTON_SHADOW,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -141,6 +157,74 @@ const attributes = {
         type: 'string',
         default: 'One-time payment, lifetime access.',
     },
+    primaryToggleTextColor: {
+        type: 'string',
+        default: '',
+    },
+    primaryBeforeTitleColor: {
+        type: 'string',
+        default: '',
+    },
+    primaryPrefixColor: {
+        type: 'string',
+        default: '',
+    },
+    primaryPriceColor: {
+        type: 'string',
+        default: '',
+    },
+    primarySuffixColor: {
+        type: 'string',
+        default: '',
+    },
+    primaryDescriptionColor: {
+        type: 'string',
+        default: '',
+    },
+    primaryOriginalPriceColor: {
+        type: 'string',
+        default: '',
+    },
+    primaryFooterTextColor: {
+        type: 'string',
+        default: '',
+    },
+    secondaryToggleTextColor: {
+        type: 'string',
+        default: '',
+    },
+    secondaryBeforeTitleColor: {
+        type: 'string',
+        default: '',
+    },
+    secondaryPrefixColor: {
+        type: 'string',
+        default: '',
+    },
+    secondaryPriceColor: {
+        type: 'string',
+        default: '',
+    },
+    secondarySuffixColor: {
+        type: 'string',
+        default: '',
+    },
+    secondaryDescriptionColor: {
+        type: 'string',
+        default: '',
+    },
+    secondaryFooterTextColor: {
+        type: 'string',
+        default: '',
+    },
+    buttonColor: {
+        type: 'string',
+        default: '',
+    },
+    hoverButtonColor: {
+        type: 'string',
+        default: '',
+    },
 
     ...generateResAlignmentAttributies(PRICE_CART),
     ...generateResRangeAttributies(PRICE_CART_ALIGN),
@@ -152,6 +236,14 @@ const attributes = {
     ...generateDimensionAttributes(CARD_RADIUS),
 
     ...generateTypographyAttributes(Object.values(typographyObjs)),
+
+    ...generateNormalBGAttributes(BUTTON_BG),
+    ...generateDimensionAttributes(BUTTON_PADDING),
+    ...generateBorderAttributies(BUTTON_BORDER),
+    ...generateBoxShadowAttributies(BUTTON_SHADOW),
+    ...generateDimensionAttributes(BUTTON_RADIUS),
+    ...generateNormalBGAttributes(HOVER_BUTTON_BG),
+    ...generateBoxShadowAttributies(HOVER_BUTTON_SHADOW),
 };
 
 export default attributes;

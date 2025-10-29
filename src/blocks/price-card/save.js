@@ -24,6 +24,8 @@ const Save = (props) => {
         secondaryShowOriginalPrice,
         secondaryOriginalPrice,
         secondaryDescription,
+        primaryFooterText,
+        secondaryFooterText,
         // Common Button
         buttonText,
         buttonLink,
@@ -45,6 +47,7 @@ const Save = (props) => {
                 data-primary-show-original={primaryShowOriginalPrice}
                 data-primary-original-price={primaryOriginalPrice}
                 data-primary-description={primaryDescription}
+                data-primary-footer-text={primaryFooterText}
                 data-secondary-price-title={secondaryPriceTitle}
                 data-secondary-prefix={secondaryPrefix}
                 data-secondary-price={secondaryPrice}
@@ -52,6 +55,7 @@ const Save = (props) => {
                 data-secondary-show-original={secondaryShowOriginalPrice}
                 data-secondary-original-price={secondaryOriginalPrice}
                 data-secondary-description={secondaryDescription}
+                data-secondary-footer-text={secondaryFooterText}
             >
                 <div className="zolo-pricing-inner">
                     <div className="zolo-toggle-wrap">
@@ -79,7 +83,7 @@ const Save = (props) => {
                     <a className="zolo-cta zolo-button" href={buttonLink?.url || '#'}>
                         {buttonText}
                     </a>
-                    <div className="zolo-note">Billed yearly. Cancel anytime.</div>
+                    <div className="zolo-note">{primaryFooterText}</div>
                 </div>
             </div>
         </div>
