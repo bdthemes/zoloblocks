@@ -3,6 +3,10 @@
  */
 import { __ } from '@wordpress/i18n';
 
+export const SWITCH_SPACE = 'switchSpace';
+export const SWITCH_WIDTH = 'switchWidth';
+export const SWITCH_HEIGHT = 'switchHeight';
+
 export const PRICE_CART = 'price-cart';
 export const PRICE_CART_ALIGN = 'priceCartAlign';
 

@@ -114,7 +114,12 @@ export default function Edit(props) {
                             </p>
                         </div>
                         <div className="zolo-subtext">{currentContent.description}</div>
-                        <a className="zolo-cta zolo-button" href={buttonLink?.url || '#'}>
+                        <a
+                            className="zolo-cta zolo-button"
+                            href={buttonLink?.url || '#'}
+                            target={buttonLink?.newTab ? '_blank' : '_self'}
+                            rel={buttonLink?.newTab ? 'noopener noreferrer' : ''}
+                        >
                             {buttonText}
                         </a>
                         <div className="zolo-note">{currentContent.footerText}</div>

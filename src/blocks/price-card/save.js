@@ -80,7 +80,12 @@ const Save = (props) => {
                         </p>
                     </div>
                     <div className="zolo-subtext zolo-description">{primaryDescription}</div>
-                    <a className="zolo-cta zolo-button" href={buttonLink?.url || '#'}>
+                    <a
+                        className="zolo-cta zolo-button"
+                        href={buttonLink?.url || '#'}
+                        target={buttonLink?.newTab ? '_blank' : '_self'}
+                        rel={buttonLink?.newTab ? 'noopener noreferrer' : ''}
+                    >
                         {buttonText}
                     </a>
                     <div className="zolo-note">{primaryFooterText}</div>

@@ -25,12 +25,15 @@ const {
     LinkControl,
     ZoloSelectControl,
     TabPanelControl,
+    ResRangeControl,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
 
 import {
-    PRICE_CART,
+    SWITCH_SPACE,
+    SWITCH_WIDTH,
+    SWITCH_HEIGHT,
     PRICE_CART_ALIGN,
     TOGGLE_STYLE,
     CARD_BG,
@@ -58,13 +61,6 @@ import {
     PRIMARY_ORIGINAL_PRICE_TYPO,
     PRIMARY_FOOTER_TYPO,
     BUTTON_TYPO,
-    SECONDARY_TOOGLE_TYPO,
-    SECONDARY_BEFORE_TYPO,
-    SECONDARY_PREFIX_TYPO,
-    SECONDARY_PRICE_TYPO,
-    SECONDARY_SUFFIX_TYPO,
-    SECONDARY_DES_TYPO,
-    SECONDARY_FOOTER_TYPO,
 } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
@@ -106,14 +102,6 @@ function Inspector(props) {
         primaryDescriptionColor,
         primaryOriginalPriceColor,
         primaryFooterTextColor,
-        //Secondary
-        secondaryToggleTextColor,
-        secondaryBeforeTitleColor,
-        secondaryPrefixColor,
-        secondaryPriceColor,
-        secondarySuffixColor,
-        secondaryDescriptionColor,
-        secondaryFooterTextColor,
         //Button
         buttonColor,
         hoverButtonColor,
@@ -145,7 +133,7 @@ function Inspector(props) {
                                 ]}
                             />
                             <ZoloSelectControl
-                                label={__('Toggle Style', 'zoloblocks')}
+                                label={__('Switch Style', 'zoloblocks')}
                                 value={toggleStyle}
                                 onChange={(value) => setAttributes({ toggleStyle: value })}
                                 options={TOGGLE_STYLE}
@@ -279,6 +267,26 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
+                        <ZoloPanelBody title={__('Switch', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
+                            <ResRangeControl
+                                label={__('Width', 'zoloblocks')}
+                                controlName={SWITCH_WIDTH}
+                                requiredProps={requiredProps}
+                                max={100}
+                            />
+                            <ResRangeControl
+                                label={__('Height', 'zoloblocks')}
+                                controlName={SWITCH_HEIGHT}
+                                requiredProps={requiredProps}
+                                max={100}
+                            />
+                            <ResRangeControl
+                                label={__('Space Between', 'zoloblocks')}
+                                controlName={SWITCH_SPACE}
+                                requiredProps={requiredProps}
+                                max={100}
+                            />
+                        </ZoloPanelBody>
                         <ZoloPanelBody title={__('Card', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
                             <NormalBGControl label={__('Background', 'zoloblocks')} controlName={CARD_BG} requiredProps={requiredProps} />
                             <ResDimensionsControl
