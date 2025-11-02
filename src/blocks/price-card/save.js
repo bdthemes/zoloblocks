@@ -61,12 +61,12 @@ const Save = (props) => {
             >
                 {ribbonToggle && ribbonText && (
                     <div className="zolo-ribbon">
-                        <span className="zolo-ribbon-text">{ribbonText}</span>
+                        <span className="zolo-ribbon-text">{sanitizeText(ribbonText)}</span>
                     </div>
                 )}
                 <div className="zolo-pricing-inner">
                     <div className="zolo-toggle-wrap">
-                        <div className="zolo-toggle-label zolo-toggle-active">{primaryTitle}</div>
+                        <div className="zolo-toggle-label zolo-toggle-active">{sanitizeText(primaryTitle)}</div>
                         <button className={`zolo-switch zolo-switch-${toggleStyle}`}>
                             <span className="zolo-knob" />
                         </button>
@@ -77,25 +77,25 @@ const Save = (props) => {
                         <p className="zolo-price">
                             {primaryShowOriginalPrice && primaryOriginalPrice && (
                                 <small className="zolo-price-original zolo-original-value">
-                                    {primaryPrefix}
-                                    {primaryOriginalPrice}
+                                    {sanitizeText(primaryPrefix)}
+                                    {sanitizeText(primaryOriginalPrice)}
                                 </small>
                             )}
-                            {primaryPrefix && <small className="zolo-prefix">{primaryPrefix}</small>}
-                            <span className="zolo-price-value">{primaryPrice}</span>
-                            {primarySuffix && <small className="zolo-price-period zolo-suffix">{primarySuffix}</small>}
+                            {primaryPrefix && <small className="zolo-prefix">{sanitizeText(primaryPrefix)}</small>}
+                            <span className="zolo-price-value">{sanitizeText(primaryPrice)}</span>
+                            {primarySuffix && <small className="zolo-price-period zolo-suffix">{sanitizeText(primarySuffix)}</small>}
                         </p>
                     </div>
-                    <div className="zolo-subtext zolo-description">{primaryDescription}</div>
+                    <div className="zolo-subtext zolo-description">{sanitizeText(primaryDescription)}</div>
                     <a
                         className="zolo-cta zolo-button"
                         href={buttonLink?.url || '#'}
                         target={buttonLink?.newTab ? '_blank' : '_self'}
                         rel={buttonLink?.newTab ? 'noopener noreferrer' : ''}
                     >
-                        {buttonText}
+                        {sanitizeText(buttonText)}
                     </a>
-                    <div className="zolo-note">{primaryFooterText}</div>
+                    <div className="zolo-note">{sanitizeText(primaryFooterText)}</div>
                 </div>
             </div>
         </div>

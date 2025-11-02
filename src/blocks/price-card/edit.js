@@ -91,12 +91,12 @@ export default function Edit(props) {
                 <div className={`zolo-pricing-card ${isSecondary ? 'secondary-active' : ''}`}>
                     {ribbonToggle && ribbonText && (
                         <div className="zolo-ribbon">
-                            <span className="zolo-ribbon-text">{ribbonText}</span>
+                            <span className="zolo-ribbon-text">{sanitizeText(ribbonText)}</span>
                         </div>
                     )}
                     <div className="zolo-pricing-inner">
                         <div className="zolo-toggle-wrap">
-                            <div className={`zolo-toggle-label ${!isSecondary ? 'zolo-toggle-active' : ''}`}>{primaryTitle}</div>
+                            <div className={`zolo-toggle-label ${!isSecondary ? 'zolo-toggle-active' : ''}`}>{sanitizeText(primaryTitle)}</div>
                             <button
                                 className={`zolo-switch zolo-switch-${toggleStyle} ${isSecondary ? 'on' : ''}`}
                                 onClick={handleToggle}
@@ -104,9 +104,9 @@ export default function Edit(props) {
                             >
                                 <span className="zolo-knob" />
                             </button>
-                            <div className={`zolo-toggle-label ${isSecondary ? 'zolo-toggle-active' : ''}`}>{secondaryTitle}</div>
+                            <div className={`zolo-toggle-label ${isSecondary ? 'zolo-toggle-active' : ''}`}>{sanitizeText(secondaryTitle)}</div>
                         </div>
-                        <div className="zolo-starting">{currentContent.priceTitle}</div>
+                        <div className="zolo-starting">{sanitizeText(currentContent.priceTitle)}</div>
                         <div className="zolo-price-wrap">
                             <p className="zolo-price">
                                 {currentContent.showOriginalPrice && currentContent.originalPrice && (
@@ -120,16 +120,16 @@ export default function Edit(props) {
                                 {currentContent.suffix && <small className="zolo-price-period">{currentContent.suffix}</small>}
                             </p>
                         </div>
-                        <div className="zolo-subtext">{currentContent.description}</div>
+                        <div className="zolo-subtext">{sanitizeText(currentContent.description)}</div>
                         <a
                             className="zolo-cta zolo-button"
                             href={buttonLink?.url || '#'}
                             target={buttonLink?.newTab ? '_blank' : '_self'}
                             rel={buttonLink?.newTab ? 'noopener noreferrer' : ''}
                         >
-                            {buttonText}
+                            {sanitizeText(buttonText)}
                         </a>
-                        <div className="zolo-note">{currentContent.footerText}</div>
+                        <div className="zolo-note">{sanitizeText(currentContent.footerText)}</div>
                     </div>
                 </div>
             </div>
