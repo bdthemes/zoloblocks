@@ -8,6 +8,8 @@ const Save = (props) => {
         uniqueId,
         parentClasses,
         toggleStyle,
+        ribbonToggle,
+        ribbonText,
         primaryTitle,
         secondaryTitle,
         primaryPriceTitle,
@@ -57,6 +59,11 @@ const Save = (props) => {
                 data-secondary-description={secondaryDescription}
                 data-secondary-footer-text={secondaryFooterText}
             >
+                {ribbonToggle && ribbonText && (
+                    <div className="zolo-ribbon">
+                        <span className="zolo-ribbon-text">{ribbonText}</span>
+                    </div>
+                )}
                 <div className="zolo-pricing-inner">
                     <div className="zolo-toggle-wrap">
                         <div className="zolo-toggle-label zolo-toggle-active">{primaryTitle}</div>

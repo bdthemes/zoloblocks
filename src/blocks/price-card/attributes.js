@@ -25,6 +25,16 @@ import {
     BUTTON_RADIUS,
     HOVER_BUTTON_BG,
     HOVER_BUTTON_SHADOW,
+    RIBBON_BG,
+    RIBBON_PADDING,
+    RIBBON_BORDER,
+    RIBBON_SHADOW,
+    RIBBON_RADIUS,
+    SWITCH_WIDTH,
+    SWITCH_HEIGHT,
+    SWITCH_BORDER_RADIUS,
+    SWITCH_BG,
+    ACTIVE_SWITCH_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -66,6 +76,22 @@ const attributes = {
     ribbonToggle: {
         type: 'boolean',
         default: false,
+    },
+    ribbonText: {
+        type: 'string',
+        default: 'Popular',
+    },
+    ribbonColor: {
+        type: 'string',
+        default: '',
+    },
+    switchColor: {
+        type: 'string',
+        default: '',
+    },
+    activeSwitchColor: {
+        type: 'string',
+        default: '',
     },
     buttonToggle: {
         type: 'boolean',
@@ -244,6 +270,18 @@ const attributes = {
     ...generateDimensionAttributes(BUTTON_RADIUS),
     ...generateNormalBGAttributes(HOVER_BUTTON_BG),
     ...generateBoxShadowAttributies(HOVER_BUTTON_SHADOW),
+
+    ...generateNormalBGAttributes(RIBBON_BG),
+    ...generateDimensionAttributes(RIBBON_PADDING),
+    ...generateBorderAttributies(RIBBON_BORDER),
+    ...generateBoxShadowAttributies(RIBBON_SHADOW),
+    ...generateDimensionAttributes(RIBBON_RADIUS),
+
+    ...generateResRangeAttributies(SWITCH_WIDTH),
+    ...generateResRangeAttributies(SWITCH_HEIGHT),
+    ...generateDimensionAttributes(SWITCH_BORDER_RADIUS),
+    ...generateNormalBGAttributes(SWITCH_BG),
+    ...generateNormalBGAttributes(ACTIVE_SWITCH_BG),
 };
 
 export default attributes;

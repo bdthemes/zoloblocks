@@ -24,6 +24,28 @@
     backdrop-filter: blur(6px);
 }
 
+/* ribbon badge */
+.zolo-ribbon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 6px 16px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.zolo-ribbon-text {
+    display: block;
+    font-size: 8px;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
 /* decorative purple gradient blur shapes */
 .zolo-pricing-card::before,
 .zolo-pricing-card::after {

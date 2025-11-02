@@ -34,6 +34,7 @@ import {
     SWITCH_SPACE,
     SWITCH_WIDTH,
     SWITCH_HEIGHT,
+    SWITCH_BORDER_RADIUS,
     PRICE_CART_ALIGN,
     TOGGLE_STYLE,
     CARD_BG,
@@ -49,6 +50,13 @@ import {
     BUTTON_RADIUS,
     HOVER_BUTTON_BG,
     HOVER_BUTTON_SHADOW,
+    RIBBON_BG,
+    RIBBON_PADDING,
+    RIBBON_BORDER,
+    RIBBON_SHADOW,
+    RIBBON_RADIUS,
+    SWITCH_BG,
+    ACTIVE_SWITCH_BG,
 } from './constants';
 
 import {
@@ -61,6 +69,7 @@ import {
     PRIMARY_ORIGINAL_PRICE_TYPO,
     PRIMARY_FOOTER_TYPO,
     BUTTON_TYPO,
+    RIBBON_TYPO,
 } from './constants/typoPrefixConstant';
 
 function Inspector(props) {
@@ -70,6 +79,10 @@ function Inspector(props) {
         preset,
         toggleStyle,
         ribbonToggle,
+        ribbonText,
+        ribbonColor,
+        switchColor,
+        activeSwitchColor,
         primaryTitle,
         secondaryTitle,
         // Primary
@@ -144,6 +157,13 @@ function Inspector(props) {
                                 checked={ribbonToggle}
                                 onChange={(value) => setAttributes({ ribbonToggle: value })}
                             />
+                            {ribbonToggle && (
+                                <ZoloTextControl
+                                    label={__('Ribbon Text', 'zoloblocks')}
+                                    value={ribbonText}
+                                    onChange={(value) => setAttributes({ ribbonText: value })}
+                                />
+                            )}
 
                             <ResAlignmentControl
                                 label={__('Alignment', 'zoloblocks')}
@@ -267,27 +287,63 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Switch', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
+                        <ZoloPanelBody title={__('Switcher', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
                             <ResRangeControl
                                 label={__('Width', 'zoloblocks')}
                                 controlName={SWITCH_WIDTH}
                                 requiredProps={requiredProps}
-                                max={100}
+                                min={30}
+                                max={200}
+                                units={['px', '%']}
                             />
                             <ResRangeControl
                                 label={__('Height', 'zoloblocks')}
                                 controlName={SWITCH_HEIGHT}
                                 requiredProps={requiredProps}
+                                min={20}
                                 max={100}
+                                units={['px']}
                             />
-                            <ResRangeControl
-                                label={__('Space Between', 'zoloblocks')}
-                                controlName={SWITCH_SPACE}
+                            <ResDimensionsControl
+                                label={__('Border Radius', 'zoloblocks')}
+                                controlName={SWITCH_BORDER_RADIUS}
                                 requiredProps={requiredProps}
-                                max={100}
+                                forBorderRadius={true}
+                            />
+                            <ZoloCardDivider />
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={switchColor}
+                                            onChange={(value) => setAttributes({ switchColor: value })}
+                                        />
+                                        <NormalBGControl
+                                            label={__('Background', 'zoloblocks')}
+                                            controlName={SWITCH_BG}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={activeSwitchColor}
+                                            onChange={(value) => setAttributes({ activeSwitchColor: value })}
+                                        />
+                                        <NormalBGControl
+                                            label={__('Background', 'zoloblocks')}
+                                            controlName={ACTIVE_SWITCH_BG}
+                                            requiredProps={requiredProps}
+                                        />
+                                    </>
+                                }
                             />
                         </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Card', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
+
+                        <ZoloPanelBody title={__('Card', 'zoloblocks')} panelProps={requiredProps}>
                             <NormalBGControl label={__('Background', 'zoloblocks')} controlName={CARD_BG} requiredProps={requiredProps} />
                             <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
@@ -416,7 +472,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                             />
                         </ZoloPanelBody>
-
                         {/* <ZoloPanelBody title={__('Secondary', 'zoloblocks')} panelProps={requiredProps}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
                                 {__('Toggle Text', 'zoloblocks')}
@@ -504,7 +559,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                             />
                         </ZoloPanelBody> */}
-
                         <ZoloPanelBody title={__('Button', 'zoloblocks')} panelProps={requiredProps}>
                             <TabPanelControl
                                 normalComponents={
@@ -572,6 +626,48 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
+                        {ribbonToggle && (
+                            <ZoloPanelBody title={__('Ribbon', 'zoloblocks')} panelProps={requiredProps}>
+                                <ColorControl
+                                    label={__('Text Color', 'zoloblocks')}
+                                    color={ribbonColor}
+                                    onChange={(value) => setAttributes({ ribbonColor: value })}
+                                />
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={RIBBON_TYPO}
+                                    requiredProps={requiredProps}
+                                />
+                                <ZoloCardDivider />
+                                <NormalBGControl
+                                    label={__('Background', 'zoloblocks')}
+                                    controlName={RIBBON_BG}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={RIBBON_PADDING}
+                                    requiredProps={requiredProps}
+                                />
+                                <ZoloCardDivider />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={RIBBON_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <BoxShadowControl
+                                    label={__('Box Shadow', 'zoloblocks')}
+                                    controlName={RIBBON_SHADOW}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={RIBBON_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                />
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 advancedTab={

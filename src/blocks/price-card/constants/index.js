@@ -6,6 +6,7 @@ import { __ } from '@wordpress/i18n';
 export const SWITCH_SPACE = 'switchSpace';
 export const SWITCH_WIDTH = 'switchWidth';
 export const SWITCH_HEIGHT = 'switchHeight';
+export const SWITCH_BORDER_RADIUS = 'switchBorderRadius';
 
 export const PRICE_CART = 'price-cart';
 export const PRICE_CART_ALIGN = 'priceCartAlign';
@@ -37,6 +38,15 @@ export const BUTTON_RADIUS = 'buttonRadius';
 
 export const HOVER_BUTTON_BG = 'hoverButtonBg';
 export const HOVER_BUTTON_SHADOW = 'hoverButtonShadow';
+
+export const RIBBON_BG = 'ribbonBg';
+export const RIBBON_PADDING = 'ribbonPadding';
+export const RIBBON_BORDER = 'ribbonBorder';
+export const RIBBON_SHADOW = 'ribbonShadow';
+export const RIBBON_RADIUS = 'ribbonRadius';
+
+export const SWITCH_BG = 'switchBg';
+export const ACTIVE_SWITCH_BG = 'activeSwitchBg';
 
 
 

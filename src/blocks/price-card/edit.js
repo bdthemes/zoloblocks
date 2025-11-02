@@ -21,6 +21,8 @@ export default function Edit(props) {
         uniqueId,
         parentClasses,
         toggleStyle,
+        ribbonToggle,
+        ribbonText,
         primaryTitle,
         secondaryTitle,
         // Primary
@@ -87,6 +89,11 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <div className={`zolo-pricing-card ${isSecondary ? 'secondary-active' : ''}`}>
+                    {ribbonToggle && ribbonText && (
+                        <div className="zolo-ribbon">
+                            <span className="zolo-ribbon-text">{ribbonText}</span>
+                        </div>
+                    )}
                     <div className="zolo-pricing-inner">
                         <div className="zolo-toggle-wrap">
                             <div className={`zolo-toggle-label ${!isSecondary ? 'zolo-toggle-active' : ''}`}>{primaryTitle}</div>

@@ -17,6 +17,7 @@ export const SECONDARY_DES_TYPO = 'secondaryDesTypo';
 export const SECONDARY_FOOTER_TYPO = 'secondaryFooterTypo';
 
 export const BUTTON_TYPO = 'buttonTypo';
+export const RIBBON_TYPO = 'ribbonTypo';
 
 
 

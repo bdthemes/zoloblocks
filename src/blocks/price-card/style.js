@@ -33,6 +33,16 @@ import {
     BUTTON_RADIUS,
     HOVER_BUTTON_BG,
     HOVER_BUTTON_SHADOW,
+    RIBBON_BG,
+    RIBBON_PADDING,
+    RIBBON_BORDER,
+    RIBBON_SHADOW,
+    RIBBON_RADIUS,
+    SWITCH_WIDTH,
+    SWITCH_HEIGHT,
+    SWITCH_BORDER_RADIUS,
+    SWITCH_BG,
+    ACTIVE_SWITCH_BG,
 } from './constants';
 
 import {
@@ -52,6 +62,7 @@ import {
     SECONDARY_DES_TYPO,
     SECONDARY_FOOTER_TYPO,
     BUTTON_TYPO,
+    RIBBON_TYPO,
 } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
@@ -59,28 +70,6 @@ const Style = ({ props }) => {
     const {
         uniqueId,
         preset,
-        toggleStyle,
-        ribbonToggle,
-        primaryTitle,
-        secondaryTitle,
-        primaryPriceTitle,
-        primaryPrefix,
-        primaryPrice,
-        primarySuffix,
-        primaryShowOriginalPrice,
-        primaryOriginalPrice,
-        primaryDescription,
-        secondaryPriceTitle,
-        secondaryPrefix,
-        secondaryPrice,
-        secondarySuffix,
-        secondaryShowOriginalPrice,
-        secondaryOriginalPrice,
-        secondaryDescription,
-        buttonText,
-        buttonLink,
-        primaryFooterText,
-        secondaryFooterText,
         primaryToggleTextColor,
         primaryBeforeTitleColor,
         primaryPrefixColor,
@@ -98,6 +87,9 @@ const Style = ({ props }) => {
         secondaryFooterTextColor,
         buttonColor,
         hoverButtonColor,
+        ribbonColor,
+        switchColor,
+        activeSwitchColor,
     } = attributes;
 
     const {
@@ -364,6 +356,106 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const {
+        rangeStylesDesktop: switchWidthDesk,
+        rangeStylesTab: switchWidthTab,
+        rangeStylesMobile: switchWidthMob,
+    } = generateResRangeStyle({
+        controlName: SWITCH_WIDTH,
+        property: 'width',
+        attributes,
+    });
+
+    const {
+        rangeStylesDesktop: switchHeightDesk,
+        rangeStylesTab: switchHeightTab,
+        rangeStylesMobile: switchHeightMob,
+    } = generateResRangeStyle({
+        controlName: SWITCH_HEIGHT,
+        property: 'height',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: switchRadiusDesk,
+        dimensionStylesTab: switchRadiusTab,
+        dimensionStylesMobile: switchRadiusMob,
+    } = generateDimensionStyle({
+        controlName: SWITCH_BORDER_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: switchBgDesk,
+        backgroundStylesTab: switchBgTab,
+        backgroundStylesMobile: switchBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: SWITCH_BG,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: activeSwitchBgDesk,
+        backgroundStylesTab: activeSwitchBgTab,
+        backgroundStylesMobile: activeSwitchBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: ACTIVE_SWITCH_BG,
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: ribbonTypoDesk,
+        typoStylesTab: ribbonTypoTab,
+        typoStylesMobile: ribbonTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: RIBBON_TYPO,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: ribbonBgDesk,
+        backgroundStylesTab: ribbonBgTab,
+        backgroundStylesMobile: ribbonBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: RIBBON_BG,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: ribbonPaddingDesk,
+        dimensionStylesTab: ribbonPaddingTab,
+        dimensionStylesMobile: ribbonPaddingMob,
+    } = generateDimensionStyle({
+        controlName: RIBBON_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: ribbonBorderDesk,
+        tabBorderStyle: ribbonBorderTab,
+        mobBorderStyle: ribbonBorderMob,
+    } = generateBorderStyle({
+        controlName: RIBBON_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: ribbonShadow } = generateBoxShadowStyles({
+        controlName: RIBBON_SHADOW,
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: ribbonRadiusDesk,
+        dimensionStylesTab: ribbonRadiusTab,
+        dimensionStylesMobile: ribbonRadiusMob,
+    } = generateDimensionStyle({
+        controlName: RIBBON_RADIUS,
+        styleFor: 'border-radius',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -451,6 +543,28 @@ const Style = ({ props }) => {
             ${secondaryFooterTypoDesk}
             color: ${secondaryFooterTextColor};
         }
+        .${uniqueId} .zolo-ribbon {
+            ${ribbonBgDesk}
+            ${ribbonPaddingDesk}
+            ${ribbonBorderDesk}
+            ${ribbonShadow}
+            ${ribbonRadiusDesk}
+        }
+        .${uniqueId} .zolo-ribbon .zolo-ribbon-text {
+            ${ribbonTypoDesk}
+            color: ${ribbonColor};
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"] {
+            ${switchWidthDesk}
+            ${switchHeightDesk}
+            ${switchRadiusDesk}
+            ${switchBgDesk}
+            color: ${switchColor};
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"].on {
+            ${activeSwitchBgDesk}
+            color: ${activeSwitchColor};
+        }
     `;
 
     const tabletAllStyle = `
@@ -517,6 +631,24 @@ const Style = ({ props }) => {
         .${uniqueId} .zolo-pricing-card.secondary-active .zolo-note {
             ${secondaryFooterTypoTab}
         }
+        .${uniqueId} .zolo-ribbon {
+            ${ribbonBgTab}
+            ${ribbonPaddingTab}
+            ${ribbonBorderTab}
+            ${ribbonRadiusTab}
+        }
+        .${uniqueId} .zolo-ribbon .zolo-ribbon-text {
+            ${ribbonTypoTab}
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"] {
+            ${switchWidthTab}
+            ${switchHeightTab}
+            ${switchRadiusTab}
+            ${switchBgTab}
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"].on {
+            ${activeSwitchBgTab}
+        }
     `;
 
     const mobileAllStyle = `
@@ -582,6 +714,24 @@ const Style = ({ props }) => {
         }
         .${uniqueId} .zolo-pricing-card.secondary-active .zolo-note {
             ${secondaryFooterTypoMob}
+        }
+        .${uniqueId} .zolo-ribbon {
+            ${ribbonBgMob}
+            ${ribbonPaddingMob}
+            ${ribbonBorderMob}
+            ${ribbonRadiusMob}
+        }
+        .${uniqueId} .zolo-ribbon .zolo-ribbon-text {
+            ${ribbonTypoMob}
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"] {
+            ${switchWidthMob}
+            ${switchHeightMob}
+            ${switchRadiusMob}
+            ${switchBgMob}
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"].on {
+            ${activeSwitchBgMob}
         }
     `;
 
