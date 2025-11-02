@@ -38,11 +38,11 @@ import {
     RIBBON_BORDER,
     RIBBON_SHADOW,
     RIBBON_RADIUS,
-    SWITCH_WIDTH,
-    SWITCH_HEIGHT,
-    SWITCH_BORDER_RADIUS,
-    SWITCH_BG,
-    ACTIVE_SWITCH_BG,
+    SWITCHER_WIDTH,
+    SWITCHER_HEIGHT,
+    SWITCHER_BORDER_RADIUS,
+    SWITCHER_BG,
+    ACTIVE_SWITCHER_BG,
 } from './constants';
 
 import {
@@ -109,6 +109,7 @@ const Style = ({ props }) => {
     } = generateNormalBGControlStyles({
         controlName: CARD_BG,
         attributes,
+        noMainBGImg: false,
     });
 
     const {
@@ -297,6 +298,7 @@ const Style = ({ props }) => {
     } = generateNormalBGControlStyles({
         controlName: BUTTON_BG,
         attributes,
+        noMainBGImg: false,
     });
 
     const {
@@ -349,6 +351,7 @@ const Style = ({ props }) => {
     } = generateNormalBGControlStyles({
         controlName: HOVER_BUTTON_BG,
         attributes,
+        noMainBGImg: false,
     });
 
     const { boxShadowStyle: hoverButtonShadow } = generateBoxShadowStyles({
@@ -357,21 +360,21 @@ const Style = ({ props }) => {
     });
 
     const {
-        rangeStylesDesktop: switchWidthDesk,
-        rangeStylesTab: switchWidthTab,
-        rangeStylesMobile: switchWidthMob,
+        desktopRangeStyle: switchWidthDesk,
+        tabRangeStyle: switchWidthTab,
+        mobRangeStyle: switchWidthMob,
     } = generateResRangeStyle({
-        controlName: SWITCH_WIDTH,
+        controlName: SWITCHER_WIDTH,
         property: 'width',
         attributes,
     });
 
     const {
-        rangeStylesDesktop: switchHeightDesk,
-        rangeStylesTab: switchHeightTab,
-        rangeStylesMobile: switchHeightMob,
+        desktopRangeStyle: switchHeightDesk,
+        tabRangeStyle: switchHeightTab,
+        mobRangeStyle: switchHeightMob,
     } = generateResRangeStyle({
-        controlName: SWITCH_HEIGHT,
+        controlName: SWITCHER_HEIGHT,
         property: 'height',
         attributes,
     });
@@ -381,7 +384,7 @@ const Style = ({ props }) => {
         dimensionStylesTab: switchRadiusTab,
         dimensionStylesMobile: switchRadiusMob,
     } = generateDimensionStyle({
-        controlName: SWITCH_BORDER_RADIUS,
+        controlName: SWITCHER_BORDER_RADIUS,
         styleFor: 'border-radius',
         attributes,
     });
@@ -391,8 +394,9 @@ const Style = ({ props }) => {
         backgroundStylesTab: switchBgTab,
         backgroundStylesMobile: switchBgMob,
     } = generateNormalBGControlStyles({
-        controlName: SWITCH_BG,
+        controlName: SWITCHER_BG,
         attributes,
+        noMainBGImg: false,
     });
 
     const {
@@ -400,8 +404,9 @@ const Style = ({ props }) => {
         backgroundStylesTab: activeSwitchBgTab,
         backgroundStylesMobile: activeSwitchBgMob,
     } = generateNormalBGControlStyles({
-        controlName: ACTIVE_SWITCH_BG,
+        controlName: ACTIVE_SWITCHER_BG,
         attributes,
+        noMainBGImg: false,
     });
 
     const {
@@ -420,6 +425,7 @@ const Style = ({ props }) => {
     } = generateNormalBGControlStyles({
         controlName: RIBBON_BG,
         attributes,
+        noMainBGImg: false,
     });
 
     const {
@@ -555,15 +561,19 @@ const Style = ({ props }) => {
             color: ${ribbonColor};
         }
         .${uniqueId} .zolo-switch[class*="zolo-switch"] {
-            ${switchWidthDesk}
-            ${switchHeightDesk}
-            ${switchRadiusDesk}
+            ${switchWidthDesk ? switchWidthDesk.replace(';', ' !important;') : ''}
+            ${switchHeightDesk ? switchHeightDesk.replace(';', ' !important;') : ''}
+            ${switchRadiusDesk ? switchRadiusDesk.replace(/;/g, ' !important;') : ''}
             ${switchBgDesk}
-            color: ${switchColor};
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"] .zolo-knob {
+            ${switchColor ? `background: ${switchColor} !important;` : ''}
         }
         .${uniqueId} .zolo-switch[class*="zolo-switch"].on {
             ${activeSwitchBgDesk}
-            color: ${activeSwitchColor};
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"].on .zolo-knob {
+            ${activeSwitchColor ? `background: ${activeSwitchColor} !important;` : ''}
         }
     `;
 
@@ -641,13 +651,19 @@ const Style = ({ props }) => {
             ${ribbonTypoTab}
         }
         .${uniqueId} .zolo-switch[class*="zolo-switch"] {
-            ${switchWidthTab}
-            ${switchHeightTab}
-            ${switchRadiusTab}
+            ${switchWidthTab ? switchWidthTab.replace(';', ' !important;') : ''}
+            ${switchHeightTab ? switchHeightTab.replace(';', ' !important;') : ''}
+            ${switchRadiusTab ? switchRadiusTab.replace(/;/g, ' !important;') : ''}
             ${switchBgTab}
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"] .zolo-knob {
+            ${switchColor ? `background: ${switchColor} !important;` : ''}
         }
         .${uniqueId} .zolo-switch[class*="zolo-switch"].on {
             ${activeSwitchBgTab}
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"].on .zolo-knob {
+            ${activeSwitchColor ? `background: ${activeSwitchColor} !important;` : ''}
         }
     `;
 
@@ -725,13 +741,19 @@ const Style = ({ props }) => {
             ${ribbonTypoMob}
         }
         .${uniqueId} .zolo-switch[class*="zolo-switch"] {
-            ${switchWidthMob}
-            ${switchHeightMob}
-            ${switchRadiusMob}
+            ${switchWidthMob ? switchWidthMob.replace(';', ' !important;') : ''}
+            ${switchHeightMob ? switchHeightMob.replace(';', ' !important;') : ''}
+            ${switchRadiusMob ? switchRadiusMob.replace(/;/g, ' !important;') : ''}
             ${switchBgMob}
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"] .zolo-knob {
+            ${switchColor ? `background: ${switchColor} !important;` : ''}
         }
         .${uniqueId} .zolo-switch[class*="zolo-switch"].on {
             ${activeSwitchBgMob}
+        }
+        .${uniqueId} .zolo-switch[class*="zolo-switch"].on .zolo-knob {
+            ${activeSwitchColor ? `background: ${activeSwitchColor} !important;` : ''}
         }
     `;
 

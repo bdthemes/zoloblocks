@@ -30,11 +30,11 @@ import {
     RIBBON_BORDER,
     RIBBON_SHADOW,
     RIBBON_RADIUS,
-    SWITCH_WIDTH,
-    SWITCH_HEIGHT,
-    SWITCH_BORDER_RADIUS,
-    SWITCH_BG,
-    ACTIVE_SWITCH_BG,
+    SWITCHER_WIDTH,
+    SWITCHER_HEIGHT,
+    SWITCHER_BORDER_RADIUS,
+    SWITCHER_BG,
+    ACTIVE_SWITCHER_BG,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -277,11 +277,11 @@ const attributes = {
     ...generateBoxShadowAttributies(RIBBON_SHADOW),
     ...generateDimensionAttributes(RIBBON_RADIUS),
 
-    ...generateResRangeAttributies(SWITCH_WIDTH),
-    ...generateResRangeAttributies(SWITCH_HEIGHT),
-    ...generateDimensionAttributes(SWITCH_BORDER_RADIUS),
-    ...generateNormalBGAttributes(SWITCH_BG),
-    ...generateNormalBGAttributes(ACTIVE_SWITCH_BG),
+    ...generateResRangeAttributies(SWITCHER_WIDTH),
+    ...generateResRangeAttributies(SWITCHER_HEIGHT),
+    ...generateDimensionAttributes(SWITCHER_BORDER_RADIUS),
+    ...generateNormalBGAttributes(SWITCHER_BG),
+    ...generateNormalBGAttributes(ACTIVE_SWITCHER_BG),
 };
 
 export default attributes;
