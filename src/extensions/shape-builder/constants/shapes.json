@@ -1,0 +1,51 @@
+[
+    {
+        "id": "circle",
+        "value": "circle",
+        "label": "Circle",
+        "viewBox": "0 0 100 100",
+        "path": "M50 10a40 40 0 1 1 0 80a40 40 0 1 1 0-80Z"
+    },
+    {
+        "id": "square",
+        "value": "square",
+        "label": "Square",
+        "viewBox": "0 0 100 100",
+        "path": "M10 10 H90 V90 H10 Z"
+    },
+    {
+        "id": "triangle",
+        "value": "triangle",
+        "label": "Triangle",
+        "viewBox": "0 0 100 100",
+        "path": "M50 10 L90 90 L10 90 Z"
+    },
+    {
+        "id": "hexagon",
+        "value": "hexagon",
+        "label": "Hexagon",
+        "viewBox": "0 0 100 100",
+        "path": "M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z"
+    },
+    {
+        "id": "teardrop",
+        "value": "teardrop",
+        "label": "Teardrop", 
+        "viewBox": "0 0 100 100",
+        "path": "M50 10 C30 10 10 30 10 50 C10 70 30 90 50 90 C70 90 90 70 90 50 C90 30 50 10 50 10 Z"
+    },
+    {
+        "id": "oval",
+        "value": "oval",
+        "label": "Oval",
+        "viewBox": "0 0 100 100",
+        "path": "M50 15 C65 15 85 30 85 50 C85 70 65 85 50 85 C35 85 15 70 15 50 C15 30 35 15 50 15 Z"
+    },
+    {
+        "id": "blob",
+        "value": "blob",
+        "label": "Blob",
+        "viewBox": "0 0 200 200",
+        "path": "M162.62,25.36c54.08,45.8,44.28,146.63,3.1,169.17-38.86,21.27-100.6-29.93-109.33-37.17-8.83-7.32-68.59-56.88-54.07-103.51,6.04-19.4,22.34-29.97,30.61-35.33C69.33-5.07,126.54-5.2,162.62,25.36Z"
+    }
+]
