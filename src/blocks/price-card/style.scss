@@ -4,26 +4,19 @@
     --zolo-accent1: #ff33c4;
     --zolo-accent2: #15e0d6;
     --zolo-card-radius: 18px;
-    --zolo-glass-border: rgba(255, 255, 255, 0.08);
+    --zolo-glass-border: rgba(210, 210, 218, 0.39);
     --zolo-text: #000000;
-    --zolo-muted: #000000;
+    --zolo-muted: #999faa;
     --zolo-shadow: 0 12px 30px rgba(11, 6, 25, 0.6);
     --zolo-glow: 0 8px 40px rgba(83, 12, 160, 0.35);
 }
 
 /* card */
 .zolo-pricing-card {
-    width: 340px;
-    max-width: 92vw;
     border-radius: var(--zolo-card-radius);
-    position: relative;
-    overflow: hidden;
     padding: 28px 22px;
-    box-shadow: var(--zolo-shadow);
-    border: 1px solid var(--zolo-glass-border);
-    backdrop-filter: blur(6px);
+    border: 1px solid rgba(210, 210, 218, 0.39);
 }
-
 /* ribbon badge */
 .zolo-ribbon {
     position: absolute;
@@ -82,14 +75,14 @@
     justify-content: center;
     gap: 12px;
     margin-bottom: 18px;
-    font-size: 15px;
-    color: var(--zolo-muted);
-    font-weight: 600;
+
 }
 
 .zolo-toggle-label {
-    font-weight: 700;
+    font-size: 15px;
     color: var(--zolo-muted);
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .zolo-toggle-label.zolo-toggle-active {
@@ -100,14 +93,14 @@
 .zolo-switch {
     width: 48px;
     height: 30px;
-    background: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(90deg, var(--zolo-accent2), #00c6ff);
     border-radius: 50px;
     position: relative;
     display: inline-block;
     cursor: pointer;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
     border: none;
     transition: all 0.3s ease;
+    outline: none;
 }
 .zolo-switch .zolo-knob {
     position: absolute;
@@ -116,18 +109,13 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #000;
-    transform: translateX(0);
+    background: #fff;
+    transform: translateX(5px);
     transition: all 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
-.zolo-switch.on {
-    background: linear-gradient(90deg, var(--zolo-accent2), #00c6ff);
-}
+
 .zolo-switch.on .zolo-knob {
-    background: linear-gradient(180deg, #001111, #001f1f);
     transform: translateX(22px);
-    box-shadow: 0 6px 18px rgba(21, 224, 214, 0.25);
 }
 
 /* 1. Classic Toggle (Default) - Uses base styles */
@@ -342,16 +330,22 @@
     color: var(--zolo-muted);
     margin-top: 10px;
 }
+
 .zolo-price-wrap {
     margin: 10px 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
+
 .zolo-starting {
     font-size: 13px;
     color: var(--zolo-muted);
     margin-bottom: 8px;
     font-weight: 600;
 }
-.zolo-price {
+.zolo-discount-price {
     font-size: 64px;
     line-height: 1;
     font-weight: 800;
@@ -361,13 +355,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-}
-.zolo-price small {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--zolo-muted);
-    transform: translateY(-6px);
 }
 
 .zolo-price-period {
@@ -379,10 +366,8 @@
 .zolo-price-original {
     font-size: 24px;
     font-weight: 600;
-    color: var(--zolo-muted);
+    color: #c5c8cc;
     text-decoration: line-through;
-    margin-right: 8px;
-    opacity: 0.6;
 }
 
 .zolo-subtext {
@@ -396,19 +381,18 @@
     margin-top: 18px;
     display: block;
     text-decoration: none;
-    padding: 12px 0px;
+    padding: 12px 20px;
     border-radius: 14px;
     font-weight: 700;
-    color: #000000;
-    box-shadow: var(--zolo-glow);
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        opacity 0.12s;
+    color: #ffffff;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.12s;
     width: 100%;
     text-align: center;
     font-size: 18px;
+    background: #002aff;
+    box-sizing: border-box;
 }
+
 .zolo-cta:active {
     transform: translateY(1px) scale(0.997);
 }

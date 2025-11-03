@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const description = card.querySelector('.zolo-description');
         const toggleLabels = card.querySelectorAll('.zolo-toggle-label');
         const footerText = card.querySelector('.zolo-note');
+        const button = card.querySelector('.zolo-button');
 
         if (!toggleBtn || !priceValue || !toggleLabels.length) return;
 
@@ -23,7 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleBtn.className = `zolo-switch zolo-switch-${toggleStyle}`;
         }
 
-        // Get data attributes
+        // Get data attributes including button toggle
+        const buttonToggle = card.dataset.buttonToggle === 'true';
+        
         const primaryData = {
             priceTitle: card.dataset.primaryPriceTitle || '',
             prefix: card.dataset.primaryPrefix || '',
@@ -33,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
             originalPrice: card.dataset.primaryOriginalPrice || '',
             description: card.dataset.primaryDescription || '',
             footerText: card.dataset.primaryFooterText || '',
+            buttonText: buttonToggle ? (card.dataset.primaryButtonText || '') : (card.dataset.buttonText || ''),
+            buttonUrl: buttonToggle ? (card.dataset.primaryButtonUrl || '#') : (card.dataset.buttonUrl || '#'),
+            buttonNewTab: buttonToggle ? (card.dataset.primaryButtonNewTab === 'true') : (card.dataset.buttonNewTab === 'true'),
         };
 
         const secondaryData = {
@@ -44,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
             originalPrice: card.dataset.secondaryOriginalPrice || '',
             description: card.dataset.secondaryDescription || '',
             footerText: card.dataset.secondaryFooterText || '',
+            buttonText: buttonToggle ? (card.dataset.secondaryButtonText || '') : (card.dataset.buttonText || ''),
+            buttonUrl: buttonToggle ? (card.dataset.secondaryButtonUrl || '#') : (card.dataset.buttonUrl || '#'),
+            buttonNewTab: buttonToggle ? (card.dataset.secondaryButtonNewTab === 'true') : (card.dataset.buttonNewTab === 'true'),
         };
 
         // Initial state (false = primary, true = secondary)
@@ -66,6 +75,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     originalPriceEl.style.display = 'none';
                 }
+            }
+
+            // Handle button updates
+            if (button) {
+                button.textContent = data.buttonText;
+                button.href = data.buttonUrl;
+                button.target = data.buttonNewTab ? '_blank' : '_self';
+                button.rel = data.buttonNewTab ? 'noopener noreferrer' : '';
             }
         }
 

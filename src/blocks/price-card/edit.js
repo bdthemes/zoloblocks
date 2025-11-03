@@ -44,6 +44,12 @@ export default function Edit(props) {
         // Common Button
         buttonText,
         buttonLink,
+        // Button Toggle
+        buttonToggle,
+        primaryButtonText,
+        primaryButtonLink,
+        secondaryButtonText,
+        secondaryButtonLink,
         primaryFooterText,
         secondaryFooterText,
     } = attributes;
@@ -58,25 +64,29 @@ export default function Edit(props) {
     // Get current content based on toggle state
     const currentContent = isSecondary
         ? {
-              priceTitle: secondaryPriceTitle,
-              prefix: secondaryPrefix,
-              price: secondaryPrice,
-              suffix: secondarySuffix,
-              showOriginalPrice: secondaryShowOriginalPrice,
-              originalPrice: secondaryOriginalPrice,
-              description: secondaryDescription,
-              footerText: secondaryFooterText,
-          }
+            priceTitle: secondaryPriceTitle,
+            prefix: secondaryPrefix,
+            price: secondaryPrice,
+            suffix: secondarySuffix,
+            showOriginalPrice: secondaryShowOriginalPrice,
+            originalPrice: secondaryOriginalPrice,
+            description: secondaryDescription,
+            footerText: secondaryFooterText,
+            buttonText: buttonToggle ? secondaryButtonText : buttonText,
+            buttonLink: buttonToggle ? secondaryButtonLink : buttonLink,
+        }
         : {
-              priceTitle: primaryPriceTitle,
-              prefix: primaryPrefix,
-              price: primaryPrice,
-              suffix: primarySuffix,
-              showOriginalPrice: primaryShowOriginalPrice,
-              originalPrice: primaryOriginalPrice,
-              description: primaryDescription,
-              footerText: primaryFooterText,
-          };
+            priceTitle: primaryPriceTitle,
+            prefix: primaryPrefix,
+            price: primaryPrice,
+            suffix: primarySuffix,
+            showOriginalPrice: primaryShowOriginalPrice,
+            originalPrice: primaryOriginalPrice,
+            description: primaryDescription,
+            footerText: primaryFooterText,
+            buttonText: buttonToggle ? primaryButtonText : buttonText,
+            buttonLink: buttonToggle ? primaryButtonLink : buttonLink,
+        };
 
     // Toggle handler
     const handleToggle = () => {
@@ -108,26 +118,27 @@ export default function Edit(props) {
                         </div>
                         <div className="zolo-starting">{sanitizeText(currentContent.priceTitle)}</div>
                         <div className="zolo-price-wrap">
-                            <p className="zolo-price">
-                                {currentContent.showOriginalPrice && currentContent.originalPrice && (
-                                    <small className="zolo-price-original">
-                                        {currentContent.prefix}
-                                        {currentContent.originalPrice}
-                                    </small>
-                                )}
+                            {currentContent.showOriginalPrice && currentContent.originalPrice && (
+                                <small className="zolo-price-original">
+                                    {currentContent.prefix}
+                                    {currentContent.originalPrice}
+                                </small>
+                            )}
+                            <div className='zolo-discount-price'>
                                 {currentContent.prefix && <small className="zolo-prefix">{currentContent.prefix}</small>}
                                 <span className="zolo-price-value">{currentContent.price}</span>
-                                {currentContent.suffix && <small className="zolo-price-period">{currentContent.suffix}</small>}
-                            </p>
+                            </div>
+
+                            {currentContent.suffix && <small className="zolo-price-period">{currentContent.suffix}</small>}
                         </div>
                         <div className="zolo-subtext">{sanitizeText(currentContent.description)}</div>
                         <a
                             className="zolo-cta zolo-button"
-                            href={buttonLink?.url || '#'}
-                            target={buttonLink?.newTab ? '_blank' : '_self'}
-                            rel={buttonLink?.newTab ? 'noopener noreferrer' : ''}
+                            href={currentContent.buttonLink?.url || '#'}
+                            target={currentContent.buttonLink?.newTab ? '_blank' : '_self'}
+                            rel={currentContent.buttonLink?.newTab ? 'noopener noreferrer' : ''}
                         >
-                            {sanitizeText(buttonText)}
+                            {sanitizeText(currentContent.buttonText)}
                         </a>
                         <div className="zolo-note">{sanitizeText(currentContent.footerText)}</div>
                     </div>

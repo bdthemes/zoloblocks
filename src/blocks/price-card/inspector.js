@@ -106,6 +106,12 @@ function Inspector(props) {
         buttonLink,
         primaryFooterText,
         secondaryFooterText,
+        // Button Toggle
+        buttonToggle,
+        primaryButtonText,
+        primaryButtonLink,
+        secondaryButtonText,
+        secondaryButtonLink,
         //Primary
         primaryToggleTextColor,
         primaryBeforeTitleColor,
@@ -272,16 +278,52 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Button', 'zoloblocks')} panelProps={requiredProps}>
-                            <ZoloTextControl
-                                label={__('Text', 'zoloblocks')}
-                                value={buttonText}
-                                onChange={(value) => setAttributes({ buttonText: value })}
+                            <ZoloToggleControl
+                                label={__('Different Buttons for Each Mode', 'zoloblocks')}
+                                checked={buttonToggle}
+                                onChange={(value) => setAttributes({ buttonToggle: value })}
                             />
-                            <LinkControl
-                                label={__('Link', 'zoloblocks')}
-                                value={buttonLink}
-                                onChange={(value) => setAttributes({ buttonLink: value })}
-                            />
+                            
+                            {!buttonToggle ? (
+                                <>
+                                    <ZoloTextControl
+                                        label={__('Text', 'zoloblocks')}
+                                        value={buttonText}
+                                        onChange={(value) => setAttributes({ buttonText: value })}
+                                    />
+                                    <LinkControl
+                                        label={__('Link', 'zoloblocks')}
+                                        value={buttonLink}
+                                        onChange={(value) => setAttributes({ buttonLink: value })}
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                    <div className="zolo-custom-heading">{__('Primary Button', 'zoloblocks')}</div>
+                                    <ZoloTextControl
+                                        label={__('Text', 'zoloblocks')}
+                                        value={primaryButtonText}
+                                        onChange={(value) => setAttributes({ primaryButtonText: value })}
+                                    />
+                                    <LinkControl
+                                        label={__('Link', 'zoloblocks')}
+                                        value={primaryButtonLink}
+                                        onChange={(value) => setAttributes({ primaryButtonLink: value })}
+                                    />
+                                    
+                                    <div className="zolo-custom-heading">{__('Secondary Button', 'zoloblocks')}</div>
+                                    <ZoloTextControl
+                                        label={__('Text', 'zoloblocks')}
+                                        value={secondaryButtonText}
+                                        onChange={(value) => setAttributes({ secondaryButtonText: value })}
+                                    />
+                                    <LinkControl
+                                        label={__('Link', 'zoloblocks')}
+                                        value={secondaryButtonLink}
+                                        onChange={(value) => setAttributes({ secondaryButtonLink: value })}
+                                    />
+                                </>
+                            )}
                         </ZoloPanelBody>
                     </>
                 }

@@ -175,6 +175,30 @@ const attributes = {
             openInNewTab: false,
         },
     },
+    // Primary Button
+    primaryButtonText: {
+        type: 'string',
+        default: 'Get Yearly Plan',
+    },
+    primaryButtonLink: {
+        type: 'object',
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
+    },
+    // Secondary Button
+    secondaryButtonText: {
+        type: 'string',
+        default: 'Get Lifetime Access',
+    },
+    secondaryButtonLink: {
+        type: 'object',
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
+    },
     primaryFooterText: {
         type: 'string',
         default: 'Billed yearly. Cancel anytime.',
