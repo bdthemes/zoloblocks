@@ -15,13 +15,6 @@ export const PRICE_CART_ALIGN = 'priceCartAlign';
 
 export const TOGGLE_STYLE = [
     { label: __('Classic Toggle', 'zoloblocks'), value: 'classicToggle' },
-    { label: __('Rectangle Switch', 'zoloblocks'), value: 'rectangleSwitch' },
-    { label: __('Round Slide', 'zoloblocks'), value: 'roundSlide' },
-    { label: __('Flat Modern', 'zoloblocks'), value: 'flatModern' },
-    { label: __('Sleek Slider', 'zoloblocks'), value: 'sleekSlider' },
-    { label: __('Diamond Toggle', 'zoloblocks'), value: 'diamondToggle' },
-    { label: __('Clean Circle', 'zoloblocks'), value: 'cleanCircle' },
-    { label: __('Soft Curve', 'zoloblocks'), value: 'softCurve' },
     { label: __('Square Rotate', 'zoloblocks'), value: 'squareRotate' },
 ];
 

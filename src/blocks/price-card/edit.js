@@ -19,6 +19,7 @@ export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
     const {
         uniqueId,
+        preset,
         parentClasses,
         toggleStyle,
         ribbonToggle,
@@ -52,6 +53,7 @@ export default function Edit(props) {
         secondaryButtonLink,
         primaryFooterText,
         secondaryFooterText,
+        buttonSize,
     } = attributes;
 
     // Toggle state (false = primary, true = secondary)
@@ -98,7 +100,7 @@ export default function Edit(props) {
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
             <Style props={props} />
             <div {...blockProps}>
-                <div className={`zolo-pricing-card ${isSecondary ? 'secondary-active' : ''}`}>
+                <div className={`zolo-pricing-card zolo-pricing-card-${preset} ${isSecondary ? 'secondary-active' : ''}`}>
                     {ribbonToggle && ribbonText && (
                         <div className="zolo-ribbon">
                             <span className="zolo-ribbon-text">{sanitizeText(ribbonText)}</span>
@@ -133,7 +135,7 @@ export default function Edit(props) {
                         </div>
                         <div className="zolo-subtext">{sanitizeText(currentContent.description)}</div>
                         <a
-                            className="zolo-cta zolo-button"
+                            className={`zolo-cta zolo-button zolo-button-${buttonSize}`}
                             href={currentContent.buttonLink?.url || '#'}
                             target={currentContent.buttonLink?.newTab ? '_blank' : '_self'}
                             rel={currentContent.buttonLink?.newTab ? 'noopener noreferrer' : ''}

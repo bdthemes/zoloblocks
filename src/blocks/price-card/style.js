@@ -365,7 +365,7 @@ const Style = ({ props }) => {
         mobRangeStyle: switchWidthMob,
     } = generateResRangeStyle({
         controlName: SWITCHER_WIDTH,
-        property: 'width',
+        property: '--zolo-price-card-switch-width',
         attributes,
     });
 
@@ -375,7 +375,7 @@ const Style = ({ props }) => {
         mobRangeStyle: switchHeightMob,
     } = generateResRangeStyle({
         controlName: SWITCHER_HEIGHT,
-        property: 'height',
+        property: '--zolo-price-card-switch-height',
         attributes,
     });
 

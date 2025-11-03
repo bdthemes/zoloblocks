@@ -26,6 +26,7 @@ const {
     ZoloSelectControl,
     TabPanelControl,
     ResRangeControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -124,6 +125,7 @@ function Inspector(props) {
         //Button
         buttonColor,
         hoverButtonColor,
+        buttonSize,
     } = attributes;
 
     const requiredProps = {
@@ -142,15 +144,15 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
-                            <ZoloSelectControl
+                            {/* <ZoloSelectControl
                                 label={__('Preset', 'zoloblocks')}
                                 value={preset}
                                 onChange={(value) => setAttributes({ preset: value })}
                                 options={[
-                                    { label: __('Preset 1', 'zoloblocks'), value: 'preset1' },
-                                    { label: __('Preset 2', 'zoloblocks'), value: 'preset2' },
+                                    { label: __('Preset 1', 'zoloblocks'), value: 'preset-one' },
+                                    { label: __('Preset 2', 'zoloblocks'), value: 'preset-two' },
                                 ]}
-                            />
+                            /> */}
                             <ZoloSelectControl
                                 label={__('Switch Style', 'zoloblocks')}
                                 value={toggleStyle}
@@ -278,12 +280,25 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Button', 'zoloblocks')} panelProps={requiredProps}>
+                            <div className='zolo-flex-col-control'>
+                                <IconicBtnGroup
+                                    label={__('Button Size', 'zoloblocks')}
+                                    value={attributes?.buttonSize}
+                                    onChange={(value) => setAttributes({ buttonSize: value })}
+                                    options={[
+                                        { value: 'full-width', label: __('Full Width', 'zoloblocks') },
+                                        { value: 'fit-content', label: __('Fit Content', 'zoloblocks') },
+                                    ]}
+                                    isDeselectable
+                                />
+                            </div>
+
                             <ZoloToggleControl
                                 label={__('Different Buttons for Each Mode', 'zoloblocks')}
                                 checked={buttonToggle}
                                 onChange={(value) => setAttributes({ buttonToggle: value })}
                             />
-                            
+
                             {!buttonToggle ? (
                                 <>
                                     <ZoloTextControl
@@ -310,7 +325,7 @@ function Inspector(props) {
                                         value={primaryButtonLink}
                                         onChange={(value) => setAttributes({ primaryButtonLink: value })}
                                     />
-                                    
+
                                     <div className="zolo-custom-heading">{__('Secondary Button', 'zoloblocks')}</div>
                                     <ZoloTextControl
                                         label={__('Text', 'zoloblocks')}

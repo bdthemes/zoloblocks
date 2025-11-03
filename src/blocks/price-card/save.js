@@ -7,6 +7,7 @@ const Save = (props) => {
     const {
         uniqueId,
         parentClasses,
+        preset,
         toggleStyle,
         ribbonToggle,
         ribbonText,
@@ -37,6 +38,7 @@ const Save = (props) => {
         primaryButtonLink,
         secondaryButtonText,
         secondaryButtonLink,
+        buttonSize,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -46,7 +48,7 @@ const Save = (props) => {
     return (
         <div {...blockProps}>
             <div
-                className="zolo-pricing-card"
+                className={`zolo-pricing-card zolo-pricing-card-${preset}`}
                 data-toggle-style={toggleStyle}
                 data-primary-price-title={primaryPriceTitle}
                 data-primary-prefix={primaryPrefix}
@@ -104,7 +106,7 @@ const Save = (props) => {
                     </div>
                     <div className="zolo-subtext zolo-description">{sanitizeText(primaryDescription)}</div>
                     <a
-                        className="zolo-cta zolo-button"
+                        className={`zolo-cta zolo-button zolo-button-${buttonSize}`}
                         href={buttonToggle ? (primaryButtonLink?.url || '#') : (buttonLink?.url || '#')}
                         target={buttonToggle ? (primaryButtonLink?.newTab ? '_blank' : '_self') : (buttonLink?.newTab ? '_blank' : '_self')}
                         rel={buttonToggle ? (primaryButtonLink?.newTab ? 'noopener noreferrer' : '') : (buttonLink?.newTab ? 'noopener noreferrer' : '')}

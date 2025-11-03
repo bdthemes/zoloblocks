@@ -67,7 +67,7 @@ const attributes = {
     },
     preset: {
         type: 'string',
-        default: 'preset1',
+        default: 'preset-one',
     },
     toggleStyle: {
         type: 'string',
@@ -274,6 +274,11 @@ const attributes = {
     hoverButtonColor: {
         type: 'string',
         default: '',
+    },
+
+    buttonSize: {
+        type: 'string',
+        default: 'full-width',
     },
 
     ...generateResAlignmentAttributies(PRICE_CART),
