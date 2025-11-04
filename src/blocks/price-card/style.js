@@ -41,7 +41,10 @@ import {
     SWITCHER_WIDTH,
     SWITCHER_HEIGHT,
     SWITCHER_BORDER_RADIUS,
+    SWITCHER_BORDER,
     SWITCHER_BG,
+    SWITCHER_SHADOW,
+
     ACTIVE_SWITCHER_BG,
 } from './constants';
 
@@ -63,6 +66,7 @@ import {
     SECONDARY_FOOTER_TYPO,
     BUTTON_TYPO,
     RIBBON_TYPO,
+
 } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
@@ -380,12 +384,27 @@ const Style = ({ props }) => {
     });
 
     const {
+        boxShadowStyle: switchShadow,
+    } = generateBoxShadowStyles({
+        controlName: SWITCHER_SHADOW,
+        attributes,
+    });
+
+    const { desktopBorderStyle: switchBorderDesk,
+        tabBorderStyle: switchBorderTab,
+        mobBorderStyle: switchBorderMob,
+    } = generateBorderStyle({
+        controlName: SWITCHER_BORDER,
+        attributes,
+    });
+
+    const {
         dimensionStylesDesktop: switchRadiusDesk,
         dimensionStylesTab: switchRadiusTab,
         dimensionStylesMobile: switchRadiusMob,
     } = generateDimensionStyle({
         controlName: SWITCHER_BORDER_RADIUS,
-        styleFor: 'border-radius',
+        styleFor: '--zolo-price-switch-radius',
         attributes,
     });
 
@@ -565,6 +584,8 @@ const Style = ({ props }) => {
             ${switchHeightDesk ? switchHeightDesk.replace(';', ' !important;') : ''}
             ${switchRadiusDesk ? switchRadiusDesk.replace(/;/g, ' !important;') : ''}
             ${switchBgDesk}
+            ${switchBorderDesk}
+            ${switchShadow}
         }
         .${uniqueId} .zolo-switch[class*="zolo-switch"] .zolo-knob {
             ${switchColor ? `background: ${switchColor} !important;` : ''}

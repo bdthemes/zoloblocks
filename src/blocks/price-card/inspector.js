@@ -57,6 +57,8 @@ import {
     RIBBON_SHADOW,
     RIBBON_RADIUS,
     SWITCHER_BG,
+    SWITCHER_SHADOW,
+    SWITCHER_BORDER,
     ACTIVE_SWITCHER_BG,
 } from './constants';
 
@@ -345,38 +347,15 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Switcher', 'zoloblocks')} panelProps={requiredProps} firstOpen={true}>
-                            <ResRangeControl
-                                label={__('Width', 'zoloblocks')}
-                                controlName={SWITCHER_WIDTH}
-                                requiredProps={requiredProps}
-                                min={30}
-                                max={200}
-                                units={['px', '%']}
-                            />
-                            <ResRangeControl
-                                label={__('Height', 'zoloblocks')}
-                                controlName={SWITCHER_HEIGHT}
-                                requiredProps={requiredProps}
-                                min={20}
-                                max={100}
-                                units={['px']}
-                            />
-                            <ResDimensionsControl
-                                label={__('Border Radius', 'zoloblocks')}
-                                controlName={SWITCHER_BORDER_RADIUS}
-                                requiredProps={requiredProps}
-                                forBorderRadius={true}
-                            />
-                            <ZoloCardDivider />
                             <TabPanelControl
                                 options={[
                                     {
                                         value: 'normal',
-                                        label: __('Normal', 'zoloblocks'),
+                                        label: __('Switch', 'zoloblocks'),
                                     },
                                     {
                                         value: 'hover',
-                                        label: __('Active', 'zoloblocks'),
+                                        label: __('Label', 'zoloblocks'),
                                     },
                                 ]}
                                 normalComponents={
@@ -386,27 +365,58 @@ function Inspector(props) {
                                             color={switchColor}
                                             onChange={(value) => setAttributes({ switchColor: value })}
                                         />
+
                                         <NormalBGControl
-                                            label={__('Container Background', 'zoloblocks')}
+                                            label={__('Background', 'zoloblocks')}
                                             controlName={SWITCHER_BG}
                                             requiredProps={requiredProps}
                                             noMainBGImg={true}
+                                        />
+
+                                        <ResRangeControl
+                                            label={__('Width', 'zoloblocks')}
+                                            controlName={SWITCHER_WIDTH}
+                                            requiredProps={requiredProps}
+                                            min={30}
+                                            max={100}
+                                            units={['px', '%']}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Height', 'zoloblocks')}
+                                            controlName={SWITCHER_HEIGHT}
+                                            requiredProps={requiredProps}
+                                            min={20}
+                                            max={100}
+                                            units={['px']}
+                                        />
+
+                                        <ZoloCardDivider />
+
+                                        <BorderControl
+                                            label={__('Border', 'zoloblocks')}
+                                            controlName={SWITCHER_BORDER}
+                                            requiredProps={requiredProps}
+                                        />
+
+                                        <BoxShadowControl
+                                            label={__('Box Shadow', 'zoloblocks')}
+                                            controlName={SWITCHER_SHADOW}
+                                            requiredProps={requiredProps}
+                                        />
+
+                                        <ResDimensionsControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            controlName={SWITCHER_BORDER_RADIUS}
+                                            requiredProps={requiredProps}
+                                            forBorderRadius={true}
                                         />
                                     </>
                                 }
                                 hoverComponents={
                                     <>
-                                        <ColorControl
-                                            label={__('Knob Color', 'zoloblocks')}
-                                            color={activeSwitchColor}
-                                            onChange={(value) => setAttributes({ activeSwitchColor: value })}
-                                        />
-                                        <NormalBGControl
-                                            label={__('Container Background', 'zoloblocks')}
-                                            controlName={ACTIVE_SWITCHER_BG}
-                                            requiredProps={requiredProps}
-                                            noMainBGImg={true}
-                                        />
+
+
+
                                     </>
                                 }
                             />
@@ -420,13 +430,13 @@ function Inspector(props) {
                                 noMainBGImg={true}
                             />
                             <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={CARD_MARGIN}
+                                label={__('Padding', 'zoloblocks')}
+                                controlName={CARD_PADDING}
                                 requiredProps={requiredProps}
                             />
                             <ResDimensionsControl
-                                label={__('Padding', 'zoloblocks')}
-                                controlName={CARD_PADDING}
+                                label={__('Margin', 'zoloblocks')}
+                                controlName={CARD_MARGIN}
                                 requiredProps={requiredProps}
                             />
                             <ZoloCardDivider />

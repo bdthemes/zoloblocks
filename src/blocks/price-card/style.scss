@@ -13,6 +13,8 @@
 
     --zolo-price-card-switch-width: 48px;
     --zolo-price-card-switch-height: 30px;
+    --zolo-price-switch-radius: 50%;
+
 }
 
 /* card */
@@ -27,20 +29,19 @@
     top: 16px;
     right: 16px;
     z-index: 10;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 6px 16px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .zolo-ribbon-text {
     display: block;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: 700;
     color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     line-height: 1;
+
+    background: var(--zoloblocks-brand-color);
+    padding: 6px 16px;
+    border-radius: 6px;
 }
 
 /* decorative purple gradient blur shapes */
@@ -97,8 +98,8 @@
 .zolo-switch {
     width: var(--zolo-price-card-switch-width);
     height:  var(--zolo-price-card-switch-height );
-    background: linear-gradient(90deg, var(--zolo-accent2), #00c6ff);
-    border-radius: 50px;
+    background: var(--zoloblocks-brand-color);
+    border-radius: var(--zolo-price-switch-radius);
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -112,7 +113,7 @@
     left: 0;
     width: calc( var(--zolo-price-card-switch-height) - 10px);
     height: calc( var(--zolo-price-card-switch-height) - 10px);
-    border-radius: 50%;
+    border-radius: var(--zolo-price-switch-radius);
     background: #fff;
     transform: translateX(5px) translateY(-50%);
     transition: all 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
@@ -126,28 +127,26 @@
 
 /* 9. Square Rotate */
 .zolo-switch-squareRotate {
-    width: 50px;
-    height: 28px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #f43f5e, #e11d48);
-    box-shadow: 0 3px 8px rgba(244, 63, 94, 0.4);
+    --zolo-price-switch-radius: 8px;
+    width: var(--zolo-price-card-switch-width);
+    height:  var(--zolo-price-card-switch-height);
+    border-radius: var(--zolo-price-switch-radius);
+    background: var(--zoloblocks-brand-color);
 }
+
 .zolo-switch-squareRotate .zolo-knob {
-    width: calc(50% - 8%);
-    height: 75%;
+    width: calc( var(--zolo-price-card-switch-height) - 10px);
+    height: calc( var(--zolo-price-card-switch-height) - 10px);
     background: #fff;
-    border-radius: 3px;
-    top: 12.5%;
-    left: 6%;
-    transform: translateX(0) rotate(0deg);
+    border-radius: var(--zolo-price-switch-radius);
+    top: 50%;
+    left: 0;
+    transform: translateX(5px) translateY(-50%) rotate(0deg);
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.zolo-switch-squareRotate.on {
-    background: linear-gradient(135deg, #0ea5e9, #0284c7);
-    box-shadow: 0 3px 8px rgba(14, 165, 233, 0.5);
-}
+
 .zolo-switch-squareRotate.on .zolo-knob {
-    transform: translateX(calc(100% + 12%)) rotate(180deg);
+     transform: translateX(calc(var(--zolo-price-card-switch-width) - var(--zolo-price-card-switch-height) + 5px)) translateY(-50%) rotate(180deg); 
 }
 
 /* heading & price */

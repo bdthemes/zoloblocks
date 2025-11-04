@@ -9,6 +9,8 @@ export const SWITCHER_HEIGHT = 'switchHeight';
 export const SWITCHER_BORDER_RADIUS = 'switchBorderRadius';
 export const SWITCHER_BG = 'switchBg';
 export const ACTIVE_SWITCHER_BG = 'activeSwitchBg';
+export const SWITCHER_BORDER = 'switchBorder';
+export const SWITCHER_SHADOW = 'switchShadow';
 
 export const PRICE_CART = 'price-cart';
 export const PRICE_CART_ALIGN = 'priceCartAlign';

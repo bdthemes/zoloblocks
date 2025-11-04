@@ -35,6 +35,8 @@ import {
     SWITCHER_BORDER_RADIUS,
     SWITCHER_BG,
     ACTIVE_SWITCHER_BG,
+    SWITCHER_BORDER,
+    SWITCHER_SHADOW,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -310,6 +312,8 @@ const attributes = {
     ...generateResRangeAttributies(SWITCHER_HEIGHT),
     ...generateDimensionAttributes(SWITCHER_BORDER_RADIUS),
     ...generateNormalBGAttributes(SWITCHER_BG),
+    ...generateBoxShadowAttributies(SWITCHER_SHADOW),
+    ...generateBorderAttributies(SWITCHER_BORDER),
     ...generateNormalBGAttributes(ACTIVE_SWITCHER_BG),
 };
 
