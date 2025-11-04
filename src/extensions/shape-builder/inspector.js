@@ -1,28 +1,40 @@
 import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
 
 const {
     ZoloToggleControl,
     ZoloSelectControl,
     ZoloCardDivider,
-    ResRangeControl,
     ColorControl,
-    BorderControl,
-    BoxShadowControl,
-    NormalBGControl,
     ZoloPanelBody,
     PopoverControl,
     ZoloRepeater,
     ZoloRangeControl,
-    ZoloTextControl,
+    TabPanelControl,
+    IconicBtnGroup,
 } = window.zoloModule;
 
-import { SHAPES_DATA } from './constants';
+import {
+    SHAPES_DATA,
+    ANIMATION_EFFECTS,
+    ANIMATION_TRIGGER,
+    ANIMATION_EASING,
+    ANIMATION_REPEAT,
+    GRADIENT_TYPE,
+    HORIZONTAL_ORIENTATION,
+    VERTICAL_ORIENTATION,
+} from './constants';
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
     const { shapeBuilder, shape = [] } = attributes;
 
     if (!shapeBuilder) return null;
+
+    // Helper to render conditional content
+    const ConditionalRender = ({ condition, children }) => {
+        return condition ? children : null;
+    };
 
     return (
         <ZoloPanelBody title={__('Shape Builder', 'zoloblocks')} panelProps={panelProps} isNew={true}>
@@ -49,15 +61,91 @@ const Inspector = ({ panelProps }) => {
                         addUniqueId={true}
                     >
                         <ZoloSelectControl label={__('Shape Type', 'zoloblocks')} name="shapeType" default="circle" options={SHAPES_DATA} />
+
+                        <IconicBtnGroup
+                            label={__('Fill Type', 'zoloblocks')}
+                            name="fillType"
+                            default="solid"
+                            options={[
+                                { label: __('Solid', 'zoloblocks'), value: 'solid' },
+                                { label: __('Gradient', 'zoloblocks'), value: 'gradient' },
+                            ]}
+                        />
+
                         <ColorControl label={__('Color', 'zoloblocks')} name="color" default="" />
+                        <ColorControl label={__('Gradient Color 1', 'zoloblocks')} name="gradientColor1" default="#08AEEC" />
+                        <ColorControl label={__('Gradient Color 2', 'zoloblocks')} name="gradientColor2" default="#20E2AD" />
 
-                        <div className="zolo-flex-col-control">
-                            <ZoloRangeControl label={__('Width', 'zoloblocks')} name="width" default={100} min={10} max={500} />
-                        </div>
+                        <ZoloCardDivider />
 
-                        <div className="zolo-flex-col-control">
-                            <ZoloRangeControl label={__('Height', 'zoloblocks')} name="height" default={100} min={10} max={500} />
-                        </div>
+                        <ZoloRangeControl label={__('Width (px)', 'zoloblocks')} name="width" default={200} min={10} max={500} step={1} />
+
+                        <ZoloRangeControl label={__('Height (px)', 'zoloblocks')} name="height" default={200} min={10} max={500} step={1} />
+
+                        <ZoloCardDivider />
+
+                        <ZoloSelectControl
+                            label={__('Horizontal Position', 'zoloblocks')}
+                            name="horizontalOrientation"
+                            default="start"
+                            options={HORIZONTAL_ORIENTATION}
+                        />
+
+                        <ZoloRangeControl
+                            label={__('Horizontal Offset (px)', 'zoloblocks')}
+                            name="horizontalOffset"
+                            default={0}
+                            min={-500}
+                            max={500}
+                            step={1}
+                        />
+
+                        <ZoloSelectControl
+                            label={__('Vertical Position', 'zoloblocks')}
+                            name="verticalOrientation"
+                            default="start"
+                            options={VERTICAL_ORIENTATION}
+                        />
+
+                        <ZoloRangeControl
+                            label={__('Vertical Offset (px)', 'zoloblocks')}
+                            name="verticalOffset"
+                            default={0}
+                            min={-500}
+                            max={500}
+                            step={1}
+                        />
+
+                        <ZoloRangeControl label={__('Z-Index', 'zoloblocks')} name="zIndex" default={1} min={-999} max={999} step={1} />
+
+                        <ZoloCardDivider />
+
+                        <ZoloToggleControl label={__('Enable Animation', 'zoloblocks')} name="animationEnabled" default={false} />
+
+                        <ZoloSelectControl
+                            label={__('Animation Effect', 'zoloblocks')}
+                            name="animationName"
+                            default="fade-in"
+                            options={ANIMATION_EFFECTS}
+                        />
+
+                        <ZoloRangeControl
+                            label={__('Duration (s)', 'zoloblocks')}
+                            name="animationDuration"
+                            default={1}
+                            min={0.1}
+                            max={5}
+                            step={0.1}
+                        />
+
+                        <ZoloRangeControl
+                            label={__('Delay (s)', 'zoloblocks')}
+                            name="animationDelay"
+                            default={0}
+                            min={0}
+                            max={5}
+                            step={0.1}
+                        />
                     </ZoloRepeater>
                 </>
             )}

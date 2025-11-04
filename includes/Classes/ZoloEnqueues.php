@@ -219,6 +219,23 @@ if (! class_exists('ZoloEnqueues')) {
                 ZOLO_VERSION,
                 true
             );
+
+            // Register GSAP for shape builder animations
+            wp_register_script(
+                'gsap',
+                'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js',
+                [],
+                '3.12.5',
+                true
+            );
+
+            wp_register_script(
+                'gsap-scroll-trigger',
+                'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js',
+                ['gsap'],
+                '3.12.5',
+                true
+            );
         }
         /**
          * Load Block Editor Assets

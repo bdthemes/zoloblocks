@@ -25,25 +25,53 @@ const Style = (props) => {
     // Generate styles for each shape
     shape.forEach((shapeItem, index) => {
         const selector = `.zolo-shape-builder-${uniqueId}-${shapeItem.id || index}`;
-
         const {
-            width,
-            height,
-            color,
+            width = 200,
+            height = 200,
+            zIndex = 1,
+            horizontalOrientation = 'start',
+            horizontalOffset = 0,
+            verticalOrientation = 'start',
+            verticalOffset = 0,
+            translateX = 0,
+            translateY = 0,
+            rotate = 0,
+            translateXHover = 0,
+            translateYHover = 0,
+            rotateHover = 0,
+            filterBlur = 0,
+            filterBrightness = 100,
+            filterContrast = 100,
+            filterSaturate = 100,
+            filterHue = 0,
+            filterBlurHover = 0,
+            filterBrightnessHover = 100,
+            filterContrastHover = 100,
+            filterSaturateHover = 100,
+            filterHueHover = 0,
         } = shapeItem;
 
-        // Desktop styles
+        const transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
+        const transformHover = `translate(${translateXHover}px, ${translateYHover}px) rotate(${rotateHover}deg)`;
+        const filter = `blur(${filterBlur}px) brightness(${filterBrightness}%) contrast(${filterContrast}%) saturate(${filterSaturate}%) hue-rotate(${filterHue}deg)`;
+        const filterHover = `blur(${filterBlurHover}px) brightness(${filterBrightnessHover}%) contrast(${filterContrastHover}%) saturate(${filterSaturateHover}%) hue-rotate(${filterHueHover}deg)`;
+
         shapeBuilderDesktop += `
             ${selector} {
-                ${width ? `width: ${width}px;` : ''}
-                ${height ? `height: ${height}px;` : ''}
+                z-index: ${zIndex};
+                ${horizontalOrientation === 'start' ? `left: ${horizontalOffset}px;` : `right: ${horizontalOffset}px; left: auto;`}
+                ${verticalOrientation === 'start' ? `top: ${verticalOffset}px;` : `bottom: ${verticalOffset}px; top: auto;`}
+                transform: ${transform};
+                filter: ${filter};
+                transition: transform 0.3s ease, filter 0.3s ease;
             }
             ${selector} svg {
-                ${width ? `width: ${width}px;` : ''}
-                ${height ? `height: ${height}px;` : ''}
+                width: ${width}px;
+                height: ${height}px;
             }
-            ${selector} svg path {
-                ${color ? `fill: ${color};` : ''}
+            .zolo-block-${uniqueId}:hover ${selector} {
+                transform: ${transformHover};
+                filter: ${filterHover};
             }
         `;
     });
