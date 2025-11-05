@@ -32,6 +32,7 @@ export default function Edit(props) {
                     className={`zolo-switch-content zolo-switch-content-${switchType} ${switcherId === '1' ? 'zolo-active' : ''}`}
                     data-switcher-id={switcherId}
                     data-switcher-parent-id={switcherParentId}
+                    data-switcher-type={switchType}
                     style={{
                         display: `${switcherId === '1' ? 'block' : 'none'}`,
                     }}

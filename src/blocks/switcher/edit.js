@@ -57,15 +57,17 @@ export default function Edit(props) {
     }, [uniqueId, innerBlocks]);
 
     // Handle Switch Click
-    const handleSwitchClick = (type) => {
+    const handleSwitchClick = (switchType) => {
         const switcherParentEl = (switcherWrapRef || { current: false }).current;
         if (!switcherParentEl) return false;
 
         const allSwitcherItems = switcherParentEl.querySelectorAll(`.zolo-switch-content`);
         if (allSwitcherItems.length === 0) return false;
 
-        allSwitcherItems.forEach((item, index) => {
-            if ((type === 'primary' && index === 0) || (type === 'secondary' && index === 1)) {
+        allSwitcherItems.forEach((item) => {
+            const itemType = item.dataset.switcherType || (item.classList.contains('zolo-switch-content-primary') ? 'primary' : 'secondary');
+            
+            if (itemType === switchType) {
                 item.style.display = 'block';
                 item.style.animation = 'fadeIn 0.3s';
             } else {
@@ -73,9 +75,17 @@ export default function Edit(props) {
             }
         });
 
-        setAttributes({ isOn: type === 'primary' });
-        setActiveSwitcherId(type);
+        setAttributes({ isOn: switchType === 'primary' });
+        setActiveSwitcherId(switchType);
     };
+
+    // Set initial visibility on mount
+    useEffect(() => {
+        if (switcherWrapRef.current) {
+            const initialType = isOn ? 'primary' : 'secondary';
+            handleSwitchClick(initialType);
+        }
+    }, []);
 
     return (
         <>
