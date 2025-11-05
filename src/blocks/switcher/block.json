@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Switcher",
+    "name": "zolo/switcher",
+    "category": "zoloblocks",
+    "keywords": ["switcher", "button", "link", "cta"],
+    "description": " Display interactive switcher for key metrics or achievements.",
+    "apiVersion": 3,
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 410
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "viewScript": "file:./frontend.js",
+    "style": "file:./style-index.css"
+}
