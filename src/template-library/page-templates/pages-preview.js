@@ -1,8 +1,9 @@
 import { ZoloTooltip } from '../../controls/core-controls';
 import { __ } from '@wordpress/i18n';
+import { getFullUrl } from '../utils';
 import ProPopup from '../pro-popup';
 
-const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTemplate, favIds, handleFavTemplate, templateName }) => {
+const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTemplate, favIds, handleFavTemplate, templateName, type }) => {
     return (
         <>
             {pagesPanel && (
@@ -38,7 +39,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                     <div className="single-demo" key={index}>
                                         <div className="demo-preview">
                                             {template?.demo_preview && (
-                                                <img src={template.demo_preview} alt={template?.title} loading="lazy" decoding="async" />
+                                                <img src={getFullUrl(template.demo_preview, type)} alt={template?.title} loading="lazy" decoding="async" />
                                             )}
                                             {/*
                                             <>
@@ -86,7 +87,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                                                         <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
                                                                             <a
                                                                                 className="demo-btn view-btn"
-                                                                                href={template?.demo_link}
+                                                                                href={getFullUrl(template?.demo_link, type)}
                                                                                 target="_blank"
                                                                             >
                                                                                 {__('Demo', 'zoloblocks')}
@@ -144,7 +145,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                                                         <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
                                                                             <a
                                                                                 className="demo-btn view-btn"
-                                                                                href={template?.demo_link}
+                                                                                href={getFullUrl(template?.demo_link, type)}
                                                                                 target="_blank"
                                                                             >
                                                                                 {__('Demo', 'zoloblocks')}
@@ -179,7 +180,7 @@ const PagesPreview = ({ templates, pagesPanel, setPagesPanel, handleImportTempla
                                                     <>
                                                         {template?.demo_link && (
                                                             <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
-                                                                <a className="demo-btn view-btn" href={template?.demo_link} target="_blank">
+                                                                <a className="demo-btn view-btn" href={getFullUrl(template?.demo_link, type)} target="_blank">
                                                                     {__('Demo', 'zoloblocks')}
                                                                     <svg
                                                                         aria-hidden="true"

@@ -1,5 +1,5 @@
-const rootURL = 'https://zoloblocks.com/demo/wp-json/template-manager/v2';
-const templaesRootURL = 'https://templates.zoloblocks.com/wp-json/template-manager/v2';
+const rootURL = 'https://zoloblocks.com/wp-content/uploads/template-library-json';
+const templaesRootURL = 'https://templates.zoloblocks.com/wp-content/uploads/template-library-json';
 import { addQueryArgs } from '@wordpress/url';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
@@ -7,8 +7,7 @@ import { STORE_NAME } from '../store';
 
 export const fetchRecords = async (query, type) => {
     try {
-        const path = addQueryArgs(`/${type}`, query);
-        const response = await fetch(`${getRootURL(type)}${path}`);
+        const response = await fetch(`${getRootURL(type)}/${type}/${type}.json`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -18,7 +17,7 @@ export const fetchRecords = async (query, type) => {
 
 export const fetchCategories = async (type) => {
     try {
-        const response = await fetch(`${getRootURL(type)}/${type}/categories`);
+        const response = await fetch(`${getRootURL(type)}/${type}/categories.json`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -28,7 +27,7 @@ export const fetchCategories = async (type) => {
 
 export const fetchTags = async (type) => {
     try {
-        const response = await fetch(`${getRootURL(type)}/${type}/tags`);
+        const response = await fetch(`${getRootURL(type)}/${type}/tags.json`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -120,5 +119,17 @@ export const getRootURL = (type) => {
 export const getNormalizedParams = (params = {}) => {
     const { page, ...rest } = params;
     return rest;
+};
+
+export const getFullUrl = (url, type) => {
+    if (!url || url.startsWith('http')) {
+        return url;
+    }
+    
+    const baseUrl = (type === 'templates' || type === 'pages') 
+        ? 'https://templates.zoloblocks.com' 
+        : 'https://zoloblocks.com';
+    
+    return `${baseUrl}${url}`;
 };
 

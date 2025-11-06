@@ -115,6 +115,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
                 <InnerTemplate
                     templates={records}
                     handleImportTemplate={handleImportTemplate}
+                    type={activeTab}
                     // favIds={favIds}
                     // handleFavTemplate={handleFavTemplate}
                 />
@@ -123,6 +124,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
                 <InnerPageTemplate
                     templates={records}
                     handleImportTemplate={handleImportTemplate}
+                    type={activeTab}
                     // favIds={favIds}
                     // handleFavTemplate={handleFavTemplate}
                 />
