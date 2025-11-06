@@ -112,6 +112,7 @@ const Sidebar = () => {
                                 onClick={() => {
                                     setFilters({
                                         categories: category?.slug,
+                                        package_type: '',
                                     });
                                 }}
                             >

@@ -28,6 +28,13 @@ export const fetchRecords = async (query, type) => {
                 });
             }
             
+            // Filter by package type (pro/free)
+            if (query?.package_type) {
+                data = data.filter(item => {
+                    return item.package_type === query.package_type;
+                });
+            }
+            
             // Filter by search text
             if (query?.search) {
                 const searchLower = query.search.toLowerCase();
