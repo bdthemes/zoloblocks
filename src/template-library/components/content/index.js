@@ -65,6 +65,7 @@ const Content = ({ handleImportTemplate, isLoading }) => {
                                                         setFilters({
                                                             tags: tag?.slug,
                                                             package_type: '',
+                                                            categories: '',
                                                         });
                                                     }}
                                                 >
