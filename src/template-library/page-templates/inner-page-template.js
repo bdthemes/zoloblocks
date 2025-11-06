@@ -1,6 +1,6 @@
 import SinglePageTemplate from './single-page-template';
 
-const InnerPageTemplate = ({ templates, handleImportTemplate, favIds, handleFavTemplate }) => {
+const InnerPageTemplate = ({ templates, handleImportTemplate, favIds, handleFavTemplate, type }) => {
     return (
         <div className="zolo-demos-wrapper zolo-pages-templates">
             {templates &&
@@ -16,6 +16,7 @@ const InnerPageTemplate = ({ templates, handleImportTemplate, favIds, handleFavT
                             favIds={favIds}
                             handleFavTemplate={handleFavTemplate}
                             isPro={pages && pages.length > 0 && pages.some((page) => page?.package_type === 'pro')}
+                            type={type}
                         />
                     );
                 })}

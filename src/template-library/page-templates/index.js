@@ -228,6 +228,7 @@ const PageTemplateLoader = ({
                         handleImportTemplate={handleImportTemplate}
                         favIds={favIds}
                         handleFavTemplate={handleFavTemplate}
+                        type={type}
                     />
                 )}
 

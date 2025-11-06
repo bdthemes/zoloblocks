@@ -97,15 +97,32 @@ function ZoloBlocksTemplateLibraryButton() {
 
     /**
      * Handle Import Template
-     * @param {string} jsonFile
+     * @param {string} jsonFileUrl - URL to the JSON file
      */
-    const handleImportTemplate = async (content) => {
+    const handleImportTemplate = async (jsonFileUrl) => {
+        console.log(jsonFileUrl); //https://zoloblocks.com/wp-content/uploads/zolo-exports/zolo-template-37612.json
         try {
             setLoading(true);
 
-            // Early return if no content is provided
+            // Early return if no URL is provided
+            if (!jsonFileUrl) {
+                console.error('No JSON file URL provided.');
+                return;
+            }
+
+            // Fetch the JSON content from the URL
+            const response = await fetch(jsonFileUrl);
+            if (!response.ok) {
+                console.error('Failed to fetch template JSON:', response.statusText);
+                return;
+            }
+
+            const jsonData = await response.json();
+            const content = jsonData?.content || jsonData;
+
+            // Early return if no content is found
             if (!content) {
-                console.error('No content found in API response data.');
+                console.error('No content found in JSON response.');
                 return;
             }
 
@@ -136,7 +153,7 @@ function ZoloBlocksTemplateLibraryButton() {
                 await insertBlocks(blocks, 0);
             }
         } catch (error) {
-            console.error('Error during API fetch import:', error);
+            console.error('Error during template import:', error);
         } finally {
             setTimeout(() => {
                 setLoading(false);

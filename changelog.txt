@@ -1,3 +1,9 @@
+### Version 2.3.14 - November 6, 2025
+
+- **Bug Fixes:**
+  - Resolved Template Library broken issue. (Template Library API changed. Please update the plugin to the latest version.)
+
+
 ### Version 2.3.13 - October 21, 2025
 
 - **Bug Fixes:**

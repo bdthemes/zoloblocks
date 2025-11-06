@@ -1,5 +1,5 @@
-const rootURL = 'https://zoloblocks.com/demo/wp-json/template-manager/v2';
-const templaesRootURL = 'https://templates.zoloblocks.com/wp-json/template-manager/v2';
+const rootURL = 'https://zoloblocks.com/wp-content/uploads/template-library-json';
+const templaesRootURL = 'https://templates.zoloblocks.com/wp-content/uploads/template-library-json';
 import { addQueryArgs } from '@wordpress/url';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
@@ -7,9 +7,53 @@ import { STORE_NAME } from '../store';
 
 export const fetchRecords = async (query, type) => {
     try {
-        const path = addQueryArgs(`/${type}`, query);
-        const response = await fetch(`${getRootURL(type)}${path}`);
-        const data = await response.json();
+        const response = await fetch(`${getRootURL(type)}/${type}/${type}.json`);
+        let data = await response.json();
+        
+        // Apply client-side filtering since we're using static JSON
+        if (data && Array.isArray(data)) {
+            // Filter by category
+            if (query?.categories) {
+                data = data.filter(item => {
+                    if (!item.categories || !Array.isArray(item.categories)) return false;
+                    return item.categories.some(cat => cat.slug === query.categories || cat.id === query.categories);
+                });
+            }
+            
+            // Filter by tag
+            if (query?.tags) {
+                data = data.filter(item => {
+                    if (!item.tags || !Array.isArray(item.tags)) return false;
+                    return item.tags.some(tag => tag.slug === query.tags || tag.id === query.tags);
+                });
+            }
+            
+            // Filter by package type (pro/free)
+            if (query?.package_type) {
+                data = data.filter(item => {
+                    return item.package_type === query.package_type;
+                });
+            }
+            
+            // Filter by search text
+            if (query?.search) {
+                const searchLower = query.search.toLowerCase();
+                data = data.filter(item => {
+                    return item.title?.toLowerCase().includes(searchLower) ||
+                           item.description?.toLowerCase().includes(searchLower);
+                });
+            }
+            
+            // Sort by order (created date)
+            if (query?.order) {
+                data = data.sort((a, b) => {
+                    const dateA = a.created || 0;
+                    const dateB = b.created || 0;
+                    return query.order === 'DESC' ? dateB - dateA : dateA - dateB;
+                });
+            }
+        }
+        
         return data;
     } catch (error) {
         console.error(error);
@@ -18,7 +62,7 @@ export const fetchRecords = async (query, type) => {
 
 export const fetchCategories = async (type) => {
     try {
-        const response = await fetch(`${getRootURL(type)}/${type}/categories`);
+        const response = await fetch(`${getRootURL(type)}/${type}/categories.json`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -28,7 +72,7 @@ export const fetchCategories = async (type) => {
 
 export const fetchTags = async (type) => {
     try {
-        const response = await fetch(`${getRootURL(type)}/${type}/tags`);
+        const response = await fetch(`${getRootURL(type)}/${type}/tags.json`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -120,5 +164,17 @@ export const getRootURL = (type) => {
 export const getNormalizedParams = (params = {}) => {
     const { page, ...rest } = params;
     return rest;
+};
+
+export const getFullUrl = (url, type) => {
+    if (!url || url.startsWith('http')) {
+        return url;
+    }
+    
+    const baseUrl = (type === 'templates' || type === 'pages') 
+        ? 'https://templates.zoloblocks.com' 
+        : 'https://zoloblocks.com';
+    
+    return `${baseUrl}${url}`;
 };
 
