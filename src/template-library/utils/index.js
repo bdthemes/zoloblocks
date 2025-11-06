@@ -8,7 +8,45 @@ import { STORE_NAME } from '../store';
 export const fetchRecords = async (query, type) => {
     try {
         const response = await fetch(`${getRootURL(type)}/${type}/${type}.json`);
-        const data = await response.json();
+        let data = await response.json();
+        
+        // Apply client-side filtering since we're using static JSON
+        if (data && Array.isArray(data)) {
+            // Filter by category
+            if (query?.categories) {
+                data = data.filter(item => {
+                    if (!item.categories || !Array.isArray(item.categories)) return false;
+                    return item.categories.some(cat => cat.slug === query.categories || cat.id === query.categories);
+                });
+            }
+            
+            // Filter by tag
+            if (query?.tags) {
+                data = data.filter(item => {
+                    if (!item.tags || !Array.isArray(item.tags)) return false;
+                    return item.tags.some(tag => tag.slug === query.tags || tag.id === query.tags);
+                });
+            }
+            
+            // Filter by search text
+            if (query?.search) {
+                const searchLower = query.search.toLowerCase();
+                data = data.filter(item => {
+                    return item.title?.toLowerCase().includes(searchLower) ||
+                           item.description?.toLowerCase().includes(searchLower);
+                });
+            }
+            
+            // Sort by order (created date)
+            if (query?.order) {
+                data = data.sort((a, b) => {
+                    const dateA = a.created || 0;
+                    const dateB = b.created || 0;
+                    return query.order === 'DESC' ? dateB - dateA : dateA - dateB;
+                });
+            }
+        }
+        
         return data;
     } catch (error) {
         console.error(error);
