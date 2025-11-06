@@ -27,6 +27,13 @@ export default function Render({ panelProps }) {
                     gradientLocation2 = 100,
                     gradientType = 'linear',
                     gradientAngle = 90,
+                    width = 200,
+                    height = 200,
+                    zIndex = 1,
+                    horizontalOrientation = 'start',
+                    horizontalOffset = 0,
+                    verticalOrientation = 'start',
+                    verticalOffset = 0,
                     animationEnabled = false,
                     animationTrigger = 'on-load',
                     animationName = 'fade-in',
@@ -94,12 +101,25 @@ export default function Render({ panelProps }) {
                         style={{
                             position: 'absolute',
                             pointerEvents: 'none',
+                            zIndex: zIndex,
+                            ...(horizontalOrientation === 'start' 
+                                ? { left: `${horizontalOffset}px` } 
+                                : { right: `${horizontalOffset}px` }),
+                            ...(verticalOrientation === 'start' 
+                                ? { top: `${verticalOffset}px` } 
+                                : { bottom: `${verticalOffset}px` }),
+                            width: `${width}px`,
+                            height: `${height}px`,
                         }}
                     >
                         <svg
                             viewBox={shapeData.viewBox}
                             xmlns="http://www.w3.org/2000/svg"
                             preserveAspectRatio="none"
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                            }}
                         >
                             {gradientDef}
                             {shapeData.transform ? (

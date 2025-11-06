@@ -31,11 +31,6 @@ const Inspector = ({ panelProps }) => {
 
     if (!shapeBuilder) return null;
 
-    // Helper to render conditional content
-    const ConditionalRender = ({ condition, children }) => {
-        return condition ? children : null;
-    };
-
     return (
         <ZoloPanelBody title={__('Shape Builder', 'zoloblocks')} panelProps={panelProps} isNew={true}>
             <ZoloToggleControl
