@@ -33,12 +33,13 @@ import objAttributes from './attributes';
 
 import {
     SPACE_BETWEEN,
-    SWITCHER_BG,
-    SWITCHER_BORDER_RADIUS,
     SWITCHER_HEIGHT,
-    SWITCHER_MARGIN,
     SWITCHER_WIDTH,
     SWITCHER_KNOB_SIZE,
+    SWITCHER_MARGIN,
+    SWITCHER_BORDER_RADIUS,
+    SWITCHER_BG,
+    ACTIVE_SWITCHER_BG,
 } from './constants';
 
 import { SWITCH_TYPO } from './constants/typoPrefixConstant';
@@ -62,7 +63,7 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('Switcher', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Switch', 'zoloblocks')} firstOpen={true} panelProps={props}>
                             <ZoloTextControl
                                 label={__('Primary Text', 'zoloblocks')}
                                 value={primaryText}
@@ -78,7 +79,7 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Switch', 'zoloblocks')} firstOpen={true} panelProps={props}>
+                        <ZoloPanelBody title={__('Switch', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                             <ResRangeControl
                                 label={__('Space Between', 'zoloblocks')}
                                 controlName={SPACE_BETWEEN}
@@ -89,7 +90,7 @@ function Inspector(props) {
                             />
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
-                                controlName={SWITCH_TYPO}
+                                typoPrefixConstant={SWITCH_TYPO}
                                 requiredProps={requiredProps}
                             />
                             <TabPanelControl
@@ -147,20 +148,16 @@ function Inspector(props) {
                                 min={1}
                                 max={100}
                             />
-                            <ResRangeControl
+                            <ResDimensionsControl
                                 label={__('Margin', 'zoloblocks')}
                                 controlName={SWITCHER_MARGIN}
                                 requiredProps={requiredProps}
-                                min={1}
-                                max={100}
                             />
                             <ZoloCardDivider />
-                            <ResRangeControl
+                            <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
                                 controlName={SWITCHER_BORDER_RADIUS}
                                 requiredProps={requiredProps}
-                                min={1}
-                                max={100}
                             />
                             <TabPanelControl
                                 options={[
@@ -184,6 +181,7 @@ function Inspector(props) {
                                             label={__('Background', 'zoloblocks')}
                                             controlName={SWITCHER_BG}
                                             requiredProps={requiredProps}
+                                            noMainBGImg={false}
                                         />
                                     </>
                                 }
@@ -196,8 +194,9 @@ function Inspector(props) {
                                         />
                                         <NormalBGControl
                                             label={__('Background', 'zoloblocks')}
-                                            controlName={SWITCHER_BG}
+                                            controlName={ACTIVE_SWITCHER_BG}
                                             requiredProps={requiredProps}
+                                            noMainBGImg={false}
                                         />
                                     </>
                                 }

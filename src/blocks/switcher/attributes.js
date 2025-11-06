@@ -8,25 +8,20 @@ const {
     generateNormalBGAttributes,
 } = window.zoloModule;
 
-import { SPACE_BETWEEN, SWITCHER_BG, SWITCHER_BORDER_RADIUS, SWITCHER_HEIGHT, SWITCHER_WIDTH, SWITCHER_KNOB_SIZE } from './constants';
+import {
+    SPACE_BETWEEN,
+    SWITCHER_BORDER_RADIUS,
+    SWITCHER_HEIGHT,
+    SWITCHER_WIDTH,
+    SWITCHER_KNOB_SIZE,
+    SWITCHER_MARGIN,
+    SWITCHER_BG,
+    ACTIVE_SWITCHER_BG,
+} from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
 
 const attributes = {
-    // Switcher specific attributes
-    primaryText: {
-        type: 'string',
-        default: 'Primary',
-    },
-    secondaryText: {
-        type: 'string',
-        default: 'Secondary',
-    },
-    isOn: {
-        type: 'boolean',
-        default: true, // true = primary active, false = secondary active
-    },
-
     // global Attributes
     globalConfig: {
         type: 'object',
@@ -52,6 +47,20 @@ const attributes = {
             responsiveControls: true,
         },
     },
+    // Switcher specific attributes
+    primaryText: {
+        type: 'string',
+        default: 'Yearly',
+    },
+    secondaryText: {
+        type: 'string',
+        default: 'Lifetime',
+    },
+    isOn: {
+        type: 'boolean',
+        default: true, // true = primary active, false = secondary active
+    },
+    // Text colors
     switchColor: {
         type: 'string',
         default: '',
@@ -60,13 +69,24 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    // Switcher (toggle) colors
+    switcherColor: {
+        type: 'string',
+        default: '',
+    },
+    activeSwitcherColor: {
+        type: 'string',
+        default: '',
+    },
     ...generateResRangeAttributies(SPACE_BETWEEN),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    ...generateNormalBGAttributes(SWITCHER_BG),
     ...generateResRangeAttributies(SWITCHER_HEIGHT),
     ...generateResRangeAttributies(SWITCHER_WIDTH),
     ...generateResRangeAttributies(SWITCHER_KNOB_SIZE),
-    ...generateBorderAttributies(SWITCHER_BORDER_RADIUS),
+    ...generateDimensionAttributes(SWITCHER_MARGIN),
+    ...generateDimensionAttributes(SWITCHER_BORDER_RADIUS),
+    ...generateNormalBGAttributes(SWITCHER_BG),
+    ...generateNormalBGAttributes(ACTIVE_SWITCHER_BG),
 };
 
 export default attributes;
