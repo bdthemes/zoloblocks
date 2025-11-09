@@ -2,28 +2,28 @@
 
 use Zolo\Helpers\ZoloHelpers;
 
-$topclass = 'zolo-breadcrumbs-wrap';
+$zolo_topclass = 'zolo-breadcrumbs-wrap';
 if ( ! empty( $settings['preset'] ) ) {
-	$topclass .= ' zolo-breadcrumbs-' . $settings['preset'];
+	$zolo_topclass .= ' zolo-breadcrumbs-' . $settings['preset'];
 }
 if ( empty( $settings['showHome'] ) ) {
-	$topclass .= ' hide-home';
+	$zolo_topclass .= ' hide-home';
 }
 if ( empty( $settings['showCurrent'] ) ) {
-	$topclass .= ' hide-current';
+	$zolo_topclass .= ' hide-current';
 }
-$wrapper_class = ZoloHelpers::get_wrapper_class( $settings, $topclass );
+$zolo_wrapper_class = ZoloHelpers::get_wrapper_class( $settings, $zolo_topclass );
 // get parent classes.
-$parentClasses = $settings['parentClasses'] ?? [];
+$zolo_parentClasses = $settings['parentClasses'] ?? [];
 // convert to string.
-$parentClasses = implode( ' ', $parentClasses );
+$zolo_parentClasses = implode( ' ', $zolo_parentClasses );
 // add parent classes to wrapper class.
-$wrapper_class .= ' ' . $parentClasses;
-$wrapperId      = $settings['zoloId'] ?? '';
+$zolo_wrapper_class .= ' ' . $zolo_parentClasses;
+$zolo_wrapperId      = $settings['zoloId'] ?? '';
 
 ?>
 
-<div class="<?php echo esc_attr( $wrapper_class ); ?>" <?php if ( ! empty( $wrapperId ) ) { ?>
-	id="<?php echo esc_attr( $wrapperId ); ?>" <?php } ?>>
+<div class="<?php echo esc_attr( $zolo_wrapper_class ); ?>" <?php if ( ! empty( $zolo_wrapperId ) ) { ?>
+	id="<?php echo esc_attr( $zolo_wrapperId ); ?>" <?php } ?>>
 	<?php echo wp_kses( $content, ZoloHelpers::wp_kses_allowed_svg() ); ?>
 </div>

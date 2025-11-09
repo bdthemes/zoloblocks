@@ -1,13 +1,13 @@
 <?php
 
-$commentNumber       = '';
-$post_comment_number = $result->comment_number ?? '';
+$zolo_commentNumber       = '';
+$zolo_post_comment_number = $zolo_result->comment_number ?? '';
 
 if (! empty($settings['showComment'])) {
 
-    $commentNumber .= '<div class="zolo-post-comment">';
-    $commentNumber .= $post_comment_number . ' ' . __('Comments', 'zoloblocks');
-    $commentNumber .= '</div>';
+    $zolo_commentNumber .= '<div class="zolo-post-comment">';
+    $zolo_commentNumber .= $zolo_post_comment_number . ' ' . __('Comments', 'zoloblocks');
+    $zolo_commentNumber .= '</div>';
 }
 
-return $commentNumber;
+return $zolo_commentNumber;

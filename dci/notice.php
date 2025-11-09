@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'dci_popup_notice' ) ) {
-	function dci_popup_notice( $data ) {
+if ( ! function_exists( 'zolo_dci_popup_notice' ) ) {
+	function zolo_dci_popup_notice( $data ) {
 
 		?>
 		<div class="dci-notice">

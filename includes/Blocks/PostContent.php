@@ -47,6 +47,7 @@ class PostContent {
 		}
 
 		/** This filter is documented in wp-includes/post-template.php */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core WordPress filter.
 		$content = apply_filters( 'the_content', str_replace( ']]>', ']]&gt;', $content ) );
 		unset( $seen_ids[ $post_id ] );
 

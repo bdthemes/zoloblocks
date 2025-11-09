@@ -1,21 +1,21 @@
 <?php
-$author   = '';
+$zolo_author   = '';
 
-$author_posts_url = get_author_posts_url(get_the_author_meta('ID'));
-$author_name      = $result->author ?? '';
+$zolo_author_posts_url = get_author_posts_url(get_the_author_meta('ID'));
+$zolo_author_name      = $zolo_result->author ?? '';
 
-$authorLink = sprintf(
+$zolo_authorLink = sprintf(
     '<a href="%1$s" class="zolo-post-author-link">%2$s</a>',
-    esc_url($author_posts_url),
-    esc_html($author_name),
+    esc_url($zolo_author_posts_url),
+    esc_html($zolo_author_name),
 );
 
-$avatar = $result->avatar;
-$default_prefix = $settings['preset'] === 'style-4' ? 'By' : 'Posted By';
-$author_prefix = !empty($settings['authorPrefix']) ? $settings['authorPrefix'] : $default_prefix;
+$zolo_avatar = $zolo_result->avatar;
+$zolo_default_prefix = $settings['preset'] === 'style-4' ? 'By' : 'Posted By';
+$zolo_author_prefix = !empty($settings['authorPrefix']) ? $settings['authorPrefix'] : $zolo_default_prefix;
 
 if (!empty($settings['showAuthor'])) {
-    $author .= sprintf(
+    $zolo_author .= sprintf(
         '<div class="zolo-post-meta-box">
             %2$s
             <div class="zolo-post-author-name">
@@ -24,10 +24,10 @@ if (!empty($settings['showAuthor'])) {
                 %1$s
             </div>
         </div>',
-        $authorLink,
-        $avatar,
-        $author_prefix
+        $zolo_authorLink,
+        $zolo_avatar,
+        $zolo_author_prefix
     );
 }
 
-return $author;
+return $zolo_author;

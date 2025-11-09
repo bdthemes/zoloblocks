@@ -1,43 +1,43 @@
 <?php
 
-$thumbnailHTML    = '';
-$placeholderImage = trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/placeholder.svg';
-$showLink         = isset( $showThumbLink ) ? (bool) $showThumbLink : true;
+$zolo_thumbnailHTML    = '';
+$zolo_placeholderImage = trailingslashit( ZOLO_ADMIN_URL ) . 'assets/images/placeholder.svg';
+$zolo_showLink         = isset( $showThumbLink ) ? (bool) $showThumbLink : true;
 
 
 if ( ! empty( $settings['showThumbnail'] ) ) {
-	$thumbnail = $result->thumbnail ?? '';
-	$permalink = $result->permalink ?? '#';
-	$title     = $result->title ?? '';
+	$zolo_thumbnail = $zolo_result->thumbnail ?? '';
+	$zolo_permalink = $zolo_result->permalink ?? '#';
+	$zolo_title     = $zolo_result->title ?? '';
 
-	if ( $showLink ) {
-		if ( ! empty( $thumbnail ) ) {
-			$thumbnailHTML .= sprintf(
+	if ( $zolo_showLink ) {
+		if ( ! empty( $zolo_thumbnail ) ) {
+			$zolo_thumbnailHTML .= sprintf(
 				'<a href="%1$s">%2$s</a>',
-				esc_url( $permalink ),
-				$thumbnail
+				esc_url( $zolo_permalink ),
+				$zolo_thumbnail
 			);
 		} else {
-			$thumbnailHTML .= sprintf(
+			$zolo_thumbnailHTML .= sprintf(
 				// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 				'<a href="%1$s"><img src="%2$s" alt="%3$s"></a>',
-				esc_url( $permalink ),
-				esc_url( $placeholderImage ),
-				esc_attr( $title )
+				esc_url( $zolo_permalink ),
+				esc_url( $zolo_placeholderImage ),
+				esc_attr( $zolo_title )
 			);
 		}
 	} else {
-		if ( ! empty( $thumbnail ) ) {
-			$thumbnailHTML .= $thumbnail;
+		if ( ! empty( $zolo_thumbnail ) ) {
+			$zolo_thumbnailHTML .= $zolo_thumbnail;
 		} else {
-			$thumbnailHTML .= sprintf(
+			$zolo_thumbnailHTML .= sprintf(
 				// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 				'<img src="%1$s" alt="%2$s">',
-				esc_url( $placeholderImage ),
-				esc_attr( $title )
+				esc_url( $zolo_placeholderImage ),
+				esc_attr( $zolo_title )
 			);
 		}
 	}
 }
 
-return $thumbnailHTML;
+return $zolo_thumbnailHTML;

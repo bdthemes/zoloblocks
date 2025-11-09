@@ -2,22 +2,22 @@
 
 use Zolo\Helpers\ZoloHelpers;
 
-$contentHTML  = '';
-$contentHTML .= '<div class="zolo-post-desc">';
+$zolo_contentHTML  = '';
+$zolo_contentHTML .= '<div class="zolo-post-desc">';
 if ( ! empty( $settings['showExcerpt'] ) ) {
-	$_content = ! empty( $result->excerpt ) ? $result->excerpt : $result->content;
-	$_content = ZoloHelpers::removeHtmlTagContents( $_content, [ 'figure' ] );
+	$zolo_content = ! empty( $zolo_result->excerpt ) ? $zolo_result->excerpt : $zolo_result->content;
+	$zolo_content = ZoloHelpers::removeHtmlTagContents( $zolo_content, [ 'figure' ] );
 
-	$content = ! empty( $settings['excerptWords'] ) ? ZoloHelpers::wordcount( wp_kses_post( wp_strip_all_tags( $_content ) ), $settings['excerptWords'] )
-		: $_content;
+	$zolo_content = ! empty( $settings['excerptWords'] ) ? ZoloHelpers::wordcount( wp_kses_post( wp_strip_all_tags( $zolo_content ) ), $settings['excerptWords'] )
+		: $zolo_content;
 
-	$contentHTML .= sprintf(
+	$zolo_contentHTML .= sprintf(
 		' <p>%1$s%2$s</p>',
-		$content,
+		$zolo_content,
 		$settings['excerptindicator'],
 	);
 }
 
-$contentHTML .= '</div>';
+$zolo_contentHTML .= '</div>';
 
-return $contentHTML;
+return $zolo_contentHTML;
