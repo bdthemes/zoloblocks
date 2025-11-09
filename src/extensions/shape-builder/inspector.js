@@ -107,6 +107,7 @@ const Inspector = ({ panelProps }) => {
                 />
 
                 <ZoloRangeControl
+                    className="zolo-flex-col-control"
                     label={__('Duration (s)', 'zoloblocks')}
                     name="animationDuration"
                     default={1}
@@ -115,7 +116,15 @@ const Inspector = ({ panelProps }) => {
                     step={0.1}
                 />
 
-                <ZoloRangeControl label={__('Delay (s)', 'zoloblocks')} name="animationDelay" default={0} min={0} max={5} step={0.1} />
+                <ZoloRangeControl
+                    className="zolo-flex-col-control"
+                    label={__('Delay (s)', 'zoloblocks')}
+                    name="animationDelay"
+                    default={0}
+                    min={0}
+                    max={5}
+                    step={0.1}
+                />
             </>
         );
     };
@@ -217,9 +226,25 @@ const Inspector = ({ panelProps }) => {
 
                         <ZoloCardDivider />
 
-                        <ZoloRangeControl label={__('Width (px)', 'zoloblocks')} name="width" default={200} min={10} max={500} step={1} />
+                        <ZoloRangeControl
+                            className="zolo-flex-col-control"
+                            label={__('Width (px)', 'zoloblocks')}
+                            name="width"
+                            default={200}
+                            min={10}
+                            max={500}
+                            step={1}
+                        />
 
-                        <ZoloRangeControl label={__('Height (px)', 'zoloblocks')} name="height" default={200} min={10} max={500} step={1} />
+                        <ZoloRangeControl
+                            className="zolo-flex-col-control"
+                            label={__('Height (px)', 'zoloblocks')}
+                            name="height"
+                            default={200}
+                            min={10}
+                            max={500}
+                            step={1}
+                        />
 
                         <ZoloCardDivider />
 
@@ -231,6 +256,7 @@ const Inspector = ({ panelProps }) => {
                         />
 
                         <ZoloRangeControl
+                            className="zolo-flex-col-control"
                             label={__('Horizontal Offset', 'zoloblocks')}
                             name="horizontalOffset"
                             default={0}
@@ -247,6 +273,7 @@ const Inspector = ({ panelProps }) => {
                         />
 
                         <ZoloRangeControl
+                            className="zolo-flex-col-control"
                             label={__('Vertical Offset', 'zoloblocks')}
                             name="verticalOffset"
                             default={0}
@@ -255,11 +282,24 @@ const Inspector = ({ panelProps }) => {
                             step={1}
                         />
 
-                        <ZoloRangeControl label={__('Z-Index', 'zoloblocks')} name="zIndex" default={1} min={-999} max={999} step={1} />
+                        <ZoloRangeControl
+                            className="zolo-flex-col-control"
+                            label={__('Z-Index', 'zoloblocks')}
+                            name="zIndex"
+                            default={1}
+                            min={-999}
+                            max={999}
+                            step={1}
+                        />
 
                         <ZoloCardDivider />
 
-                        <ZoloToggleControl label={__('Enable Animation', 'zoloblocks')} name="animationEnabled" default={false} />
+                        <ZoloToggleControl
+                            className="zolo-flex-col-control"
+                            label={__('Enable Animation', 'zoloblocks')}
+                            name="animationEnabled"
+                            default={false}
+                        />
 
                         <ConditionalAnimationControls />
                     </ZoloRepeater>
