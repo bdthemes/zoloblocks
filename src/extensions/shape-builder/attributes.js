@@ -44,33 +44,33 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/shapeBuilder/addA
                         // Position
                         zIndex: 1,
                         horizontalOrientation: 'start',
-                        horizontalOffset: '',
+                        horizontalOffset: 0,
                         verticalOrientation: 'start',
-                        verticalOffset: '',
+                        verticalOffset: 0,
 
                         // Transform Normal
-                        translateX: '',
-                        translateY: '',
-                        rotate: '',
+                        translateX: 0,
+                        translateY: 0,
+                        rotate: 0,
 
                         // Transform Hover
-                        translateXHover: '',
-                        translateYHover: '',
-                        rotateHover: '',
+                        translateXHover: 0,
+                        translateYHover: 0,
+                        rotateHover: 0,
 
                         // CSS Filters Normal
-                        filterBlur: '',
-                        filterBrightness: '',
-                        filterContrast: '',
-                        filterSaturate: '',
-                        filterHue: '',
+                        filterBlur: 0,
+                        filterBrightness: 0,
+                        filterContrast: 0,
+                        filterSaturate: 0,
+                        filterHue: 0,
 
                         // CSS Filters Hover
-                        filterBlurHover: '',
-                        filterBrightnessHover: '',
-                        filterContrastHover: '',
-                        filterSaturateHover: '',
-                        filterHueHover: '',
+                        filterBlurHover: 0,
+                        filterBrightnessHover: 0,
+                        filterContrastHover: 0,
+                        filterSaturateHover: 0,
+                        filterHueHover: 0,
 
                         // Animation
                         animationEnabled: false,

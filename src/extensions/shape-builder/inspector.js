@@ -15,6 +15,7 @@ const {
     IconicBtnGroup,
     ZoloButton,
     ZoloBaseControl,
+    ImageAvatar,
 } = window.zoloModule;
 
 import {
@@ -31,76 +32,120 @@ import {
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
     const { shapeBuilder, shape = [] } = attributes;
-    
+
     // Conditional wrapper to show/hide controls based on shapeType
     const ConditionalSvgUpload = ({ id }) => {
-        const currentItem = shape.find(item => item.id === id);
-        
+        const currentItem = shape.find((item) => item.id === id);
+
         // Only render if shapeType is 'custom'
         if (currentItem?.shapeType !== 'custom') {
             return null;
         }
-        
+
         return (
-            <Fragment>
-                <MediaUploadControl 
+            <>
+                <MediaUploadControl
                     currentItem={currentItem}
                     onUpdate={(newSvg) => {
-                        const updatedShape = shape.map(item => 
-                            item.id === id ? { ...item, customSvg: newSvg } : item
-                        );
+                        const updatedShape = shape.map((item) => (item.id === id ? { ...item, customSvg: newSvg } : item));
                         setAttributes({ shape: updatedShape });
                     }}
                 />
-                
-                <CustomColorControls 
-                    currentItem={currentItem}
-                    itemId={id}
-                />
-            </Fragment>
+
+                <CustomColorControls currentItem={currentItem} itemId={id} />
+            </>
         );
     };
-    
+
     // Color controls for custom SVG
     const CustomColorControls = ({ currentItem, itemId }) => {
         return (
-            <Fragment>
+            <>
                 <ColorControl
                     label={__('Fill Color', 'zoloblocks')}
                     value={currentItem?.customSvgFillColor || ''}
                     onChange={(color) => {
-                        const updatedShape = shape.map(item => 
-                            item.id === itemId ? { ...item, customSvgFillColor: color } : item
-                        );
+                        const updatedShape = shape.map((item) => (item.id === itemId ? { ...item, customSvgFillColor: color } : item));
                         setAttributes({ shape: updatedShape });
                     }}
                 />
-                
+
                 <ColorControl
                     label={__('Stroke Color', 'zoloblocks')}
                     value={currentItem?.customSvgStrokeColor || ''}
                     onChange={(color) => {
-                        const updatedShape = shape.map(item => 
-                            item.id === itemId ? { ...item, customSvgStrokeColor: color } : item
-                        );
+                        const updatedShape = shape.map((item) => (item.id === itemId ? { ...item, customSvgStrokeColor: color } : item));
                         setAttributes({ shape: updatedShape });
                     }}
                 />
-            </Fragment>
+            </>
         );
     };
-    
+
     // Check if current item is custom shape (for conditional rendering)
     const isCustomShape = (id) => {
-        const currentItem = shape.find(item => item.id === id);
+        const currentItem = shape.find((item) => item.id === id);
         return currentItem?.shapeType === 'custom';
     };
-    
+
+    // Conditional wrapper for animation controls
+    const ConditionalAnimationControls = ({ id }) => {
+        const currentItem = shape.find((item) => item.id === id);
+
+        // Only render if animationEnabled is true for this specific shape item
+        if (!currentItem?.animationEnabled) {
+            return null;
+        }
+
+        return (
+            <>
+                <ZoloSelectControl
+                    label={__('Animation Effect', 'zoloblocks')}
+                    name="animationName"
+                    default="fade-in"
+                    options={ANIMATION_EFFECTS}
+                />
+
+                <ZoloRangeControl
+                    label={__('Duration (s)', 'zoloblocks')}
+                    name="animationDuration"
+                    default={1}
+                    min={0.1}
+                    max={5}
+                    step={0.1}
+                />
+
+                <ZoloRangeControl label={__('Delay (s)', 'zoloblocks')} name="animationDelay" default={0} min={0} max={5} step={0.1} />
+            </>
+        );
+    };
+
     // Actual upload control component
     const MediaUploadControl = ({ currentItem, onUpdate }) => {
+        const svgId = currentItem?.customSvg?.id;
+        const svgUrl = currentItem?.customSvg?.url;
+
         return (
-            <ZoloBaseControl label={__('Custom SVG Upload', 'zoloblocks')}>
-                <MediaUploadCheck>
+            <ZoloBaseControl label={__('Custom SVG Upload', 'zoloblocks')} className="zolo-flex-col-control">
+                {svgId ? (
+                    <ImageAvatar
+                        imageUrl={svgUrl}
+                        onDeleteImage={() =>
+                            onUpdate({
+                                url: '',
+                                id: null,
+                            })
+                        }
+                        allowedTypes={['image/svg+xml']}
+                        imageId={svgId}
+                        onEditImage={(media) => {
+                            onUpdate({
+                                url: media.url,
+                                id: media.id,
+                            });
+                        }}
+                    />
+                ) : (
                     <MediaUpload
                         onSelect={(media) => {
                             onUpdate({
@@ -109,14 +154,17 @@ const Inspector = ({ panelProps }) => {
                             });
                         }}
                         allowedTypes={['image/svg+xml']}
-                        value={currentItem?.customSvg?.id}
+                        value={svgId}
                         render={({ open }) => (
-                            <ZoloButton onClick={open} className="zolo-media-upload-btn">
-                                {currentItem?.customSvg?.url ? __('Replace SVG', 'zoloblocks') : __('Upload SVG', 'zoloblocks')}
+                            <ZoloButton className="zolo-image-upload-btn" onClick={open}>
+                                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
+                                    <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408" />
+                                </svg>
+                                {__(' Upload SVG', 'zoloblocks')}
                             </ZoloButton>
                         )}
                     />
-                </MediaUploadCheck>
+                )}
             </ZoloBaseControl>
         );
     };
@@ -139,7 +187,7 @@ const Inspector = ({ panelProps }) => {
             />
 
             {shapeBuilder.enabled && (
-                <> 
+                <>
                     <ZoloRepeater
                         repeaterItems={shape}
                         onChange={(newShape) => setAttributes({ shape: newShape })}
@@ -152,7 +200,7 @@ const Inspector = ({ panelProps }) => {
                         <ConditionalSvgUpload />
 
                         <ZoloCardDivider />
-                        
+
                         <IconicBtnGroup
                             label={__('Fill Type', 'zoloblocks')}
                             name="fillType"
@@ -183,7 +231,7 @@ const Inspector = ({ panelProps }) => {
                         />
 
                         <ZoloRangeControl
-                            label={__('Horizontal Offset (px)', 'zoloblocks')}
+                            label={__('Horizontal Offset', 'zoloblocks')}
                             name="horizontalOffset"
                             default={0}
                             min={-500}
@@ -199,7 +247,7 @@ const Inspector = ({ panelProps }) => {
                         />
 
                         <ZoloRangeControl
-                            label={__('Vertical Offset (px)', 'zoloblocks')}
+                            label={__('Vertical Offset', 'zoloblocks')}
                             name="verticalOffset"
                             default={0}
                             min={-500}
@@ -213,30 +261,7 @@ const Inspector = ({ panelProps }) => {
 
                         <ZoloToggleControl label={__('Enable Animation', 'zoloblocks')} name="animationEnabled" default={false} />
 
-                        <ZoloSelectControl
-                            label={__('Animation Effect', 'zoloblocks')}
-                            name="animationName"
-                            default="fade-in"
-                            options={ANIMATION_EFFECTS}
-                        />
-
-                        <ZoloRangeControl
-                            label={__('Duration (s)', 'zoloblocks')}
-                            name="animationDuration"
-                            default={1}
-                            min={0.1}
-                            max={5}
-                            step={0.1}
-                        />
-
-                        <ZoloRangeControl
-                            label={__('Delay (s)', 'zoloblocks')}
-                            name="animationDelay"
-                            default={0}
-                            min={0}
-                            max={5}
-                            step={0.1}
-                        />
+                        <ConditionalAnimationControls />
                     </ZoloRepeater>
                 </>
             )}
