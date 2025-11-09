@@ -49,6 +49,8 @@ const Style = (props) => {
             filterContrastHover = 100,
             filterSaturateHover = 100,
             filterHueHover = 0,
+            customSvgFillColor = '',
+            customSvgStrokeColor = '',
         } = shapeItem;
 
         const transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
@@ -74,6 +76,27 @@ const Style = (props) => {
                 filter: ${filterHover};
             }
         `;
+
+        // Add custom SVG color styles if it's a custom shape
+        if (shapeItem.shapeType === 'custom') {
+            if (customSvgFillColor) {
+                shapeBuilderDesktop += `
+                    ${selector}.zolo-shape-builder-custom svg *,
+                    ${selector}.zolo-shape-builder-custom img {
+                        fill: ${customSvgFillColor} !important;
+                        color: ${customSvgFillColor} !important;
+                    }
+                `;
+            }
+            if (customSvgStrokeColor) {
+                shapeBuilderDesktop += `
+                    ${selector}.zolo-shape-builder-custom svg *,
+                    ${selector}.zolo-shape-builder-custom img {
+                        stroke: ${customSvgStrokeColor} !important;
+                    }
+                `;
+            }
+        }
     });
 
     return {

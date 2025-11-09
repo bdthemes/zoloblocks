@@ -1,5 +1,12 @@
 [
     {
+        "id": "custom",
+        "value": "custom",
+        "label": "Custom Upload",
+        "viewBox": "0 0 100 100",
+        "path": ""
+    },
+    {
         "id": "circle",
         "value": "circle",
         "label": "Circle",

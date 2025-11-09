@@ -34,6 +34,56 @@
         'slide-in-down': { y: -100, opacity: 0, duration: 1 },
     };
 
+    // Initialize custom SVG color handling
+    function initCustomSvgColors() {
+        const customShapes = document.querySelectorAll('.zolo-shape-builder-custom[data-custom-svg-url]');
+        
+        customShapes.forEach((shape) => {
+            const svgUrl = shape.getAttribute('data-custom-svg-url');
+            const fillColor = shape.getAttribute('data-custom-fill');
+            const strokeColor = shape.getAttribute('data-custom-stroke');
+            const imgElement = shape.querySelector('.zolo-custom-svg-image');
+            
+            if (!svgUrl || !imgElement) return;
+            
+            // Fetch and inline the SVG for color manipulation
+            fetch(svgUrl)
+                .then(response => response.text())
+                .then(svgContent => {
+                    // Create a temporary div to parse SVG
+                    const temp = document.createElement('div');
+                    temp.innerHTML = svgContent.trim();
+                    const svgElement = temp.querySelector('svg');
+                    
+                    if (svgElement) {
+                        // Set dimensions to match container
+                        svgElement.style.width = '100%';
+                        svgElement.style.height = '100%';
+                        svgElement.style.display = 'block';
+                        
+                        // Apply colors to all paths and shapes in SVG
+                        if (fillColor) {
+                            svgElement.querySelectorAll('path, circle, rect, ellipse, polygon, polyline').forEach(el => {
+                                el.style.fill = fillColor;
+                            });
+                        }
+                        
+                        if (strokeColor) {
+                            svgElement.querySelectorAll('path, circle, rect, ellipse, polygon, polyline, line').forEach(el => {
+                                el.style.stroke = strokeColor;
+                            });
+                        }
+                        
+                        // Replace img with inline SVG
+                        imgElement.replaceWith(svgElement);
+                    }
+                })
+                .catch(error => {
+                    console.warn('Failed to load custom SVG:', error);
+                });
+        });
+    }
+
     // Initialize shape animations
     function initShapeAnimations() {
         const shapes = document.querySelectorAll('.zolo-shape-builder[data-animation-enabled="true"]');
@@ -120,15 +170,21 @@
         });
     }
 
+    // Initialize all shape builder features
+    function initShapeBuilder() {
+        initCustomSvgColors();
+        initShapeAnimations();
+    }
+
     // Initialize on DOM ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initShapeAnimations);
+        document.addEventListener('DOMContentLoaded', initShapeBuilder);
     } else {
-        initShapeAnimations();
+        initShapeBuilder();
     }
 
     // Re-initialize on dynamic content load (e.g., AJAX)
     window.addEventListener('load', () => {
-        setTimeout(initShapeAnimations, 100);
+        setTimeout(initShapeBuilder, 100);
     });
 })();

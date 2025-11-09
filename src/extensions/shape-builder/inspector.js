@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
+import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 
 const {
     ZoloToggleControl,
@@ -12,6 +13,8 @@ const {
     ZoloRangeControl,
     TabPanelControl,
     IconicBtnGroup,
+    ZoloButton,
+    ZoloBaseControl,
 } = window.zoloModule;
 
 import {
@@ -28,6 +31,95 @@ import {
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
     const { shapeBuilder, shape = [] } = attributes;
+    
+    // Conditional wrapper to show/hide controls based on shapeType
+    const ConditionalSvgUpload = ({ id }) => {
+        const currentItem = shape.find(item => item.id === id);
+        
+        // Only render if shapeType is 'custom'
+        if (currentItem?.shapeType !== 'custom') {
+            return null;
+        }
+        
+        return (
+            <Fragment>
+                <MediaUploadControl 
+                    currentItem={currentItem}
+                    onUpdate={(newSvg) => {
+                        const updatedShape = shape.map(item => 
+                            item.id === id ? { ...item, customSvg: newSvg } : item
+                        );
+                        setAttributes({ shape: updatedShape });
+                    }}
+                />
+                
+                <CustomColorControls 
+                    currentItem={currentItem}
+                    itemId={id}
+                />
+            </Fragment>
+        );
+    };
+    
+    // Color controls for custom SVG
+    const CustomColorControls = ({ currentItem, itemId }) => {
+        return (
+            <Fragment>
+                <ColorControl
+                    label={__('Fill Color', 'zoloblocks')}
+                    value={currentItem?.customSvgFillColor || ''}
+                    onChange={(color) => {
+                        const updatedShape = shape.map(item => 
+                            item.id === itemId ? { ...item, customSvgFillColor: color } : item
+                        );
+                        setAttributes({ shape: updatedShape });
+                    }}
+                />
+                
+                <ColorControl
+                    label={__('Stroke Color', 'zoloblocks')}
+                    value={currentItem?.customSvgStrokeColor || ''}
+                    onChange={(color) => {
+                        const updatedShape = shape.map(item => 
+                            item.id === itemId ? { ...item, customSvgStrokeColor: color } : item
+                        );
+                        setAttributes({ shape: updatedShape });
+                    }}
+                />
+            </Fragment>
+        );
+    };
+    
+    // Check if current item is custom shape (for conditional rendering)
+    const isCustomShape = (id) => {
+        const currentItem = shape.find(item => item.id === id);
+        return currentItem?.shapeType === 'custom';
+    };
+    
+    // Actual upload control component
+    const MediaUploadControl = ({ currentItem, onUpdate }) => {
+        return (
+            <ZoloBaseControl label={__('Custom SVG Upload', 'zoloblocks')}>
+                <MediaUploadCheck>
+                    <MediaUpload
+                        onSelect={(media) => {
+                            onUpdate({
+                                url: media.url,
+                                id: media.id,
+                            });
+                        }}
+                        allowedTypes={['image/svg+xml']}
+                        value={currentItem?.customSvg?.id}
+                        render={({ open }) => (
+                            <ZoloButton onClick={open} className="zolo-media-upload-btn">
+                                {currentItem?.customSvg?.url ? __('Replace SVG', 'zoloblocks') : __('Upload SVG', 'zoloblocks')}
+                            </ZoloButton>
+                        )}
+                    />
+                </MediaUploadCheck>
+            </ZoloBaseControl>
+        );
+    };
 
     if (!shapeBuilder) return null;
 
@@ -47,7 +139,7 @@ const Inspector = ({ panelProps }) => {
             />
 
             {shapeBuilder.enabled && (
-                <>
+                <> 
                     <ZoloRepeater
                         repeaterItems={shape}
                         onChange={(newShape) => setAttributes({ shape: newShape })}
@@ -57,6 +149,10 @@ const Inspector = ({ panelProps }) => {
                     >
                         <ZoloSelectControl label={__('Shape Type', 'zoloblocks')} name="shapeType" default="circle" options={SHAPES_DATA} />
 
+                        <ConditionalSvgUpload />
+
+                        <ZoloCardDivider />
+                        
                         <IconicBtnGroup
                             label={__('Fill Type', 'zoloblocks')}
                             name="fillType"

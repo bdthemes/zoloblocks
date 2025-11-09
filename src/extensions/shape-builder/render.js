@@ -12,10 +12,14 @@ export default function Render({ panelProps }) {
         <>
             {shape.map((shapeItem, index) => {
                 const shapeData = SHAPES_DATA.find((s) => s.id === shapeItem.shapeType);
-                
+
                 if (!shapeData) {
                     return null;
                 }
+
+                // Handle custom SVG upload
+                const isCustomSvg = shapeItem.shapeType === 'custom';
+                const customSvgUrl = isCustomSvg ? shapeItem.customSvg?.url : null;
 
                 const shapeId = shapeItem.id || index;
                 const {
@@ -52,14 +56,11 @@ export default function Render({ panelProps }) {
                 // Handle gradient
                 if (fillType === 'gradient') {
                     fillColor = `url(#${gradId})`;
-                    
+
                     if (gradientType === 'linear') {
                         gradientDef = (
                             <defs>
-                                <linearGradient 
-                                    id={gradId} 
-                                    gradientTransform={`rotate(${gradientAngle})`}
-                                >
+                                <linearGradient id={gradId} gradientTransform={`rotate(${gradientAngle})`}>
                                     <stop offset={`${gradientLocation1}%`} stopColor={gradientColor1} />
                                     <stop offset={`${gradientLocation2}%`} stopColor={gradientColor2} />
                                 </linearGradient>
@@ -80,17 +81,73 @@ export default function Render({ panelProps }) {
                 }
 
                 // Build animation data attributes
-                const animationAttrs = animationEnabled ? {
-                    'data-animation-enabled': 'true',
-                    'data-animation-trigger': animationTrigger,
-                    'data-animation-name': animationName,
-                    'data-animation-duration': animationDuration,
-                    'data-animation-delay': animationDelay,
-                    'data-animation-easing': animationEasing,
-                    'data-animation-repeat': animationRepeat,
-                    'data-animation-yoyo': animationYoyo ? 'true' : 'false',
-                    'data-animation-viewport': animationViewport,
-                } : {};
+                const animationAttrs = animationEnabled
+                    ? {
+                          'data-animation-enabled': 'true',
+                          'data-animation-trigger': animationTrigger,
+                          'data-animation-name': animationName,
+                          'data-animation-duration': animationDuration,
+                          'data-animation-delay': animationDelay,
+                          'data-animation-easing': animationEasing,
+                          'data-animation-repeat': animationRepeat,
+                          'data-animation-yoyo': animationYoyo ? 'true' : 'false',
+                          'data-animation-viewport': animationViewport,
+                      }
+                    : {};
+
+                // Render custom SVG if uploaded
+                if (isCustomSvg && customSvgUrl) {
+                    // Get custom SVG colors
+                    const customFillColor = shapeItem.customSvgFillColor || '';
+                    const customStrokeColor = shapeItem.customSvgStrokeColor || '';
+                    
+                    // Build inline styles for custom SVG
+                    const customSvgStyle = {
+                        width: '100%',
+                        height: '100%',
+                    };
+                    
+                    if (customFillColor) {
+                        customSvgStyle.fill = customFillColor;
+                        customSvgStyle.color = customFillColor;
+                    }
+                    
+                    if (customStrokeColor) {
+                        customSvgStyle.stroke = customStrokeColor;
+                    }
+
+                    return (
+                        <div
+                            key={`${uniqueId}-shape-${shapeId}`}
+                            className={`zolo-shape-builder zolo-shape-builder-custom zolo-shape-builder-${uniqueId}-${shapeId}`}
+                            data-wrapper-id={`zolo-block-${uniqueId}`}
+                            data-custom-svg-url={customSvgUrl}
+                            data-custom-fill={customFillColor}
+                            data-custom-stroke={customStrokeColor}
+                            {...animationAttrs}
+                            style={{
+                                position: 'absolute',
+                                pointerEvents: 'none',
+                                zIndex: zIndex,
+                                ...(horizontalOrientation === 'start' ? { left: `${horizontalOffset}px` } : { right: `${horizontalOffset}px` }),
+                                ...(verticalOrientation === 'start' ? { top: `${verticalOffset}px` } : { bottom: `${verticalOffset}px` }),
+                                width: `${width}px`,
+                                height: `${height}px`,
+                            }}
+                        >
+                            <img
+                                src={customSvgUrl}
+                                alt="Custom Shape"
+                                className="zolo-custom-svg-image"
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'contain',
+                                }}
+                            />
+                        </div>
+                    );
+                }
 
                 return (
                     <div
@@ -102,12 +159,8 @@ export default function Render({ panelProps }) {
                             position: 'absolute',
                             pointerEvents: 'none',
                             zIndex: zIndex,
-                            ...(horizontalOrientation === 'start' 
-                                ? { left: `${horizontalOffset}px` } 
-                                : { right: `${horizontalOffset}px` }),
-                            ...(verticalOrientation === 'start' 
-                                ? { top: `${verticalOffset}px` } 
-                                : { bottom: `${verticalOffset}px` }),
+                            ...(horizontalOrientation === 'start' ? { left: `${horizontalOffset}px` } : { right: `${horizontalOffset}px` }),
+                            ...(verticalOrientation === 'start' ? { top: `${verticalOffset}px` } : { bottom: `${verticalOffset}px` }),
                             width: `${width}px`,
                             height: `${height}px`,
                         }}

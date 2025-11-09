@@ -20,50 +20,58 @@ const attributes = addFilter('blocks.registerBlockType', 'zolo/shapeBuilder/addA
                     {
                         id: 'shape-1',
                         shapeType: 'circle',
-                        
+
+                        // Custom SVG Upload
+                        customSvg: {
+                            url: '',
+                            id: null,
+                        },
+                        customSvgFillColor: '',
+                        customSvgStrokeColor: '',
+
                         // Color & Gradient
                         fillType: 'solid',
                         color: '',
-                        gradientColor1: '#08AEEC',
-                        gradientColor2: '#20E2AD',
-                        gradientType: 'linear',
-                        gradientAngle: 90,
-                        
+                        gradientColor1: '',
+                        gradientColor2: '',
+                        gradientType: '',
+                        gradientAngle: 0,
+
                         // Size (simple values for repeater compatibility)
                         width: 200,
                         height: 200,
-                        
+
                         // Position
                         zIndex: 1,
                         horizontalOrientation: 'start',
-                        horizontalOffset: 0,
+                        horizontalOffset: '',
                         verticalOrientation: 'start',
-                        verticalOffset: 0,
-                        
+                        verticalOffset: '',
+
                         // Transform Normal
-                        translateX: 0,
-                        translateY: 0,
-                        rotate: 0,
-                        
+                        translateX: '',
+                        translateY: '',
+                        rotate: '',
+
                         // Transform Hover
-                        translateXHover: 0,
-                        translateYHover: 0,
-                        rotateHover: 0,
-                        
+                        translateXHover: '',
+                        translateYHover: '',
+                        rotateHover: '',
+
                         // CSS Filters Normal
-                        filterBlur: 0,
-                        filterBrightness: 100,
-                        filterContrast: 100,
-                        filterSaturate: 100,
-                        filterHue: 0,
-                        
+                        filterBlur: '',
+                        filterBrightness: '',
+                        filterContrast: '',
+                        filterSaturate: '',
+                        filterHue: '',
+
                         // CSS Filters Hover
-                        filterBlurHover: 0,
-                        filterBrightnessHover: 100,
-                        filterContrastHover: 100,
-                        filterSaturateHover: 100,
-                        filterHueHover: 0,
-                        
+                        filterBlurHover: '',
+                        filterBrightnessHover: '',
+                        filterContrastHover: '',
+                        filterSaturateHover: '',
+                        filterHueHover: '',
+
                         // Animation
                         animationEnabled: false,
                         animationTrigger: 'on-load',
