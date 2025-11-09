@@ -76,6 +76,8 @@ const Sidebar = () => {
                         onClick={() => {
                             setFilters({
                                 package_type: 'free',
+                                categories: '',
+                                tags: '',
                             });
                         }}
                     >
@@ -86,6 +88,8 @@ const Sidebar = () => {
                         onClick={() => {
                             setFilters({
                                 package_type: 'pro',
+                                categories: '',
+                                tags: '',
                             });
                         }}
                     >
@@ -112,6 +116,8 @@ const Sidebar = () => {
                                 onClick={() => {
                                     setFilters({
                                         categories: category?.slug,
+                                        package_type: '',
+                                        tags: '',
                                     });
                                 }}
                             >

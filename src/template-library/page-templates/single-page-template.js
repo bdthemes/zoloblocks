@@ -1,9 +1,10 @@
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
+import { getFullUrl } from '../utils';
 import PagesPreview from './pages-preview';
 
-const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavTemplate, isPro }) => {
+const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavTemplate, isPro, type }) => {
     const pages = template?.pages;
     const categoryImage = template?.image;
     const [pagesPanel, setPagesPanel] = useState(false);
@@ -14,14 +15,14 @@ const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavT
                 <div className="demo-preview photos-group">
                     {categoryImage && categoryImage !== '' ? (
                         <div className="single-page-photo">
-                            <img src={categoryImage} alt={template?.title} loading="lazy" decoding="async" />
+                            <img src={getFullUrl(categoryImage, type)} alt={template?.title} loading="lazy" decoding="async" />
                         </div>
                     ) : (
                         pages &&
                         pages.length > 0 &&
                         pages.map((page, index) => (
                             <div className="single-page-photo" key={index}>
-                                <img src={page?.demo_preview} alt={page?.title} loading="lazy" decoding="async" />
+                                <img src={getFullUrl(page?.demo_preview, type)} alt={page?.title} loading="lazy" decoding="async" />
                             </div>
                         ))
                     )}
@@ -50,6 +51,7 @@ const SinglePageTemplate = ({ template, handleImportTemplate, favIds, handleFavT
                     favIds={favIds}
                     handleFavTemplate={handleFavTemplate}
                     templateName={template?.title}
+                    type={type}
                 />
             )}
         </>

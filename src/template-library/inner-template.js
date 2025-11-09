@@ -1,20 +1,26 @@
 import { ZoloTooltip } from '../controls/core-controls';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-
+import { getFullUrl } from './utils';
 import ProPopup from './pro-popup';
 
-const InnerTemplate = ({ templates, handleImportTemplate }) => {
+const InnerTemplate = ({ templates, handleImportTemplate, type }) => {
     return (
         <div className="zolo-demos-wrapper">
             {templates &&
                 templates?.length > 0 &&
                 templates.map((template, index) => {
+                   const content = `https://zoloblocks.com${template?.json_file}`;
                     return (
                         <div className="single-demo" key={index}>
                             <div className="demo-preview">
                                 {template?.demo_preview && (
-                                    <img src={template.demo_preview} alt={template?.title} loading="lazy" decoding="async" />
+                                    <img
+                                        src={getFullUrl(template.demo_preview, type)}
+                                        alt={template?.title}
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
                                 )}
 
                                 <>
@@ -22,7 +28,11 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                         <div className="demo-actions-btn-wrap">
                                             {template?.demo_link && (
                                                 <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
-                                                    <a className="demo-btn view-btn" href={template?.demo_link} target="_blank">
+                                                    <a
+                                                        className="demo-btn view-btn"
+                                                        href={getFullUrl(template?.demo_link, type)}
+                                                        target="_blank"
+                                                    >
                                                         {__('Demo', 'zoloblocks')}
                                                         <svg
                                                             aria-hidden="true"
@@ -60,7 +70,11 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                                     <>
                                                         {template?.demo_link && (
                                                             <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
-                                                                <a className="demo-btn view-btn" href={template?.demo_link} target="_blank">
+                                                                <a
+                                                                    className="demo-btn view-btn"
+                                                                    href={getFullUrl(template?.demo_link, type)}
+                                                                    target="_blank"
+                                                                >
                                                                     {__('Demo', 'zoloblocks')}
                                                                     <svg
                                                                         aria-hidden="true"
@@ -88,7 +102,7 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                                         <ZoloTooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                             <button
                                                                 className="demo-btn import-btn"
-                                                                onClick={() => handleImportTemplate(template?.content)}
+                                                                onClick={() => handleImportTemplate(`https://templates.zoloblocks.com${template?.json_file}`)}
                                                             >
                                                                 {__('Import', 'zoloblocks')}
                                                                 <svg
@@ -117,7 +131,11 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                         <>
                                             {template?.demo_link && (
                                                 <ZoloTooltip text={__('View Demo', 'zoloblocks')} placement="top">
-                                                    <a className="demo-btn view-btn" href={template?.demo_link} target="_blank">
+                                                    <a
+                                                        className="demo-btn view-btn"
+                                                        href={getFullUrl(template?.demo_link, type)}
+                                                        target="_blank"
+                                                    >
                                                         {__('Demo', 'zoloblocks')}
                                                         <svg
                                                             aria-hidden="true"
@@ -145,7 +163,7 @@ const InnerTemplate = ({ templates, handleImportTemplate }) => {
                                             <ZoloTooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                 <button
                                                     className="demo-btn import-btn"
-                                                    onClick={() => handleImportTemplate(template?.content)}
+                                                    onClick={() => handleImportTemplate(`https://zoloblocks.com${template?.json_file}`)}
                                                 >
                                                     {__('Import', 'zoloblocks')}
                                                     <svg
