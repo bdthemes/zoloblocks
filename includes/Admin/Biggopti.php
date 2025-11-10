@@ -283,7 +283,7 @@ class Biggopti {
 
 			<div class="zolo-api-biggopti-content">
 				<div class="zolo-plugin-logo-wrapper">
-					<img height="40" width="40" src="<?php echo esc_url(ZOLO_ADMIN_URL); ?>assets/images/zb-brand.svg" alt="ZoloBlocks Logo">
+					<img src="<?php echo esc_url(ZOLO_ADMIN_URL); ?>includes/Admin/images/zoloblocks.svg" alt="ZoloBlocks Logo">
 				</div>
 
 				<div class="zolo-biggopti-content">

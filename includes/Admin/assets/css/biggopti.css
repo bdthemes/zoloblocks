@@ -10,6 +10,10 @@
     padding: 0 !important;
     border: 0 !important;
     box-shadow: none !important;
+    background: none;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .zoloblocks-biggopti .notice-dismiss {
