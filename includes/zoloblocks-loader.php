@@ -19,6 +19,7 @@ use Zolo\Classes\ZoloEnqueues;
 use Zolo\Classes\FontLoader;
 use Zolo\Classes\PostMeta;
 use Zolo\Admin\Dashboard;
+use Zolo\Admin\Biggopti;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
 use Zolo\API\GetPostMetaV1;
@@ -106,6 +107,7 @@ class ZoloBlocks_Loader {
             // Admin Dashboard
             Dashboard::getInstance();
             Assets::getInstance();
+            Biggopti::getInstance();
         }
     }
 
