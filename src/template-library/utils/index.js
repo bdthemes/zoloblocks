@@ -167,14 +167,33 @@ export const getNormalizedParams = (params = {}) => {
 };
 
 export const getFullUrl = (url, type) => {
-    if (!url || url.startsWith('http')) {
+    // Return early if URL is empty or already absolute
+    if (!url || typeof url !== 'string') {
+        console.warn('Invalid URL provided to getFullUrl:', url);
         return url;
     }
     
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        return url;
+    }
+    
+    // Determine base URL based on type
     const baseUrl = (type === 'templates' || type === 'pages') 
         ? 'https://templates.zoloblocks.com' 
         : 'https://zoloblocks.com';
     
-    return `${baseUrl}${url}`;
+    // Ensure URL starts with forward slash
+    const normalizedUrl = url.startsWith('/') ? url : `/${url}`;
+    
+    const fullUrl = `${baseUrl}${normalizedUrl}`;
+    
+    // Validate the constructed URL
+    try {
+        new URL(fullUrl);
+        return fullUrl;
+    } catch (error) {
+        console.error('Failed to construct valid URL:', { url, type, baseUrl, fullUrl });
+        return url; // Return original URL as fallback
+    }
 };
 

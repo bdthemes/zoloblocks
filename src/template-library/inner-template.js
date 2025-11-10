@@ -10,7 +10,6 @@ const InnerTemplate = ({ templates, handleImportTemplate, type }) => {
             {templates &&
                 templates?.length > 0 &&
                 templates.map((template, index) => {
-                   const content = `https://zoloblocks.com${template?.json_file}`;
                     return (
                         <div className="single-demo" key={index}>
                             <div className="demo-preview">
@@ -102,7 +101,7 @@ const InnerTemplate = ({ templates, handleImportTemplate, type }) => {
                                                         <ZoloTooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                             <button
                                                                 className="demo-btn import-btn"
-                                                                onClick={() => handleImportTemplate(`https://templates.zoloblocks.com${template?.json_file}`)}
+                                                                onClick={() => handleImportTemplate(getFullUrl(template?.json_file, type))}
                                                             >
                                                                 {__('Import', 'zoloblocks')}
                                                                 <svg
@@ -163,7 +162,7 @@ const InnerTemplate = ({ templates, handleImportTemplate, type }) => {
                                             <ZoloTooltip text={__('Import Demo', 'zoloblocks')} placement="top">
                                                 <button
                                                     className="demo-btn import-btn"
-                                                    onClick={() => handleImportTemplate(`https://zoloblocks.com${template?.json_file}`)}
+                                                    onClick={() => handleImportTemplate(getFullUrl(template?.json_file, type))}
                                                 >
                                                     {__('Import', 'zoloblocks')}
                                                     <svg
