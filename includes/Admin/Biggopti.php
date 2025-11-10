@@ -77,11 +77,11 @@ class Biggopti {
 	private function get_api_biggoptis_data() {
 
 		// 6-hour transient cache for API response
-		$transient_key = 'oa_api_biggoptis_zoloblocks';
+		$transient_key = '_api_biggoptis_zoloblocks';
 		$cached = get_transient($transient_key);
-		// if ($cached !== false && is_array($cached)) {
-		// 	return $cached;
-		// }
+		if ($cached !== false && is_array($cached)) {
+			return $cached;
+		}
 
 		// API endpoint for biggoptis
 		$api_url = 'https://store.bdthemes.com/api/notices/api-data-records';
@@ -107,7 +107,7 @@ class Biggopti {
 		if (isset($biggoptis->api) && isset($biggoptis->api->{'zoloblocks'})) {
 			$data = $biggoptis->api->{'zoloblocks'};
 			if (is_array($data)) {
-				$ttl = apply_filters('oa_api_biggoptis_cache_ttl', 6 * HOUR_IN_SECONDS);
+				$ttl = apply_filters('_api_biggoptis_cache_ttl', 6 * HOUR_IN_SECONDS);
 				set_transient($transient_key, $data, $ttl);
 				return $data;
 			}
@@ -410,7 +410,7 @@ class Biggopti {
 		$time = (isset($_POST['time'])) ? esc_attr($_POST['time']) : '';
 		$meta = (isset($_POST['meta'])) ? esc_attr($_POST['meta']) : '';
 
-		if (! wp_verify_nonce($nonce, 'zoloblocks')) {
+		if (! wp_verify_nonce($nonce, 'zolo_biggopti')) {
 			wp_send_json_error();
 		}
 

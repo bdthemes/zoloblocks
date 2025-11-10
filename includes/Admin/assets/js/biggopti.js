@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
                       : '',
             type: 'POST',
             data: {
-                action: 'zoloblocks_fetch_api_biggoptis',
+                action: 'zoloblocks_biggoptis',
                 id: $id,
                 meta: $meta,
                 time: $time,
