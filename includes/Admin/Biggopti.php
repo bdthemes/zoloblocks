@@ -365,7 +365,6 @@ class Biggopti {
 
 			if (is_array($biggoptis)) {
 				foreach ($biggoptis as $index => $biggopti) {
-					error_log(print_r($biggopti, true));
 					if ($this->should_show_biggopti($biggopti)) {
 
 						$biggopti_class = isset($biggopti->notice_class) ? $biggopti->notice_class : 'default-' . $index;
