@@ -537,7 +537,6 @@ if (! class_exists('Insights_SDK')) {
 				'body'    => wp_json_encode($data),
 			);
 
-			// error_log( print_r( $args, true ) );
 
 			$response = wp_remote_request($server_url, $args);
 
@@ -559,7 +558,7 @@ if (! class_exists('Insights_SDK')) {
 		 */
 		public function dci_sdk_insights() {
 			$sanitized_status = isset($_POST['button_val']) ? sanitize_text_field(wp_unslash($_POST['button_val'])) : '';
-			$nonce            = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'] ) ) : '';
+			$nonce            = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
 			$allow_name       = isset($_POST['allow_name']) ? sanitize_text_field(wp_unslash($_POST['allow_name'])) : '';
 			$date_name        = isset($_POST['date_name']) ? sanitize_text_field(wp_unslash($_POST['date_name'])) : '';
 
@@ -635,7 +634,8 @@ if (! class_exists('Insights_SDK')) {
 				<div class="dci-global-header bdt-dci-notice-global-header">
 					<?php if (! empty($plugin_icon)) : ?>
 						<div class="bdt-dci-notice-logo">
-							<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
+							<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
+							?>
 							<img src="<?php echo esc_url($plugin_icon); ?>" alt="icon">
 						</div>
 					<?php endif; ?>
@@ -686,7 +686,8 @@ if (! class_exists('Insights_SDK')) {
 				<div class="dci-global-header">
 					<?php if (! empty($plugin_icon)) : ?>
 						<div>
-							<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
+							<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
+							?>
 							<img src="<?php echo esc_url($plugin_icon); ?>" alt="icon">
 						</div>
 					<?php endif; ?>

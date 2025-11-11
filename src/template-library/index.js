@@ -96,25 +96,74 @@ function ZoloBlocksTemplateLibraryButton() {
     };
 
     /**
-     * Handle Import Template
-     * @param {string} jsonFile
+     * Handle Import Template with retry logic and better error handling
+     * @param {string} jsonFileUrl - URL to the JSON file
+     * @param {number} retryCount - Current retry attempt (default: 0)
      */
-    const handleImportTemplate = async (content) => {
+    const handleImportTemplate = async (jsonFileUrl, retryCount = 0) => {
+        const MAX_RETRIES = 3;
+        const RETRY_DELAY = 1000; // 1 second
+
+        console.log(`Importing template from: ${jsonFileUrl}`);
+        
         try {
             setLoading(true);
 
-            // Early return if no content is provided
-            if (!content) {
-                console.error('No content found in API response data.');
-                return;
+            // Validate URL
+            if (!jsonFileUrl || typeof jsonFileUrl !== 'string') {
+                throw new Error('Invalid or missing JSON file URL provided.');
+            }
+
+            // Validate URL format
+            try {
+                new URL(jsonFileUrl);
+            } catch (urlError) {
+                throw new Error(`Invalid URL format: ${jsonFileUrl}`);
+            }
+
+            // Ensure URL uses the correct domain
+            const url = new URL(jsonFileUrl);
+            const allowedDomains = ['templates.zoloblocks.com', 'zoloblocks.com'];
+            if (!allowedDomains.includes(url.hostname)) {
+                throw new Error(`Template must be from an allowed domain: ${allowedDomains.join(', ')}`);
+            }
+
+            // Fetch the JSON content from the URL with timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+            const response = await fetch(jsonFileUrl, {
+                signal: controller.signal,
+                headers: {
+                    'Accept': 'application/json',
+                    'Cache-Control': 'no-cache'
+                }
+            });
+
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch template: ${response.status} ${response.statusText}`);
+            }
+
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Response is not valid JSON format');
+            }
+
+            const jsonData = await response.json();
+            const content = jsonData?.content || jsonData;
+
+            // Validate content
+            if (!content || (typeof content !== 'string' && typeof content !== 'object')) {
+                throw new Error('No valid content found in template JSON.');
             }
 
             const blocks = parse(content);
 
-            // Early return if no blocks are parsed
-            if (!blocks.length) {
-                console.warn('No blocks were parsed. Check your content format.');
-                return;
+            // Validate parsed blocks
+            if (!blocks || !Array.isArray(blocks) || blocks.length === 0) {
+                throw new Error('No valid blocks were parsed from template content.');
             }
 
             // Function to recursively process blocks
@@ -135,13 +184,43 @@ function ZoloBlocksTemplateLibraryButton() {
             } else {
                 await insertBlocks(blocks, 0);
             }
+
+            console.log('Template imported successfully');
+
         } catch (error) {
-            console.error('Error during API fetch import:', error);
+            console.error(`Template import error (attempt ${retryCount + 1}):`, error.message);
+
+            // Retry logic for network errors
+            if (retryCount < MAX_RETRIES && 
+                (error.name === 'AbortError' || 
+                 error.message.includes('fetch') || 
+                 error.message.includes('network') ||
+                 error.message.includes('Failed to fetch'))) {
+                
+                console.log(`Retrying template import in ${RETRY_DELAY}ms... (${retryCount + 1}/${MAX_RETRIES})`);
+                
+                setTimeout(() => {
+                    handleImportTemplate(jsonFileUrl, retryCount + 1);
+                }, RETRY_DELAY * (retryCount + 1)); // Exponential backoff
+                
+                return;
+            }
+
+            // Show user-friendly error message
+            const errorMessage = error.message || 'Unknown error occurred during template import';
+            console.error('Final template import error:', errorMessage);
+            
+            // You could add a toast notification here if available
+            // showErrorNotification(`Template import failed: ${errorMessage}`);
+            
         } finally {
-            setTimeout(() => {
-                setLoading(false);
-                setIsOpen(false);
-            }, 2000);
+            // Only close if this is not a retry attempt
+            if (retryCount === 0 || retryCount >= MAX_RETRIES) {
+                setTimeout(() => {
+                    setLoading(false);
+                    setIsOpen(false);
+                }, 2000);
+            }
         }
     };
 

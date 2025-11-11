@@ -19,6 +19,7 @@ use Zolo\Classes\ZoloEnqueues;
 use Zolo\Classes\FontLoader;
 use Zolo\Classes\PostMeta;
 use Zolo\Admin\Dashboard;
+use Zolo\Admin\Biggopti;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
 use Zolo\API\GetPostMetaV1;
@@ -51,6 +52,20 @@ class ZoloBlocks_Loader {
         add_action('admin_init', [$this, 'dci_plugin_zoloblocks']);
         add_filter('upload_mimes', array($this, 'upload_mimes'), 100);
         add_filter('wp_check_filetype_and_ext', array($this, 'wp_check_filetype_and_ext'), 100, 3);
+        add_filter('plugin_action_links_' . plugin_basename(ZOLO_FILE), [$this, 'add_settings_link']);
+    }
+
+    public function add_settings_link($links) {
+        $settings_link = '<a href="' . esc_url(get_admin_url(null, 'admin.php?page=zoloblocks')) . '">' . __('Settings', 'dark-reader') . '</a>';
+        array_unshift($links, $settings_link);
+
+        // Add Black Friday promotional link (only if Pro is not active)
+        if (!defined('ZOLO_PRO_VERSION')) {
+            $promo_link = '<a href="https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=zoloblocks" target="_blank" rel="noopener noreferrer" style="color: #ef476f; font-weight: 600;">' . __('Black Friday Limited Offer Up To 87% Off!', 'dark-reader') . '</a>';
+            $links[] = $promo_link;
+        }
+
+        return $links;
     }
 
     /**
@@ -106,6 +121,7 @@ class ZoloBlocks_Loader {
             // Admin Dashboard
             Dashboard::getInstance();
             Assets::getInstance();
+            Biggopti::getInstance();
         }
     }
 
