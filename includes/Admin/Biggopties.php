@@ -72,7 +72,7 @@ class Biggopties {
 	 */
 	private function get_api_biggopties_data() {
 		// 6-hour transient cache for API response
-		$transient_key = 'zolo_api_biggopties_zoloblocks';
+		$transient_key = '_api_biggopties_zoloblocks';
 		$cached = get_transient($transient_key);
 		if ($cached !== false && is_array($cached)) {
 			return $cached;
@@ -442,9 +442,9 @@ class Biggopties {
 			$biggopti = wp_parse_args($biggopti, $defaults);
 
 			// Check if biggopti is for White Label
-			if (defined('BDTzolo_CORE_WL') && $biggopti['category'] === 'regular') {
-				continue;
-			}
+			// if (defined('BDTzolo_CORE_WL') && $biggopti['category'] === 'regular') {
+			// 	continue;
+			// }
 
 			$classes = ['biggopti'];
 
