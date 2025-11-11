@@ -10,6 +10,9 @@ export const MAIN_CIRCLE_RADIUS = 'mainCircleRadius';
 
 export const MAIN_IMAGE_SIZE = 'mainImageSize';
 
+export const HOVER_MAIN_CIRCLE_BORDER = 'hoverMainCircleBorder';
+export const HOVER_MAIN_CIRCLE_SHADOW = 'hoverMainCircleShadow';
+
 export const ICON_SIZE = 'iconSize';
 export const ICON_BG = 'iconBg';
 export const ICON_PADDING = 'iconPadding';

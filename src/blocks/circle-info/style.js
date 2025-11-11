@@ -23,6 +23,8 @@ import {
     MAIN_CIRCLE_SHADOW,
     MAIN_CIRCLE_RADIUS,
     MAIN_IMAGE_SIZE,
+    HOVER_MAIN_CIRCLE_BORDER,
+    HOVER_MAIN_CIRCLE_SHADOW,
     ICON_SIZE,
     ICON_BG,
     ICON_PADDING,
@@ -143,6 +145,20 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: MAIN_CIRCLE_RADIUS,
         styleFor: 'border-radius',
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: hoverMainCircleBorderDesk,
+        tabBorderStyle: hoverMainCircleBorderTab,
+        mobBorderStyle: hoverMainCircleBorderMob,
+    } = generateBorderStyle({
+        controlName: HOVER_MAIN_CIRCLE_BORDER,
+        attributes,
+    });
+
+    const { boxShadowStyle: hoverMainCircleBoxShadow } = generateBoxShadowStyles({
+        controlName: HOVER_MAIN_CIRCLE_SHADOW,
         attributes,
     });
 
@@ -388,6 +404,11 @@ const Style = ({ props }) => {
             ${mainCircleBoxShadow}
         }
 
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item:hover {
+            ${hoverMainCircleBorderDesk}
+            ${hoverMainCircleBoxShadow}
+        }
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
             ${mainImageWidthDesk}
             ${mainImageHeightDesk}
@@ -486,6 +507,11 @@ const Style = ({ props }) => {
             ${mainCircleBoxShadow}
         }
 
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item:hover {
+            ${hoverMainCircleBorderTab}
+            ${hoverMainCircleBoxShadow}
+        }
+
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
             ${mainImageWidthTab}
             ${mainImageHeightTab}
@@ -551,6 +577,11 @@ const Style = ({ props }) => {
             ${mainCircleBorderMob}
             ${mainCircleRadiusMob}
             ${mainCircleBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item:hover {
+            ${hoverMainCircleBorderMob}
+            ${hoverMainCircleBoxShadow}
         }
 
         .${uniqueId}.wp-block-zolo-circle-info .zolo-main-circle-item img {
