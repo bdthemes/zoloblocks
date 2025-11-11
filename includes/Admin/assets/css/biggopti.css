@@ -1,27 +1,21 @@
-/**
- * One Accessibility Admin Biggopti Styles
- * Adapted from Pixel Gallery notice system
- */
-
-/**
- * License Notice Styles (for future use)
- */
 .zoloblocks-biggopti {
     padding: 0 !important;
     border: 0 !important;
     box-shadow: none !important;
-    background: none;
-    display: inline-block;
-    width: 100%;
-    box-sizing: border-box;
+    position: relative;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
-
-.zoloblocks-biggopti .notice-dismiss {
-    padding: 15px;
+.zoloblocks-biggopti .bdt-biggopti-dismiss {
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
 }
-
-.zolo-license-notice-global {
-    border-left: 4px solid #646cff !important;
+.zoloblocks-biggopti .bdt-license-biggopti-global {
+    border-left: 4px solid #fc6a2a !important;
     display: flex;
     align-items: flex-start;
     gap: 15px;
@@ -29,32 +23,27 @@
     border-color: #e2e2e5;
     z-index: 99;
 }
-
-.zolo-license-notice-logo img {
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-license-biggopti-logo img {
     width: 45px;
     height: auto;
     vertical-align: middle;
 }
-
-.zolo-license-notice-content h3 {
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-license-biggopti-content h3 {
     margin: 0 0 10px;
     font-size: 20px;
 }
-
-.zolo-license-notice-content p {
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-license-biggopti-content p {
     margin: 0;
     color: #5f6169;
     max-width: 750px;
 }
-
-.zolo-license-notice-button-wrap {
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-license-biggopti-button-wrap {
     margin-top: 14px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
-.zolo-button {
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-button {
     padding: 12px 16px;
     border-radius: 3px;
     line-height: 1;
@@ -62,96 +51,72 @@
     font-weight: 500;
     text-decoration: none;
 }
-
-.zolo-button-allow {
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-button-allow {
     color: #fff;
-    --primaryColor: #646cff;
-    --secondaryColor: #4854ff;
+}
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-button-skip {
+    border: 0;
+    color: #fe506c;
+}
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-button-allow {
+    --primaryColor: #fe506c;
+    --secondaryColor: #fc6a2a;
     background: linear-gradient(313deg, var(--primaryColor), var(--secondaryColor) 100%);
 }
-
-.zolo-button-allow:hover {
-    --primaryColor: #4854ff;
-    --secondaryColor: #646cff;
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-button-allow:hover {
+    --primaryColor: #fc6a2a;
+    --secondaryColor: #fe506c;
 }
-
-.zolo-button-skip {
-    border: 0;
-    color: #0D3B54;
-    background-color: rgba(100, 108, 255, 0.15);
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-button-skip {
+    background-color: rgba(252, 142, 108, 0.15);
 }
-
-.zolo-button-skip:hover {
-    background-color: rgba(100, 108, 255, 0.2);
+.zoloblocks-biggopti .bdt-license-biggopti-global .bdt-button-skip:hover {
+    background-color: rgba(252, 142, 108, 0.2);
 }
-
-/**
- * Admin Menu Styles
- */
-#adminmenu #toplevel_page_website-accessibility a[href*="get-pro"] {
+#adminmenu #toplevel_page_prime_slider_options a[href='admin.php?page=prime_slider_options_get_pro'] {
     font-weight: 600;
-    color: #169ee6;
+    color: #fc6a2a;
 }
-
-#adminmenu #toplevel_page_website-accessibility a[href*="get-pro"]:hover {
-    color: #169ee6;
+#adminmenu #toplevel_page_prime_slider_options a[href='admin.php?page=prime_slider_options_get_pro']:hover {
+    color: #fc6a2a;
 }
-
-a.zolo-go-pro {
-    color: #646cff;
+a.ps-go-pro {
+    color: #fe506c;
     font-weight: bold;
 }
-
-a.zolo-go-pro:hover,
-a.zolo-go-pro:focus {
-    color: #4854ff;
+a.ps-go-pro:hover,
+a.ps-go-pro:focus {
+    color: #fc6a2a;
 }
-
-/**
- * Admin Store API Biggopti Styles
- */
-[id^="zolo-admin-biggopti-api-biggopti"] {
-    padding: 0 !important;
-    border: 0 !important;
-}
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-plugin-logo-wrapper img {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-plugin-logo-wrapper img {
     vertical-align: middle;
-    width: 40px;
-    height: 40px;
+    width: clamp(25px, 3vw, 40px);
+    height: auto;
     animation: logoSlideIn 0.6s ease-out 0.3s both;
     transition: transform 0.3s ease;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-plugin-logo-wrapper:hover img {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-plugin-logo-wrapper:hover img {
     transform: scale(1.1) rotate(5deg);
 }
-
-/* Notice wrapper entrance animation */
 @keyframes wrapperSlideInTop {
     0% {
         opacity: 0;
     }
-
     100% {
         opacity: 1;
     }
 }
-
-/* Logo entrance animation */
 @keyframes logoSlideIn {
     0% {
         opacity: 0;
         transform: scale(0.5) rotate(-10deg);
     }
-
     100% {
         opacity: 1;
         transform: scale(1) rotate(0deg);
     }
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-wrapper {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-wrapper {
     align-items: center;
     background-color: #000;
     padding: 0 clamp(10px, 3vw, 50px) 0 clamp(10px, 2vw, 30px);
@@ -163,22 +128,19 @@ a.zolo-go-pro:focus {
     overflow: hidden;
     margin: 0;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .has-background-image {
+[id^='bdt-admin-biggopti-api-biggopti'] .has-background-image {
     background-position: left;
     background-repeat: no-repeat;
     background-color: #000;
     background-size: cover;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-api-biggopti-content {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-api-biggopti-content {
     display: flex;
     align-items: center;
     width: 100%;
     min-height: 100px;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-content {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -190,62 +152,27 @@ a.zolo-go-pro:focus {
     backface-visibility: hidden;
     transform: translateZ(0);
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-content-right,
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-content-inner {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-content-right,
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-content-inner {
     display: flex;
     align-items: center;
+    gap: 20px;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-content-left {
-    display: flex;
-    align-items: center;
-}
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-title-description {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-title-description {
     max-width: 450px;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-logo-wrapper {
-    animation: noticeLogoSlideIn 0.7s ease-out 0.35s both;
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-logo-wrapper {
+    animation: biggoptiLogoSlideIn 0.7s ease-out 0.35s both;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-logo-wrapper img {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-logo-wrapper img {
     width: clamp(50px, 5vw, 100px);
     height: auto;
     transition: transform 0.3s ease;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-logo-wrapper:hover img {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-logo-wrapper:hover img {
     transform: scale(1.05);
 }
-
-/* Discount Badge */
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-discount-badge {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    animation: noticeLogoSlideIn 0.7s ease-out 0.35s both;
-}
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-discount-badge .discount-label,
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-discount-badge .discount-off {
-    font-size: clamp(11px, 1.2vw, 14px);
-    font-weight: 600;
-    color: #00ff88;
-    text-transform: uppercase;
-    text-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
-}
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-discount-badge .discount-value {
-    font-size: clamp(32px, 4.5vw, 60px);
-    font-weight: 900;
-    color: #00ff88;
-    text-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
-}
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-title {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-title-description .bdt-biggopti-title {
     color: #fff;
     margin: 0;
     font-size: clamp(12px, 1.5vw, 22px);
@@ -254,49 +181,29 @@ a.zolo-go-pro:focus {
     transform-origin: left center;
     text-shadow: 2px 2px 2px #000000;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-subtitle {
-    color: #ffd700;
-    margin: 0;
-    font-size: clamp(11px, 1.2vw, 16px);
-    font-weight: 600;
-    animation: titleSlideIn 0.8s ease-out 0.45s both;
-    text-shadow: 2px 2px 2px #000000;
-}
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-html-content {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-html-content {
     color: #ffffff;
     text-shadow: 2px 2px 2px #000000;
     animation: titleSlideIn 0.8s ease-out 0.4s both;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .notice-dismiss:before {
-    color: rgba(255, 255, 255, 0.6);
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-dismiss:before {
+    color: #ffffff91;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .notice-dismiss:hover:before {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* Title entrance animation */
 @keyframes titleSlideIn {
     0% {
         opacity: 0;
         transform: translateX(-30px);
     }
-
     100% {
         opacity: 1;
         transform: translateX(0);
     }
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-countdown {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-countdown {
     height: 100%;
     animation: countdownSlideIn 0.8s ease-out 0.5s both;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-countdown .countdown-timer {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-countdown .countdown-timer {
     display: flex;
     align-items: center;
     gap: clamp(5px, 1.5vw, 20px);
@@ -307,8 +214,7 @@ a.zolo-go-pro:focus {
     padding: 0 15px;
     min-height: 100px;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .countdown-item {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-countdown .countdown-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -316,8 +222,7 @@ a.zolo-go-pro:focus {
     min-width: 40px;
     flex-shrink: 0;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .countdown-item .number {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-countdown .number {
     color: #fff;
     font-size: clamp(14px, 2vw, 22px);
     font-weight: 600;
@@ -327,53 +232,43 @@ a.zolo-go-pro:focus {
     text-align: center;
     font-family: 'Courier New', monospace;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .countdown-item .label {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-countdown .label {
     color: #d2d5f4;
     text-transform: capitalize;
     font-size: clamp(10px, 1vw, 13px);
     font-weight: 500;
     white-space: nowrap;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .countdown-timer .separator {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-countdown .separator {
     height: 30px;
     width: 1px;
     background: rgba(255, 255, 255, 0.251);
 }
-
-/* Countdown entrance animation */
 @keyframes countdownSlideIn {
     0% {
         opacity: 0;
         transform: translateY(-20px);
     }
-
     100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
-/* Notice logo entrance animation */
-@keyframes noticeLogoSlideIn {
+@keyframes biggoptiLogoSlideIn {
     0% {
         opacity: 0;
         transform: scale(0.3) translateY(-20px);
     }
-
     50% {
         opacity: 0.7;
         transform: scale(1.1) translateY(-5px);
     }
-
     100% {
         opacity: 1;
         transform: scale(1) translateY(0);
     }
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-btn {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn {
     --nm-text-primary: #fff;
     --nm-accent: #5affdb;
     --nm-shadow-color: #fffdef;
@@ -382,20 +277,16 @@ a.zolo-go-pro:focus {
     text-align: right;
     animation: buttonSlideIn 0.8s ease-out 0.6s both;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-btn a {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn a {
     background: transparent;
     border: 0;
     padding: 0;
     margin: 0;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-btn a:hover {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn a:hover {
     background: transparent;
 }
-
-/* Button Styles */
-[id^="zolo-admin-biggopti-api-biggopti"] .nm-biggopti-btn {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn {
     color: var(--nm-text-primary);
     text-decoration: none;
     font-size: clamp(9px, 1.8vw, 22px);
@@ -410,102 +301,64 @@ a.zolo-go-pro:focus {
     text-align: left;
     transition: all var(--nm-anim-duration-fast) ease;
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .nm-biggopti-btn:hover {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn:hover {
     color: var(--nm-accent);
     border-color: var(--nm-accent);
 }
-
-[id^="zolo-admin-biggopti-api-biggopti"] .nm-biggopti-btn .dashicons,
-[id^="zolo-admin-biggopti-api-biggopti"] .nm-biggopti-btn svg {
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star {
+    opacity: 1;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px var(--nm-shadow-color));
+}
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn svg {
     width: 16px;
     height: 16px;
     display: block;
 }
-
-/* Button entrance animation */
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-1 {
+    top: 21%;
+    left: -18%;
+}
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-2 {
+    top: -25%;
+    left: 10%;
+}
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-3 {
+    top: 69%;
+    left: 25%;
+}
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-4 {
+    top: -34%;
+    left: 80%;
+}
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-5 {
+    top: 25%;
+    left: 115%;
+}
+[id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-6 {
+    top: 5%;
+    left: 60%;
+}
 @keyframes buttonSlideIn {
     0% {
         opacity: 0;
         transform: translateX(30px);
     }
-
     100% {
         opacity: 1;
         transform: translateX(0);
     }
 }
-
-/* Animation completion optimization */
-[id^="zolo-admin-biggopti-api-biggopti"].animations-complete * {
+[id^='bdt-admin-biggopti-api-biggopti'].animations-complete * {
     will-change: auto;
     animation: none;
 }
-
-/**
- * Standard Biggopti Styles (non-API)
- */
-.zoloblocks-biggopti {
-    border-left-color: #646cff;
-    position: relative;
-}
-
-.zoloblocks-biggopti .zolo-biggopti-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.zoloblocks-biggopti .zolo-biggopti-icon-wrapper img {
-    display: block;
-    width: 25px;
-    height: 25px;
-}
-
-.zoloblocks-biggopti .zolo-biggopti-content {
-    flex: 1;
-    display: flex;
-    /* flex-direction: column; */
-    gap: 8px;
-}
-
-.zoloblocks-biggopti .zolo-biggopti-title {
-    color: #fff;
-    margin: 0;
-    font-size: clamp(12px, 1.5vw, 22px);
-    font-weight: 700;
-    animation: titleSlideIn .8s ease-out .4s both;
-    transform-origin: left center;
-    text-shadow: 2px 2px 2px #000000;
-}
-
-.zoloblocks-biggopti .zolo-biggopti-text {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    color: #3c434a;
-}
-
-.zoloblocks-biggopti .zolo-biggopti-btn a {
-    display: inline-block;
-    padding: 8px 16px;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: background 0.2s;
-}
-
 @media (min-width: 1460px) {
-
-    [id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-content-right,
-    [id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-content-inner {
+    [id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-content-right,
+    [id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-content-inner {
         gap: 30px;
     }
-
-    [id^="zolo-admin-biggopti-api-biggopti"] .zolo-biggopti-countdown .countdown-timer {
+    [id^='bdt-admin-biggopti-api-biggopti'] .bdt-biggopti-countdown .countdown-timer {
         padding: 0 30px;
     }
 }

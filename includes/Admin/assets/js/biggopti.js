@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
-    // Delegate to capture dynamically injected biggoptis as well
-    $(document).on('click', '.zoloblocks-biggopti.is-dismissible .notice-dismiss', function () {
+    // Delegate to capture dynamically injected biggopties as well
+    $(document).on('click', '.zoloblocks-biggopti.is-dismissible .bdt-biggopti-dismiss', function () {
         $this = $(this).parents('.zoloblocks-biggopti');
         var $id = $this.attr('id') || '';
         var $time = $this.attr('dismissible-time') || '';
@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
                       : '',
             type: 'POST',
             data: {
-                action: 'zoloblocks_biggoptis',
+                action: 'zolo_biggopties',
                 id: $id,
                 meta: $meta,
                 time: $time,
@@ -28,12 +28,12 @@ jQuery(document).ready(function ($) {
        =================================== */
 
     /**
-     * Initialize countdown timers for API biggoptis
+     * Initialize countdown timers for API biggopties
      * This function finds all countdown elements and starts the countdown timer
      */
     function initAPIBiggoptiCountdown() {
         // Find all countdown elements on the page
-        jQuery('.zolo-biggopti-countdown').each(function() {
+        jQuery('.bdt-biggopti-countdown').each(function () {
             var $countdown = jQuery(this);
             var $timer = $countdown.find('.countdown-timer');
             var endDate = $countdown.data('end-date');
@@ -66,22 +66,32 @@ jQuery(document).ready(function ($) {
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 // Add leading zeros
-                days = days < 10 ? "0" + days : days;
-                hours = hours < 10 ? "0" + hours : hours;
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+                days = days < 10 ? '0' + days : days;
+                hours = hours < 10 ? '0' + hours : hours;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
 
                 // Build countdown text with wrapped numbers and labels
-                var countdownText = "";
+                var countdownText = '';
                 if (days > 0) {
-                    countdownText += '<div class="countdown-item"><span class="number">' + days + '</span><span class="label">days</span></div><span class="separator"></span>';
+                    countdownText +=
+                        '<div class="countdown-item"><span class="number">' +
+                        days +
+                        '</span><span class="label">days</span></div><span class="separator"></span>';
                 }
                 // Always show hours (even if 00) for consistent layout
-                countdownText += '<div class="countdown-item"><span class="number">' + hours + '</span><span class="label">hrs</span></div><span class="separator"></span>';
+                countdownText +=
+                    '<div class="countdown-item"><span class="number">' +
+                    hours +
+                    '</span><span class="label">hrs</span></div><span class="separator"></span>';
 
-                countdownText += '<div class="countdown-item"><span class="number">' + minutes + '</span><span class="label">min</span></div><span class="separator"></span>';
+                countdownText +=
+                    '<div class="countdown-item"><span class="number">' +
+                    minutes +
+                    '</span><span class="label">min</span></div><span class="separator"></span>';
 
-                countdownText += '<div class="countdown-item"><span class="number">' + seconds + '</span><span class="label">sec</span></div>';
+                countdownText +=
+                    '<div class="countdown-item"><span class="number">' + seconds + '</span><span class="label">sec</span></div>';
 
                 // Update the timer display
                 $timer.html(countdownText);
@@ -98,109 +108,124 @@ jQuery(document).ready(function ($) {
     // Initialize countdown on page load
     initAPIBiggoptiCountdown();
 
-    // Re-initialize countdown when new biggoptis are added (for dynamic content)
-    // This ensures countdown works even if biggoptis are loaded after page load
-    jQuery(document).on('DOMNodeInserted', '.zolo-biggopti-countdown', function() {
+    // Re-initialize countdown when new biggopties are added (for dynamic content)
+    // This ensures countdown works even if biggopties are loaded after page load
+    jQuery(document).on('DOMNodeInserted', '.bdt-biggopti-countdown', function () {
         initAPIBiggoptiCountdown();
     });
 
-    // Fetch API biggoptis after full page load, with try/catch
-    setTimeout(function() {
-        try {
-            $.ajax({
-                url:
-                    window.ZoloBiggoptiConfig && ZoloBiggoptiConfig.ajaxurl
-                        ? ZoloBiggoptiConfig.ajaxurl
-                        : typeof ajaxurl !== 'undefined'
-                          ? ajaxurl
-                          : '',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    action: 'zoloblocks_fetch_api_biggoptis',
-                    _wpnonce: ZoloBiggoptiConfig.nonce,
-                },
-            })
-                .done(function (res) {
-                    if (res && res.success && res.data && res.data.html) {
-                        var $markup = $(res.data.html);
-                        var $target = $('#wpbody-content .wrap').first();
+    // Fetch API biggopties after full page load, with try/catch
+    $(window).on('load', function () {
+        // Add delay to let Element Pack load first and avoid race conditions
+        setTimeout(function () {
+            try {
+                $.ajax({
+                    url:
+                        window.ZoloBiggoptiConfig && ZoloBiggoptiConfig.ajaxurl
+                            ? ZoloBiggoptiConfig.ajaxurl
+                            : typeof ajaxurl !== 'undefined'
+                              ? ajaxurl
+                              : '',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        action: 'zolo_fetch_api_biggopties',
+                        _wpnonce: ZoloBiggoptiConfig.nonce,
+                    },
+                })
+                    .done(function (res) {
+                        if (res && res.success && res.data && res.data.html) {
+                            var $markup = $(res.data.html);
+                            var $target = $('#wpbody-content .wrap').first();
 
-                        if (!$target.length) {
-                            $target = $('.wrap').first();
-                        }
-                        if (!$target.length) {
-                            $target = $('#wpbody-content');
-                        }
-
-                        // Check for existing biggoptis with same class to avoid duplicates
-                        var shouldInsert = true;
-                        $markup.each(function () {
-                            var $biggopti = $(this);
-                            var biggoptiId = $biggopti.attr('id');
-
-                            // Extract class pattern from biggopti ID (e.g., zolo-admin-biggopti-api-biggopti-class-xxxxx)
-                            if (biggoptiId && biggoptiId.indexOf('zolo-admin-biggopti-api-biggopti-class-') !== -1) {
-                                var classPattern = biggoptiId.substring(biggoptiId.indexOf('zolo-admin-biggopti-api-biggopti-class-'));
-
-                                // Check if any existing biggopti in DOM has similar class pattern from any plugin
-                                var existingBiggoptis = $('[id$="' + classPattern + '"]');
-                                if (existingBiggoptis.length > 0) {
-                                    shouldInsert = false;
-                                    return false; // break out of each loop
-                                }
+                            if (!$target.length) {
+                                $target = $('.wrap').first();
                             }
-                        });
-
-                        // Only insert if no duplicate class pattern found
-                        if (shouldInsert) {
-                            // insert right after the <h1> if exists, otherwise at top
-                            if ($target.children('hr.wp-header-end').length) {
-                                $target.children('hr.wp-header-end').first().after($markup);
-                            } else if ($target.children('h1').length) {
-                                $target.children('h1').first().after($markup);
-                            } else {
-                                $target.prepend($markup);
+                            if (!$target.length) {
+                                $target = $('#wpbody-content');
                             }
-                        }
 
-                        // Re-initialize WP dismiss buttons for dynamically added biggoptis
-                        if (typeof wp !== 'undefined' && wp.a11y && window.jQuery) {
-                            $(document).trigger('wp-updates-notice-added');
-                        } else {
-                            // fallback: manually add close button + click handler
+                            // Check for existing biggopties with same class to avoid duplicates
+                            var shouldInsert = true;
                             $markup.each(function () {
-                                var $el = $(this);
-                                if ($el.hasClass('is-dismissible') && !$el.find('.notice-dismiss').length) {
-                                    var $button = $(
-                                        '<button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>'
-                                    );
-                                    $el.append($button);
-                                    $button.on('click', function () {
-                                        $el.fadeTo(100, 0, function () {
-                                            $el.slideUp(100, function () {
-                                                $el.remove();
-                                            });
-                                        });
-                                    });
+                                var $biggopti = $(this);
+                                var biggoptiId = $biggopti.attr('id');
+
+                                // Extract class pattern from biggopti ID (e.g., bdt-admin-biggopti-api-biggopti-class-xxxxx)
+                                if (biggoptiId && biggoptiId.indexOf('bdt-admin-biggopti-api-biggopti-class-') !== -1) {
+                                    var classPattern = biggoptiId.substring(biggoptiId.indexOf('bdt-admin-biggopti-api-biggopti-class-'));
+
+                                    // Check if any existing biggopti in DOM has similar class pattern from any plugin
+                                    var existingBiggopties = $('[id$="' + classPattern + '"]');
+                                    if (existingBiggopties.length > 0) {
+                                        shouldInsert = false;
+                                        return false; // break out of each loop
+                                    }
                                 }
                             });
-                        }
 
-                        // Initialize countdowns in injected content
-                        initAPIBiggoptiCountdown();
-                    }
-                })
-                .fail(function () {
-                    // swallow errors silently
-                });
-        } catch (e) {
-            // ignore
-        }
-    }, 100); // 100ms delay to ensure DOM is ready
+                            // Only insert if no duplicate class pattern found
+                            if (shouldInsert) {
+                                // insert right after the <h1> if exists, otherwise at top
+                                if ($target.children('hr.wp-header-end').length) {
+                                    $target.children('hr.wp-header-end').first().after($markup);
+                                } else if ($target.children('h1').length) {
+                                    $target.children('h1').first().after($markup);
+                                } else {
+                                    $target.prepend($markup);
+                                }
+                            }
+
+                            // Re-initialize WP dismiss buttons for dynamically added biggopties
+                            if (typeof wp !== 'undefined' && wp.a11y && window.jQuery) {
+                                // fallback: manually add close button + click handler
+                                $markup.each(function () {
+                                    var $el = $(this);
+                                    if ($el.hasClass('is-dismissible') && !$el.find('.bdt-biggopti-dismiss').length) {
+                                        var $button = $(
+                                            '<button type="button" class="bdt-biggopti-dismiss dashicons dashicons-dismiss"><span class="screen-reader-text">Dismiss this biggopti.</span></button>'
+                                        );
+                                        $el.append($button);
+                                        $button.on('click', function () {
+                                            $el.fadeTo(100, 0, function () {
+                                                $el.slideUp(100, function () {
+                                                    $el.remove();
+                                                });
+                                            });
+                                        });
+                                    }
+                                });
+                            }
+
+                            // Initialize countdowns in injected content
+                            initAPIBiggoptiCountdown();
+                        }
+                    })
+                    .fail(function () {
+                        // swallow errors silently
+                    });
+            } catch (e) {
+                // ignore
+            }
+        }, 300); // 300ms delay to let Element Pack load first
+    });
 
     /* ===================================
        END Admin Store API BIGGOPTI
        =================================== */
+});
 
+// Button Color
+window.CSS.registerProperty({
+    name: '--primaryColor',
+    syntax: '<color>',
+    inherits: false,
+    initialValue: '#AA00FF',
+});
+
+window.CSS.registerProperty({
+    name: '--secondaryColor',
+    syntax: '<color>',
+    inherits: false,
+    initialValue: '#FF2661',
 });

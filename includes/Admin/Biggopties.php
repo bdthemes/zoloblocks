@@ -2,29 +2,24 @@
 
 namespace Zolo\Admin;
 
-use Zolo\Helpers\ZoloHelpers;
 use Zolo\Traits\SingletonTrait;
 
-// Exit if accessed directly.
-if (! defined('ABSPATH')) {
-	exit;
-}
-
-/**
- * Biggopti class - Admin messaging system for ZoloBlocks
+/**s
+ * Biggopties class
  */
-class Biggopti {
+class Biggopties {
 	use SingletonTrait;
 
-	private static $biggoptis = [];
+	private static $biggopties = [];
+
 
 	public function __construct() {
 
-		add_action('admin_notices', [$this, 'show_biggoptis'], 99);
-		add_action('wp_ajax_zoloblocks_biggoptis', [$this, 'dismiss']);
+		//add_action('admin_notices', [$this, 'show_biggopties']);
+		add_action('wp_ajax_zoloblocks_biggopties', [$this, 'dismiss']);
 
-		// // AJAX endpoint to fetch API biggoptis on demand (after page load)
-		add_action('wp_ajax_zoloblocks_fetch_api_biggoptis', [$this, 'ajax_fetch_api_biggoptis']);
+		// AJAX endpoint to fetch API biggopties on demand (after page load)
+		add_action('wp_ajax_zolo_fetch_api_biggopties', [$this, 'ajax_fetch_api_biggopties']);
 		add_action('admin_enqueue_scripts', [$this, 'enqueue_biggopti_scripts']);
 	}
 
@@ -64,26 +59,26 @@ class Biggopti {
 			'ZoloBiggoptiConfig',
 			[
 				'ajaxurl' => admin_url('admin-ajax.php'),
-				'nonce' => wp_create_nonce('zolo_biggopti'),
+				'nonce' => wp_create_nonce('zoloblocks'),
 			]
 		);
 	}
 
+
 	/**
-	 * Get Remote Biggoptis Data from API
+	 * Get Remote Biggopties Data from API
 	 *
 	 * @return array|mixed
 	 */
-	private function get_api_biggoptis_data() {
-
+	private function get_api_biggopties_data() {
 		// 6-hour transient cache for API response
-		$transient_key = '_api_biggoptis_zoloblocks';
+		$transient_key = 'zolo_api_biggopties_zoloblocks';
 		$cached = get_transient($transient_key);
 		if ($cached !== false && is_array($cached)) {
 			return $cached;
 		}
 
-		// API endpoint for biggoptis
+		// API endpoint for biggopties - you can change this to your actual endpoint
 		$api_url = 'https://store.bdthemes.com/api/notices/api-data-records';
 
 		$response = wp_remote_get($api_url, [
@@ -99,15 +94,13 @@ class Biggopti {
 		}
 
 		$response_code = wp_remote_retrieve_response_code($response);
-
 		$response_body = wp_remote_retrieve_body($response);
+		$biggopties = json_decode($response_body);
 
-		$biggoptis = json_decode($response_body);
-
-		if (isset($biggoptis->api) && isset($biggoptis->api->{'zoloblocks'})) {
-			$data = $biggoptis->api->{'zoloblocks'};
+		if (isset($biggopties->api) && isset($biggopties->api->{'zoloblocks'})) {
+			$data = $biggopties->api->{'zoloblocks'};
 			if (is_array($data)) {
-				$ttl = apply_filters('_api_biggoptis_cache_ttl', 6 * HOUR_IN_SECONDS);
+				$ttl = apply_filters('zolo_api_biggopties_cache_ttl', 6 * HOUR_IN_SECONDS);
 				set_transient($transient_key, $data, $ttl);
 				return $data;
 			}
@@ -181,17 +174,20 @@ class Biggopti {
 	 * @return bool True if the biggopti should be shown, false otherwise.
 	 */
 	private function is_biggopti_compatible_with_plugin($biggopti) {
-		// Check for ZoloBlocks Pro
-		$is_pro_active = defined('ZOLO_PRO_VERSION') || class_exists('ZoloPro\ZoloBlocksPro');
-		$is_lite_active = !$is_pro_active; // Free version if pro is not active
+		// Get current plugin info
+		$current_plugin_slug = $this->get_current_plugin_slug();
+		$is_pro_active = function_exists('_is_zolo_pro_activated') ? _is_zolo_pro_activated() : false;
+		$is_lite_active = $current_plugin_slug === 'bdthemes-zoloblocks-lite';
+		$is_pro_plugin = $current_plugin_slug === 'bdthemes-zoloblocks';
 
-		// Get client targets, default to ['both'] if not set or not an array
+		// Get biggopti targets from API, default to ['both']
 		$client_targets = (isset($biggopti->client_targets) && is_array($biggopti->client_targets))
 			? $biggopti->client_targets
 			: ['both'];
 
-		// Determine if this is targeted at Pro users
-		$pro_targeted = in_array('pro', $client_targets, true);
+		// True if 'pro_targeted' is one of the targets
+		$pro_targeted = in_array('pro_targeted', $client_targets, true);
+
 
 		// Ensure client_targets is always an array
 		if (!is_array($client_targets)) {
@@ -211,7 +207,7 @@ class Biggopti {
 
 			switch ($target) {
 				case 'pro':
-					// Pro-only biggoptis: show only if pro is active
+					// Pro-only biggopties: show only if pro is active
 					if ($is_pro_active) {
 						return true;
 					}
@@ -222,11 +218,6 @@ class Biggopti {
 						return true;
 					}
 					break;
-
-				case 'both':
-				default:
-					// Show for both free and pro
-					return true;
 			}
 		}
 
@@ -239,8 +230,8 @@ class Biggopti {
 	 * @return string
 	 */
 	private function get_current_plugin_slug() {
-		// Get plugin basename from main file
-		$plugin_file = plugin_basename(ZOLO_FILE);
+		// Get plugin basename from current file
+		$plugin_file = plugin_basename(BDTzolo_CORE__FILE__);
 
 		// Extract plugin slug from basename
 		$plugin_slug = dirname($plugin_file);
@@ -264,7 +255,7 @@ class Biggopti {
 
 		// Prepare background styles
 		$background_style = '';
-		$wrapper_classes = 'zolo-biggopti-wrapper';
+		$wrapper_classes = 'bdt-biggopti-wrapper';
 
 		if (isset($biggopti->background_color) && !empty($biggopti->background_color)) {
 			$background_style .= 'background-color: ' . esc_attr($biggopti->background_color) . ';';
@@ -281,32 +272,32 @@ class Biggopti {
 
 			<?php $title = (isset($biggopti->title) && !empty($biggopti->title)) ? $biggopti->title : ''; ?>
 
-			<div class="zolo-api-biggopti-content">
-				<div class="zolo-plugin-logo-wrapper">
+			<div class="bdt-api-biggopti-content">
+				<div class="bdt-plugin-logo-wrapper">
 					<img src="<?php echo esc_url(ZOLO_ADMIN_URL); ?>includes/Admin/images/zoloblocks.svg" alt="ZoloBlocks Logo">
 				</div>
 
-				<div class="zolo-biggopti-content">
-					<div class="zolo-biggopti-content-inner">
+				<div class="bdt-biggopti-content">
+					<div class="bdt-biggopti-content-inner">
 						<?php if (isset($biggopti->logo) && !empty($biggopti->logo)) : ?>
-							<div class="zolo-biggopti-logo-wrapper">
+							<div class="bdt-biggopti-logo-wrapper">
 								<img width="100" src="<?php echo esc_url($biggopti->logo); ?>" alt="Logo">
 							</div>
 						<?php endif; ?>
-						<div class="zolo-biggopti-title-description">
+						<div class="bdt-biggopti-title-description">
 							<?php if (isset($title) && !empty($title)) : ?>
-								<h2 class="zolo-biggopti-title"><?php echo wp_kses_post($title); ?></h2>
+								<h2 class="bdt-biggopti-title"><?php echo wp_kses_post($title); ?></h2>
 							<?php endif; ?>
 
 							<?php if (isset($biggopti->content) && !empty($biggopti->content)) : ?>
-								<div class="zolo-biggopti-html-content">
+								<div class="bdt-biggopti-html-content">
 									<?php echo wp_kses_post($biggopti->content); ?>
 								</div>
 							<?php endif; ?>
 						</div>
 					</div>
 
-					<div class="zolo-biggopti-content-right">
+					<div class="bdt-biggopti-content-right">
 						<?php
 						// Only show countdown if it's enabled, has an end date, and the end date is in the future
 						$show_countdown = isset($biggopti->show_countdown) && $biggopti->show_countdown && isset($biggopti->end_date);
@@ -317,13 +308,13 @@ class Biggopti {
 						}
 						?>
 						<?php if ($show_countdown) : ?>
-							<div class="zolo-biggopti-countdown" data-end-date="<?php echo esc_attr($biggopti->end_date); ?>" data-timezone="<?php echo esc_attr($biggopti->timezone ? $biggopti->timezone : 'UTC'); ?>">
+							<div class="bdt-biggopti-countdown" data-end-date="<?php echo esc_attr($biggopti->end_date); ?>" data-timezone="<?php echo esc_attr($biggopti->timezone ? $biggopti->timezone : 'UTC'); ?>">
 								<div class="countdown-timer">Loading...</div>
 							</div>
 						<?php endif; ?>
 
 						<?php if (isset($biggopti->link) && !empty($biggopti->link)) : ?>
-							<div class="zolo-biggopti-btn">
+							<div class="bdt-biggopti-btn">
 								<a href="<?php echo esc_url($biggopti->link); ?>" target="_blank">
 									<div class="nm-biggopti-btn">
 										<?php echo isset($biggopti->button_text) ? esc_html($biggopti->button_text) : 'Read More'; ?>
@@ -342,62 +333,57 @@ class Biggopti {
 
 	public static function add_biggopti($args = []) {
 		if (is_array($args)) {
-			self::$biggoptis[] = $args;
+			self::$biggopties[] = $args;
 		}
 	}
 
 	/**
-	 * AJAX: Build and return API biggoptis HTML for dynamic injection
+	 * AJAX: Build and return API biggopties HTML for dynamic injection
 	 */
-	public function ajax_fetch_api_biggoptis() {
-		try {
-			$nonce = isset($_POST['_wpnonce']) ? sanitize_text_field($_POST['_wpnonce']) : '';
-			if (!wp_verify_nonce($nonce, 'zolo_biggopti')) {
-				throw new \Exception('invalid_nonce');
-			}
+	public function ajax_fetch_api_biggopties() {
+		$nonce = isset($_POST['_wpnonce']) ? sanitize_text_field($_POST['_wpnonce']) : '';
+		if (!wp_verify_nonce($nonce, 'zoloblocks')) {
+			wp_send_json_error(['message' => 'invalid_nonce']);
+		}
 
-			if (!current_user_can('manage_options')) {
-				throw new \Exception('forbidden');
-			}
+		if (!current_user_can('manage_options')) {
+			wp_send_json_error(['message' => 'forbidden']);
+		}
 
-			$biggoptis = $this->get_api_biggoptis_data();
-			$grouped_biggoptis = [];
+		$biggopties = $this->get_api_biggopties_data();
+		$grouped_biggopties = [];
 
-			if (is_array($biggoptis)) {
-				foreach ($biggoptis as $index => $biggopti) {
-					if ($this->should_show_biggopti($biggopti)) {
-
-						$biggopti_class = isset($biggopti->notice_class) ? $biggopti->notice_class : 'default-' . $index;
-						if (!isset($grouped_biggoptis[$biggopti_class])) {
-							$grouped_biggoptis[$biggopti_class] = $biggopti;
-						}
+		if (is_array($biggopties)) {
+			foreach ($biggopties as $index => $biggopti) {
+				if ($this->should_show_biggopti($biggopti)) {
+					$biggopti_class = isset($biggopti->notice_class) ? $biggopti->notice_class : 'default-' . $index;
+					if (!isset($grouped_biggopties[$biggopti_class])) {
+						$grouped_biggopties[$biggopti_class] = $biggopti;
 					}
 				}
 			}
-
-			// Build biggoptis using the same pipeline as synchronous rendering
-			foreach ($grouped_biggoptis as $biggopti_class => $biggopti) {
-				$biggopti_id = isset($biggopti->id) ? $biggopti_class : $biggopti->id;
-
-				self::add_biggopti([
-					'id' => 'api-biggopti-' . $biggopti_id,
-					'type' => isset($biggopti->type) ? $biggopti->type : 'info',
-					'category' => isset($biggopti->category) ? $biggopti->category : 'regular',
-					'dismissible' => true,
-					'html_message' => $this->render_api_biggopti($biggopti),
-					'dismissible-meta' => 'transient',
-					'dismissible-time' => isset($biggopti->end_date) ? max((new \DateTime($biggopti->end_date, new \DateTimeZone('UTC')))->getTimestamp() - time(), 0) : WEEK_IN_SECONDS,
-				]);
-			}
-
-			ob_start();
-			$this->show_biggoptis();
-			$markup = ob_get_clean();
-
-			wp_send_json_success(['html' => $markup]);
-		} catch (\Exception $e) {
-			wp_send_json_error(['message' => $e->getMessage()]);
 		}
+
+		// Build biggopties using the same pipeline as synchronous rendering
+		foreach ($grouped_biggopties as $biggopti_class => $biggopti) {
+			$biggopti_id = isset($biggopti->id) ? $biggopti_class : $biggopti->id;
+
+			self::add_biggopti([
+				'id' => 'api-biggopti-' . $biggopti_id,
+				'type' => isset($biggopti->type) ? $biggopti->type : 'info',
+				'category'         => isset($biggopti->category) ? $biggopti->category : 'regular',
+				'dismissible' => true,
+				'html_message' => $this->render_api_biggopti($biggopti),
+				'dismissible-meta' => 'transient',
+				'dismissible-time' => isset($biggopti->end_date) ? max((new \DateTime($biggopti->end_date, new \DateTimeZone('UTC')))->getTimestamp() - time(), 0) : WEEK_IN_SECONDS,
+			]);
+		}
+
+		ob_start();
+		$this->show_biggopties();
+		$markup = ob_get_clean();
+
+		wp_send_json_success(['html' => $markup]);
 	}
 
 	/**
@@ -409,7 +395,7 @@ class Biggopti {
 		$time = (isset($_POST['time'])) ? esc_attr($_POST['time']) : '';
 		$meta = (isset($_POST['meta'])) ? esc_attr($_POST['meta']) : '';
 
-		if (! wp_verify_nonce($nonce, 'zolo_biggopti')) {
+		if (! wp_verify_nonce($nonce, 'bdthemes-zoloblocks-lite') && ! wp_verify_nonce($nonce, 'zoloblocks')) {
 			wp_send_json_error();
 		}
 
@@ -421,7 +407,7 @@ class Biggopti {
 		 * Valid inputs?
 		 */
 		if (!empty($id)) {
-			// Handle regular biggoptis
+			// Handle regular biggopties
 			if ('user' === $meta) {
 				update_user_meta(get_current_user_id(), $id, true);
 			} else {
@@ -437,36 +423,35 @@ class Biggopti {
 	/**
 	 * Biggopti Types
 	 */
-	public function show_biggoptis() {
+	public function show_biggopties() {
+
 		$defaults = [
 			'id'               => '',
 			'type'             => 'info',
 			'category'         => 'regular',
 			'show_if'          => true,
-			'title'            => '',
 			'message'          => '',
 			'class'            => 'zoloblocks-biggopti',
 			'dismissible'      => false,
 			'dismissible-meta' => 'transient',
 			'dismissible-time' => WEEK_IN_SECONDS,
 			'data'             => '',
-			'action_link'      => '',
 		];
 
-		foreach (self::$biggoptis as $key => $biggopti) {
+		foreach (self::$biggopties as $key => $biggopti) {
 
 			$biggopti = wp_parse_args($biggopti, $defaults);
 
 			// Check if biggopti is for White Label
-			if (defined('WEBSAC_WL') && $biggopti['category'] === 'regular') {
+			if (defined('BDTzolo_CORE_WL') && $biggopti['category'] === 'regular') {
 				continue;
 			}
 
-			$classes = ['notice'];
+			$classes = ['biggopti'];
 
 			$classes[] = $biggopti['class'];
 			if (isset($biggopti['type'])) {
-				$classes[] = 'notice-' . $biggopti['type'];
+				$classes[] = 'biggopti-' . $biggopti['type'];
 			}
 
 			// Is biggopti dismissible?
@@ -478,10 +463,10 @@ class Biggopti {
 			}
 
 			// Biggopti ID.
-			$biggopti_id    = 'zolo-admin-biggopti-' . $biggopti['id'];
+			$biggopti_id    = 'bdt-admin-biggopti-' . $biggopti['id'];
 			$biggopti['id'] = $biggopti_id;
 			if (!isset($biggopti['id'])) {
-				$biggopti_id    = 'zolo-admin-biggopti-' . $biggopti['id'];
+				$biggopti_id    = 'bdt-admin-biggopti-' . $biggopti['id'];
 				$biggopti['id'] = $biggopti_id;
 			} else {
 				$biggopti_id = $biggopti['id'];
@@ -497,7 +482,7 @@ class Biggopti {
 				$expired = get_transient($biggopti_id);
 			}
 
-			// Biggoptis visible after transient expire.
+			// Biggopties visible after transient expire.
 			if (isset($biggopti['show_if'])) {
 
 				if (true === $biggopti['show_if']) {
@@ -509,7 +494,7 @@ class Biggopti {
 				}
 			} else {
 
-				// No transient biggoptis.
+				// No transient biggopties.
 				self::biggopti_layout($biggopti);
 			}
 		}
@@ -519,6 +504,7 @@ class Biggopti {
 	 * New Biggopti Layout
 	 * @param  array $biggopti Biggopti biggopti_layout.
 	 * @return void
+	 * @since 6.11.3
 	 */
 
 	public static function biggopti_layout($biggopti = []) {
@@ -530,35 +516,34 @@ class Biggopti {
 
 	?>
 		<div id="<?php echo esc_attr($biggopti['id']); ?>" class="<?php echo esc_attr($biggopti['classes']); ?>" <?php echo esc_attr($biggopti['data']); ?>>
-			<div class="zolo-biggopti-wrapper">
-				<div class="zolo-biggopti-icon-wrapper">
-					<img height="40" width="40" src="<?php echo esc_url(ZOLO_ADMIN_URL); ?>assets/images/zb-brand.svg" alt="ZoloBlocks Logo">
+			<div class="bdt-biggopti-wrapper">
+				<div class="bdt-biggopti-icon-wrapper">
+					<img src="<?php echo esc_url(ZOLO_ADMIN_URL); ?>includes/Admin/images/zoloblocks.svg" alt="ZoloBlocks Logo">
 				</div>
 
-				<div class="zolo-biggopti-content">
+				<div class="bdt-biggopti-content">
 					<?php if (isset($biggopti['title']) && !empty($biggopti['title'])) : ?>
-						<h2 class="zolo-biggopti-title"><?php echo wp_kses_post($biggopti['title']); ?></h2>
+						<h2 class="bdt-biggopti-title"><?php echo wp_kses_post($biggopti['title']); ?></h2>
 					<?php endif; ?>
 
-					<p class="zolo-biggopti-text"><?php echo wp_kses_post($biggopti['message']); ?></p>
+					<p class="bdt-biggopti-text"><?php echo wp_kses_post($biggopti['message']); ?></p>
 
 					<?php if (isset($biggopti['action_link']) && !empty($biggopti['action_link'])) : ?>
-						<div class="zolo-biggopti-btn">
+						<div class="bdt-biggopti-btn">
 							<a href="#">Renew Now</a>
 						</div>
 					<?php endif; ?>
 				</div>
 			</div>
 		</div>
+
 	<?php
 	}
 
 	public static function new_biggopti_layout($biggopti = []) {
 	?>
 		<div id="<?php echo esc_attr($biggopti['id']); ?>" class="<?php echo esc_attr($biggopti['classes']); ?>" <?php echo esc_attr($biggopti['data']); ?>>
-			<?php
-			echo wp_kses_post($biggopti['html_message']);
-			?>
+			<?php echo wp_kses_post($biggopti['html_message']);	?>
 		</div>
 
 <?php
