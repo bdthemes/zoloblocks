@@ -129,9 +129,9 @@ class Biggopties {
 		}
 
 		// Check plugin compatibility
-		// if (!$this->is_biggopti_compatible_with_plugin($biggopti)) {
-		// 	return false;
-		// }
+		if (!$this->is_biggopti_compatible_with_plugin($biggopti)) {
+			return false;
+		}
 
 		// Check if the biggopti has a start date and end date
 		if (!isset($biggopti->start_date) || !isset($biggopti->end_date)) {
@@ -176,9 +176,8 @@ class Biggopties {
 	private function is_biggopti_compatible_with_plugin($biggopti) {
 		// Get current plugin info
 		$current_plugin_slug = $this->get_current_plugin_slug();
-		$is_pro_active = function_exists('_is_zolo_pro_activated') ? _is_zolo_pro_activated() : false;
-		$is_lite_active = $current_plugin_slug === 'bdthemes-zoloblocks-lite';
-		$is_pro_plugin = $current_plugin_slug === 'bdthemes-zoloblocks';
+		$is_lite_active = $current_plugin_slug === 'zoloblocks';
+		$is_pro_active = is_plugin_active('zoloblocks-pro/zoloblocks-pro.php');
 
 		// Get biggopti targets from API, default to ['both']
 		$client_targets = (isset($biggopti->client_targets) && is_array($biggopti->client_targets))
@@ -231,7 +230,7 @@ class Biggopties {
 	 */
 	private function get_current_plugin_slug() {
 		// Get plugin basename from current file
-		$plugin_file = plugin_basename(BDTzolo_CORE__FILE__);
+		$plugin_file = plugin_basename(ZOLO_FILE);
 
 		// Extract plugin slug from basename
 		$plugin_slug = dirname($plugin_file);
