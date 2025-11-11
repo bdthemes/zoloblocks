@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "title": "Switcher",
+    "title": "Content Switcher",
     "name": "zolo/switcher",
     "category": "zoloblocks",
-    "keywords": ["switcher", "button", "link", "cta"],
+    "keywords": ["switcher", "button", "toggle", "cta"],
     "description": " Display interactive switcher for key metrics or achievements.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

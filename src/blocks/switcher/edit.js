@@ -18,7 +18,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected, clientId, className } = props;
-    const { uniqueId, preview, parentClasses, primaryText, secondaryText, isOn } = attributes;
+    const { uniqueId, preview, parentClasses, primaryText, secondaryText, isOn, preset, showSwitcherLabels } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
@@ -66,7 +66,7 @@ export default function Edit(props) {
 
         allSwitcherItems.forEach((item) => {
             const itemType = item.dataset.switcherType || (item.classList.contains('zolo-switch-content-primary') ? 'primary' : 'secondary');
-            
+
             if (itemType === switchType) {
                 item.style.display = 'block';
                 item.style.animation = 'fadeIn 0.3s';
@@ -93,17 +93,19 @@ export default function Edit(props) {
             <Style props={props} />
             <div {...blockProps}>
                 <SidebarOpener clientId={clientId} />
-                <div className="zolo-switcher-wrapper" ref={switcherWrapRef}>
+                <div className={`zolo-switcher-wrapper ${preset ? `zolo-switch-${preset}` : ''}`} ref={switcherWrapRef}>
                     {/* Switch Controls */}
                     <div className="zolo-switch-container-wrap">
-                        <div
-                            className={classnames('zolo-package-text zolo-primary-text', {
-                                'zolo-active': isOn,
-                            })}
-                            onClick={() => handleSwitchClick('primary')}
-                        >
-                            {primaryText}
-                        </div>
+                        {showSwitcherLabels && (
+                            <div
+                                className={classnames('zolo-package-text zolo-primary-text', {
+                                    'zolo-active': isOn,
+                                })}
+                                onClick={() => handleSwitchClick('primary')}
+                            >
+                                {primaryText}
+                            </div>
+                        )}
                         <div className="zolo-switch-container">
                             <input
                                 type="checkbox"
@@ -116,14 +118,16 @@ export default function Edit(props) {
                             </div>
                             <div className="zolo-layer"></div>
                         </div>
-                        <div
-                            className={classnames('zolo-package-text zolo-secondary-text', {
-                                'zolo-active': !isOn,
-                            })}
-                            onClick={() => handleSwitchClick('secondary')}
-                        >
-                            {secondaryText}
-                        </div>
+                        {showSwitcherLabels && (
+                            <div
+                                className={classnames('zolo-package-text zolo-secondary-text', {
+                                    'zolo-active': !isOn,
+                                })}
+                                onClick={() => handleSwitchClick('secondary')}
+                            >
+                                {secondaryText}
+                            </div>
+                        )}
                     </div>
 
                     {/* Content Areas - Child blocks */}

@@ -9,6 +9,7 @@ import { __ } from '@wordpress/i18n';
  */
 
 const {
+    ZoloSelectControl,
     ZoloToggleControl,
     ZoloCardDivider,
     ZoloTextControl,
@@ -38,15 +39,20 @@ import {
     SWITCHER_KNOB_SIZE,
     SWITCHER_MARGIN,
     SWITCHER_BORDER_RADIUS,
+    SWITCHER_BOX_SHADOW,
+    SWITCHER_BORDER,
     SWITCHER_BG,
     ACTIVE_SWITCHER_BG,
+    PRESETS,
 } from './constants';
 
 import { SWITCH_TYPO } from './constants/typoPrefixConstant';
+import { applyFilters } from '@wordpress/hooks';
+
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, primaryText, secondaryText, switchColor, activeSwitchColor, switcherColor, activeSwitcherColor } = attributes;
+    const { resMode, primaryText, secondaryText, switchColor, activeSwitchColor, switcherColor, activeSwitcherColor, preset, showSwitcherLabels } = attributes;
 
     const requiredProps = {
         resMode,
@@ -64,68 +70,91 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('Switch', 'zoloblocks')} firstOpen={true} panelProps={props}>
-                            <ZoloTextControl
-                                label={__('Primary Text', 'zoloblocks')}
-                                value={primaryText}
-                                onChange={(value) => setAttributes({ primaryText: value })}
+
+                            <ZoloSelectControl
+                                label={__('Preset', 'zoloblocks')}
+                                value={preset}
+                                options={applyFilters('zolo.switcher.presets', PRESETS)}
+                                onChange={(value) => {
+                                    setAttributes({
+                                        preset: value,
+                                    });
+                                }}
                             />
-                            <ZoloTextControl
-                                label={__('Secondary Text', 'zoloblocks')}
-                                value={secondaryText}
-                                onChange={(value) => setAttributes({ secondaryText: value })}
+
+                            <ZoloCardDivider />
+
+                            <ZoloToggleControl
+                                label={__('Show Switcher Labels', 'zoloblocks')}
+                                checked={showSwitcherLabels}
+                                onChange={(value) => setAttributes({ showSwitcherLabels: value })}
                             />
+
+                            {showSwitcherLabels && (
+                                <>
+                                    <ZoloTextControl
+                                        label={__('Primary', 'zoloblocks')}
+                                        value={primaryText}
+                                        onChange={(value) => setAttributes({ primaryText: value })}
+                                    />
+                                    <ZoloTextControl
+                                        label={__('Secondary', 'zoloblocks')}
+                                        value={secondaryText}
+                                        onChange={(value) => setAttributes({ secondaryText: value })}
+                                    />
+                                </>
+                            )}
+
                         </ZoloPanelBody>
                     </>
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Switch', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            <ResRangeControl
-                                label={__('Space Between', 'zoloblocks')}
-                                controlName={SPACE_BETWEEN}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                                step={1}
-                            />
-                            <TypographyDropdown
-                                label={__('Typography', 'zoloblocks')}
-                                typoPrefixConstant={SWITCH_TYPO}
-                                requiredProps={requiredProps}
-                            />
-                            <TabPanelControl
-                                options={[
-                                    {
-                                        label: __('Normal', 'zoloblocks'),
-                                        value: 'normal',
-                                    },
-                                    {
-                                        label: __('Active', 'zoloblocks'),
-                                        value: 'active',
-                                    },
-                                ]}
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={switchColor}
-                                            onChange={(value) => setAttributes({ switchColor: value })}
-                                        />
-                                    </>
-                                }
-                                activeComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={activeSwitchColor}
-                                            onChange={(value) => setAttributes({ activeSwitchColor: value })}
-                                        />
-                                    </>
-                                }
-                            />
-                        </ZoloPanelBody>
+                        {showSwitcherLabels && (
+                            <ZoloPanelBody title={__('Switch Labels', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={switchColor}
+                                    onChange={(value) => setAttributes({ switchColor: value })}
+                                />
+
+                                <ColorControl
+                                    label={__('Active Color', 'zoloblocks')}
+                                    color={activeSwitchColor}
+                                    onChange={(value) => setAttributes({ activeSwitchColor: value })}
+                                />
+
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={SWITCH_TYPO}
+                                    requiredProps={requiredProps}
+                                />
+
+                                <ZoloCardDivider />
+                                <ResRangeControl
+                                    label={__('Space Between', 'zoloblocks')}
+                                    controlName={SPACE_BETWEEN}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={100}
+                                    step={1}
+                                />
+                            </ZoloPanelBody>
+                        )}
 
                         <ZoloPanelBody title={__('Switcher', 'zoloblocks')} panelProps={props}>
+                            <ColorControl
+                                label={__('knobs color', 'zoloblocks')}
+                                color={switcherColor}
+                                onChange={(value) => setAttributes({ switcherColor: value })}
+                            />
+                            <NormalBGControl
+                                label={__('Background', 'zoloblocks')}
+                                controlName={SWITCHER_BG}
+                                requiredProps={requiredProps}
+                                noMainBGImg={false}
+                            />
+                            <ZoloCardDivider />
                             <ResRangeControl
                                 label={__('Width', 'zoloblocks')}
                                 controlName={SWITCHER_WIDTH}
@@ -141,65 +170,20 @@ function Inspector(props) {
                                 max={100}
                             />
                             <ZoloCardDivider />
-                            <ResRangeControl
-                                label={__('Knob Size', 'zoloblocks')}
-                                controlName={SWITCHER_KNOB_SIZE}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={100}
-                            />
-                            <ResDimensionsControl
-                                label={__('Margin', 'zoloblocks')}
-                                controlName={SWITCHER_MARGIN}
+                            <BorderControl
+                                label={__('Border', 'zoloblocks')}
+                                controlName={SWITCHER_BORDER}
                                 requiredProps={requiredProps}
                             />
-                            <ZoloCardDivider />
+                            <BoxShadowControl
+                                label={__('Box Shadow', 'zoloblocks')}
+                                controlName={SWITCHER_BOX_SHADOW}
+                                requiredProps={requiredProps}
+                            />
                             <ResDimensionsControl
                                 label={__('Border Radius', 'zoloblocks')}
                                 controlName={SWITCHER_BORDER_RADIUS}
                                 requiredProps={requiredProps}
-                            />
-                            <TabPanelControl
-                                options={[
-                                    {
-                                        label: __('Normal', 'zoloblocks'),
-                                        value: 'normal',
-                                    },
-                                    {
-                                        label: __('Active', 'zoloblocks'),
-                                        value: 'active',
-                                    },
-                                ]}
-                                normalComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={switcherColor}
-                                            onChange={(value) => setAttributes({ switcherColor: value })}
-                                        />
-                                        <NormalBGControl
-                                            label={__('Background', 'zoloblocks')}
-                                            controlName={SWITCHER_BG}
-                                            requiredProps={requiredProps}
-                                            noMainBGImg={false}
-                                        />
-                                    </>
-                                }
-                                activeComponents={
-                                    <>
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={activeSwitcherColor}
-                                            onChange={(value) => setAttributes({ activeSwitcherColor: value })}
-                                        />
-                                        <NormalBGControl
-                                            label={__('Background', 'zoloblocks')}
-                                            controlName={ACTIVE_SWITCHER_BG}
-                                            requiredProps={requiredProps}
-                                            noMainBGImg={false}
-                                        />
-                                    </>
-                                }
                             />
                         </ZoloPanelBody>
                     </>
@@ -215,7 +199,7 @@ function Inspector(props) {
                     </>
                 }
             />
-        </InspectorControls>
+        </InspectorControls >
     );
 }
 

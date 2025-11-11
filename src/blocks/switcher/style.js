@@ -25,6 +25,8 @@ import {
     SWITCHER_MARGIN,
     SWITCHER_BORDER_RADIUS,
     SWITCHER_BG,
+    SWITCHER_BOX_SHADOW,
+    SWITCHER_BORDER,
     ACTIVE_SWITCHER_BG,
 } from './constants';
 
@@ -59,7 +61,7 @@ const Style = ({ props }) => {
         mobRangeStyle: switcherWidthMob,
     } = generateResRangeStyle({
         controlName: SWITCHER_WIDTH,
-        property: 'width',
+        property: '--zolo-switch-width',
         attributes,
     });
 
@@ -69,7 +71,7 @@ const Style = ({ props }) => {
         mobRangeStyle: switcherHeightMob,
     } = generateResRangeStyle({
         controlName: SWITCHER_HEIGHT,
-        property: 'height',
+        property: '--zolo-switch-height',
         attributes,
     });
 
@@ -89,7 +91,22 @@ const Style = ({ props }) => {
         dimensionStylesMobile: switcherRadiusMobile,
     } = generateDimensionStyle({
         controlName: SWITCHER_BORDER_RADIUS,
-        styleFor: 'border-radius',
+        styleFor: '--zolo-switch-radius',
+        attributes,
+    });
+
+
+    const { boxShadowStyle: switcherBoxShadow } = generateBoxShadowStyles({
+        controlName: SWITCHER_BOX_SHADOW,
+        attributes,
+    });
+
+    const {
+        desktopBorderStyle: switcherBorderStyles,
+        tabBorderStyle: switcherBorderStylesTab,
+        mobBorderStyle: switcherBorderStylesMob,
+    } = generateBorderStyle({
+        controlName: SWITCHER_BORDER,
         attributes,
     });
 
@@ -127,108 +144,72 @@ const Style = ({ props }) => {
      * All Style Combination
      */
     const desktopAllStyle = `
-        .${uniqueId} .zolo-switch-container-wrap {
+        .${uniqueId}.wp-block-zolo-switcher .zolo-switch-container-wrap {
             ${spaceBetweenDesk}
         }
 
-        .${uniqueId} .zolo-switch-container {
+        .${uniqueId}.wp-block-zolo-switcher .zolo-switch-container {
             ${switcherWidthDesk}
             ${switcherHeightDesk}
             ${switcherMarginDesk}
             ${switcherRadiusDesk}
+            ${switcherBgDesk}
+            ${switcherRadiusDesk}
+            ${switcherBorderStyles}
+            ${switcherBoxShadow}
         }
 
-        .${uniqueId} .zolo-package-text {
+        .${uniqueId}.wp-block-zolo-switcher .zolo-package-text {
             ${switchDeskTypo}
             ${switchColor ? `color: ${switchColor};` : ''}
         }
 
-        .${uniqueId} .zolo-package-text.zolo-active {
+        .${uniqueId}.wp-block-zolo-switcher .zolo-package-text.zolo-active {
             ${activeSwitchColor ? `color: ${activeSwitchColor};` : ''}
         }
 
-        .${uniqueId} .zolo-knobs,
-        .${uniqueId} .zolo-layer {
-            ${switcherBgDesk}
-            ${switcherRadiusDesk}
-        }
-
-        .${uniqueId} .zolo-checkbox:checked ~ .zolo-knobs,
-        .${uniqueId} .zolo-checkbox:checked ~ .zolo-layer {
-            ${activeSwitcherBgDesk}
-        }
-
-        .${uniqueId} .zolo-knobs span {
-            ${switcherKnobSizeDesk}
-            ${switcherColor ? `background-color: ${switcherColor};` : ''}
-        }
-
-        .${uniqueId} .zolo-checkbox:checked ~ .zolo-knobs span {
-            ${activeSwitcherColor ? `background-color: ${activeSwitcherColor};` : ''}
+        .${uniqueId}.wp-block-zolo-switcher .zolo-switcher-wrapper .zolo-knobs span {
+           ${switcherColor ? `background-color: ${switcherColor};` : ''}
         }
     `;
 
     const tabletAllStyle = `
-        .${uniqueId} .zolo-switch-container-wrap {
+        .${uniqueId}.wp-block-zolo-switcher .zolo-switch-container-wrap {
             ${spaceBetweenTab}
         }
 
-        .${uniqueId} .zolo-switch-container {
+        .${uniqueId}.wp-block-zolo-switcher .zolo-switch-container {
             ${switcherWidthTab}
             ${switcherHeightTab}
             ${switcherMarginTab}
             ${switcherRadiusTab}
-        }
-
-        .${uniqueId} .zolo-package-text {
-            ${switchTabTypo}
-        }
-
-        .${uniqueId} .zolo-knobs,
-        .${uniqueId} .zolo-layer {
             ${switcherBgTab}
             ${switcherRadiusTab}
+            ${switcherBorderStylesTab}
         }
 
-        .${uniqueId} .zolo-checkbox:checked ~ .zolo-knobs,
-        .${uniqueId} .zolo-checkbox:checked ~ .zolo-layer {
-            ${activeSwitcherBgTab}
-        }
-
-        .${uniqueId} .zolo-knobs span {
-            ${switcherKnobSizeTab}
+        .${uniqueId}.wp-block-zolo-switcher .zolo-package-text {
+            ${switchTabTypo}
         }
     `;
 
     const mobileAllStyle = `
-        .${uniqueId} .zolo-switch-container-wrap {
+        .${uniqueId}.wp-block-zolo-switcher .zolo-switch-container-wrap {
             ${spaceBetweenMob}
         }
 
-        .${uniqueId} .zolo-switch-container {
+        .${uniqueId}.wp-block-zolo-switcher .zolo-switch-container {
             ${switcherWidthMob}
             ${switcherHeightMob}
             ${switcherMarginMobile}
             ${switcherRadiusMobile}
-        }
-
-        .${uniqueId} .zolo-package-text {
-            ${switchMobTypo}
-        }
-
-        .${uniqueId} .zolo-knobs,
-        .${uniqueId} .zolo-layer {
             ${switcherBgMobile}
             ${switcherRadiusMobile}
+            ${switcherBorderStylesMob}
         }
 
-        .${uniqueId} .zolo-checkbox:checked ~ .zolo-knobs,
-        .${uniqueId} .zolo-checkbox:checked ~ .zolo-layer {
-            ${activeSwitcherBgMob}
-        }
-
-        .${uniqueId} .zolo-knobs span {
-            ${switcherKnobSizeMob}
+        .${uniqueId}.wp-block-zolo-switcher .zolo-package-text {
+            ${switchMobTypo}
         }
     `;
 

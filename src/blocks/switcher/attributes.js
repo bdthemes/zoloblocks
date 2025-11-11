@@ -16,6 +16,8 @@ import {
     SWITCHER_KNOB_SIZE,
     SWITCHER_MARGIN,
     SWITCHER_BG,
+    SWITCHER_BOX_SHADOW,
+    SWITCHER_BORDER,
     ACTIVE_SWITCHER_BG,
 } from './constants';
 
@@ -48,6 +50,17 @@ const attributes = {
         },
     },
     // Switcher specific attributes
+
+    preset: {
+        type: 'string',
+        default: 'style1',
+    },
+
+    showSwitcherLabels: {
+        type: 'boolean',
+        default: true,
+    },
+
     primaryText: {
         type: 'string',
         default: 'Yearly',
@@ -87,6 +100,8 @@ const attributes = {
     ...generateDimensionAttributes(SWITCHER_BORDER_RADIUS),
     ...generateNormalBGAttributes(SWITCHER_BG),
     ...generateNormalBGAttributes(ACTIVE_SWITCHER_BG),
+    ...generateBoxShadowAttributies(SWITCHER_BOX_SHADOW),
+    ...generateBorderAttributies(SWITCHER_BORDER),
 };
 
 export default attributes;

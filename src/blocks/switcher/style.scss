@@ -1,201 +1,174 @@
-// Switcher Wrapper
-.zolo-switcher-wrapper {
-    width: 100%;
-}
+.wp-block-zolo-switcher {
 
-// Switch Container
-.zolo-switch-container-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-// Package Text (Primary/Secondary labels)
-.zolo-package-text {
-    font-size: 16px;
-    font-weight: 500;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    user-select: none;
-
-    &.zolo-active {
-        color: #2271b1;
-        font-weight: 600;
+    // Switcher Wrapper
+    .zolo-switcher-wrapper {
+        width: 100%;
     }
 
-    &:hover {
-        color: #2271b1;
+    // Switch Container
+    .zolo-switch-container-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
     }
-}
 
-// Switch Container (Toggle Button)
-.zolo-switch-container {
-    position: relative;
-    width: 60px;
-    height: 30px;
-    border-radius: 50px;
-    overflow: hidden;
-    cursor: pointer;
-}
+    // Package Text (Primary/Secondary labels)
+    .zolo-package-text {
+        font-size: 16px;
+        font-weight: 500;
+        color: #666;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        user-select: none;
 
-// Checkbox (Hidden)
-.zolo-checkbox {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 3;
-    margin: 0;
-}
-
-// Layer (Background)
-.zolo-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #e0e0e0;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-}
-
-.zolo-checkbox:checked ~ .zolo-layer {
-    background: #2271b1;
-}
-
-// Knobs (Toggle Circle)
-.zolo-knobs {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-
-    span {
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        width: 24px;
-        height: 24px;
-        background: #fff;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-}
-
-.zolo-checkbox:checked ~ .zolo-knobs span {
-    left: 33px;
-}
-
-// Content Wrapper
-.zolo-switcher-content-wrapper {
-    width: 100%;
-}
-
-// Content Areas - Frontend
-.zolo-switch-content {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-
-    &.zolo-active {
-        display: block;
-        opacity: 1;
-    }
-}
-
-// Editor Styles - Show both content areas in editor with labels
-.editor-styles-wrapper,
-.block-editor-block-list__layout {
-    .wp-block-zolo-switcher-item {
-        margin-bottom: 20px;
-        position: relative;
-
-        .zolo-switch-content {
-            opacity: 1 !important;
-        
-            min-height: 100px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-
-            &:hover {
-                border-style: solid;
-                box-shadow: 0px rgba(0, 0, 0, 0.1);
-            }
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: -25px;
-                left: 0;
-                font-size: 11px;
-                font-weight: 700;
-                color: #666;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                padding: 2px 8px;
-                border-radius: 3px;
-            }
-
-            &::after {
-                content: '← Click inside to add blocks';
-                position: absolute;
-                top: -25px;
-                right: 0;
-                font-size: 10px;
-                font-weight: 500;
-                color: #999;
-                font-style: italic;
-            }
-
-            &.zolo-switch-content-primary {
-                border-color: #2271b1;
-                background: rgba(34, 113, 177, 0.03);
-
-                &::before {
-                    content: 'PRIMARY CONTENT';
-                    color: #fff;
-                    background: #2271b1;
-                }
-
-                &:hover {
-                    border-color: #2271b1;
-                    background: rgba(34, 113, 177, 0.08);
-                }
-            }
-
-            &.zolo-switch-content-secondary {
-                border-color: #999;
-                background: rgba(153, 153, 153, 0.03);
-
-                &::before {
-                    content: 'SECONDARY CONTENT';
-                    color: #fff;
-                    background: #999;
-                }
-
-                &:hover {
-                    border-color: #999;
-                    background: rgba(153, 153, 153, 0.08);
-                }
-            }
+        &.zolo-active {
+            color: #3f8efc;
         }
     }
+
+    // Content Wrapper
+    .zolo-switcher-content-wrapper {
+        width: 100%;
+    }
+
+    // Content Areas - Frontend
+    .zolo-switch-content {
+        display: none;
+        // opacity: 0;
+        transition: opacity 0.3s ease;
+
+        &.zolo-active {
+            display: block;
+            opacity: 1;
+        }
+    }
+
 }
 
-// Animation for content switching
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+.wp-block-zolo-switcher {
+    --zolo-switch-width: 60px;
+    --zolo-switch-height: 30px;
+    --zolo-switch-radius: 50px;
+
+    // Switch Container (Toggle Button)
+    .zolo-switch-container {
+        position: relative;
+        width: var(--zolo-switch-width);
+        height: var(--zolo-switch-height);
+        border-radius: var(--zolo-switch-radius);
+        overflow: hidden;
+        cursor: pointer;
+        background: #3f8efc;
     }
-    to {
-        opacity: 1;
+
+    // Checkbox (Hidden)
+    .zolo-checkbox {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 3;
+        margin: 0;
+    }
+
+    // Layer (Background)
+    // .zolo-layer {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background: #3f8efc;
+    //     border-radius: 50px;
+    //     transition: all 0.3s ease;
+    // }
+
+    // .zolo-checkbox:checked~.zolo-layer {
+    //     background: #3f8efc;
+    // }
+
+    // Knobs (Toggle Circle)
+    .zolo-knobs {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+
+        span {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(var(--zolo-switch-height) - 6px);
+            height: calc(var(--zolo-switch-height) - 6px);
+            background: #fff;
+            border-radius: var(--zolo-switch-radius);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .zolo-checkbox:checked~.zolo-knobs span {
+        left: calc(var(--zolo-switch-width) - var(--zolo-switch-height) + 3px);
+    }
+
+    /* Preset Styles 2 */
+    .zolo-switch-style2 {
+        --zolo-switch-radius: 3px;
+
+        .zolo-switch-container {
+            overflow: visible;
+            border-radius: var(--zolo-switch-radius);
+        }
+
+        .zolo-switch-container .zolo-knobs {
+            perspective: 70px;
+        }
+
+        .zolo-switch-container .zolo-knobs::before,
+        .zolo-switch-container .zolo-knobs::after {
+            position: absolute;
+            top: 4px;
+            border-radius: var(--zolo-switch-radius);
+            width: calc(var(--zolo-switch-height) - 8px);
+            height: calc(var(--zolo-switch-height) - 8px);
+        }
+
+        .zolo-switch-container .zolo-knobs:before {
+            content: '';
+            left: 4px;
+        }
+
+        .zolo-switch-container .zolo-knobs:after {
+            content: '';
+            right: 4px;
+        }
+
+        .zolo-switch-container .zolo-knobs span {
+            position: absolute;
+            top: 50%;
+            left: 4px;
+            border-radius: var(--zolo-switch-radius);
+            width: calc(var(--zolo-switch-height) - 8px);
+            height: calc(var(--zolo-switch-height) - 8px);
+            background-color: #fff;
+            transform: rotateY(0) translateY(-50%);
+            transform-origin: 50% 50%;
+            transition: 0.6s ease all;
+            z-index: 1;
+        }
+
+        .zolo-switch-container .zolo-checkbox:checked+.zolo-knobs span {
+            left: calc(var(--zolo-switch-width) - var(--zolo-switch-height) + 4px);
+            transform: rotateY(-180deg) translateY(-50%);
+        }
+
+        // .zolo-switch-container .zolo-layer {
+        //     border-radius: var(--zolo-switch-radius);
+        // }
     }
 }
