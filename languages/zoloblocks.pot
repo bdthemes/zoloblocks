@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: ZoloBlocks 2.3.13\n"
+"Project-Id-Version: ZoloBlocks 2.3.17\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zoloblocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-21T04:01:15+00:00\n"
+"POT-Creation-Date: 2025-11-12T04:06:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: zoloblocks\n"
@@ -41,99 +41,6 @@ msgstr ""
 #. Author URI of the plugin
 #: zoloblocks.php
 msgid "https://bdthemes.com/"
-msgstr ""
-
-#: dci/deactivate-feedback.php:48
-msgid "Give feedback"
-msgstr ""
-
-#: dci/deactivate-feedback.php:49
-msgid "Goodbyes are never easy. If you have a moment, please share your feedback on how we can improve."
-msgstr ""
-
-#: dci/deactivate-feedback.php:75
-msgid "Switching Domain"
-msgstr ""
-
-#: dci/deactivate-feedback.php:99
-msgid "Couldn't understand"
-msgstr ""
-
-#: dci/deactivate-feedback.php:147
-msgid "Found a better plugin"
-msgstr ""
-
-#: dci/deactivate-feedback.php:164
-msgid "Missing a specific feature"
-msgstr ""
-
-#: dci/deactivate-feedback.php:203
-msgid "Not working"
-msgstr ""
-
-#: dci/deactivate-feedback.php:228
-#: src/admin/dashboard/Extensions/categories.js:135
-msgid "Others"
-msgstr ""
-
-#: dci/deactivate-feedback.php:236
-msgid "What is the main reason for deactivating?"
-msgstr ""
-
-#: dci/deactivate-feedback.php:242
-msgid "Skip & Deactivate"
-msgstr ""
-
-#: dci/deactivate-feedback.php:246
-msgid "Cancel"
-msgstr ""
-
-#: dci/deactivate-feedback.php:251
-msgid "Submit & Deactivate"
-msgstr ""
-
-#: dci/notice.php:18
-msgid "Never miss an important update."
-msgstr ""
-
-#: dci/notice.php:21
-msgid "Get notified when there are new updates available for your plugins and themes. In the current version of this message it is clear that you are being sent a confirmation email to confirm your opt-in."
-msgstr ""
-
-#: dci/notice.php:39
-msgid "Allow & Continue"
-msgstr ""
-
-#: dci/notice.php:43
-msgid "Skip"
-msgstr ""
-
-#: dci/notice.php:49
-msgid "Which permission are being granted?"
-msgstr ""
-
-#: dci/notice.php:61
-msgid "View Basic Profile Info."
-msgstr ""
-
-#: dci/notice.php:64
-msgid "Your WordPress user's first & last name, and email address."
-msgstr ""
-
-#: dci/notice.php:76
-msgid "View Basic Website Info."
-msgstr ""
-
-#: dci/notice.php:79
-msgid "Homepage URL & title, WP & PHP versions, and site language."
-msgstr ""
-
-#: dci/notice.php:91
-msgid "View Basic Plugin Info."
-msgstr ""
-
-#: dci/notice.php:94
-msgid "Current Plugin & SDK versions, and if active or uninstalled."
 msgstr ""
 
 #: includes/Admin/Author.php:50
@@ -228,10 +135,12 @@ msgstr ""
 msgid "Form Entries"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:313
-#: includes/Admin/Dashboard.php:314
-#: src/extensions/AI/popup/components/header/index.js:50
-msgid "Upgrade"
+#: includes/Admin/Dashboard.php:323
+msgid "Get Pro Version"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:324
+msgid "Black Friday Limited Offer Up To 87%"
 msgstr ""
 
 #: includes/Admin/Notice.php:57
@@ -870,6 +779,10 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
+#: includes/Blocks/Blocks.php:802
+msgid "Dual Button"
+msgstr ""
+
 #: includes/Blocks/Breadcrumbs.php:239
 #: src/blocks/breadcrumbs/inspector.js:144
 #: src/blocks/breadcrumbs/inspector.js:309
@@ -994,18 +907,6 @@ msgstr[1] ""
 msgid "%d Min Read"
 msgstr ""
 
-#: includes/Classes/SupportSVG.php:47
-msgid "You do not have permission to upload files."
-msgstr ""
-
-#: includes/Classes/SupportSVG.php:58
-msgid "Sorry, the SVG file contains disallowed content."
-msgstr ""
-
-#: includes/Classes/SupportSVG.php:67
-msgid "Sorry, the JSON file is invalid."
-msgstr ""
-
 #: includes/Classes/ZoloAJAX.php:56
 msgid "Invalid input data"
 msgstr ""
@@ -1103,7 +1004,7 @@ msgid "Text Animation"
 msgstr ""
 
 #: includes/Extensions/extensions.php:144
-#: src/global/components/advancedOptions.js:431
+#: src/global/components/advancedOptions.js:388
 msgid "Display Condition"
 msgstr ""
 
@@ -1120,8 +1021,8 @@ msgid "Image Parallax"
 msgstr ""
 
 #: includes/Extensions/extensions.php:176
-#: src/global/components/advancedOptions.js:455
-#: src/global/components/advancedOptions.js:457
+#: src/extensions/transform/inspector.js:51
+#: src/extensions/transform/inspector.js:53
 msgid "Transform"
 msgstr ""
 
@@ -1422,8 +1323,8 @@ msgstr ""
 
 #: views/post-partials/pagination.php:6
 #: src/blocks/post-grid/inspector.js:431
-#: src/template-library/components/content/index.js:142
-#: src/template-library/page-templates/index.js:242
+#: src/template-library/components/content/index.js:146
+#: src/template-library/page-templates/index.js:243
 msgid "Load More"
 msgstr ""
 
@@ -1615,8 +1516,8 @@ msgstr ""
 
 #: src/admin/dashboard/Blocks/index.js:145
 #: src/admin/dashboard/Extensions/index.js:113
-#: src/template-library/inner-template.js:199
-#: src/template-library/page-templates/single-page-template.js:41
+#: src/template-library/inner-template.js:216
+#: src/template-library/page-templates/single-page-template.js:42
 msgid "Free"
 msgstr ""
 
@@ -1627,8 +1528,8 @@ msgstr ""
 #: src/admin/dashboard/Settings/setting-box.js:22
 #: src/controls/popover-control/index.js:25
 #: src/controls/thumbs-control/index.js:60
-#: src/template-library/inner-template.js:199
-#: src/template-library/page-templates/single-page-template.js:41
+#: src/template-library/inner-template.js:216
+#: src/template-library/page-templates/single-page-template.js:42
 msgid "Pro"
 msgstr ""
 
@@ -1689,6 +1590,10 @@ msgstr ""
 
 #: src/admin/dashboard/Extensions/categories.js:120
 msgid "Social"
+msgstr ""
+
+#: src/admin/dashboard/Extensions/categories.js:135
+msgid "Others"
 msgstr ""
 
 #: src/admin/dashboard/index.js:99
@@ -2386,7 +2291,7 @@ msgstr ""
 #: src/blocks/textarea/inspector.js:255
 #: src/blocks/video/inspector.js:685
 #: src/blocks/video/inspector.js:828
-#: src/global/components/advancedOptions.js:151
+#: src/global/components/advancedOptions.js:108
 msgid "Padding"
 msgstr ""
 
@@ -2591,7 +2496,7 @@ msgstr ""
 #: src/blocks/text-path/inspector.js:409
 #: src/blocks/textarea/inspector.js:212
 #: src/blocks/video/inspector.js:690
-#: src/global/components/advancedOptions.js:142
+#: src/global/components/advancedOptions.js:99
 msgid "Margin"
 msgstr ""
 
@@ -2827,8 +2732,8 @@ msgstr ""
 #: src/blocks/video/inspector.js:629
 #: src/blocks/video/inspector.js:696
 #: src/blocks/video/inspector.js:834
-#: src/global/components/advancedOptions.js:402
-#: src/global/components/advancedOptions.js:405
+#: src/global/components/advancedOptions.js:359
+#: src/global/components/advancedOptions.js:362
 msgid "Border"
 msgstr ""
 
@@ -3073,7 +2978,7 @@ msgstr ""
 #: src/blocks/video/inspector.js:640
 #: src/blocks/video/inspector.js:707
 #: src/blocks/video/inspector.js:839
-#: src/global/components/advancedOptions.js:414
+#: src/global/components/advancedOptions.js:371
 msgid "Border Radius"
 msgstr ""
 
@@ -4564,7 +4469,7 @@ msgstr ""
 #: src/blocks/tag-cloud/inspector.js:257
 #: src/blocks/video/inspector.js:846
 #: src/controls/normal-bg-control/index.js:72
-#: src/global/components/advancedOptions.js:389
+#: src/global/components/advancedOptions.js:346
 msgid "Background"
 msgstr ""
 
@@ -4886,8 +4791,8 @@ msgstr ""
 #: src/controls/background-control/overlay-control.js:1416
 #: src/controls/background-control/overlay-control.js:1770
 #: src/controls/background-control/overlay-control.js:2136
-#: src/global/components/advancedOptions.js:197
-#: src/global/components/advancedOptions.js:226
+#: src/global/components/advancedOptions.js:154
+#: src/global/components/advancedOptions.js:183
 msgid "Position"
 msgstr ""
 
@@ -4951,10 +4856,10 @@ msgstr ""
 #: src/blocks/review-carousel/inspector.js:298
 #: src/blocks/slider/inspector.js:482
 #: src/blocks/text-path/inspector.js:322
-#: src/global/components/advancedOptions.js:510
-#: src/global/components/advancedOptions.js:527
-#: src/global/components/advancedOptions.js:726
-#: src/global/components/advancedOptions.js:748
+#: src/extensions/transform/inspector.js:106
+#: src/extensions/transform/inspector.js:123
+#: src/extensions/transform/inspector.js:322
+#: src/extensions/transform/inspector.js:344
 msgid "Rotate"
 msgstr ""
 
@@ -5046,7 +4951,7 @@ msgstr ""
 #: src/controls/background-control/overlay-control.js:2451
 #: src/extensions/shape-divider/inspector.js:146
 #: src/extensions/shape-divider/inspector.js:250
-#: src/global/components/advancedOptions.js:170
+#: src/global/components/advancedOptions.js:127
 msgid "Width"
 msgstr ""
 
@@ -5508,10 +5413,10 @@ msgstr ""
 #: src/blocks/post-timeline/inspector.js:449
 #: src/blocks/progress-bar/inspector.js:101
 #: src/controls/query-control/index.js:276
-#: src/global/components/advancedOptions.js:260
-#: src/global/components/advancedOptions.js:272
-#: src/global/components/advancedOptions.js:300
-#: src/global/components/advancedOptions.js:312
+#: src/global/components/advancedOptions.js:217
+#: src/global/components/advancedOptions.js:229
+#: src/global/components/advancedOptions.js:257
+#: src/global/components/advancedOptions.js:269
 msgid "Offset"
 msgstr ""
 
@@ -5545,7 +5450,7 @@ msgstr ""
 #: src/blocks/navigation/inspector.js:226
 #: src/blocks/navigation/inspector.js:363
 #: src/blocks/qrcode/inspector.js:312
-#: src/global/components/advancedOptions.js:139
+#: src/global/components/advancedOptions.js:96
 msgid "Wrapper"
 msgstr ""
 
@@ -6248,7 +6153,7 @@ msgstr ""
 
 #: src/blocks/charts/constants/index.js:54
 #: src/blocks/flipbox/constants/index.js:11
-#: src/template-library/page-templates/pages-preview.js:29
+#: src/template-library/page-templates/pages-preview.js:30
 #: src/template-library/pages-templates.js:27
 msgid "Back"
 msgstr ""
@@ -6655,7 +6560,7 @@ msgid "Content Width"
 msgstr ""
 
 #: src/blocks/container/inspector.js:136
-#: src/global/components/advancedOptions.js:179
+#: src/global/components/advancedOptions.js:136
 msgid "Custom Width"
 msgstr ""
 
@@ -6759,7 +6664,7 @@ msgstr ""
 
 #: src/blocks/countdown/inspector.js:419
 #: src/blocks/review/inspector.js:481
-#: src/global/components/advancedOptions.js:190
+#: src/global/components/advancedOptions.js:147
 msgid "Overflow"
 msgstr ""
 
@@ -8694,17 +8599,17 @@ msgid "Responsive Visibility"
 msgstr ""
 
 #: src/blocks/popup-builder/inspector.js:344
-#: src/global/components/advancedOptions.js:433
+#: src/global/components/advancedOptions.js:390
 msgid "Hide on Desktop"
 msgstr ""
 
 #: src/blocks/popup-builder/inspector.js:349
-#: src/global/components/advancedOptions.js:438
+#: src/global/components/advancedOptions.js:395
 msgid "Hide on Tablet"
 msgstr ""
 
 #: src/blocks/popup-builder/inspector.js:354
-#: src/global/components/advancedOptions.js:443
+#: src/global/components/advancedOptions.js:400
 msgid "Hide on Mobile"
 msgstr ""
 
@@ -9844,10 +9749,10 @@ msgid "Duration (s)"
 msgstr ""
 
 #: src/blocks/progress-pie/inspector.js:166
-#: src/global/components/advancedOptions.js:494
-#: src/global/components/advancedOptions.js:505
-#: src/global/components/advancedOptions.js:710
-#: src/global/components/advancedOptions.js:721
+#: src/extensions/transform/inspector.js:90
+#: src/extensions/transform/inspector.js:101
+#: src/extensions/transform/inspector.js:306
+#: src/extensions/transform/inspector.js:317
 msgid "%"
 msgstr ""
 
@@ -10215,8 +10120,8 @@ msgstr ""
 #: src/blocks/slider/constants/index.js:141
 #: src/extensions/shape-divider/inspector.js:161
 #: src/extensions/shape-divider/inspector.js:266
-#: src/global/components/advancedOptions.js:652
-#: src/global/components/advancedOptions.js:858
+#: src/extensions/transform/inspector.js:248
+#: src/extensions/transform/inspector.js:454
 msgid "Flip"
 msgstr ""
 
@@ -11580,7 +11485,7 @@ msgid "Custom Icons Option"
 msgstr ""
 
 #: src/controls/zolo-icon-picker/index.js:265
-#: src/template-library/components/sidebar/index.js:92
+#: src/template-library/components/sidebar/index.js:96
 #: src/template-library/page-templates/index.js:122
 msgid "pro"
 msgstr ""
@@ -11637,6 +11542,10 @@ msgstr ""
 
 #: src/extensions/AI/popup/components/header/index.js:45
 msgid "Beta"
+msgstr ""
+
+#: src/extensions/AI/popup/components/header/index.js:50
+msgid "Upgrade"
 msgstr ""
 
 #: src/extensions/AI/popup/components/prompt/index.js:56
@@ -11775,150 +11684,150 @@ msgstr ""
 msgid "Bottom Shape"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:159
-msgid "Set Z Index"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:165
-msgid "Set the z-index for the section"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:242
-msgid "Vertical Orientation"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:282
-msgid "Horizontal Orientation"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:326
-msgid "CSS ID"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:333
-msgid "Add custom ID to the block WITHOUT the Pound key. e.g: my-id"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:336
-msgid "CSS Classes"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:346
-msgid "Add custom class(es) to the block WITHOUT the dot. e.g: my-class. Separate multiple classes with a space."
-msgstr ""
-
-#: src/global/components/advancedOptions.js:350
-msgid "Type to add a new class"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:351
-msgid "Type and press enter to add a new class"
-msgstr ""
-
-#: src/global/components/advancedOptions.js:481
-#: src/global/components/advancedOptions.js:697
+#: src/extensions/transform/inspector.js:77
+#: src/extensions/transform/inspector.js:293
 msgid "Translate"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:487
-#: src/global/components/advancedOptions.js:703
+#: src/extensions/transform/inspector.js:83
+#: src/extensions/transform/inspector.js:299
 msgid "translateX"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:493
-#: src/global/components/advancedOptions.js:504
-#: src/global/components/advancedOptions.js:709
-#: src/global/components/advancedOptions.js:720
+#: src/extensions/transform/inspector.js:89
+#: src/extensions/transform/inspector.js:100
+#: src/extensions/transform/inspector.js:305
+#: src/extensions/transform/inspector.js:316
 msgid "px"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:498
-#: src/global/components/advancedOptions.js:714
+#: src/extensions/transform/inspector.js:94
+#: src/extensions/transform/inspector.js:310
 msgid "translateY"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:536
-#: src/global/components/advancedOptions.js:757
+#: src/extensions/transform/inspector.js:132
+#: src/extensions/transform/inspector.js:353
 msgid "Rotate 3D"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:547
-#: src/global/components/advancedOptions.js:768
+#: src/extensions/transform/inspector.js:143
+#: src/extensions/transform/inspector.js:364
 msgid "RotateX(deg)"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:555
-#: src/global/components/advancedOptions.js:776
+#: src/extensions/transform/inspector.js:151
+#: src/extensions/transform/inspector.js:372
 msgid "RotateY(deg)"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:563
-#: src/global/components/advancedOptions.js:784
+#: src/extensions/transform/inspector.js:159
+#: src/extensions/transform/inspector.js:380
 msgid "Perspective(deg)"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:574
-#: src/global/components/advancedOptions.js:617
-#: src/global/components/advancedOptions.js:794
-#: src/global/components/advancedOptions.js:829
+#: src/extensions/transform/inspector.js:170
+#: src/extensions/transform/inspector.js:213
+#: src/extensions/transform/inspector.js:390
+#: src/extensions/transform/inspector.js:425
 msgid "Scale"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:584
-#: src/global/components/advancedOptions.js:796
+#: src/extensions/transform/inspector.js:180
+#: src/extensions/transform/inspector.js:392
 msgid "Keep Proportions"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:595
-#: src/global/components/advancedOptions.js:807
+#: src/extensions/transform/inspector.js:191
+#: src/extensions/transform/inspector.js:403
 msgid "ScaleX"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:604
-#: src/global/components/advancedOptions.js:816
+#: src/extensions/transform/inspector.js:200
+#: src/extensions/transform/inspector.js:412
 msgid "ScaleY"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:629
-#: src/global/components/advancedOptions.js:840
+#: src/extensions/transform/inspector.js:225
+#: src/extensions/transform/inspector.js:436
 msgid "Skew"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:635
-#: src/global/components/advancedOptions.js:842
+#: src/extensions/transform/inspector.js:231
+#: src/extensions/transform/inspector.js:438
 msgid "SkewX (deg)"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:643
-#: src/global/components/advancedOptions.js:850
+#: src/extensions/transform/inspector.js:239
+#: src/extensions/transform/inspector.js:446
 msgid "SkewY (deg)"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:658
-#: src/global/components/advancedOptions.js:860
+#: src/extensions/transform/inspector.js:254
+#: src/extensions/transform/inspector.js:456
 msgid "Flip Horizontal"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:667
-#: src/global/components/advancedOptions.js:869
+#: src/extensions/transform/inspector.js:263
+#: src/extensions/transform/inspector.js:465
 msgid "Flip Vertical"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:678
-#: src/global/components/advancedOptions.js:880
+#: src/extensions/transform/inspector.js:274
+#: src/extensions/transform/inspector.js:476
 msgid "X Anchor Point"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:684
-#: src/global/components/advancedOptions.js:886
+#: src/extensions/transform/inspector.js:280
+#: src/extensions/transform/inspector.js:482
 msgid "Y Anchor Point"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:895
+#: src/extensions/transform/inspector.js:491
 msgid "Transition Duration (ms)"
 msgstr ""
 
-#: src/global/components/advancedOptions.js:909
+#: src/global/components/advancedOptions.js:116
+msgid "Set Z Index"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:122
+msgid "Set the z-index for the section"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:199
+msgid "Vertical Orientation"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:239
+msgid "Horizontal Orientation"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:283
+msgid "CSS ID"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:290
+msgid "Add custom ID to the block WITHOUT the Pound key. e.g: my-id"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:293
+msgid "CSS Classes"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:303
+msgid "Add custom class(es) to the block WITHOUT the dot. e.g: my-class. Separate multiple classes with a space."
+msgstr ""
+
+#: src/global/components/advancedOptions.js:307
+msgid "Type to add a new class"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:308
+msgid "Type and press enter to add a new class"
+msgstr ""
+
+#: src/global/components/advancedOptions.js:414
 msgid "Custom CSS"
 msgstr ""
 
@@ -12221,41 +12130,41 @@ msgstr ""
 msgid "upcoming"
 msgstr ""
 
-#: src/template-library/components/sidebar/index.js:82
+#: src/template-library/components/sidebar/index.js:84
 #: src/template-library/page-templates/index.js:114
 msgid "free"
 msgstr ""
 
-#: src/template-library/inner-template.js:24
-#: src/template-library/inner-template.js:62
-#: src/template-library/inner-template.js:119
-#: src/template-library/page-templates/pages-preview.js:86
-#: src/template-library/page-templates/pages-preview.js:144
-#: src/template-library/page-templates/pages-preview.js:181
+#: src/template-library/inner-template.js:29
+#: src/template-library/inner-template.js:71
+#: src/template-library/inner-template.js:132
+#: src/template-library/page-templates/pages-preview.js:87
+#: src/template-library/page-templates/pages-preview.js:145
+#: src/template-library/page-templates/pages-preview.js:182
 msgid "View Demo"
 msgstr ""
 
-#: src/template-library/inner-template.js:26
-#: src/template-library/inner-template.js:64
-#: src/template-library/inner-template.js:121
-#: src/template-library/page-templates/pages-preview.js:92
-#: src/template-library/page-templates/pages-preview.js:150
-#: src/template-library/page-templates/pages-preview.js:183
+#: src/template-library/inner-template.js:35
+#: src/template-library/inner-template.js:77
+#: src/template-library/inner-template.js:138
+#: src/template-library/page-templates/pages-preview.js:93
+#: src/template-library/page-templates/pages-preview.js:151
+#: src/template-library/page-templates/pages-preview.js:184
 msgid "Demo"
 msgstr ""
 
-#: src/template-library/inner-template.js:88
-#: src/template-library/inner-template.js:145
-#: src/template-library/page-templates/pages-preview.js:116
-#: src/template-library/page-templates/pages-preview.js:207
+#: src/template-library/inner-template.js:101
+#: src/template-library/inner-template.js:162
+#: src/template-library/page-templates/pages-preview.js:117
+#: src/template-library/page-templates/pages-preview.js:208
 #: src/template-library/pro-popup.js:9
 msgid "Import Demo"
 msgstr ""
 
-#: src/template-library/inner-template.js:93
-#: src/template-library/inner-template.js:150
-#: src/template-library/page-templates/pages-preview.js:121
-#: src/template-library/page-templates/pages-preview.js:212
+#: src/template-library/inner-template.js:106
+#: src/template-library/inner-template.js:167
+#: src/template-library/page-templates/pages-preview.js:122
+#: src/template-library/page-templates/pages-preview.js:213
 #: src/template-library/pro-popup.js:11
 msgid "Import"
 msgstr ""
@@ -12264,24 +12173,24 @@ msgstr ""
 msgid "Sync Demos"
 msgstr ""
 
-#: src/template-library/page-templates/pages-preview.js:31
+#: src/template-library/page-templates/pages-preview.js:32
 msgid "Pages Preview"
 msgstr ""
 
-#: src/template-library/page-templates/pages-preview.js:237
+#: src/template-library/page-templates/pages-preview.js:238
 msgid "Remove from Favorite"
 msgstr ""
 
-#: src/template-library/page-templates/pages-preview.js:238
+#: src/template-library/page-templates/pages-preview.js:239
 msgid "Add to Favorite"
 msgstr ""
 
-#: src/template-library/page-templates/single-page-template.js:35
-#: src/template-library/utils/index.js:42
+#: src/template-library/page-templates/single-page-template.js:36
+#: src/template-library/utils/index.js:86
 msgid "Pages"
 msgstr ""
 
-#: src/template-library/page-templates/single-page-template.js:35
+#: src/template-library/page-templates/single-page-template.js:36
 msgid "1 Page"
 msgstr ""
 
@@ -12289,15 +12198,15 @@ msgstr ""
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: src/template-library/utils/index.js:40
+#: src/template-library/utils/index.js:84
 msgid "Demos"
 msgstr ""
 
-#: src/template-library/utils/index.js:41
+#: src/template-library/utils/index.js:85
 msgid "Templates"
 msgstr ""
 
-#: src/template-library/utils/index.js:43
+#: src/template-library/utils/index.js:87
 msgid "Patterns"
 msgstr ""
 
