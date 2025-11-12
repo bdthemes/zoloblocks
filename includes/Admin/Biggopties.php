@@ -16,7 +16,7 @@ class Biggopties {
 	public function __construct() {
 
 		//add_action('admin_notices', [$this, 'show_biggopties']);
-		add_action('wp_ajax_zoloblocks_biggopties', [$this, 'dismiss']);
+		add_action('wp_ajax_zolo_biggopties', [$this, 'dismiss']);
 
 		// AJAX endpoint to fetch API biggopties on demand (after page load)
 		add_action('wp_ajax_zolo_fetch_api_biggopties', [$this, 'ajax_fetch_api_biggopties']);
