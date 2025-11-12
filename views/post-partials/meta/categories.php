@@ -1,21 +1,21 @@
 <?php
 
-$categories = '';
+$zolo_categories = '';
 if (! empty($settings['showCategory'])) {
-	$postType = $settings['postQuery']['postType'] ?? 'post';
-	$taxonomy = \Zolo\Helpers\ZoloHelpers::get_taxonomy_name($postType, 'category');
-	$cats     = get_the_terms($result->ID, $taxonomy);
-	if (is_array($cats) && count($cats) > 0) {
-		$categories .= '<ul class="zolo-post-category">';
-		foreach ($cats as $cat) {
-			$categories .= sprintf(
+	$zolo_postType = $settings['postQuery']['postType'] ?? 'post';
+	$zolo_taxonomy = \Zolo\Helpers\ZoloHelpers::get_taxonomy_name($zolo_postType, 'category');
+	$zolo_cats     = get_the_terms($zolo_result->ID, $zolo_taxonomy);
+	if (is_array($zolo_cats) && count($zolo_cats) > 0) {
+		$zolo_categories .= '<ul class="zolo-post-category">';
+		foreach ($zolo_cats as $cat) {
+			$zolo_categories .= sprintf(
 				'<li><a href="%1$s" title="%2$s">%2$s</a></li>',
 				esc_attr(esc_url(get_category_link($cat->term_id))),
 				esc_html($cat->name)
 			);
 		}
-		$categories .= '</ul>';
+		$zolo_categories .= '</ul>';
 	}
 }
 
-return $categories;
+return $zolo_categories;

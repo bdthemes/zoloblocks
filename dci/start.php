@@ -8,8 +8,8 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
-if (! function_exists('dci_dynamic_init')) {
-	function dci_dynamic_init($params) {
+if (! function_exists('zolo_dci_dynamic_init')) {
+	function zolo_dci_dynamic_init($params) {
 
 		if (! is_admin()) {
 			return;
@@ -30,8 +30,8 @@ if (! function_exists('dci_dynamic_init')) {
 		 * Include SDK
 		 */
 		require_once dirname(__FILE__) . '/insights.php';
-		if (function_exists('dci_sdk_insights')) {
-			dci_sdk_insights($params);
+		if (function_exists('zolo_dci_sdk_insights')) {
+			zolo_dci_sdk_insights($params);
 		}
 	}
 }

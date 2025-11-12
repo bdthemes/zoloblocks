@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'dci_deactivate_feedback' ) ) {
-	function dci_deactivate_feedback( $data ) {
+if ( ! function_exists( 'zolo_dci_deactivate_feedback' ) ) {
+	function zolo_dci_deactivate_feedback( $data ) {
 		$api_endpoint = isset( $data['api_endpoint'] ) ? $data['api_endpoint'] : false;
 		$public_key   = isset( $data['public_key'] ) ? $data['public_key'] : false;
 		$product_id   = isset( $data['product_id'] ) ? $data['product_id'] : false;

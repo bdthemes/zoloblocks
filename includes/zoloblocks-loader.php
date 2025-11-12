@@ -177,7 +177,7 @@ class ZoloBlocks_Loader {
         wp_register_style('dci-sdk-zolo', ZOLO_ADMIN_URL . '/dci/assets/css/dci.css', array(), '1.2.1', 'all');
         wp_enqueue_style('dci-sdk-zolo');
 
-        dci_dynamic_init(array(
+        zolo_dci_dynamic_init(array(
             'sdk_version'         => '1.2.1',
             'product_id'          => 5,
             'plugin_name'         => 'ZoloBlocks', // make simple, must not empty

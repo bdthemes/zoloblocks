@@ -760,8 +760,8 @@ if (! class_exists('Insights_SDK')) {
 /**
  * Main Insights Function
  */
-if (! function_exists('dci_sdk_insights')) {
-	function dci_sdk_insights($params) {
+if (! function_exists('zolo_dci_sdk_insights')) {
+	function zolo_dci_sdk_insights($params) {
 		if (class_exists('Insights_SDK')) {
 			new Insights_SDK($params);
 		}
