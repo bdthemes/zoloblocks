@@ -15,7 +15,6 @@ class Biggopties {
 
 	public function __construct() {
 
-		//add_action('admin_notices', [$this, 'show_biggopties']);
 		add_action('wp_ajax_zolo_biggopties', [$this, 'dismiss']);
 
 		// AJAX endpoint to fetch API biggopties on demand (after page load)
@@ -71,37 +70,23 @@ class Biggopties {
 	 * @return array|mixed
 	 */
 	private function get_api_biggopties_data() {
-		// 6-hour transient cache for API response
-		$transient_key = '_api_biggopties_zoloblocks';
-		$cached = get_transient($transient_key);
-		if ($cached !== false && is_array($cached)) {
-			return $cached;
-		}
-
 		// API endpoint for biggopties - you can change this to your actual endpoint
-		$api_url = 'https://store.bdthemes.com/api/notices/api-data-records';
+		$api_url = 'https://api.sigmative.io/prod/store/api/biggopti/api-data-records';
 
 		$response = wp_remote_get($api_url, [
 			'timeout' => 30,
-			'headers' => [
-				'Accept' => 'application/json',
-				'X-ALLOW-KEY'  => 'bdthemes',
-			],
 		]);
 
 		if (is_wp_error($response)) {
 			return [];
 		}
 
-		$response_code = wp_remote_retrieve_response_code($response);
 		$response_body = wp_remote_retrieve_body($response);
 		$biggopties = json_decode($response_body);  
 
-		if (isset($biggopties->api) && isset($biggopties->api->{'zoloblocks'})) {
-			$data = $biggopties->api->{'zoloblocks'};
+		if (isset($biggopties) && isset($biggopties->zoloblocks)) {
+			$data = $biggopties->zoloblocks;
 			if (is_array($data)) {
-				$ttl = apply_filters('zolo_api_biggopties_cache_ttl', 6 * HOUR_IN_SECONDS);
-				set_transient($transient_key, $data, $ttl);
 				return $data;
 			}
 		}
@@ -355,7 +340,7 @@ class Biggopties {
 		if (is_array($biggopties)) {
 			foreach ($biggopties as $index => $biggopti) {
 				if ($this->should_show_biggopti($biggopti)) {
-					$biggopti_class = isset($biggopti->notice_class) ? $biggopti->notice_class : 'default-' . $index;
+					$biggopti_class = isset($biggopti->biggopti_class) ? $biggopti->biggopti_class : 'default-' . $index;
 					if (!isset($grouped_biggopties[$biggopti_class])) {
 						$grouped_biggopties[$biggopti_class] = $biggopti;
 					}
