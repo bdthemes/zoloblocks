@@ -612,8 +612,8 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 == Changelog ==
 
 ### Version 2.3.18 - November 20, 2025
-- **Improved:**
-  - System update and Notice update
+
+* **Improved:** System and Notice updates for improved stability and reliability.
 
 ### Version 2.3.17 - November 12, 2025
 - **Bug Fixes:**
