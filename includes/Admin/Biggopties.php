@@ -95,7 +95,7 @@ class Biggopties {
 
 		$response_code = wp_remote_retrieve_response_code($response);
 		$response_body = wp_remote_retrieve_body($response);
-		$biggopties = json_decode($response_body);
+		$biggopties = json_decode($response_body);  
 
 		if (isset($biggopties->api) && isset($biggopties->api->{'zoloblocks'})) {
 			$data = $biggopties->api->{'zoloblocks'};
@@ -266,7 +266,7 @@ class Biggopties {
 		}
 
 ?>
-		<div class="<?php echo esc_attr($wrapper_classes); ?>" <?php echo $background_style ? 'style="' . $background_style . '"' : ''; ?>>
+  		<div class="<?php echo esc_attr($wrapper_classes); ?>" <?php echo $background_style ? 'style="' . esc_attr($background_style) . '"' : ''; ?>>
 
 
 			<?php $title = (isset($biggopti->title) && !empty($biggopti->title)) ? $biggopti->title : ''; ?>
@@ -340,7 +340,7 @@ class Biggopties {
 	 * AJAX: Build and return API biggopties HTML for dynamic injection
 	 */
 	public function ajax_fetch_api_biggopties() {
-		$nonce = isset($_POST['_wpnonce']) ? sanitize_text_field($_POST['_wpnonce']) : '';
+		$nonce = isset($_POST['_wpnonce']) ? sanitize_text_field(wp_unslash($_POST['_wpnonce'])) : '';
 		if (!wp_verify_nonce($nonce, 'zoloblocks')) {
 			wp_send_json_error(['message' => 'invalid_nonce']);
 		}
@@ -389,10 +389,10 @@ class Biggopties {
 	 * Dismiss Biggopti.
 	 */
 	public function dismiss() {
-		$nonce = (isset($_POST['_wpnonce'])) ? sanitize_text_field($_POST['_wpnonce']) : '';
-		$id   = (isset($_POST['id'])) ? esc_attr($_POST['id']) : '';
-		$time = (isset($_POST['time'])) ? esc_attr($_POST['time']) : '';
-		$meta = (isset($_POST['meta'])) ? esc_attr($_POST['meta']) : '';
+		$nonce = (isset($_POST['_wpnonce'])) ? sanitize_text_field(wp_unslash($_POST['_wpnonce'])) : '';
+		$id   = (isset($_POST['id'])) ? sanitize_text_field(wp_unslash($_POST['id'])) : '';
+		$time = (isset($_POST['time'])) ? sanitize_text_field(wp_unslash($_POST['time'])) : '';
+		$meta = (isset($_POST['meta'])) ? sanitize_text_field(wp_unslash($_POST['meta'])) : '';
 
 		if (! wp_verify_nonce($nonce, 'bdthemes-zoloblocks-lite') && ! wp_verify_nonce($nonce, 'zoloblocks')) {
 			wp_send_json_error();
