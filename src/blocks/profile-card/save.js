@@ -103,18 +103,16 @@ const Save = (props) => {
                                     <RichText.Content value={bio} />
                                 </div>
                             )}
-                            {showStatus && (
+                            {showStatus && statusItems && statusItems.length > 0 && (
                                 <div className="zb-profile-status">
-                                    {statusItems &&
-                                        statusItems.map((item) => {
-                                            const uniqueKey = item.id || item.title || `status-${Math.random().toString(36).slice(2)}`;
-                                            return (
-                                                <div className="zolo-status-item" key={uniqueKey}>
-                                                    {item.title && <span className="zolo-status-title">{item.title}</span>}
-                                                    {item.value && <span className="zolo-status-value">{item.value}</span>}
-                                                </div>
-                                            );
-                                        })}
+                                    {statusItems.map((item, index) => {
+                                        return (
+                                            <div className="zb-profile-status-item" key={item.id || index}>
+                                                <RichText.Content tagName="span" className="zb-profile-status-count" value={item.number} />
+                                                <RichText.Content tagName="span" className="zb-profile-status-text" value={item.label} />
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             )}
 
@@ -159,18 +157,16 @@ const Save = (props) => {
                     {preset === 'style-1' && (
                         <>
                             <div className="zb-profile-inner-content">
-                                {showStatus && (
+                                {showStatus && statusItems && statusItems.length > 0 && (
                                     <div className="zb-profile-status">
-                                        {statusItems &&
-                                            statusItems.map((item) => {
-                                                const uniqueKey = item.id || item.title || `status-${Math.random().toString(36).slice(2)}`;
-                                                return (
-                                                    <div className="zolo-status-item" key={uniqueKey}>
-                                                        {item.title && <span className="zolo-status-title">{item.title}</span>}
-                                                        {item.value && <span className="zolo-status-value">{item.value}</span>}
-                                                    </div>
-                                                );
-                                            })}
+                                        {statusItems.map((item, index) => {
+                                            return (
+                                                <div className="zb-profile-status-item" key={item.id || index}>
+                                                    <RichText.Content tagName="span" className="zb-profile-status-count" value={item.number} />
+                                                    <RichText.Content tagName="span" className="zb-profile-status-text" value={item.label} />
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 )}
                                 {showBio && (
