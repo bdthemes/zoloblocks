@@ -84,7 +84,9 @@ function RenderView({ attributes, postResults }) {
                                 {showThumbnail && preset !== 'style-4' && (
                                     <>
                                         {post.thumbnail && (
-                                            <a href={'#'} dangerouslySetInnerHTML={{ __html: sanitizeUrl(post.thumbnail) }}></a>
+                                            <a href={'#'}>
+                                                <RawHTML>{post.thumbnail}</RawHTML>
+                                            </a>
                                         )}
                                         {!post.thumbnail && (
                                             <a href={'#'}>
@@ -99,7 +101,9 @@ function RenderView({ attributes, postResults }) {
                                         {showThumbnail && (
                                             <>
                                                 {post.thumbnail && (
-                                                    <a href={'#'} dangerouslySetInnerHTML={{ __html: sanitizeUrl(post.thumbnail) }}></a>
+                                                    <a href={'#'}>
+                                                        <RawHTML>{post.thumbnail}</RawHTML>
+                                                    </a>
                                                 )}
                                                 {!post.thumbnail && (
                                                     <a href={'#'}>
