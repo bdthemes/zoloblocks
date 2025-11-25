@@ -320,8 +320,20 @@ export function stripBadSchemes(raw = '') {
 export function sanitizeUrl(raw) {
     const s = stripBadSchemes(raw);
     if (!s) return '';
-    // Basic URL validity
+    
+    // Allow hash-only URLs (e.g., #section-id)
+    if (s.startsWith('#')) {
+        return s;
+    }
+    
+    // Allow relative URLs (e.g., /page, ./page, ../page)
+    if (s.startsWith('/') || s.startsWith('./') || s.startsWith('../')) {
+        return s;
+    }
+    
+    // For full URLs, validate with isURL
     if (!isURL(s)) return '';
+    
     return s;
 }
 
