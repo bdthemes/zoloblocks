@@ -105,7 +105,7 @@ function ZoloBlocksTemplateLibraryButton() {
         const RETRY_DELAY = 1000; // 1 second
 
         console.log(`Importing template from: ${jsonFileUrl}`);
-        
+
         try {
             setLoading(true);
 
@@ -152,7 +152,12 @@ function ZoloBlocksTemplateLibraryButton() {
             }
 
             const jsonData = await response.json();
-            const content = jsonData?.content || jsonData;
+            let content = jsonData?.content || jsonData;
+            if (typeof content === 'string' && content.includes('https://zoloblocks.wp')) {
+                content = content.replace(/https:\/\/zoloblocks.wp/g, 'https://zoloblocks.com');
+            }else if (typeof content === 'string' && content.includes('https://templates.zoloblocks.wp')) {
+                content = content.replace(/https:\/\/templates.zoloblocks.wp/g, 'https://templates.zoloblocks.com');
+            }
 
             // Validate content
             if (!content || (typeof content !== 'string' && typeof content !== 'object')) {
@@ -191,28 +196,28 @@ function ZoloBlocksTemplateLibraryButton() {
             console.error(`Template import error (attempt ${retryCount + 1}):`, error.message);
 
             // Retry logic for network errors
-            if (retryCount < MAX_RETRIES && 
-                (error.name === 'AbortError' || 
-                 error.message.includes('fetch') || 
+            if (retryCount < MAX_RETRIES &&
+                (error.name === 'AbortError' ||
+                 error.message.includes('fetch') ||
                  error.message.includes('network') ||
                  error.message.includes('Failed to fetch'))) {
-                
+
                 console.log(`Retrying template import in ${RETRY_DELAY}ms... (${retryCount + 1}/${MAX_RETRIES})`);
-                
+
                 setTimeout(() => {
                     handleImportTemplate(jsonFileUrl, retryCount + 1);
                 }, RETRY_DELAY * (retryCount + 1)); // Exponential backoff
-                
+
                 return;
             }
 
             // Show user-friendly error message
             const errorMessage = error.message || 'Unknown error occurred during template import';
             console.error('Final template import error:', errorMessage);
-            
+
             // You could add a toast notification here if available
             // showErrorNotification(`Template import failed: ${errorMessage}`);
-            
+
         } finally {
             // Only close if this is not a retry attempt
             if (retryCount === 0 || retryCount >= MAX_RETRIES) {
