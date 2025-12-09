@@ -1,0 +1,24 @@
+{
+    "apiVersion": 3,
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Flexbox",
+    "name": "zolo/flexbox",
+    "category": "zoloblocks",
+    "keywords": ["Container", "Flexbox", "Layout","Responsive"],
+    "description": "Design flexible layouts using responsive flexbox containers.",
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 740
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": false
+    },
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css"
+}
