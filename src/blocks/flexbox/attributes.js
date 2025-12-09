@@ -3,7 +3,7 @@
  */
 const { generateResRangeAttributies, generateResAlignmentAttributies, generateGapAttributes } = window.zoloModule;
 
-import { CONTENT_WIDTH, FLEXBOX_WIDTH, MIN_HEIGHT, FLEX_DIRECTION, FLEX_ALIGN, FLEX_JUSTIFY, FLEX_WRAP } from './constants';
+import { CONTENT_WIDTH, FLEXBOX_WIDTH, MIN_HEIGHT, FLEX_DIRECTION, FLEX_ALIGN, FLEX_JUSTIFY, FLEX_WRAP, FLEXBOX_GAP } from './constants';
 
 const attributes = {
     // global config
@@ -51,6 +51,17 @@ const attributes = {
         type: 'string',
         default: 'alignfull',
     },
+    tagName: {
+        type: 'string',
+        default: 'div',
+    },
+    link: {
+        type: 'object',
+        default: {
+            url: '#',
+            openInNewTab: false,
+        },
+    },
     ...generateResRangeAttributies(CONTENT_WIDTH, {
         defaultRange: 1200,
         defaultUnit: 'px',
@@ -72,6 +83,10 @@ const attributes = {
     }),
     ...generateResAlignmentAttributies(FLEX_WRAP, {
         defaultAlign: 'nowrap',
+    }),
+    ...generateGapAttributes(FLEXBOX_GAP, {
+        defaultRange: 20,
+        defaultUnit: 'px',
     }),
 };
 

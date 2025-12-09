@@ -10,7 +10,7 @@ const { BlockIcons } = window.zoloIcons;
 
 registerBlockType(metadata.name, {
     icon: {
-        src: BlockIcons['container'],
+        src: BlockIcons['flexbox'],
     },
     attributes,
     edit: Edit,

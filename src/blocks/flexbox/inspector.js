@@ -21,24 +21,25 @@ const {
 
 import objAttributes from './attributes';
 
-import {
-    WIDTH_TYPES,
-    CONTENT_WIDTH_TYPES,
-    FLEX_DIRECTIONS,
-    FLEX_WRAPS,
-    FLEX_ALIGNS,
-    FLEX_ALIGNS_ROW,
-    FLEX_JUSTIFIES,
-    FLEX_JUSTIFIES_ROW,
-} from '../../../src/global/constants';
+import { WIDTH_TYPES, CONTENT_WIDTH_TYPES, FLEX_DIRECTIONS, FLEX_WRAPS } from '../../../src/global/constants';
 
-import { CONTENT_WIDTH, FLEXBOX_WIDTH, MIN_HEIGHT, FLEX_DIRECTION, FLEX_ALIGN, FLEX_JUSTIFY, FLEX_WRAP } from './constants';
+import {
+    CONTENT_WIDTH,
+    FLEXBOX_WIDTH,
+    MIN_HEIGHT,
+    FLEX_DIRECTION,
+    FLEX_ALIGN,
+    FLEX_JUSTIFY,
+    FLEX_WRAP,
+    TAG_LIST,
+    FLEXBOX_GAP,
+} from './constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const panelProps = { attributes, setAttributes };
 
-    const { resMode, isRootFlexbox, flexWidthType, contentWidthType } = attributes;
+    const { resMode, isRootFlexbox, flexWidthType, contentWidthType, tagName, link } = attributes;
 
     const requiredProps = {
         resMode,
@@ -141,16 +142,44 @@ function Inspector(props) {
                                 alignOptions={FLEX_WRAPS}
                             />
                         </ZoloPanelBody>
+                        {isRootFlexbox && (
+                            <ZoloPanelBody title={__('Additional Options', 'zoloblocks')} panelProps={props}>
+                                <ZoloSelectControl
+                                    label={__('HTML Tag', 'zoloblocks')}
+                                    value={tagName}
+                                    options={TAG_LIST}
+                                    onChange={(tagName) => setAttributes({ tagName })}
+                                />
+                                {tagName === 'a' && (
+                                    <LinkControl
+                                        label={__('URL', 'zoloblocks')}
+                                        value={link}
+                                        onChange={(value) => setAttributes({ link: value })}
+                                    />
+                                )}
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
-                styleTab={<></>}
+                styleTab={
+                    <>
+                        <ZoloPanelBody title={__('Flexbox Gap', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
+                            <ResGapControl
+                                label={__('Gap', 'zoloblocks')}
+                                controlName={FLEXBOX_GAP}
+                                requiredProps={requiredProps}
+                                max={200}
+                            />
+                        </ZoloPanelBody>
+                    </>
+                }
                 advancedTab={
                     <>
                         <AdvancedOptions
                             attributes={attributes}
                             setAttributes={setAttributes}
                             requiredProps={requiredProps}
-                            block="zolo/container"
+                            block="zolo/flexbox"
                         />
                     </>
                 }
