@@ -1,6 +1,5 @@
 //wrodpress dependencies
 import { InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 const {
@@ -22,7 +21,6 @@ const {
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
-    ToggleGroup,
     ResSelectControl,
     ImageAvatar,
     ImageSizes,

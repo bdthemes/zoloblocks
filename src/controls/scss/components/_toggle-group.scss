@@ -1,6 +1,34 @@
-.zolo-toggle-group-control{
-    .components-toggle-group-control-option-base{
-        svg{
+.zolo-toggle-group-control {
+    .components-base-control {
+        .components-base-control__field {
+            display: block;
+
+            &>div {
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .components-toggle-group-control {
+        border: 1px solid #e9e9e9;
+
+        &:hover {
+            border-color: #e9e9e9;
+        }
+
+        &:focus-within {
+            border-color: #001feb;
+        }
+    }
+
+    .components-toggle-group-control-option-base {
+        &[data-active-item="true"] {
+            svg {
+                fill: #ffffff;
+            }
+        }
+
+        svg {
             width: 16px;
             height: 16px;
             display: block;

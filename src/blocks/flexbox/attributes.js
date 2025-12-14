@@ -50,6 +50,9 @@ const attributes = {
             openInNewTab: false,
         },
     },
+    flexDirection: {
+        type: 'object',
+    },
     ...generateResRangeAttributies(FLEXBOX_WIDTH, {
         defaultRange: 100,
         defaultUnit: '%',

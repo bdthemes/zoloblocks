@@ -4,23 +4,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-/**
- * Internal depencencies
- */
-const {
-    HeaderTabs,
-    ZoloPanelBody,
-    AdvancedOptions,
-    IconicBtnGroup,
-    ResRangeControl,
-    ZoloSelectControl,
-    ResAlignmentControl,
-    ResGapControl,
-    LinkControl,
-} = window.zoloModule;
-
 import objAttributes from './attributes';
-
 import {
     FLEXBOX_WIDTH,
     MIN_HEIGHT,
@@ -44,7 +28,21 @@ import { useInenerFlexboxWidthType } from './utils';
 
 function Inspector(props) {
     const { attributes, setAttributes, isParent, hasParent } = props;
-    useInenerFlexboxWidthType(hasParent, attributes?.flexWidthType, setAttributes)
+    useInenerFlexboxWidthType(hasParent, attributes?.flexWidthType, setAttributes);
+    const {
+        HeaderTabs,
+        ZoloPanelBody,
+        AdvancedOptions,
+        ResRangeControl,
+        ZoloSelectControl,
+        ResAlignmentControl,
+        ResGapControl,
+        LinkControl,
+        ZoloChoose,
+        ZoloResponsive,
+        getResponsiveValue,
+        createResponsiveValue,
+    } = window.zoloModule;
 
     const requiredProps = {
         resMode: attributes?.resMode,
@@ -62,7 +60,7 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zolo-blocks')} panelProps={props}>
-                            <IconicBtnGroup
+                            <ZoloChoose
                                 label={__('Flexbox Width', 'zoloblocks')}
                                 value={attributes?.flexWidthType}
                                 onChange={(value) =>
@@ -95,12 +93,16 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Flex Properties', 'zolo-blocks')} panelProps={props}>
-                            <ResAlignmentControl
-                                label={__('Direction', 'zoloblocks')}
-                                controlName={FLEX_DIRECTION}
-                                requiredProps={requiredProps}
-                                alignOptions={FLEX_DIRECTIONS}
-                            />
+                            <ZoloResponsive left={'36px'}>
+                                <ZoloChoose
+                                    label={__('Direction', 'zoloblocks')}
+                                    value={getResponsiveValue(attributes, 'flexDirection')}
+                                    onChange={(value) => {
+                                        setAttributes(createResponsiveValue(attributes, 'flexDirection', value));
+                                    }}
+                                    options={FLEX_DIRECTIONS}
+                                />
+                            </ZoloResponsive>
                             <ResAlignmentControl
                                 label={__('Justify Content', 'zoloblocks')}
                                 customClass={classNames("zolo-flex-justify-content", {

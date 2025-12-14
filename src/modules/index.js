@@ -51,10 +51,11 @@ export { GlobalStyleHanlder } from '../global/components/globalStyleHandler';
 export { default as ResSelectControl } from '../controls/res-select-control';
 export { default as ThumbsControl } from '../controls/thumbs-control';
 export { default as TabDynamicControl } from '../controls/tabdynamic-control';
-export { default as ToggleGroup } from '../controls/toggle-group';
+export { default as ZoloChoose } from '../controls/choose';
 export { default as ZoloRepeater } from '../controls/repeater';
 export { default as OrderSortControl } from '../controls/ordersort-control';
 export { default as Skeleton } from '../controls/skeleton';
+export { default as ZoloResponsive } from '../controls/responsive';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';
@@ -77,6 +78,8 @@ export { default as LottiePreview } from '../helpers/lottiePreview';
 export { default as usePanelProps } from '../helpers/use-panel-props';
 export { defaultDeviceList } from '../helpers/default-device-list';
 export { default as useDeviceType } from '../helpers/use-device-type';
+export { default as getResponsiveValue } from '../helpers/get-responsive-value';
+export { default as createResponsiveValue } from '../helpers/create-responsive-value';
 
 export {
     DynamicTag,
