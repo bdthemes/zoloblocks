@@ -2,41 +2,41 @@
 
 use Zolo\Helpers\ZoloHelpers;
 
-$topclass = 'zolo-post-timeline-wrap';
+$zolo_topclass = 'zolo-post-timeline-wrap';
 if (! empty($settings['preset'])) {
-	$topclass .= ' zolo-post-' . $settings['preset'];
+	$zolo_topclass .= ' zolo-post-' . $settings['preset'];
 }
 
 if (! empty($settings['postTitleAnimation'])) {
-	$topclass .= ' ' . $settings['postTitleAnimation']; // Add space before concatenating
+	$zolo_topclass .= ' ' . $settings['postTitleAnimation']; // Add space before concatenating
 }
 
 
-$wrapper_class = ZoloHelpers::get_wrapper_class($settings, $topclass);
+$zolo_wrapper_class = ZoloHelpers::get_wrapper_class($settings, $zolo_topclass);
 
 // get parent classes.
-$parentClasses = $settings['parentClasses'] ?? [];
+$zolo_parentClasses = $settings['parentClasses'] ?? [];
 // convert to string.
-$parentClasses = implode(' ', $parentClasses);
+$zolo_parentClasses = implode(' ', $zolo_parentClasses);
 // add parent classes to wrapper class.
-$wrapper_class .= ' ' . $parentClasses;
-$metaSeparator  = ! empty($settings['metaSeparator']) ? $settings['metaSeparator'] : '|';
-$html           = '';
-$paginationType = $settings['paginationType'] ?? 'normal';
-$wrapperId      = $settings['zoloId'] ?? '';
-$data_settings  = ! empty($parentWrap) ? ZoloHelpers::extract_settings_keys($settings, array_keys($class_object->get_default_attributes())) : $settings;
+$zolo_wrapper_class .= ' ' . $zolo_parentClasses;
+$zolo_metaSeparator  = ! empty($settings['metaSeparator']) ? $settings['metaSeparator'] : '|';
+$zolo_html           = '';
+$zolo_paginationType = $settings['paginationType'] ?? 'normal';
+$zolo_wrapperId      = $settings['zoloId'] ?? '';
+$zolo_data_settings  = ! empty($parentWrap) ? ZoloHelpers::extract_settings_keys($settings, array_keys($class_object->get_default_attributes())) : $settings;
 ?>
 <?php if (! empty($parentWrap)) : ?>
 	<div <?php echo wp_kses_data(get_block_wrapper_attributes()); ?>
-		<?php if ('normal' !== $paginationType) { ?>
-		data-attributes="<?php echo esc_attr(wp_json_encode($data_settings)); ?>"
+		<?php if ('normal' !== $zolo_paginationType) { ?>
+		data-attributes="<?php echo esc_attr(wp_json_encode($zolo_data_settings)); ?>"
 		<?php } ?>>
 	<?php endif; ?>
-	<div class="<?php echo esc_attr($wrapper_class); ?>"
+	<div class="<?php echo esc_attr($zolo_wrapper_class); ?>"
 		<?php
-		if (! empty($wrapperId)) {
+		if (! empty($zolo_wrapperId)) {
 		?>
-		id="<?php echo esc_attr($wrapperId); ?>" <?php } ?>>
+		id="<?php echo esc_attr($zolo_wrapperId); ?>" <?php } ?>>
 
 		<div class="zolo-post-start-end-wrap">
 
@@ -47,53 +47,53 @@ $data_settings  = ! empty($parentWrap) ? ZoloHelpers::extract_settings_keys($set
 
 			<div class="zolo-post-timeline-grid">
 				<?php
-				foreach ($post_results['posts'] as $result) {
-					$result = (object) $result;
-					$html  .= '<div class="zolo-item">';
-					$html  .= ' <div class="zolo-content-wrap">';
-					$html  .= ' <div class="zolo-counter"></div>';
-					$html  .= '<div class="zolo-content">';
+				foreach ($post_results['posts'] as $zolo_result) {
+					$zolo_result = (object) $zolo_result;
+					$zolo_html  .= '<div class="zolo-item">';
+					$zolo_html  .= ' <div class="zolo-content-wrap">';
+					$zolo_html  .= ' <div class="zolo-counter"></div>';
+					$zolo_html  .= '<div class="zolo-content">';
 
 					if (! empty($settings['showThumbnail'])) {
-						$html .= '<div class="zolo-post-image">';
-						$html .= require __DIR__ . '/post-partials/thumbnail.php';
-						$html .= '</div>';
+						$zolo_html .= '<div class="zolo-post-image">';
+						$zolo_html .= require __DIR__ . '/post-partials/thumbnail.php';
+						$zolo_html .= '</div>';
 					}
 
 					if (! empty($settings['showDate'])) {
-						$html .= require __DIR__ . '/post-partials/meta/date.php';
+						$zolo_html .= require __DIR__ . '/post-partials/meta/date.php';
 					}
 
-					$html .= require __DIR__ . '/post-partials/title.php';
+					$zolo_html .= require __DIR__ . '/post-partials/title.php';
 
 					if (! empty($settings['showExcerpt'])) {
-						$html .= require __DIR__ . '/post-partials/content.php';
+						$zolo_html .= require __DIR__ . '/post-partials/content.php';
 					}
 
 					if (! empty($settings['showMeta'])) {
-						$html .= '<div class="zolo-post-meta">';
-						$html .= require __DIR__ . '/post-partials/meta/categories.php';
+						$zolo_html .= '<div class="zolo-post-meta">';
+						$zolo_html .= require __DIR__ . '/post-partials/meta/categories.php';
 
 						if (! empty($settings['showComment'])) {
-							$html .= '<div data-separator="' . $metaSeparator . '">';
-							$html .= require __DIR__ . '/post-partials/meta/comment-number.php';
-							$html .= '</div>';
+							$zolo_html .= '<div data-separator="' . $zolo_metaSeparator . '">';
+							$zolo_html .= require __DIR__ . '/post-partials/meta/comment-number.php';
+							$zolo_html .= '</div>';
 						}
 						if (! empty($settings['showReadingTime'])) {
-							$html .= '<div data-separator="' . $metaSeparator . '">';
-							$html .= require __DIR__ . '/post-partials/meta/reading-time.php';
-							$html .= '</div>';
+							$zolo_html .= '<div data-separator="' . $zolo_metaSeparator . '">';
+							$zolo_html .= require __DIR__ . '/post-partials/meta/reading-time.php';
+							$zolo_html .= '</div>';
 						}
-						$html .= '</div>';
+						$zolo_html .= '</div>';
 					}
 
-					$html .= '</div>';
-					$html .= '</div>';
-					$html .= '</div>';
+					$zolo_html .= '</div>';
+					$zolo_html .= '</div>';
+					$zolo_html .= '</div>';
 				}
 				?>
 
-				<?php echo wp_kses($html, ZoloHelpers::wp_kses_allowed_svg()); ?>
+				<?php echo wp_kses($zolo_html, ZoloHelpers::wp_kses_allowed_svg()); ?>
 
 			</div>
 		</div>

@@ -6,7 +6,6 @@
     "files": [
         "assets",
         "build",
-        "dci",
         "includes",
         "languages",
         "vendor",

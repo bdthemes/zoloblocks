@@ -53,19 +53,19 @@ if (! class_exists('Settings')) {
             register_setting('reading', 'zolo_maintenance_mode', [
                 'sanitize_callback' => 'sanitize_text_field',
             ]);
-            
+
             register_setting('reading', 'zolo_coming_soon_mode', [
                 'sanitize_callback' => 'sanitize_text_field',
             ]);
-            
+
             register_setting('reading', 'zolo_maintenance_mode_template', [
                 'sanitize_callback' => 'sanitize_text_field',
             ]);
-            
+
             register_setting('reading', 'zolo_site_visibility_private_link', [
                 'sanitize_callback' => 'esc_url_raw', // Assuming this is a URL
             ]);
-            
+
             // register_setting('reading', 'zolo_site_visibility_secret_key', [
             //     'sanitize_callback' => 'sanitize_text_field',
             // ]);
@@ -481,7 +481,7 @@ if (! class_exists('Settings')) {
                 'zolo_auto_recovery',
                 [
                     'type'              => 'boolean',
-                    'default'           => true,
+                    'default'           => false,
                     'show_in_rest'      => [
                         'schema' => ['type' => 'boolean'],
                     ],

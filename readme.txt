@@ -3,9 +3,9 @@ Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, shamim496
 Donate link: http://zoloblocks.com/
 Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.3.14
+Stable tag: 2.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -610,6 +610,30 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.4.0 [December 4, 2025]
+
+**Bug Fixes:**
+WordPress latest version compatibility issues are fixed
+Template library importing issues are fixed
+
+### Version 2.3.18 - November 20, 2025
+
+* **Improved:** System and Notice updates for improved stability and reliability.
+
+### Version 2.3.17 - November 12, 2025
+- **Bug Fixes:**
+  - System update and Notice update
+
+### Version 2.3.16 - November 11, 2025
+
+- **Bug Fixes:**
+  - System update and Notice update
+
+### Version 2.3.15 - November 10, 2025
+
+- **Bug Fixes:**
+  - Resolved Template Library pages and templates imported issue.
 
 ### Version 2.3.14 - November 6, 2025
 

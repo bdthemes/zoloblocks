@@ -2,51 +2,51 @@
 
 use Zolo\Helpers\ZoloHelpers;
 
-$topclass = 'zolo-post-grid-wrap';
+$zolo_topclass = 'zolo-post-grid-wrap';
 
 if ( ! empty( $settings['preset'] ) ) {
-    $topclass .= ' zolo-post-' . $settings['preset'];
+    $zolo_topclass .= ' zolo-post-' . $settings['preset'];
 }
 
 if ( ! empty( $settings['postTitleAnimation'] ) ) {
-    $topclass .= ' ' . $settings['postTitleAnimation']; // Add space before concatenating
+    $zolo_topclass .= ' ' . $settings['postTitleAnimation']; // Add space before concatenating
 }
 
-$wrapper_class = ZoloHelpers::get_wrapper_class( $settings, $topclass);
+$zolo_wrapper_class = ZoloHelpers::get_wrapper_class( $settings, $zolo_topclass);
 
 // get parent classes.
-$parentClasses = $settings['parentClasses'] ?? [];
+$zolo_parentClasses = $settings['parentClasses'] ?? [];
 // convert to string.
-$parentClasses = implode( ' ', $parentClasses );
+$zolo_parentClasses = implode( ' ', $zolo_parentClasses );
 // add parent classes to wrapper class.
-$wrapper_class .= ' ' . $parentClasses;
-$wrapperId      = $settings['zoloId'] ?? '';
-$metaSeparator  = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '//';
-$filterTermId   = ! empty( $filterTermId ) ? $filterTermId : '';
-$html           = '';
-$paginationType = $settings['paginationType'] ?? 'normal';
-$data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $settings, array_keys( $class_object->get_default_attributes() ) ) : $settings;
+$zolo_wrapper_class .= ' ' . $zolo_parentClasses;
+$zolo_wrapperId      = $settings['zoloId'] ?? '';
+$zolo_metaSeparator  = ! empty( $settings['metaSeparator'] ) ? $settings['metaSeparator'] : '//';
+$zolo_filterTermId   = ! empty( $filterTermId ) ? $filterTermId : '';
+$zolo_html           = '';
+$zolo_paginationType = $settings['paginationType'] ?? 'normal';
+$zolo_data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $settings, array_keys( $class_object->get_default_attributes() ) ) : $settings;
 
 ?>
 <?php if ( ! empty( $parentWrap ) ) : ?>
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	<?php if ( 'normal' !== $paginationType || ! empty( $settings['showFilterTaxonomy'] ) ) { ?>
-		data-attributes="<?php echo esc_attr( wp_json_encode( $data_settings ) ); ?>"
+	<?php if ( 'normal' !== $zolo_paginationType || ! empty( $settings['showFilterTaxonomy'] ) ) { ?>
+		data-attributes="<?php echo esc_attr( wp_json_encode( $zolo_data_settings ) ); ?>"
 	<?php } ?>
 >
 	<?php endif; ?>
 
-	<div class="<?php echo esc_attr( $wrapper_class ); ?>"
+	<div class="<?php echo esc_attr( $zolo_wrapper_class ); ?>"
 		<?php
-		if ( ! empty( $wrapperId ) ) {
+		if ( ! empty( $zolo_wrapperId ) ) {
 			?>
-			id="<?php echo esc_attr( $wrapperId ); ?>" <?php } ?>>
+			id="<?php echo esc_attr( $zolo_wrapperId ); ?>" <?php } ?>>
 
 		<?php if ( ! empty( $settings['showFilterTaxonomy'] ) ) { ?>
 			<div class="zolo-post-filter-taxonomy">
 				<a href="#" data-id="all" class="
 					<?php
-					if ( ! empty( $parentWrap ) || 'all' == $filterTermId ) {
+					if ( ! empty( $parentWrap ) || 'all' == $zolo_filterTermId ) {
 						echo esc_attr( 'current' );}
 					?>
 				">
@@ -54,18 +54,18 @@ $data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $
 				</a>
 
 				<?php
-				$terms = get_terms(
+				$zolo_terms = get_terms(
 					[
 						'taxonomy' => $settings['postTaxonomy'] ?? 'category',
 						'include'  => wp_list_pluck( $settings['postTerms'] ?? [], 'value' ),
 						'orderby'  => 'include',
 					]
 				);
-				foreach ( $terms as $key => $term ) :
+				foreach ( $zolo_terms as $zolo_key => $term ) :
 					?>
 					<a href="#" class="
 					<?php
-					if ( $filterTermId == $term->term_id ) {
+					if ( $zolo_filterTermId == $term->term_id ) {
 						echo esc_attr( 'current' );
 					}
 					?>
@@ -77,86 +77,86 @@ $data_settings  = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_keys( $
 
 		<div class="zolo-post-content-wrap">
 			<?php
-			foreach ( $post_results['posts'] as $result ) {
-				$result = (object) $result;
-				$html  .= '<div class="zolo-post-item">';
-				$html  .= '<div class="zolo-post-image">';
+			foreach ( $post_results['posts'] as $zolo_result ) {
+				$zolo_result = (object) $zolo_result;
+				$zolo_html  .= '<div class="zolo-post-item">';
+				$zolo_html  .= '<div class="zolo-post-image">';
 
 				if ( ! empty( $settings['preset'] ) && $settings['preset'] !== 'style-5' ) {
-					$html .= require __DIR__ . '/post-partials/thumbnail.php';
+					$zolo_html .= require __DIR__ . '/post-partials/thumbnail.php';
 				}
 
 				if ( ! empty( $settings['preset'] ) && $settings['preset'] === 'style-5' ) {
-					$html .= '<div class="zolo-post-img-category">';
-					$html .= require __DIR__ . '/post-partials/thumbnail.php';
-					$html .= require __DIR__ . '/post-partials/meta/categories.php';
-					$html .= '</div>';
+					$zolo_html .= '<div class="zolo-post-img-category">';
+					$zolo_html .= require __DIR__ . '/post-partials/thumbnail.php';
+					$zolo_html .= require __DIR__ . '/post-partials/meta/categories.php';
+					$zolo_html .= '</div>';
 				}
 
 				if ( ! empty( $settings['preset'] === 'style-5' ) && ( $settings['showMeta'] === true ) ) {
-					$html .= '<div class="zolo-post-meta-wrap">';
-					$html .= '<div class="zolo-post-dateTime">';
-					$html .= require __DIR__ . '/post-partials/meta/date.php';
+					$zolo_html .= '<div class="zolo-post-meta-wrap">';
+					$zolo_html .= '<div class="zolo-post-dateTime">';
+					$zolo_html .= require __DIR__ . '/post-partials/meta/date.php';
 					if ( ! empty( $settings['showReadingTime'] ) ) {
-						$html .= $metaSeparator;
-						$html .= require __DIR__ . '/post-partials/meta/reading-time.php';
+						$zolo_html .= $zolo_metaSeparator;
+						$zolo_html .= require __DIR__ . '/post-partials/meta/reading-time.php';
 					}
-					$html .= '</div>';
+					$zolo_html .= '</div>';
 
-					$html .= require __DIR__ . '/post-partials/meta/author-grid.php';
-					$html .= '</div>';
+					$zolo_html .= require __DIR__ . '/post-partials/meta/author-grid.php';
+					$zolo_html .= '</div>';
 				}
 				if ( ! empty( $settings['preset'] ) && $settings['preset'] !== 'style-5' && $settings['preset'] !== 'style-6' ) {
-					$html .= require __DIR__ . '/post-partials/meta/author-grid.php';
+					$zolo_html .= require __DIR__ . '/post-partials/meta/author-grid.php';
 				}
 				
 
-				$html .= '</div>';
+				$zolo_html .= '</div>';
 
-				$html .= '<div class="zolo-post-content">';
-				$html .= '<div class="zolo-post-inner-content">';
+				$zolo_html .= '<div class="zolo-post-content">';
+				$zolo_html .= '<div class="zolo-post-inner-content">';
 				if ( ! empty( $settings['preset'] ) && $settings['preset'] !== 'style-5' ) {
-					$html .= require __DIR__ . '/post-partials/meta/categories.php';
+					$zolo_html .= require __DIR__ . '/post-partials/meta/categories.php';
 				}
-				$html .= require __DIR__ . '/post-partials/title.php';
-				$html .= require __DIR__ . '/post-partials/content.php';
+				$zolo_html .= require __DIR__ . '/post-partials/title.php';
+				$zolo_html .= require __DIR__ . '/post-partials/content.php';
 				
 				// Normal meta display for non style-5 and non style-6
 				if ( ! empty( $settings['preset'] !== 'style-5' ) && ! empty( $settings['preset'] !== 'style-6' ) && ( $settings['showMeta'] === true ) ) {
-					$html .= '<div class="zolo-post-dateTime">';
-					$html .= require __DIR__ . '/post-partials/meta/date.php';
+					$zolo_html .= '<div class="zolo-post-dateTime">';
+					$zolo_html .= require __DIR__ . '/post-partials/meta/date.php';
 					if ( ! empty( $settings['showReadingTime'] ) ) {
-						$html .= $metaSeparator;
-						$html .= require __DIR__ . '/post-partials/meta/reading-time.php';
+						$zolo_html .= $zolo_metaSeparator;
+						$zolo_html .= require __DIR__ . '/post-partials/meta/reading-time.php';
 					}
-					$html .= '</div>';
+					$zolo_html .= '</div>';
 				}
-				$html .= '</div>';
+				$zolo_html .= '</div>';
 
 				// Style 6 specific bottom content
 				if ( ! empty( $settings['preset'] ) && $settings['preset'] === 'style-6' ) {
-					$html .= '<div class="zolo-post-bottom-content">';
+					$zolo_html .= '<div class="zolo-post-bottom-content">';
 					if ( $settings['showMeta'] === true ) {
-						$html .= '<div class="zolo-post-dateTime">';
-						$html .= require __DIR__ . '/post-partials/meta/date.php';
+						$zolo_html .= '<div class="zolo-post-dateTime">';
+						$zolo_html .= require __DIR__ . '/post-partials/meta/date.php';
 						if ( ! empty( $settings['showReadingTime'] ) ) {
-							$html .= $metaSeparator;
-							$html .= require __DIR__ . '/post-partials/meta/reading-time.php';
+							$zolo_html .= $zolo_metaSeparator;
+							$zolo_html .= require __DIR__ . '/post-partials/meta/reading-time.php';
 						}
-						$html .= '</div>';
+						$zolo_html .= '</div>';
 					}
-					$html .= require __DIR__ . '/post-partials/read-more.php';
-					$html .= '</div>';
+					$zolo_html .= require __DIR__ . '/post-partials/read-more.php';
+					$zolo_html .= '</div>';
 				} else {
 					// Normal read more button for other styles
-					$html .= require __DIR__ . '/post-partials/read-more.php';
+					$zolo_html .= require __DIR__ . '/post-partials/read-more.php';
 				}
 				
-				$html .= '</div>';
-				$html .= '</div>';
+				$zolo_html .= '</div>';
+				$zolo_html .= '</div>';
 			}
 			?>
-			<?php echo wp_kses( $html, ZoloHelpers::wp_kses_allowed_svg() ); ?>
+			<?php echo wp_kses( $zolo_html, ZoloHelpers::wp_kses_allowed_svg() ); ?>
 		</div>
 
 	</div>

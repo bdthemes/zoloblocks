@@ -9,7 +9,7 @@ export const fetchRecords = async (query, type) => {
     try {
         const response = await fetch(`${getRootURL(type)}/${type}/${type}.json`);
         let data = await response.json();
-        
+
         // Apply client-side filtering since we're using static JSON
         if (data && Array.isArray(data)) {
             // Filter by category
@@ -19,7 +19,7 @@ export const fetchRecords = async (query, type) => {
                     return item.categories.some(cat => cat.slug === query.categories || cat.id === query.categories);
                 });
             }
-            
+
             // Filter by tag
             if (query?.tags) {
                 data = data.filter(item => {
@@ -27,14 +27,14 @@ export const fetchRecords = async (query, type) => {
                     return item.tags.some(tag => tag.slug === query.tags || tag.id === query.tags);
                 });
             }
-            
+
             // Filter by package type (pro/free)
             if (query?.package_type) {
                 data = data.filter(item => {
                     return item.package_type === query.package_type;
                 });
             }
-            
+
             // Filter by search text
             if (query?.search) {
                 const searchLower = query.search.toLowerCase();
@@ -43,7 +43,7 @@ export const fetchRecords = async (query, type) => {
                            item.description?.toLowerCase().includes(searchLower);
                 });
             }
-            
+
             // Sort by order (created date)
             if (query?.order) {
                 data = data.sort((a, b) => {
@@ -53,7 +53,7 @@ export const fetchRecords = async (query, type) => {
                 });
             }
         }
-        
+
         return data;
     } catch (error) {
         console.error(error);
@@ -167,14 +167,33 @@ export const getNormalizedParams = (params = {}) => {
 };
 
 export const getFullUrl = (url, type) => {
-    if (!url || url.startsWith('http')) {
+    // Return early if URL is empty or already absolute
+    if (!url || typeof url !== 'string') {
+        console.warn('Invalid URL provided to getFullUrl:', url);
         return url;
     }
-    
-    const baseUrl = (type === 'templates' || type === 'pages') 
-        ? 'https://templates.zoloblocks.com' 
-        : 'https://zoloblocks.com';
-    
-    return `${baseUrl}${url}`;
+
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        return url;
+    }
+
+    // Determine base URL based on type
+    const baseUrl =
+        type === 'templates' || type === 'pages'
+            ? 'https://templates.zoloblocks.com'
+            : 'https://zoloblocks.com';
+    // Ensure URL starts with forward slash
+    const normalizedUrl = url.startsWith('/') ? url : `/${url}`;
+
+    const fullUrl = `${baseUrl}${normalizedUrl}`;
+
+    // Validate the constructed URL
+    try {
+        new URL(fullUrl);
+        return fullUrl;
+    } catch (error) {
+        console.error('Failed to construct valid URL:', { url, type, baseUrl, fullUrl });
+        return url; // Return original URL as fallback
+    }
 };
 
