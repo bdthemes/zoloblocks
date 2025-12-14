@@ -23,24 +23,22 @@ const VariationPicker = (props) => {
     const { replaceInnerBlocks, replaceBlock } = useDispatch('core/block-editor');
 
     const blockVariationPickerOnSelect = (nextVariation) => {
-        console.log(nextVariation);
-        
-        // if (nextVariation.attributes) {
-        //     setAttributes(nextVariation.attributes);
-        // }
 
-        // if (nextVariation.innerBlocks && 'one-column' !== nextVariation.name) {
-        //     replaceInnerBlocks(clientId, createBlocksFromInnerBlocksTemplate(nextVariation.innerBlocks));
-        // }
+        if(nextVariation == undefined){
+            setAttributes({ isVariationSelected: true })
+        }
 
-        // if (isReplace && 'one-column' == nextVariation.name) {
-        //     replaceBlock(clientId, createBlock('zolo/flexbox', nextVariation.attributes, []));
-        // }
+        if (nextVariation.attributes) {
+            setAttributes(nextVariation.attributes);
+        }
 
-        // // Close the modal after selection
-        // if (closeModal) {
-        //     closeModal();
-        // }
+        if (nextVariation.innerBlocks && 'one-column' !== nextVariation.name) {
+            replaceInnerBlocks(clientId, createBlocksFromInnerBlocksTemplate(nextVariation.innerBlocks));
+        }
+
+        if (isReplace && 'one-column' == nextVariation.name) {
+            replaceBlock(clientId, createBlock('zolo/flexbox', nextVariation.attributes, []));
+        }
     };
 
     return (

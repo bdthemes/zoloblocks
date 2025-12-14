@@ -3,7 +3,7 @@
  */
 const { generateResRangeAttributies, generateResAlignmentAttributies, generateGapAttributes } = window.zoloModule;
 
-import { CONTENT_WIDTH, FLEXBOX_WIDTH, MIN_HEIGHT, FLEX_DIRECTION, FLEX_ALIGN, FLEX_JUSTIFY, FLEX_WRAP, FLEXBOX_GAP } from './constants';
+import { FLEXBOX_WIDTH, MIN_HEIGHT, FLEX_DIRECTION, FLEX_WRAP, FLEXBOX_GAP, FLEX_ALIGN_ITEMS, FLEX_JUSTIFY_CONTENT } from './constants';
 
 const attributes = {
     // global config
@@ -31,23 +31,11 @@ const attributes = {
             responsiveControls: true,
         },
     },
-    flexWidth: {
-        type: 'string',
-        default: 'width_none',
-    },
     isVariationSelected: {
         type: 'boolean',
         default: false,
     },
-    isRootFlexbox: {
-        type: 'boolean',
-        default: false,
-    },
     flexWidthType: {
-        type: 'string',
-        default: 'alignfull',
-    },
-    contentWidthType: {
         type: 'string',
         default: 'alignfull',
     },
@@ -62,32 +50,16 @@ const attributes = {
             openInNewTab: false,
         },
     },
-    ...generateResRangeAttributies(CONTENT_WIDTH, {
-        defaultRange: 1200,
-        defaultUnit: 'px',
-    }),
     ...generateResRangeAttributies(FLEXBOX_WIDTH, {
         defaultRange: 100,
         defaultUnit: '%',
     }),
     ...generateResRangeAttributies(MIN_HEIGHT, {}),
-
-    ...generateResAlignmentAttributies(FLEX_DIRECTION, {
-        defaultAlign: 'row',
-    }),
-    ...generateResAlignmentAttributies(FLEX_ALIGN, {
-        defaultAlign: 'center',
-    }),
-    ...generateResAlignmentAttributies(FLEX_JUSTIFY, {
-        defaultAlign: 'center',
-    }),
-    ...generateResAlignmentAttributies(FLEX_WRAP, {
-        defaultAlign: 'nowrap',
-    }),
-    ...generateGapAttributes(FLEXBOX_GAP, {
-        defaultRange: 20,
-        defaultUnit: 'px',
-    }),
+    ...generateResAlignmentAttributies(FLEX_DIRECTION, {}),
+    ...generateResAlignmentAttributies(FLEX_ALIGN_ITEMS, {}),
+    ...generateResAlignmentAttributies(FLEX_JUSTIFY_CONTENT, {}),
+    ...generateResAlignmentAttributies(FLEX_WRAP, {}),
+    ...generateGapAttributes(FLEXBOX_GAP, {}),
 };
 
 export default attributes;

@@ -23,7 +23,7 @@ const transforms = {
                 return createBlock(
                     BLOCK_NAME,
                     {
-                        variationStatus: true,
+                        isVariationSelected: true,
                         contentWidthType: 'alignfull',
                     },
                     conatinerInnerBlocks
@@ -63,7 +63,7 @@ const transforms = {
                 return createBlock(
                     BLOCK_NAME,
                     {
-                        variationStatus: true,
+                        isVariationSelected: true,
                     },
                     conatinerInnerBlocks
                 );

@@ -1,10 +1,15 @@
 import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
-const Save = () => {
+import classnames from 'classnames';
+const Save = ({ attributes }) => {
+    const { classArrayToStr } = window.zoloModule;
     const blockProps = useBlockProps.save({
-        className: 'zolo-flexbox',
+        className: classnames('zolo-flexbox', attributes?.uniqueId, classArrayToStr(attributes?.parentClasses), {
+            [`${attributes?.flexWidthType}`]: attributes?.flexWidthType,
+        }),
     });
     const innerBlocksProps = useInnerBlocksProps.save(blockProps);
-    return <div {...innerBlocksProps} />
+    const TAG = attributes?.tagName || 'div';
+    return <TAG {...innerBlocksProps} />
 }
 
 export default Save;

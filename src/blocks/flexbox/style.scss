@@ -1,0 +1,13 @@
+.zolo-flexbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .zolo-flexbox {
+        width: 100%;
+
+        &.alignfull {
+            flex-shrink: 1;
+        }
+    }
+}
