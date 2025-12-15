@@ -1,10 +1,3 @@
-/**
- * Internal dependencies
- */
-const { generateResRangeAttributies, generateResAlignmentAttributies, generateGapAttributes } = window.zoloModule;
-
-import { FLEXBOX_WIDTH, MIN_HEIGHT, FLEX_DIRECTION, FLEX_WRAP, FLEXBOX_GAP, FLEX_ALIGN_ITEMS, FLEX_JUSTIFY_CONTENT } from './constants';
-
 const attributes = {
     // global config
     globalConfig: {
@@ -53,16 +46,27 @@ const attributes = {
     flexDirection: {
         type: 'object',
     },
-    ...generateResRangeAttributies(FLEXBOX_WIDTH, {
-        defaultRange: 100,
-        defaultUnit: '%',
-    }),
-    ...generateResRangeAttributies(MIN_HEIGHT, {}),
-    ...generateResAlignmentAttributies(FLEX_DIRECTION, {}),
-    ...generateResAlignmentAttributies(FLEX_ALIGN_ITEMS, {}),
-    ...generateResAlignmentAttributies(FLEX_JUSTIFY_CONTENT, {}),
-    ...generateResAlignmentAttributies(FLEX_WRAP, {}),
-    ...generateGapAttributes(FLEXBOX_GAP, {}),
+    flexboxCustomWidth: {
+        type: 'object',
+        default: {
+            Desktop: "100%",
+        },
+    },
+    minHeight: {
+        type: 'object'
+    },
+    flexJustifyContent: {
+        type: 'object'
+    },
+    flexAlignItems: {
+        type: 'object'
+    },
+    flexWrap: {
+        type: 'object'
+    },
+    flexGap: {
+        type: 'object'
+    },
 };
 
 export default attributes;
