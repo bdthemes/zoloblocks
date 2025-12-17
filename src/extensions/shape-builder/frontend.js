@@ -37,48 +37,48 @@
     // Initialize custom SVG color handling
     function initCustomSvgColors() {
         const customShapes = document.querySelectorAll('.zolo-shape-builder-custom[data-custom-svg-url]');
-        
+
         customShapes.forEach((shape) => {
             const svgUrl = shape.getAttribute('data-custom-svg-url');
             const fillColor = shape.getAttribute('data-custom-fill');
             const strokeColor = shape.getAttribute('data-custom-stroke');
             const imgElement = shape.querySelector('.zolo-custom-svg-image');
-            
+
             if (!svgUrl || !imgElement) return;
-            
+
             // Fetch and inline the SVG for color manipulation
             fetch(svgUrl)
-                .then(response => response.text())
-                .then(svgContent => {
+                .then((response) => response.text())
+                .then((svgContent) => {
                     // Create a temporary div to parse SVG
                     const temp = document.createElement('div');
                     temp.innerHTML = svgContent.trim();
                     const svgElement = temp.querySelector('svg');
-                    
+
                     if (svgElement) {
                         // Set dimensions to match container
                         svgElement.style.width = '100%';
                         svgElement.style.height = '100%';
                         svgElement.style.display = 'block';
-                        
+
                         // Apply colors to all paths and shapes in SVG
                         if (fillColor) {
-                            svgElement.querySelectorAll('path, circle, rect, ellipse, polygon, polyline').forEach(el => {
+                            svgElement.querySelectorAll('path, circle, rect, ellipse, polygon, polyline').forEach((el) => {
                                 el.style.fill = fillColor;
                             });
                         }
-                        
+
                         if (strokeColor) {
-                            svgElement.querySelectorAll('path, circle, rect, ellipse, polygon, polyline, line').forEach(el => {
+                            svgElement.querySelectorAll('path, circle, rect, ellipse, polygon, polyline, line').forEach((el) => {
                                 el.style.stroke = strokeColor;
                             });
                         }
-                        
+
                         // Replace img with inline SVG
                         imgElement.replaceWith(svgElement);
                     }
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.warn('Failed to load custom SVG:', error);
                 });
         });
@@ -170,8 +170,32 @@
         });
     }
 
+    // Move shapes into their target wrappers for correct positioning
+    function moveShapesToWrapper() {
+        const shapes = document.querySelectorAll('.zolo-shape-builder[data-wrapper-id]');
+
+        shapes.forEach((shape) => {
+            const wrapperId = shape.getAttribute('data-wrapper-id');
+            const wrapper = document.querySelector(`.${wrapperId}`);
+
+            // Only move if wrapper exists and shape is not already inside it
+            if (wrapper && shape.parentElement !== wrapper) {
+                // Determine if we should prepend or append based on z-index or other logic?
+                // For now, appending is standard.
+                wrapper.appendChild(shape);
+
+                // Ensure wrapper has relative position if not static
+                const style = window.getComputedStyle(wrapper);
+                if (style.position === 'static') {
+                    wrapper.style.position = 'relative';
+                }
+            }
+        });
+    }
+
     // Initialize all shape builder features
     function initShapeBuilder() {
+        moveShapesToWrapper(); // Move shapes first
         initCustomSvgColors();
         initShapeAnimations();
     }
