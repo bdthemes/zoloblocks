@@ -4,7 +4,7 @@ import { store as editorStore } from '@wordpress/editor';
 const useDeviceType = () => {
     const { deviceType } = useSelect((select) => {
         return {
-            deviceType: select(editorStore).getDeviceType(),
+            deviceType: select("core/editor").getDeviceType(),
         };
     }, []);
 
