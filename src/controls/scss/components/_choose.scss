@@ -1,0 +1,11 @@
+.zolo-toggle-group-control {
+    .components-toggle-group-control-option-base {
+        &[data-active-item="true"] {
+            background-color: #2667ff;
+        }
+    }
+
+    .components-toggle-group-control::before{
+        background: #2667ff !important;
+    }
+}

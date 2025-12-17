@@ -29,42 +29,41 @@ const ZoloDualRangeUnit = ({
     };
 
     return (
-        <BaseControl label={label} help={help}>
-            <div className="zb-dual-range-unit">
-                <Button
-                    icon={linked ? link : linkOff}
-                    size='small'
-                    onClick={toggleLink}
-                    aria-pressed={linked}
-                />
+        <BaseControl label={label} help={help} className="zb-dual-range-unit">
+            <Button
+                icon={linked ? link : linkOff}
+                size='small'
+                onClick={toggleLink}
+                aria-pressed={linked}
+            />
 
-                {linked && (
+            {linked && (
+                <ZoloRangeUnit
+                    label=""
+                    value={first}
+                    onChange={(val) =>
+                        update({ first: val, second: val })
+                    }
+                    {...props}
+                />
+            )}
+
+            {!linked && (
+                <>
                     <ZoloRangeUnit
+                        label={dualLabel[0]}
                         value={first}
-                        onChange={(val) =>
-                            update({ first: val, second: val })
-                        }
+                        onChange={(val) => update({ first: val })}
                         {...props}
                     />
-                )}
-
-                {!linked && (
-                    <>
-                        <ZoloRangeUnit
-                            label={dualLabel[0]}
-                            value={first}
-                            onChange={(val) => update({ first: val })}
-                            {...props}
-                        />
-                        <ZoloRangeUnit
-                            label={dualLabel[1]}
-                            value={second}
-                            onChange={(val) => update({ second: val })}
-                            {...props}
-                        />
-                    </>
-                )}
-            </div>
+                    <ZoloRangeUnit
+                        label={dualLabel[1]}
+                        value={second}
+                        onChange={(val) => update({ second: val })}
+                        {...props}
+                    />
+                </>
+            )}
         </BaseControl>
     );
 };
