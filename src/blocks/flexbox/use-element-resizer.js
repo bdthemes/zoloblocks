@@ -4,8 +4,8 @@ function useElementResize({
     element,
     position = 'right',
     cssProperty = 'maxWidth',
-    condition = () => { return true },
-    onResizeEnd = () => { }
+    condition = () => true,
+    onResizeEnd = () => {},
 }) {
     const resizerRef = useRef(null);
     const handlersRef = useRef({});
@@ -21,48 +21,74 @@ function useElementResize({
     useEffect(() => {
         if (!element || !condition(element)) return;
 
-        const editorDocument = window.frames?.['editor-canvas']?.document || window.document;
+        const editorDocument =
+            window.frames?.['editor-canvas']?.document || window.document;
 
-        // Always bind to both to avoid iframe boundary issues
+        const editorWindow =
+            window.frames?.['editor-canvas'] || window;
+
         const bindTargets = new Set([editorDocument]);
 
+        /* -------------------------------------------------
+         * Create resizer in BODY
+         * ------------------------------------------------- */
         const resizer = editorDocument.createElement('span');
         resizer.className = `zolo-resizer zolo-resizer-${position}`;
 
         Object.assign(resizer.style, {
-            position: 'absolute',
+            position: 'fixed',
             zIndex: 9999,
             background: 'transparent',
+            pointerEvents: 'auto',
         });
 
-        if (position === 'right' || position === 'left') {
-            Object.assign(resizer.style, {
-                top: 0,
-                width: '6px',
-                height: '100%',
-                cursor: 'ew-resize',
-                [position]: '-3px',
-            });
-        }
-
-        if (position === 'bottom') {
-            Object.assign(resizer.style, {
-                left: 0,
-                height: '6px',
-                width: '100%',
-                cursor: 'ns-resize',
-                bottom: '-3px',
-            });
-        }
-
-        // Ensure positioning context
-        const computed = editorDocument.defaultView.getComputedStyle(element);
-        if (computed.position === 'static') {
-            element.style.position = 'relative';
-        }
-
-        element.appendChild(resizer);
+        editorDocument.body.appendChild(resizer);
         resizerRef.current = resizer;
+
+        /* -------------------------------------------------
+         * Position updater
+         * ------------------------------------------------- */
+        const updateResizerPosition = () => {
+            if (!resizer || !element) return;
+
+            const rect = element.getBoundingClientRect();
+
+            if (position === 'right') {
+                Object.assign(resizer.style, {
+                    top: `${rect.top}px`,
+                    left: `${rect.right - 3}px`,
+                    width: '6px',
+                    height: `${rect.height}px`,
+                    cursor: 'ew-resize',
+                });
+            }
+
+            if (position === 'left') {
+                Object.assign(resizer.style, {
+                    top: `${rect.top}px`,
+                    left: `${rect.left - 3}px`,
+                    width: '6px',
+                    height: `${rect.height}px`,
+                    cursor: 'ew-resize',
+                });
+            }
+
+            if (position === 'bottom') {
+                Object.assign(resizer.style, {
+                    top: `${rect.bottom - 3}px`,
+                    left: `${rect.left}px`,
+                    width: `${rect.width}px`,
+                    height: '6px',
+                    cursor: 'ns-resize',
+                });
+            }
+        };
+
+        updateResizerPosition();
+
+        /* -------------------------------------------------
+         * Stable Handlers
+         * ------------------------------------------------- */
 
         handlersRef.current.onMouseMove = (e) => {
             if (!stateRef.current.isResizing) return;
@@ -84,6 +110,8 @@ function useElementResize({
 
             stateRef.current.lastValue = newValue;
             element.style[cssProperty] = `${newValue}px`;
+
+            updateResizerPosition();
         };
 
         handlersRef.current.onMouseUp = () => {
@@ -131,7 +159,6 @@ function useElementResize({
                 originalTransition: element.style.transition || '',
             };
 
-            // Disable transition during drag
             element.style.transition = 'none';
 
             bindTargets.forEach((doc) => {
@@ -150,6 +177,12 @@ function useElementResize({
             'mousedown',
             handlersRef.current.onMouseDown
         );
+
+        /* -------------------------------------------------
+         * Track scroll / resize
+         * ------------------------------------------------- */
+        editorWindow.addEventListener('scroll', updateResizerPosition, true);
+        editorWindow.addEventListener('resize', updateResizerPosition);
 
         /* -------------------------------------------------
          * Cleanup
@@ -171,9 +204,19 @@ function useElementResize({
                 );
             });
 
+            editorWindow.removeEventListener(
+                'scroll',
+                updateResizerPosition,
+                true
+            );
+            editorWindow.removeEventListener(
+                'resize',
+                updateResizerPosition
+            );
+
             resizer.remove();
         };
-    }, [element, position, cssProperty, onResizeEnd]);
+    }, [element, position, cssProperty, onResizeEnd, condition]);
 }
 
 export default useElementResize;

@@ -36,6 +36,15 @@ const Edit = (props) => {
         renderAppender: hasChildBlocks ? false : InnerBlocks.ButtonBlockAppender
     });
 
+    useElementResize({
+        element: wrapperRef?.current,
+        position: 'right',
+        cssProperty: 'max-width',
+        onResizeEnd: (value) => {
+            console.log(value);
+        }
+    })
+
     const TAG = attributes?.tagName || 'div';
     let content;
 
