@@ -2,64 +2,88 @@ import { useEffect, useRef } from '@wordpress/element';
 
 function useElementResize({
     element,
-    position = 'right',
-    cssProperty = 'maxWidth',
-    condition = () => true,
+    position = 'right', // 'left' | 'right' | 'bottom'
+    value,              // '20%' | '400px' | '80vw'
+    onResizeStart = () => {},
     onResizeEnd = () => {},
+    condition = () => true,
 }) {
-    const resizerRef = useRef(null);
-    const handlersRef = useRef({});
-    const stateRef = useRef({
-        isResizing: false,
-        startX: 0,
-        startY: 0,
-        startValue: 0,
-        lastValue: 0,
-        originalTransition: '',
-    });
+    const stateRef = useRef(null);
 
     useEffect(() => {
-        if (!element || !condition(element)) return;
+        if (!element || !value || !condition(element)) return;
 
-        const editorDocument =
+        const doc =
             window.frames?.['editor-canvas']?.document || window.document;
-
-        const editorWindow =
+        const win =
             window.frames?.['editor-canvas'] || window;
 
-        const bindTargets = new Set([editorDocument]);
+        const bindTargets = new Set([doc, window.document]);
 
         /* -------------------------------------------------
-         * Create resizer in BODY
+         * Parse unit only (geometry comes from layout)
          * ------------------------------------------------- */
-        const resizer = editorDocument.createElement('span');
+        const parseUnit = (val) => {
+            const match = /(px|%|vw)$/.exec(val);
+            return match ? match[1] : null;
+        };
+
+        const unit = parseUnit(value);
+        if (!unit) return;
+
+        /* -------------------------------------------------
+         * Helpers
+         * ------------------------------------------------- */
+        const getContainerWidth = () =>
+            element.parentElement?.getBoundingClientRect().width || 1;
+
+        const pxToPercent = (px) =>
+            Math.max(
+                0,
+                Math.min(100, (px / getContainerWidth()) * 100)
+            );
+
+        const pxToUnitString = (px) => {
+            if (unit === 'px') {
+                return `${Math.round(px)}px`;
+            }
+            if (unit === '%') {
+                return `${pxToPercent(px).toFixed(2)}%`;
+            }
+            if (unit === 'vw') {
+                return `${((px / win.innerWidth) * 100).toFixed(2)}vw`;
+            }
+            return `${px}px`;
+        };
+
+        const clamp = (v, min, max) =>
+            Math.max(min, Math.min(max, v));
+
+        /* -------------------------------------------------
+         * Create resizer handle
+         * ------------------------------------------------- */
+        const resizer = doc.createElement('span');
         resizer.className = `zolo-resizer zolo-resizer-${position}`;
 
         Object.assign(resizer.style, {
             position: 'fixed',
             zIndex: 9999,
-            background: 'transparent',
-            pointerEvents: 'auto',
+            width: position === 'bottom' ? '100%' : '6px',
+            height: position === 'bottom' ? '6px' : '100%',
+            cursor:
+                position === 'bottom' ? 'ns-resize' : 'ew-resize',
         });
 
-        editorDocument.body.appendChild(resizer);
-        resizerRef.current = resizer;
+        doc.body.appendChild(resizer);
 
-        /* -------------------------------------------------
-         * Position updater
-         * ------------------------------------------------- */
         const updateResizerPosition = () => {
-            if (!resizer || !element) return;
-
             const rect = element.getBoundingClientRect();
 
             if (position === 'right') {
                 Object.assign(resizer.style, {
                     top: `${rect.top}px`,
                     left: `${rect.right - 3}px`,
-                    width: '6px',
                     height: `${rect.height}px`,
-                    cursor: 'ew-resize',
                 });
             }
 
@@ -67,9 +91,7 @@ function useElementResize({
                 Object.assign(resizer.style, {
                     top: `${rect.top}px`,
                     left: `${rect.left - 3}px`,
-                    width: '6px',
                     height: `${rect.height}px`,
-                    cursor: 'ew-resize',
                 });
             }
 
@@ -78,8 +100,6 @@ function useElementResize({
                     top: `${rect.bottom - 3}px`,
                     left: `${rect.left}px`,
                     width: `${rect.width}px`,
-                    height: '6px',
-                    cursor: 'ns-resize',
                 });
             }
         };
@@ -87,136 +107,152 @@ function useElementResize({
         updateResizerPosition();
 
         /* -------------------------------------------------
-         * Stable Handlers
+         * Tooltip (% visual feedback)
          * ------------------------------------------------- */
+        const tooltip = doc.createElement('div');
+        Object.assign(tooltip.style, {
+            position: 'fixed',
+            padding: '4px 8px',
+            background: '#1e1e1e',
+            color: '#fff',
+            fontSize: '12px',
+            borderRadius: '4px',
+            pointerEvents: 'none',
+            display: 'none',
+            zIndex: 10000,
+        });
 
-        handlersRef.current.onMouseMove = (e) => {
-            if (!stateRef.current.isResizing) return;
+        doc.body.appendChild(tooltip);
 
-            let delta = 0;
+        /* -------------------------------------------------
+         * Events
+         * ------------------------------------------------- */
+        const onMouseDown = (e) => {
+            e.preventDefault();
 
-            if (position === 'right') {
-                delta = e.clientX - stateRef.current.startX;
-            } else if (position === 'left') {
-                delta = stateRef.current.startX - e.clientX;
-            } else if (position === 'bottom') {
-                delta = e.clientY - stateRef.current.startY;
+            const rect = element.getBoundingClientRect();
+            const renderedWidth = rect.width;
+
+            const maxPx =
+                unit === '%' ? getContainerWidth() : win.innerWidth;
+
+            stateRef.current = {
+                startX: e.clientX,
+                startY: e.clientY,
+                startWidth: renderedWidth,
+                maxPx,
+            };
+
+            tooltip.style.display = 'block';
+
+            onResizeStart({
+                percent: pxToPercent(renderedWidth),
+            });
+
+            doc.body.style.userSelect = 'none';
+
+            bindTargets.forEach((t) => {
+                t.addEventListener('mousemove', onMouseMove);
+                t.addEventListener('mouseup', onMouseUp);
+            });
+
+            window.addEventListener('blur', onMouseUp);
+        };
+
+        const onMouseMove = (e) => {
+            const state = stateRef.current;
+            if (!state) return;
+
+            /* ---------------------------------------------
+             * Direction-aware delta
+             * --------------------------------------------- */
+            let rawDelta;
+
+            if (position === 'left') {
+                rawDelta = state.startX - e.clientX;
+            } else if (position === 'right') {
+                rawDelta = e.clientX - state.startX;
+            } else {
+                rawDelta = e.clientY - state.startY;
             }
 
-            const newValue = Math.max(
+            /* ---------------------------------------------
+             * Flexbox symmetric compensation
+             * --------------------------------------------- */
+            const compensatedDelta =
+                position === 'bottom'
+                    ? rawDelta
+                    : rawDelta * 2;
+
+            const intendedPx = clamp(
+                state.startWidth + compensatedDelta,
                 0,
-                stateRef.current.startValue + delta
+                state.maxPx
             );
 
-            stateRef.current.lastValue = newValue;
-            element.style[cssProperty] = `${newValue}px`;
+            /* visual-only constraint */
+            element.style.maxWidth = `${intendedPx}px`;
+
+            /* re-sync from real layout */
+            const realPx =
+                element.getBoundingClientRect().width;
+
+            const percent = pxToPercent(realPx);
+            tooltip.textContent = `${percent.toFixed(1)}%`;
+            tooltip.style.left = `${e.clientX + 12}px`;
+            tooltip.style.top = `${e.clientY + 12}px`;
 
             updateResizerPosition();
         };
 
-        handlersRef.current.onMouseUp = () => {
-            if (!stateRef.current.isResizing) return;
+        const onMouseUp = () => {
+            const state = stateRef.current;
+            if (!state) return;
 
-            const { lastValue, originalTransition } = stateRef.current;
+            tooltip.style.display = 'none';
+            doc.body.style.userSelect = '';
 
-            stateRef.current.isResizing = false;
+            const realPx =
+                element.getBoundingClientRect().width;
 
-            element.style.removeProperty(cssProperty);
-            element.style.transition = originalTransition;
+            /* remove temporary inline style */
+            element.style.removeProperty('max-width');
 
-            onResizeEnd(Math.round(lastValue), 'px');
+            onResizeEnd(pxToUnitString(realPx));
 
-            bindTargets.forEach((doc) => {
-                doc.removeEventListener(
-                    'mousemove',
-                    handlersRef.current.onMouseMove
-                );
-                doc.removeEventListener(
-                    'mouseup',
-                    handlersRef.current.onMouseUp
-                );
+            stateRef.current = null;
+
+            bindTargets.forEach((t) => {
+                t.removeEventListener('mousemove', onMouseMove);
+                t.removeEventListener('mouseup', onMouseUp);
             });
+
+            window.removeEventListener('blur', onMouseUp);
         };
 
-        handlersRef.current.onMouseDown = (e) => {
-            e.preventDefault();
+        resizer.addEventListener('mousedown', onMouseDown);
 
-            const computedStyle = window.getComputedStyle(element);
-            const fallbackValue =
-                cssProperty.includes('Width')
-                    ? element.getBoundingClientRect().width
-                    : element.getBoundingClientRect().height;
-
-            const startValue =
-                parseFloat(computedStyle[cssProperty]) || fallbackValue;
-
-            stateRef.current = {
-                isResizing: true,
-                startX: e.clientX,
-                startY: e.clientY,
-                startValue,
-                lastValue: startValue,
-                originalTransition: element.style.transition || '',
-            };
-
-            element.style.transition = 'none';
-
-            bindTargets.forEach((doc) => {
-                doc.addEventListener(
-                    'mousemove',
-                    handlersRef.current.onMouseMove
-                );
-                doc.addEventListener(
-                    'mouseup',
-                    handlersRef.current.onMouseUp
-                );
-            });
-        };
-
-        resizer.addEventListener(
-            'mousedown',
-            handlersRef.current.onMouseDown
-        );
-
-        /* -------------------------------------------------
-         * Track scroll / resize
-         * ------------------------------------------------- */
-        editorWindow.addEventListener('scroll', updateResizerPosition, true);
-        editorWindow.addEventListener('resize', updateResizerPosition);
+        win.addEventListener('scroll', updateResizerPosition, true);
+        win.addEventListener('resize', updateResizerPosition);
 
         /* -------------------------------------------------
          * Cleanup
          * ------------------------------------------------- */
         return () => {
-            resizer.removeEventListener(
-                'mousedown',
-                handlersRef.current.onMouseDown
-            );
+            resizer.remove();
+            tooltip.remove();
 
-            bindTargets.forEach((doc) => {
-                doc.removeEventListener(
-                    'mousemove',
-                    handlersRef.current.onMouseMove
-                );
-                doc.removeEventListener(
-                    'mouseup',
-                    handlersRef.current.onMouseUp
-                );
+            bindTargets.forEach((t) => {
+                t.removeEventListener('mousemove', onMouseMove);
+                t.removeEventListener('mouseup', onMouseUp);
             });
 
-            editorWindow.removeEventListener(
-                'scroll',
-                updateResizerPosition,
-                true
-            );
-            editorWindow.removeEventListener(
-                'resize',
-                updateResizerPosition
-            );
+            window.removeEventListener('blur', onMouseUp);
 
-            resizer.remove();
+            win.removeEventListener('scroll', updateResizerPosition, true);
+            win.removeEventListener('resize', updateResizerPosition);
         };
-    }, [element, position, cssProperty, onResizeEnd, condition]);
+    }, [element, position, value, onResizeStart, onResizeEnd, condition]);
 }
 
 export default useElementResize;

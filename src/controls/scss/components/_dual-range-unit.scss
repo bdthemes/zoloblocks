@@ -6,22 +6,21 @@
         margin-bottom: 0;
     }
 
-    .components-button {
+    .zb-dual-range-unit__toggle-link {
         align-self: center;
-        margin-bottom: 16px;
-        padding: 4px 8px;
-        min-width: auto;
+        padding: 2px !important;
+        min-width: auto !important;
         height: auto;
         border: 1px solid #e9e9e9;
-        border-radius: 3px;
-        background: #fff;
         position: relative;
         bottom: 15px;
         left: 100px;
+        background-color: #f2f2f2 !important;
+        border-radius: 50%;
 
         svg {
-            width: 14px;
-            height: 14px;
+            width: 18px;
+            height: 18px;
             fill: #1e1e1e;
         }
 
@@ -40,109 +39,5 @@
         }
     }
 
-    .zb-range-unit {
-        margin-bottom: 16px;
-        position: relative;
-        border: none !important;
-        padding: 0 !important;
-        min-width: 0 !important;
 
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        legend {
-            display: block !important;
-            margin-bottom: 8px !important;
-            font-size: 12px !important;
-            font-weight: 500 !important;
-            color: rgb(117, 117, 117) !important;
-            padding: 0 !important;
-            width: 100% !important;
-            text-align: left !important;
-        }
-
-        .components-flex {
-            gap: 10px !important;
-            align-items: center !important;
-            margin: 0 !important;
-
-            .components-flex-item {
-                &:first-child {
-                    flex: 1 1 auto !important;
-                    min-width: 0 !important;
-                }
-
-                &:last-child {
-                    flex: 0 0 auto !important;
-                    width: 90px !important;
-                }
-            }
-
-            .components-spacer {
-                margin: 0 !important;
-                padding: 0 !important;
-                flex: 1 1 auto !important;
-            }
-        }
-
-        .components-unit-control-wrapper,
-        .components-input-control__container {
-            height: 36px !important;
-            display: flex !important;
-
-            .components-input-control__input {
-                height: 36px !important;
-                min-height: 36px !important;
-                border: 1px solid #ddd !important;
-                border-right: none !important;
-                border-radius: 6px 0 0 6px !important;
-                border-top-right-radius: 0 !important;
-                border-bottom-right-radius: 0 !important;
-                text-align: center !important;
-                font-size: 13px !important;
-                padding: 0 8px !important;
-                background: #fff !important;
-                min-width: 50px !important;
-                width: 100% !important;
-                box-shadow: none !important;
-                color: #1e1e1e !important;
-                font-weight: 400 !important;
-
-                &:focus {
-                    border-color: var(--wp-admin-theme-color, #3858e9) !important;
-                    border: 1px solid var(--wp-admin-theme-color, #3858e9) !important;
-                    outline: none !important;
-                }
-            }
-
-            .components-input-control__backdrop {
-                border: none !important;
-                box-shadow: none !important;
-            }
-        }
-
-        .components-unit-control__select {
-            min-width: 36px !important;
-            height: 36px !important;
-            border: 1px solid #ddd !important;
-            border-radius: 0 6px 6px 0 !important;
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-            font-size: 11px !important;
-            color: rgb(117, 117, 117) !important;
-            font-weight: 400 !important;
-            background: #fff !important;
-            padding: 0 4px !important;
-            box-shadow: none !important;
-            line-height: 36px !important;
-            text-align: center !important;
-
-            &:focus {
-                border-color: var(--wp-admin-theme-color, #3858e9) !important;
-                border: 1px solid var(--wp-admin-theme-color, #3858e9) !important;
-                outline: none !important;
-            }
-        }
-    }
 }

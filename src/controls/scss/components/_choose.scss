@@ -3,9 +3,23 @@
         &[data-active-item="true"] {
             background-color: #2667ff;
         }
+
+        &[aria-pressed="true"] {
+            &:focus{
+                box-shadow: none !important;
+                outline: none !important;
+            }
+            svg {
+                fill: #ffffff;
+
+                path {
+                    stroke: #ffffff;
+                }
+            }
+        }
     }
 
-    .components-toggle-group-control::before{
+    .components-toggle-group-control::before {
         background: #2667ff !important;
     }
 }

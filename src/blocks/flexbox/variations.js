@@ -30,16 +30,30 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            MOBflexWrapZRPAlign: 'wrap',
+            flexWrap:{
+                Mobile: 'wrap',
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
-                {},
+                {
+                    flexWidthType: 'zolo-flexbox-custom-width',
+                    flexboxCustomWidth: {
+                        Desktop: '50%',
+                        Mobile: '100%',
+                    }
+                },
             ],
             [
                 'zolo/flexbox',
-                {},
+                {
+                    flexWidthType: 'zolo-flexbox-custom-width',
+                    flexboxCustomWidth: {
+                        Desktop: '50%',
+                        Mobile: '100%',
+                    }
+                },
             ],
         ],
     },
@@ -58,20 +72,40 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            MOBflexWrapZRPAlign: 'wrap',
+            flexWrap:{
+                Mobile: 'wrap',
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
-                {},
+                {
+                    flexWidthType: 'zolo-flexbox-custom-width',
+                    flexboxCustomWidth: {
+                        Desktop: '33.3%',
+                        Mobile: '100%',
+                    }
+                },
             ],
             [
                 'zolo/flexbox',
-                {},
+                {
+                    flexWidthType: 'zolo-flexbox-custom-width',
+                    flexboxCustomWidth: {
+                        Desktop: '33.3%',
+                        Mobile: '100%',
+                    }
+                },
             ],
             [
                 'zolo/flexbox',
-                {},
+                {
+                    flexWidthType: 'zolo-flexbox-custom-width',
+                    flexboxCustomWidth: {
+                        Desktop: '33.3%',
+                        Mobile: '100%',
+                    }
+                },
             ],
         ],
     },
@@ -90,48 +124,50 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            TABflexWrapZRPAlign: 'wrap',
-            MOBflexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Tablet: 'wrap',
+                Mobile: 'wrap',
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
         ],
@@ -151,27 +187,29 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            MOBflexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Mobile: 'wrap',
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 25,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '25%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 75,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '75%',
+                        Mobile: '100%',
+                    }
                 },
             ],
         ],
@@ -191,27 +229,29 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            MOBflexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Mobile: 'wrap',
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 75,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '75%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 25,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '25%',
+                        Mobile: '100%',
+                    }
                 },
             ],
         ],
@@ -231,47 +271,49 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            flexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Desktop: 'wrap',
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 48.5,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 48.5,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 48.5,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 48.5,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
         ],
@@ -298,79 +340,75 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            flexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Desktop: 'wrap',
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 32,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '32%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 32,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '32%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 32,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '32%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 32,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '32%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 32,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '32%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 32,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '32%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
         ],
@@ -397,37 +435,39 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            MOBflexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Mobile: 'wrap',
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 25,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 100,
-                    zolo_TABflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '25%',
+                        Tablet: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 50,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 100,
-                    zolo_TABflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '50%',
+                        Tablet: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 25,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 100,
-                    zolo_TABflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '25%',
+                        Tablet: '100%',
+                    }
                 },
             ],
         ],
@@ -464,55 +504,53 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            flexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Desktop: 'wrap'
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 74,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '74%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 24,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '24%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 24,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '24%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 74,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '74%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
         ],
@@ -549,55 +587,53 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            flexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Desktop: 'wrap'
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 24,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '24%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 74,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '74%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 74,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '74%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
             [
                 'zolo/flexbox',
                 {
                     flexWidthType: 'zolo-flexbox-custom-width',
-                    zolo_flexboxWidthRange: 24,
-                    zolo_flexboxWidthUnit: '%',
-                    zolo_TABflexboxWidthRange: 48.5,
-                    zolo_TABflexboxWidthUnit: '%',
-                    zolo_MOBflexboxWidthRange: 100,
-                    zolo_MOBflexboxWidthUnit: '%',
+                    flexboxCustomWidth: {
+                        Desktop: '24%',
+                        Tablet: '48.5%',
+                        Mobile: '100%',
+                    }
                 },
             ],
         ],
@@ -630,12 +666,14 @@ export const variations = [
         scope: ['block'],
         attributes: {
             isVariationSelected: true,
-            flexWrapZRPAlign: 'wrap',
+            flexWrap: {
+                Desktop: 'wrap'
+            }
         },
         innerBlocks: [
             [
                 'zolo/flexbox',
-                { MOBflexWrapZRPAlign: 'wrap' },
+                { flexWrap: { Mobile: 'wrap'} },
                 [
                     [
                         'zolo/flexbox',

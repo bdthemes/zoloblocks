@@ -7,7 +7,7 @@ const isResponsive = (value) => {
 const generateCSS = ({ attributes, key, device = 'Desktop', getValue = (value) => value }) => {
     const value = attributes?.[key];
 
-    if(value && typeof value !== 'object') {
+    if(value !== undefined && value !== null && typeof value !== 'object') {
         return getValue(value);
     }
 

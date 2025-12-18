@@ -67,6 +67,10 @@ const attributes = {
     flexGap: {
         type: 'object'
     },
+    flexShrink: {
+        type: 'number',
+        default: 1
+    }
 };
 
 export default attributes;

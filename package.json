@@ -45,9 +45,9 @@
         "@splinetool/runtime": "^1.9.46",
         "@uiw/react-codemirror": "^4.23.6",
         "@vis.gl/react-google-maps": "^1.4.0",
-        "@wordpress/editor": "^14.16.0",
-        "@wordpress/plugins": "^7.16.0",
-        "@wordpress/server-side-render": "^5.16.0",
+        "@wordpress/editor": "^14.36.0",
+        "@wordpress/plugins": "^7.36.0",
+        "@wordpress/server-side-render": "^6.12.0",
         "apexcharts": "^4.0.0",
         "bezier-easing-editor": "^0.8.0",
         "classnames": "^2.5.1",
@@ -73,9 +73,9 @@
         "webfontloader": "^1.6.28"
     },
     "devDependencies": {
-        "@wordpress/api-fetch": "^7.16.0",
-        "@wordpress/prettier-config": "^4.16.0",
-        "@wordpress/scripts": "^30.9.0"
+        "@wordpress/api-fetch": "^7.36.0",
+        "@wordpress/prettier-config": "^4.36.0",
+        "@wordpress/scripts": "^31.1.0"
     },
     "resolutions": {
         "@emotion/react": "^11.11.0",

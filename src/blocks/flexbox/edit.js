@@ -9,8 +9,8 @@ import Style from "./style";
 import useElementResize from "./use-element-resizer";
 
 const Edit = (props) => {
-    const { clientId, attributes, } = props;
-    const { classArrayToStr } = window.zoloModule;
+    const { clientId, attributes, setAttributes } = props;
+    const { classArrayToStr, getResponsiveValue, createResponsiveValue } = window.zoloModule;
     const { hasChildBlocks, hasParent, isParent } = useSelect(
         (select) => {
             const { getBlockOrder, getBlockParentsByBlockName } = select(blockEditorStore);
@@ -40,8 +40,34 @@ const Edit = (props) => {
         element: wrapperRef?.current,
         position: 'right',
         cssProperty: 'max-width',
+        value: getResponsiveValue(attributes, 'flexboxCustomWidth'),
+        onResizeStart: () => {
+            setAttributes({
+                flexShrink: Number(0)
+            });
+        },
         onResizeEnd: (value) => {
-            console.log(value);
+            setAttributes(createResponsiveValue(attributes, 'flexboxCustomWidth', value));
+        },
+        condition: (element) => {
+            return element?.classList?.contains('zolo-flexbox-custom-width') && element?.classList?.contains('is-selected');
+        }
+    })
+    useElementResize({
+        element: wrapperRef?.current,
+        position: 'left',
+        cssProperty: 'max-width',
+        value: getResponsiveValue(attributes, 'flexboxCustomWidth'),
+        onResizeStart: () => {
+            setAttributes({
+                flexShrink: Number(0)
+            })
+        },
+        onResizeEnd: (value) => {
+            setAttributes(createResponsiveValue(attributes, 'flexboxCustomWidth', value));
+        },
+        condition: (element) => {
+            return element?.classList?.contains('zolo-flexbox-custom-width') && element?.classList?.contains('is-selected');
         }
     })
 

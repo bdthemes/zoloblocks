@@ -1,65 +1,82 @@
 import { BaseControl, Button } from '@wordpress/components';
 import { link, linkOff } from '@wordpress/icons';
-import ZoloRangeUnit from '../range-unit';
 import { __ } from '@wordpress/i18n';
+import ZoloRangeUnit from '../range-unit';
+
+/**
+ * Default value shape for the control
+ * Keep this outside to avoid re-creation on each render
+ */
+const DEFAULT_VALUE = {
+    linked: true,
+    first: undefined,
+    second: undefined,
+};
 
 const ZoloDualRangeUnit = ({
     label = __('Dual Range', 'zoloblocks'),
     help,
     dualLabel = [__('First', 'zoloblocks'), __('Second', 'zoloblocks')],
-    value = {},
+    value,
     onChange,
     ...props
 }) => {
-    const {
-        linked = true,
-        first,
-        second,
-    } = value;
 
+    const normalizedValue = value ?? DEFAULT_VALUE;
+    
     const update = (patch) => {
-        onChange({ ...value, ...patch });
+        onChange({
+            ...normalizedValue,
+            ...patch,
+        });
     };
 
     const toggleLink = () => {
         update({
-            linked: !linked,
-            second: first,
+            linked: !normalizedValue.linked,
+            second: normalizedValue.first,
         });
     };
 
     return (
-        <BaseControl label={label} help={help} className="zb-dual-range-unit">
+        <BaseControl
+            label={label}
+            help={help}
+            className="zb-dual-range-unit"
+        >
             <Button
-                icon={linked ? link : linkOff}
-                size='small'
+                icon={normalizedValue.linked ? link : linkOff}
+                className="zb-dual-range-unit__toggle-link"
+                size="small"
                 onClick={toggleLink}
-                aria-pressed={linked}
+                aria-pressed={normalizedValue.linked}
             />
 
-            {linked && (
+            {normalizedValue.linked ? (
                 <ZoloRangeUnit
                     label=""
-                    value={first}
+                    value={normalizedValue.first}
                     onChange={(val) =>
                         update({ first: val, second: val })
                     }
                     {...props}
                 />
-            )}
-
-            {!linked && (
+            ) : (
                 <>
                     <ZoloRangeUnit
                         label={dualLabel[0]}
-                        value={first}
-                        onChange={(val) => update({ first: val })}
+                        value={normalizedValue.first}
+                        onChange={(val) =>
+                            update({ first: val })
+                        }
                         {...props}
                     />
                     <ZoloRangeUnit
                         label={dualLabel[1]}
-                        value={second}
-                        onChange={(val) => update({ second: val })}
+                        value={normalizedValue.second}
+                        onChange={(val) =>
+                            update({ second: val })
+                        }
                         {...props}
                     />
                 </>

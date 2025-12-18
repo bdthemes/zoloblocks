@@ -25,18 +25,19 @@ const VariationPicker = (props) => {
     const blockVariationPickerOnSelect = (nextVariation) => {
 
         if(nextVariation == undefined){
-            setAttributes({ isVariationSelected: true })
+            setAttributes({ isVariationSelected: true });
+            return;
         }
 
-        if (nextVariation.attributes) {
+        if (nextVariation?.attributes) {
             setAttributes(nextVariation.attributes);
         }
 
-        if (nextVariation.innerBlocks && 'one-column' !== nextVariation.name) {
+        if (nextVariation?.innerBlocks && 'one-column' !== nextVariation?.name) {
             replaceInnerBlocks(clientId, createBlocksFromInnerBlocksTemplate(nextVariation.innerBlocks));
         }
 
-        if (isReplace && 'one-column' == nextVariation.name) {
+        if (isReplace && 'one-column' == nextVariation?.name) {
             replaceBlock(clientId, createBlock('zolo/flexbox', nextVariation.attributes, []));
         }
     };
