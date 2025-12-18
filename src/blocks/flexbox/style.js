@@ -29,7 +29,7 @@ const Style = (props) => {
                 generateCSS({attributes, key:'flexAlignItems', getValue: (value) => `align-items: ${value};`, device: 'Desktop'})+
                 generateCSS({attributes, key:'flexWrap', getValue: (value) => `flex-wrap: ${value};`, device: 'Desktop'})+
                 generateCSS({attributes, key:'flexGap', getValue: (value) => {
-                    if(value?.linked) return`column-gap: ${value?.first};row-gap: ${value?.second};`
+                    if(!value?.linked) return`column-gap: ${value?.first};row-gap: ${value?.second};`
                     return `gap: ${value?.first};`
                 }, device: 'Desktop'})
             }
@@ -53,7 +53,7 @@ const Style = (props) => {
                     generateCSS({attributes, key:'flexAlignItems', getValue: (value) => `align-items: ${value};`, device: 'Tablet'})+
                     generateCSS({attributes, key:'flexWrap', getValue: (value) => `flex-wrap: ${value};`, device: 'Tablet'})+
                     generateCSS({attributes, key:'flexGap', getValue: (value) => {
-                        if(value?.linked) return`column-gap: ${value?.first};row-gap: ${value?.second};`
+                        if(!value?.linked) return`column-gap: ${value?.first};row-gap: ${value?.second};`
                         return `gap: ${value?.first};`
                     }, device: 'Tablet'})
                 }
@@ -78,7 +78,7 @@ const Style = (props) => {
                     generateCSS({attributes, key:'flexAlignItems', getValue: (value) => `align-items: ${value};`, device: 'Mobile'})+
                     generateCSS({attributes, key:'flexWrap', getValue: (value) => `flex-wrap: ${value};`, device: 'Mobile'})+
                     generateCSS({attributes, key:'flexGap', getValue: (value) => {
-                        if(value?.linked) return`column-gap: ${value?.first};row-gap: ${value?.second};`
+                        if(!value?.linked) return`column-gap: ${value?.first};row-gap: ${value?.second};`
                         return `gap: ${value?.first};`
                     }, device: 'Mobile'})
                 }
