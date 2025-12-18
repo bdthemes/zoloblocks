@@ -71,7 +71,7 @@ function useElementResize({
             width: position === 'bottom' ? '100%' : '6px',
             height: position === 'bottom' ? '6px' : '100%',
             cursor:
-                position === 'bottom' ? 'ns-resize' : 'ew-resize',
+                position === 'bottom' ? 'row-resize' : 'col-resize',
         });
 
         doc.body.appendChild(resizer);

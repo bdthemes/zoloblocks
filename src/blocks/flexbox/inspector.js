@@ -7,6 +7,7 @@ import objAttributes from './attributes';
 
 import { FLEX_DIRECTIONS, FLEX_WRAPS } from '@/global/constants.js';
 import { alignItemsOptions, innerWidthTypes, justifyContentOptions, tagList, useInenerFlexboxWidthType, widthTypes } from './utils';
+import classNames from 'classnames';
 
 function Inspector(props) {
     const { attributes, setAttributes, isParent, hasParent } = props;
@@ -103,6 +104,9 @@ function Inspector(props) {
                                 <ZoloChoose
                                     label={__('Justify Content', 'zoloblocks')}
                                     value={getResponsiveValue(attributes, 'flexJustifyContent')}
+                                    className={classNames({
+                                        [`zolo-flex-justify-content-${getResponsiveValue(attributes, 'flexDirection') || 'row'}`]: true
+                                    })}
                                     onChange={(value) => {
                                         setAttributes(createResponsiveValue(attributes, 'flexJustifyContent', value));
                                     }}
@@ -114,6 +118,9 @@ function Inspector(props) {
                                 <ZoloChoose
                                     label={__('Align Items', 'zoloblocks')}
                                     value={getResponsiveValue(attributes, 'flexAlignItems')}
+                                    className={classNames({
+                                        [`zolo-flex-align-items-${getResponsiveValue(attributes, 'flexDirection') || 'row'}`]: true
+                                    })}
                                     onChange={(value) => {
                                         setAttributes(createResponsiveValue(attributes, 'flexAlignItems', value));
                                     }}

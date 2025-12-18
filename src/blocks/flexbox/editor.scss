@@ -24,98 +24,80 @@
     }
 }
 
-.zolo-flex-justify-content,
-.zolo-flex-align-items {
-    .zb-iconic-btn-group {
-        .iconic-btn {
-            color: currentColor;
-            padding: 0 !important;
-            transition: all 0.3s ease-in-out;
-
-            &.active {
-                color: #001feb;
-            }
-
-            svg {
-                width: 24px;
-                height: 24px;
-                fill: currentColor !important;
-                transition: transform 0.3s ease-in-out;
-            }
+.zolo-toggle-group-control {
+    .components-toggle-group-control-option-base {
+        svg {
+            transition: 0.3s all;
         }
     }
 }
 
-.zolo-flex-justify-content {
-    &.zolo-flex-justify-content-column {
-        .zb-iconic-btn-group {
-            svg {
-                transform: rotate(90deg);
-            }
-        }
-    }
-
-    &.zolo-flex-justify-content-column-reverse {
-        .zb-iconic-btn-group {
-            svg {
-                transform: rotate(-90deg);
-            }
-        }
-    }
-
-    &.zolo-flex-justify-content-row {
-        .zb-iconic-btn-group {
-            svg {
-                transform: rotate(0);
-            }
-        }
-    }
-
-    &.zolo-flex-justify-content-row-reverse {
-        .zb-iconic-btn-group {
-            svg {
-                transform: rotate(180deg);
-            }
+.zolo-flex-justify-content-column {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(90deg);
         }
     }
 }
 
-.zolo-flex-align-items {
-    &.zolo-flex-align-items-column {
-        .zb-iconic-btn-group {
-            svg {
-                transform: rotate(-90deg);
-            }
-        }
-    }
-
-    &.zolo-flex-align-items-column-reverse {
-        .zb-iconic-btn-group {
-            svg {
-                transform: rotate(90deg);
-            }
-        }
-    }
-
-    &.zolo-flex-align-items-row {
-        .zb-iconic-btn-group {
-            svg {
-                transform: rotate(0);
-            }
-        }
-    }
-
-    &.zolo-flex-align-items-row-reverse {
-        .zb-iconic-btn-group {
-            svg {
-                transform: rotate(180deg);
-            }
+.zolo-flex-justify-content-column-reverse {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(-90deg);
         }
     }
 }
 
-.zolo-container-variation-picker{
-    .block-editor-block-variation-picker__skip{
+.zolo-flex-justify-content-row {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(0);
+        }
+    }
+}
+
+.zolo-flex-justify-content-row-reverse {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.zolo-flex-align-items-column {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(-90deg);
+        }
+    }
+}
+
+.zolo-flex-align-items-column-reverse {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.zolo-flex-align-items-row {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(0);
+        }
+    }
+}
+
+.zolo-flex-align-items-row-reverse {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.zolo-container-variation-picker {
+    .block-editor-block-variation-picker__skip {
         position: absolute;
         right: 10px;
         top: 10px;
@@ -123,9 +105,10 @@
         height: fit-content;
         z-index: 99;
 
-        button{
+        button {
             color: #ffffff00;
-            &:after{
+
+            &:after {
                 content: "X";
                 position: absolute;
                 top: 0;
