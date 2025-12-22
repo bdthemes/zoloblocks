@@ -19,7 +19,6 @@ const {
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
-    ToggleGroup,
     ResSelectControl,
 } = window.zoloModule;
 

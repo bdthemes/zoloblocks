@@ -1,6 +1,6 @@
 import { ZoloToggleGroupControl, ZoloToggleGroupControlOption } from '../core-controls';
 
-const ToggleGroup = ({ label, value, onChange, options, ...props }) => {
+const ZoloChoose = ({ label, value, onChange, options, ...props }) => {
     return (
         <div className="zolo-toggle-group-control">
             <ZoloToggleGroupControl
@@ -24,4 +24,4 @@ const ToggleGroup = ({ label, value, onChange, options, ...props }) => {
     );
 };
 
-export default ToggleGroup;
+export default ZoloChoose;

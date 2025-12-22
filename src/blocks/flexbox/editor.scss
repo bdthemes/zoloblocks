@@ -1,0 +1,129 @@
+.zolo-flexbox {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    &:not(.has-child-blocks) {
+        &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            outline: 1px dashed #d5dadf;
+            z-index: -1;
+        }
+    }
+
+    .block-editor-button-block-appender {
+        box-shadow: none !important;
+    }
+}
+
+.zolo-toggle-group-control {
+    .components-toggle-group-control-option-base {
+        svg {
+            transition: 0.3s all;
+        }
+    }
+}
+
+.zolo-flex-justify-content-column {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.zolo-flex-justify-content-column-reverse {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(-90deg);
+        }
+    }
+}
+
+.zolo-flex-justify-content-row {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(0);
+        }
+    }
+}
+
+.zolo-flex-justify-content-row-reverse {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.zolo-flex-align-items-column {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(-90deg);
+        }
+    }
+}
+
+.zolo-flex-align-items-column-reverse {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.zolo-flex-align-items-row {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(0);
+        }
+    }
+}
+
+.zolo-flex-align-items-row-reverse {
+    .components-toggle-group-control-option-base {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.zolo-container-variation-picker {
+    .block-editor-block-variation-picker__skip {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: fit-content;
+        height: fit-content;
+        z-index: 99;
+
+        button {
+            color: #ffffff00;
+
+            &:after {
+                content: "X";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: #2567ff;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

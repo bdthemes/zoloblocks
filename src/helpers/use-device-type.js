@@ -1,8 +1,10 @@
 import { useSelect } from '@wordpress/data';
+
+
 const useDeviceType = () => {
     const { deviceType } = useSelect((select) => {
         return {
-            deviceType: select(editorStore).getDeviceType(),
+            deviceType: select("core/editor").getDeviceType(),
         };
     }, []);
 

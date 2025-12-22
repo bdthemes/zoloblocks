@@ -5,7 +5,7 @@ import { DEFAULT_ALIGNS } from '../../global/constants';
 import classNames from 'classnames';
 import ResetBtn from '../reset-btn';
 
-const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, customClass = '' }) => {
+const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, customClass = '', toggle= false }) => {
     const { attributes, setAttributes, resMode } = requiredProps;
 
     const {
@@ -16,7 +16,7 @@ const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, 
 
     const defaultAlign = alignOptions && Array.isArray(alignOptions) ? alignOptions : DEFAULT_ALIGNS;
     return (
-        <div className={classNames('zb-res-alignment-control-wrapper', customClass)}>
+        <div className={classNames('zb-res-alignment-control-wrapper', `${customClass}`)}>
             {resMode == 'Desktop' && (
                 <WithResDeviceBtn label={label} requiredProps={requiredProps} controlName={controlName} noResetBtn={true}>
                     {desktopAlignment && (
@@ -38,6 +38,7 @@ const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, 
                         }}
                         value={desktopAlignment}
                         options={defaultAlign}
+                        toggle={toggle}
                     />
                 </WithResDeviceBtn>
             )}
@@ -62,6 +63,7 @@ const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, 
                         }}
                         value={tabletAlignment}
                         options={defaultAlign}
+                        toggle={toggle}
                     />
                 </WithResDeviceBtn>
             )}
@@ -86,6 +88,7 @@ const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, 
                         }}
                         value={mobileAlignment}
                         options={defaultAlign}
+                        toggle={toggle}
                     />
                 </WithResDeviceBtn>
             )}

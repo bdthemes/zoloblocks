@@ -11,6 +11,14 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://zoloblocks.com',
         'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
+    'flexbox' => [
+        'name' => 'flexbox',
+        'title' => __('Flexbox', 'zoloblocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'demo' => 'https://zoloblocks.com',
+        'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
+    ],
     'advanced-paragraph' => [
         'name' => 'advanced-paragraph',
         'title' => __('Advanced Paragraph', 'zoloblocks'),
