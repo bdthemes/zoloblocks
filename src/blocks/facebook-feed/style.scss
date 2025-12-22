@@ -1,0 +1,281 @@
+// Facebook Feed Block Styles
+.zolo-facebook-feed {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .zolo-fb-posts-container {
+        &.layout-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        &.layout-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        &.layout-masonry {
+            display: grid;
+            grid-auto-rows: 10px;
+            gap: 20px;
+        }
+
+        &.layout-carousel {
+            position: relative;
+            padding: 0 50px;
+
+            .swiper-button-prev,
+            .swiper-button-next {
+                color: #1877f2;
+                
+                &:after {
+                    font-size: 24px;
+                }
+            }
+
+            .swiper-pagination {
+                bottom: -30px;
+
+                .swiper-pagination-bullet-active {
+                    background: #1877f2;
+                }
+            }
+        }
+    }
+
+    .zolo-fb-post {
+        background: #fff;
+        border: 1px solid #e4e6eb;
+        border-radius: 8px;
+        padding: 12px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .zolo-fb-post-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        position: relative;
+    }
+
+    .zolo-fb-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .zolo-fb-meta {
+        flex: 1;
+    }
+
+    .zolo-fb-author {
+        font-weight: 600;
+        font-size: 15px;
+        color: #050505;
+        margin-bottom: 2px;
+    }
+
+    .zolo-fb-date {
+        font-size: 13px;
+        color: #65676b;
+    }
+
+    .zolo-fb-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+
+        &:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        svg {
+            display: block;
+        }
+    }
+
+    .zolo-fb-content {
+        margin-bottom: 12px;
+
+        p {
+            margin: 0 0 8px;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #050505;
+        }
+    }
+
+    .zolo-fb-hashtags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .zolo-fb-hashtag {
+        color: #385898;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .zolo-fb-read-more {
+        color: #65676b;
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 4px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .zolo-fb-image {
+        margin: 12px 0;
+        overflow: hidden;
+        border-radius: 8px;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+    }
+
+    .zolo-fb-reactions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 8px;
+        margin-top: 8px;
+    }
+
+    .zolo-fb-reaction-icons {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .zolo-fb-reaction-emoji {
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+        margin-right: -4px;
+        position: relative;
+        
+        &:first-child {
+            z-index: 2;
+        }
+        
+        &:nth-child(2) {
+            z-index: 1;
+        }
+
+        svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        &.like {
+            // SVG styling handled inline
+        }
+
+        &.love {
+            // SVG styling handled inline
+        }
+    }
+
+    .zolo-fb-reaction-count {
+        color: #65676b;
+        font-size: 14px;
+        margin-left: 6px;
+        font-weight: 400;
+    }
+
+    .zolo-fb-engagement-stats {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .zolo-fb-stat-item {
+        color: #65676b;
+        font-size: 14px;
+        font-weight: 400;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .zolo-fb-reaction {
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+
+        &.like {
+            background: #1877f2;
+            border-radius: 50%;
+            padding: 2px;
+        }
+
+        &.love {
+            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.1));
+        }
+    }
+
+    // Responsive
+    @media (max-width: 1024px) {
+        .zolo-fb-posts-container.layout-grid,
+        .zolo-fb-posts-container.layout-masonry {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .zolo-fb-posts-container.layout-grid,
+        .zolo-fb-posts-container.layout-masonry {
+            grid-template-columns: 1fr !important;
+        }
+
+        &.layout-carousel {
+            padding: 0 35px;
+
+            .swiper-button-prev,
+            .swiper-button-next {
+                &:after {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
