@@ -1,3 +1,7 @@
+import { generateResCounterAttributies } from '../../helpers/res-counter-helper';
+import { generateGapAttributes } from '../../helpers/gap-helper';
+import { FB_COLUMNS, FB_GAP } from './constants';
+
 export const layoutTypes = {
     TIMELINE: 'timeline',
     GRID: 'grid',
@@ -6,33 +10,95 @@ export const layoutTypes = {
 };
 
 export const defaultAttributes = {
-    uniqueId: '',
-    layoutType: layoutTypes.TIMELINE,
-    columns: {
-        desktop: 3,
-        tablet: 2,
-        mobile: 1,
+    uniqueId: {
+        type: 'string',
+        default: '',
     },
-    gap: {
-        desktop: 20,
-        tablet: 15,
-        mobile: 10,
+    layoutType: {
+        type: 'string',
+        default: layoutTypes.TIMELINE,
     },
-    postsPerPage: 6,
-    showAvatar: true,
-    showAuthor: true,
-    showDate: true,
-    showContent: true,
-    contentLength: 150,
-    showReadMore: true,
-    readMoreText: 'Read more',
-    showReactions: true,
-    showComments: false,
-    showShares: false,
-    carouselAutoplay: true,
-    carouselSpeed: 3000,
-    carouselLoop: true,
-    facebookPageId: '',
-    facebookAccessToken: '',
-    cacheExpiration: 3600,
+    postsPerPage: {
+        type: 'number',
+        default: 6,
+    },
+    showAvatar: {
+        type: 'boolean',
+        default: true,
+    },
+    showAuthor: {
+        type: 'boolean',
+        default: true,
+    },
+    showDate: {
+        type: 'boolean',
+        default: true,
+    },
+    showContent: {
+        type: 'boolean',
+        default: true,
+    },
+    contentLength: {
+        type: 'number',
+        default: 150,
+    },
+    showReadMore: {
+        type: 'boolean',
+        default: true,
+    },
+    readMoreText: {
+        type: 'string',
+        default: 'Read more',
+    },
+    showReactions: {
+        type: 'boolean',
+        default: true,
+    },
+    showComments: {
+        type: 'boolean',
+        default: false,
+    },
+    showShares: {
+        type: 'boolean',
+        default: false,
+    },
+    carouselAutoplay: {
+        type: 'boolean',
+        default: true,
+    },
+    carouselSpeed: {
+        type: 'number',
+        default: 3000,
+    },
+    carouselLoop: {
+        type: 'boolean',
+        default: true,
+    },
+    facebookPageId: {
+        type: 'string',
+        default: '',
+    },
+    facebookAccessToken: {
+        type: 'string',
+        default: '',
+    },
+    cacheExpiration: {
+        type: 'number',
+        default: 3600,
+    },
+    resMode: {
+        type: 'string',
+        default: 'desktop',
+    },
+    ...generateResCounterAttributies(FB_COLUMNS, {
+        deskRange: 3,
+        tabRange: 2,
+        mobRange: 1,
+    }),
+    ...generateGapAttributes(FB_GAP, {
+        defaultRange: 20,
+        defaultUnit: 'px',
+    }),
 };
+
+export default defaultAttributes;

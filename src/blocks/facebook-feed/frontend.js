@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (layoutType === 'carousel') {
             initCarousel(block);
-        } else if (layoutType === 'masonry') {
-            initMasonry(block);
+        } else if (layoutType === 'masonary') {
+            initMasonary(block);
         }
 
         // Add click handlers for read more
@@ -101,39 +101,30 @@ function initCarousel(block) {
     });
 }
 
-function initMasonry(block) {
+function initMasonary(block) {
     const container = block.querySelector('.zolo-fb-posts-container');
     if (!container) return;
 
-    // Simple masonry layout using CSS Grid
-    const posts = container.querySelectorAll('.zolo-fb-post');
+    // Get columns setting from data attribute or calculate from window width
+    const columns = parseInt(block.dataset.columns) || 3;
     
-    // Calculate heights and adjust grid-row-end
-    posts.forEach((post) => {
-        const height = post.offsetHeight;
-        const rowSpan = Math.ceil(height / 10);
-        post.style.gridRowEnd = `span ${rowSpan}`;
-    });
-
-    // Re-calculate on image load
-    const images = container.querySelectorAll('img');
-    images.forEach((img) => {
-        img.addEventListener('load', () => {
-            const post = img.closest('.zolo-fb-post');
-            const height = post.offsetHeight;
-            const rowSpan = Math.ceil(height / 10);
-            post.style.gridRowEnd = `span ${rowSpan}`;
-        });
-    });
+    // Set column count based on columns attribute and screen size
+    if (window.innerWidth > 1024) {
+        container.style.columnCount = columns;
+    } else if (window.innerWidth > 640) {
+        container.style.columnCount = Math.min(columns, 2);
+    } else {
+        container.style.columnCount = 1;
+    }
 }
 
-// Handle window resize for masonry
+// Handle window resize for masonary
 let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-        document.querySelectorAll('.zolo-facebook-feed[data-layout="masonry"]').forEach((block) => {
-            initMasonry(block);
+        document.querySelectorAll('.zolo-facebook-feed[data-layout="masonary"]').forEach((block) => {
+            initMasonary(block);
         });
-    }, 250);
+    }, 100);
 });

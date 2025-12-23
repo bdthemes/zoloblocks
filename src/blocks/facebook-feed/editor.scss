@@ -38,4 +38,18 @@
             }
         }
     }
+
+    // Editor masonary layout
+    .zolo-fb-posts-container.layout-masonary {
+        column-gap: var(--masonary-gap, 20px);
+        
+        .zolo-fb-post {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            display: block;
+            width: 100%;
+            margin: 0;
+            margin-bottom: var(--masonary-gap, 20px);
+        }
+    }
 }

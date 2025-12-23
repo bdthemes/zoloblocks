@@ -4,7 +4,7 @@
     "name": "zolo/facebook-feed",
     "category": "zoloblocks",
     "keywords": ["facebook", "feed", "social", "timeline", "posts", "social media"],
-    "description": "Display Facebook posts in Timeline, Grid, Masonry or Carousel layouts.",
+    "description": "Display Facebook posts in Timeline, Grid, Masonary or Carousel layouts.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "attributes": {
@@ -16,21 +16,61 @@
             "type": "string",
             "default": "timeline"
         },
-        "columns": {
-            "type": "object",
-            "default": {
-                "desktop": 3,
-                "tablet": 2,
-                "mobile": 1
-            }
+        "zolo_fbColumnsRange": {
+            "type": "number",
+            "default": 3
         },
-        "gap": {
-            "type": "object",
-            "default": {
-                "desktop": 20,
-                "tablet": 15,
-                "mobile": 10
-            }
+        "zolo_TABfbColumnsRange": {
+            "type": "number",
+            "default": 2
+        },
+        "zolo_MOBfbColumnsRange": {
+            "type": "number",
+            "default": 1
+        },
+        "zolo_fbGapGap": {
+            "type": "number",
+            "default": 20
+        },
+        "zolo_fbGapRowGap": {
+            "type": "number"
+        },
+        "zolo_fbGapColGap": {
+            "type": "number"
+        },
+        "zolo_TABfbGapGap": {
+            "type": "number"
+        },
+        "zolo_TABfbGapRowGap": {
+            "type": "number"
+        },
+        "zolo_TABfbGapColGap": {
+            "type": "number"
+        },
+        "zolo_MOBfbGapGap": {
+            "type": "number"
+        },
+        "zolo_MOBfbGapRowGap": {
+            "type": "number"
+        },
+        "zolo_MOBfbGapColGap": {
+            "type": "number"
+        },
+        "zolo_fbGapIsLinked": {
+            "type": "boolean",
+            "default": true
+        },
+        "zolo_fbGapUnit": {
+            "type": "string",
+            "default": "px"
+        },
+        "zolo_TABfbGapUnit": {
+            "type": "string",
+            "default": "px"
+        },
+        "zolo_MOBfbGapUnit": {
+            "type": "string",
+            "default": "px"
         },
         "postsPerPage": {
             "type": "number",
@@ -99,6 +139,10 @@
         "cacheExpiration": {
             "type": "number",
             "default": 3600
+        },
+        "resMode": {
+            "type": "string",
+            "default": "desktop"
         }
     },
     "example": {

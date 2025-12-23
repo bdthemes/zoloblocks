@@ -16,10 +16,17 @@
             gap: 20px;
         }
 
-        &.layout-masonry {
-            display: grid;
-            grid-auto-rows: 10px;
-            gap: 20px;
+        &.layout-masonary {
+            column-gap: var(--masonary-gap, 20px);
+            
+            .zolo-fb-post {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                display: block;
+                width: 100%;
+                margin: 0;
+                margin-bottom: var(--masonary-gap, 20px);
+            }
         }
 
         &.layout-carousel {
@@ -74,6 +81,15 @@
 
     .zolo-fb-meta {
         flex: 1;
+    }
+
+    .zolo-fb-author-link {
+        text-decoration: none;
+        color: inherit;
+        
+        &:hover .zolo-fb-author {
+            text-decoration: underline;
+        }
     }
 
     .zolo-fb-author {
@@ -255,16 +271,20 @@
 
     // Responsive
     @media (max-width: 1024px) {
-        .zolo-fb-posts-container.layout-grid,
-        .zolo-fb-posts-container.layout-masonry {
+        .zolo-fb-posts-container.layout-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .zolo-fb-posts-container.layout-masonary {
+            column-count: 2 !important;
         }
     }
 
     @media (max-width: 640px) {
-        .zolo-fb-posts-container.layout-grid,
-        .zolo-fb-posts-container.layout-masonry {
+        .zolo-fb-posts-container.layout-grid {
             grid-template-columns: 1fr !important;
+        }
+        .zolo-fb-posts-container.layout-masonary {
+            column-count: 1 !important;
         }
 
         &.layout-carousel {

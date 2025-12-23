@@ -21,16 +21,22 @@ class FacebookFeed extends PostBlock {
             parent::$default_attributes,
             [
                 'layoutType' => 'timeline',
-                'columns' => [
-                    'desktop' => 3,
-                    'tablet' => 2,
-                    'mobile' => 1,
-                ],
-                'gap' => [
-                    'desktop' => 20,
-                    'tablet' => 15,
-                    'mobile' => 10,
-                ],
+                'zolo_fbColumnsRange' => 3,
+                'zolo_TABfbColumnsRange' => 2,
+                'zolo_MOBfbColumnsRange' => 1,
+                'zolo_fbGapGap' => 20,
+                'zolo_fbGapRowGap' => null,
+                'zolo_fbGapColGap' => null,
+                'zolo_TABfbGapGap' => null,
+                'zolo_TABfbGapRowGap' => null,
+                'zolo_TABfbGapColGap' => null,
+                'zolo_MOBfbGapGap' => null,
+                'zolo_MOBfbGapRowGap' => null,
+                'zolo_MOBfbGapColGap' => null,
+                'zolo_fbGapIsLinked' => true,
+                'zolo_fbGapUnit' => 'px',
+                'zolo_TABfbGapUnit' => 'px',
+                'zolo_MOBfbGapUnit' => 'px',
                 'postsPerPage' => 6,
                 'showAvatar' => true,
                 'showAuthor' => true,
@@ -81,10 +87,15 @@ class FacebookFeed extends PostBlock {
 
         // Start output buffering
         \ob_start();
+        
+        // Add responsive CSS
+        echo $this->get_responsive_css($attributes, $unique_id);
+        
         ?>
-        <div class="zolo-facebook-feed zolo-facebook-feed-<?php echo $layout_type; ?>" 
+        <div class="zolo-facebook-feed zolo-facebook-feed-<?php echo $layout_type; ?> zolo-facebook-feed-<?php echo $unique_id; ?>" 
              data-unique-id="<?php echo $unique_id; ?>"
              data-layout="<?php echo $layout_type; ?>"
+             data-columns="<?php echo \esc_attr($attributes['zolo_fbColumnsRange'] ?? 3); ?>"
              data-carousel-autoplay="<?php echo $attributes['carouselAutoplay'] ? 'true' : 'false'; ?>"
              data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed']); ?>"
              data-carousel-loop="<?php echo $attributes['carouselLoop'] ? 'true' : 'false'; ?>">
@@ -103,7 +114,12 @@ class FacebookFeed extends PostBlock {
                             
                             <div class="zolo-fb-meta">
                                 <?php if ($attributes['showAuthor']) : ?>
-                                    <div class="zolo-fb-author"><?php echo \esc_html($post['author']); ?></div>
+                                    <a href="<?php echo \esc_url($facebook_url); ?>" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer" 
+                                       class="zolo-fb-author-link">
+                                        <div class="zolo-fb-author"><?php echo \esc_html($post['author']); ?></div>
+                                    </a>
                                 <?php endif; ?>
                                 
                                 <?php if ($attributes['showDate']) : ?>
@@ -189,19 +205,111 @@ class FacebookFeed extends PostBlock {
         $layout = $attributes['layoutType'];
         $styles = [];
 
-        if ($layout === 'grid' || $layout === 'masonry') {
-            $cols = $attributes['columns']['desktop'] ?? 3;
-            $gap = $attributes['gap']['desktop'] ?? 20;
+        if ($layout === 'grid') {
+            $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
+            $gap = $attributes['zolo_fbGapGap'] ?? 20;
+            $gap_unit = $attributes['zolo_fbGapUnit'] ?? 'px';
             $styles[] = "display: grid;";
             $styles[] = "grid-template-columns: repeat({$cols}, 1fr);";
-            $styles[] = "gap: {$gap}px;";
-            
-            if ($layout === 'masonry') {
-                $styles[] = "grid-auto-rows: 10px;";
-            }
+            $styles[] = "gap: {$gap}{$gap_unit};";
+        } elseif ($layout === 'masonry') {
+            $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
+            $gap = $attributes['zolo_fbGapGap'] ?? 20;
+            $gap_unit = $attributes['zolo_fbGapUnit'] ?? 'px';
+            $styles[] = "column-count: {$cols};";
+            $styles[] = "column-gap: {$gap}{$gap_unit};";
+            $styles[] = "--masonry-gap: {$gap}{$gap_unit};";
         }
 
         return implode(' ', $styles);
+    }
+
+    /**
+     * Get responsive CSS for columns and gap
+     *
+     * @param array  $attributes Block attributes
+     * @param string $unique_id  Unique block ID
+     * @return string
+     */
+    private function get_responsive_css($attributes, $unique_id) {
+        $layout = $attributes['layoutType'];
+        
+        if ($layout !== 'grid' && $layout !== 'masonry') {
+            return '';
+        }
+
+        // Desktop values
+        $cols_desk = $attributes['zolo_fbColumnsRange'] ?? 3;
+        $gap_desk = $attributes['zolo_fbGapGap'] ?? 20;
+        $gap_unit_desk = $attributes['zolo_fbGapUnit'] ?? 'px';
+        
+        // Tablet values
+        $cols_tab = $attributes['zolo_TABfbColumnsRange'] ?? $cols_desk;
+        $gap_tab = $attributes['zolo_TABfbGapGap'] ?? $gap_desk;
+        $gap_unit_tab = $attributes['zolo_TABfbGapUnit'] ?? $gap_unit_desk;
+        
+        // Mobile values
+        $cols_mob = $attributes['zolo_MOBfbColumnsRange'] ?? $cols_tab;
+        $gap_mob = $attributes['zolo_MOBfbGapGap'] ?? $gap_tab;
+        $gap_unit_mob = $attributes['zolo_MOBfbGapUnit'] ?? $gap_unit_tab;
+
+        $css = '<style>';
+        
+        // Desktop styles
+        if ($layout === 'grid') {
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
+            $css .= "grid-template-columns: repeat({$cols_desk}, 1fr);";
+            $css .= "gap: {$gap_desk}{$gap_unit_desk};";
+            $css .= "}";
+        } elseif ($layout === 'masonry') {
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry {";
+            $css .= "column-count: {$cols_desk};";
+            $css .= "column-gap: {$gap_desk}{$gap_unit_desk};";
+            $css .= "}";
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry .zolo-fb-post {";
+            $css .= "margin-bottom: {$gap_desk}{$gap_unit_desk};";
+            $css .= "}";
+        }
+        
+        // Tablet styles
+        $css .= "@media (max-width: 1024px) {";
+        if ($layout === 'grid') {
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
+            $css .= "grid-template-columns: repeat({$cols_tab}, 1fr) !important;";
+            $css .= "gap: {$gap_tab}{$gap_unit_tab};";
+            $css .= "}";
+        } elseif ($layout === 'masonry') {
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry {";
+            $css .= "column-count: {$cols_tab} !important;";
+            $css .= "column-gap: {$gap_tab}{$gap_unit_tab};";
+            $css .= "}";
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry .zolo-fb-post {";
+            $css .= "margin-bottom: {$gap_tab}{$gap_unit_tab};";
+            $css .= "}";
+        }
+        $css .= "}";
+        
+        // Mobile styles
+        $css .= "@media (max-width: 767px) {";
+        if ($layout === 'grid') {
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
+            $css .= "grid-template-columns: repeat({$cols_mob}, 1fr) !important;";
+            $css .= "gap: {$gap_mob}{$gap_unit_mob};";
+            $css .= "}";
+        } elseif ($layout === 'masonry') {
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry {";
+            $css .= "column-count: {$cols_mob} !important;";
+            $css .= "column-gap: {$gap_mob}{$gap_unit_mob};";
+            $css .= "}";
+            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry .zolo-fb-post {";
+            $css .= "margin-bottom: {$gap_mob}{$gap_unit_mob};";
+            $css .= "}";
+        }
+        $css .= "}";
+        
+        $css .= '</style>';
+        
+        return $css;
     }
 
     /**

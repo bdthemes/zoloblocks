@@ -1,17 +1,16 @@
 import { __ } from '@wordpress/i18n';
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, RangeControl, ToggleControl, TextControl, Notice, Spinner } from '@wordpress/components';
+import { useBlockProps } from '@wordpress/block-editor';
+import { Notice, Spinner } from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
-import apiFetch from '@wordpress/api-fetch';
 import { layoutTypes, defaultAttributes } from './attributes';
+import Inspector from './inspector';
+import Style from './styles';
 import './editor.scss';
 
 const Edit = ({ attributes, setAttributes, clientId }) => {
     const {
         uniqueId,
         layoutType,
-        columns,
-        gap,
         postsPerPage,
         showAvatar,
         showAuthor,
@@ -179,7 +178,16 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     <img src={post.avatar} alt={post.author} className="zolo-fb-avatar" />
                 )}
                 <div className="zolo-fb-meta">
-                    {showAuthor && <div className="zolo-fb-author">{post.author}</div>}
+                    {showAuthor && (
+                        <a 
+                            href={facebookPageId ? `https://www.facebook.com/${facebookPageId}` : 'https://www.facebook.com'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="zolo-fb-author-link"
+                        >
+                            <div className="zolo-fb-author">{post.author}</div>
+                        </a>
+                    )}
                     {showDate && <div className="zolo-fb-date">{post.date}</div>}
                 </div>
                 <a 
@@ -248,198 +256,15 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         </div>
     );
 
-    const getGridStyle = () => {
-        if (layoutType === 'grid' || layoutType === 'masonry') {
-            return {
-                display: 'grid',
-                gridTemplateColumns: `repeat(${columns.desktop}, 1fr)`,
-                gap: `${gap.desktop}px`,
-            };
-        }
-        return {};
-    };
-
     return (
         <>
-            <InspectorControls>
-                <PanelBody title={__('Facebook API Settings', 'zoloblocks')} initialOpen={true}>
-                    <TextControl
-                        label={__('Facebook Page ID or Username', 'zoloblocks')}
-                        value={facebookPageId}
-                        onChange={(value) => {
-                            setAttributes({ facebookPageId: value });
-                            setShowApiNotice(!value || !facebookAccessToken);
-                        }}
-                        help={__('Enter your Facebook Page ID or username (e.g., "Meta" or "123456789")', 'zoloblocks')}
-                    />
-                    <TextControl
-                        label={__('Facebook Access Token', 'zoloblocks')}
-                        type="password"
-                        value={facebookAccessToken}
-                        onChange={(value) => {
-                            setAttributes({ facebookAccessToken: value });
-                            setShowApiNotice(!facebookPageId || !value);
-                        }}
-                        help={__('Get your access token from Facebook Graph API Explorer', 'zoloblocks')}
-                    />
-                    <RangeControl
-                        label={__('Cache Expiration (seconds)', 'zoloblocks')}
-                        value={cacheExpiration}
-                        onChange={(value) => setAttributes({ cacheExpiration: value })}
-                        min={300}
-                        max={86400}
-                        help={__('How long to cache Facebook posts', 'zoloblocks')}
-                    />
-                    {showApiNotice && (
-                        <Notice status="warning" isDismissible={false}>
-                            {__('Please configure Facebook Page ID and Access Token to display live posts.', 'zoloblocks')}
-                        </Notice>
-                    )}
-                </PanelBody>
-
-                <PanelBody title={__('Layout Settings', 'zoloblocks')} initialOpen={false}>
-                    <SelectControl
-                        label={__('Layout Type', 'zoloblocks')}
-                        value={layoutType}
-                        options={[
-                            { label: __('Timeline', 'zoloblocks'), value: layoutTypes.TIMELINE },
-                            { label: __('Grid', 'zoloblocks'), value: layoutTypes.GRID },
-                            { label: __('Masonry', 'zoloblocks'), value: layoutTypes.MASONRY },
-                            { label: __('Carousel', 'zoloblocks'), value: layoutTypes.CAROUSEL },
-                        ]}
-                        onChange={(value) => setAttributes({ layoutType: value })}
-                    />
-
-                    {(layoutType === 'grid' || layoutType === 'masonry') && (
-                        <>
-                            <RangeControl
-                                label={__('Columns (Desktop)', 'zoloblocks')}
-                                value={columns.desktop}
-                                onChange={(value) => setAttributes({ columns: { ...columns, desktop: value } })}
-                                min={1}
-                                max={6}
-                            />
-                            <RangeControl
-                                label={__('Columns (Tablet)', 'zoloblocks')}
-                                value={columns.tablet}
-                                onChange={(value) => setAttributes({ columns: { ...columns, tablet: value } })}
-                                min={1}
-                                max={4}
-                            />
-                            <RangeControl
-                                label={__('Columns (Mobile)', 'zoloblocks')}
-                                value={columns.mobile}
-                                onChange={(value) => setAttributes({ columns: { ...columns, mobile: value } })}
-                                min={1}
-                                max={2}
-                            />
-                        </>
-                    )}
-
-                    <RangeControl
-                        label={__('Gap (px)', 'zoloblocks')}
-                        value={gap.desktop}
-                        onChange={(value) => setAttributes({ gap: { ...gap, desktop: value } })}
-                        min={0}
-                        max={100}
-                    />
-
-                    <RangeControl
-                        label={__('Posts Per Page', 'zoloblocks')}
-                        value={postsPerPage}
-                        onChange={(value) => setAttributes({ postsPerPage: value })}
-                        min={1}
-                        max={50}
-                    />
-                </PanelBody>
-
-                <PanelBody title={__('Post Display Settings', 'zoloblocks')} initialOpen={false}>
-                    <ToggleControl
-                        label={__('Show Avatar', 'zoloblocks')}
-                        checked={showAvatar}
-                        onChange={(value) => setAttributes({ showAvatar: value })}
-                    />
-                    <ToggleControl
-                        label={__('Show Author', 'zoloblocks')}
-                        checked={showAuthor}
-                        onChange={(value) => setAttributes({ showAuthor: value })}
-                    />
-                    <ToggleControl
-                        label={__('Show Date', 'zoloblocks')}
-                        checked={showDate}
-                        onChange={(value) => setAttributes({ showDate: value })}
-                    />
-                    <ToggleControl
-                        label={__('Show Content', 'zoloblocks')}
-                        checked={showContent}
-                        onChange={(value) => setAttributes({ showContent: value })}
-                    />
-                    {showContent && (
-                        <>
-                            <RangeControl
-                                label={__('Content Length', 'zoloblocks')}
-                                value={contentLength}
-                                onChange={(value) => setAttributes({ contentLength: value })}
-                                min={0}
-                                max={500}
-                                help={__('Set to 0 for unlimited', 'zoloblocks')}
-                            />
-                            <ToggleControl
-                                label={__('Show Read More', 'zoloblocks')}
-                                checked={showReadMore}
-                                onChange={(value) => setAttributes({ showReadMore: value })}
-                            />
-                            {showReadMore && (
-                                <TextControl
-                                    label={__('Read More Text', 'zoloblocks')}
-                                    value={readMoreText}
-                                    onChange={(value) => setAttributes({ readMoreText: value })}
-                                />
-                            )}
-                        </>
-                    )}
-                    <ToggleControl
-                        label={__('Show Reactions', 'zoloblocks')}
-                        checked={showReactions}
-                        onChange={(value) => setAttributes({ showReactions: value })}
-                    />
-                    <ToggleControl
-                        label={__('Show Comments Count', 'zoloblocks')}
-                        checked={showComments}
-                        onChange={(value) => setAttributes({ showComments: value })}
-                    />
-                    <ToggleControl
-                        label={__('Show Shares Count', 'zoloblocks')}
-                        checked={showShares}
-                        onChange={(value) => setAttributes({ showShares: value })}
-                    />
-                </PanelBody>
-
-                {layoutType === 'carousel' && (
-                    <PanelBody title={__('Carousel Settings', 'zoloblocks')} initialOpen={false}>
-                        <ToggleControl
-                            label={__('Autoplay', 'zoloblocks')}
-                            checked={carouselAutoplay}
-                            onChange={(value) => setAttributes({ carouselAutoplay: value })}
-                        />
-                        {carouselAutoplay && (
-                            <RangeControl
-                                label={__('Speed (ms)', 'zoloblocks')}
-                                value={carouselSpeed}
-                                onChange={(value) => setAttributes({ carouselSpeed: value })}
-                                min={1000}
-                                max={10000}
-                                step={500}
-                            />
-                        )}
-                        <ToggleControl
-                            label={__('Loop', 'zoloblocks')}
-                            checked={carouselLoop}
-                            onChange={(value) => setAttributes({ carouselLoop: value })}
-                        />
-                    </PanelBody>
-                )}
-            </InspectorControls>
+            <Style attributes={attributes} uniqueId={uniqueId || `zolo-fb-${clientId.substr(0, 8)}`} />
+            
+            <Inspector
+                attributes={attributes}
+                setAttributes={setAttributes}
+                block={{ name: 'zolo/facebook-feed', clientId }}
+            />
 
             <div {...blockProps}>
                 {isLoading && (
@@ -456,7 +281,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 )}
                 
                 {!isLoading && !apiError && (
-                    <div className={`zolo-fb-posts-container layout-${layoutType}`} style={getGridStyle()}>
+                    <div className={`zolo-fb-posts-container layout-${layoutType} zolo-facebook-feed-${uniqueId || `zolo-fb-${clientId.substr(0, 8)}`}`}>
                         {(facebookPosts.length > 0 ? facebookPosts : demoPosts).map(renderPost)}
                     </div>
                 )}
