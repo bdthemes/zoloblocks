@@ -93,30 +93,6 @@ function Inspector(props) {
                                 onChange={(value) => setAttributes({ layoutType: value })}
                             />
 
-                            {(layoutType === 'grid' || layoutType === 'masonry') && (
-                                <>
-                                    <ResCounterControl
-                                        label={__('Columns', 'zoloblocks')}
-                                        controlName={FB_COLUMNS}
-                                        requiredProps={requiredProps}
-                                        min={1}
-                                        max={6}
-                                        defaults={{
-                                            deskRange: 3,
-                                            tabRange: 2,
-                                            mobRange: 1,
-                                        }}
-                                    />
-                                </>
-                            )}
-
-                            <ResGapControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={FB_GAP}
-                                requiredProps={requiredProps}
-                                max={100}
-                            />
-
                             <ZoloRangeControl
                                 label={__('Posts Per Page', 'zoloblocks')}
                                 value={postsPerPage}
@@ -216,7 +192,43 @@ function Inspector(props) {
                         </ZoloPanelBody>
                     </>
                 }
-                advanceTab={<AdvancedOptions {...props} />}
+                styleTab={
+                    <>
+                        <ZoloPanelBody title={__('Layout', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
+                            {(layoutType === 'grid' || layoutType === 'masonry') && (
+                                <ResCounterControl
+                                    label={__('Columns', 'zoloblocks')}
+                                    controlName={FB_COLUMNS}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={6}
+                                    defaults={{
+                                        deskRange: 3,
+                                        tabRange: 2,
+                                        mobRange: 1,
+                                    }}
+                                />
+                            )}
+
+                            <ResGapControl
+                                label={__('Gap', 'zoloblocks')}
+                                controlName={FB_GAP}
+                                requiredProps={requiredProps}
+                                max={100}
+                            />
+                        </ZoloPanelBody>
+                    </>
+                }
+                advanceTab={
+                    <>
+                        <AdvancedOptions
+                            attributes={attributes}
+                            setAttributes={setAttributes}
+                            requiredProps={requiredProps}
+                            block="zolo/facebook-feed"
+                        />
+                    </>
+                }
             />
         </InspectorControls>
     );

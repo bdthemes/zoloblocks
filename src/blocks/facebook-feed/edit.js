@@ -175,7 +175,14 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         <div key={post.id} className="zolo-fb-post">
             <div className="zolo-fb-post-header">
                 {showAvatar && (
-                    <img src={post.avatar} alt={post.author} className="zolo-fb-avatar" />
+                    <a 
+                        href={facebookPageId ? `https://www.facebook.com/${facebookPageId}` : 'https://www.facebook.com'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="zolo-fb-avatar-link"
+                    >
+                        <img src={post.avatar} alt={post.author} className="zolo-fb-avatar" />
+                    </a>
                 )}
                 <div className="zolo-fb-meta">
                     {showAuthor && (

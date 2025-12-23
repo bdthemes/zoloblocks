@@ -16,16 +16,14 @@
             gap: 20px;
         }
 
-        &.layout-masonary {
-            column-gap: var(--masonary-gap, 20px);
-            
+        &.layout-masonry {
             .zolo-fb-post {
                 break-inside: avoid;
                 page-break-inside: avoid;
-                display: block;
+                -webkit-column-break-inside: avoid;
+                display: inline-block;
                 width: 100%;
-                margin: 0;
-                margin-bottom: var(--masonary-gap, 20px);
+                vertical-align: top;
             }
         }
 
@@ -72,20 +70,32 @@
         position: relative;
     }
 
+    .zolo-fb-avatar-link {
+        display: block;
+        line-height: 0;
+        
+        &:hover .zolo-fb-avatar {
+            opacity: 0.8;
+        }
+    }
+
     .zolo-fb-avatar {
         width: 40px;
         height: 40px;
         border-radius: 50%;
         object-fit: cover;
+        transition: opacity 0.2s ease;
     }
 
     .zolo-fb-meta {
         flex: 1;
+        min-width: 0;
     }
 
     .zolo-fb-author-link {
         text-decoration: none;
         color: inherit;
+        display: inline-block;
         
         &:hover .zolo-fb-author {
             text-decoration: underline;

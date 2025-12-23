@@ -32,64 +32,74 @@ const Style = (props) => {
         attributes,
     });
 
-    // Convert gap styles to extract values for masonry
-    const extractGapValue = (gapStyle) => {
-        if (!gapStyle) return '20px';
-        const match = gapStyle.match(/gap:\s*([^;]+)/);
-        return match ? match[1].trim() : '20px';
+    // Extract gap values for masonry (CSS columns don't support gap property the same way)
+    const extractGapValues = (gapStyle) => {
+        if (!gapStyle) return { columnGap: '20px', rowGap: '20px' };
+        
+        const columnGapMatch = gapStyle.match(/column-gap:\s*([^;]+)/);
+        const rowGapMatch = gapStyle.match(/row-gap:\s*([^;]+)/);
+        const gapMatch = gapStyle.match(/gap:\s*([^;]+)/);
+        
+        if (columnGapMatch && rowGapMatch) {
+            return { columnGap: columnGapMatch[1].trim(), rowGap: rowGapMatch[1].trim() };
+        } else if (gapMatch) {
+            const value = gapMatch[1].trim();
+            return { columnGap: value, rowGap: value };
+        }
+        
+        return { columnGap: '20px', rowGap: '20px' };
     };
 
-    const gapDeskValue = extractGapValue(gapDesk);
-    const gapTabValue = extractGapValue(gapTab) || gapDeskValue;
-    const gapMobValue = extractGapValue(gapMob) || gapTabValue;
+    const gapDeskValues = extractGapValues(gapDesk);
+    const gapTabValues = extractGapValues(gapTab);
+    const gapMobValues = extractGapValues(gapMob);
 
     const desktopCSS = `
-        .layout-grid.zolo-facebook-feed-${uniqueId} {
+        .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
             display: grid;
             ${gapDesk}
             ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
         }
         
-        .layout-masonry.zolo-facebook-feed-${uniqueId} {
+        .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
             ${columnCountDesk ? `column-count: ${columnCountDesk};` : ''}
-            column-gap: ${gapDeskValue};
+            column-gap: ${gapDeskValues.columnGap};
         }
         
-        .layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
-            margin: 0;
-            margin-bottom: ${gapDeskValue};
+        .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
+            margin-bottom: ${gapDeskValues.rowGap};
         }
     `;
 
     const tabCSS = `
-        .layout-grid.zolo-facebook-feed-${uniqueId} {
+        .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
             ${gapTab}
             ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr) !important;` : ''}
         }
         
-        .layout-masonry.zolo-facebook-feed-${uniqueId} {
+        .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
             ${columnCountTab ? `column-count: ${columnCountTab} !important;` : ''}
-            column-gap: ${gapTabValue};
+            column-gap: ${gapTabValues.columnGap};
         }
         
-        .layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
-            margin-bottom: ${gapTabValue};
+        .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
+            margin-bottom: ${gapTabValues.rowGap};
         }
     `;
 
     const mobCSS = `
-        .layout-grid.zolo-facebook-feed-${uniqueId} {
+        .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
             ${gapMob}
             ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr) !important;` : ''}
         }
         
-        .layout-masonry.zolo-facebook-feed-${uniqueId} {
+        .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
             ${columnCountMob ? `column-count: ${columnCountMob} !important;` : ''}
-            column-gap: ${gapMobValue};
+            column-gap: ${gapMobValues.columnGap};
         }
         
-        .layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
-            margin-bottom: ${gapMobValue};
+        .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
+            margin-bottom: ${gapMobValues.rowGap};
         }
     `;
 
