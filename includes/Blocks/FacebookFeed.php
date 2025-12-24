@@ -9,14 +9,16 @@ if (!defined('ABSPATH')) {
 /**
  * Facebook Feed block class
  */
-class FacebookFeed extends PostBlock {
-    
+class FacebookFeed extends PostBlock
+{
+
     /**
      * Get default attributes
      *
      * @return array
      */
-    public function get_default_attributes() {
+    public function get_default_attributes()
+    {
         return array_merge(
             parent::$default_attributes,
             [
@@ -66,14 +68,15 @@ class FacebookFeed extends PostBlock {
      * @param object $block      Block object (optional)
      * @return string
      */
-    public function render($attributes, $content = '', $block = null) {
+    public function render($attributes, $content = '', $block = null)
+    {
         $attributes = \wp_parse_args($attributes, $this->get_default_attributes());
 
         // Extract attributes
         $unique_id = \esc_attr($attributes['uniqueId'] ?? 'zolo-fb-' . \uniqid());
         $layout_type = \esc_attr($attributes['layoutType'] ?? 'timeline');
         $posts_per_page = \absint($attributes['postsPerPage'] ?? 6);
-        
+
         $facebook_page_id = $attributes['facebookPageId'] ?? '';
         $access_token = $attributes['facebookAccessToken'] ?? '';
         $facebook_url = !empty($facebook_page_id) ? 'https://www.facebook.com/' . \urlencode($facebook_page_id) : 'https://www.facebook.com';
@@ -87,58 +90,58 @@ class FacebookFeed extends PostBlock {
 
         // Start output buffering
         \ob_start();
-        
+
         // Add responsive CSS
         echo $this->get_responsive_css($attributes, $unique_id);
-        
-        ?>
-        <div class="zolo-facebook-feed zolo-facebook-feed-<?php echo $layout_type; ?> zolo-facebook-feed-<?php echo $unique_id; ?>" 
-             data-unique-id="<?php echo $unique_id; ?>"
-             data-layout="<?php echo $layout_type; ?>"
-             data-columns="<?php echo \esc_attr($attributes['zolo_fbColumnsRange'] ?? 3); ?>"
-             data-carousel-autoplay="<?php echo $attributes['carouselAutoplay'] ? 'true' : 'false'; ?>"
-             data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed']); ?>"
-             data-carousel-loop="<?php echo $attributes['carouselLoop'] ? 'true' : 'false'; ?>">
-            
+
+?>
+        <div class="zolo-facebook-feed zolo-facebook-feed-<?php echo $layout_type; ?> zolo-facebook-feed-<?php echo $unique_id; ?>"
+            data-unique-id="<?php echo $unique_id; ?>"
+            data-layout="<?php echo $layout_type; ?>"
+            data-columns="<?php echo \esc_attr($attributes['zolo_fbColumnsRange'] ?? 3); ?>"
+            data-carousel-autoplay="<?php echo $attributes['carouselAutoplay'] ? 'true' : 'false'; ?>"
+            data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed']); ?>"
+            data-carousel-loop="<?php echo $attributes['carouselLoop'] ? 'true' : 'false'; ?>">
+
             <div class="zolo-fb-posts-container layout-<?php echo $layout_type; ?>"
-                 style="<?php echo $this->get_container_style($attributes); ?>">
-                
+                style="<?php echo $this->get_container_style($attributes); ?>">
+
                 <?php foreach ($posts as $post) : ?>
                     <div class="zolo-fb-post">
                         <div class="zolo-fb-post-header">
                             <?php if ($attributes['showAvatar']) : ?>
-                                <a href="<?php echo \esc_url($facebook_url); ?>" 
-                                   target="_blank" 
-                                   rel="noopener noreferrer" 
-                                   class="zolo-fb-avatar-link">
-                                    <img src="<?php echo \esc_url($post['avatar']); ?>" 
-                                         alt="<?php echo \esc_attr($post['author']); ?>" 
-                                         class="zolo-fb-avatar">
+                                <a href="<?php echo \esc_url($facebook_url); ?>"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="zolo-fb-avatar-link">
+                                    <img src="<?php echo \esc_url($post['avatar']); ?>"
+                                        alt="<?php echo \esc_attr($post['author']); ?>"
+                                        class="zolo-fb-avatar">
                                 </a>
                             <?php endif; ?>
-                            
+
                             <div class="zolo-fb-meta">
                                 <?php if ($attributes['showAuthor']) : ?>
-                                    <a href="<?php echo \esc_url($facebook_url); ?>" 
-                                       target="_blank" 
-                                       rel="noopener noreferrer" 
-                                       class="zolo-fb-author-link">
+                                    <a href="<?php echo \esc_url($facebook_url); ?>"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="zolo-fb-author-link">
                                         <div class="zolo-fb-author"><?php echo \esc_html($post['author']); ?></div>
                                     </a>
                                 <?php endif; ?>
-                                
+
                                 <?php if ($attributes['showDate']) : ?>
                                     <div class="zolo-fb-date"><?php echo \esc_html($post['date']); ?></div>
                                 <?php endif; ?>
                             </div>
-                            
-                            <a href="<?php echo \esc_url($facebook_url); ?>" 
-                               target="_blank" 
-                               rel="noopener noreferrer" 
-                               class="zolo-fb-icon"
-                               title="<?php echo \esc_attr__('Visit Facebook Page', 'zoloblocks'); ?>">
+
+                            <a href="<?php echo \esc_url($facebook_url); ?>"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="zolo-fb-icon"
+                                title="<?php echo \esc_attr__('Visit Facebook Page', 'zoloblocks'); ?>">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                                 </svg>
                             </a>
                         </div>
@@ -146,7 +149,7 @@ class FacebookFeed extends PostBlock {
                         <?php if ($attributes['showContent'] && !empty($post['content'])) : ?>
                             <div class="zolo-fb-content" data-full-text="<?php echo \esc_attr($post['content']); ?>">
                                 <p><?php echo \esc_html($this->truncate_content($post['content'], $attributes['contentLength'])); ?></p>
-                                
+
                                 <?php if (!empty($post['hashtags'])) : ?>
                                     <div class="zolo-fb-hashtags">
                                         <?php foreach ($post['hashtags'] as $tag) : ?>
@@ -154,7 +157,7 @@ class FacebookFeed extends PostBlock {
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endif; ?>
-                                
+
                                 <?php if ($attributes['showReadMore'] && $attributes['contentLength'] > 0 && strlen($post['content']) > $attributes['contentLength']) : ?>
                                     <a href="#" class="zolo-fb-read-more"><?php echo \esc_html($attributes['readMoreText']); ?></a>
                                 <?php endif; ?>
@@ -171,14 +174,78 @@ class FacebookFeed extends PostBlock {
                             <div class="zolo-fb-reactions">
                                 <?php if ($attributes['showReactions'] && !empty($post['reactions']) && $post['reactions'] > 0) : ?>
                                     <div class="zolo-fb-reaction-icons">
-                                        <svg class="zolo-fb-reaction-emoji like" width="18" height="18" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="8" cy="8" r="8" fill="#1877f2"/>
-                                            <path d="M10.473 4C8.275 4 8 5.824 8 5.824S7.726 4 5.528 4c-2.114 0-2.73 2.222-2.472 3.41C3.736 10.55 8 12.75 8 12.75s4.265-2.2 4.945-5.34c.257-1.188-.36-3.41-2.472-3.41" fill="#fff"/>
-                                        </svg>
-                                        <svg class="zolo-fb-reaction-emoji love" width="18" height="18" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="8" cy="8" r="8" fill="#f33e58"/>
-                                            <path d="M10.473 4C8.275 4 8 5.824 8 5.824S7.726 4 5.528 4c-2.114 0-2.73 2.222-2.472 3.41C3.736 10.55 8 12.75 8 12.75s4.265-2.2 4.945-5.34c.257-1.188-.36-3.41-2.472-3.41" fill="#fff"/>
-                                        </svg>
+                                        <?php
+                                        $reaction_types = $post['reaction_types'] ?? [];
+                                        if (!empty($reaction_types['like'])) : ?>
+                                            <svg class="zolo-fb-reaction-emoji like" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="256" cy="256" r="256" fill="#2196F3" />
+                                                <path d="M385.7 258.3c-4.2-23.8-24.9-41.9-49.8-41.9h-62.1c5.5-14.8 15.3-41.4 15.3-58.9 0-26.5-13.7-49.6-33.7-57.6-4.9-2-10.2-3-15.6-3-13.4 0-26.2 5.7-35.2 15.6-3.8 4.2-5.6 10.2-4.6 16.1l5.4 32.4c-7.9 20.8-28.7 53.1-45.6 62.1-6.9 3.7-11.3 10.8-11.3 18.6v112.8c0 11.5 9.3 20.8 20.8 20.8h9.1c3.6 13.8 16.1 24 30.9 24h120.3c23.5 0 43.9-16.4 48.8-39.2l21.2-99.7c1.5-7 .9-14.3-2.9-20.8-3.8-6.6-9.8-11.4-16.8-13.5z" fill="#FAFAFA" />
+                                                <path d="M103.5 374.1h31.2c8.6 0 15.6-7 15.6-15.6V249.9c0-8.6-7-15.6-15.6-15.6h-31.2c-8.6 0-15.6 7-15.6 15.6v108.6c0 8.6 7 15.6 15.6 15.6z" fill="#FAFAFA" />
+                                            </svg>
+                                        <?php endif; ?>
+                                        <?php if (!empty($reaction_types['love'])) : ?>
+                                            <svg class="zolo-fb-reaction-emoji love" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="256" cy="256" r="256" fill="#F44336" />
+                                                <path d="M368.5 157.8c-33.5-33.5-87.8-33.5-121.3 0L256 149l-9.2-9.2c-33.5-33.5-87.8-33.5-121.3 0-33.5 33.5-33.5 87.8 0 121.3l130.5 130.5 130.5-130.5c33.5-33.5 33.5-87.8 0-121.3z" fill="#FAFAFA" />
+                                            </svg>
+                                        <?php endif; ?>
+                                        <?php if (!empty($reaction_types['care'])) : ?>
+                                            <svg class="zolo-fb-reaction-emoji care" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="256" cy="256" r="256" fill="#FFC107" />
+                                                <circle cx="200" cy="220" r="20" fill="#795548" />
+                                                <circle cx="312" cy="220" r="20" fill="#795548" />
+                                                <path d="M340 280c0-46.4-37.6-84-84-84s-84 37.6-84 84" stroke="#795548" stroke-width="16" fill="none" stroke-linecap="round" />
+                                                <path d="M320 190c-20-35-50-50-50-50s-30 15-50 50" stroke="#FF6B9D" stroke-width="18" fill="none" stroke-linecap="round" />
+                                                <path d="M140 240c30 40 60 60 60 60M372 240c-30 40-60 60-60 60" stroke="#FF6B9D" stroke-width="16" fill="none" stroke-linecap="round" />
+                                            </svg>
+                                        <?php endif; ?>
+                                        <?php if (!empty($reaction_types['wow'])) : ?>
+                                            <svg class="zolo-fb-reaction-emoji wow" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="256" cy="256" r="256" fill="#FFC107" />
+                                                <circle cx="180" cy="200" r="32" fill="#795548" />
+                                                <circle cx="332" cy="200" r="32" fill="#795548" />
+                                                <ellipse cx="256" cy="340" rx="48" ry="64" fill="#795548" />
+                                            </svg>
+                                        <?php endif; ?>
+                                        <?php if (!empty($reaction_types['haha'])) : ?>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" id="haha">
+                                                <path fill="url(#a)" d="M16 8A8 8 0 1 1-.001 8 8 8 0 0 1 16 8"></path>
+                                                <path fill="url(#b)" d="M3 8.008C3 10.023 4.006 14 8 14c3.993 0 5-3.977 5-5.992C13 7.849 11.39 7 8 7c-3.39 0-5 .849-5 1.008Z"></path>
+                                                <path fill="url(#c)" d="M4.541 12.5c.804.995 1.907 1.5 3.469 1.5 1.563 0 2.655-.505 3.459-1.5-.551-.588-1.599-1.5-3.459-1.5s-2.917.912-3.469 1.5Z"></path>
+                                                <path fill="#2A3755" d="M6.213 4.144c.263.188.502.455.41.788-.071.254-.194.369-.422.37-.78.012-1.708.256-2.506.613-.065.029-.197.088-.332.085-.124-.003-.251-.058-.327-.237-.067-.157-.073-.388.276-.598.545-.33 1.257-.48 1.909-.604-.41-.303-.85-.56-1.315-.768-.427-.194-.38-.457-.323-.6.127-.317.609-.196 1.078.026a9 9 0 0 1 1.552.925Zm3.577 0a8.955 8.955 0 0 1 1.55-.925c.47-.222.95-.343 1.078-.026.057.143.104.406-.323.6a7.028 7.028 0 0 0-1.313.768c.65.123 1.363.274 1.907.604.349.21.342.44.276.598-.077.18-.203.234-.327.237-.135.003-.267-.056-.332-.085-.797-.357-1.725-.6-2.504-.612-.228-.002-.351-.117-.422-.37-.091-.333.147-.6.41-.788v-.001Z"></path>
+                                                <defs>
+                                                    <linearGradient id="a" x1="8" x2="8" y1="1.64" y2="16" gradientUnits="userSpaceOnUse">
+                                                        <stop stop-color="#FEEA70"></stop>
+                                                        <stop offset="1" stop-color="#F69B30"></stop>
+                                                    </linearGradient>
+                                                    <linearGradient id="b" x1="8" x2="8" y1="7" y2="14" gradientUnits="userSpaceOnUse">
+                                                        <stop stop-color="#472315"></stop>
+                                                        <stop offset="1" stop-color="#8B3A0E"></stop>
+                                                    </linearGradient>
+                                                    <linearGradient id="c" x1="8.005" x2="8.005" y1="11" y2="13.457" gradientUnits="userSpaceOnUse">
+                                                        <stop stop-color="#FC607C"></stop>
+                                                        <stop offset="1" stop-color="#D91F3A"></stop>
+                                                    </linearGradient>
+                                                </defs>
+                                            </svg>
+                                        <?php endif; ?>
+                                        <?php if (!empty($reaction_types['sad'])) : ?>
+                                            <svg class="zolo-fb-reaction-emoji sad" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="256" cy="256" r="256" fill="#FFC107" />
+                                                <path d="M168 192c0-8.8 7.2-16 16-16s16 7.2 16 16-7.2 16-16 16-16-7.2-16-16zm160 0c0-8.8 7.2-16 16-16s16 7.2 16 16-7.2 16-16 16-16-7.2-16-16z" fill="#795548" />
+                                                <path d="M336 360c0-44.2-35.8-80-80-80s-80 35.8-80 80" stroke="#795548" stroke-width="16" fill="none" stroke-linecap="round" />
+                                                <ellipse cx="152" cy="280" rx="16" ry="24" fill="#42A5F5" />
+                                            </svg>
+                                        <?php endif; ?>
+                                        <?php if (!empty($reaction_types['angry'])) : ?>
+                                            <svg class="zolo-fb-reaction-emoji angry" width="18" height="18" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="256" cy="256" r="256" fill="#FF6F00" />
+                                                <path d="M144 176l48 32-16 16-48-32zm224 0l-48 32 16 16 48-32z" fill="#795548" />
+                                                <circle cx="184" cy="240" r="24" fill="#795548" />
+                                                <circle cx="328" cy="240" r="24" fill="#795548" />
+                                                <path d="M336 368c0-44.2-35.8-80-80-80s-80 35.8-80 80" stroke="#795548" stroke-width="16" fill="none" stroke-linecap="round" />
+                                            </svg>
+                                        <?php endif; ?>
                                         <span class="zolo-fb-reaction-count"><?php echo \esc_html($post['reactions']); ?></span>
                                     </div>
                                 <?php endif; ?>
@@ -196,7 +263,7 @@ class FacebookFeed extends PostBlock {
                 <?php endforeach; ?>
             </div>
         </div>
-        <?php
+<?php
         return \ob_get_clean();
     }
 
@@ -206,7 +273,8 @@ class FacebookFeed extends PostBlock {
      * @param array $attributes Block attributes
      * @return string
      */
-    private function get_container_style($attributes) {
+    private function get_container_style($attributes)
+    {
         $layout = $attributes['layoutType'];
         $styles = [];
 
@@ -214,7 +282,7 @@ class FacebookFeed extends PostBlock {
             $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
             $is_linked = $attributes['zolo_fbGapIsLinked'] ?? true;
             $gap_unit = $attributes['zolo_fbGapUnit'] ?? 'px';
-            
+
             if ($is_linked) {
                 $gap = $attributes['zolo_fbGapGap'] ?? 20;
                 $styles[] = "display: grid;";
@@ -232,7 +300,7 @@ class FacebookFeed extends PostBlock {
             $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
             $is_linked = $attributes['zolo_fbGapIsLinked'] ?? true;
             $gap_unit = $attributes['zolo_fbGapUnit'] ?? 'px';
-            
+
             if ($is_linked) {
                 $gap = $attributes['zolo_fbGapGap'] ?? 20;
                 $styles[] = "column-count: {$cols};";
@@ -254,9 +322,10 @@ class FacebookFeed extends PostBlock {
      * @param string $unique_id  Unique block ID
      * @return string
      */
-    private function get_responsive_css($attributes, $unique_id) {
+    private function get_responsive_css($attributes, $unique_id)
+    {
         $layout = $attributes['layoutType'];
-        
+
         if ($layout !== 'grid' && $layout !== 'masonry') {
             return '';
         }
@@ -268,14 +337,14 @@ class FacebookFeed extends PostBlock {
         $row_gap_desk = $attributes['zolo_fbGapRowGap'] ?? $gap_desk;
         $col_gap_desk = $attributes['zolo_fbGapColGap'] ?? $gap_desk;
         $gap_unit_desk = $attributes['zolo_fbGapUnit'] ?? 'px';
-        
+
         // Tablet values
         $cols_tab = $attributes['zolo_TABfbColumnsRange'] ?? $cols_desk;
         $gap_tab = $attributes['zolo_TABfbGapGap'] ?? $gap_desk;
         $row_gap_tab = $attributes['zolo_TABfbGapRowGap'] ?? $row_gap_desk;
         $col_gap_tab = $attributes['zolo_TABfbGapColGap'] ?? $col_gap_desk;
         $gap_unit_tab = $attributes['zolo_TABfbGapUnit'] ?? $gap_unit_desk;
-        
+
         // Mobile values
         $cols_mob = $attributes['zolo_MOBfbColumnsRange'] ?? $cols_tab;
         $gap_mob = $attributes['zolo_MOBfbGapGap'] ?? $gap_tab;
@@ -284,7 +353,7 @@ class FacebookFeed extends PostBlock {
         $gap_unit_mob = $attributes['zolo_MOBfbGapUnit'] ?? $gap_unit_tab;
 
         $css = '<style>';
-        
+
         // Desktop styles
         if ($layout === 'grid') {
             $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
@@ -313,7 +382,7 @@ class FacebookFeed extends PostBlock {
             }
             $css .= "}";
         }
-        
+
         // Tablet styles
         $css .= "@media (max-width: 1024px) {";
         if ($layout === 'grid') {
@@ -332,7 +401,7 @@ class FacebookFeed extends PostBlock {
             $css .= "}";
         }
         $css .= "}";
-        
+
         // Mobile styles
         $css .= "@media (max-width: 767px) {";
         if ($layout === 'grid') {
@@ -351,9 +420,9 @@ class FacebookFeed extends PostBlock {
             $css .= "}";
         }
         $css .= "}";
-        
+
         $css .= '</style>';
-        
+
         return $css;
     }
 
@@ -364,7 +433,8 @@ class FacebookFeed extends PostBlock {
      * @param int    $length  Maximum length
      * @return string
      */
-    private function truncate_content($content, $length) {
+    private function truncate_content($content, $length)
+    {
         if ($length === 0 || strlen($content) <= $length) {
             return $content;
         }
@@ -381,19 +451,21 @@ class FacebookFeed extends PostBlock {
      * @param int    $cache_expiration Cache expiration in seconds
      * @return array
      */
-    private function get_facebook_posts_from_api($page_id, $access_token, $count = 6, $cache_expiration = 3600) {
+    private function get_facebook_posts_from_api($page_id, $access_token, $count = 6, $cache_expiration = 3600)
+    {
         // Create cache key
         $cache_key = 'zolo_fb_posts_' . \md5($page_id . $access_token . $count);
-        
-        // Try to get from cache
+
+        // Try to get from cache (skip if force refresh is requested)
+        $force_refresh = isset($_GET['fb_refresh']) || isset($_GET['nocache']);
         $cached_posts = \get_transient($cache_key);
-        if ($cached_posts !== false) {
+        if ($cached_posts !== false && !$force_refresh) {
             return $cached_posts;
         }
 
         // Fetch from Facebook Graph API
         $api_url = \sprintf(
-            'https://graph.facebook.com/v18.0/%s/posts?fields=id,message,created_time,full_picture,likes.summary(true),comments.summary(true),shares&limit=%d&access_token=%s',
+            'https://graph.facebook.com/v18.0/%s/posts?fields=id,message,created_time,full_picture,reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(CARE).limit(0).summary(total_count).as(reactions_care),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry),reactions.limit(0).summary(total_count).as(reactions_total),comments.summary(true),shares&limit=%d&access_token=%s',
             \urlencode($page_id),
             $count,
             \urlencode($access_token)
@@ -428,7 +500,16 @@ class FacebookFeed extends PostBlock {
                 'content' => $post['message'] ?? '',
                 'hashtags' => $this->extract_hashtags($post['message'] ?? ''),
                 'image' => $post['full_picture'] ?? '',
-                'reactions' => $post['likes']['summary']['total_count'] ?? 0,
+                'reactions' => $post['reactions_total']['summary']['total_count'] ?? 0,
+                'reaction_types' => [
+                    'like' => $post['reactions_like']['summary']['total_count'] ?? 0,
+                    'love' => $post['reactions_love']['summary']['total_count'] ?? 0,
+                    'care' => $post['reactions_care']['summary']['total_count'] ?? 0,
+                    'wow' => $post['reactions_wow']['summary']['total_count'] ?? 0,
+                    'haha' => $post['reactions_haha']['summary']['total_count'] ?? 0,
+                    'sad' => $post['reactions_sad']['summary']['total_count'] ?? 0,
+                    'angry' => $post['reactions_angry']['summary']['total_count'] ?? 0,
+                ],
                 'comments' => $post['comments']['summary']['total_count'] ?? 0,
                 'shares' => $post['shares']['count'] ?? 0,
             ];
@@ -448,10 +529,11 @@ class FacebookFeed extends PostBlock {
      * @param string $access_token Access token
      * @return string
      */
-    private function get_page_name($page_id, $access_token) {
+    private function get_page_name($page_id, $access_token)
+    {
         $cache_key = 'zolo_fb_page_name_' . \md5($page_id);
         $cached_name = \get_transient($cache_key);
-        
+
         if ($cached_name !== false) {
             return $cached_name;
         }
@@ -463,7 +545,7 @@ class FacebookFeed extends PostBlock {
         );
 
         $response = \wp_remote_get($api_url);
-        
+
         if (!\is_wp_error($response)) {
             $body = \wp_remote_retrieve_body($response);
             $data = \json_decode($body, true);
@@ -482,10 +564,11 @@ class FacebookFeed extends PostBlock {
      * @param string $access_token Access token
      * @return string
      */
-    private function get_page_picture($page_id, $access_token) {
+    private function get_page_picture($page_id, $access_token)
+    {
         $cache_key = 'zolo_fb_page_picture_' . \md5($page_id);
         $cached_picture = \get_transient($cache_key);
-        
+
         if ($cached_picture !== false) {
             return $cached_picture;
         }
@@ -497,7 +580,7 @@ class FacebookFeed extends PostBlock {
         );
 
         $response = \wp_remote_get($api_url);
-        
+
         if (!\is_wp_error($response)) {
             $body = \wp_remote_retrieve_body($response);
             $data = \json_decode($body, true);
@@ -515,7 +598,8 @@ class FacebookFeed extends PostBlock {
      * @param string $date ISO date string
      * @return string
      */
-    private function format_date($date) {
+    private function format_date($date)
+    {
         if (empty($date)) {
             return '';
         }
@@ -546,7 +630,8 @@ class FacebookFeed extends PostBlock {
      * @param string $content Post content
      * @return array
      */
-    private function extract_hashtags($content) {
+    private function extract_hashtags($content)
+    {
         \preg_match_all('/#(\w+)/', $content, $matches);
         return !empty($matches[0]) ? \array_slice($matches[0], 0, 5) : [];
     }
@@ -557,7 +642,8 @@ class FacebookFeed extends PostBlock {
      * @param int $count Number of posts to retrieve
      * @return array
      */
-    private function get_demo_posts($count = 6) {
+    private function get_demo_posts($count = 6)
+    {
         // Demo posts - in production, fetch from Facebook API
         $demo_posts = [
             [
@@ -568,7 +654,16 @@ class FacebookFeed extends PostBlock {
                 'content' => 'The WP Social Ninja crew is all set for WordCamp Malaysia! 🇲🇾 Tomorrow, if you spot any of us at the venue, feel free to stop us, say hi, and let\'s chat about everything social media integration for WordPress sites! See you there!',
                 'hashtags' => ['#WordCampMY', '#WCMY25', '#WordCamp'],
                 'image' => 'https://via.placeholder.com/600x400',
-                'reactions' => 12,
+                'reactions' => 8,
+                'reaction_types' => [
+                    'like' => 0,
+                    'love' => 0,
+                    'care' => 8,
+                    'wow' => 0,
+                    'haha' => 0,
+                    'sad' => 0,
+                    'angry' => 0,
+                ],
                 'comments' => 5,
                 'shares' => 2,
             ],
@@ -580,6 +675,15 @@ class FacebookFeed extends PostBlock {
                 'content' => 'Exciting news! We just launched our new feature that helps you connect with your audience better. Check it out and let us know what you think!',
                 'image' => 'https://via.placeholder.com/600x400',
                 'reactions' => 22,
+                'reaction_types' => [
+                    'like' => 15,
+                    'love' => 7,
+                    'care' => 0,
+                    'wow' => 0,
+                    'haha' => 0,
+                    'sad' => 0,
+                    'angry' => 0,
+                ],
                 'comments' => 8,
                 'shares' => 4,
             ],
@@ -590,6 +694,15 @@ class FacebookFeed extends PostBlock {
                 'date' => '3 days ago',
                 'content' => 'Thanks to all our amazing users for your continued support! We couldn\'t do this without you. 💙',
                 'reactions' => 35,
+                'reaction_types' => [
+                    'like' => 25,
+                    'love' => 10,
+                    'care' => 0,
+                    'wow' => 0,
+                    'haha' => 0,
+                    'sad' => 0,
+                    'angry' => 0,
+                ],
                 'comments' => 12,
                 'shares' => 6,
             ],
@@ -602,6 +715,15 @@ class FacebookFeed extends PostBlock {
                 'hashtags' => ['#Webinar', '#SocialMedia'],
                 'image' => 'https://via.placeholder.com/600x400',
                 'reactions' => 18,
+                'reaction_types' => [
+                    'like' => 12,
+                    'love' => 3,
+                    'care' => 0,
+                    'wow' => 3,
+                    'haha' => 0,
+                    'sad' => 0,
+                    'angry' => 0,
+                ],
                 'comments' => 7,
                 'shares' => 3,
             ],

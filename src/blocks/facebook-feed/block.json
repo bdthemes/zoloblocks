@@ -4,7 +4,7 @@
     "name": "zolo/facebook-feed",
     "category": "zoloblocks",
     "keywords": ["facebook", "feed", "social", "timeline", "posts", "social media"],
-    "description": "Display Facebook posts in Timeline, Grid, Masonary or Carousel layouts.",
+    "description": "Display Facebook posts in Timeline, Grid, Masonry or Carousel layouts.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "attributes": {

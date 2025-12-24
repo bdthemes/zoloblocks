@@ -39,9 +39,10 @@
         }
     }
 
-    // Editor masonary layout
-    .zolo-fb-posts-container.layout-masonary {
-        column-gap: var(--masonary-gap, 20px);
+    // Editor masonry layout
+    .zolo-fb-posts-container.layout-masonry {
+        column-count: var(--masonry-columns, 3);
+        column-gap: var(--masonry-gap, 20px);
         
         .zolo-fb-post {
             break-inside: avoid;
@@ -49,7 +50,7 @@
             display: block;
             width: 100%;
             margin: 0;
-            margin-bottom: var(--masonary-gap, 20px);
+            margin-bottom: var(--masonry-gap, 20px);
         }
     }
 }

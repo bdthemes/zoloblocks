@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (layoutType === 'carousel') {
             initCarousel(block);
-        } else if (layoutType === 'masonary') {
-            initMasonary(block);
+        } else if (layoutType === 'masonry') {
+            initMasonry(block);
         }
 
         // Add click handlers for read more
@@ -101,7 +101,7 @@ function initCarousel(block) {
     });
 }
 
-function initMasonary(block) {
+function initMasonry(block) {
     const container = block.querySelector('.zolo-fb-posts-container');
     if (!container) return;
 
@@ -118,13 +118,13 @@ function initMasonary(block) {
     }
 }
 
-// Handle window resize for masonary
+// Handle window resize for masonry
 let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-        document.querySelectorAll('.zolo-facebook-feed[data-layout="masonary"]').forEach((block) => {
-            initMasonary(block);
+        document.querySelectorAll('.zolo-facebook-feed[data-layout="masonry"]').forEach((block) => {
+            initMasonry(block);
         });
     }, 100);
 });
