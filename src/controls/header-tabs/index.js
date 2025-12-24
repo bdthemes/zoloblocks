@@ -7,8 +7,9 @@ import { ZoloToggleGroupControl, ZoloToggleGroupControlOption } from '../core-co
 import { applyFilters } from '@wordpress/hooks';
 import { useEffect } from '@wordpress/element';
 import ProNotice from '../pro-notice';
+import BeforeTab from './before-tab';
 
-const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttributes, block = '' }) => {
+const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttributes, block = '', hideBefore = false }) => {
     const panelProps = { attributes, setAttributes };
     const { selectedTab } = attributes;
 
@@ -20,6 +21,11 @@ const HeaderTabs = ({ generalTab, styleTab, advancedTab, attributes, setAttribut
 
     return (
         <>
+            {
+                !hideBefore && (
+                    <BeforeTab {...panelProps}></BeforeTab>
+                )
+            }
             <div
                 className={`zolo-panel-control zolo-panel-control-header-tabs ${
                     selectedTab === 'basic'

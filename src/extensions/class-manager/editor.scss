@@ -1,0 +1,166 @@
+.zb-class-manager {
+    padding: 16px;
+
+    &>div[role='group'] {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .zb-class-manager-class-item {
+        width: auto;
+        height: 28px !important;
+        padding: 0 !important;
+        position: relative;
+
+        &:not(:last-child) {
+            padding: 8px 12px !important;
+            border: 1px solid #e9e9e9;
+        }
+
+        span {
+            min-width: auto !important;
+
+            &.zb-class-manager-class-item-remove {
+                width: 16px;
+                height: 16px;
+                position: absolute;
+                top: -8px;
+                right: -7px;
+                cursor: pointer;
+                background-color: #eb0000;
+                border-radius: 50%;
+                padding: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                svg {
+                    fill: #fff;
+                }
+            }
+        }
+    }
+
+    .zb-class-manager-search {
+        position: static;
+
+        .components-input-control__input {
+            min-height: auto !important;
+            height: 30px !important;
+            padding: 0;
+            padding-inline: 0 !important;
+        }
+    }
+
+    .zb-class-manager-add-btn {
+        min-height: auto !important;
+        min-width: auto !important;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #e9e9e9;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        transition: all 0.2s ease-in-out;
+
+        &:focus,
+        &:hover {
+            border-color: #001feb !important;
+
+            svg {
+                color: #001feb !important;
+            }
+        }
+    }
+}
+
+.zb-class-manager-input-dropdown-content {
+    min-width: 220px;
+    max-width: 220px;
+
+    .components-popover__content {
+        width: 100% !important;
+
+        .zolo-input-dropdown-content {
+            padding: 16px;
+        }
+    }
+
+    .zb-class-manager-classes {
+        padding: 0 !important;
+        max-height: 250px;
+        min-height: 50px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #c4c4c4;
+            border-radius: 6px;
+        }
+
+        .zb-class-manager-class {
+            cursor: pointer;
+            padding: 8px !important;
+            height: 30px !important;
+            border: 1px solid #e9e9e9;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            transition: all 0.2s ease-in-out;
+
+            &:not(:last-child) {
+                margin-bottom: 8px;
+            }
+
+
+            .components-menu-item__item {
+                justify-content: space-between !important;
+
+                .zb-class-manager-delete {
+                    width: 16px;
+                    height: 16px;
+
+                    svg {
+                        fill: #eb0000;
+                    }
+                }
+            }
+
+            &.zb-class-manager-class-selected {
+                background-color: #001feb;
+                color: #fff;
+
+                .components-text {
+                    color: #fff;
+                }
+
+                .zb-class-manager-delete {
+                    svg {
+                        fill: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    .zb-class-manager-input-dropdown-add {
+        width: 100%;
+        justify-content: center !important;
+        align-items: center;
+    }
+}
+
+.zb-class-manager-popover {
+    min-width: 300px !important;
+    .components-popover__content {
+        width: 100% !important;
+        padding: 16px !important;
+    }
+}
