@@ -22,7 +22,7 @@ const StyleControls = ({ value, onChange }) => {
                 if ('style' === tab.name) {
                     return (
                         <Panel>
-                            <PanelBody title="Typography" initialOpen={true}>
+                            <PanelBody title="Typography">
                                 <VStack>
                                     <Flex>
                                         <FlexBlock>

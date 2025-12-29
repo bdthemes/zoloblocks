@@ -16,10 +16,8 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
     const setParentStyle = (style) => {
         editEntityRecord('postType', 'zolo-class-manager', selectedClass?.id, { content: JSON.stringify(style) });
     }
-    const style = selectedSubSelector?.style ? selectedSubSelector?.style : parentStyle;
-    const onChange = setSelectedSubSelector ? setSelectedSubSelector : setSelectedClass;
-    console.log(style);
     
+
     return (
         <div className="controls-dropdown-content">
             <VStack className="controls-dropdown-content-header">
@@ -32,7 +30,7 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                 </Flex>
                 <Flex>
                     <FlexBlock>
-                        <InputControl 
+                        <InputControl
                             type="text"
                             placeholder="Write subselector here..."
                         />
@@ -49,15 +47,32 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                 </div>
             </VStack>
             <div className="controls-dropdown-content-body">
-                <StyleControls
-                    value={style}
-                    onChange={(value) => {
-                        setParentStyle({
-                            ...style,
-                            ...value
-                        });
-                    }}
-                />
+                {
+                    !selectedSubSelector ? (
+                        <StyleControls
+                            value={parentStyle}
+                            onChange={(value) => {
+                                setParentStyle({
+                                    ...parentStyle,
+                                    ...value
+                                });
+                            }}
+                        />
+                    ) : (
+                        <StyleControls
+                            value={selectedSubSelector?.style}
+                            onChange={(value) => {
+                                setSelectedSubSelector({
+                                    ...selectedSubSelector,
+                                    style: {
+                                        ...selectedSubSelector?.style,
+                                        ...value
+                                    }
+                                })
+                            }}
+                        />
+                    )
+                }
             </div>
         </div>
     )
