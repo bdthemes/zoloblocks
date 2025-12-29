@@ -1,11 +1,16 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Notice, Spinner } from '@wordpress/components';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { layoutTypes, defaultAttributes } from './attributes';
 import Inspector from './inspector';
 import Style from './styles';
 import { LikeEmoji, LoveEmoji, CareEmoji, WowEmoji, HahaEmoji, SadEmoji, AngryEmoji } from './ReactionEmojis';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import './editor.scss';
 
 const Edit = ({ attributes, setAttributes, clientId }) => {
@@ -29,7 +34,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         facebookPageId,
         facebookAccessToken,
         cacheExpiration,
+        resMode,
     } = attributes;
+
+    const carouselRef = useRef(null);
+    const swiperInstance = useRef(null);
 
     const [showApiNotice, setShowApiNotice] = useState(!facebookPageId || !facebookAccessToken);
     const [facebookPosts, setFacebookPosts] = useState([]);
@@ -139,6 +148,57 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
             setFacebookPosts([]);
         }
     }, [facebookPageId, facebookAccessToken, postsPerPage]);
+
+    // Initialize Swiper for carousel layout
+    useEffect(() => {
+        if (layoutType === 'carousel' && carouselRef.current && !swiperInstance.current) {
+            const container = carouselRef.current.querySelector('.swiper');
+            if (container) {
+                // Get columns based on responsive mode (max 3 for carousel)
+                const deskCols = Math.min(attributes.zolo_fbColumnsRange || 3, 3);
+                const tabCols = Math.min(attributes.zolo_TABfbColumnsRange || 2, 2);
+                const mobCols = 1;
+                
+                const slidesPerView = resMode === 'Desktop' ? deskCols : resMode === 'Tablet' ? tabCols : mobCols;
+
+                swiperInstance.current = new Swiper(container, {
+                    modules: [Navigation, Pagination, Autoplay],
+                    slidesPerView: slidesPerView,
+                    spaceBetween: 20,
+                    loop: carouselLoop,
+                    centeredSlides: false,
+                    watchSlidesProgress: true,
+                    watchOverflow: true,
+                    autoplay: carouselAutoplay ? {
+                        delay: carouselSpeed,
+                        disableOnInteraction: false,
+                    } : false,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            }
+        }
+
+        return () => {
+            if (swiperInstance.current) {
+                swiperInstance.current.destroy();
+                swiperInstance.current = null;
+            }
+        };
+    }, [layoutType, carouselAutoplay, carouselSpeed, carouselLoop, resMode, attributes.zolo_fbColumnsRange, attributes.zolo_TABfbColumnsRange, attributes.zolo_MOBfbColumnsRange]);
+
+    // Update Swiper when posts change
+    useEffect(() => {
+        if (swiperInstance.current) {
+            swiperInstance.current.update();
+        }
+    }, [facebookPosts]);
 
     // Demo posts for preview
     const demoPosts = [
@@ -297,13 +357,29 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
                 {!isLoading && !apiError && (
                     <div
+                        ref={carouselRef}
                         className={`zolo-fb-posts-container layout-${layoutType} zolo-facebook-feed-${uniqueId || `zolo-fb-${clientId.substr(0, 8)}`}`}
                         style={{
                             '--masonry-columns': attributes.zolo_fbColumnsRange || 3,
                             '--masonry-gap': `${attributes.zolo_fbGapGap || 20}${attributes.zolo_fbGapUnit || 'px'}`,
                         }}
                     >
-                        {(facebookPosts.length > 0 ? facebookPosts : demoPosts).map(renderPost)}
+                        {layoutType === 'carousel' ? (
+                            <div className="swiper">
+                                <div className="swiper-wrapper">
+                                    {(facebookPosts.length > 0 ? facebookPosts : demoPosts).map(post => (
+                                        <div key={post.id} className="swiper-slide">
+                                            {renderPost(post)}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="swiper-button-prev"></div>
+                                <div className="swiper-button-next"></div>
+                                <div className="swiper-pagination"></div>
+                            </div>
+                        ) : (
+                            (facebookPosts.length > 0 ? facebookPosts : demoPosts).map(renderPost)
+                        )}
                     </div>
                 )}
 

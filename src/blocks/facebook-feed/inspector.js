@@ -231,7 +231,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
-                            {(layoutType === 'grid' || layoutType === 'masonry') && (
+                            {(layoutType === 'grid' || layoutType === 'masonry' || layoutType === 'carousel') && (
                                 <ResCounterControl
                                     label={__('Columns', 'zoloblocks')}
                                     controlName={FB_COLUMNS}

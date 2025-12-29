@@ -74,6 +74,10 @@ export const defaultAttributes = {
         type: 'boolean',
         default: true,
     },
+    carouselSlidesPerView: {
+        type: 'number',
+        default: 3,
+    },
     facebookPageId: {
         type: 'string',
         default: '',

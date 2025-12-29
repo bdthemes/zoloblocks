@@ -53,4 +53,24 @@
             margin-bottom: var(--masonry-gap, 20px);
         }
     }
+
+    // Editor carousel layout
+    .zolo-fb-posts-container.layout-carousel {
+        .swiper {
+            overflow: visible; // Allow navigation buttons to show
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        .swiper-slide {
+            .zolo-fb-post {
+                margin-bottom: 0;
+            }
+        }
+    }
 }

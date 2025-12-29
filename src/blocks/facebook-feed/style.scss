@@ -1,8 +1,14 @@
+// Import Swiper styles
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 // Facebook Feed Block Styles
 .zolo-facebook-feed {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    overflow-x: hidden;
 
     .zolo-fb-posts-container {
         &.layout-timeline {
@@ -17,34 +23,106 @@
         }
 
         &.layout-masonry {
+            width: 100%;
+            
             .zolo-fb-post {
                 break-inside: avoid;
                 page-break-inside: avoid;
                 -webkit-column-break-inside: avoid;
-                display: inline-block;
-                width: 100%;
-                vertical-align: top;
+                display: block;
+                width: auto;
+                margin-bottom: 20px;
             }
         }
 
         &.layout-carousel {
             position: relative;
-            padding: 0 50px;
+            padding: 0;
+            overflow: hidden;
+
+            .swiper {
+                position: relative;
+                width: calc(100% - 100px);
+                margin: 0 auto;
+                padding: 0 0 40px;
+                overflow: hidden;
+            }
+
+            .swiper-wrapper {
+                display: flex;
+                align-items: flex-start;
+            }
+
+            .swiper-slide {
+                height: auto;
+                display: flex;
+                align-items: flex-start;
+            }
+
+            .zolo-fb-post {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
 
             .swiper-button-prev,
             .swiper-button-next {
                 color: #1877f2;
+                width: 40px;
+                height: 40px;
+                background: #fff;
+                border-radius: 50%;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                transition: all 0.3s ease;
+                z-index: 10;
+                opacity: 1 !important;
+                visibility: visible !important;
                 
                 &:after {
-                    font-size: 24px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                &:hover {
+                    background: #f0f2f5;
+                    transform: scale(1.05);
                 }
             }
 
+            .swiper-button-prev {
+                left: 10px;
+            }
+
+            .swiper-button-next {
+                right: 10px;
+            }
+
+            .swiper-button-disabled {
+                opacity: 0.35;
+                cursor: not-allowed;
+            }
+
             .swiper-pagination {
-                bottom: -30px;
+                bottom: 0;
+                position: relative;
+                margin-top: 20px;
+                text-align: center;
+
+                .swiper-pagination-bullet {
+                    width: 10px;
+                    height: 10px;
+                    background: #ccc;
+                    opacity: 1;
+                    margin: 0 4px;
+                    transition: all 0.3s ease;
+                    border-radius: 50%;
+                }
 
                 .swiper-pagination-bullet-active {
                     background: #1877f2;
+                    width: 24px;
+                    border-radius: 5px;
                 }
             }
         }
@@ -297,15 +375,122 @@
             column-count: 1 !important;
         }
 
-        &.layout-carousel {
-            padding: 0 35px;
+        .zolo-fb-posts-container.layout-carousel {
+            .swiper {
+                padding: 0 35px 40px;
+            }
 
             .swiper-button-prev,
             .swiper-button-next {
+                width: 32px;
+                height: 32px;
+                
                 &:after {
-                    font-size: 18px;
+                    font-size: 16px;
                 }
             }
+        }
+    }
+}
+
+// Additional Carousel Styles for Frontend
+.zolo-facebook-feed-carousel {
+    .swiper {
+        position: relative;
+        width: 100%;
+        padding: 0 50px 40px;
+        overflow: visible;
+
+        @media (max-width: 640px) {
+            padding: 0 35px 40px;
+        }
+    }
+
+    .swiper-wrapper {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .swiper-slide {
+        height: auto;
+        display: flex;
+        align-items: stretch;
+
+        .zolo-fb-post {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        color: #1877f2;
+        width: 40px;
+        height: 40px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        
+        &:after {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        &:hover {
+            background: #f0f2f5;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 640px) {
+            width: 32px;
+            height: 32px;
+            
+            &:after {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .swiper-button-prev {
+        left: 0;
+    }
+
+    .swiper-button-next {
+        right: 0;
+    }
+
+    .swiper-button-disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+
+    .swiper-pagination {
+        bottom: 0;
+        position: relative;
+        margin-top: 20px;
+        text-align: center;
+
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            opacity: 1;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #1877f2;
+            width: 24px;
+            border-radius: 5px;
+        }
+
+        .swiper-pagination-bullet-active-main {
+            background: #1877f2;
         }
     }
 }

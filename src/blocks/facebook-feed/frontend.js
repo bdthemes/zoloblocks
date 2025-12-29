@@ -40,41 +40,53 @@ function initCarousel(block) {
     const autoplay = block.dataset.carouselAutoplay === 'true';
     const speed = parseInt(block.dataset.carouselSpeed) || 3000;
     const loop = block.dataset.carouselLoop === 'true';
+    const columns = parseInt(block.dataset.columns) || 3;
 
-    // Wrap posts in swiper-wrapper
-    const posts = container.querySelectorAll('.zolo-fb-post');
-    const wrapper = document.createElement('div');
-    wrapper.className = 'swiper-wrapper';
-    
-    posts.forEach((post) => {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        slide.appendChild(post.cloneNode(true));
-        wrapper.appendChild(slide);
-    });
+    // Create swiper container if it doesn't exist
+    let swiperContainer = container.querySelector('.swiper');
+    if (!swiperContainer) {
+        // Wrap posts in swiper-wrapper
+        const posts = container.querySelectorAll('.zolo-fb-post');
+        const wrapper = document.createElement('div');
+        wrapper.className = 'swiper-wrapper';
+        
+        posts.forEach((post) => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            slide.appendChild(post.cloneNode(true));
+            wrapper.appendChild(slide);
+        });
 
-    container.innerHTML = '';
-    container.appendChild(wrapper);
+        swiperContainer = document.createElement('div');
+        swiperContainer.className = 'swiper';
+        container.innerHTML = '';
+        swiperContainer.appendChild(wrapper);
 
-    // Add navigation
-    const navPrev = document.createElement('div');
-    navPrev.className = 'swiper-button-prev';
-    const navNext = document.createElement('div');
-    navNext.className = 'swiper-button-next';
-    container.appendChild(navPrev);
-    container.appendChild(navNext);
+        // Add navigation
+        const navPrev = document.createElement('div');
+        navPrev.className = 'swiper-button-prev';
+        const navNext = document.createElement('div');
+        navNext.className = 'swiper-button-next';
+        swiperContainer.appendChild(navPrev);
+        swiperContainer.appendChild(navNext);
 
-    // Add pagination
-    const pagination = document.createElement('div');
-    pagination.className = 'swiper-pagination';
-    container.appendChild(pagination);
+        // Add pagination
+        const pagination = document.createElement('div');
+        pagination.className = 'swiper-pagination';
+        swiperContainer.appendChild(pagination);
+
+        container.appendChild(swiperContainer);
+    }
 
     // Initialize Swiper
-    new Swiper(container, {
+    new Swiper(swiperContainer, {
         modules: [Navigation, Pagination, Autoplay],
-        slidesPerView: 1,
+        slidesPerView: 3,
         spaceBetween: 20,
         loop: loop,
+        centeredSlides: false,
+        watchSlidesProgress: true,
+        watchOverflow: true,
         autoplay: autoplay ? {
             delay: speed,
             disableOnInteraction: false,
@@ -86,16 +98,20 @@ function initCarousel(block) {
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
+            dynamicBullets: true,
         },
         breakpoints: {
-            640: {
+            320: {
                 slidesPerView: 1,
+                spaceBetween: 20,
             },
             768: {
                 slidesPerView: 2,
+                spaceBetween: 20,
             },
             1024: {
                 slidesPerView: 3,
+                spaceBetween: 20,
             },
         },
     });
