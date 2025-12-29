@@ -40,7 +40,7 @@ const StyleControls = ({ value, onChange }) => {
                                             />
                                         </FlexBlock>
                                         <FlexItem>
-                                            <ZoloSelectControl 
+                                            <ZoloSelectControl
                                                 label="Font Weight"
                                                 value={value?.typography?.fontWeight}
                                                 onChange={(newValue) => {
@@ -66,6 +66,11 @@ const StyleControls = ({ value, onChange }) => {
                                                         fontSize: newValue
                                                     }
                                                 })
+                                            }}
+                                            units={{
+                                                px: { max: 200, step: 1 },
+                                                em: { max: 10, step: 0.1 },
+                                                rem: { max: 10, step: 0.1 },
                                             }}
                                         />
                                     </ZoloResponsive>
