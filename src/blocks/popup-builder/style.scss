@@ -133,6 +133,19 @@ body.zolo-popup-fixed {
     }
 }
 
+.wp-block-zolo-popup-builder {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .15s ease;
+}
+
+.wp-block-zolo-popup-builder.zolo-popup-show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 .admin-bar {
     .wp-block-zolo-popup-builder {
         &.info_bar {
