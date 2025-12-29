@@ -16,7 +16,6 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
     const setParentStyle = (style) => {
         editEntityRecord('postType', 'zolo-class-manager', selectedClass?.id, { content: JSON.stringify(style) });
     }
-    
 
     return (
         <div className="controls-dropdown-content">
@@ -28,22 +27,54 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                         <Button className='controls-dropdown-content-header-controls-button' size='small' icon={trash} label='Delete' showTooltip />
                     </FlexItem>
                 </Flex>
-                <Flex>
-                    <FlexBlock>
-                        <InputControl
-                            type="text"
-                            placeholder="Write subselector here..."
-                        />
-                    </FlexBlock>
-                    <FlexItem>
-                        <Button variant='primary' icon={plus}>Add</Button>
-                    </FlexItem>
-                </Flex>
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        const form = new FormData(e.target);
+                        const subselector = form.get('subselector');
+                        const isSubselectorExist = attributes?.classManagerSubselector?.find((item) => item?.title === subselector);
+                        if (!subselector || isSubselectorExist) {
+                            return;
+                        }
+                        setAttributes({
+                            classManagerSubselector: [
+                                ...attributes.classManagerSubselector,
+                                {
+                                    parent: selectedClass?.id,
+                                    title: subselector,
+                                    style: {}
+                                }
+                            ]
+                        });
+                        //reset form
+                        e.target.reset();
+                    }}
+                >
+                    <Flex>
+                        <FlexBlock>
+                            <input
+                                type="text"
+                                name="subselector"
+                                placeholder="Write subselector here..."
+                            />
+                        </FlexBlock>
+                        <FlexItem>
+                            <Button type='submit' variant='primary' icon={plus}>Add</Button>
+                        </FlexItem>
+                    </Flex>
+                </form>
                 <div className="controls-dropdown-content-subselector-group">
-                    <Button variant='secondary'>
-                        <span>subselector</span>
-                        <span className="controls-dropdown-content-subselector-group__icon">{close}</span>
-                    </Button>
+                    {
+                        attributes?.classManagerSubselector?.map((item) => (
+                            <Button
+                                variant='secondary'
+                                onClick={() => setSelectedSubSelector(item)}
+                            >
+                                <span>{item?.title}</span>
+                                <span className="controls-dropdown-content-subselector-group__icon">{close}</span>
+                            </Button>
+                        ))
+                    }
                 </div>
             </VStack>
             <div className="controls-dropdown-content-body">
@@ -62,13 +93,18 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                         <StyleControls
                             value={selectedSubSelector?.style}
                             onChange={(value) => {
-                                setSelectedSubSelector({
-                                    ...selectedSubSelector,
+                                const classIndex = attributes?.classManagerSubselector.findIndex((item) => item?.title === selectedSubSelector?.title && selectedClass?.id === item?.parent);
+                                const newSubSelectors = [...attributes?.classManagerSubselector];
+                                newSubSelectors[classIndex] = {
+                                    ...newSubSelectors[classIndex],
                                     style: {
-                                        ...selectedSubSelector?.style,
+                                        ...newSubSelectors[classIndex]?.style,
                                         ...value
                                     }
-                                })
+                                }
+                                setAttributes({
+                                    classManagerSubselector: newSubSelectors
+                                });
                             }}
                         />
                     )
