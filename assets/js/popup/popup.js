@@ -1,101 +1,152 @@
-(function () {
-    const FIXED_CLASS = 'zolo-popup-fixed';
-    const SHOW_CLASS = 'zolo-popup-show';
-    const EXPIRY_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+(function() {
+    'use strict';
 
-    function safeGet(key) {
-        try {
-            const raw = localStorage.getItem(key);
-            return raw ? JSON.parse(raw) : null;
-        } catch (e) {
-            return null;
-        }
-    }
+    // Store original body classes to preserve them
+    let originalBodyClasses = [];
 
-    function safeSet(key, value) {
-        try {
-            localStorage.setItem(key, JSON.stringify(value));
-        } catch (e) {
-            /* ignore storage errors */
-        }
-    }
-
-    function safeRemove(key) {
-        try {
-            localStorage.removeItem(key);
-        } catch (e) {
-            /* ignore */
-        }
-    }
-
-    function processPopups() {
+    // Initialize popup functionality
+    function initZoloPopups() {
         const zoloPopups = document.querySelectorAll('.wp-block-zolo-popup-builder');
-        if (!zoloPopups || zoloPopups.length === 0) return;
 
-        zoloPopups.forEach(function (popup, index) {
-            // stable key per popup: prefer data-popup-id, otherwise page path + index
-            const popupIdAttr = popup.getAttribute('data-popup-id');
-            const popupKeyId = popupIdAttr ? popupIdAttr : window.location.pathname + '|zolo-popup-' + index;
-            const storageKey = 'zolo_popup_closed_' + popupKeyId;
+        if (!zoloPopups || zoloPopups.length === 0) {
+            return;
+        }
 
-            // skip showing if closed recently
-            const closedRecord = safeGet(storageKey);
-            if (closedRecord && closedRecord.closedAt) {
-                if (Date.now() - closedRecord.closedAt < EXPIRY_MS) {
-                    // keep hidden
-                    return;
-                } else {
-                    // expired; allow showing again
-                    safeRemove(storageKey);
-                }
-            }
+        // Store original body classes if not already stored
+        if (originalBodyClasses.length === 0) {
+            originalBodyClasses = Array.from(document.body.classList);
+        }
 
+        zoloPopups.forEach(function(popup) {
             const type = popup.getAttribute('data-type');
+            const delay = popup.getAttribute('data-delay');
             const bgFixed = popup.getAttribute('data-bg-fixed');
             const closeBtn = popup.querySelector('.zolo-popup-close-btn');
 
-            // show popup by adding CSS class (preserves inline styles / avoids flash)
-            popup.classList.add(SHOW_CLASS);
+            // Show popup with delay
+            showPopupWithDelay(popup, delay);
 
-            // add fixed body class if necessary (safe via classList)
-            if (type === 'popup_box' && bgFixed === 'true') {
-                if (document.body.classList && document.body.classList.add) {
-                    document.body.classList.add(FIXED_CLASS);
-                } else {
-                    if (!new RegExp('\\b' + FIXED_CLASS + '\\b').test(document.body.className)) {
-                        document.body.className = (document.body.className + ' ' + FIXED_CLASS).trim();
-                    }
-                }
+            // Handle close button
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    closePopup(popup, type, bgFixed);
+                });
             }
 
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function () {
-                    // hide popup
-                    popup.classList.remove(SHOW_CLASS);
+            // Handle escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && popup.style.display !== 'none') {
+                    closePopup(popup, type, bgFixed);
+                }
+            });
 
-                    // remove fixed class if set
-                    if (type === 'popup_box' && bgFixed === 'true') {
-                        if (document.body.classList && document.body.classList.remove) {
-                            document.body.classList.remove(FIXED_CLASS);
-                        } else {
-                            document.body.className = document.body.className
-                                .replace(new RegExp('\\b' + FIXED_CLASS + '\\b', 'g'), '')
-                                .replace(/\s{2,}/g, ' ')
-                                .trim();
-                        }
+            // Handle overlay click
+            if (type === 'popup_box' && popup.classList.contains('zolo-popup-overlay')) {
+                popup.addEventListener('click', function(e) {
+                    if (e.target === popup) {
+                        closePopup(popup, type, bgFixed);
                     }
-
-                    // persist closed state for 7 days
-                    safeSet(storageKey, { closedAt: Date.now() });
                 });
             }
         });
     }
 
-    // Run as early as possible: DOMContentLoaded if loading, otherwise run immediately
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', processPopups);
-    } else {
-        processPopups();
+    // Show popup with delay
+    function showPopupWithDelay(popup, delay) {
+        const delayTime = delay ? parseInt(delay, 10) : 0;
+
+        setTimeout(function() {
+            // Add show class for smooth transition
+            popup.classList.add('zolo-popup-show');
+            popup.style.display = 'flex';
+
+            // Add body class for fixed background if needed
+            const type = popup.getAttribute('data-type');
+            const bgFixed = popup.getAttribute('data-bg-fixed');
+
+            if (type === 'popup_box' && bgFixed === 'true') {
+                addBodyFixedClass();
+            }
+        }, delayTime);
     }
+
+    // Close popup
+    function closePopup(popup, type, bgFixed) {
+        // Remove show class for smooth transition
+        popup.classList.remove('zolo-popup-show');
+
+        // Hide popup after transition
+        setTimeout(function() {
+            popup.style.display = 'none';
+
+            // Remove body class if needed
+            if (type === 'popup_box' && bgFixed === 'true') {
+                removeBodyFixedClass();
+            }
+        }, 150); // Match CSS transition duration
+    }
+
+    // Add body fixed class while preserving other classes
+    function addBodyFixedClass() {
+        if (!document.body.classList.contains('zolo-popup-fixed')) {
+            document.body.classList.add('zolo-popup-fixed');
+        }
+    }
+
+    // Remove body fixed class while preserving other classes
+    function removeBodyFixedClass() {
+        document.body.classList.remove('zolo-popup-fixed');
+    }
+
+    // Restore original body classes (for static site generation)
+    function restoreOriginalBodyClasses() {
+        if (originalBodyClasses.length > 0) {
+            document.body.className = '';
+            originalBodyClasses.forEach(function(className) {
+                document.body.classList.add(className);
+            });
+        }
+    }
+
+    // Initialize on DOM content loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initZoloPopups);
+    } else {
+        initZoloPopups();
+    }
+
+    // Also initialize on window load for dynamic content
+    window.addEventListener('load', initZoloPopups);
+
+    // Handle dynamic content (AJAX, etc.)
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                const hasNewPopup = Array.from(mutation.addedNodes).some(function(node) {
+                    return node.nodeType === 1 && (
+                        node.classList.contains('wp-block-zolo-popup-builder') ||
+                        node.querySelector && node.querySelector('.wp-block-zolo-popup-builder')
+                    );
+                });
+
+                if (hasNewPopup) {
+                    setTimeout(initZoloPopups, 100);
+                }
+            }
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    // Expose functions for external use
+    window.ZoloPopup = {
+        init: initZoloPopups,
+        close: closePopup,
+        restoreBodyClasses: restoreOriginalBodyClasses
+    };
+
 })();
