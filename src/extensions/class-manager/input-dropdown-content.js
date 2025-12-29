@@ -60,7 +60,6 @@ const InputDropdownContent = ({ attributes, setAttributes }) => {
                                                     {
                                                         id: item?.id,
                                                         title: item?.title?.rendered,
-                                                        style: {}
                                                     }]
                                             })
                                         }

@@ -1,7 +1,25 @@
 import { Flex, FlexBlock, FlexItem, __experimentalVStack as VStack, Button, Dropdown, __experimentalInputControl as InputControl } from '@wordpress/components';
 import { plus, close, seen, unseen, trash } from '@wordpress/icons';
 import StyleControls from './style-controls';
-const ControlsDropdownContent = ({ selectedClass, attributes, setAttributes }) => {
+import { useSelect, useDispatch, use } from '@wordpress/data';
+const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubSelector, setSelectedSubSelector, attributes, setAttributes }) => {
+    const { style: parentStyle } = useSelect((select) => {
+        const { getEditedEntityRecord, getEntityRecord } = select('core');
+        const data = getEntityRecord('postType', 'zolo-class-manager', selectedClass?.id);
+        const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', selectedClass?.id);
+        return {
+            style: data && editedData?.content ? JSON.parse(editedData?.content) : '',
+        }
+    }, [selectedClass]);
+
+    const { editEntityRecord } = useDispatch('core');
+    const setParentStyle = (style) => {
+        editEntityRecord('postType', 'zolo-class-manager', selectedClass?.id, { content: JSON.stringify(style) });
+    }
+    const style = selectedSubSelector?.style ? selectedSubSelector?.style : parentStyle;
+    const onChange = setSelectedSubSelector ? setSelectedSubSelector : setSelectedClass;
+    console.log(style);
+    
     return (
         <div className="controls-dropdown-content">
             <VStack className="controls-dropdown-content-header">
@@ -31,7 +49,15 @@ const ControlsDropdownContent = ({ selectedClass, attributes, setAttributes }) =
                 </div>
             </VStack>
             <div className="controls-dropdown-content-body">
-                <StyleControls attributes={attributes} setAttributes={setAttributes}/>
+                <StyleControls
+                    value={style}
+                    onChange={(value) => {
+                        setParentStyle({
+                            ...style,
+                            ...value
+                        });
+                    }}
+                />
             </div>
         </div>
     )

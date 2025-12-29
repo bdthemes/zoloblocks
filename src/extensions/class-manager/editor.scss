@@ -14,6 +14,15 @@
         padding: 0 !important;
         position: relative;
 
+        &.zb-class-manager-class-item-selected {
+            background-color: #001feb;
+            color: #fff;
+
+            .components-text{
+                color: #fff;
+            }
+        }
+
         &:not(:last-child) {
             padding: 8px 12px !important;
             border: 1px solid #e9e9e9;
@@ -162,5 +171,9 @@
     .components-popover__content {
         width: 100% !important;
         padding: 16px !important;
+
+        .components-base-control__field{
+            gap: 0 !important;
+        }
     }
 }

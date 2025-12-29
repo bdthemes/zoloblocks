@@ -4,10 +4,12 @@ import { Popover, Dropdown, MenuGroup, MenuItem, __experimentalText as Text } fr
 import InputDropdownContent from './input-dropdown-content';
 import { plus, close } from '@wordpress/icons';
 import ControlsDropdownContent from './controls-dropdown-content';
+import classNames from 'classnames';
 const Inspector = createHigherOrderComponent((WrappedComponent) => {
     return (props) => {
         const { attributes, setAttributes } = props;
         const [selectedClass, setSelectedClass] = useState(null);
+        const [selectedSubSelector, setSelectedSubSelector] = useState(null);
         const containerRef = useRef(null);
         function closeIfFocusOutside() {
             if (!containerRef.current) {
@@ -22,6 +24,7 @@ const Inspector = createHigherOrderComponent((WrappedComponent) => {
                 (!dialog || dialog.contains(containerRef.current))
             ) {
                 setSelectedClass(null);
+                setSelectedSubSelector(null);
             }
         }
 
@@ -33,9 +36,14 @@ const Inspector = createHigherOrderComponent((WrappedComponent) => {
                             return (
                                 <MenuItem
                                     key={index}
-                                    className='zb-class-manager-class-item'
+                                    className={classNames('zb-class-manager-class-item', { 'zb-class-manager-class-item-selected': item?.id === selectedClass?.id })}
                                     onClick={() => {
-                                        setSelectedClass(item);
+                                        if (selectedClass?.id === item?.id) {
+                                            setSelectedClass(null);
+                                            setSelectedSubSelector(null);
+                                        } else {
+                                            setSelectedClass(item);
+                                        }
                                     }}
                                     ref={containerRef}
                                 >
@@ -51,7 +59,13 @@ const Inspector = createHigherOrderComponent((WrappedComponent) => {
                                             tabIndex={0}
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                setAttributes({ classManager: attributes?.classManager?.filter((classItem) => classItem?.id !== item?.id) })
+                                                setAttributes({
+                                                    classManager: attributes?.classManager?.filter((classItem) => classItem?.id !== item?.id)
+                                                });
+                                                if (selectedClass?.id === item?.id) {
+                                                    setSelectedClass(null);
+                                                    setSelectedSubSelector(null);
+                                                }
                                             }}>
                                             {close}
                                         </span>
@@ -78,7 +92,11 @@ const Inspector = createHigherOrderComponent((WrappedComponent) => {
                             )}
                             renderContent={() => {
                                 return (
-                                    <InputDropdownContent {...props} setSelectedClass={setSelectedClass} selectedClass={selectedClass} />
+                                    <InputDropdownContent
+                                        setSelectedClass={setSelectedClass}
+                                        selectedClass={selectedClass}
+                                        {...props}
+                                    />
                                 )
                             }}
                         />
@@ -93,9 +111,16 @@ const Inspector = createHigherOrderComponent((WrappedComponent) => {
                             onFocusOutside={closeIfFocusOutside}
                             onClose={() => {
                                 setSelectedClass(null);
+                                setSelectedSubSelector(null);
                             }}
                         >
-                            <ControlsDropdownContent {...props} selectedClass={selectedClass} setSelectedClass={setSelectedClass} />
+                            <ControlsDropdownContent
+                                selectedClass={selectedClass}
+                                setSelectedClass={setSelectedClass}
+                                selectedSubSelector={selectedSubSelector}
+                                setSelectedSubSelector={setSelectedSubSelector}
+                                {...props}
+                            />
                         </Popover>
                     )
                 }
