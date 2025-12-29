@@ -39,16 +39,16 @@
             const storageKey = 'zolo_popup_closed_' + popupKeyId;
 
             // skip showing if closed recently
-            const closedRecord = safeGet(storageKey);
-            if (closedRecord && closedRecord.closedAt) {
-                if (Date.now() - closedRecord.closedAt < EXPIRY_MS) {
-                    // keep hidden
-                    return;
-                } else {
-                    // expired; allow showing again
-                    safeRemove(storageKey);
-                }
-            }
+            // const closedRecord = safeGet(storageKey);
+            // if (closedRecord && closedRecord.closedAt) {
+            //     if (Date.now() - closedRecord.closedAt < EXPIRY_MS) {
+            //         // keep hidden
+            //         return;
+            //     } else {
+            //         // expired; allow showing again
+            //         safeRemove(storageKey);
+            //     }
+            // }
 
             const type = popup.getAttribute('data-type');
             const bgFixed = popup.getAttribute('data-bg-fixed');
