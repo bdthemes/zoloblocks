@@ -1104,6 +1104,7 @@ export const MASK_SHAPES = [
     { label: __('Square Pattern', 'zoloblocks'), value: 'squar-pattern' },
     { label: __('Testimonial', 'zoloblocks'), value: 'testimonial' },
     { label: __('Triangle Blob', 'zoloblocks'), value: 'triangle-blob' },
+    { label: __('Custom', 'zoloblocks'), value: 'custom' },
 ];
 
 // mask position

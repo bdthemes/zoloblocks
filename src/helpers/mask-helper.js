@@ -4,6 +4,10 @@ export const generateMaskAttributes = (controlName) => {
             type: 'string',
             default: '',
         },
+        [`${controlName}CustomMaskImage`]: {
+            type: 'object',
+            default: null,
+        },
         [`${controlName}MaskSize`]: {
             type: 'string',
             default: 'auto',
@@ -22,6 +26,7 @@ export const generateMaskAttributes = (controlName) => {
 export const generateMaskStyles = ({ controlName, attributes }) => {
     const {
         [`${controlName}MaskImage`]: maskImage,
+        [`${controlName}CustomMaskImage`]: customMaskImage,
         [`${controlName}MaskSize`]: maskSize,
         [`${controlName}MaskPosition`]: maskPosition,
         [`${controlName}MaskRepeat`]: maskRepeat,
@@ -29,17 +34,24 @@ export const generateMaskStyles = ({ controlName, attributes }) => {
 
     let maskStyle = '';
     if (maskImage) {
-        maskStyle += `mask-image: url(${zoloSettings?.maskShapes[maskImage]});`;
-        if (maskSize) {
-            maskStyle += `mask-size: ${maskSize};`;
+        if (maskImage === 'custom' && customMaskImage?.url) {
+            maskStyle += `mask-image: url(${customMaskImage.url});`;
+        } else if (zoloSettings?.maskShapes[maskImage]) {
+            maskStyle += `mask-image: url(${zoloSettings?.maskShapes[maskImage]});`;
         }
 
-        if (maskPosition) {
-            maskStyle += `mask-position: ${maskPosition};`;
-        }
+        if (maskStyle !== '') {
+            if (maskSize) {
+                maskStyle += `mask-size: ${maskSize};`;
+            }
 
-        if (maskRepeat) {
-            maskStyle += `mask-repeat: ${maskRepeat};`;
+            if (maskPosition) {
+                maskStyle += `mask-position: ${maskPosition};`;
+            }
+
+            if (maskRepeat) {
+                maskStyle += `mask-repeat: ${maskRepeat};`;
+            }
         }
     }
 
