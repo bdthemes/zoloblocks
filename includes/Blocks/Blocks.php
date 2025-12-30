@@ -159,6 +159,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Circle Info', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
+        'is_pro' => true, 
         'demo' => 'https://demo.zoloblocks.com/circle-info',
         'video' => 'https://www.youtube.com/watch?v=EbKbp0iELeo',
     ],
