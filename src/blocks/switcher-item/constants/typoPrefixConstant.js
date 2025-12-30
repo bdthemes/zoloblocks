@@ -1,1 +1,0 @@
-export const TYPO_PREFIX_TITLE = 'TYPO_PREFIX_TITLE';

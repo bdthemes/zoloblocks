@@ -827,6 +827,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Switcher', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
+        'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/switcher',
         'video' => 'https://www.youtube.com/watch?v=8kBMIL-4PZI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
@@ -835,6 +836,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Switcher Item', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
+        'is_pro' => true,
         'is_child' => true,
     ],
 ]);
