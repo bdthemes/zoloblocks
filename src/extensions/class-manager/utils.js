@@ -11,3 +11,12 @@ export const fontWeightOptions = [
     { label: __('800', 'zoloblocks'), value: '800' },
     { label: __('900', 'zoloblocks'), value: '900' },
 ];
+
+export function minifyCSS(css) {
+    return css
+        .replace(/\/\*[\s\S]*?\*\//g, '') // remove comments
+        .replace(/\s+/g, ' ')             // collapse whitespace
+        .replace(/\s*([{}:;,])\s*/g, '$1')// trim around tokens
+        .replace(/;}/g, '}')              // optional micro-opt
+        .trim();
+}

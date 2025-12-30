@@ -1,8 +1,11 @@
-import { Flex, FlexBlock, FlexItem, __experimentalVStack as VStack, Button, Dropdown, __experimentalInputControl as InputControl } from '@wordpress/components';
+import { Flex, FlexBlock, FlexItem, __experimentalVStack as VStack, Button, __experimentalText as Text } from '@wordpress/components';
 import { plus, close, seen, unseen, trash } from '@wordpress/icons';
 import StyleControls from './style-controls';
-import { useSelect, useDispatch, use } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { useState } from '@wordpress/element';
+import { commentEditLink } from '@wordpress/icons';
 const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubSelector, setSelectedSubSelector, attributes, setAttributes }) => {
+    const [isEditing, setIsEditing] = useState(false);
     const { style: parentStyle } = useSelect((select) => {
         const { getEditedEntityRecord, getEntityRecord } = select('core');
         const data = getEntityRecord('postType', 'zolo-class-manager', selectedClass?.id);
@@ -12,7 +15,7 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
         }
     }, [selectedClass]);
 
-    const { editEntityRecord } = useDispatch('core');
+    const { editEntityRecord, deleteEntityRecord } = useDispatch('core');
     const setParentStyle = (style) => {
         editEntityRecord('postType', 'zolo-class-manager', selectedClass?.id, { content: JSON.stringify(style) });
     }
@@ -21,10 +24,46 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
         <div className="controls-dropdown-content">
             <VStack className="controls-dropdown-content-header">
                 <Flex>
-                    <FlexItem className="controls-dropdown-content-header-title">{selectedClass?.title}</FlexItem>
+                    <FlexItem
+                        className="controls-dropdown-content-header-title"
+                        onDoubleClick={(e) => {
+                            setIsEditing(true);
+                            e.target.focus();
+                        }}
+                    >
+                        <Button
+                            variant="tertiary"
+                            icon={commentEditLink}
+                            onClick={() => {
+                                setIsEditing(false);
+                            }}
+                        >
+                            <Text>{selectedSubSelector?.title || selectedClass?.title}</Text>
+                        </Button>
+                    </FlexItem>
                     <FlexItem className="controls-dropdown-content-header-controls">
-                        <Button className='controls-dropdown-content-header-controls-button' size='small' icon={seen} label='Show/Hide' showTooltip />
-                        <Button className='controls-dropdown-content-header-controls-button' size='small' icon={trash} label='Delete' showTooltip />
+                        <Button
+                            className='controls-dropdown-content-header-controls-button'
+                            size='small'
+                            icon={attributes?.unseenClass === selectedClass?.title ? unseen : seen}
+                            label={attributes?.unseenClass === selectedClass?.title ? 'Show' : 'Hide'}
+                            showTooltip
+                            onClick={() => {
+                                setAttributes({
+                                    unseenClass: attributes?.unseenClass === selectedClass?.title ? '' : selectedClass?.title
+                                })
+                            }}
+                        />
+                        <Button
+                            className='controls-dropdown-content-header-controls-button'
+                            size='small'
+                            icon={trash}
+                            label='Delete'
+                            showTooltip
+                            onClick={() => {
+                                deleteEntityRecord('postType', 'zolo-class-manager', selectedClass?.id);
+                            }}
+                        />
                     </FlexItem>
                 </Flex>
                 <form
@@ -65,10 +104,13 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                 </form>
                 <div className="controls-dropdown-content-subselector-group">
                     {
-                        attributes?.classManagerSubselector?.map((item) => (
+                        attributes?.classManagerSubselector?.filter((item) => item?.parent === selectedClass?.id)?.map((item) => (
                             <Button
                                 variant='secondary'
-                                onClick={() => setSelectedSubSelector(item)}
+                                className={selectedSubSelector?.title === item?.title ? 'active' : ''}
+                                onClick={() => {
+                                    setSelectedSubSelector(selectedSubSelector?.title === item?.title ? null : item);
+                                }}
                             >
                                 <span>{item?.title}</span>
                                 <span className="controls-dropdown-content-subselector-group__icon">{close}</span>
@@ -91,7 +133,7 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                         />
                     ) : (
                         <StyleControls
-                            value={selectedSubSelector?.style}
+                            value={attributes?.classManagerSubselector?.find((item) => item?.title === selectedSubSelector?.title && selectedClass?.id === item?.parent)?.style}
                             onChange={(value) => {
                                 const classIndex = attributes?.classManagerSubselector.findIndex((item) => item?.title === selectedSubSelector?.title && selectedClass?.id === item?.parent);
                                 const newSubSelectors = [...attributes?.classManagerSubselector];
