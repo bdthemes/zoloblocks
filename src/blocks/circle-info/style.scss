@@ -1,0 +1,612 @@
+:root {
+    --zolo-circle-wrap-size: clamp(300px, 60vw, 650px);
+    --zolo-circle-item-size: clamp(40px, 8vw, 70px);
+    --zolo-circle-rotation-step: 45deg;
+    --zolo-circle-main-item-size: clamp(50px, 12vw, 100px);
+    
+    // Layer-specific animation speeds (fallback values)
+    --zolo-layer1-time: 50s;
+    --zolo-layer2-time: 100s;
+    --zolo-layer3-time: 100s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.zolo-block-circle-icon-wrap {
+    position: relative; // Establishes stacking context
+    .zolo-circle-icon-wrap {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        height: 100vh;
+    }
+}
+
+.zolo-circle-icon-wrap .zolo-list-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.zolo-circle-icon-wrap > li {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; // Base z-index for all layers
+}
+
+.zolo-circle-icon-wrap > li a {
+    outline: none;
+}
+
+.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover ul {
+    border-width: 2px;
+    border-color: #d2c8ff;
+    animation-play-state: paused;
+}
+
+.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover ul .zolo__display-icon,
+.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover ul .zolo-circle-item-img,
+.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover ul a[data-tooltip]:before,
+.zolo-circle-animation-enabled .zolo-circle-icon-wrap > li:hover ul a[data-tooltip]:after {
+    animation-play-state: paused;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap {
+    border: 2px dotted #efecff;
+    position: relative;
+    padding: 0;
+    border-radius: 50%;
+    list-style: none;
+    box-sizing: content-box;
+    transition: all 0.3s ease-in-out;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap li {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: all 0.3s ease-in-out;
+    align-items: center;
+    justify-content: center;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap li {
+    width: var(--zolo-circle-item-size);
+    height: var(--zolo-circle-item-size);
+    margin: calc(-1 * var(--zolo-circle-item-size) / 2);
+}
+
+.zolo-block-circle-icon-wrap .zolo-list_two li {
+    --zolo-circle-item-size: clamp(35px, 7vw, 50px);
+}
+
+.zolo-block-circle-icon-wrap .zolo-list_one li {
+    --zolo-circle-item-size: clamp(30px, 5vw, 45px);
+}
+
+/* যদি .zolo-list_two এবং .zolo-list_one দুটোই থাকে, তাহলে transition-delay হবে 0.7s */
+.zolo-circle-icon-wrap:has(.zolo-list_two li):has(.zolo-list_one li) .zolo-list_three li {
+    transition-delay: 0.5s;
+}
+
+/* যদি শুধুমাত্র .zolo-list_two থাকে, তাহলে transition-delay হবে 0.3s */
+.zolo-circle-icon-wrap:has(.zolo-list_two li):not(:has(.zolo-list_one li)) .zolo-list_three li {
+    transition-delay: 0.3s;
+}
+
+/* যদি .zolo-list_two বা .zolo-list_one না থাকে, তাহলে .zolo-list_three-এর transition-delay থাকবে না */
+.zolo-circle-icon-wrap:not(:has(.zolo-list_two li, .zolo-list_one li)) .zolo-list_three li {
+    transition-delay: 0s;
+}
+
+/* সবসময় .zolo-list_two-এর li-তে transition-delay 0.4s হবে */
+.zolo-circle-icon-wrap .zolo-list_two li {
+    transition-delay: 0.3s;
+}
+
+/* লাস্ট আইটেম  li-তে transition-delay 0.4s হবে */
+.zolo-circle-icon-wrap li:nth-last-child(1) .zolo-circle-list-wrap li {
+    transition-delay: 0s;
+}
+
+.zolo-circle-icon-wrap .zolo-list-item .zolo__display-icon {
+    border: 1px solid #efecff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    position: relative; // For z-index to work
+    z-index: 1; // Ensures links are clickable
+}
+
+.zolo-circle-icon-wrap .zolo-list-item .zolo__display-icon:hover {
+    transform: scale(1.2);
+    z-index: 10; // Bring to front on hover
+}
+
+.zolo-block-circle-icon-wrap .zolo-main-circle-item {
+    z-index: 5; // Center circle - always on top
+    width: var(--zolo-circle-main-item-size);
+    height: var(--zolo-circle-main-item-size);
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid #f6f4ff;
+    padding: 5px;
+}
+
+.zolo-block-circle-icon-wrap .zolo-main-circle-item:hover {
+    box-shadow: unset;
+}
+
+// Main image rotation stop on hover - only when hover animation is enabled
+.zolo-hover-animation-enabled.zolo-circle-animation-enabled
+    .zolo-block-circle-icon-wrap
+    .zolo-main-circle-item:hover
+    .zolo-circle-main-img {
+    transform: rotate(0deg);
+}
+
+.zolo-circle-main-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+}
+
+.zolo-circle-animation-enabled .zolo-circle-main-img {
+    transform: rotate(-1turn);
+}
+
+// Hover animation - only apply when hover animation is enabled
+.zolo-hover-animation-enabled .zolo-circle-icon-wrap > li.zolo-main-circle-item:hover ~ li > ul {
+    width: 0;
+    height: 0;
+}
+
+.zolo-hover-animation-enabled .zolo-circle-icon-wrap > li.zolo-main-circle-item:hover ~ li > ul * {
+    transform: translate(0);
+}
+
+// Animation styles - only apply when animation is enabled
+// Each layer has its own speed control
+
+// Layer 3 (outermost) - Circle rotates clockwise
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three {
+    animation: zolo_circle_one var(--zolo-layer3-time, 100s) linear infinite;
+}
+
+// Layer 3 - Content counter-rotates to stay upright (including tooltips)
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three .zolo__display-icon,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three .zolo-circle-item-img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three a[data-tooltip]:before,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three a[data-tooltip]:after {
+    animation: zolo_circle_two var(--zolo-layer3-time, 100s) linear infinite;
+}
+
+// Layer 2 (middle) - Circle rotates counter-clockwise
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two {
+    animation: zolo_circle_two var(--zolo-layer2-time, 100s) linear infinite;
+}
+
+// Layer 2 - Content counter-rotates to stay upright (including tooltips)
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two .zolo__display-icon,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two .zolo-circle-item-img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two a[data-tooltip]:before,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two a[data-tooltip]:after {
+    animation: zolo_circle_one var(--zolo-layer2-time, 100s) linear infinite;
+}
+
+// Layer 1 (innermost) - Circle rotates clockwise
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one {
+    animation: zolo_circle_one var(--zolo-layer1-time, 50s) linear infinite;
+}
+
+// Layer 1 - Content counter-rotates to stay upright (including tooltips)
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one .zolo__display-icon,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one .zolo-circle-item-img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one a[data-tooltip]:before,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one a[data-tooltip]:after {
+    animation: zolo_circle_two var(--zolo-layer1-time, 50s) linear infinite;
+}
+
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one .zolo__display-icon,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one .zolo-circle-item-img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one a[data-tooltip]:before,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_one a[data-tooltip]:after,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two .zolo__display-icon,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two .zolo-circle-item-img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two a[data-tooltip]:before,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_two a[data-tooltip]:after,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three .zolo__display-icon,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three .zolo-circle-item-img,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three a[data-tooltip]:before,
+.zolo-circle-animation-enabled .zolo-block-circle-icon-wrap .zolo-list_three a[data-tooltip]:after {
+    animation-play-state: running;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap {
+    width: var(--zolo-circle-wrap-size);
+    height: var(--zolo-circle-wrap-size);
+}
+
+/* Layer specific z-index for proper stacking */
+.zolo-circle-icon-wrap > li:has(.zolo-list_three) {
+    z-index: 1; // Outermost layer - lowest
+}
+
+.zolo-circle-icon-wrap > li:has(.zolo-list_two) {
+    z-index: 2; // Middle layer
+}
+
+.zolo-circle-icon-wrap > li:has(.zolo-list_one) {
+    z-index: 3; // Innermost layer - highest (except main circle)
+}
+
+/* .zolo-list_two এর জন্য আলাদা সাইজ */
+.zolo-block-circle-icon-wrap .zolo-list_two {
+    --zolo-circle-wrap-size: clamp(200px, 40vw, 450px);
+}
+
+/* .zolo-list_one এর জন্য সঠিক সাইজ */
+.zolo-block-circle-icon-wrap .zolo-list_one {
+    --zolo-circle-wrap-size: clamp(120px, 25vw, 300px);
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > li {
+    transform: rotate(calc(var(--zolo-circle-rotation-step) * var(--index))) translate(calc(var(--zolo-circle-wrap-size) / 2))
+        rotate(calc(-1 * var(--zolo-circle-rotation-step) * var(--index)));
+}
+
+// Ensure the content inside list items stays upright (not rotated)
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > li .zolo__display-icon,
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > li .zolo-circle-item-img {
+    display: block;
+}
+
+// Dynamic rotation step based on item count
+// Layer 3 (zolo-list_three) - Default 45deg for 8 items
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(1):last-child) > li {
+    --zolo-circle-rotation-step: 360deg; // 1 item
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(2):last-child) > li {
+    --zolo-circle-rotation-step: 180deg; // 2 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(3):last-child) > li {
+    --zolo-circle-rotation-step: 120deg; // 3 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(4):last-child) > li {
+    --zolo-circle-rotation-step: 90deg; // 4 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(5):last-child) > li {
+    --zolo-circle-rotation-step: 72deg; // 5 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(6):last-child) > li {
+    --zolo-circle-rotation-step: 60deg; // 6 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(7):last-child) > li {
+    --zolo-circle-rotation-step: 51.43deg; // 7 items (360/7)
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(8):last-child) > li {
+    --zolo-circle-rotation-step: 45deg; // 8 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(9):last-child) > li {
+    --zolo-circle-rotation-step: 40deg; // 9 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(10):last-child) > li {
+    --zolo-circle-rotation-step: 36deg; // 10 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(11):last-child) > li {
+    --zolo-circle-rotation-step: 32.73deg; // 11 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(12):last-child) > li {
+    --zolo-circle-rotation-step: 30deg; // 12 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(13):last-child) > li {
+    --zolo-circle-rotation-step: 27.69deg; // 13 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(14):last-child) > li {
+    --zolo-circle-rotation-step: 25.71deg; // 14 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(15):last-child) > li {
+    --zolo-circle-rotation-step: 24deg; // 15 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(16):last-child) > li {
+    --zolo-circle-rotation-step: 22.5deg; // 16 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(17):last-child) > li {
+    --zolo-circle-rotation-step: 21.18deg; // 17 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(18):last-child) > li {
+    --zolo-circle-rotation-step: 20deg; // 18 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(19):last-child) > li {
+    --zolo-circle-rotation-step: 18.95deg; // 19 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_three:has(li:nth-child(20):last-child) > li {
+    --zolo-circle-rotation-step: 18deg; // 20 items
+}
+
+// Layer 2 (zolo-list_two)
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(1):last-child) > li {
+    --zolo-circle-rotation-step: 360deg; // 1 item
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(2):last-child) > li {
+    --zolo-circle-rotation-step: 180deg; // 2 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(3):last-child) > li {
+    --zolo-circle-rotation-step: 120deg; // 3 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(4):last-child) > li {
+    --zolo-circle-rotation-step: 90deg; // 4 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(5):last-child) > li {
+    --zolo-circle-rotation-step: 72deg; // 5 items (default)
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(6):last-child) > li {
+    --zolo-circle-rotation-step: 60deg; // 6 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(7):last-child) > li {
+    --zolo-circle-rotation-step: 51.43deg; // 7 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(8):last-child) > li {
+    --zolo-circle-rotation-step: 45deg; // 8 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(9):last-child) > li {
+    --zolo-circle-rotation-step: 40deg; // 9 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(10):last-child) > li {
+    --zolo-circle-rotation-step: 36deg; // 10 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(11):last-child) > li {
+    --zolo-circle-rotation-step: 32.73deg; // 11 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(12):last-child) > li {
+    --zolo-circle-rotation-step: 30deg; // 12 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(13):last-child) > li {
+    --zolo-circle-rotation-step: 27.69deg; // 13 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(14):last-child) > li {
+    --zolo-circle-rotation-step: 25.71deg; // 14 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(15):last-child) > li {
+    --zolo-circle-rotation-step: 24deg; // 15 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(16):last-child) > li {
+    --zolo-circle-rotation-step: 22.5deg; // 16 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(17):last-child) > li {
+    --zolo-circle-rotation-step: 21.18deg; // 17 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(18):last-child) > li {
+    --zolo-circle-rotation-step: 20deg; // 18 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(19):last-child) > li {
+    --zolo-circle-rotation-step: 18.95deg; // 19 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_two:has(li:nth-child(20):last-child) > li {
+    --zolo-circle-rotation-step: 18deg; // 20 items
+}
+
+// Layer 1 (zolo-list_one)
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(1):last-child) > li {
+    --zolo-circle-rotation-step: 360deg; // 1 item
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(2):last-child) > li {
+    --zolo-circle-rotation-step: 180deg; // 2 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(3):last-child) > li {
+    --zolo-circle-rotation-step: 120deg; // 3 items (default)
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(4):last-child) > li {
+    --zolo-circle-rotation-step: 90deg; // 4 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(5):last-child) > li {
+    --zolo-circle-rotation-step: 72deg; // 5 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(6):last-child) > li {
+    --zolo-circle-rotation-step: 60deg; // 6 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(7):last-child) > li {
+    --zolo-circle-rotation-step: 51.43deg; // 7 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(8):last-child) > li {
+    --zolo-circle-rotation-step: 45deg; // 8 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(9):last-child) > li {
+    --zolo-circle-rotation-step: 40deg; // 9 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(10):last-child) > li {
+    --zolo-circle-rotation-step: 36deg; // 10 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(11):last-child) > li {
+    --zolo-circle-rotation-step: 32.73deg; // 11 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(12):last-child) > li {
+    --zolo-circle-rotation-step: 30deg; // 12 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(13):last-child) > li {
+    --zolo-circle-rotation-step: 27.69deg; // 13 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(14):last-child) > li {
+    --zolo-circle-rotation-step: 25.71deg; // 14 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(15):last-child) > li {
+    --zolo-circle-rotation-step: 24deg; // 15 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(16):last-child) > li {
+    --zolo-circle-rotation-step: 22.5deg; // 16 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(17):last-child) > li {
+    --zolo-circle-rotation-step: 21.18deg; // 17 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(18):last-child) > li {
+    --zolo-circle-rotation-step: 20deg; // 18 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(19):last-child) > li {
+    --zolo-circle-rotation-step: 18.95deg; // 19 items
+}
+.zolo-block-circle-icon-wrap .zolo-list_one:has(li:nth-child(20):last-child) > li {
+    --zolo-circle-rotation-step: 18deg; // 20 items
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(1) {
+    --index: 0;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(2) {
+    --index: 1;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(3) {
+    --index: 2;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(4) {
+    --index: 3;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(5) {
+    --index: 4;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(6) {
+    --index: 5;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(7) {
+    --index: 6;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(8) {
+    --index: 7;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(9) {
+    --index: 8;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(10) {
+    --index: 9;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(11) {
+    --index: 10;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(12) {
+    --index: 11;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(13) {
+    --index: 12;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(14) {
+    --index: 13;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(15) {
+    --index: 14;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(16) {
+    --index: 15;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(17) {
+    --index: 16;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(18) {
+    --index: 17;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(19) {
+    --index: 18;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-list-wrap > :nth-of-type(20) {
+    --index: 19;
+}
+
+.zolo-block-circle-icon-wrap .zolo__display-icon {
+    padding: 20px;
+}
+
+.zolo-block-circle-icon-wrap .zolo__display-icon svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.zolo-block-circle-icon-wrap .zolo-circle-item-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+@keyframes zolo_circle_one {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+@keyframes zolo_circle_two {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-1turn);
+    }
+}
+
+// Tooltip styles - always stay upright like icon/image
+.zolo-list-item a[data-tooltip] {
+    position: relative;
+}
+
+// Tooltip text - stays upright via counter-animation (same as icon/image)
+.zolo-list-item a[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: nowrap;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.zolo-list-item a[data-tooltip]:hover:before,
+.zolo-list-item a[data-tooltip]:hover:after {
+    opacity: 1;
+    visibility: visible;
+}
