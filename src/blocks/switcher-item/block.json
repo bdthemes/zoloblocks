@@ -1,0 +1,19 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Switcher Item",
+    "name": "zolo/switcher-item",
+    "category": "zoloblocks",
+    "parent": ["zolo/switcher"],
+    "keywords": ["switcher", "item", "content"],
+    "description": "Individual switcher content item.",
+    "apiVersion": 3,
+    "textdomain": "zoloblocks",
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "reusable": false,
+        "html": false
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css"
+}
