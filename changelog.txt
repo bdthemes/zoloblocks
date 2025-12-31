@@ -1,3 +1,10 @@
+### 2.5.0 [December 31, 2025]
+
+- **New Features:**
+  - Added Flexbox block
+  - Added Circle Info block (pro)
+  - Added Switcher block (pro)
+
 ### 2.4.0 [December 4, 2025]
 
 **Bug Fixes:**
