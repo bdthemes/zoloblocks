@@ -613,10 +613,10 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 ### 2.5.0 [December 31, 2025]
 
-**New Features:**
-- Added Circle Info block
-- Added Switcher block
-- Added Flexbox block
+- **New Features:**
+  - Added Flexbox block
+  - Added Circle Info block (pro)
+  - Added Switcher block (pro)
 
 ### 2.4.0 [December 4, 2025]
 
