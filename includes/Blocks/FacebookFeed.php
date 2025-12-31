@@ -77,8 +77,9 @@ class FacebookFeed extends PostBlock
         $layout_type = \esc_attr($attributes['layoutType'] ?? 'timeline');
         $posts_per_page = \absint($attributes['postsPerPage'] ?? 6);
 
-        $facebook_page_id = $attributes['facebookPageId'] ?? '';
-        $access_token = $attributes['facebookAccessToken'] ?? '';
+        // Get Facebook credentials from WordPress options
+        $facebook_page_id = get_option('zolo_facebook_page_id', '');
+        $access_token = get_option('zolo_facebook_access_token', '');
         $facebook_url = !empty($facebook_page_id) ? 'https://www.facebook.com/' . \urlencode($facebook_page_id) : 'https://www.facebook.com';
 
         // Get posts from Facebook or use demo data

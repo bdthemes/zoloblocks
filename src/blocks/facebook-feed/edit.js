@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Notice, Spinner } from '@wordpress/components';
 import { useEffect, useState, useRef } from '@wordpress/element';
+import apiFetch from '@wordpress/api-fetch';
 import { layoutTypes, defaultAttributes } from './attributes';
 import Inspector from './inspector';
 import Style from './styles';
@@ -40,7 +41,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     const carouselRef = useRef(null);
     const swiperInstance = useRef(null);
 
-    const [showApiNotice, setShowApiNotice] = useState(!facebookPageId || !facebookAccessToken);
+    const [showApiNotice, setShowApiNotice] = useState(false);
     const [facebookPosts, setFacebookPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [apiError, setApiError] = useState(null);
@@ -58,96 +59,76 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
     // Fetch Facebook posts when credentials are available
     useEffect(() => {
-        if (facebookPageId && facebookAccessToken) {
-            setIsLoading(true);
-            setApiError(null);
+        setIsLoading(true);
+        setApiError(null);
 
-            // First, fetch page info (name and picture)
-            const pageInfoUrl = `https://graph.facebook.com/v18.0/${encodeURIComponent(facebookPageId)}?fields=name,picture&access_token=${encodeURIComponent(facebookAccessToken)}`;
+        // Fetch Facebook posts from WordPress REST API
+        apiFetch({
+            path: `/zolo/v1/facebook-feed?posts_per_page=${postsPerPage}`,
+        })
+            .then((response) => {
+                if (response.page_name && response.posts) {
+                    const pageName = response.page_name;
+                    const pageAvatar = response.page_avatar || 'https://via.placeholder.com/50';
 
-            fetch(pageInfoUrl)
-                .then(response => response.json())
-                .then(pageData => {
-                    if (pageData.error) {
-                        setApiError(pageData.error.message);
-                        setFacebookPosts([]);
-                        setIsLoading(false);
-                        return;
-                    }
+                    // Format posts
+                    const formattedPosts = response.posts.map((post, index) => {
+                        const createdDate = new Date(post.created_time);
+                        const now = new Date();
+                        const diffTime = Math.abs(now - createdDate);
+                        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                        const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+                        const diffMinutes = Math.floor(diffTime / (1000 * 60));
 
-                    const pageName = pageData.name || facebookPageId;
-                    const pageAvatar = pageData.picture?.data?.url || 'https://via.placeholder.com/50';
+                        let timeAgo;
+                        if (diffDays > 0) {
+                            timeAgo = `${diffDays} ${diffDays === 1 ? 'day' : 'days'} ago`;
+                        } else if (diffHours > 0) {
+                            timeAgo = `${diffHours} ${diffHours === 1 ? 'hour' : 'hours'} ago`;
+                        } else {
+                            timeAgo = `${diffMinutes} ${diffMinutes === 1 ? 'minute' : 'minutes'} ago`;
+                        }
 
-                    // Then fetch posts with detailed reactions
-                    const postsUrl = `https://graph.facebook.com/v18.0/${encodeURIComponent(facebookPageId)}/posts?fields=id,message,created_time,full_picture,reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(CARE).limit(0).summary(total_count).as(reactions_care),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry),reactions.limit(0).summary(total_count).as(reactions_total),comments.summary(true),shares&limit=${postsPerPage}&access_token=${encodeURIComponent(facebookAccessToken)}`;
+                        // Extract hashtags
+                        const hashtags = post.message ? post.message.match(/#\w+/g) || [] : [];
 
-                    return fetch(postsUrl)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.error) {
-                                setApiError(data.error.message);
-                                setFacebookPosts([]);
-                            } else if (data.data && data.data.length > 0) {
-                                // Format posts
-                                const formattedPosts = data.data.map((post, index) => {
-                                    const createdDate = new Date(post.created_time);
-                                    const now = new Date();
-                                    const diffTime = Math.abs(now - createdDate);
-                                    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                                    const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
-                                    const diffMinutes = Math.floor(diffTime / (1000 * 60));
-
-                                    let timeAgo;
-                                    if (diffDays > 0) {
-                                        timeAgo = `${diffDays} ${diffDays === 1 ? 'day' : 'days'} ago`;
-                                    } else if (diffHours > 0) {
-                                        timeAgo = `${diffHours} ${diffHours === 1 ? 'hour' : 'hours'} ago`;
-                                    } else {
-                                        timeAgo = `${diffMinutes} ${diffMinutes === 1 ? 'minute' : 'minutes'} ago`;
-                                    }
-
-                                    // Extract hashtags
-                                    const hashtags = post.message ? post.message.match(/#\w+/g) || [] : [];
-
-                                    return {
-                                        id: post.id || index,
-                                        author: pageName,
-                                        avatar: pageAvatar,
-                                        date: timeAgo,
-                                        content: post.message || '',
-                                        hashtags: hashtags.slice(0, 5),
-                                        image: post.full_picture || '',
-                                        reactions: {
-                                            like: post.reactions_like?.summary?.total_count || 0,
-                                            love: post.reactions_love?.summary?.total_count || 0,
-                                            care: post.reactions_care?.summary?.total_count || 0,
-                                            wow: post.reactions_wow?.summary?.total_count || 0,
-                                            haha: post.reactions_haha?.summary?.total_count || 0,
-                                            sad: post.reactions_sad?.summary?.total_count || 0,
-                                            angry: post.reactions_angry?.summary?.total_count || 0,
-                                        },
-                                        totalReactions: post.reactions_total?.summary?.total_count || 0,
-                                        comments: post.comments?.summary?.total_count || 0,
-                                        shares: post.shares?.count || 0,
-                                    };
-                                });
-                                setFacebookPosts(formattedPosts);
-                            } else {
-                                setFacebookPosts([]);
-                            }
-                            setIsLoading(false);
-                        });
-                })
-                .catch(error => {
-                    console.error('Error fetching Facebook data:', error);
-                    setApiError(error.message);
+                        return {
+                            id: post.id || index,
+                            author: pageName,
+                            avatar: pageAvatar,
+                            date: timeAgo,
+                            content: post.message || '',
+                            hashtags: hashtags.slice(0, 5),
+                            image: post.full_picture || '',
+                            reactions: {
+                                like: post.reactions_like?.summary?.total_count || 0,
+                                love: post.reactions_love?.summary?.total_count || 0,
+                                care: post.reactions_care?.summary?.total_count || 0,
+                                wow: post.reactions_wow?.summary?.total_count || 0,
+                                haha: post.reactions_haha?.summary?.total_count || 0,
+                                sad: post.reactions_sad?.summary?.total_count || 0,
+                                angry: post.reactions_angry?.summary?.total_count || 0,
+                            },
+                            totalReactions: post.reactions_total?.summary?.total_count || 0,
+                            comments: post.comments?.summary?.total_count || 0,
+                            shares: post.shares?.count || 0,
+                        };
+                    });
+                    setFacebookPosts(formattedPosts);
+                    setShowApiNotice(false);
+                } else {
                     setFacebookPosts([]);
-                    setIsLoading(false);
-                });
-        } else {
-            setFacebookPosts([]);
-        }
-    }, [facebookPageId, facebookAccessToken, postsPerPage]);
+                }
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching Facebook data:', error);
+                setApiError(error.message || __('Failed to fetch Facebook posts. Please check your API settings.', 'zoloblocks'));
+                setFacebookPosts([]);
+                setShowApiNotice(true);
+                setIsLoading(false);
+            });
+    }, [postsPerPage]);
 
     // Initialize Swiper for carousel layout
     useEffect(() => {
