@@ -90,6 +90,8 @@ export const AdvancedOptions = (props) => {
     const interactions = applyFilters('zolo.extensions.controls.interactions', [], block, panelProps);
     const backgroundParallax = applyFilters('zolo.extensions.controls.backgroundParallax', [], block, panelProps);
     const transform = applyFilters('zolo.extensions.controls.transform', [], block, panelProps);
+    const shapeDivider = applyFilters('zolo.extensions.controls.shapeDivider', [], panelProps);
+    const shapeBuilder = applyFilters('zolo.extensions.controls.shapeBuilder', [], panelProps);
 
     return (
         <>
@@ -410,6 +412,10 @@ export const AdvancedOptions = (props) => {
             {interactions && interactions.length > 0 && interactions}
             {/* Transform animation */}
             {transform && transform.length > 0 && transform}
+            {/* Shape Divider */}
+            {shapeDivider && shapeDivider.length > 0 && shapeDivider}
+            {/* Shape Builder */}
+            {shapeBuilder && shapeBuilder.length > 0 && shapeBuilder}
             {animationPanels && animationPanels.length > 0 && animationPanels}
             <ZoloPanelBody title={__('Custom CSS', 'zoloblocks')} panelProps={props} extraPanel={true} isNew={true}>
                 <CustomCSSControl attributes={attributes} setAttributes={setAttributes} />
