@@ -2,6 +2,7 @@
 require_once ZOLO_DIR_PATH . 'includes/Blocks/PostGrid.php';
 require_once ZOLO_DIR_PATH . 'includes/Blocks/PostList.php';
 require_once ZOLO_DIR_PATH . 'includes/Blocks/FacebookFeed.php';
+require_once ZOLO_DIR_PATH . 'includes/Blocks/FacebookReviews.php';
 
 return apply_filters('zolo_blocks_list_data', [
     'container' => [
@@ -211,6 +212,15 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         'class' => 'Zolo\Blocks\FacebookFeed',
         'demo' => 'https://demo.zoloblocks.com/facebook-feed',
+        'video' => 'https://youtu.be/sample',
+    ],
+    'facebook-reviews' => [
+        'name' => 'facebook-reviews',
+        'title' => __('Facebook Reviews', 'zoloblocks'),
+        'categories' => ['social'],
+        'status' => true,
+        'class' => 'Zolo\Blocks\FacebookReviews',
+        'demo' => 'https://demo.zoloblocks.com/facebook-reviews',
         'video' => 'https://youtu.be/sample',
     ],
     'google-map' => [

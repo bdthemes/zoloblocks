@@ -1,0 +1,33 @@
+// Editor-specific styles
+.zolo-facebook-reviews {
+    // Editor masonry layout
+    .zolo-fb-reviews-container.layout-masonry {
+        column-count: var(--masonry-columns, 3);
+        column-gap: var(--masonry-gap, 20px);
+        
+        .zolo-fb-review-card {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+
+    // Ensure cards display properly in editor
+    .zolo-fb-review-card {
+        cursor: default;
+        
+        a {
+            pointer-events: none;
+        }
+    }
+
+    // Editor carousel adjustments
+    &.layout-carousel {
+        .swiper-button-prev,
+        .swiper-button-next {
+            pointer-events: auto;
+        }
+    }
+}
