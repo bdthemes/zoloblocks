@@ -62,10 +62,27 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         setIsLoading(true);
         setApiError(null);
 
-        // Fetch Facebook reviews from WordPress REST API
-        apiFetch({
-            path: `/zolo/v1/facebook-reviews?reviews_per_page=${reviewsPerPage}`,
-        })
+        wp.apiFetch({ path: '/wp/v2/settings' })
+            .then((settings) => {
+                const pageId = settings.zolo_facebook_page_id || '';
+                const accessToken = settings.zolo_facebook_access_token || '';
+
+                if (!pageId || !accessToken) {
+                    throw new Error(__('Facebook Page ID or Access Token not configured.', 'zoloblocks'));
+                }
+
+                // Fetch directly from Facebook Graph API
+                const reviewsUrl = `https://graph.facebook.com/v18.0/${pageId}/ratings?fields=id,created_time,recommendation_type,review_text,reviewer{id,name,picture}&access_token=${accessToken}&limit=${reviewsPerPage}`;
+
+                return fetch(reviewsUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            throw new Error(data.error.message);
+                        }
+                        return { reviews: data.data || [], page_id: pageId };
+                    });
+            })
             .then((response) => {
                 if (response.reviews) {
                     const pageIdFromApi = response.page_id || '';
@@ -94,6 +111,10 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
                         const reviewerName = review.reviewer?.name || 'Anonymous';
                         let reviewerAvatar = review.reviewer?.picture?.data?.url || review.reviewer?.picture?.url || '';
+
+                        console.log(review);
+                        console.log(review.reviewer?.name);
+                        console.log(review.reviewer?.picture?.data?.url)
                         
                         // If picture is a string URL, use it directly
                         if (!reviewerAvatar && typeof review.reviewer?.picture === 'string') {
@@ -370,7 +391,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
     return (
         <>
-            <Style attributes={attributes} uniqueId={uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`} />
+            <Style 
+                attributes={attributes} 
+                setAttributes={setAttributes}
+                uniqueId={uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`} 
+            />
 
             <Inspector
                 attributes={attributes}

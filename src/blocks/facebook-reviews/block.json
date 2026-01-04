@@ -118,7 +118,7 @@
         },
         "headerTitle": {
             "type": "string",
-            "default": "Facebook Reviews"
+            "default": "reviews & recommendations"
         },
         "showWriteReviewBtn": {
             "type": "boolean",

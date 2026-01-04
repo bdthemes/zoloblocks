@@ -45,7 +45,7 @@ function Inspector(props) {
         resMode,
         setAttributes,
         attributes,
-        objAttributes,
+        objAttributes: objAttributes,
     };
 
     return (
@@ -310,7 +310,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                     </>
                 }
-                advanceTab={
+                advancedTab={
                     <>
                         <AdvancedOptions
                             attributes={attributes}

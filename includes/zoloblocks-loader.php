@@ -81,7 +81,6 @@ class ZoloBlocks_Loader {
         GetPostMetaV1::getInstance();
         ZoloAi::getInstance();
         FacebookFeedV1::getInstance();
-        FacebookReviewsV1::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();

@@ -1,3 +1,10 @@
+const {
+    generateDimensionAttributes,
+    generateBorderAttributies,
+    generateBoxShadowAttributies,
+    generateNormalBGAttributes,
+} = window.zoloModule;
+
 import { generateResCounterAttributies } from '../../helpers/res-counter-helper';
 import { generateGapAttributes } from '../../helpers/gap-helper';
 import { FB_REVIEWS_COLUMNS, FB_REVIEWS_GAP } from './constants';
@@ -9,6 +16,31 @@ export const layoutTypes = {
 };
 
 export const defaultAttributes = {
+    // global config
+    globalConfig: {
+        type: 'object',
+        default: {
+            margin: {
+                prefix: 'fbReviewsMargin',
+            },
+            padding: {
+                prefix: 'fbReviewsPadding',
+            },
+            background: {
+                prefix: 'fbReviewsBg',
+            },
+            border: {
+                prefix: 'fbReviewsBorder',
+            },
+            borderRadius: {
+                prefix: 'fbReviewsBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'fbReviewsBoxShadow',
+            },
+            responsiveControls: true,
+        },
+    },
     uniqueId: {
         type: 'string',
         default: '',
@@ -106,6 +138,13 @@ export const defaultAttributes = {
         defaultRange: 20,
         defaultUnit: 'px',
     }),
+    // Advanced Options attributes
+    ...generateDimensionAttributes('fbReviewsMargin'),
+    ...generateDimensionAttributes('fbReviewsPadding'),
+    ...generateNormalBGAttributes('fbReviewsBg'),
+    ...generateBorderAttributies('fbReviewsBorder'),
+    ...generateDimensionAttributes('fbReviewsBorderRadius'),
+    ...generateBoxShadowAttributies('fbReviewsBoxShadow'),
 };
 
 export default defaultAttributes;
