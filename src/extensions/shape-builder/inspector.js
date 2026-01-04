@@ -129,29 +129,6 @@ const Inspector = ({ panelProps }) => {
         );
     };
 
-    // Conditional wrapper for color controls based on fillType
-    const ConditionalColorControls = ({ id }) => {
-        const currentItem = shape.find((item) => item.id === id);
-        const fillType = currentItem?.fillType || 'solid';
-
-        // Show solid color only when fillType is 'solid'
-        if (fillType === 'solid') {
-            return <ColorControl label={__('Color', 'zoloblocks')} name="color" default="" />;
-        }
-
-        // Show gradient colors only when fillType is 'gradient'
-        if (fillType === 'gradient') {
-            return (
-                <>
-                    <ColorControl label={__('Gradient Color 1', 'zoloblocks')} name="gradientColor1" default="#08AEEC" />
-                    <ColorControl label={__('Gradient Color 2', 'zoloblocks')} name="gradientColor2" default="#20E2AD" />
-                </>
-            );
-        }
-
-        return null;
-    };
-
     // Actual upload control component
     const MediaUploadControl = ({ currentItem, onUpdate }) => {
         const svgId = currentItem?.customSvg?.id;
@@ -243,7 +220,9 @@ const Inspector = ({ panelProps }) => {
                             ]}
                         />
 
-                        <ConditionalColorControls />
+                        <ColorControl label={__('Color', 'zoloblocks')} name="color" default="" />
+                        <ColorControl label={__('Gradient Color 1', 'zoloblocks')} name="gradientColor1" default="#08AEEC" />
+                        <ColorControl label={__('Gradient Color 2', 'zoloblocks')} name="gradientColor2" default="#20E2AD" />
 
                         <ZoloCardDivider />
 
