@@ -126,6 +126,7 @@ class FacebookReviews extends PostBlock {
                 </div>
             <?php endif; ?>
 
+            <?php if ($layout_type !== 'badge'): ?>
             <div class="zolo-fb-reviews-container layout-<?php echo esc_attr($layout_type); ?> zolo-facebook-reviews-<?php echo esc_attr($unique_id); ?>">
                 <?php if ($layout_type === 'carousel'): ?>
                     <div class="swiper">
@@ -146,6 +147,7 @@ class FacebookReviews extends PostBlock {
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
+            <?php endif; ?>
         </div>
         <?php
         return ob_get_clean();

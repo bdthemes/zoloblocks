@@ -47,7 +47,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     const [apiError, setApiError] = useState(null);
 
     const blockProps = useBlockProps({
-        className: `zolo-facebook-reviews zolo-facebook-reviews-${layoutType}`,
+        className: `${uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`} zolo-facebook-reviews zolo-facebook-reviews-${layoutType}`,
     });
 
     // Set unique ID
@@ -115,6 +115,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         console.log(review);
                         console.log(review.reviewer?.name);
                         console.log(review.reviewer?.picture?.data?.url)
+                        console.log(reviewerName)
                         
                         // If picture is a string URL, use it directly
                         if (!reviewerAvatar && typeof review.reviewer?.picture === 'string') {
@@ -451,6 +452,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                             </div>
                         )}
 
+                        {layoutType !== 'badge' && (
                         <div
                             ref={carouselRef}
                             className={`zolo-fb-reviews-container layout-${layoutType} zolo-facebook-reviews-${uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`}`}
@@ -472,6 +474,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                             (facebookReviews.length > 0 ? facebookReviews : demoReviews).map(renderReview)
                         )}
                         </div>
+                        )}
                     </>
                 )}
 

@@ -1,3 +1,10 @@
+const {
+    generateDimensionAttributes,
+    generateBorderAttributies,
+    generateBoxShadowAttributies,
+    generateNormalBGAttributes,
+} = window.zoloModule;
+
 import { generateResCounterAttributies } from '../../helpers/res-counter-helper';
 import { generateGapAttributes } from '../../helpers/gap-helper';
 import { FB_COLUMNS, FB_GAP } from './constants';
@@ -10,6 +17,31 @@ export const layoutTypes = {
 };
 
 export const defaultAttributes = {
+    // global config
+    globalConfig: {
+        type: 'object',
+        default: {
+            margin: {
+                prefix: 'fbFeedMargin',
+            },
+            padding: {
+                prefix: 'fbFeedPadding',
+            },
+            background: {
+                prefix: 'fbFeedBg',
+            },
+            border: {
+                prefix: 'fbFeedBorder',
+            },
+            borderRadius: {
+                prefix: 'fbFeedBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'fbFeedBoxShadow',
+            },
+            responsiveControls: true,
+        },
+    },
     uniqueId: {
         type: 'string',
         default: '',
@@ -103,6 +135,12 @@ export const defaultAttributes = {
         defaultRange: 20,
         defaultUnit: 'px',
     }),
+    ...generateDimensionAttributes('fbFeedMargin'),
+    ...generateDimensionAttributes('fbFeedPadding'),
+    ...generateNormalBGAttributes('fbFeedBg'),
+    ...generateBorderAttributies('fbFeedBorder'),
+    ...generateDimensionAttributes('fbFeedBorderRadius'),
+    ...generateBoxShadowAttributies('fbFeedBoxShadow'),
 };
 
 export default defaultAttributes;

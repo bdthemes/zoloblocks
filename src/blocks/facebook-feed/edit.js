@@ -47,7 +47,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     const [apiError, setApiError] = useState(null);
 
     const blockProps = useBlockProps({
-        className: `zolo-facebook-feed zolo-facebook-feed-${layoutType}`,
+        className: `${uniqueId || `zolo-fb-${clientId.substr(0, 8)}`} zolo-facebook-feed zolo-facebook-feed-${layoutType}`,
     });
 
     // Set unique ID
@@ -62,14 +62,48 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         setIsLoading(true);
         setApiError(null);
 
-        // Fetch Facebook posts from WordPress REST API
-        apiFetch({
-            path: `/zolo/v1/facebook-feed?posts_per_page=${postsPerPage}`,
-        })
+        // Get Facebook credentials from WordPress settings
+        apiFetch({ path: '/wp/v2/settings' })
+            .then((settings) => {
+                const pageId = settings.zolo_facebook_page_id || '';
+                const accessToken = settings.zolo_facebook_access_token || '';
+
+                if (!pageId || !accessToken) {
+                    throw new Error(__('Facebook Page ID or Access Token not configured.', 'zoloblocks'));
+                }
+
+                // Fetch page info
+                const pageInfoUrl = `https://graph.facebook.com/v18.0/${pageId}?fields=name,picture&access_token=${accessToken}`;
+                
+                return fetch(pageInfoUrl)
+                    .then(response => response.json())
+                    .then(pageData => {
+                        if (pageData.error) {
+                            throw new Error(pageData.error.message);
+                        }
+
+                        // Fetch posts
+                        const postsUrl = `https://graph.facebook.com/v18.0/${pageId}/posts?fields=id,message,created_time,full_picture,reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(CARE).limit(0).summary(total_count).as(reactions_care),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry),reactions.limit(0).summary(total_count).as(reactions_total),comments.summary(true),shares&limit=${postsPerPage}&access_token=${accessToken}`;
+
+                        return fetch(postsUrl)
+                            .then(response => response.json())
+                            .then(postsData => {
+                                if (postsData.error) {
+                                    throw new Error(postsData.error.message);
+                                }
+                                
+                                return {
+                                    page_name: pageData.name || pageId,
+                                    page_avatar: pageData.picture?.data?.url || '',
+                                    posts: postsData.data || []
+                                };
+                            });
+                    });
+            })
             .then((response) => {
                 if (response.page_name && response.posts) {
                     const pageName = response.page_name;
-                    const pageAvatar = response.page_avatar || 'https://via.placeholder.com/50';
+                    const pageAvatar = response.page_avatar || 'https://i.pravatar.cc/50?img=10';
 
                     // Format posts
                     const formattedPosts = response.posts.map((post, index) => {
@@ -186,11 +220,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         {
             id: 1,
             author: 'Sigmative',
-            avatar: 'https://via.placeholder.com/50',
+            avatar: 'https://i.pravatar.cc/50?img=1',
             date: '2 weeks ago',
             content: 'The Sigmative crew is all set for WordCamp Malaysia! 🇲🇾 Tomorrow, if you spot any of us at the venue, feel free to stop us, say hi, and let\'s chat about everything social media integration for WordPress sites! See you there!',
             hashtags: ['#WordCampMY', '#WCMY25', '#WordCamp'],
-            image: 'https://via.placeholder.com/600x400',
+            image: 'https://picsum.photos/600/400?random=1',
             reactions: { like: 0, love: 0, care: 8, wow: 0, haha: 0, sad: 0, angry: 0 },
             totalReactions: 8,
             comments: 5,
@@ -199,10 +233,10 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         {
             id: 2,
             author: 'Sigmative',
-            avatar: 'https://via.placeholder.com/50',
+            avatar: 'https://i.pravatar.cc/50?img=2',
             date: '1 week ago',
             content: 'Exciting news! We just launched our new feature that helps you connect with your audience better. Check it out!',
-            image: 'https://via.placeholder.com/600x400',
+            image: 'https://picsum.photos/600/400?random=2',
             reactions: { like: 15, love: 7, care: 0, wow: 0, haha: 0, sad: 0, angry: 0 },
             totalReactions: 22,
             comments: 8,
@@ -211,7 +245,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         {
             id: 3,
             author: 'Sigmative',
-            avatar: 'https://via.placeholder.com/50',
+            avatar: 'https://i.pravatar.cc/50?img=3',
             date: '3 days ago',
             content: 'Thanks to all our amazing users for your continued support! We couldn\'t do this without you. 💙',
             reactions: { like: 25, love: 10, care: 0, wow: 0, haha: 0, sad: 0, angry: 0 },
@@ -314,7 +348,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
     return (
         <>
-            <Style attributes={attributes} uniqueId={uniqueId || `zolo-fb-${clientId.substr(0, 8)}`} />
+            <Style attributes={attributes} setAttributes={setAttributes} />
 
             <Inspector
                 attributes={attributes}

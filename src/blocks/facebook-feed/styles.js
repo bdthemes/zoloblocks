@@ -2,8 +2,10 @@ import { generateResCounterStyle } from '../../helpers/res-counter-helper';
 import { generateGapStyle } from '../../helpers/gap-helper';
 import { FB_COLUMNS, FB_GAP } from './constants';
 
-const Style = (props) => {
-    const { attributes, uniqueId } = props;
+const { GlobalStyleHanlder } = window.zoloModule;
+
+const Style = ({ attributes, setAttributes }) => {
+    const { uniqueId } = attributes;
     const { layoutType } = attributes;
 
     // Columns for grid and masonry layouts
@@ -104,15 +106,14 @@ const Style = (props) => {
     `;
 
     return (
-        <style>
-            {desktopCSS}
-            {`@media (max-width: 1024px) {
-                ${tabCSS}
-            }`}
-            {`@media (max-width: 767px) {
-                ${mobCSS}
-            }`}
-        </style>
+        <GlobalStyleHanlder
+            attributes={attributes}
+            setAttributes={setAttributes}
+            desktopAllStyle={desktopCSS}
+            tabAllStyle={tabCSS}
+            mobileAllStyle={mobCSS}
+            blockName="zolo/facebook-feed"
+        />
     );
 };
 

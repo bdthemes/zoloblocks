@@ -13,8 +13,6 @@ use Zolo\Classes\Registration;
 use Zolo\API\GetPostsV1;
 use Zolo\API\ZoloAi;
 use Zolo\API\GetPostMetaV1;
-use Zolo\API\FacebookFeedV1;
-use Zolo\API\FacebookReviewsV1;
 use Zolo\Classes\ZoloAJAX;
 use Zolo\Admin\PostCategoryImage;
 use Zolo\Admin\Author;
@@ -80,7 +78,6 @@ class ZoloBlocks_Loader {
         GetPostsV1::getInstance();
         GetPostMetaV1::getInstance();
         ZoloAi::getInstance();
-        FacebookFeedV1::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
         Registration::getInstance();

@@ -262,7 +262,7 @@ function Inspector(props) {
                         </ZoloPanelBody>
                     </>
                 }
-                advanceTab={
+                advancedTab={
                     <>
                         <AdvancedOptions
                             attributes={attributes}

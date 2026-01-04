@@ -13,6 +13,7 @@ export const layoutTypes = {
     GRID: 'grid',
     MASONRY: 'masonry',
     CAROUSEL: 'carousel',
+    BADGE: 'badge',
 };
 
 export const defaultAttributes = {
