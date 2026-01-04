@@ -2,6 +2,7 @@ import { registerPlugin } from '@wordpress/plugins';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { minifyCSS } from './utils';
+import generateStyles from './style';
 const RenderGlobalStyles = () => {
     const editorSettings = useSelect((select) => {
         const { getEditorSettings } = select('core/editor');
@@ -14,15 +15,10 @@ const RenderGlobalStyles = () => {
         if (classes.length > 0) {
             return classes.map((item) => {
                 const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', item?.id);
-                if (editedData?.content) {
+                
+                if (editedData?.content && editedData?.title) {
                     let style = JSON.parse(editedData?.content);
-                    return `
-                        .${editedData?.title}{
-                            font-family: ${style?.typography?.fontFamily};
-                            font-weight: ${style?.typography?.fontWeight};
-                            font-size: ${style?.typography?.fontSize};
-                        }
-                    `
+                    return style && Object.keys(style).length > 0 ? generateStyles(style, `.${editedData?.title}`) : '';
                 }
             })?.join('');
         }

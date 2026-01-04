@@ -4,13 +4,15 @@ import { useEntityRecords } from '@wordpress/core-data';
 import { plus, trash } from '@wordpress/icons';
 import classNames from 'classnames';
 import { useDispatch } from '@wordpress/data';
+import { isValidCssClass, useClasses } from './utils';
 const InputDropdownContent = ({ attributes, setAttributes }) => {
     const [ searchInput, setSearchInput ] = useState('');
-    const { records, hasResolved } = useEntityRecords('postType', 'zolo-class-manager', { per_page: -1, search: searchInput });
+    const { records: rawRecords, hasResolved } = useEntityRecords('postType', 'zolo-class-manager', { per_page: -1, search: searchInput });
+    const records = useClasses(rawRecords || []);
     const { saveEntityRecord, deleteEntityRecord } = useDispatch('core');
 
     const hasClassExists = useMemo(() => {
-        return (records || []).some((item) => item.title.rendered === searchInput);
+        return (records || []).some((item) => item.title === searchInput);
     }, [records, searchInput]);
 
     const modifiedRecords = useMemo(() => {
@@ -23,13 +25,6 @@ const InputDropdownContent = ({ attributes, setAttributes }) => {
             }
         })
     }, [records, attributes?.classManager]);
-
-    function isValidCssClass(className) {
-        if (typeof className !== 'string') return false;
-
-        const regex = /^[a-zA-Z_-][a-zA-Z0-9_-]*$/;
-        return regex.test(className.trim());
-    }
 
 
     return (
@@ -59,13 +54,13 @@ const InputDropdownContent = ({ attributes, setAttributes }) => {
                                                     ...attributes.classManager || [],
                                                     {
                                                         id: item?.id,
-                                                        title: item?.title?.rendered,
+                                                        title: item?.title,
                                                     }]
                                             })
                                         }
                                     }}
                                 >
-                                    <Text>{item?.title?.rendered}</Text>
+                                    <Text>{item?.title}</Text>
                                     <span
                                         className='zb-class-manager-delete'
                                         role='button'

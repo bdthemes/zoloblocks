@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
 export const fontWeightOptions = [
     { label: __('Default', 'zoloblocks'), value: '' },
     { label: __('100', 'zoloblocks'), value: '100' },
@@ -19,4 +20,37 @@ export function minifyCSS(css) {
         .replace(/\s*([{}:;,])\s*/g, '$1')// trim around tokens
         .replace(/;}/g, '}')              // optional micro-opt
         .trim();
+}
+
+
+export const useClasses = (classes = [], searchInput = '') => {
+    const data = useSelect((select) => {
+        const { getEntityRecords, getEditedEntityRecord } = select('core');
+        const savedClasses = getEntityRecords('postType', 'zolo-class-manager', { per_page: -1, search: searchInput }) || [];
+
+        if (classes.length > 0 && savedClasses.length > 0) {
+            const editedClasses = classes.map((item) => {
+                const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', item?.id);
+                if (editedData) {
+                    return {
+                        id: editedData?.id,
+                        title: editedData?.title
+                    };
+                }
+            }).filter((item) => item);
+
+            return editedClasses;
+        }
+
+        return [];
+    }, [classes]);
+
+    return data;
+}
+
+export function isValidCssClass(className) {
+    if (typeof className !== 'string') return false;
+
+    const regex = /^[a-zA-Z_-][a-zA-Z0-9_-]*$/;
+    return regex.test(className.trim());
 }

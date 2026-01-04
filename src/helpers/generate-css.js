@@ -12,7 +12,10 @@ const generateCSS = ({ attributes, key, device = 'Desktop', getValue = (value) =
     }
 
     if (isResponsive(value)) {
-        return getValue(value[device]);
+        const responsiveValue = value[device];
+        if (responsiveValue !== undefined && responsiveValue !== null) {
+            return getValue(responsiveValue);
+        }
     }
 
     return '';

@@ -5,12 +5,14 @@ import InputDropdownContent from './input-dropdown-content';
 import { plus, close } from '@wordpress/icons';
 import ControlsDropdownContent from './controls-dropdown-content';
 import classNames from 'classnames';
+import { useClasses } from './utils';
 const Inspector = createHigherOrderComponent((WrappedComponent) => {
     return (props) => {
         const { attributes, setAttributes } = props;
         const [selectedClass, setSelectedClass] = useState(null);
         const [selectedSubSelector, setSelectedSubSelector] = useState(null);
         const containerRef = useRef(null);
+        const classes = useClasses(attributes?.classManager);
         function closeIfFocusOutside() {
             if (!containerRef.current) {
                 return;
@@ -32,7 +34,7 @@ const Inspector = createHigherOrderComponent((WrappedComponent) => {
             <WrappedComponent {...props}>
                 <MenuGroup title="Classes" className='zb-class-manager'>
                     {
-                        attributes?.classManager?.map((item, index) => {
+                        classes?.map((item, index) => {
                             return (
                                 <MenuItem
                                     key={index}
@@ -95,6 +97,7 @@ const Inspector = createHigherOrderComponent((WrappedComponent) => {
                                     <InputDropdownContent
                                         setSelectedClass={setSelectedClass}
                                         selectedClass={selectedClass}
+                                        classes={classes}
                                         {...props}
                                     />
                                 )
