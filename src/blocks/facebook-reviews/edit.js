@@ -3,6 +3,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { Notice, Spinner } from '@wordpress/components';
 import { useEffect, useState, useRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+import classnames from 'classnames';
 import { layoutTypes, defaultAttributes } from './attributes';
 import Inspector from './inspector';
 import Style from './styles';
@@ -14,6 +15,7 @@ import 'swiper/css/pagination';
 import './editor.scss';
 
 const Edit = ({ attributes, setAttributes, clientId }) => {
+    const { classArrayToStr } = window.zoloModule;
     const {
         uniqueId,
         layoutType,
@@ -37,6 +39,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         carouselSpeed,
         carouselLoop,
         resMode,
+        parentClasses,
     } = attributes;
 
     const carouselRef = useRef(null);
@@ -47,7 +50,14 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     const [apiError, setApiError] = useState(null);
 
     const blockProps = useBlockProps({
-        className: `${uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`} zolo-facebook-reviews zolo-facebook-reviews-${layoutType}`,
+        className: classnames(
+            `parent-${uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`}`,
+            'zolo-block',
+            uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`,
+            'zolo-facebook-reviews',
+            `zolo-facebook-reviews-${layoutType}`,
+            classArrayToStr(parentClasses)
+        ),
     });
 
     // Set unique ID
@@ -354,20 +364,22 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
             )}
             
             <div className="zolo-fb-review-info">
-                {showReviewerName && (
-                    <a href={fbReviewsLink} target="_blank" rel="noopener noreferrer" className="zolo-fb-reviewer-name-url">
-                        <span className="zolo-fb-reviewer-name">{review.reviewerName}</span>
-                    </a>
-                )}
-                
-                {showRecommendation && review.hasRecommendation && (
-                    <div className="zolo-fb-rating-wrapper zolo-fb-rating">
-                        <svg className="wpsr-recommends" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 14l-3.293 3.293A1 1 0 0 1 4 16.586V14h-.154c-1.337 0-1.822-.14-2.311-.4A2.726 2.726 0 0 1 .4 12.464c-.261-.488-.4-.973-.4-2.309v-6.31c0-1.336.14-1.821.4-2.31A2.726 2.726 0 0 1 1.536.4c.488-.261.973-.4 2.309-.4h10.31c1.336 0 1.821.14 2.31.4.49.262.873.646 1.134 1.135.262.489.401.974.401 2.31v6.31c0 1.336-.14 1.821-.4 2.31a2.726 2.726 0 0 1-1.135 1.134c-.489.262-.974.401-2.31.401H9zm0-5l1.454.765a.5.5 0 0 0 .726-.527l-.278-1.62 1.177-1.147a.5.5 0 0 0-.277-.853l-1.626-.236-.728-1.474a.5.5 0 0 0-.896 0l-.728 1.474-1.626.236a.5.5 0 0 0-.277.853l1.177 1.147-.278 1.62a.5.5 0 0 0 .726.527L9 9z" fill="#f36b7f"/>
-                        </svg>
-                        <span>{__('recommends', 'zoloblocks')}</span>
-                    </div>
-                )}
+                <div className="zolo-fb-review-header">
+                    {showReviewerName && (
+                        <a href={fbReviewsLink} target="_blank" rel="noopener noreferrer" className="zolo-fb-reviewer-name-url">
+                            <span className="zolo-fb-reviewer-name">{review.reviewerName}</span>
+                        </a>
+                    )}
+                    
+                    {showRecommendation && review.hasRecommendation && (
+                        <div className="zolo-fb-rating-wrapper zolo-fb-rating">
+                            <svg className="wpsr-recommends" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 14l-3.293 3.293A1 1 0 0 1 4 16.586V14h-.154c-1.337 0-1.822-.14-2.311-.4A2.726 2.726 0 0 1 .4 12.464c-.261-.488-.4-.973-.4-2.309v-6.31c0-1.336.14-1.821.4-2.31A2.726 2.726 0 0 1 1.536.4c.488-.261.973-.4 2.309-.4h10.31c1.336 0 1.821.14 2.31.4.49.262.873.646 1.134 1.135.262.489.401.974.401 2.31v6.31c0 1.336-.14 1.821-.4 2.31a2.726 2.726 0 0 1-1.135 1.134c-.489.262-.974.401-2.31.401H9zm0-5l1.454.765a.5.5 0 0 0 .726-.527l-.278-1.62 1.177-1.147a.5.5 0 0 0-.277-.853l-1.626-.236-.728-1.474a.5.5 0 0 0-.896 0l-.728 1.474-1.626.236a.5.5 0 0 0-.277.853l1.177 1.147-.278 1.62a.5.5 0 0 0 .726.527L9 9z" fill="#f36b7f"/>
+                            </svg>
+                            <span>recommends</span>
+                        </div>
+                    )}
+                </div>
                 
                 {showDate && (
                     <span className="zolo-fb-review-date">{review.date}</span>

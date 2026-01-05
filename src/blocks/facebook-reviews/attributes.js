@@ -46,6 +46,10 @@ export const defaultAttributes = {
         type: 'string',
         default: '',
     },
+    parentClasses: {
+        type: 'array',
+        default: [],
+    },
     layoutType: {
         type: 'string',
         default: layoutTypes.GRID,
@@ -129,6 +133,10 @@ export const defaultAttributes = {
     resMode: {
         type: 'string',
         default: 'desktop',
+    },
+    zoloStyles: {
+        type: 'object',
+        default: {},
     },
     ...generateResCounterAttributies(FB_REVIEWS_COLUMNS, {
         deskRange: 3,

@@ -151,6 +151,14 @@
         "resMode": {
             "type": "string",
             "default": "desktop"
+        },
+        "zoloStyles": {
+            "type": "object",
+            "default": {}
+        },
+        "parentClasses": {
+            "type": "array",
+            "default": []
         }
     },
     "example": {

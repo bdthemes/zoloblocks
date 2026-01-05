@@ -67,6 +67,18 @@ class FacebookReviews extends PostBlock {
         // Generate unique ID
         $unique_id = !empty($attributes['uniqueId']) ? $attributes['uniqueId'] : 'zolo-fb-reviews-' . wp_generate_password(8, false);
 
+        // Get parent classes for advanced controls
+        $parent_classes = !empty($attributes['parentClasses']) ? implode(' ', $attributes['parentClasses']) : '';
+        
+        // Build wrapper classes - required for advanced controls (margin, padding, etc.)
+        $wrapper_classes = trim(sprintf(
+            'parent-%s zolo-block %s zolo-facebook-reviews zolo-facebook-reviews-%s %s',
+            esc_attr($unique_id),
+            esc_attr($unique_id),
+            esc_attr($layout_type),
+            esc_attr($parent_classes)
+        ));
+
         // Header settings - explicitly check for false
         $show_header = array_key_exists('showHeader', $attributes) ? (bool)$attributes['showHeader'] : true;
         $header_title = !empty($attributes['headerTitle']) ? $attributes['headerTitle'] : 'Reviews & Recommendations';
@@ -89,7 +101,7 @@ class FacebookReviews extends PostBlock {
         <style>
             <?php echo $dynamic_css; ?>
         </style>
-        <div class="zolo-facebook-reviews zolo-facebook-reviews-<?php echo esc_attr($layout_type); ?>" 
+        <div class="<?php echo esc_attr($wrapper_classes); ?>" 
              data-layout="<?php echo esc_attr($layout_type); ?>"
              data-carousel-autoplay="<?php echo $carousel_autoplay ? 'true' : 'false'; ?>"
              data-carousel-speed="<?php echo esc_attr($carousel_speed); ?>"
@@ -199,20 +211,22 @@ class FacebookReviews extends PostBlock {
             <?php endif; ?>
             
             <div class="zolo-fb-review-info">
-                <?php if ($attributes['showName']): ?>
-                    <a class="zolo-fb-reviewer-name-url" href="<?php echo esc_url($fb_reviews_link); ?>" target="_blank" rel="noopener noreferrer">
-                        <span class="zolo-fb-reviewer-name"><?php echo esc_html($review['name']); ?></span>
-                    </a>
-                <?php endif; ?>
-                
-                <?php if ($attributes['showRecommendation'] && !empty($review['has_recommendation'])): ?>
-                    <div class="zolo-fb-rating-wrapper zolo-fb-rating">
-                        <svg class="wpsr-recommends" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 14l-3.293 3.293A1 1 0 0 1 4 16.586V14h-.154c-1.337 0-1.822-.14-2.311-.4A2.726 2.726 0 0 1 .4 12.464c-.261-.488-.4-.973-.4-2.309v-6.31c0-1.336.14-1.821.4-2.31A2.726 2.726 0 0 1 1.536.4c.488-.261.973-.4 2.309-.4h10.31c1.336 0 1.821.14 2.31.4.49.262.873.646 1.134 1.135.262.489.401.974.401 2.31v6.31c0 1.336-.14 1.821-.4 2.31a2.726 2.726 0 0 1-1.135 1.134c-.489.262-.974.401-2.31.401H9zm0-5l1.454.765a.5.5 0 0 0 .726-.527l-.278-1.62 1.177-1.147a.5.5 0 0 0-.277-.853l-1.626-.236-.728-1.474a.5.5 0 0 0-.896 0l-.728 1.474-1.626.236a.5.5 0 0 0-.277.853l1.177 1.147-.278 1.62a.5.5 0 0 0 .726.527L9 9z" fill="#f36b7f"/>
-                        </svg>
-                        <span>recommends</span>
-                    </div>
-                <?php endif; ?>
+                <div class="zolo-fb-review-header">
+                    <?php if ($attributes['showName']): ?>
+                        <a class="zolo-fb-reviewer-name-url" href="<?php echo esc_url($fb_reviews_link); ?>" target="_blank" rel="noopener noreferrer">
+                            <span class="zolo-fb-reviewer-name"><?php echo esc_html($review['name']); ?></span>
+                        </a>
+                    <?php endif; ?>
+                    
+                    <?php if ($attributes['showRecommendation'] && !empty($review['has_recommendation'])): ?>
+                        <div class="zolo-fb-rating-wrapper zolo-fb-rating">
+                            <svg class="wpsr-recommends" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 14l-3.293 3.293A1 1 0 0 1 4 16.586V14h-.154c-1.337 0-1.822-.14-2.311-.4A2.726 2.726 0 0 1 .4 12.464c-.261-.488-.4-.973-.4-2.309v-6.31c0-1.336.14-1.821.4-2.31A2.726 2.726 0 0 1 1.536.4c.488-.261.973-.4 2.309-.4h10.31c1.336 0 1.821.14 2.31.4.49.262.873.646 1.134 1.135.262.489.401.974.401 2.31v6.31c0 1.336-.14 1.821-.4 2.31a2.726 2.726 0 0 1-1.135 1.134c-.489.262-.974.401-2.31.401H9zm0-5l1.454.765a.5.5 0 0 0 .726-.527l-.278-1.62 1.177-1.147a.5.5 0 0 0-.277-.853l-1.626-.236-.728-1.474a.5.5 0 0 0-.896 0l-.728 1.474-1.626.236a.5.5 0 0 0-.277.853l1.177 1.147-.278 1.62a.5.5 0 0 0 .726.527L9 9z" fill="#f36b7f"/>
+                            </svg>
+                            <span><?php echo esc_html__('recommends', 'zoloblocks'); ?></span>
+                        </div>
+                    <?php endif; ?>
+                </div>
                 
                 <?php if ($attributes['showDate']): ?>
                     <span class="zolo-fb-review-date"><?php echo esc_html($review['date']); ?></span>
