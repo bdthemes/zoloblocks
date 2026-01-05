@@ -3,7 +3,6 @@ import { SearchControl, MenuItem, MenuGroup, Button, __experimentalText as Text 
 import { plus, trash } from '@wordpress/icons';
 import classNames from 'classnames';
 import { useDispatch } from '@wordpress/data';
-import { isValidCssClass } from './utils';
 const SubselectorDropdownContent = ({ subSelectors = [], parent, attributes, setAttributes }) => {
     const [ searchInput, setSearchInput ] = useState('');
     const { saveEntityRecord, deleteEntityRecord } = useDispatch('core');

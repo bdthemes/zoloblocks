@@ -2,12 +2,10 @@ import { Flex, FlexItem, __experimentalVStack as VStack, Button, __experimentalT
 import { plus, seen, unseen, trash, pencil, closeSmall } from '@wordpress/icons';
 import StyleControls from './style-controls';
 import { useSelect, useDispatch } from '@wordpress/data';
-import { useEntityProp } from '@wordpress/core-data';
 import { useState } from '@wordpress/element';
 import SubselectorDropdownContent from './subselector-droptdown-content';
 import classNames from 'classnames';
 import { isValidCssClass } from './utils';
-import generateStyles from './style';
 
 const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubSelector, setSelectedSubSelector, attributes, setAttributes }) => {
     const { style: parentStyle, selectedClassRawTitle, subSelectors } = useSelect((select) => {
@@ -49,25 +47,26 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
     const { __unstableMarkNextChangeAsNotPersistent: markNextChangeAsNotPersistent } = useDispatch('core/block-editor');
     const currentID = selectedSubSelector?.id || selectedClass?.id;
     const currentStyle = selectedSubSelector?.id ? childStyle : parentStyle;
-    const [meta, setMeta] = useEntityProp('postType', 'zolo-class-manager', 'meta', currentID);
 
     const setStyle = (style) => {
         editEntityRecord('postType', 'zolo-class-manager', currentID, { content: JSON.stringify(style) });
-        let selector;
-        if (selectedSubSelector) {
-            let parent = selectedClass?.title;
-            selector = panelTitle?.startsWith(':') ? `.${parent}.zbcm-${selectedSubSelector?.id}${panelTitle}` : `.${parent}.zbcm-${selectedSubSelector?.id} ${panelTitle}`;
-        } else {
-            selector = `.${panelTitle}`;
-        }
-        const classStyles = generateStyles(style, selector);
-        setMeta({ zoloClassManagerStyles: classStyles });
     }
 
     const subSelectorTitle = subSelectors?.find((item) => item?.id === selectedSubSelector?.id)?.title;
 
     const panelTitle = subSelectorTitle || selectedClassRawTitle;
     const [editInput, setEditInput] = useState(panelTitle);
+
+    const subSelectorsMerge = attributes?.classManagerSubselector?.map((item) => {
+        const subSelector = subSelectors?.find((subSelector) => subSelector?.id === item?.id);
+        if (subSelector) {
+            return {
+                ...item,
+                title: subSelector?.title
+            }
+        }
+    })?.filter(Boolean);
+    
 
     const onDelete = async () => {
         if (currentID) {
@@ -210,7 +209,7 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                 </Flex>
                 <div className="controls-dropdown-content-subselectors">
                     {
-                        attributes?.classManagerSubselector?.length > 0 && attributes?.classManagerSubselector?.map((item) => {
+                        subSelectorsMerge?.length > 0 && subSelectorsMerge?.map((item) => {
                             if (item?.parent === selectedClass?.id) {
                                 return (
                                     <Button
