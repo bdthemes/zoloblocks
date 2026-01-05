@@ -1,30 +1,30 @@
 import { useState, useMemo } from '@wordpress/element';
 import { SearchControl, MenuItem, MenuGroup, Button, __experimentalText as Text } from '@wordpress/components';
-import { useEntityRecords } from '@wordpress/core-data';
 import { plus, trash } from '@wordpress/icons';
 import classNames from 'classnames';
 import { useDispatch } from '@wordpress/data';
-import { isValidCssClass, useClasses } from './utils';
-const InputDropdownContent = ({ attributes, setAttributes }) => {
+import { isValidCssClass } from './utils';
+const SubselectorDropdownContent = ({ subSelectors = [], parent, attributes, setAttributes }) => {
     const [ searchInput, setSearchInput ] = useState('');
-    const { records: rawRecords, hasResolved } = useEntityRecords('postType', 'zolo-class-manager', { per_page: -1, search: searchInput, parent: 0 });
-    const records = useClasses(rawRecords || []);
     const { saveEntityRecord, deleteEntityRecord } = useDispatch('core');
    
     const hasClassExists = useMemo(() => {
-        return (records || []).some((item) => item.title === searchInput);
-    }, [records, searchInput]);
+        return subSelectors.some((item) => item.title === searchInput);
+    }, [subSelectors, searchInput]);
 
     const modifiedRecords = useMemo(() => {
-        const selectedClasses = attributes?.classManager || [];
+        const selectedClasses = attributes?.classManagerSubselector || [];
         const excludeIds = new Set(selectedClasses.map(item => item.id));
-        return records?.map((item) => {
+        return subSelectors?.map((item) => {
             return {
                 ...item,
                 isSelected: excludeIds.has(item.id)
             }
         })
-    }, [records, attributes?.classManager]);
+    }, [subSelectors, attributes?.classManagerSubselector]);
+    
+
+    if(!parent) return null;
 
 
     return (
@@ -37,7 +37,7 @@ const InputDropdownContent = ({ attributes, setAttributes }) => {
             />
             <MenuGroup title="Classes" className='zb-class-manager-classes'>
                 {
-                    hasResolved && records && modifiedRecords && records.length > 0 && modifiedRecords.length > 0 && (
+                    subSelectors?.length > 0 && modifiedRecords && modifiedRecords.length > 0 && (
                         modifiedRecords.map((item) => {
                             return (
                                 <MenuItem
@@ -46,21 +46,24 @@ const InputDropdownContent = ({ attributes, setAttributes }) => {
                                     onClick={() => {
                                         if (item?.isSelected) {
                                             setAttributes({
-                                                classManager: attributes?.classManager?.filter((classItem) => classItem?.id !== item?.id)
+                                                classManagerSubselector: attributes?.classManagerSubselector?.filter((classItem) => classItem?.id !== item?.id)
                                             })
                                         } else {
                                             setAttributes({
-                                                classManager: [
-                                                    ...attributes.classManager || [],
+                                                classManagerSubselector: [
+                                                    ...attributes.classManagerSubselector || [],
                                                     {
                                                         id: item?.id,
                                                         title: item?.title,
-                                                    }]
+                                                        parent: parent?.id
+                                                    }
+                                                ]
                                             })
                                         }
                                     }}
+                                    showTooltip={item?.title?.length > 20}
                                 >
-                                    <Text>{item?.title}</Text>
+                                    <Text>{item?.title?.length > 20 ? item?.title?.slice(0, 20) + '...' : item?.title}</Text>
                                     <span
                                         className='zb-class-manager-delete'
                                         role='button'
@@ -81,14 +84,15 @@ const InputDropdownContent = ({ attributes, setAttributes }) => {
             {
                 searchInput?.trim()?.length > 2 && (
                     <Button
-                        disabled={hasClassExists || !isValidCssClass(searchInput)}
+                        disabled={hasClassExists}
                         variant='primary'
                         className='zb-class-manager-input-dropdown-add'
                         icon={plus}
                         onClick={async () => {
                             await saveEntityRecord('postType', 'zolo-class-manager', {
                                 title: searchInput?.trim(),
-                                status: 'publish'
+                                status: 'publish',
+                                parent: parent?.id
                             });
                             setSearchInput('');
                         }}
@@ -101,4 +105,4 @@ const InputDropdownContent = ({ attributes, setAttributes }) => {
     )
 };
 
-export default InputDropdownContent
+export default SubselectorDropdownContent;

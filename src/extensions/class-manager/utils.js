@@ -23,13 +23,15 @@ export function minifyCSS(css) {
 }
 
 
-export const useClasses = (classes = [], searchInput = '') => {
+export const useClasses = (classes = [], searchInput = '', parent = null) => {
     const data = useSelect((select) => {
         const { getEntityRecords, getEditedEntityRecord } = select('core');
-        const savedClasses = getEntityRecords('postType', 'zolo-class-manager', { per_page: -1, search: searchInput }) || [];
+        const savedClasses = getEntityRecords('postType', 'zolo-class-manager', { per_page: -1, search: searchInput, parent: parent || 0 }) || [];
 
         if (classes.length > 0 && savedClasses.length > 0) {
             const editedClasses = classes.map((item) => {
+                const savedData = savedClasses.find((savedItem) => savedItem?.id === item?.id);
+                if(!savedData) return null;
                 const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', item?.id);
                 if (editedData) {
                     return {
@@ -44,6 +46,33 @@ export const useClasses = (classes = [], searchInput = '') => {
 
         return [];
     }, [classes]);
+
+    return data;
+}
+
+export const useSelectors = (selectors = []) => {
+    const data = useSelect((select) => {
+        const { getEntityRecords, getEditedEntityRecord } = select('core');
+        const savedSelectors = getEntityRecords('postType', 'zolo-class-manager', { per_page: -1 }) || [];
+
+        if (selectors.length > 0 && savedSelectors.length > 0) {
+            const editedSelectors = selectors.map((item) => {
+                const savedData = savedSelectors.find((savedItem) => savedItem?.id === item?.id);
+                if(!savedData) return null;
+                const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', item?.id);
+                if (editedData) {
+                    return {
+                        id: editedData?.id,
+                        title: editedData?.title
+                    };
+                }
+            }).filter((item) => item);
+
+            return editedSelectors;
+        }
+
+        return [];
+    }, [selectors]);
 
     return data;
 }

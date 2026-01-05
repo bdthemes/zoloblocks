@@ -43,8 +43,9 @@ class StyleGenerator {
     }
 
     public function output_dynamic_styles() {
-        if (!empty($this->dynamic_styles)) {
-            echo '<style id="zolo-block-inline-styles">' . $this->dynamic_styles . '</style>'; // phpcs:ignore
+        $dynamic_styles = apply_filters('zolo_dynamic_styles', $this->dynamic_styles);
+        if (!empty($dynamic_styles)) {
+            echo '<style id="zolo-block-inline-styles">' . $dynamic_styles . '</style>'; // phpcs:ignore
         }
     }
 

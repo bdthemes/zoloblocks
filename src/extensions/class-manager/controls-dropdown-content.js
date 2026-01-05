@@ -1,49 +1,92 @@
-import { Flex, FlexBlock, FlexItem, __experimentalVStack as VStack, Button, __experimentalText as Text, TextControl, Dropdown } from '@wordpress/components';
-import { plus, close, seen, unseen, trash, pencil } from '@wordpress/icons';
+import { Flex, FlexItem, __experimentalVStack as VStack, Button, __experimentalText as Text, TextControl, Dropdown } from '@wordpress/components';
+import { plus, seen, unseen, trash, pencil, closeSmall } from '@wordpress/icons';
 import StyleControls from './style-controls';
 import { useSelect, useDispatch } from '@wordpress/data';
+import { useEntityProp } from '@wordpress/core-data';
 import { useState } from '@wordpress/element';
+import SubselectorDropdownContent from './subselector-droptdown-content';
 import classNames from 'classnames';
+import { isValidCssClass } from './utils';
+import generateStyles from './style';
+
 const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubSelector, setSelectedSubSelector, attributes, setAttributes }) => {
-    const { style: parentStyle, selectedClassRawTitle } = useSelect((select) => {
-        const { getEditedEntityRecord, getEntityRecord } = select('core');
-        const data = getEntityRecord('postType', 'zolo-class-manager', selectedClass?.id);
+    const { style: parentStyle, selectedClassRawTitle, subSelectors } = useSelect((select) => {
+        const { getEditedEntityRecord, getEntityRecord, getEntityRecords } = select('core');
+        const data = getEntityRecord('postType', 'zolo-class-manager', selectedClass?.id, { parent: 0 });
+        const subSelectorsRaw = getEntityRecords('postType', 'zolo-class-manager', { per_page: -1, parent: selectedClass?.id }) || [];
         const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', selectedClass?.id);
+        const subSelectors = subSelectorsRaw?.length > 0 ? subSelectorsRaw.map((item) => {
+            const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', item?.id);
+            if (editedData) {
+                return {
+                    parent: editedData?.parent,
+                    id: editedData?.id,
+                    title: editedData?.title
+                };
+            }
+        }) : [];
         return {
             style: data && editedData?.content ? JSON.parse(editedData?.content) : '',
-            selectedClassRawTitle: editedData?.title
+            selectedClassRawTitle: editedData?.title,
+            subSelectors
         }
     }, [selectedClass]);
 
+    const { childStyle } = useSelect((select) => {
+        if (!selectedSubSelector) {
+            return {
+                childStyle: null
+            }
+        }
+        const { getEditedEntityRecord, getEntityRecord } = select('core');
+        const data = getEntityRecord('postType', 'zolo-class-manager', selectedSubSelector?.id);
+        const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', selectedSubSelector?.id);
+        return {
+            childStyle: data && editedData?.content ? JSON.parse(editedData?.content) : null
+        }
+    }, [selectedSubSelector]);
     const { editEntityRecord, deleteEntityRecord } = useDispatch('core');
-    const setParentStyle = (style) => {
-        editEntityRecord('postType', 'zolo-class-manager', selectedClass?.id, { content: JSON.stringify(style) });
+    const { __unstableMarkNextChangeAsNotPersistent: markNextChangeAsNotPersistent } = useDispatch('core/block-editor');
+    const currentID = selectedSubSelector?.id || selectedClass?.id;
+    const currentStyle = selectedSubSelector?.id ? childStyle : parentStyle;
+    const [meta, setMeta] = useEntityProp('postType', 'zolo-class-manager', 'meta', currentID);
+
+    const setStyle = (style) => {
+        editEntityRecord('postType', 'zolo-class-manager', currentID, { content: JSON.stringify(style) });
+        let selector;
+        if (selectedSubSelector) {
+            let parent = selectedClass?.title;
+            selector = panelTitle?.startsWith(':') ? `.${parent}.zbcm-${selectedSubSelector?.id}${panelTitle}` : `.${parent}.zbcm-${selectedSubSelector?.id} ${panelTitle}`;
+        } else {
+            selector = `.${panelTitle}`;
+        }
+        const classStyles = generateStyles(style, selector);
+        setMeta({ zoloClassManagerStyles: classStyles });
     }
 
-    const panelTitle = selectedSubSelector?.title || selectedClassRawTitle;
-    const [editInput, setEditInput] = useState(selectedClassRawTitle);
+    const subSelectorTitle = subSelectors?.find((item) => item?.id === selectedSubSelector?.id)?.title;
 
-    const onDelete = () => {
-        if (selectedSubSelector) {
-            const updatedSubSelector = attributes?.classManagerSubselector?.filter((item) => item?.title !== selectedSubSelector?.title && item?.parent !== selectedSubSelector?.parent);
-            setAttributes({
-                classManagerSubselector: updatedSubSelector
-            });
-            setSelectedSubSelector(null);
-        } else if (selectedClass) {
-            const result = deleteEntityRecord('postType', 'zolo-class-manager', selectedClass?.id, { force: true });
-            if (result) {
+    const panelTitle = subSelectorTitle || selectedClassRawTitle;
+    const [editInput, setEditInput] = useState(panelTitle);
+
+    const onDelete = async () => {
+        if (currentID) {
+            await deleteEntityRecord('postType', 'zolo-class-manager', currentID, { force: true });
+            if (selectedSubSelector) {
+                setSelectedSubSelector(null);
+                const updatedSubSelector = attributes?.classManagerSubselector?.filter((item) => item?.id !== selectedSubSelector?.id && item?.parent === selectedClass?.id);
+                setAttributes({ classManagerSubselector: updatedSubSelector });
+            } else {
                 setSelectedClass(null);
                 setSelectedSubSelector(null);
-                const updateSelector = attributes?.classManager?.filter((item) => item?.id !== selectedClass?.id);
+                const updatedClasses = attributes?.classManager?.filter((item) => item?.id !== selectedClass?.id);
                 const updatedSubSelector = attributes?.classManagerSubselector?.filter((item) => item?.parent !== selectedClass?.id);
-                setAttributes({
-                    classManager: updateSelector,
-                    classManagerSubselector: updatedSubSelector
-                });
+                setAttributes({ classManager: updatedClasses, classManagerSubselector: updatedSubSelector });
             }
         }
     }
+
+    const unseenTitle = selectedSubSelector ? attributes?.unseenSelector : attributes?.unseenClass;
 
     return (
         <div className="controls-dropdown-content">
@@ -78,29 +121,30 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                                         <form
                                             onSubmit={(e) => {
                                                 e.preventDefault();
-                                                editEntityRecord('postType', 'zolo-class-manager', selectedClass?.id, { title: editInput });
-                                                const updatedClass = attributes?.classManager?.map((item) => {
-                                                    if (item?.id === selectedClass?.id) {
-                                                        return {
-                                                            ...item,
-                                                            title: editInput
+                                                editEntityRecord('postType', 'zolo-class-manager', currentID, { title: editInput });
+                                                if (selectedSubSelector) {
+                                                    const updatedSubSelector = attributes?.classManagerSubselector?.map((item) => {
+                                                        if (item?.id === selectedSubSelector?.id && item?.parent === selectedClass?.id) {
+                                                            return {
+                                                                ...item,
+                                                                title: editInput
+                                                            };
                                                         }
-                                                    }
-                                                    return item;
-                                                });
-                                                const updatedSubSelector = attributes?.classManagerSubselector?.map((item) => {
-                                                    if (item?.parent === selectedClass?.id) {
-                                                        return {
-                                                            ...item,
-                                                            title: editInput
+                                                        return item;
+                                                    });
+                                                    setAttributes({ classManagerSubselector: updatedSubSelector });
+                                                } else if (!selectedSubSelector && isValidCssClass(editInput)) {
+                                                    const updatedClasses = attributes?.classManager?.map((item) => {
+                                                        if (item?.id === selectedClass?.id) {
+                                                            return {
+                                                                ...item,
+                                                                title: editInput
+                                                            };
                                                         }
-                                                    }
-                                                    return item;
-                                                });
-                                                setAttributes({
-                                                    classManager: updatedClass,
-                                                    classManagerSubselector: updatedSubSelector
-                                                });
+                                                        return item;
+                                                    });
+                                                    setAttributes({ classManager: updatedClasses });
+                                                }
                                                 onClose();
                                             }}>
                                             <TextControl
@@ -112,6 +156,7 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                                             />
                                             <Button
                                                 type="submit"
+                                                disabled={!selectedSubSelector && !isValidCssClass(editInput)}
                                                 variant="primary"
                                                 size="small"
                                                 label="Save"
@@ -128,13 +173,26 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                             className='controls-dropdown-content-header-controls-button'
                             variant='secondary'
                             size='small'
-                            icon={attributes?.unseenClass === selectedClass?.title ? unseen : seen}
-                            label={attributes?.unseenClass === selectedClass?.title ? 'Show' : 'Hide'}
+                            icon={unseenTitle === panelTitle ? unseen : seen}
+                            label={unseenTitle === panelTitle ? 'Show' : 'Hide'}
                             showTooltip
                             onClick={() => {
-                                setAttributes({
-                                    unseenClass: attributes?.unseenClass === selectedClass?.title ? '' : selectedClass?.title
-                                })
+                                markNextChangeAsNotPersistent();
+                                if (selectedSubSelector) {
+                                    if (selectedSubSelector?.title === attributes?.unseenSelector) {
+                                        setAttributes({ unseenSelector: '' });
+                                    } else {
+                                        setAttributes({ unseenSelector: selectedSubSelector?.title });
+                                    }
+                                } else {
+                                    if (selectedClass?.title === attributes?.unseenClass) {
+                                        setAttributes({ unseenClass: '' });
+                                    } else {
+                                        setAttributes({ unseenClass: selectedClass?.title });
+                                    }
+                                }
+
+
                             }}
                         />
                         <Button
@@ -150,104 +208,81 @@ const ControlsDropdownContent = ({ selectedClass, setSelectedClass, selectedSubS
                         />
                     </FlexItem>
                 </Flex>
-                <form
-                    onSubmit={(e) => {
-                        console.log('I am subselector form');
-
-                        e.preventDefault();
-                        const form = new FormData(e.target);
-                        const subselector = form.get('subselector');
-                        const isSubselectorExist = attributes?.classManagerSubselector?.find((item) => item?.title === subselector);
-
-                        if (!subselector || isSubselectorExist) {
-                            return;
-                        }
-                        setAttributes({
-                            classManagerSubselector: [
-                                ...attributes.classManagerSubselector,
-                                {
-                                    parent: selectedClass?.id,
-                                    title: subselector,
-                                    style: {}
-                                }
-                            ]
-                        });
-                        //reset form
-                        e.target.reset();
-                    }}
-                >
-                    <Flex className="controls-dropdown-content-subselector-form">
-                        <FlexBlock>
-                            <TextControl
-                                className="controls-dropdown-content-subselector-form-input"
-                                type="text"
-                                name="subselector"
-                                placeholder="Write subselector here..."
-                                onChange={(value) => { }}
-                            />
-                        </FlexBlock>
-                        <FlexItem>
-                            <Button
-                                type='submit'
-                                className="controls-dropdown-content-subselector-form-button" variant='primary'
-                                icon={plus}
-                            >
-                                Add
-                            </Button>
-                        </FlexItem>
-                    </Flex>
-                </form>
-                <div className="controls-dropdown-content-subselector-group">
+                <div className="controls-dropdown-content-subselectors">
                     {
-                        attributes?.classManagerSubselector?.filter((item) => item?.parent === selectedClass?.id)?.map((item) => (
-                            <Button
-                                variant='secondary'
-                                className={classNames('controls-dropdown-content-subselector-group__item', {
-                                    'active': selectedSubSelector?.title === item?.title
-                                })}
-                                onClick={() => {
-                                    setSelectedSubSelector(selectedSubSelector?.title === item?.title ? null : item);
-                                }}
-                            >
-                                <span>{item?.title}</span>
-                                <span className="controls-dropdown-content-subselector-group__icon">{close}</span>
-                            </Button>
-                        ))
+                        attributes?.classManagerSubselector?.length > 0 && attributes?.classManagerSubselector?.map((item) => {
+                            if (item?.parent === selectedClass?.id) {
+                                return (
+                                    <Button
+                                        key={item?.id}
+                                        variant='secondary'
+                                        size='small'
+                                        label={item?.title}
+                                        className={classNames('controls-dropdown-content-subselector', { 'subselector-selected': selectedSubSelector?.id === item?.id })}
+                                        showTooltip
+                                        onClick={() => {
+                                            if (selectedSubSelector?.id === item?.id) {
+                                                setSelectedSubSelector(null);
+                                                setEditInput(selectedClass?.title);
+                                            } else {
+                                                setSelectedSubSelector(item);
+                                                setEditInput(item?.title);
+                                            }
+                                        }}
+                                    >
+                                        <Text>{item?.title}</Text>
+                                        <span
+                                            className='controls-dropdown-content-subselector-close'
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                const updatedSubSelector = attributes?.classManagerSubselector?.filter((subSelector) => subSelector?.id !== item?.id);
+                                                setAttributes({ classManagerSubselector: updatedSubSelector });
+                                                if (selectedSubSelector?.id === item?.id) {
+                                                    setSelectedSubSelector(null);
+                                                }
+                                            }}
+                                        >
+                                            {closeSmall}
+                                        </span>
+                                    </Button>
+                                )
+                            }
+                        })
                     }
+                    <Dropdown
+                        className="zb-class-manager-subselector-input-dropdown"
+                        contentClassName="zb-class-manager-input-dropdown-content"
+                        popoverProps={{ placement: 'bottom-end' }}
+                        renderToggle={({ isOpen, onToggle }) => (
+                            <Button
+                                label='Add Subselector'
+                                className='controls-dropdown-content-subselector'
+                                icon={plus}
+                                variant='secondary'
+                                size='small'
+                                showTooltip
+                                onClick={onToggle}
+                                aria-expanded={isOpen}
+                            />
+                        )}
+                        renderContent={() => {
+                            return (
+                                <SubselectorDropdownContent subSelectors={subSelectors} parent={selectedClass} attributes={attributes} setAttributes={setAttributes} />
+                            )
+                        }}
+                    />
                 </div>
             </VStack>
             <div className="controls-dropdown-content-body">
-                {
-                    !selectedSubSelector ? (
-                        <StyleControls
-                            value={parentStyle}
-                            onChange={(value) => {
-                                setParentStyle({
-                                    ...parentStyle,
-                                    ...value
-                                });
-                            }}
-                        />
-                    ) : (
-                        <StyleControls
-                            value={attributes?.classManagerSubselector?.find((item) => item?.title === selectedSubSelector?.title && selectedClass?.id === item?.parent)?.style}
-                            onChange={(value) => {
-                                const classIndex = attributes?.classManagerSubselector.findIndex((item) => item?.title === selectedSubSelector?.title && selectedClass?.id === item?.parent);
-                                const newSubSelectors = [...attributes?.classManagerSubselector];
-                                newSubSelectors[classIndex] = {
-                                    ...newSubSelectors[classIndex],
-                                    style: {
-                                        ...newSubSelectors[classIndex]?.style,
-                                        ...value
-                                    }
-                                }
-                                setAttributes({
-                                    classManagerSubselector: newSubSelectors
-                                });
-                            }}
-                        />
-                    )
-                }
+                <StyleControls
+                    value={currentStyle}
+                    onChange={(value) => {
+                        setStyle({
+                            ...currentStyle,
+                            ...value
+                        });
+                    }}
+                />
             </div>
         </div>
     )

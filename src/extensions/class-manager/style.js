@@ -15,10 +15,6 @@ const generateStyles = (styles, selector) => {
             ${generateCSS({ attributes: styles?.typography, key: 'fontStyle', getValue: (value) => `font-style: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.colors, key: 'textColor', getValue: (value) => `color: ${value};`, device: 'Desktop' })}
         }
-
-        ${selector}a, ${selector} a{
-            ${generateCSS({ attributes: styles?.colors, key: 'linkColor', getValue: (value) => `color: ${value};`, device: 'Desktop' })}
-        }
     `;
 
     const tabletAllStyle = `

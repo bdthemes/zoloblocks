@@ -15,10 +15,16 @@ const RenderGlobalStyles = () => {
         if (classes.length > 0) {
             return classes.map((item) => {
                 const editedData = getEditedEntityRecord('postType', 'zolo-class-manager', item?.id);
-                
+                const parent = getEditedEntityRecord('postType', 'zolo-class-manager', item?.parent);
+                let selector;
+                if (parent) {
+                    selector = editedData?.title?.startsWith(':') ? `.${parent?.title}.zbcm-${editedData?.id}` + editedData?.title : `.${parent?.title}.zbcm-${editedData?.id} ${editedData?.title}`;
+                } else {
+                    selector = `.${editedData?.title}`
+                }
                 if (editedData?.content && editedData?.title) {
                     let style = JSON.parse(editedData?.content);
-                    return style && Object.keys(style).length > 0 ? generateStyles(style, `.${editedData?.title}`) : '';
+                    return style && Object.keys(style).length > 0 ? generateStyles(style, selector) : '';
                 }
             })?.join('');
         }

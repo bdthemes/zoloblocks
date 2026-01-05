@@ -201,18 +201,6 @@ const StyleControls = ({ value, onChange }) => {
                                             })
                                         }}
                                     />
-                                    <ColorControl 
-                                        label={__('Link Color', 'zoloblocks')}
-                                        color={value?.colors?.linkColor}
-                                        onChange={(newValue) => {
-                                            onChange({
-                                                colors: {
-                                                    ...value?.colors,
-                                                    linkColor: newValue
-                                                }
-                                            })
-                                        }}
-                                    />
                                 </VStack>
                             </PanelBody>
                         </Panel>
