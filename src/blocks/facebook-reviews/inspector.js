@@ -289,27 +289,31 @@ function Inspector(props) {
                 }
                 styleTab={
                     <>
-                        <ZoloPanelBody title={__('Layout', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
-                            <ResCounterControl
-                                label={__('Columns', 'zoloblocks')}
-                                controlName={FB_REVIEWS_COLUMNS}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={6}
-                                defaults={{
-                                    deskRange: 3,
-                                    tabRange: 2,
-                                    mobRange: 1,
-                                }}
-                            />
+                        {layoutType !== 'badge' && (
+                            <ZoloPanelBody title={__('Layout', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
+                                <ResCounterControl
+                                    label={__('Columns', 'zoloblocks')}
+                                    controlName={FB_REVIEWS_COLUMNS}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={6}
+                                    defaults={{
+                                        deskRange: 3,
+                                        tabRange: 2,
+                                        mobRange: 1,
+                                    }}
+                                />
 
-                            <ResGapControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={FB_REVIEWS_GAP}
-                                requiredProps={requiredProps}
-                                max={100}
-                            />
-                        </ZoloPanelBody>
+                                {layoutType !== 'carousel' && (
+                                    <ResGapControl
+                                        label={__('Gap', 'zoloblocks')}
+                                        controlName={FB_REVIEWS_GAP}
+                                        requiredProps={requiredProps}
+                                        max={100}
+                                    />
+                                )}
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 advancedTab={

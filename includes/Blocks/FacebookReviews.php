@@ -55,14 +55,14 @@ class FacebookReviews extends PostBlock {
         $layout_type = !empty($attributes['layoutType']) ? $attributes['layoutType'] : 'grid';
         
         // Get columns
-        $columns_desktop = !empty($attributes['columns']['desktop']) ? intval($attributes['columns']['desktop']) : 3;
-        $columns_tablet = !empty($attributes['columns']['tablet']) ? intval($attributes['columns']['tablet']) : 2;
-        $columns_mobile = !empty($attributes['columns']['mobile']) ? intval($attributes['columns']['mobile']) : 1;
+        $columns_desktop = isset($attributes['zolo_fbReviewsColumnsRange']) ? intval($attributes['zolo_fbReviewsColumnsRange']) : 3;
+        $columns_tablet = isset($attributes['zolo_TABfbReviewsColumnsRange']) ? intval($attributes['zolo_TABfbReviewsColumnsRange']) : 2;
+        $columns_mobile = isset($attributes['zolo_MOBfbReviewsColumnsRange']) ? intval($attributes['zolo_MOBfbReviewsColumnsRange']) : 1;
         
-        // Get gap
-        $gap_desktop = !empty($attributes['gap']['desktop']) ? intval($attributes['gap']['desktop']) : 24;
-        $gap_tablet = !empty($attributes['gap']['tablet']) ? intval($attributes['gap']['tablet']) : 20;
-        $gap_mobile = !empty($attributes['gap']['mobile']) ? intval($attributes['gap']['mobile']) : 16;
+        // Get gap - use isset() to allow 0 values
+        $gap_desktop = isset($attributes['zolo_fbReviewsGapGap']) ? intval($attributes['zolo_fbReviewsGapGap']) : 20;
+        $gap_tablet = isset($attributes['zolo_TABfbReviewsGapGap']) ? intval($attributes['zolo_TABfbReviewsGapGap']) : 20;
+        $gap_mobile = isset($attributes['zolo_MOBfbReviewsGapGap']) ? intval($attributes['zolo_MOBfbReviewsGapGap']) : 20;
         
         // Generate unique ID
         $unique_id = !empty($attributes['uniqueId']) ? $attributes['uniqueId'] : 'zolo-fb-reviews-' . wp_generate_password(8, false);
