@@ -104,7 +104,7 @@ class FacebookFeed extends PostBlock
             data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed']); ?>"
             data-carousel-loop="<?php echo $attributes['carouselLoop'] ? 'true' : 'false'; ?>">
 
-            <div class="zolo-fb-posts-container layout-<?php echo $layout_type; ?>"
+            <div class="zolo-fb-posts-container layout-<?php echo $layout_type; ?> zolo-facebook-feed-<?php echo $unique_id; ?>"
                 style="<?php echo $this->get_container_style($attributes); ?>">
 
                 <?php foreach ($posts as $post) : ?>
@@ -263,7 +263,7 @@ class FacebookFeed extends PostBlock
     {
         $layout = $attributes['layoutType'];
 
-        if ($layout !== 'grid' && $layout !== 'masonry') {
+        if ($layout !== 'grid' && $layout !== 'masonry' && $layout !== 'timeline' && $layout !== 'carousel') {
             return '';
         }
 
@@ -277,6 +277,7 @@ class FacebookFeed extends PostBlock
 
         // Tablet values
         $cols_tab = $attributes['zolo_TABfbColumnsRange'] ?? $cols_desk;
+        $is_linked_tab = $attributes['zolo_TABfbGapIsLinked'] ?? $is_linked_desk;
         $gap_tab = $attributes['zolo_TABfbGapGap'] ?? $gap_desk;
         $row_gap_tab = $attributes['zolo_TABfbGapRowGap'] ?? $row_gap_desk;
         $col_gap_tab = $attributes['zolo_TABfbGapColGap'] ?? $col_gap_desk;
@@ -284,6 +285,7 @@ class FacebookFeed extends PostBlock
 
         // Mobile values
         $cols_mob = $attributes['zolo_MOBfbColumnsRange'] ?? $cols_tab;
+        $is_linked_mob = $attributes['zolo_MOBfbGapIsLinked'] ?? $is_linked_tab;
         $gap_mob = $attributes['zolo_MOBfbGapGap'] ?? $gap_tab;
         $row_gap_mob = $attributes['zolo_MOBfbGapRowGap'] ?? $row_gap_tab;
         $col_gap_mob = $attributes['zolo_MOBfbGapColGap'] ?? $col_gap_tab;
@@ -292,7 +294,16 @@ class FacebookFeed extends PostBlock
         $css = '<style>';
 
         // Desktop styles
-        if ($layout === 'grid') {
+        if ($layout === 'timeline') {
+            $css .= ".zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-{$unique_id} {";
+            if ($is_linked_desk) {
+                $css .= "gap: {$gap_desk}{$gap_unit_desk};";
+            } else {
+                $css .= "row-gap: {$row_gap_desk}{$gap_unit_desk};";
+                $css .= "column-gap: {$col_gap_desk}{$gap_unit_desk};";
+            }
+            $css .= "}";
+        } elseif ($layout === 'grid') {
             $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
             $css .= "grid-template-columns: repeat({$cols_desk}, 1fr);";
             if ($is_linked_desk) {
@@ -318,11 +329,29 @@ class FacebookFeed extends PostBlock
                 $css .= "margin-bottom: {$row_gap_desk}{$gap_unit_desk};";
             }
             $css .= "}";
+        } elseif ($layout === 'carousel') {
+            $css .= ".zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-{$unique_id} .swiper {";
+            if ($is_linked_desk) {
+                $css .= "gap: {$gap_desk}{$gap_unit_desk};";
+            } else {
+                $css .= "row-gap: {$row_gap_desk}{$gap_unit_desk};";
+                $css .= "column-gap: {$col_gap_desk}{$gap_unit_desk};";
+            }
+            $css .= "}";
         }
 
         // Tablet styles
         $css .= "@media (max-width: 1024px) {";
-        if ($layout === 'grid') {
+        if ($layout === 'timeline') {
+            $css .= ".zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-{$unique_id} {";
+            if ($is_linked_tab) {
+                $css .= "gap: {$gap_tab}{$gap_unit_tab};";
+            } else {
+                $css .= "row-gap: {$row_gap_tab}{$gap_unit_tab};";
+                $css .= "column-gap: {$col_gap_tab}{$gap_unit_tab};";
+            }
+            $css .= "}";
+        } elseif ($layout === 'grid') {
             $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
             $css .= "grid-template-columns: repeat({$cols_tab}, 1fr) !important;";
             $css .= "row-gap: {$row_gap_tab}{$gap_unit_tab};";
@@ -336,12 +365,30 @@ class FacebookFeed extends PostBlock
             $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry .zolo-fb-post {";
             $css .= "margin-bottom: {$row_gap_tab}{$gap_unit_tab};";
             $css .= "}";
+        } elseif ($layout === 'carousel') {
+            $css .= ".zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-{$unique_id} .swiper {";
+            if ($is_linked_tab) {
+                $css .= "gap: {$gap_tab}{$gap_unit_tab};";
+            } else {
+                $css .= "row-gap: {$row_gap_tab}{$gap_unit_tab};";
+                $css .= "column-gap: {$col_gap_tab}{$gap_unit_tab};";
+            }
+            $css .= "}";
         }
         $css .= "}";
 
         // Mobile styles
         $css .= "@media (max-width: 767px) {";
-        if ($layout === 'grid') {
+        if ($layout === 'timeline') {
+            $css .= ".zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-{$unique_id} {";
+            if ($is_linked_mob) {
+                $css .= "gap: {$gap_mob}{$gap_unit_mob};";
+            } else {
+                $css .= "row-gap: {$row_gap_mob}{$gap_unit_mob};";
+                $css .= "column-gap: {$col_gap_mob}{$gap_unit_mob};";
+            }
+            $css .= "}";
+        } elseif ($layout === 'grid') {
             $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
             $css .= "grid-template-columns: repeat({$cols_mob}, 1fr) !important;";
             $css .= "row-gap: {$row_gap_mob}{$gap_unit_mob};";
@@ -354,6 +401,15 @@ class FacebookFeed extends PostBlock
             $css .= "}";
             $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry .zolo-fb-post {";
             $css .= "margin-bottom: {$row_gap_mob}{$gap_unit_mob};";
+            $css .= "}";
+        } elseif ($layout === 'carousel') {
+            $css .= ".zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-{$unique_id} .swiper {";
+            if ($is_linked_mob) {
+                $css .= "gap: {$gap_mob}{$gap_unit_mob};";
+            } else {
+                $css .= "row-gap: {$row_gap_mob}{$gap_unit_mob};";
+                $css .= "column-gap: {$col_gap_mob}{$gap_unit_mob};";
+            }
             $css .= "}";
         }
         $css .= "}";
@@ -613,10 +669,10 @@ class FacebookFeed extends PostBlock
         $demo_posts = [
             [
                 'id' => 1,
-                'author' => 'WP Social Ninja',
+                'author' => 'Sigmative',
                 'avatar' => 'https://via.placeholder.com/50',
                 'date' => '2 weeks ago',
-                'content' => 'The WP Social Ninja crew is all set for WordCamp Malaysia! 🇲🇾 Tomorrow, if you spot any of us at the venue, feel free to stop us, say hi, and let\'s chat about everything social media integration for WordPress sites! See you there!',
+                'content' => 'The Sigmative crew is all set for WordCamp Malaysia! 🇲🇾 Tomorrow, if you spot any of us at the venue, feel free to stop us, say hi, and let\'s chat about everything social media integration for WordPress sites! See you there!',
                 'hashtags' => ['#WordCampMY', '#WCMY25', '#WordCamp'],
                 'image' => 'https://via.placeholder.com/600x400',
                 'reactions' => 8,
@@ -634,7 +690,7 @@ class FacebookFeed extends PostBlock
             ],
             [
                 'id' => 2,
-                'author' => 'WP Social Ninja',
+                'author' => 'Sigmative',
                 'avatar' => 'https://via.placeholder.com/50',
                 'date' => '1 week ago',
                 'content' => 'Exciting news! We just launched our new feature that helps you connect with your audience better. Check it out and let us know what you think!',
@@ -654,7 +710,7 @@ class FacebookFeed extends PostBlock
             ],
             [
                 'id' => 3,
-                'author' => 'WP Social Ninja',
+                'author' => 'Sigmative',
                 'avatar' => 'https://via.placeholder.com/50',
                 'date' => '3 days ago',
                 'content' => 'Thanks to all our amazing users for your continued support! We couldn\'t do this without you. 💙',
@@ -673,7 +729,7 @@ class FacebookFeed extends PostBlock
             ],
             [
                 'id' => 4,
-                'author' => 'WP Social Ninja',
+                'author' => 'Sigmative',
                 'avatar' => 'https://via.placeholder.com/50',
                 'date' => '5 days ago',
                 'content' => 'Join us for an exclusive webinar on social media integration best practices!',
@@ -694,7 +750,7 @@ class FacebookFeed extends PostBlock
             ],
             [
                 'id' => 5,
-                'author' => 'WP Social Ninja',
+                'author' => 'Sigmative',
                 'avatar' => 'https://via.placeholder.com/50',
                 'date' => '1 day ago',
                 'content' => 'New tutorial alert! Learn how to maximize engagement with our latest features.',
@@ -714,7 +770,7 @@ class FacebookFeed extends PostBlock
             ],
             [
                 'id' => 6,
-                'author' => 'WP Social Ninja',
+                'author' => 'Sigmative',
                 'avatar' => 'https://via.placeholder.com/50',
                 'date' => '6 hours ago',
                 'content' => 'Happy Friday everyone! What are your weekend plans?',

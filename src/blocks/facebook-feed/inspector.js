@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
+import { useState, useEffect } from '@wordpress/element';
 import objAttributes from './attributes';
 import { LAYOUT_OPTIONS, FB_COLUMNS, FB_GAP } from './constants';
 
@@ -36,6 +37,20 @@ function Inspector(props) {
         resMode,
     } = attributes;
 
+    const [isApiConfigured, setIsApiConfigured] = useState(false);
+
+    useEffect(() => {
+        wp.apiFetch({ path: '/wp/v2/settings' })
+            .then((settings) => {
+                const pageId = settings.zolo_facebook_page_id || '';
+                const accessToken = settings.zolo_facebook_access_token || '';
+                setIsApiConfigured(!!(pageId && accessToken));
+            })
+            .catch(() => {
+                setIsApiConfigured(false);
+            });
+    }, []);
+
     const requiredProps = {
         resMode,
         setAttributes,
@@ -51,53 +66,55 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('Facebook API Settings', 'zoloblocks')} panelProps={props} firstOpen={true}>
-                            <div className="components-notice is-info" style={{ 
-                                padding: '16px', 
-                                background: 'linear-gradient(135deg, #e7f5fe 0%, #f0f9ff 100%)', 
-                                borderLeft: '4px solid #1877f2', 
-                                borderRadius: '4px',
-                                margin: '0 0 20px',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-                            }}>
-                                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877f2" style={{ flexShrink: 0, marginTop: '2px' }}>
-                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                                    </svg>
-                                    <div style={{ flex: 1 }}>
-                                        <p style={{ margin: '0 0 8px', fontWeight: '600', fontSize: '14px', color: '#1e293b', lineHeight: '1.4' }}>
-                                            {__('Configure Facebook API', 'zoloblocks')}
-                                        </p>
-                                        <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#475569', lineHeight: '1.6' }}>
-                                            {__('Connect your Facebook page to display live feeds. Configure your credentials in the API Settings.', 'zoloblocks')}
-                                        </p>
-                                        <a 
-                                            href={`${window.location.origin}/wp-admin/admin.php?page=zoloblocks#apiSettings`} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer" 
-                                            style={{ 
-                                                display: 'inline-flex',
-                                                alignItems: 'center',
-                                                gap: '6px',
-                                                padding: '8px 16px',
-                                                background: '#1877f2',
-                                                color: '#ffffff',
-                                                textDecoration: 'none',
-                                                borderRadius: '4px',
-                                                fontSize: '13px',
-                                                fontWeight: '500',
-                                                transition: 'background 0.2s',
-                                                boxShadow: '0 2px 4px rgba(24, 119, 242, 0.2)'
-                                            }}
-                                            onMouseEnter={(e) => e.target.style.background = '#0c63d4'}
-                                            onMouseLeave={(e) => e.target.style.background = '#1877f2'}
-                                        >
-                                            {__('Go to API Settings', 'zoloblocks')}
-                                        </a>
+                        {!isApiConfigured && (
+                            <ZoloPanelBody title={__('Facebook API Settings', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                                <div className="components-notice is-info" style={{ 
+                                    padding: '16px', 
+                                    background: 'linear-gradient(135deg, #e7f5fe 0%, #f0f9ff 100%)', 
+                                    borderLeft: '4px solid #1877f2', 
+                                    borderRadius: '4px',
+                                    margin: '0 0 20px',
+                                    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                                }}>
+                                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877f2" style={{ flexShrink: 0, marginTop: '2px' }}>
+                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                        </svg>
+                                        <div style={{ flex: 1 }}>
+                                            <p style={{ margin: '0 0 8px', fontWeight: '600', fontSize: '14px', color: '#1e293b', lineHeight: '1.4' }}>
+                                                {__('Configure Facebook API', 'zoloblocks')}
+                                            </p>
+                                            <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#475569', lineHeight: '1.6' }}>
+                                                {__('Connect your Facebook page to display live feeds. Configure your credentials in the API Settings.', 'zoloblocks')}
+                                            </p>
+                                            <a 
+                                                href={`${window.location.origin}/wp-admin/admin.php?page=zoloblocks#apiSettings`} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer" 
+                                                style={{ 
+                                                    display: 'inline-flex',
+                                                    alignItems: 'center',
+                                                    gap: '6px',
+                                                    padding: '8px 16px',
+                                                    background: '#1877f2',
+                                                    color: '#ffffff',
+                                                    textDecoration: 'none',
+                                                    borderRadius: '4px',
+                                                    fontSize: '13px',
+                                                    fontWeight: '500',
+                                                    transition: 'background 0.2s',
+                                                    boxShadow: '0 2px 4px rgba(24, 119, 242, 0.2)'
+                                                }}
+                                                onMouseEnter={(e) => e.target.style.background = '#0c63d4'}
+                                                onMouseLeave={(e) => e.target.style.background = '#1877f2'}
+                                            >
+                                                {__('Go to API Settings', 'zoloblocks')}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </ZoloPanelBody>
+                            </ZoloPanelBody>
+                        )}
 
                         <ZoloPanelBody title={__('Layout Settings', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-flex-col-control">

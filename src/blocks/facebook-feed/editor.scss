@@ -39,6 +39,19 @@
         }
     }
 
+    // Editor timeline layout
+    .zolo-fb-posts-container.layout-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    // Editor grid layout
+    .zolo-fb-posts-container.layout-grid {
+        display: grid;
+        gap: 20px;
+    }
+
     // Editor masonry layout
     .zolo-fb-posts-container.layout-masonry {
         column-count: var(--masonry-columns, 3);
