@@ -114,7 +114,7 @@ class FacebookReviews extends PostBlock {
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
                         <div class="zolo-fb-reviews-header-info">
-                            <h2 class="zolo-fb-reviews-title"><?php echo esc_html($header_title); ?></h2>
+                            <h2 class="zolo-fb-reviews-title"><?php echo wp_kses_post($header_title); ?></h2>
                             <?php if ($show_header_rating): ?>
                                 <div class="zolo-fb-reviews-header-rating">
                                     <span class="zolo-fb-rating-number">5.0</span>
@@ -132,7 +132,7 @@ class FacebookReviews extends PostBlock {
                     </div>
                     <?php if ($show_write_review_btn): ?>
                         <a href="<?php echo esc_url($write_review_btn_url); ?>" class="zolo-fb-write-review-btn" target="_blank" rel="noopener noreferrer">
-                            <?php echo esc_html($write_review_btn_text); ?>
+                            <?php echo wp_kses_post($write_review_btn_text); ?>
                         </a>
                     <?php endif; ?>
                 </div>

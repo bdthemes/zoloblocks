@@ -46,17 +46,20 @@
                 margin: 0 auto;
                 padding: 0 0 40px;
                 overflow: hidden;
+                height: auto;
             }
 
             .swiper-wrapper {
                 display: flex;
                 align-items: flex-start;
+                height: auto;
             }
 
             .swiper-slide {
                 height: auto;
                 display: flex;
                 align-items: flex-start;
+                align-self: stretch;
             }
 
             .zolo-fb-post {
@@ -64,6 +67,10 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
+            }
+
+            .zolo-fb-reactions {
+                margin-top: auto;
             }
 
             .swiper-button-prev,
@@ -134,6 +141,8 @@
         border-radius: 8px;
         padding: 12px;
         transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
 
         &:hover {
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
@@ -274,7 +283,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-top: 8px;
+        padding-top:autox;
         margin-top: 8px;
     }
 

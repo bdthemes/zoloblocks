@@ -121,6 +121,34 @@
                 display: block;
                 width: auto;
                 margin-bottom: 20px;
+                flex-direction: column;
+            }
+            
+            .zolo-fb-review-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                margin-bottom: 4px;
+                
+                .zolo-fb-reviewer-name-url {
+                    flex: 0 0 auto;
+                }
+                
+                .zolo-fb-rating-wrapper {
+                    flex: 0 0 auto;
+                    margin-left: auto;
+                }
+            }
+            
+            .zolo-fb-reviewer-image {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+            }
+            
+            .zolo-fb-review-info {
+                padding-left: 64px;
             }
         }
 
@@ -153,6 +181,33 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
+            }
+            
+            .zolo-fb-review-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                margin-bottom: 4px;
+                
+                .zolo-fb-reviewer-name-url {
+                    flex: 0 0 auto;
+                }
+                
+                .zolo-fb-rating-wrapper {
+                    flex: 0 0 auto;
+                    margin-left: auto;
+                }
+            }
+            
+            .zolo-fb-reviewer-image {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+            }
+            
+            .zolo-fb-review-info {
+                padding-left: 64px;
             }
 
             .swiper-button-prev,
@@ -209,6 +264,7 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         border: 1px solid #e4e6eb;
         transition: box-shadow 0.2s ease;
+        position: relative;
 
         &:hover {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);

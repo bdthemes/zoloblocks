@@ -132,14 +132,6 @@ function Inspector(props) {
                             {showHeader && (
                                 <>
                                     <div className="zolo-flex-col-control">
-                                        <ZoloTextControl
-                                            label={__('Header Title', 'zoloblocks')}
-                                            value={headerTitle}
-                                            onChange={(value) => setAttributes({ headerTitle: value })}
-                                            help={__('Text after "facebook" branding', 'zoloblocks')}
-                                        />
-                                    </div>
-                                    <div className="zolo-flex-col-control">
                                         <ZoloToggleControl
                                             label={__('Show Rating in Header', 'zoloblocks')}
                                             checked={showHeaderRating}
@@ -155,13 +147,6 @@ function Inspector(props) {
                                     </div>
                                     {showWriteReviewBtn && (
                                         <>
-                                            <div className="zolo-flex-col-control">
-                                                <ZoloTextControl
-                                                    label={__('Button Text', 'zoloblocks')}
-                                                    value={writeReviewBtnText}
-                                                    onChange={(value) => setAttributes({ writeReviewBtnText: value })}
-                                                />
-                                            </div>
                                             <div className="zolo-flex-col-control">
                                                 <ZoloTextControl
                                                     label={__('Button URL', 'zoloblocks')}

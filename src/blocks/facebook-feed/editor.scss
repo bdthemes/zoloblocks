@@ -73,6 +73,23 @@
             overflow: visible; // Allow navigation buttons to show
         }
 
+        .swiper-wrapper {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .swiper-slide {
+            height: auto;
+            display: flex;
+            align-items: stretch;
+            
+            .zolo-fb-post {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
         .swiper-button-prev,
         .swiper-button-next {
             &:hover {
