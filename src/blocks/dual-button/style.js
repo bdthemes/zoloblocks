@@ -722,7 +722,7 @@ const Style = ({ props }) => {
             ${buttonOneIconBorderRadiusDesktop}
         }
 
-        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo__display-icon:hover svg{
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first:hover .zolo__display-icon svg{
             color: ${buttonOneIconColorHover ? buttonOneIconColorHover : ''};
             ${buttonOneIconHoverBGDesktop}
             ${buttonOneIconHoverShadowDesktop}
@@ -739,7 +739,7 @@ const Style = ({ props }) => {
             ${buttonTwoIconBorderRadiusDesktop}
         }
 
-        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo__display-icon:hover svg{
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second:hover .zolo__display-icon svg{
             color: ${buttonTwoIconColorHover ? buttonTwoIconColorHover : ''};
             ${buttonTwoIconHoverBGDesktop}
             ${buttonTwoIconHoverShadowDesktop}
@@ -842,7 +842,7 @@ const Style = ({ props }) => {
             ${buttonOneIconBorderRadiusTab}
         }
 
-        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo__display-icon svg:hover{
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first:hover .zolo__display-icon svg{
             color: ${buttonOneIconColorHover ? buttonOneIconColorHover : ''};
             ${buttonOneIconHoverBGTab}
             ${buttonOneIconHoverShadowTab}
@@ -859,7 +859,7 @@ const Style = ({ props }) => {
             ${buttonTwoIconBorderRadiusTab}
         }
 
-        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo__display-icon:hover svg{
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second:hover .zolo__display-icon svg{
             color: ${buttonTwoIconColorHover ? buttonTwoIconColorHover : ''};
             ${buttonTwoIconHoverBGTab}
             ${buttonTwoIconHoverShadowTab}
@@ -962,7 +962,7 @@ const Style = ({ props }) => {
             ${buttonOneIconBorderRadiusMob}
         }
 
-        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first .zolo__display-icon svg:hover{
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-first:hover .zolo__display-icon svg{
             color: ${buttonOneIconColorHover ? buttonOneIconColorHover : ''};
             ${buttonOneIconHoverBGMob}
             ${buttonOneIconHoverShadowMob}
@@ -979,7 +979,7 @@ const Style = ({ props }) => {
             ${buttonTwoIconBorderRadiusMob}
         }
 
-        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second .zolo__display-icon:hover svg{
+        .wp-block-zolo-dual-button.${uniqueId} .zolo-btn-second:hover .zolo__display-icon svg{
             color: ${buttonTwoIconColorHover ? buttonTwoIconColorHover : ''};
             ${buttonTwoIconHoverBGMob}
             ${buttonTwoIconHoverShadowMob}
