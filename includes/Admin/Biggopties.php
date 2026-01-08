@@ -334,6 +334,24 @@ class Biggopties {
 			wp_send_json_error(['message' => 'forbidden']);
 		}
 
+		// Don't show biggopties on plugin/theme install and upload pages
+		$current_url = isset($_POST['current_url']) ? sanitize_text_field($_POST['current_url']) : '';
+
+		if (!empty($current_url)) {
+			$excluded_patterns = [
+				'plugin-install.php',
+				'theme-install.php',
+				'action=upload-plugin',
+				'action=upload-theme'
+			];
+
+			foreach ($excluded_patterns as $pattern) {
+				if (strpos($current_url, $pattern) !== false) {
+					wp_send_json_success(['html' => '']);
+				}
+			}
+		}
+
 		$biggopties = $this->get_api_biggopties_data();
 		$grouped_biggopties = [];
 
