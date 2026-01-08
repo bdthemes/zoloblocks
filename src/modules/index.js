@@ -21,6 +21,7 @@ export { default as ImageSizes } from '../controls/image-sizes';
 export { default as LinkControl } from '../controls/link-control';
 export { default as LinkUnlink } from '../controls/link-unlink';
 export { default as MaskControl } from '../controls/mask-control';
+export { default as ZoloMediaUpload } from '../controls/media-upload-control';
 export { default as MultiRangeControl } from '../controls/multi-range-control';
 export { default as NormalBGControl } from '../controls/normal-bg-control';
 export { default as TextGradientControl } from '../controls/text-gradient-control';
