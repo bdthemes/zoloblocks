@@ -232,6 +232,7 @@ function Inspector(props) {
                                             onChange={(value) =>
                                                 setAttributes({
                                                     buttonOneColor: value,
+                                                    buttonOneIconColor: value,
                                                 })
                                             }
                                         />
@@ -282,6 +283,7 @@ function Inspector(props) {
                                             onChange={(value) =>
                                                 setAttributes({
                                                     buttonOneColorHover: value,
+                                                    buttonOneIconColorHover: value,
                                                 })
                                             }
                                         />
@@ -305,7 +307,7 @@ function Inspector(props) {
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={buttonTwoColor}
-                                            onChange={(value) => setAttributes({ buttonTwoColor: value })}
+                                            onChange={(value) => setAttributes({ buttonTwoColor: value, buttonTwoIconColor: value })}
                                         />
                                         <TypographyDropdown
                                             label={__('Typography', 'zoloblocks')}
@@ -353,6 +355,7 @@ function Inspector(props) {
                                             onChange={(value) =>
                                                 setAttributes({
                                                     buttonTwoColorHover: value,
+                                                    buttonTwoIconColorHover: value,
                                                 })
                                             }
                                         />
