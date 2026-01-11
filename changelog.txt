@@ -1,3 +1,18 @@
+### 2.5.1 [January 6, 2026]
+
+- **New Features:**
+  - Added Custom Masking option for the Image block. (pro)
+
+- **Fixes:**
+  - Fixed the dual button color issue.
+
+### 2.5.0 [December 31, 2025]
+
+- **New Features:**
+  - Added Flexbox block
+  - Added Circle Info block (pro)
+  - Added Switcher block (pro)
+
 ### 2.4.0 [December 4, 2025]
 
 **Bug Fixes:**

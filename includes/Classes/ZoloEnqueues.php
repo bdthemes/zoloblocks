@@ -390,6 +390,7 @@ if (! class_exists('ZoloEnqueues')) {
                 'upkBrand'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/upk-brand.svg',
                 'popupBg'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/popup-bg.svg',
                 'zoloLogo'          => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/zoloblocks-logo.png',
+                'zoloImage'        => trailingslashit(ZOLO_ADMIN_URL) . 'assets/images/zolo.png',
             ]);
         }
 
