@@ -14,6 +14,7 @@ export const fontWeightOptions = [
 ];
 
 export function minifyCSS(css) {
+    if (!css) return '';
     return css
         .replace(/\/\*[\s\S]*?\*\//g, '') // remove comments
         .replace(/\s+/g, ' ')             // collapse whitespace

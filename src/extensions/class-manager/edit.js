@@ -1,7 +1,6 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
-import { minifyCSS } from './utils';
 import generateStyles from './style';
 const RenderGlobalStyles = () => {
     const editorSettings = useSelect((select) => {
@@ -40,6 +39,7 @@ const RenderGlobalStyles = () => {
 
     const updateStyles = async (classStyles) => {
         for (let item of classStyles) {
+            if(!item?.style) continue;
             await editEntityRecord('postType', 'zolo-class-manager', item?.id, {
                 meta: {
                     zoloClassManagerStyles: item?.style
@@ -49,10 +49,8 @@ const RenderGlobalStyles = () => {
     }
 
     useEffect(() => {
-        if (!classStyles?.length) {
-            return;
-        }
-
+        if (!classStyles?.length) return;
+        
         const styles = classStyles?.map((item) => item?.style)?.join('');
 
         const styleIndex = editorSettings?.styles?.findIndex((style) => style?.__unstableType === 'zolo-class-manager');
@@ -64,7 +62,7 @@ const RenderGlobalStyles = () => {
                     {
                         isGlobalStyles: true,
                         __unstableType: 'zolo-class-manager',
-                        css: minifyCSS(styles)
+                        css: styles
                     }
                 ]
             })
@@ -75,7 +73,7 @@ const RenderGlobalStyles = () => {
                     if (index === styleIndex) {
                         return {
                             ...style,
-                            css: minifyCSS(styles)
+                            css: styles
                         }
                     }
                     return style;
