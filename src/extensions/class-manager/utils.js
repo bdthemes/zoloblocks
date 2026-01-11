@@ -13,6 +13,81 @@ export const fontWeightOptions = [
     { label: __('900', 'zoloblocks'), value: '900' },
 ];
 
+export const borderStyles = [
+    { label: __('None', 'zoloblocks'), value: 'none' },
+    { label: __('Solid', 'zoloblocks'), value: 'solid' },
+    { label: __('Dotted', 'zoloblocks'), value: 'dotted' },
+    { label: __('Dashed', 'zoloblocks'), value: 'dashed' },
+    { label: __('Double', 'zoloblocks'), value: 'double' },
+    { label: __('Groove', 'zoloblocks'), value: 'groove' },
+    { label: __('Ridge', 'zoloblocks'), value: 'ridge' },
+    { label: __('Inset', 'zoloblocks'), value: 'inset' },
+    { label: __('Outset', 'zoloblocks'), value: 'outset' },
+];
+
+export const overflowOptions = [
+    { label: __('Visible', 'zoloblocks'), value: 'visible' },
+    { label: __('Hidden', 'zoloblocks'), value: 'hidden' },
+    { label: __('Scroll', 'zoloblocks'), value: 'scroll' },
+    { label: __('Auto', 'zoloblocks'), value: 'auto' },
+];
+
+export const backgroundTypes = [
+    { label: __('Color', 'zoloblocks'), value: 'color' },
+    { label: __('Gradient', 'zoloblocks'), value: 'gradient' },
+    { label: __('Image', 'zoloblocks'), value: 'image' },
+];
+
+export const whiteSpaceOptions = [
+    { label: __('Normal', 'zoloblocks'), value: 'normal' },
+    { label: __('Nowrap', 'zoloblocks'), value: 'nowrap' },
+    { label: __('Pre', 'zoloblocks'), value: 'pre' },
+    { label: __('Pre Line', 'zoloblocks'), value: 'pre-line' },
+    { label: __('Pre Wrap', 'zoloblocks'), value: 'pre-wrap' },
+    { label: __('Break Spaces', 'zoloblocks'), value: 'break-spaces' },
+];
+
+export const displayOptions = [
+    { label: __('Block', 'zoloblocks'), value: 'block' },
+    { label: __('Inline', 'zoloblocks'), value: 'inline' },
+    { label: __('Flex', 'zoloblocks'), value: 'flex' },
+    { label: __('Grid', 'zoloblocks'), value: 'grid' },
+];
+
+export const positionOptions = [
+    { label: __('Static', 'zoloblocks'), value: 'static' },
+    { label: __('Relative', 'zoloblocks'), value: 'relative' },
+    { label: __('Absolute', 'zoloblocks'), value: 'absolute' },
+    { label: __('Fixed', 'zoloblocks'), value: 'fixed' },
+    { label: __('Sticky', 'zoloblocks'), value: 'sticky' },
+];
+
+export const floatOptions = [
+    { label: __('Left', 'zoloblocks'), value: 'left' },
+    { label: __('Right', 'zoloblocks'), value: 'right' },
+];
+
+export const clearOptions = [
+    { label: __('Left', 'zoloblocks'), value: 'left' },
+    { label: __('Right', 'zoloblocks'), value: 'right' },
+    { label: __('Both', 'zoloblocks'), value: 'both' },
+];
+
+export const verticalAlignOptions = [
+    { label: __('Baseline', 'zoloblocks'), value: 'baseline' },
+    { label: __('Top', 'zoloblocks'), value: 'top' },
+    { label: __('Middle', 'zoloblocks'), value: 'middle' },
+    { label: __('Bottom', 'zoloblocks'), value: 'bottom' },
+    { label: __('Text Top', 'zoloblocks'), value: 'text-top' },
+    { label: __('Text Bottom', 'zoloblocks'), value: 'text-bottom' },
+];
+
+export const gridLayoutTypeOptions = [
+    { label: __('Auto', 'zoloblocks'), value: 'auto' },
+    { label: __('Manual', 'zoloblocks'), value: 'manual' },
+    { label: __('Masonry', 'zoloblocks'), value: 'masonry' },
+];
+
 export function minifyCSS(css) {
     return css
         .replace(/\/\*[\s\S]*?\*\//g, '') // remove comments
