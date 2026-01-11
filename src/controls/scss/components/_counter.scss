@@ -1,0 +1,24 @@
+.zb-counter-control-wrapper {
+    position: relative;
+    .components-base-control__label{
+        margin-bottom: 14px !important;
+    }
+
+    .zb-counter-control-btn {
+        background-color: #f2f2f2;
+        border-radius: 6px;
+        padding: 0;
+        margin: 0;
+        height: 35px;
+        width: 100%;
+    }
+
+    .zb-counter-control-reset-btn{
+        position: absolute;
+        top: 0;
+        right: 0;
+        svg{
+            fill: currentColor !important;
+        }
+    }
+}
