@@ -4,8 +4,11 @@ import { __ } from '@wordpress/i18n';
 import ResetBtn from '../reset-btn';
 import { getContrastRatio } from '../../helpers/helper';
 
-const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha = false }) => {
+const ColorControl = ({ label, defaultColor = '', color, value, onChange, disableAlpha = false }) => {
     const [colorPanel, setColorPanel] = useState(false);
+    
+    // Support both 'color' and 'value' props for flexibility (repeater compatibility)
+    const currentColor = color !== undefined ? color : value;
 
     // fetch theme colors from api
     const COLORS = wp.data.select('core/editor').getEditorSettings().colors;
@@ -26,7 +29,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
         <div className="zb-color-control-wrapper">
             <ZoloFlex>
                 <ZoloFlexBlock>{label || __('Color', 'zoloblocks')}</ZoloFlexBlock>
-                {color && (
+                {currentColor && (
                     <ZoloFlexItem>
                         <ResetBtn
                             customClass="zb-reset-has-value"
@@ -41,7 +44,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                         className="color-ball"
                         onClick={() => setColorPanel(true)}
                         style={{
-                            background: color || defaultColor,
+                            background: currentColor || defaultColor,
                         }}
                     ></ZoloButton>
                 </ZoloFlexItem>
@@ -57,7 +60,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                     }}
                 >
                     <ZoloColorPicker
-                        color={color}
+                        color={currentColor}
                         onChange={(color) => {
                             onChange(color);
                         }}
@@ -76,7 +79,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                                         className="components-circular-option-picker__option-wrapper"
                                     >
                                         <ZoloButton
-                                            className={`components-button components-circular-option-picker__option ${`var(--wp--preset--color--${paletteColor.slug})` === color || paletteColor.color === color ? 'is-pressed' : ''}`}
+                                            className={`components-button components-circular-option-picker__option ${`var(--wp--preset--color--${paletteColor.slug})` === currentColor || paletteColor.color === currentColor ? 'is-pressed' : ''}`}
                                             style={{
                                                 backgroundColor: paletteColor.color,
                                                 color: paletteColor.color,
@@ -85,7 +88,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                                                 onChange(paletteColor.color);
                                             }}
                                         />
-                                        {paletteColor.color === color && (
+                                        {paletteColor.color === currentColor && (
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
@@ -119,7 +122,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                                         className="components-circular-option-picker__option-wrapper"
                                     >
                                         <ZoloButton
-                                            className={`components-button components-circular-option-picker__option ${paletteColor.color === color ? 'is-pressed' : ''}`}
+                                            className={`components-button components-circular-option-picker__option ${paletteColor.color === currentColor ? 'is-pressed' : ''}`}
                                             style={{
                                                 backgroundColor: paletteColor.color,
                                                 color: paletteColor.color,
@@ -128,7 +131,7 @@ const ColorControl = ({ label, defaultColor = '', color, onChange, disableAlpha 
                                                 onChange(paletteColor.color);
                                             }}
                                         />
-                                        {paletteColor.color === color && (
+                                        {paletteColor.color === currentColor && (
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"

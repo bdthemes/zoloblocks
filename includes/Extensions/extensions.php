@@ -179,4 +179,12 @@ return apply_filters('zolo_extensions', [
         'demo' => 'https://demo.zoloblocks.com/transform',
         'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
     ],
+    'shape-builder' => [
+        'name' => 'shape-builder',
+        'title' => __('Shape Builder', 'zoloblocks'),
+        'status' => true,
+        'is_pro' => false,
+        'demo' => 'https://demo.zoloblocks.com/shape-builder',
+        'video' => 'https://www.youtube.com/watch?v=8kBMIL-4PZI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
+    ],
 ]);
