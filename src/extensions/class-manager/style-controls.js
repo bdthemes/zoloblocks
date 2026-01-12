@@ -1,6 +1,6 @@
 import { TabPanel, Panel, PanelBody, __experimentalVStack as VStack, Flex, FlexItem, FlexBlock, TextControl, RangeControl } from '@wordpress/components';
 import FontPicker from '../../controls/typography-control/fontPicker';
-import BoxShadowControl from '../../controls/boxshadow-control';
+import ZoloShadowControl from '../../controls/zolo-shadow-control';
 import { fontWeightOptions, borderStyles, overflowOptions, backgroundTypes, whiteSpaceOptions, displayOptions, positionOptions, floatOptions, clearOptions, verticalAlignOptions, gridLayoutTypeOptions } from './utils';
 import { __ } from '@wordpress/i18n';
 import { reset, formatUppercase, formatLowercase, formatCapitalize, formatItalic, formatBold, formatUnderline, formatStrikethrough } from '@wordpress/icons';
@@ -389,83 +389,37 @@ const StyleControls = ({ value, onChange }) => {
                                 </VStack>
                             </PanelBody>
                             <PanelBody title={__('Text Shadow', 'zoloblocks')} initialOpen={false}>
-                                <VStack>
-                                    <ColorControl 
-                                        label={__('Shadow Color', 'zoloblocks')}
-                                        color={value?.textShadow?.color}
-                                        onChange={(newValue) => {
-                                            onChange({
-                                                textShadow: {
-                                                    ...value?.textShadow,
-                                                    color: newValue
-                                                }
-                                            })
-                                        }}
-                                    />
-                                    <ZoloResponsive left="85px">
-                                        <ZoloRangeUnit
-                                            label="Horizontal"
-                                            value={value?.textShadow?.horizontal?.[device]}
-                                            onChange={(newValue) => {
-                                                onChange({
-                                                    textShadow: {
-                                                        ...value?.textShadow,
-                                                        horizontal: {
-                                                            ...value?.textShadow?.horizontal,
-                                                            [device]: newValue
-                                                        }
-                                                    }
-                                                })
-                                            }}
-                                            units={{
-                                                px: { min: -100, max: 100, step: 1 },
-                                                em: { min: -10, max: 10, step: 0.1 },
-                                            }}
-                                        />
-                                    </ZoloResponsive>
-                                    <ZoloResponsive left="85px">
-                                        <ZoloRangeUnit
-                                            label="Vertical"
-                                            value={value?.textShadow?.vertical?.[device]}
-                                            onChange={(newValue) => {
-                                                onChange({
-                                                    textShadow: {
-                                                        ...value?.textShadow,
-                                                        vertical: {
-                                                            ...value?.textShadow?.vertical,
-                                                            [device]: newValue
-                                                        }
-                                                    }
-                                                })
-                                            }}
-                                            units={{
-                                                px: { min: -100, max: 100, step: 1 },
-                                                em: { min: -10, max: 10, step: 0.1 },
-                                            }}
-                                        />
-                                    </ZoloResponsive>
-                                    <ZoloResponsive left="85px">
-                                        <ZoloRangeUnit
-                                            label="Blur"
-                                            value={value?.textShadow?.blur?.[device]}
-                                            onChange={(newValue) => {
-                                                onChange({
-                                                    textShadow: {
-                                                        ...value?.textShadow,
-                                                        blur: {
-                                                            ...value?.textShadow?.blur,
-                                                            [device]: newValue
-                                                        }
-                                                    }
-                                                })
-                                            }}
-                                            units={{
-                                                px: { min: 0, max: 100, step: 1 },
-                                                em: { min: 0, max: 10, step: 0.1 },
-                                            }}
-                                        />
-                                    </ZoloResponsive>
-                                </VStack>
+                                <ZoloShadowControl
+                                    type="text"
+                                    label={__('Text Shadow', 'zoloblocks')}
+                                    onValue={{
+                                        shadowUnit: value?.textShadow?.unit || 'px',
+                                        shadowColor: value?.textShadow?.color || '',
+                                        hShadow: value?.textShadow?.horizontal?.Desktop ? parseInt(value.textShadow.horizontal.Desktop) : '',
+                                        vShadow: value?.textShadow?.vertical?.Desktop ? parseInt(value.textShadow.vertical.Desktop) : '',
+                                        blur: value?.textShadow?.blur?.Desktop ? parseInt(value.textShadow.blur.Desktop) : '',
+                                    }}
+                                    onSelect={(shadowData) => {
+                                        onChange({
+                                            textShadow: {
+                                                unit: shadowData.shadowUnit,
+                                                color: shadowData.shadowColor,
+                                                horizontal: {
+                                                    ...value?.textShadow?.horizontal,
+                                                    Desktop: shadowData.hShadow !== '' ? shadowData.hShadow + (shadowData.shadowUnit || 'px') : ''
+                                                },
+                                                vertical: {
+                                                    ...value?.textShadow?.vertical,
+                                                    Desktop: shadowData.vShadow !== '' ? shadowData.vShadow + (shadowData.shadowUnit || 'px') : ''
+                                                },
+                                                blur: {
+                                                    ...value?.textShadow?.blur,
+                                                    Desktop: shadowData.blur !== '' ? shadowData.blur + (shadowData.shadowUnit || 'px') : ''
+                                                },
+                                            }
+                                        });
+                                    }}
+                                />
                             </PanelBody>
                             <PanelBody title={__('Stroke', 'zoloblocks')} initialOpen={false}>
                                 <VStack>
@@ -653,58 +607,42 @@ const StyleControls = ({ value, onChange }) => {
                                 </VStack>
                             </PanelBody>
                             <PanelBody title={__('Box Shadow', 'zoloblocks')} initialOpen={false}>
-                                <BoxShadowControl
+                                <ZoloShadowControl
+                                    type="box"
                                     label={__('Box Shadow', 'zoloblocks')}
-                                    controlName="boxShadow"
-                                    requiredProps={{
-                                        attributes: {
-                                            boxShadowshadowType: value?.boxShadow?.type || 'outset',
-                                            boxShadowshadowUnit: 'px',
-                                            boxShadowshadowColor: value?.boxShadow?.color || '',
-                                            boxShadowhOffset: parseInt(value?.boxShadow?.horizontal?.Desktop) || 0,
-                                            boxShadowvOffset: parseInt(value?.boxShadow?.vertical?.Desktop) || 0,
-                                            boxShadowblur: parseInt(value?.boxShadow?.blur?.Desktop) || 0,
-                                            boxShadowspread: parseInt(value?.boxShadow?.spread?.Desktop) || 0,
-                                        },
-                                        setAttributes: (newAttrs) => {
-                                            const updates = {};
-                                            if (newAttrs.boxShadowshadowType !== undefined) {
-                                                updates.type = newAttrs.boxShadowshadowType;
-                                            }
-                                            if (newAttrs.boxShadowshadowColor !== undefined) {
-                                                updates.color = newAttrs.boxShadowshadowColor;
-                                            }
-                                            if (newAttrs.boxShadowhOffset !== undefined) {
-                                                updates.horizontal = {
+                                    onValue={{
+                                        shadowType: value?.boxShadow?.type || 'outset',
+                                        shadowUnit: value?.boxShadow?.unit || 'px',
+                                        shadowColor: value?.boxShadow?.color || '#7C7C7C',
+                                        hOffset: parseInt(value?.boxShadow?.horizontal?.Desktop) || 0,
+                                        vOffset: parseInt(value?.boxShadow?.vertical?.Desktop) || 0,
+                                        blur: parseInt(value?.boxShadow?.blur?.Desktop) || 0,
+                                        spread: parseInt(value?.boxShadow?.spread?.Desktop) || 0,
+                                    }}
+                                    onSelect={(shadowData) => {
+                                        onChange({
+                                            boxShadow: {
+                                                type: shadowData.shadowType,
+                                                unit: shadowData.shadowUnit,
+                                                color: shadowData.shadowColor,
+                                                horizontal: {
                                                     ...value?.boxShadow?.horizontal,
-                                                    Desktop: newAttrs.boxShadowhOffset + 'px'
-                                                };
-                                            }
-                                            if (newAttrs.boxShadowvOffset !== undefined) {
-                                                updates.vertical = {
+                                                    Desktop: shadowData.hOffset + (shadowData.shadowUnit || 'px')
+                                                },
+                                                vertical: {
                                                     ...value?.boxShadow?.vertical,
-                                                    Desktop: newAttrs.boxShadowvOffset + 'px'
-                                                };
-                                            }
-                                            if (newAttrs.boxShadowblur !== undefined) {
-                                                updates.blur = {
+                                                    Desktop: shadowData.vOffset + (shadowData.shadowUnit || 'px')
+                                                },
+                                                blur: {
                                                     ...value?.boxShadow?.blur,
-                                                    Desktop: newAttrs.boxShadowblur + 'px'
-                                                };
-                                            }
-                                            if (newAttrs.boxShadowspread !== undefined) {
-                                                updates.spread = {
+                                                    Desktop: shadowData.blur + (shadowData.shadowUnit || 'px')
+                                                },
+                                                spread: {
                                                     ...value?.boxShadow?.spread,
-                                                    Desktop: newAttrs.boxShadowspread + 'px'
-                                                };
+                                                    Desktop: shadowData.spread + (shadowData.shadowUnit || 'px')
+                                                },
                                             }
-                                            onChange({
-                                                boxShadow: {
-                                                    ...value?.boxShadow,
-                                                    ...updates
-                                                }
-                                            });
-                                        }
+                                        });
                                     }}
                                 />
                             </PanelBody>
@@ -1068,7 +1006,7 @@ const StyleControls = ({ value, onChange }) => {
                                     )}
                                     {value?.display === 'inline' && (
                                         <>
-                                            <ZoloChoose
+                                            <ZoloSelectControl
                                                 label={__('Vertical Align', 'zoloblocks')}
                                                 value={value?.inline?.verticalAlign}
                                                 onChange={(newValue) => {
@@ -1079,10 +1017,9 @@ const StyleControls = ({ value, onChange }) => {
                                                         }
                                                     })
                                                 }}
-                                                isDeselectable={true}
                                                 options={verticalAlignOptions}
                                             />
-                                            <ZoloChoose
+                                            <ZoloSelectControl
                                                 label={__('White Space', 'zoloblocks')}
                                                 value={value?.inline?.whiteSpace}
                                                 onChange={(newValue) => {
@@ -1093,7 +1030,6 @@ const StyleControls = ({ value, onChange }) => {
                                                         }
                                                     })
                                                 }}
-                                                isDeselectable={true}
                                                 options={whiteSpaceOptions}
                                             />
                                         </>
