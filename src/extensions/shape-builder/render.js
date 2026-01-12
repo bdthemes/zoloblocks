@@ -100,21 +100,6 @@ export default function Render({ panelProps }) {
                     // Get custom SVG colors
                     const customFillColor = shapeItem.customSvgFillColor || '';
                     const customStrokeColor = shapeItem.customSvgStrokeColor || '';
-                    
-                    // Build inline styles for custom SVG
-                    const customSvgStyle = {
-                        width: '100%',
-                        height: '100%',
-                    };
-                    
-                    if (customFillColor) {
-                        customSvgStyle.fill = customFillColor;
-                        customSvgStyle.color = customFillColor;
-                    }
-                    
-                    if (customStrokeColor) {
-                        customSvgStyle.stroke = customStrokeColor;
-                    }
 
                     return (
                         <div
@@ -129,7 +114,9 @@ export default function Render({ panelProps }) {
                                 position: 'absolute',
                                 pointerEvents: 'none',
                                 zIndex: zIndex,
-                                ...(horizontalOrientation === 'start' ? { left: `${horizontalOffset}px` } : { right: `${horizontalOffset}px` }),
+                                ...(horizontalOrientation === 'start'
+                                    ? { left: `${horizontalOffset}px` }
+                                    : { right: `${horizontalOffset}px` }),
                                 ...(verticalOrientation === 'start' ? { top: `${verticalOffset}px` } : { bottom: `${verticalOffset}px` }),
                                 width: `${width}px`,
                                 height: `${height}px`,

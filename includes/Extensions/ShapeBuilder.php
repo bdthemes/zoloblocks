@@ -79,16 +79,28 @@ class ShapeBuilder {
     public function get_shape($shape_type, $settings)
     {
         // Handle custom uploaded SVG
-        if ($shape_type === 'custom' && !empty($settings['customSvg']['id'])) {
-            $svg_path = get_attached_file($settings['customSvg']['id']);
-            if (file_exists($svg_path)) {
-                $svg = file_get_contents($svg_path);
-                // Sanitize SVG if needed, but for now trusting admin upload
-                return [
-                    'is_custom'  => true,
-                    'custom_svg' => $svg,
-                ];
+        if ($shape_type === 'custom') {
+            // Check if customSvg exists and has an ID
+            $custom_svg_id = null;
+            
+            if (isset($settings['customSvg']) && is_array($settings['customSvg']) && !empty($settings['customSvg']['id'])) {
+                $custom_svg_id = $settings['customSvg']['id'];
             }
+            
+            if ($custom_svg_id) {
+                $svg_path = get_attached_file($custom_svg_id);
+                if ($svg_path && file_exists($svg_path)) {
+                    $svg = file_get_contents($svg_path);
+                    if ($svg) {
+                        return [
+                            'is_custom'  => true,
+                            'custom_svg' => $svg,
+                        ];
+                    }
+                }
+            }
+            
+            // If custom SVG ID not found or file doesn't exist, return null
             return null;
         }
 
@@ -274,11 +286,19 @@ class ShapeBuilder {
         // So we need to ensure the BLOCK itself has a class matching `zolo-block-{unique_id}`.
         // We can inject this class into the block content wrapper if possible, or wrap the content.
         
+        // Remove any existing shape markup from saved content (from React editor)
+        // This ensures PHP backend has full control over shape rendering
+        $block_content_clean = preg_replace(
+            '/<div[^>]*class="[^"]*zolo-shape-builder[^"]*"[^>]*>.*?<\/div>/s',
+            '',
+            $block_content
+        );
+        
         // Inject the class into the first HTML tag of the content
-        $block_content = new \WP_HTML_Tag_Processor($block_content);
-        if ($block_content->next_tag()) {
-            $block_content->add_class($wrapper_id);
-            $block_content = $block_content->get_updated_html();
+        $block_content_processor = new \WP_HTML_Tag_Processor($block_content_clean);
+        if ($block_content_processor->next_tag()) {
+            $block_content_processor->add_class($wrapper_id);
+            $block_content_clean = $block_content_processor->get_updated_html();
         }
 
         $shapes_output = '';
@@ -286,6 +306,6 @@ class ShapeBuilder {
             $shapes_output .= $this->generate_shape_markup($shape, $wrapper_id, $unique_id, $index);
         }
 
-        return $block_content . $shapes_output;
+        return $block_content_clean . $shapes_output;
     }
 }
