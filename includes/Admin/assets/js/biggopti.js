@@ -131,6 +131,7 @@ jQuery(document).ready(function ($) {
                     data: {
                         action: 'zolo_fetch_api_biggopties',
                         _wpnonce: ZoloBiggoptiConfig.nonce,
+                        current_url: window.location.href,
                     },
                 })
                     .done(function (res) {

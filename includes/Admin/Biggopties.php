@@ -82,7 +82,7 @@ class Biggopties {
 		}
 
 		$response_body = wp_remote_retrieve_body($response);
-		$biggopties = json_decode($response_body);  
+		$biggopties = json_decode($response_body);
 
 		if (isset($biggopties) && isset($biggopties->zoloblocks)) {
 			$data = $biggopties->zoloblocks;
@@ -251,7 +251,7 @@ class Biggopties {
 		}
 
 ?>
-  		<div class="<?php echo esc_attr($wrapper_classes); ?>" <?php echo $background_style ? 'style="' . esc_attr($background_style) . '"' : ''; ?>>
+		<div class="<?php echo esc_attr($wrapper_classes); ?>" <?php echo $background_style ? 'style="' . esc_attr($background_style) . '"' : ''; ?>>
 
 
 			<?php $title = (isset($biggopti->title) && !empty($biggopti->title)) ? $biggopti->title : ''; ?>
@@ -334,23 +334,41 @@ class Biggopties {
 			wp_send_json_error(['message' => 'forbidden']);
 		}
 
+		// Don't show biggopties on plugin/theme install and upload pages
+		$current_url = isset($_POST['current_url']) ? sanitize_text_field($_POST['current_url']) : '';
+
+		if (!empty($current_url)) {
+			$excluded_patterns = [
+				'plugin-install.php',
+				'theme-install.php',
+				'action=upload-plugin',
+				'action=upload-theme'
+			];
+
+			foreach ($excluded_patterns as $pattern) {
+				if (strpos($current_url, $pattern) !== false) {
+					wp_send_json_success(['html' => '']);
+				}
+			}
+		}
+
 		$biggopties = $this->get_api_biggopties_data();
 		$grouped_biggopties = [];
 
 		if (is_array($biggopties)) {
 			foreach ($biggopties as $index => $biggopti) {
 				if ($this->should_show_biggopti($biggopti)) {
-					$biggopti_class = isset($biggopti->biggopti_class) ? $biggopti->biggopti_class : 'default-' . $index;
-					if (!isset($grouped_biggopties[$biggopti_class])) {
-						$grouped_biggopties[$biggopti_class] = $biggopti;
+					$display_id = isset($biggopti->display_id) ? $biggopti->display_id : 'default-' . $index;
+					if (!isset($grouped_biggopties[$display_id])) {
+						$grouped_biggopties[$display_id] = $biggopti;
 					}
 				}
 			}
 		}
 
 		// Build biggopties using the same pipeline as synchronous rendering
-		foreach ($grouped_biggopties as $biggopti_class => $biggopti) {
-			$biggopti_id = isset($biggopti->id) ? $biggopti_class : $biggopti->id;
+		foreach ($grouped_biggopties as $display_id => $biggopti) {
+			$biggopti_id = isset($biggopti->id) ? $display_id : $biggopti->id;
 
 			self::add_biggopti([
 				'id' => 'api-biggopti-' . $biggopti_id,
@@ -391,11 +409,20 @@ class Biggopties {
 		 * Valid inputs?
 		 */
 		if (!empty($id)) {
-			// Handle regular biggopties
+			// Handle regular biggopti
 			if ('user' === $meta) {
 				update_user_meta(get_current_user_id(), $id, true);
 			} else {
+				// Store in transient for backward compatibility
 				set_transient($id, true, $time);
+
+				// Also store in options table for persistence
+				$dismissals_option = get_option('bdt_biggopti_dismissals', []);
+				$dismissals_option[$id] = [
+					'dismissed_at' => time(),
+					'expires_at' => time() + intval($time),
+				];
+				update_option('bdt_biggopti_dismissals', $dismissals_option, false);
 			}
 
 			wp_send_json_success();
@@ -464,6 +491,22 @@ class Biggopties {
 				$expired = get_user_meta(get_current_user_id(), $biggopti_id, true);
 			} elseif ('transient' === $biggopti['dismissible-meta']) {
 				$expired = get_transient($biggopti_id);
+
+				// If transient not found, check options table for persistent dismissal
+				if (false === $expired || empty($expired)) {
+					$dismissals_option = get_option('bdt_biggopti_dismissals', []);
+					if (isset($dismissals_option[$biggopti_id])) {
+						$dismissal = $dismissals_option[$biggopti_id];
+						// Check if dismissal is still valid (not expired)
+						if (isset($dismissal['expires_at']) && time() < $dismissal['expires_at']) {
+							$expired = true;
+						} else {
+							// Clean up expired dismissal from options
+							unset($dismissals_option[$biggopti_id]);
+							update_option('bdt_biggopti_dismissals', $dismissals_option, false);
+						}
+					}
+				}
 			}
 
 			// Biggopties visible after transient expire.
