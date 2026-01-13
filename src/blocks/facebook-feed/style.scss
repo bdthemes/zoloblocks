@@ -10,16 +10,18 @@
     margin: 0 auto;
     overflow-x: hidden;
 
+    * {
+        box-sizing: border-box;
+    }
+
     .zolo-fb-posts-container {
         &.layout-timeline {
             display: flex;
             flex-direction: column;
-            gap: 20px;
         }
 
         &.layout-grid {
             display: grid;
-            gap: 20px;
         }
 
         &.layout-masonry {
@@ -29,9 +31,9 @@
                 break-inside: avoid;
                 page-break-inside: avoid;
                 -webkit-column-break-inside: avoid;
-                display: block;
-                width: auto;
-                margin-bottom: 20px;
+                display: inline-block;
+                width: 100%;
+                vertical-align: top;
             }
         }
 

@@ -34,98 +34,119 @@ const Style = ({ attributes, setAttributes }) => {
         attributes,
     });
 
-    // Extract gap values for masonry (CSS columns don't support gap property the same way)
-    const extractGapValues = (gapStyle) => {
-        if (!gapStyle) return { columnGap: '20px', rowGap: '20px' };
+    // Extract gap values for different layouts
+    const getGapValues = (gapStyle) => {
+        if (!gapStyle || gapStyle.trim() === '') return { gap: '20px', rowGap: '20px', colGap: '20px' };
         
-        const columnGapMatch = gapStyle.match(/column-gap:\s*([^;]+)/);
         const rowGapMatch = gapStyle.match(/row-gap:\s*([^;]+)/);
-        const gapMatch = gapStyle.match(/gap:\s*([^;]+)/);
+        const colGapMatch = gapStyle.match(/column-gap:\s*([^;]+)/);
+        const gapMatch = gapStyle.match(/(?:^|[^-])gap:\s*([^;]+)/);
         
-        if (columnGapMatch && rowGapMatch) {
-            return { columnGap: columnGapMatch[1].trim(), rowGap: rowGapMatch[1].trim() };
-        } else if (gapMatch) {
-            const value = gapMatch[1].trim();
-            return { columnGap: value, rowGap: value };
+        // If both row-gap and column-gap are present (unlinked), use them
+        if (rowGapMatch && colGapMatch) {
+            return {
+                gap: rowGapMatch[1].trim(),
+                rowGap: rowGapMatch[1].trim(),
+                colGap: colGapMatch[1].trim(),
+            };
         }
         
-        return { columnGap: '20px', rowGap: '20px' };
+        // If only gap is present (linked), use it for both
+        if (gapMatch) {
+            const value = gapMatch[1].trim();
+            return { gap: value, rowGap: value, colGap: value };
+        }
+        
+        // Fallback
+        return {
+            gap: '20px',
+            rowGap: rowGapMatch ? rowGapMatch[1].trim() : '20px',
+            colGap: colGapMatch ? colGapMatch[1].trim() : '20px',
+        };
     };
 
-    const gapDeskValues = extractGapValues(gapDesk);
-    const gapTabValues = extractGapValues(gapTab);
-    const gapMobValues = extractGapValues(gapMob);
+    const gapDeskValues = getGapValues(gapDesk);
+    const gapTabValues = getGapValues(gapTab);
+    const gapMobValues = getGapValues(gapMob);
 
     const desktopCSS = `
-        .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} {
-            ${gapDesk}
+        .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} .zolo-fb-post:not(:last-child) {
+            margin-bottom: ${gapDeskValues.gap} !important;
         }
         
         .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
             display: grid;
-            ${gapDesk}
+            gap: ${gapDeskValues.gap} !important;
             ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
         }
         
         .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
             ${columnCountDesk ? `column-count: ${columnCountDesk};` : ''}
-            column-gap: ${gapDeskValues.columnGap};
+            column-gap: ${gapDeskValues.colGap} !important;
+            -webkit-column-gap: ${gapDeskValues.colGap} !important;
+            -moz-column-gap: ${gapDeskValues.colGap} !important;
         }
         
         .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
-            margin-bottom: ${gapDeskValues.rowGap};
+            display: inline-block;
+            width: 100%;
+            margin-bottom: ${gapDeskValues.rowGap} !important;
         }
         
         .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
-            ${gapDesk}
+            gap: ${gapDeskValues.gap} !important;
         }
     `;
 
     const tabCSS = `
-        .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} {
-            ${gapTab}
+        .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} .zolo-fb-post:not(:last-child) {
+            margin-bottom: ${gapTabValues.gap} !important;
         }
         
         .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
-            ${gapTab}
+            gap: ${gapTabValues.gap} !important;
             ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr) !important;` : ''}
         }
         
         .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
             ${columnCountTab ? `column-count: ${columnCountTab} !important;` : ''}
-            column-gap: ${gapTabValues.columnGap};
+            column-gap: ${gapTabValues.colGap} !important;
+            -webkit-column-gap: ${gapTabValues.colGap} !important;
+            -moz-column-gap: ${gapTabValues.colGap} !important;
         }
         
         .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
-            margin-bottom: ${gapTabValues.rowGap};
+            margin-bottom: ${gapTabValues.rowGap} !important;
         }
         
         .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
-            ${gapTab}
+            gap: ${gapTabValues.gap} !important;
         }
     `;
 
     const mobCSS = `
-        .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} {
-            ${gapMob}
+        .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} .zolo-fb-post:not(:last-child) {
+            margin-bottom: ${gapMobValues.gap} !important;
         }
         
         .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
-            ${gapMob}
+            gap: ${gapMobValues.gap} !important;
             ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr) !important;` : ''}
         }
         
         .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
             ${columnCountMob ? `column-count: ${columnCountMob} !important;` : ''}
-            column-gap: ${gapMobValues.columnGap};
+            column-gap: ${gapMobValues.colGap} !important;
+            -webkit-column-gap: ${gapMobValues.colGap} !important;
+            -moz-column-gap: ${gapMobValues.colGap} !important;
         }
         
         .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
-            margin-bottom: ${gapMobValues.rowGap};
+            margin-bottom: ${gapMobValues.rowGap} !important;
         }
         
         .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
-            ${gapMob}
+            gap: ${gapMobValues.gap} !important;
         }
     `;
 

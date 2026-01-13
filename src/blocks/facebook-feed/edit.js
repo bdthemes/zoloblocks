@@ -15,29 +15,6 @@ import 'swiper/css/pagination';
 import './editor.scss';
 
 const Edit = ({ attributes, setAttributes, clientId }) => {
-    const {
-        uniqueId,
-        layoutType,
-        postsPerPage,
-        showAvatar,
-        showAuthor,
-        showDate,
-        showContent,
-        contentLength,
-        showReadMore,
-        readMoreText,
-        showReactions,
-        showComments,
-        showShares,
-        carouselAutoplay,
-        carouselSpeed,
-        carouselLoop,
-        facebookPageId,
-        facebookAccessToken,
-        cacheExpiration,
-        resMode,
-    } = attributes;
-
     const carouselRef = useRef(null);
     const swiperInstance = useRef(null);
 
@@ -46,14 +23,16 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [apiError, setApiError] = useState(null);
 
+    const finalUniqueId = attributes.uniqueId || `zolo-fb-${clientId.substr(0, 8)}`;
+    
     const blockProps = useBlockProps({
-        className: `${uniqueId || `zolo-fb-${clientId.substr(0, 8)}`} zolo-facebook-feed zolo-facebook-feed-${layoutType}`,
+        className: `parent-${finalUniqueId} zolo-block ${finalUniqueId} zolo-facebook-feed zolo-facebook-feed-${attributes.layoutType}`,
     });
 
     // Set unique ID
     useEffect(() => {
-        if (!uniqueId) {
-            setAttributes({ uniqueId: `zolo-fb-${clientId.substr(0, 8)}` });
+        if (!attributes.uniqueId) {
+            setAttributes({ uniqueId: finalUniqueId });
         }
     }, []);
 
@@ -83,7 +62,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         }
 
                         // Fetch posts
-                        const postsUrl = `https://graph.facebook.com/v18.0/${pageId}/posts?fields=id,message,created_time,full_picture,reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(CARE).limit(0).summary(total_count).as(reactions_care),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry),reactions.limit(0).summary(total_count).as(reactions_total),comments.summary(true),shares&limit=${postsPerPage}&access_token=${accessToken}`;
+                        const postsUrl = `https://graph.facebook.com/v18.0/${pageId}/posts?fields=id,message,created_time,full_picture,reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(CARE).limit(0).summary(total_count).as(reactions_care),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry),reactions.limit(0).summary(total_count).as(reactions_total),comments.summary(true),shares&limit=${attributes.postsPerPage}&access_token=${accessToken}`;
 
                         return fetch(postsUrl)
                             .then(response => response.json())
@@ -162,11 +141,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 setShowApiNotice(true);
                 setIsLoading(false);
             });
-    }, [postsPerPage]);
+    }, [attributes.postsPerPage]);
 
     // Initialize Swiper for carousel layout
     useEffect(() => {
-        if (layoutType === 'carousel' && carouselRef.current && !swiperInstance.current) {
+        if (attributes.layoutType === 'carousel' && carouselRef.current && !swiperInstance.current) {
             const container = carouselRef.current.querySelector('.swiper');
             if (container) {
                 // Get columns based on responsive mode (max 3 for carousel)
@@ -174,18 +153,18 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 const tabCols = Math.min(attributes.zolo_TABfbColumnsRange || 2, 2);
                 const mobCols = 1;
                 
-                const slidesPerView = resMode === 'Desktop' ? deskCols : resMode === 'Tablet' ? tabCols : mobCols;
+                const slidesPerView = attributes.resMode === 'Desktop' ? deskCols : attributes.resMode === 'Tablet' ? tabCols : mobCols;
 
                 swiperInstance.current = new Swiper(container, {
                     modules: [Navigation, Pagination, Autoplay],
                     slidesPerView: slidesPerView,
                     spaceBetween: 20,
-                    loop: carouselLoop,
+                    loop: attributes.carouselLoop,
                     centeredSlides: false,
                     watchSlidesProgress: true,
                     watchOverflow: true,
-                    autoplay: carouselAutoplay ? {
-                        delay: carouselSpeed,
+                    autoplay: attributes.carouselAutoplay ? {
+                        delay: attributes.carouselSpeed,
                         disableOnInteraction: false,
                     } : false,
                     navigation: {
@@ -206,7 +185,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 swiperInstance.current = null;
             }
         };
-    }, [layoutType, carouselAutoplay, carouselSpeed, carouselLoop, resMode, attributes.zolo_fbColumnsRange, attributes.zolo_TABfbColumnsRange, attributes.zolo_MOBfbColumnsRange]);
+    }, [attributes.layoutType, attributes.carouselAutoplay, attributes.carouselSpeed, attributes.carouselLoop, attributes.resMode, attributes.zolo_fbColumnsRange, attributes.zolo_TABfbColumnsRange, attributes.zolo_MOBfbColumnsRange]);
 
     // Update Swiper when posts change
     useEffect(() => {
@@ -258,9 +237,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     const renderPost = (post) => (
         <div key={post.id} className="zolo-fb-post">
             <div className="zolo-fb-post-header">
-                {showAvatar && (
+                {attributes.showAvatar && (
                     <a
-                        href={facebookPageId ? `https://www.facebook.com/${facebookPageId}` : 'https://www.facebook.com'}
+                        href={attributes.facebookPageId ? `https://www.facebook.com/${attributes.facebookPageId}` : 'https://www.facebook.com'}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="zolo-fb-avatar-link"
@@ -269,9 +248,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     </a>
                 )}
                 <div className="zolo-fb-meta">
-                    {showAuthor && (
+                    {attributes.showAuthor && (
                         <a
-                            href={facebookPageId ? `https://www.facebook.com/${facebookPageId}` : 'https://www.facebook.com'}
+                            href={attributes.facebookPageId ? `https://www.facebook.com/${attributes.facebookPageId}` : 'https://www.facebook.com'}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="zolo-fb-author-link"
@@ -279,10 +258,10 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                             <div className="zolo-fb-author">{post.author}</div>
                         </a>
                     )}
-                    {showDate && <div className="zolo-fb-date">{post.date}</div>}
+                    {attributes.showDate && <div className="zolo-fb-date">{post.date}</div>}
                 </div>
                 <a
-                    href={facebookPageId ? `https://www.facebook.com/${facebookPageId}` : 'https://www.facebook.com'}
+                    href={attributes.facebookPageId ? `https://www.facebook.com/${attributes.facebookPageId}` : 'https://www.facebook.com'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="zolo-fb-icon"
@@ -294,10 +273,10 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 </a>
             </div>
 
-            {showContent && post.content && (
+            {attributes.showContent && post.content && (
                 <div className="zolo-fb-content">
-                    <p>{contentLength > 0 && post.content.length > contentLength
-                        ? post.content.substring(0, contentLength) + '...'
+                    <p>{attributes.contentLength > 0 && post.content.length > attributes.contentLength
+                        ? post.content.substring(0, attributes.contentLength) + '...'
                         : post.content}
                     </p>
                     {post.hashtags && (
@@ -307,8 +286,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                             ))}
                         </div>
                     )}
-                    {showReadMore && contentLength > 0 && post.content.length > contentLength && (
-                        <a href="#" className="zolo-fb-read-more">{readMoreText}</a>
+                    {attributes.showReadMore && attributes.contentLength > 0 && post.content.length > attributes.contentLength && (
+                        <a href="#" className="zolo-fb-read-more">{attributes.readMoreText}</a>
                     )}
                 </div>
             )}
@@ -319,9 +298,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 </div>
             )}
 
-            {(showReactions || showComments || showShares) && (
+            {(attributes.showReactions || attributes.showComments || attributes.showShares) && (
                 <div className="zolo-fb-reactions">
-                    {showReactions && post.totalReactions > 0 && (
+                    {attributes.showReactions && post.totalReactions > 0 && (
                         <div className="zolo-fb-reaction-icons">
                             {post.reactions.like > 0 && <LikeEmoji />}
                             {post.reactions.love > 0 && <LoveEmoji />}
@@ -334,10 +313,10 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         </div>
                     )}
                     <div className="zolo-fb-engagement-stats">
-                        {showComments && post.comments > 0 && (
+                        {attributes.showComments && post.comments > 0 && (
                             <span className="zolo-fb-stat-item">{post.comments} Comments</span>
                         )}
-                        {showShares && post.shares > 0 && (
+                        {attributes.showShares && post.shares > 0 && (
                             <span className="zolo-fb-stat-item">{post.shares} Shares</span>
                         )}
                     </div>
@@ -373,13 +352,13 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 {!isLoading && !apiError && (
                     <div
                         ref={carouselRef}
-                        className={`zolo-fb-posts-container layout-${layoutType} zolo-facebook-feed-${uniqueId || `zolo-fb-${clientId.substr(0, 8)}`}`}
+                        className={`zolo-fb-posts-container layout-${attributes.layoutType} zolo-facebook-feed-${finalUniqueId}`}
                         style={{
                             '--masonry-columns': attributes.zolo_fbColumnsRange || 3,
                             '--masonry-gap': `${attributes.zolo_fbGapGap || 20}${attributes.zolo_fbGapUnit || 'px'}`,
                         }}
                     >
-                        {layoutType === 'carousel' ? (
+                        {attributes.layoutType === 'carousel' ? (
                             <div className="swiper">
                                 <div className="swiper-wrapper">
                                     {(facebookPosts.length > 0 ? facebookPosts : demoPosts).map(post => (
@@ -398,7 +377,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     </div>
                 )}
 
-                {!isLoading && !apiError && facebookPosts.length === 0 && facebookPageId && facebookAccessToken && (
+                {!isLoading && !apiError && facebookPosts.length === 0 && attributes.facebookPageId && attributes.facebookAccessToken && (
                     <Notice status="warning" isDismissible={false}>
                         {__('No posts found. The page might not have any published posts or the credentials may be incorrect.', 'zoloblocks')}
                     </Notice>

@@ -18,24 +18,6 @@ const {
 
 function Inspector(props) {
     const { attributes, setAttributes, block } = props;
-    const {
-        layoutType,
-        postsPerPage,
-        showAvatar,
-        showAuthor,
-        showDate,
-        showContent,
-        contentLength,
-        showReadMore,
-        readMoreText,
-        showReactions,
-        showComments,
-        showShares,
-        carouselAutoplay,
-        carouselSpeed,
-        carouselLoop,
-        resMode,
-    } = attributes;
 
     const [isApiConfigured, setIsApiConfigured] = useState(false);
 
@@ -52,7 +34,7 @@ function Inspector(props) {
     }, []);
 
     const requiredProps = {
-        resMode,
+        resMode: attributes.resMode,
         setAttributes,
         attributes,
         objAttributes,
@@ -120,7 +102,7 @@ function Inspector(props) {
                             <div className="zolo-flex-col-control">
                                 <ZoloSelectControl
                                     label={__('Layout Type', 'zoloblocks')}
-                                    value={layoutType}
+                                    value={attributes.layoutType}
                                     options={LAYOUT_OPTIONS}
                                     onChange={(value) => setAttributes({ layoutType: value })}
                                 />
@@ -128,7 +110,7 @@ function Inspector(props) {
                             <div className="zolo-flex-col-control">
                                 <ZoloRangeControl
                                     label={__('Posts Per Page', 'zoloblocks')}
-                                    value={postsPerPage}
+                                    value={attributes.postsPerPage}
                                     onChange={(value) => setAttributes({ postsPerPage: value })}
                                     min={1}
                                     max={50}
@@ -136,20 +118,20 @@ function Inspector(props) {
                             </div>
                         </ZoloPanelBody>
 
-                        {layoutType === 'carousel' && (
+                        {attributes.layoutType === 'carousel' && (
                             <ZoloPanelBody title={__('Carousel Settings', 'zoloblocks')} panelProps={props}>
                                 <div className="zolo-flex-col-control">
                                     <ZoloToggleControl
                                         label={__('Autoplay', 'zoloblocks')}
-                                        checked={carouselAutoplay}
+                                        checked={attributes.carouselAutoplay}
                                         onChange={(value) => setAttributes({ carouselAutoplay: value })}
                                     />
                                 </div>
-                                {carouselAutoplay && (
+                                {attributes.carouselAutoplay && (
                                     <div className="zolo-flex-col-control">
                                         <ZoloRangeControl
                                             label={__('Autoplay Speed (ms)', 'zoloblocks')}
-                                            value={carouselSpeed}
+                                            value={attributes.carouselSpeed}
                                             onChange={(value) => setAttributes({ carouselSpeed: value })}
                                             min={1000}
                                             max={10000}
@@ -160,7 +142,7 @@ function Inspector(props) {
                                 <div className="zolo-flex-col-control">
                                     <ZoloToggleControl
                                         label={__('Loop', 'zoloblocks')}
-                                        checked={carouselLoop}
+                                        checked={attributes.carouselLoop}
                                         onChange={(value) => setAttributes({ carouselLoop: value })}
                                     />
                                 </div>
@@ -171,37 +153,37 @@ function Inspector(props) {
                             <div className="zolo-flex-col-control">
                                 <ZoloToggleControl
                                     label={__('Show Avatar', 'zoloblocks')}
-                                    checked={showAvatar}
+                                    checked={attributes.showAvatar}
                                     onChange={(value) => setAttributes({ showAvatar: value })}
                                 />
                             </div>
                             <div className="zolo-flex-col-control">
                                 <ZoloToggleControl
                                     label={__('Show Author', 'zoloblocks')}
-                                    checked={showAuthor}
+                                    checked={attributes.showAuthor}
                                     onChange={(value) => setAttributes({ showAuthor: value })}
                                 />
                             </div>
                             <div className="zolo-flex-col-control">
                                 <ZoloToggleControl
                                     label={__('Show Date', 'zoloblocks')}
-                                    checked={showDate}
+                                    checked={attributes.showDate}
                                     onChange={(value) => setAttributes({ showDate: value })}
                                 />
                             </div>
                             <div className="zolo-flex-col-control">
                                 <ZoloToggleControl
                                     label={__('Show Content', 'zoloblocks')}
-                                    checked={showContent}
+                                    checked={attributes.showContent}
                                     onChange={(value) => setAttributes({ showContent: value })}
                                 />
                             </div>
-                            {showContent && (
+                            {attributes.showContent && (
                                 <>
                                     <div className="zolo-flex-col-control">
                                         <ZoloRangeControl
                                             label={__('Content Length (0 for full)', 'zoloblocks')}
-                                            value={contentLength}
+                                            value={attributes.contentLength}
                                             onChange={(value) => setAttributes({ contentLength: value })}
                                             min={0}
                                             max={500}
@@ -210,15 +192,15 @@ function Inspector(props) {
                                     <div className="zolo-flex-col-control">
                                         <ZoloToggleControl
                                             label={__('Show Read More', 'zoloblocks')}
-                                            checked={showReadMore}
+                                            checked={attributes.showReadMore}
                                             onChange={(value) => setAttributes({ showReadMore: value })}
                                         />
                                     </div>
-                                    {showReadMore && (
+                                    {attributes.showReadMore && (
                                         <div className="zolo-flex-col-control">
                                             <ZoloTextControl
                                                 label={__('Read More Text', 'zoloblocks')}
-                                                value={readMoreText}
+                                                value={attributes.readMoreText}
                                                 onChange={(value) => setAttributes({ readMoreText: value })}
                                             />
                                         </div>
@@ -231,21 +213,21 @@ function Inspector(props) {
                             <div className="zolo-flex-col-control">
                                 <ZoloToggleControl
                                     label={__('Show Reactions', 'zoloblocks')}
-                                    checked={showReactions}
+                                    checked={attributes.showReactions}
                                     onChange={(value) => setAttributes({ showReactions: value })}
                                 />
                             </div>
                             <div className="zolo-flex-col-control">
                                 <ZoloToggleControl
                                     label={__('Show Comments Count', 'zoloblocks')}
-                                    checked={showComments}
+                                    checked={attributes.showComments}
                                     onChange={(value) => setAttributes({ showComments: value })}
                                 />
                             </div>
                             <div className="zolo-flex-col-control">
                                 <ZoloToggleControl
                                     label={__('Show Shares Count', 'zoloblocks')}
-                                    checked={showShares}
+                                    checked={attributes.showShares}
                                     onChange={(value) => setAttributes({ showShares: value })}
                                 />
                             </div>
@@ -255,7 +237,7 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
-                            {(layoutType === 'grid' || layoutType === 'masonry' || layoutType === 'carousel') && (
+                            {(attributes.layoutType === 'grid' || attributes.layoutType === 'masonry' || attributes.layoutType === 'carousel') && (
                                 <ResCounterControl
                                     label={__('Columns', 'zoloblocks')}
                                     controlName={FB_COLUMNS}

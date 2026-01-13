@@ -23,22 +23,6 @@ class FacebookFeed extends PostBlock
             parent::$default_attributes,
             [
                 'layoutType' => 'timeline',
-                'zolo_fbColumnsRange' => 3,
-                'zolo_TABfbColumnsRange' => 2,
-                'zolo_MOBfbColumnsRange' => 1,
-                'zolo_fbGapGap' => 20,
-                'zolo_fbGapRowGap' => null,
-                'zolo_fbGapColGap' => null,
-                'zolo_TABfbGapGap' => null,
-                'zolo_TABfbGapRowGap' => null,
-                'zolo_TABfbGapColGap' => null,
-                'zolo_MOBfbGapGap' => null,
-                'zolo_MOBfbGapRowGap' => null,
-                'zolo_MOBfbGapColGap' => null,
-                'zolo_fbGapIsLinked' => true,
-                'zolo_fbGapUnit' => 'px',
-                'zolo_TABfbGapUnit' => 'px',
-                'zolo_MOBfbGapUnit' => 'px',
                 'postsPerPage' => 6,
                 'showAvatar' => true,
                 'showAuthor' => true,
@@ -53,9 +37,15 @@ class FacebookFeed extends PostBlock
                 'carouselAutoplay' => true,
                 'carouselSpeed' => 3000,
                 'carouselLoop' => true,
-                'facebookPageId' => '',
-                'facebookAccessToken' => '',
-                'cacheExpiration' => 3600,
+                'cacheExpiration' => 300, // 5 minutes - shorter cache for more frequent updates
+                'zolo_fbColumnsRange' => 3,
+                'zolo_TABfbColumnsRange' => 2,
+                'zolo_MOBfbColumnsRange' => 1,
+                'zolo_fbGapGap' => 20,
+                'zolo_fbGapIsLinked' => true,
+                'zolo_fbGapUnit' => 'px',
+                'zolo_TABfbGapUnit' => 'px',
+                'zolo_MOBfbGapUnit' => 'px',
             ]
         );
     }
@@ -80,13 +70,21 @@ class FacebookFeed extends PostBlock
         // Get Facebook credentials from WordPress options
         $facebook_page_id = get_option('zolo_facebook_page_id', '');
         $access_token = get_option('zolo_facebook_access_token', '');
-        $facebook_url = !empty($facebook_page_id) ? 'https://www.facebook.com/' . \urlencode($facebook_page_id) : 'https://www.facebook.com';
+        $facebook_url = $facebook_page_id ? 'https://www.facebook.com/' . \urlencode($facebook_page_id) : 'https://www.facebook.com';
 
-        // Get posts from Facebook or use demo data
+        // Bypass cache in editor context (REST API requests or admin)
+        $bypass_cache = \defined('REST_REQUEST') && REST_REQUEST;
+
+        // Get posts from Facebook API or return empty if not configured
         if (!empty($facebook_page_id) && !empty($access_token)) {
-            $posts = $this->get_facebook_posts_from_api($facebook_page_id, $access_token, $posts_per_page, $attributes['cacheExpiration']);
+            $posts = $this->get_facebook_posts_from_api($facebook_page_id, $access_token, $posts_per_page, $attributes['cacheExpiration'], $bypass_cache);
         } else {
-            $posts = $this->get_demo_posts($posts_per_page);
+            $posts = [];
+        }
+
+        // Return early if no posts
+        if (empty($posts)) {
+            return '';
         }
 
         // Start output buffering
@@ -96,12 +94,12 @@ class FacebookFeed extends PostBlock
         echo $this->get_responsive_css($attributes, $unique_id);
 
 ?>
-        <div class="zolo-facebook-feed zolo-facebook-feed-<?php echo $layout_type; ?> zolo-facebook-feed-<?php echo $unique_id; ?>"
+        <div class="parent-<?php echo $unique_id; ?> zolo-block <?php echo $unique_id; ?> zolo-facebook-feed zolo-facebook-feed-<?php echo $layout_type; ?>"
             data-unique-id="<?php echo $unique_id; ?>"
             data-layout="<?php echo $layout_type; ?>"
             data-columns="<?php echo \esc_attr($attributes['zolo_fbColumnsRange'] ?? 3); ?>"
             data-carousel-autoplay="<?php echo $attributes['carouselAutoplay'] ? 'true' : 'false'; ?>"
-            data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed']); ?>"
+            data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed'] ?? 3000); ?>"
             data-carousel-loop="<?php echo $attributes['carouselLoop'] ? 'true' : 'false'; ?>">
 
             <div class="zolo-fb-posts-container layout-<?php echo $layout_type; ?> zolo-facebook-feed-<?php echo $unique_id; ?>"
@@ -173,25 +171,22 @@ class FacebookFeed extends PostBlock
 
                         <?php if ($attributes['showReactions'] || $attributes['showComments'] || $attributes['showShares']) : ?>
                             <div class="zolo-fb-reactions">
-                                <?php if ($attributes['showReactions'] && !empty($post['reactions']) && $post['reactions'] > 0) : ?>
+                                <?php if ($attributes['showReactions'] && ($post['reactions'] ?? 0) > 0) : ?>
                                     <div class="zolo-fb-reaction-icons">
                                         <?php
-                                        $reaction_types = $post['reaction_types'] ?? [];
-                                        foreach (['like', 'love', 'care', 'wow', 'haha', 'sad', 'angry'] as $type) {
-                                            if (!empty($reaction_types[$type])) {
-                                                echo $this->get_reaction_emoji($type);
-                                            }
+                                        foreach (array_filter($post['reaction_types'] ?? []) as $type => $count) {
+                                            echo $this->get_reaction_emoji($type);
                                         }
                                         ?>
                                         <span class="zolo-fb-reaction-count"><?php echo \esc_html($post['reactions']); ?></span>
                                     </div>
                                 <?php endif; ?>
                                 <div class="zolo-fb-engagement-stats">
-                                    <?php if ($attributes['showComments'] && !empty($post['comments']) && $post['comments'] > 0) : ?>
-                                        <span class="zolo-fb-stat-item"><?php echo \esc_html($post['comments']); ?> Comments</span>
+                                    <?php if ($attributes['showComments'] && ($post['comments'] ?? 0) > 0) : ?>
+                                        <span class="zolo-fb-stat-item"><?php echo \esc_html(\sprintf('%d Comments', $post['comments'])); ?></span>
                                     <?php endif; ?>
-                                    <?php if ($attributes['showShares'] && !empty($post['shares']) && $post['shares'] > 0) : ?>
-                                        <span class="zolo-fb-stat-item"><?php echo \esc_html($post['shares']); ?> Shares</span>
+                                    <?php if ($attributes['showShares'] && ($post['shares'] ?? 0) > 0) : ?>
+                                        <span class="zolo-fb-stat-item"><?php echo \esc_html(\sprintf('%d Shares', $post['shares'])); ?></span>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -212,44 +207,28 @@ class FacebookFeed extends PostBlock
      */
     private function get_container_style($attributes)
     {
-        $layout = $attributes['layoutType'];
-        $styles = [];
-
-        if ($layout === 'grid') {
-            $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
-            $is_linked = $attributes['zolo_fbGapIsLinked'] ?? true;
-            $gap_unit = $attributes['zolo_fbGapUnit'] ?? 'px';
-
-            if ($is_linked) {
-                $gap = $attributes['zolo_fbGapGap'] ?? 20;
-                $styles[] = "display: grid;";
-                $styles[] = "grid-template-columns: repeat({$cols}, 1fr);";
-                $styles[] = "gap: {$gap}{$gap_unit};";
-            } else {
-                $row_gap = $attributes['zolo_fbGapRowGap'] ?? 20;
-                $col_gap = $attributes['zolo_fbGapColGap'] ?? 20;
-                $styles[] = "display: grid;";
-                $styles[] = "grid-template-columns: repeat({$cols}, 1fr);";
-                $styles[] = "row-gap: {$row_gap}{$gap_unit};";
-                $styles[] = "column-gap: {$col_gap}{$gap_unit};";
-            }
-        } elseif ($layout === 'masonry') {
-            $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
-            $is_linked = $attributes['zolo_fbGapIsLinked'] ?? true;
-            $gap_unit = $attributes['zolo_fbGapUnit'] ?? 'px';
-
-            if ($is_linked) {
-                $gap = $attributes['zolo_fbGapGap'] ?? 20;
-                $styles[] = "column-count: {$cols};";
-                $styles[] = "column-gap: {$gap}{$gap_unit};";
-            } else {
-                $col_gap = $attributes['zolo_fbGapColGap'] ?? 20;
-                $styles[] = "column-count: {$cols};";
-                $styles[] = "column-gap: {$col_gap}{$gap_unit};";
-            }
+        $layout = $attributes['layoutType'] ?? 'timeline';
+        
+        if (!in_array($layout, ['grid', 'masonry'], true)) {
+            return '';
         }
 
-        return implode(' ', $styles);
+        $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
+        $is_linked = $attributes['zolo_fbGapIsLinked'] ?? true;
+        $unit = $attributes['zolo_fbGapUnit'] ?? 'px';
+        $gap = $attributes['zolo_fbGapGap'] ?? 20;
+
+        if ($layout === 'grid') {
+            $gap_style = $is_linked 
+                ? "gap: {$gap}{$unit};" 
+                : \sprintf('row-gap: %d%s; column-gap: %d%s;', 
+                    $attributes['zolo_fbGapRowGap'] ?? 20, $unit,
+                    $attributes['zolo_fbGapColGap'] ?? 20, $unit);
+            return "display: grid; grid-template-columns: repeat({$cols}, 1fr); {$gap_style}";
+        }
+        
+        $col_gap = $is_linked ? $gap : ($attributes['zolo_fbGapColGap'] ?? 20);
+        return "column-count: {$cols}; column-gap: {$col_gap}{$unit};";
     }
 
     /**
@@ -261,162 +240,86 @@ class FacebookFeed extends PostBlock
      */
     private function get_responsive_css($attributes, $unique_id)
     {
-        $layout = $attributes['layoutType'];
+        $layout = $attributes['layoutType'] ?? 'timeline';
 
-        if ($layout !== 'grid' && $layout !== 'masonry' && $layout !== 'timeline' && $layout !== 'carousel') {
+        if (!in_array($layout, ['grid', 'masonry', 'timeline', 'carousel'], true)) {
             return '';
         }
 
-        // Desktop values
-        $cols_desk = $attributes['zolo_fbColumnsRange'] ?? 3;
-        $is_linked_desk = $attributes['zolo_fbGapIsLinked'] ?? true;
-        $gap_desk = $attributes['zolo_fbGapGap'] ?? 20;
-        $row_gap_desk = $attributes['zolo_fbGapRowGap'] ?? $gap_desk;
-        $col_gap_desk = $attributes['zolo_fbGapColGap'] ?? $gap_desk;
-        $gap_unit_desk = $attributes['zolo_fbGapUnit'] ?? 'px';
+        $default_gap = $attributes['zolo_fbGapGap'] ?? 20;
+        $desktop = [
+            'cols' => $attributes['zolo_fbColumnsRange'] ?? 3,
+            'is_linked' => $attributes['zolo_fbGapIsLinked'] ?? true,
+            'gap' => $default_gap,
+            'row_gap' => $attributes['zolo_fbGapRowGap'] ?? $default_gap,
+            'col_gap' => $attributes['zolo_fbGapColGap'] ?? $default_gap,
+            'unit' => $attributes['zolo_fbGapUnit'] ?? 'px',
+        ];
 
-        // Tablet values
-        $cols_tab = $attributes['zolo_TABfbColumnsRange'] ?? $cols_desk;
-        $is_linked_tab = $attributes['zolo_TABfbGapIsLinked'] ?? $is_linked_desk;
-        $gap_tab = $attributes['zolo_TABfbGapGap'] ?? $gap_desk;
-        $row_gap_tab = $attributes['zolo_TABfbGapRowGap'] ?? $row_gap_desk;
-        $col_gap_tab = $attributes['zolo_TABfbGapColGap'] ?? $col_gap_desk;
-        $gap_unit_tab = $attributes['zolo_TABfbGapUnit'] ?? $gap_unit_desk;
+        $tablet = [
+            'cols' => $attributes['zolo_TABfbColumnsRange'] ?? $desktop['cols'],
+            'is_linked' => $attributes['zolo_TABfbGapIsLinked'] ?? $desktop['is_linked'],
+            'gap' => $attributes['zolo_TABfbGapGap'] ?? $desktop['gap'],
+            'row_gap' => $attributes['zolo_TABfbGapRowGap'] ?? $desktop['row_gap'],
+            'col_gap' => $attributes['zolo_TABfbGapColGap'] ?? $desktop['col_gap'],
+            'unit' => $attributes['zolo_TABfbGapUnit'] ?? $desktop['unit'],
+        ];
 
-        // Mobile values
-        $cols_mob = $attributes['zolo_MOBfbColumnsRange'] ?? $cols_tab;
-        $is_linked_mob = $attributes['zolo_MOBfbGapIsLinked'] ?? $is_linked_tab;
-        $gap_mob = $attributes['zolo_MOBfbGapGap'] ?? $gap_tab;
-        $row_gap_mob = $attributes['zolo_MOBfbGapRowGap'] ?? $row_gap_tab;
-        $col_gap_mob = $attributes['zolo_MOBfbGapColGap'] ?? $col_gap_tab;
-        $gap_unit_mob = $attributes['zolo_MOBfbGapUnit'] ?? $gap_unit_tab;
+        $mobile = [
+            'cols' => $attributes['zolo_MOBfbColumnsRange'] ?? $tablet['cols'],
+            'is_linked' => $attributes['zolo_MOBfbGapIsLinked'] ?? $tablet['is_linked'],
+            'gap' => $attributes['zolo_MOBfbGapGap'] ?? $tablet['gap'],
+            'row_gap' => $attributes['zolo_MOBfbGapRowGap'] ?? $tablet['row_gap'],
+            'col_gap' => $attributes['zolo_MOBfbGapColGap'] ?? $tablet['col_gap'],
+            'unit' => $attributes['zolo_MOBfbGapUnit'] ?? $tablet['unit'],
+        ];
 
-        $css = '<style>';
+        return \sprintf(
+            '<style>%s@media (max-width: 1024px) {%s}@media (max-width: 767px) {%s}</style>',
+            $this->generate_layout_css($layout, $unique_id, $desktop),
+            $this->generate_layout_css($layout, $unique_id, $tablet, true),
+            $this->generate_layout_css($layout, $unique_id, $mobile, true)
+        );
+    }
 
-        // Desktop styles
-        if ($layout === 'timeline') {
-            $css .= ".zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-{$unique_id} {";
-            if ($is_linked_desk) {
-                $css .= "gap: {$gap_desk}{$gap_unit_desk};";
-            } else {
-                $css .= "row-gap: {$row_gap_desk}{$gap_unit_desk};";
-                $css .= "column-gap: {$col_gap_desk}{$gap_unit_desk};";
-            }
-            $css .= "}";
-        } elseif ($layout === 'grid') {
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
-            $css .= "grid-template-columns: repeat({$cols_desk}, 1fr);";
-            if ($is_linked_desk) {
-                $css .= "gap: {$gap_desk}{$gap_unit_desk};";
-            } else {
-                $css .= "row-gap: {$row_gap_desk}{$gap_unit_desk};";
-                $css .= "column-gap: {$col_gap_desk}{$gap_unit_desk};";
-            }
-            $css .= "}";
-        } elseif ($layout === 'masonry') {
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry {";
-            $css .= "column-count: {$cols_desk};";
-            if ($is_linked_desk) {
-                $css .= "column-gap: {$gap_desk}{$gap_unit_desk};";
-            } else {
-                $css .= "column-gap: {$col_gap_desk}{$gap_unit_desk};";
-            }
-            $css .= "}";
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry .zolo-fb-post {";
-            if ($is_linked_desk) {
-                $css .= "margin-bottom: {$gap_desk}{$gap_unit_desk};";
-            } else {
-                $css .= "margin-bottom: {$row_gap_desk}{$gap_unit_desk};";
-            }
-            $css .= "}";
-        } elseif ($layout === 'carousel') {
-            $css .= ".zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-{$unique_id} .swiper {";
-            if ($is_linked_desk) {
-                $css .= "gap: {$gap_desk}{$gap_unit_desk};";
-            } else {
-                $css .= "row-gap: {$row_gap_desk}{$gap_unit_desk};";
-                $css .= "column-gap: {$col_gap_desk}{$gap_unit_desk};";
-            }
-            $css .= "}";
+    /**
+     * Generate layout-specific CSS
+     *
+     * @param string $layout Layout type
+     * @param string $unique_id Unique block ID
+     * @param array  $config Configuration array
+     * @param bool   $responsive Whether this is for responsive breakpoint
+     * @return string
+     */
+    private function generate_layout_css($layout, $unique_id, $config, $responsive = false)
+    {
+        $important = $responsive ? ' !important' : '';
+        $unit = $config['unit'];
+        $gap_css = $config['is_linked']
+            ? "gap: {$config['gap']}{$unit};"
+            : "row-gap: {$config['row_gap']}{$unit}; column-gap: {$config['col_gap']}{$unit};";
+
+        switch ($layout) {
+            case 'timeline':
+                return ".zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-{$unique_id} { {$gap_css} }";
+
+            case 'carousel':
+                return ".zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-{$unique_id} .swiper { {$gap_css} }";
+
+            case 'grid':
+                return ".zolo-fb-posts-container.layout-grid.zolo-facebook-feed-{$unique_id} { grid-template-columns: repeat({$config['cols']}, 1fr){$important}; {$gap_css} }";
+
+            case 'masonry':
+                $col_gap = $config['is_linked'] ? $config['gap'] : $config['col_gap'];
+                $row_gap = $config['is_linked'] ? $config['gap'] : $config['row_gap'];
+                return \sprintf(
+                    '.zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-%s { column-count: %d%s; column-gap: %d%s; } .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-%s .zolo-fb-post { display: inline-block; width: 100%%; margin-bottom: %d%s; }',
+                    $unique_id, $config['cols'], $important, $col_gap, $unit, $unique_id, $row_gap, $unit
+                );
+
+            default:
+                return '';
         }
-
-        // Tablet styles
-        $css .= "@media (max-width: 1024px) {";
-        if ($layout === 'timeline') {
-            $css .= ".zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-{$unique_id} {";
-            if ($is_linked_tab) {
-                $css .= "gap: {$gap_tab}{$gap_unit_tab};";
-            } else {
-                $css .= "row-gap: {$row_gap_tab}{$gap_unit_tab};";
-                $css .= "column-gap: {$col_gap_tab}{$gap_unit_tab};";
-            }
-            $css .= "}";
-        } elseif ($layout === 'grid') {
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
-            $css .= "grid-template-columns: repeat({$cols_tab}, 1fr) !important;";
-            $css .= "row-gap: {$row_gap_tab}{$gap_unit_tab};";
-            $css .= "column-gap: {$col_gap_tab}{$gap_unit_tab};";
-            $css .= "}";
-        } elseif ($layout === 'masonry') {
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry {";
-            $css .= "column-count: {$cols_tab} !important;";
-            $css .= "column-gap: {$col_gap_tab}{$gap_unit_tab};";
-            $css .= "}";
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry .zolo-fb-post {";
-            $css .= "margin-bottom: {$row_gap_tab}{$gap_unit_tab};";
-            $css .= "}";
-        } elseif ($layout === 'carousel') {
-            $css .= ".zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-{$unique_id} .swiper {";
-            if ($is_linked_tab) {
-                $css .= "gap: {$gap_tab}{$gap_unit_tab};";
-            } else {
-                $css .= "row-gap: {$row_gap_tab}{$gap_unit_tab};";
-                $css .= "column-gap: {$col_gap_tab}{$gap_unit_tab};";
-            }
-            $css .= "}";
-        }
-        $css .= "}";
-
-        // Mobile styles
-        $css .= "@media (max-width: 767px) {";
-        if ($layout === 'timeline') {
-            $css .= ".zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-{$unique_id} {";
-            if ($is_linked_mob) {
-                $css .= "gap: {$gap_mob}{$gap_unit_mob};";
-            } else {
-                $css .= "row-gap: {$row_gap_mob}{$gap_unit_mob};";
-                $css .= "column-gap: {$col_gap_mob}{$gap_unit_mob};";
-            }
-            $css .= "}";
-        } elseif ($layout === 'grid') {
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-grid {";
-            $css .= "grid-template-columns: repeat({$cols_mob}, 1fr) !important;";
-            $css .= "row-gap: {$row_gap_mob}{$gap_unit_mob};";
-            $css .= "column-gap: {$col_gap_mob}{$gap_unit_mob};";
-            $css .= "}";
-        } elseif ($layout === 'masonry') {
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry {";
-            $css .= "column-count: {$cols_mob} !important;";
-            $css .= "column-gap: {$col_gap_mob}{$gap_unit_mob};";
-            $css .= "}";
-            $css .= ".zolo-facebook-feed-{$unique_id} .layout-masonry .zolo-fb-post {";
-            $css .= "margin-bottom: {$row_gap_mob}{$gap_unit_mob};";
-            $css .= "}";
-        } elseif ($layout === 'carousel') {
-            $css .= ".zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-{$unique_id} .swiper {";
-            if ($is_linked_mob) {
-                $css .= "gap: {$gap_mob}{$gap_unit_mob};";
-            } else {
-                $css .= "row-gap: {$row_gap_mob}{$gap_unit_mob};";
-                $css .= "column-gap: {$col_gap_mob}{$gap_unit_mob};";
-            }
-            $css .= "}";
-        }
-        $css .= "}";
-
-        $css .= '</style>';
-
-        return $css;
     }
 
     /**
@@ -442,18 +345,20 @@ class FacebookFeed extends PostBlock
      * @param string $access_token Facebook access token
      * @param int    $count Number of posts to retrieve
      * @param int    $cache_expiration Cache expiration in seconds
+     * @param bool   $bypass_cache Whether to bypass cache
      * @return array
      */
-    private function get_facebook_posts_from_api($page_id, $access_token, $count = 6, $cache_expiration = 3600)
+    private function get_facebook_posts_from_api($page_id, $access_token, $count = 6, $cache_expiration = 3600, $bypass_cache = false)
     {
         // Create cache key
         $cache_key = 'zolo_fb_posts_' . \md5($page_id . $access_token . $count);
 
-        // Try to get from cache (skip if force refresh is requested)
-        $force_refresh = isset($_GET['fb_refresh']) || isset($_GET['nocache']);
-        $cached_posts = \get_transient($cache_key);
-        if ($cached_posts !== false && !$force_refresh) {
-            return $cached_posts;
+        // Try to get from cache (skip if force refresh or editor context)
+        if (!$bypass_cache && empty($_GET['fb_refresh']) && empty($_GET['nocache'])) {
+            $cached_posts = \get_transient($cache_key);
+            if ($cached_posts !== false) {
+                return $cached_posts;
+            }
         }
 
         // Fetch from Facebook Graph API
@@ -470,16 +375,14 @@ class FacebookFeed extends PostBlock
         ]);
 
         if (\is_wp_error($response)) {
-            // Return demo posts if API fails
-            return $this->get_demo_posts($count);
+            return [];
         }
 
         $body = \wp_remote_retrieve_body($response);
         $data = \json_decode($body, true);
 
         if (empty($data['data'])) {
-            // Return demo posts if no data
-            return $this->get_demo_posts($count);
+            return [];
         }
 
         // Format posts
@@ -597,24 +500,14 @@ class FacebookFeed extends PostBlock
             return '';
         }
 
-        $timestamp = \strtotime($date);
-        $diff = \time() - $timestamp;
+        $diff = \time() - \strtotime($date);
 
-        if ($diff < 60) {
-            return \__('Just now', 'zoloblocks');
-        } elseif ($diff < 3600) {
-            $mins = \floor($diff / 60);
-            return \sprintf(\__('%d minutes ago', 'zoloblocks'), $mins);
-        } elseif ($diff < 86400) {
-            $hours = \floor($diff / 3600);
-            return \sprintf(\__('%d hours ago', 'zoloblocks'), $hours);
-        } elseif ($diff < 604800) {
-            $days = \floor($diff / 86400);
-            return \sprintf(\__('%d days ago', 'zoloblocks'), $days);
-        } else {
-            $weeks = \floor($diff / 604800);
-            return \sprintf(\__('%d weeks ago', 'zoloblocks'), $weeks);
-        }
+        if ($diff < 60) return \__('Just now', 'zoloblocks');
+        if ($diff < 3600) return \sprintf(\__('%d minutes ago', 'zoloblocks'), \floor($diff / 60));
+        if ($diff < 86400) return \sprintf(\__('%d hours ago', 'zoloblocks'), \floor($diff / 3600));
+        if ($diff < 604800) return \sprintf(\__('%d days ago', 'zoloblocks'), \floor($diff / 86400));
+        
+        return \sprintf(\__('%d weeks ago', 'zoloblocks'), \floor($diff / 604800));
     }
 
     /**
@@ -655,140 +548,5 @@ class FacebookFeed extends PostBlock
         ];
 
         return $emojis[$type] ?? '';
-    }
-
-    /**
-     * Get demo posts (fallback)
-     *
-     * @param int $count Number of posts to retrieve
-     * @return array
-     */
-    private function get_demo_posts($count = 6)
-    {
-        // Demo posts - in production, fetch from Facebook API
-        $demo_posts = [
-            [
-                'id' => 1,
-                'author' => 'Sigmative',
-                'avatar' => 'https://via.placeholder.com/50',
-                'date' => '2 weeks ago',
-                'content' => 'The Sigmative crew is all set for WordCamp Malaysia! 🇲🇾 Tomorrow, if you spot any of us at the venue, feel free to stop us, say hi, and let\'s chat about everything social media integration for WordPress sites! See you there!',
-                'hashtags' => ['#WordCampMY', '#WCMY25', '#WordCamp'],
-                'image' => 'https://via.placeholder.com/600x400',
-                'reactions' => 8,
-                'reaction_types' => [
-                    'like' => 0,
-                    'love' => 0,
-                    'care' => 8,
-                    'wow' => 0,
-                    'haha' => 0,
-                    'sad' => 0,
-                    'angry' => 0,
-                ],
-                'comments' => 5,
-                'shares' => 2,
-            ],
-            [
-                'id' => 2,
-                'author' => 'Sigmative',
-                'avatar' => 'https://via.placeholder.com/50',
-                'date' => '1 week ago',
-                'content' => 'Exciting news! We just launched our new feature that helps you connect with your audience better. Check it out and let us know what you think!',
-                'image' => 'https://via.placeholder.com/600x400',
-                'reactions' => 22,
-                'reaction_types' => [
-                    'like' => 15,
-                    'love' => 7,
-                    'care' => 0,
-                    'wow' => 0,
-                    'haha' => 0,
-                    'sad' => 0,
-                    'angry' => 0,
-                ],
-                'comments' => 8,
-                'shares' => 4,
-            ],
-            [
-                'id' => 3,
-                'author' => 'Sigmative',
-                'avatar' => 'https://via.placeholder.com/50',
-                'date' => '3 days ago',
-                'content' => 'Thanks to all our amazing users for your continued support! We couldn\'t do this without you. 💙',
-                'reactions' => 35,
-                'reaction_types' => [
-                    'like' => 25,
-                    'love' => 10,
-                    'care' => 0,
-                    'wow' => 0,
-                    'haha' => 0,
-                    'sad' => 0,
-                    'angry' => 0,
-                ],
-                'comments' => 12,
-                'shares' => 6,
-            ],
-            [
-                'id' => 4,
-                'author' => 'Sigmative',
-                'avatar' => 'https://via.placeholder.com/50',
-                'date' => '5 days ago',
-                'content' => 'Join us for an exclusive webinar on social media integration best practices!',
-                'hashtags' => ['#Webinar', '#SocialMedia'],
-                'image' => 'https://via.placeholder.com/600x400',
-                'reactions' => 18,
-                'reaction_types' => [
-                    'like' => 12,
-                    'love' => 3,
-                    'care' => 0,
-                    'wow' => 3,
-                    'haha' => 0,
-                    'sad' => 0,
-                    'angry' => 0,
-                ],
-                'comments' => 7,
-                'shares' => 3,
-            ],
-            [
-                'id' => 5,
-                'author' => 'Sigmative',
-                'avatar' => 'https://via.placeholder.com/50',
-                'date' => '1 day ago',
-                'content' => 'New tutorial alert! Learn how to maximize engagement with our latest features.',
-                'image' => 'https://via.placeholder.com/600x400',
-                'reactions' => 28,
-                'reaction_types' => [
-                    'like' => 18,
-                    'love' => 5,
-                    'care' => 2,
-                    'wow' => 3,
-                    'haha' => 0,
-                    'sad' => 0,
-                    'angry' => 0,
-                ],
-                'comments' => 10,
-                'shares' => 5,
-            ],
-            [
-                'id' => 6,
-                'author' => 'Sigmative',
-                'avatar' => 'https://via.placeholder.com/50',
-                'date' => '6 hours ago',
-                'content' => 'Happy Friday everyone! What are your weekend plans?',
-                'reactions' => 42,
-                'reaction_types' => [
-                    'like' => 30,
-                    'love' => 8,
-                    'care' => 0,
-                    'wow' => 0,
-                    'haha' => 4,
-                    'sad' => 0,
-                    'angry' => 0,
-                ],
-                'comments' => 15,
-                'shares' => 8,
-            ],
-        ];
-
-        return array_slice($demo_posts, 0, $count);
     }
 }
