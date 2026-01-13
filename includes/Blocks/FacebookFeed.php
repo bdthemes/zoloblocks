@@ -27,13 +27,16 @@ class FacebookFeed extends PostBlock
                 'showAvatar' => true,
                 'showAuthor' => true,
                 'showDate' => true,
+                'showFacebookIcon' => true,
                 'showContent' => true,
+                'showImage' => true,
                 'contentLength' => 150,
                 'showReadMore' => true,
                 'readMoreText' => 'Read more',
                 'showReactions' => true,
                 'showComments' => false,
                 'showShares' => false,
+                'galleryCardClickable' => false,
                 'carouselAutoplay' => true,
                 'carouselSpeed' => 3000,
                 'carouselLoop' => true,
@@ -105,94 +108,177 @@ class FacebookFeed extends PostBlock
             <div class="zolo-fb-posts-container layout-<?php echo $layout_type; ?> zolo-facebook-feed-<?php echo $unique_id; ?>"
                 style="<?php echo $this->get_container_style($attributes); ?>">
 
-                <?php foreach ($posts as $post) : ?>
-                    <div class="zolo-fb-post">
-                        <div class="zolo-fb-post-header">
-                            <?php if ($attributes['showAvatar']) : ?>
+                <?php if ($layout_type === 'gallery') : ?>
+                    <?php
+                    // Filter posts to only show those with images for gallery layout
+                    $posts_with_images = array_filter($posts, function ($post) {
+                        return !empty($post['image']);
+                    });
+                    ?>
+                    <?php foreach ($posts_with_images as $post) : ?>
+                        <div class="zolo-fb-gallery-item">
+                            <?php if ($attributes['galleryCardClickable']) : ?>
                                 <a href="<?php echo \esc_url($facebook_url); ?>"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="zolo-fb-avatar-link">
-                                    <img src="<?php echo \esc_url($post['avatar']); ?>"
-                                        alt="<?php echo \esc_attr($post['author']); ?>"
-                                        class="zolo-fb-avatar">
+                                    class="zolo-fb-gallery-link">
+                                    <img src="<?php echo \esc_url($post['image']); ?>"
+                                        alt="<?php echo \esc_attr(!empty($post['content']) ? \substr($post['content'], 0, 50) : 'Facebook post'); ?>">
+                                    <div class="zolo-fb-gallery-overlay">
+                                        <?php if ($attributes['showAvatar']) : ?>
+                                            <img src="<?php echo \esc_url($post['avatar']); ?>"
+                                                alt="<?php echo \esc_attr($post['author']); ?>"
+                                                class="zolo-fb-gallery-avatar">
+                                        <?php endif; ?>
+                                        <div class="zolo-fb-gallery-info">
+                                            <?php if ($attributes['showAuthor']) : ?>
+                                                <div class="zolo-fb-gallery-author"><?php echo \esc_html($post['author']); ?></div>
+                                            <?php endif; ?>
+                                            <?php if ($attributes['showDate']) : ?>
+                                                <div class="zolo-fb-gallery-date"><?php echo \esc_html($post['date']); ?></div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </a>
+                            <?php else : ?>
+                                <div class="zolo-fb-gallery-link">
+                                    <img src="<?php echo \esc_url($post['image']); ?>"
+                                        alt="<?php echo \esc_attr(!empty($post['content']) ? \substr($post['content'], 0, 50) : 'Facebook post'); ?>">
+                                    <div class="zolo-fb-gallery-overlay">
+                                        <?php if ($attributes['showAvatar']) : ?>
+                                            <a href="<?php echo \esc_url($facebook_url); ?>"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="zolo-fb-gallery-avatar-link">
+                                                <img src="<?php echo \esc_url($post['avatar']); ?>"
+                                                    alt="<?php echo \esc_attr($post['author']); ?>"
+                                                    class="zolo-fb-gallery-avatar">
+                                            </a>
+                                        <?php endif; ?>
+                                        <div class="zolo-fb-gallery-info">
+                                            <?php if ($attributes['showAuthor']) : ?>
+                                                <a href="<?php echo \esc_url($facebook_url); ?>"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="zolo-fb-gallery-author-link">
+                                                    <div class="zolo-fb-gallery-author"><?php echo \esc_html($post['author']); ?></div>
+                                                </a>
+                                            <?php endif; ?>
+                                            <?php if ($attributes['showDate']) : ?>
+                                                <div class="zolo-fb-gallery-date"><?php echo \esc_html($post['date']); ?></div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php endif; ?>
-
-                            <div class="zolo-fb-meta">
-                                <?php if ($attributes['showAuthor']) : ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <?php foreach ($posts as $post) : ?>
+                        <div class="zolo-fb-post">
+                            <div class="zolo-fb-post-header">
+                                <?php if ($attributes['showAvatar']) : ?>
                                     <a href="<?php echo \esc_url($facebook_url); ?>"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="zolo-fb-author-link">
-                                        <div class="zolo-fb-author"><?php echo \esc_html($post['author']); ?></div>
+                                        class="zolo-fb-avatar-link">
+                                        <img src="<?php echo \esc_url($post['avatar']); ?>"
+                                            alt="<?php echo \esc_attr($post['author']); ?>"
+                                            class="zolo-fb-avatar">
                                     </a>
                                 <?php endif; ?>
 
-                                <?php if ($attributes['showDate']) : ?>
-                                    <div class="zolo-fb-date"><?php echo \esc_html($post['date']); ?></div>
-                                <?php endif; ?>
-                            </div>
-
-                            <a href="<?php echo \esc_url($facebook_url); ?>"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="zolo-fb-icon"
-                                title="<?php echo \esc_attr__('Visit Facebook Page', 'zoloblocks'); ?>">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                                </svg>
-                            </a>
-                        </div>
-
-                        <?php if ($attributes['showContent'] && !empty($post['content'])) : ?>
-                            <div class="zolo-fb-content" data-full-text="<?php echo \esc_attr($post['content']); ?>">
-                                <p><?php echo \esc_html($this->truncate_content($post['content'], $attributes['contentLength'])); ?></p>
-
-                                <?php if (!empty($post['hashtags'])) : ?>
-                                    <div class="zolo-fb-hashtags">
-                                        <?php foreach ($post['hashtags'] as $tag) : ?>
-                                            <span class="zolo-fb-hashtag"><?php echo \esc_html($tag); ?></span>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($attributes['showReadMore'] && $attributes['contentLength'] > 0 && strlen($post['content']) > $attributes['contentLength']) : ?>
-                                    <a href="#" class="zolo-fb-read-more"><?php echo \esc_html($attributes['readMoreText']); ?></a>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if (!empty($post['image'])) : ?>
-                            <div class="zolo-fb-image">
-                                <img src="<?php echo \esc_url($post['image']); ?>" alt="<?php echo \esc_attr($post['author']); ?>">
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if ($attributes['showReactions'] || $attributes['showComments'] || $attributes['showShares']) : ?>
-                            <div class="zolo-fb-reactions">
-                                <?php if ($attributes['showReactions'] && ($post['reactions'] ?? 0) > 0) : ?>
-                                    <div class="zolo-fb-reaction-icons">
-                                        <?php
-                                        foreach (array_filter($post['reaction_types'] ?? []) as $type => $count) {
-                                            echo $this->get_reaction_emoji($type);
-                                        }
-                                        ?>
-                                        <span class="zolo-fb-reaction-count"><?php echo \esc_html($post['reactions']); ?></span>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="zolo-fb-engagement-stats">
-                                    <?php if ($attributes['showComments'] && ($post['comments'] ?? 0) > 0) : ?>
-                                        <span class="zolo-fb-stat-item"><?php echo \esc_html(\sprintf('%d Comments', $post['comments'])); ?></span>
+                                <div class="zolo-fb-meta">
+                                    <?php if ($attributes['showAuthor']) : ?>
+                                        <a href="<?php echo \esc_url($facebook_url); ?>"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="zolo-fb-author-link">
+                                            <div class="zolo-fb-author"><?php echo \esc_html($post['author']); ?></div>
+                                        </a>
                                     <?php endif; ?>
-                                    <?php if ($attributes['showShares'] && ($post['shares'] ?? 0) > 0) : ?>
-                                        <span class="zolo-fb-stat-item"><?php echo \esc_html(\sprintf('%d Shares', $post['shares'])); ?></span>
+
+                                    <?php if ($attributes['showDate']) : ?>
+                                        <div class="zolo-fb-date"><?php echo \esc_html($post['date']); ?></div>
                                     <?php endif; ?>
                                 </div>
+
+                                <?php if ($attributes['showFacebookIcon']) : ?>
+                                    <a href="<?php echo \esc_url($facebook_url); ?>"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="zolo-fb-icon"
+                                        title="<?php echo \esc_attr__('Visit Facebook Page', 'zoloblocks'); ?>">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2">
+                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                        </svg>
+                                    </a>
+                                <?php endif; ?>
                             </div>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
+
+                            <?php if ($attributes['showContent'] && !empty($post['content'])) : ?>
+                                <div class="zolo-fb-content" data-full-text="<?php echo \esc_attr($post['content']); ?>">
+                                    <p><?php echo \esc_html($this->truncate_content($post['content'], $attributes['contentLength'])); ?></p>
+
+                                    <?php if (!empty($post['hashtags'])) : ?>
+                                        <div class="zolo-fb-hashtags">
+                                            <?php foreach ($post['hashtags'] as $tag) : ?>
+                                                <span class="zolo-fb-hashtag"><?php echo \esc_html($tag); ?></span>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ($attributes['showReadMore'] && $attributes['contentLength'] > 0 && strlen($post['content']) > $attributes['contentLength']) : ?>
+                                        <a href="#" class="zolo-fb-read-more"><?php echo \esc_html($attributes['readMoreText']); ?></a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($attributes['showImage'] && !empty($post['image'])) : ?>
+                                <div class="zolo-fb-image">
+                                    <img src="<?php echo \esc_url($post['image']); ?>" alt="<?php echo \esc_attr($post['author']); ?>">
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($post['attachment']) && $post['attachment']['type'] === 'share') : ?>
+                                <div class="zolo-fb-attachment">
+                                    <a href="<?php echo \esc_url($post['attachment']['url']); ?>" target="_blank" rel="noopener noreferrer" class="zolo-fb-attachment-link">
+                                        <?php if (!empty($post['attachment']['title'])) : ?>
+                                            <div class="zolo-fb-attachment-domain"><?php echo \esc_html(parse_url($post['attachment']['url'], PHP_URL_HOST)); ?></div>
+                                            <div class="zolo-fb-attachment-title"><?php echo \esc_html($post['attachment']['title']); ?></div>
+                                        <?php endif; ?>
+                                        <?php if (!empty($post['attachment']['description'])) : ?>
+                                            <div class="zolo-fb-attachment-description"><?php echo \esc_html($post['attachment']['description']); ?></div>
+                                        <?php endif; ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($attributes['showReactions'] || $attributes['showComments'] || $attributes['showShares']) : ?>
+                                <div class="zolo-fb-reactions">
+                                    <?php if ($attributes['showReactions'] && ($post['reactions'] ?? 0) > 0) : ?>
+                                        <div class="zolo-fb-reaction-icons">
+                                            <?php
+                                            foreach (array_filter($post['reaction_types'] ?? []) as $type => $count) {
+                                                echo $this->get_reaction_emoji($type);
+                                            }
+                                            ?>
+                                            <span class="zolo-fb-reaction-count"><?php echo \esc_html($post['reactions']); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="zolo-fb-engagement-stats">
+                                        <?php if ($attributes['showComments'] && ($post['comments'] ?? 0) > 0) : ?>
+                                            <span class="zolo-fb-stat-item"><?php echo \esc_html(\sprintf('%d Comments', $post['comments'])); ?></span>
+                                        <?php endif; ?>
+                                        <?php if ($attributes['showShares'] && ($post['shares'] ?? 0) > 0) : ?>
+                                            <span class="zolo-fb-stat-item"><?php echo \esc_html(\sprintf('%d Shares', $post['shares'])); ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
 <?php
@@ -208,8 +294,8 @@ class FacebookFeed extends PostBlock
     private function get_container_style($attributes)
     {
         $layout = $attributes['layoutType'] ?? 'timeline';
-        
-        if (!in_array($layout, ['grid', 'masonry'], true)) {
+
+        if (!in_array($layout, ['grid', 'masonry', 'gallery'], true)) {
             return '';
         }
 
@@ -218,15 +304,19 @@ class FacebookFeed extends PostBlock
         $unit = $attributes['zolo_fbGapUnit'] ?? 'px';
         $gap = $attributes['zolo_fbGapGap'] ?? 20;
 
-        if ($layout === 'grid') {
-            $gap_style = $is_linked 
-                ? "gap: {$gap}{$unit};" 
-                : \sprintf('row-gap: %d%s; column-gap: %d%s;', 
-                    $attributes['zolo_fbGapRowGap'] ?? 20, $unit,
-                    $attributes['zolo_fbGapColGap'] ?? 20, $unit);
+        if ($layout === 'grid' || $layout === 'gallery') {
+            $gap_style = $is_linked
+                ? "gap: {$gap}{$unit};"
+                : \sprintf(
+                    'row-gap: %d%s; column-gap: %d%s;',
+                    $attributes['zolo_fbGapRowGap'] ?? 20,
+                    $unit,
+                    $attributes['zolo_fbGapColGap'] ?? 20,
+                    $unit
+                );
             return "display: grid; grid-template-columns: repeat({$cols}, 1fr); {$gap_style}";
         }
-        
+
         $col_gap = $is_linked ? $gap : ($attributes['zolo_fbGapColGap'] ?? 20);
         return "column-count: {$cols}; column-gap: {$col_gap}{$unit};";
     }
@@ -242,7 +332,7 @@ class FacebookFeed extends PostBlock
     {
         $layout = $attributes['layoutType'] ?? 'timeline';
 
-        if (!in_array($layout, ['grid', 'masonry', 'timeline', 'carousel'], true)) {
+        if (!in_array($layout, ['grid', 'masonry', 'timeline', 'carousel', 'gallery'], true)) {
             return '';
         }
 
@@ -313,9 +403,19 @@ class FacebookFeed extends PostBlock
                 $col_gap = $config['is_linked'] ? $config['gap'] : $config['col_gap'];
                 $row_gap = $config['is_linked'] ? $config['gap'] : $config['row_gap'];
                 return \sprintf(
-                    '.zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-%s { column-count: %d%s; column-gap: %d%s; } .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-%s .zolo-fb-post { display: inline-block; width: 100%%; margin-bottom: %d%s; }',
-                    $unique_id, $config['cols'], $important, $col_gap, $unit, $unique_id, $row_gap, $unit
+                    '.zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-%s { column-count: %d%s; column-gap: %d%s; } .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-%s .zolo-fb-post { margin-bottom: %d%s; }',
+                    $unique_id,
+                    $config['cols'],
+                    $important,
+                    $col_gap,
+                    $unit,
+                    $unique_id,
+                    $row_gap,
+                    $unit
                 );
+
+            case 'gallery':
+                return ".zolo-fb-posts-container.layout-gallery.zolo-facebook-feed-{$unique_id} { grid-template-columns: repeat({$config['cols']}, 1fr){$important}; {$gap_css} }";
 
             default:
                 return '';
@@ -363,7 +463,7 @@ class FacebookFeed extends PostBlock
 
         // Fetch from Facebook Graph API
         $api_url = \sprintf(
-            'https://graph.facebook.com/v18.0/%s/posts?fields=id,message,created_time,full_picture,reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(CARE).limit(0).summary(total_count).as(reactions_care),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry),reactions.limit(0).summary(total_count).as(reactions_total),comments.summary(true),shares&limit=%d&access_token=%s',
+            'https://graph.facebook.com/v18.0/%s/posts?fields=id,message,created_time,full_picture,attachments{title,description,media_type,type,url,unshimmed_url,target{id}},reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(CARE).limit(0).summary(total_count).as(reactions_care),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry),reactions.limit(0).summary(total_count).as(reactions_total),comments.summary(true),shares&limit=%d&access_token=%s',
             \urlencode($page_id),
             $count,
             \urlencode($access_token)
@@ -388,6 +488,28 @@ class FacebookFeed extends PostBlock
         // Format posts
         $posts = [];
         foreach ($data['data'] as $index => $post) {
+            // Parse attachment if exists
+            $attachment = null;
+            $has_link_attachment = false;
+            if (!empty($post['attachments']['data'][0])) {
+                $attach_data = $post['attachments']['data'][0];
+                $has_link_attachment = ($attach_data['type'] ?? '') === 'share';
+                $attachment = [
+                    'type' => $attach_data['type'] ?? '',
+                    'media_type' => $attach_data['media_type'] ?? '',
+                    'title' => $attach_data['title'] ?? '',
+                    'description' => $attach_data['description'] ?? '',
+                    'url' => $attach_data['unshimmed_url'] ?? $attach_data['url'] ?? '',
+                ];
+            }
+
+            // Only use full_picture if it's not just a link preview thumbnail
+            // If post has a link attachment, skip the image as it's just the preview
+            $post_image = null;
+            if (!empty($post['full_picture']) && !$has_link_attachment) {
+                $post_image = $post['full_picture'];
+            }
+
             $formatted_post = [
                 'id' => $post['id'] ?? $index,
                 'author' => $this->get_page_name($page_id, $access_token),
@@ -395,7 +517,8 @@ class FacebookFeed extends PostBlock
                 'date' => $this->format_date($post['created_time'] ?? ''),
                 'content' => $post['message'] ?? '',
                 'hashtags' => $this->extract_hashtags($post['message'] ?? ''),
-                'image' => $post['full_picture'] ?? '',
+                'image' => $post_image,
+                'attachment' => $attachment,
                 'reactions' => $post['reactions_total']['summary']['total_count'] ?? 0,
                 'reaction_types' => [
                     'like' => $post['reactions_like']['summary']['total_count'] ?? 0,
@@ -506,7 +629,7 @@ class FacebookFeed extends PostBlock
         if ($diff < 3600) return \sprintf(\__('%d minutes ago', 'zoloblocks'), \floor($diff / 60));
         if ($diff < 86400) return \sprintf(\__('%d hours ago', 'zoloblocks'), \floor($diff / 3600));
         if ($diff < 604800) return \sprintf(\__('%d days ago', 'zoloblocks'), \floor($diff / 86400));
-        
+
         return \sprintf(\__('%d weeks ago', 'zoloblocks'), \floor($diff / 604800));
     }
 

@@ -150,6 +150,15 @@ function Inspector(props) {
                         )}
 
                         <ZoloPanelBody title={__('Post Elements', 'zoloblocks')} panelProps={props}>
+                            {attributes.layoutType === 'gallery' && (
+                                <div className="zolo-flex-col-control">
+                                    <ZoloToggleControl
+                                        label={__('Gallery Card Clickable', 'zoloblocks')}
+                                        checked={attributes.galleryCardClickable}
+                                        onChange={(value) => setAttributes({ galleryCardClickable: value })}
+                                    />
+                                </div>
+                            )}
                             <div className="zolo-flex-col-control">
                                 <ZoloToggleControl
                                     label={__('Show Avatar', 'zoloblocks')}
@@ -171,67 +180,87 @@ function Inspector(props) {
                                     onChange={(value) => setAttributes({ showDate: value })}
                                 />
                             </div>
-                            <div className="zolo-flex-col-control">
-                                <ZoloToggleControl
-                                    label={__('Show Content', 'zoloblocks')}
-                                    checked={attributes.showContent}
-                                    onChange={(value) => setAttributes({ showContent: value })}
-                                />
-                            </div>
-                            {attributes.showContent && (
+                            {attributes.layoutType !== 'gallery' && (
                                 <>
                                     <div className="zolo-flex-col-control">
-                                        <ZoloRangeControl
-                                            label={__('Content Length (0 for full)', 'zoloblocks')}
-                                            value={attributes.contentLength}
-                                            onChange={(value) => setAttributes({ contentLength: value })}
-                                            min={0}
-                                            max={500}
+                                        <ZoloToggleControl
+                                            label={__('Show Facebook Icon', 'zoloblocks')}
+                                            checked={attributes.showFacebookIcon}
+                                            onChange={(value) => setAttributes({ showFacebookIcon: value })}
                                         />
                                     </div>
                                     <div className="zolo-flex-col-control">
                                         <ZoloToggleControl
-                                            label={__('Show Read More', 'zoloblocks')}
-                                            checked={attributes.showReadMore}
-                                            onChange={(value) => setAttributes({ showReadMore: value })}
+                                            label={__('Show Content', 'zoloblocks')}
+                                            checked={attributes.showContent}
+                                            onChange={(value) => setAttributes({ showContent: value })}
                                         />
                                     </div>
-                                    {attributes.showReadMore && (
-                                        <div className="zolo-flex-col-control">
-                                            <ZoloTextControl
-                                                label={__('Read More Text', 'zoloblocks')}
-                                                value={attributes.readMoreText}
-                                                onChange={(value) => setAttributes({ readMoreText: value })}
-                                            />
-                                        </div>
+                                    <div className="zolo-flex-col-control">
+                                        <ZoloToggleControl
+                                            label={__('Show Image', 'zoloblocks')}
+                                            checked={attributes.showImage}
+                                            onChange={(value) => setAttributes({ showImage: value })}
+                                        />
+                                    </div>
+                                    {attributes.showContent && (
+                                        <>
+                                            <div className="zolo-flex-col-control">
+                                                <ZoloRangeControl
+                                                    label={__('Content Length (0 for full)', 'zoloblocks')}
+                                                    value={attributes.contentLength}
+                                                    onChange={(value) => setAttributes({ contentLength: value })}
+                                                    min={0}
+                                                    max={500}
+                                                />
+                                            </div>
+                                            <div className="zolo-flex-col-control">
+                                                <ZoloToggleControl
+                                                    label={__('Show Read More', 'zoloblocks')}
+                                                    checked={attributes.showReadMore}
+                                                    onChange={(value) => setAttributes({ showReadMore: value })}
+                                                />
+                                            </div>
+                                            {attributes.showReadMore && (
+                                                <div className="zolo-flex-col-control">
+                                                    <ZoloTextControl
+                                                        label={__('Read More Text', 'zoloblocks')}
+                                                        value={attributes.readMoreText}
+                                                        onChange={(value) => setAttributes({ readMoreText: value })}
+                                                    />
+                                                </div>
+                                            )}
+                                        </>
                                     )}
                                 </>
                             )}
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Engagement', 'zoloblocks')} panelProps={props}>
-                            <div className="zolo-flex-col-control">
-                                <ZoloToggleControl
-                                    label={__('Show Reactions', 'zoloblocks')}
-                                    checked={attributes.showReactions}
-                                    onChange={(value) => setAttributes({ showReactions: value })}
-                                />
-                            </div>
-                            <div className="zolo-flex-col-control">
-                                <ZoloToggleControl
-                                    label={__('Show Comments Count', 'zoloblocks')}
-                                    checked={attributes.showComments}
-                                    onChange={(value) => setAttributes({ showComments: value })}
-                                />
-                            </div>
-                            <div className="zolo-flex-col-control">
-                                <ZoloToggleControl
-                                    label={__('Show Shares Count', 'zoloblocks')}
-                                    checked={attributes.showShares}
-                                    onChange={(value) => setAttributes({ showShares: value })}
-                                />
-                            </div>
-                        </ZoloPanelBody>
+                        {attributes.layoutType !== 'gallery' && (
+                            <ZoloPanelBody title={__('Engagement', 'zoloblocks')} panelProps={props}>
+                                <div className="zolo-flex-col-control">
+                                    <ZoloToggleControl
+                                        label={__('Show Reactions', 'zoloblocks')}
+                                        checked={attributes.showReactions}
+                                        onChange={(value) => setAttributes({ showReactions: value })}
+                                    />
+                                </div>
+                                <div className="zolo-flex-col-control">
+                                    <ZoloToggleControl
+                                        label={__('Show Comments Count', 'zoloblocks')}
+                                        checked={attributes.showComments}
+                                        onChange={(value) => setAttributes({ showComments: value })}
+                                    />
+                                </div>
+                                <div className="zolo-flex-col-control">
+                                    <ZoloToggleControl
+                                        label={__('Show Shares Count', 'zoloblocks')}
+                                        checked={attributes.showShares}
+                                        onChange={(value) => setAttributes({ showShares: value })}
+                                    />
+                                </div>
+                            </ZoloPanelBody>
+                        )}
                     </>
                 }
                 styleTab={

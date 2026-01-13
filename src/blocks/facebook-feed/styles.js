@@ -88,13 +88,17 @@ const Style = ({ attributes, setAttributes }) => {
         }
         
         .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
-            display: inline-block;
-            width: 100%;
             margin-bottom: ${gapDeskValues.rowGap} !important;
         }
         
         .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
             gap: ${gapDeskValues.gap} !important;
+        }
+        
+        .zolo-fb-posts-container.layout-gallery.zolo-facebook-feed-${uniqueId} {
+            display: grid;
+            gap: ${gapDeskValues.gap} !important;
+            ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
         }
     `;
 
@@ -122,6 +126,11 @@ const Style = ({ attributes, setAttributes }) => {
         .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
             gap: ${gapTabValues.gap} !important;
         }
+        
+        .zolo-fb-posts-container.layout-gallery.zolo-facebook-feed-${uniqueId} {
+            gap: ${gapTabValues.gap} !important;
+            ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr) !important;` : ''}
+        }
     `;
 
     const mobCSS = `
@@ -147,6 +156,11 @@ const Style = ({ attributes, setAttributes }) => {
         
         .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
             gap: ${gapMobValues.gap} !important;
+        }
+        
+        .zolo-fb-posts-container.layout-gallery.zolo-facebook-feed-${uniqueId} {
+            gap: ${gapMobValues.gap} !important;
+            ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr) !important;` : ''}
         }
     `;
 

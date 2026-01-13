@@ -66,6 +66,11 @@
         }
     }
 
+    // Editor gallery layout
+    .zolo-fb-posts-container.layout-gallery {
+        display: grid;
+    }
+
     // Editor carousel layout
     .zolo-fb-posts-container.layout-carousel {
         .swiper {

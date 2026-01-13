@@ -7,6 +7,7 @@ export const layoutTypes = {
     GRID: 'grid',
     MASONRY: 'masonry',
     CAROUSEL: 'carousel',
+    GALLERY: 'gallery',
 };
 
 const attributes = {
@@ -59,7 +60,15 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    showFacebookIcon: {
+        type: 'boolean',
+        default: true,
+    },
     showContent: {
+        type: 'boolean',
+        default: true,
+    },
+    showImage: {
         type: 'boolean',
         default: true,
     },
@@ -84,6 +93,10 @@ const attributes = {
         default: false,
     },
     showShares: {
+        type: 'boolean',
+        default: false,
+    },
+    galleryCardClickable: {
         type: 'boolean',
         default: false,
     },

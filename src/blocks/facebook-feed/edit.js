@@ -105,6 +105,24 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         // Extract hashtags
                         const hashtags = post.message ? post.message.match(/#\w+/g) || [] : [];
 
+                        // Parse attachment if exists
+                        let attachment = null;
+                        let hasLinkAttachment = false;
+                        if (post.attachments?.data?.[0]) {
+                            const attachData = post.attachments.data[0];
+                            hasLinkAttachment = attachData.type === 'share';
+                            attachment = {
+                                type: attachData.type || '',
+                                media_type: attachData.media_type || '',
+                                title: attachData.title || '',
+                                description: attachData.description || '',
+                                url: attachData.unshimmed_url || attachData.url || '',
+                            };
+                        }
+
+                        // Only use full_picture if it's not just a link preview thumbnail
+                        const postImage = (post.full_picture && !hasLinkAttachment) ? post.full_picture : null;
+
                         return {
                             id: post.id || index,
                             author: pageName,
@@ -112,7 +130,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                             date: timeAgo,
                             content: post.message || '',
                             hashtags: hashtags.slice(0, 5),
-                            image: post.full_picture || '',
+                            image: postImage,
+                            attachment: attachment,
                             reactions: {
                                 like: post.reactions_like?.summary?.total_count || 0,
                                 love: post.reactions_love?.summary?.total_count || 0,
@@ -174,6 +193,13 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     pagination: {
                         el: '.swiper-pagination',
                         clickable: true,
+                        type: 'bullets',
+                        bulletElement: 'button',
+                    },
+                    a11y: {
+                        prevSlideMessage: __('Previous slide', 'zoloblocks'),
+                        nextSlideMessage: __('Next slide', 'zoloblocks'),
+                        paginationBulletMessage: __('Go to slide {{index}}', 'zoloblocks'),
                     },
                 });
             }
@@ -227,12 +253,81 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
             avatar: 'https://i.pravatar.cc/50?img=3',
             date: '3 days ago',
             content: 'Thanks to all our amazing users for your continued support! We couldn\'t do this without you. 💙',
+            attachment: {
+                type: 'share',
+                title: 'Why Digital Portfolio And How To Make It',
+                description: 'When you are applying for jobs, one of the most important pieces of supplementary information you can provide...',
+                url: 'https://techbez.com/why-digital-portfolio',
+            },
             reactions: { like: 25, love: 10, care: 0, wow: 0, haha: 0, sad: 0, angry: 0 },
             totalReactions: 35,
             comments: 12,
             shares: 6,
         },
     ];
+
+    // Gallery view - only show images
+    const renderGalleryItem = (post) => {
+        const galleryContent = (
+            <>
+                <img src={post.image} alt={post.content ? post.content.substring(0, 50) : 'Facebook post'} />
+                <div className="zolo-fb-gallery-overlay">
+                    {attributes.showAvatar && (
+                        attributes.galleryCardClickable ? (
+                            <img src={post.avatar} alt={post.author} className="zolo-fb-gallery-avatar" />
+                        ) : (
+                            <a
+                                href={attributes.facebookPageId ? `https://www.facebook.com/${attributes.facebookPageId}` : 'https://www.facebook.com'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="zolo-fb-gallery-avatar-link"
+                            >
+                                <img src={post.avatar} alt={post.author} className="zolo-fb-gallery-avatar" />
+                            </a>
+                        )
+                    )}
+                    <div className="zolo-fb-gallery-info">
+                        {attributes.showAuthor && (
+                            attributes.galleryCardClickable ? (
+                                <div className="zolo-fb-gallery-author">{post.author}</div>
+                            ) : (
+                                <a
+                                    href={attributes.facebookPageId ? `https://www.facebook.com/${attributes.facebookPageId}` : 'https://www.facebook.com'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="zolo-fb-gallery-author-link"
+                                >
+                                    <div className="zolo-fb-gallery-author">{post.author}</div>
+                                </a>
+                            )
+                        )}
+                        {attributes.showDate && (
+                            <div className="zolo-fb-gallery-date">{post.date}</div>
+                        )}
+                    </div>
+                </div>
+            </>
+        );
+
+        return (
+            <div key={post.id} className="zolo-fb-gallery-item">
+                {attributes.galleryCardClickable ? (
+                    <a
+                        href={attributes.facebookPageId ? `https://www.facebook.com/${attributes.facebookPageId}` : 'https://www.facebook.com'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="zolo-fb-gallery-link"
+                    >
+                        {galleryContent}
+                    </a>
+                ) : (
+                    <div className="zolo-fb-gallery-link">
+                        {galleryContent}
+                    </div>
+                )}
+            </div>
+        );
+    };
 
     const renderPost = (post) => (
         <div key={post.id} className="zolo-fb-post">
@@ -260,17 +355,19 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     )}
                     {attributes.showDate && <div className="zolo-fb-date">{post.date}</div>}
                 </div>
-                <a
-                    href={attributes.facebookPageId ? `https://www.facebook.com/${attributes.facebookPageId}` : 'https://www.facebook.com'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="zolo-fb-icon"
-                    title={__('Visit Facebook Page', 'zoloblocks')}
-                >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                </a>
+                {attributes.showFacebookIcon && (
+                    <a
+                        href={attributes.facebookPageId ? `https://www.facebook.com/${attributes.facebookPageId}` : 'https://www.facebook.com'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="zolo-fb-icon"
+                        title={__('Visit Facebook Page', 'zoloblocks')}
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                )}
             </div>
 
             {attributes.showContent && post.content && (
@@ -292,9 +389,25 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 </div>
             )}
 
-            {post.image && (
+            {attributes.showImage && post.image && !(post.attachment && post.attachment.type === 'share') && (
                 <div className="zolo-fb-image">
                     <img src={post.image} alt="Post" />
+                </div>
+            )}
+
+            {post.attachment && post.attachment.type === 'share' && (
+                <div className="zolo-fb-attachment">
+                    <a href={post.attachment.url} target="_blank" rel="noopener noreferrer" className="zolo-fb-attachment-link">
+                        {post.attachment.title && (
+                            <>
+                                <div className="zolo-fb-attachment-domain">{new URL(post.attachment.url).hostname}</div>
+                                <div className="zolo-fb-attachment-title">{post.attachment.title}</div>
+                            </>
+                        )}
+                        {post.attachment.description && (
+                            <div className="zolo-fb-attachment-description">{post.attachment.description}</div>
+                        )}
+                    </a>
                 </div>
             )}
 
@@ -367,10 +480,14 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="swiper-button-prev"></div>
-                                <div className="swiper-button-next"></div>
-                                <div className="swiper-pagination"></div>
+                                <div className="swiper-button-prev" role="button" aria-label={__('Previous slide', 'zoloblocks')} tabIndex="0"></div>
+                                <div className="swiper-button-next" role="button" aria-label={__('Next slide', 'zoloblocks')} tabIndex="0"></div>
+                                <div className="swiper-pagination" role="group" aria-label={__('Carousel pagination', 'zoloblocks')}></div>
                             </div>
+                        ) : attributes.layoutType === 'gallery' ? (
+                            (facebookPosts.length > 0 ? facebookPosts : demoPosts)
+                                .filter(post => post.image)
+                                .map(renderGalleryItem)
                         ) : (
                             (facebookPosts.length > 0 ? facebookPosts : demoPosts).map(renderPost)
                         )}
