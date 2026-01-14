@@ -113,6 +113,8 @@
 
         &.layout-masonry {
             width: 100%;
+            column-gap: 20px;
+            row-gap: 20px;
             
             .zolo-fb-review-card {
                 break-inside: avoid;
@@ -120,7 +122,6 @@
                 -webkit-column-break-inside: avoid;
                 display: block;
                 width: auto;
-                margin-bottom: 20px;
                 flex-direction: column;
             }
             

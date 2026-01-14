@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, A11y, Keyboard } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -64,14 +64,22 @@ function initCarousel(block) {
         // Add navigation
         const navPrev = document.createElement('div');
         navPrev.className = 'swiper-button-prev';
+        navPrev.setAttribute('role', 'button');
+        navPrev.setAttribute('aria-label', 'Previous slide');
+        navPrev.setAttribute('tabindex', '0');
         const navNext = document.createElement('div');
         navNext.className = 'swiper-button-next';
+        navNext.setAttribute('role', 'button');
+        navNext.setAttribute('aria-label', 'Next slide');
+        navNext.setAttribute('tabindex', '0');
         swiperContainer.appendChild(navPrev);
         swiperContainer.appendChild(navNext);
 
         // Add pagination
         const pagination = document.createElement('div');
         pagination.className = 'swiper-pagination';
+        pagination.setAttribute('role', 'group');
+        pagination.setAttribute('aria-label', 'Carousel pagination');
         swiperContainer.appendChild(pagination);
 
         container.appendChild(swiperContainer);
@@ -79,7 +87,7 @@ function initCarousel(block) {
 
     // Initialize Swiper
     new Swiper(swiperContainer, {
-        modules: [Navigation, Pagination, Autoplay],
+        modules: [Navigation, Pagination, Autoplay, A11y, Keyboard],
         slidesPerView: columns,
         spaceBetween: 20,
         loop: loop,
@@ -98,6 +106,18 @@ function initCarousel(block) {
             el: '.swiper-pagination',
             clickable: true,
             dynamicBullets: true,
+            type: 'bullets',
+            bulletElement: 'button',
+        },
+        a11y: {
+            enabled: true,
+            prevSlideMessage: 'Previous slide',
+            nextSlideMessage: 'Next slide',
+            paginationBulletMessage: 'Go to slide {{index}}',
+        },
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
         },
         breakpoints: {
             320: {

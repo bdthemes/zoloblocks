@@ -2,15 +2,16 @@
 .zolo-facebook-reviews {
     // Editor masonry layout
     .zolo-fb-reviews-container.layout-masonry {
-        column-count: var(--masonry-columns, 3);
-        column-gap: var(--masonry-gap, 20px);
+        column-count: var(--masonry-columns, 3) !important;
+        column-gap: var(--masonry-gap, 20px) !important;
+        row-gap: var(--masonry-gap, 20px) !important;
         
         .zolo-fb-review-card {
             break-inside: avoid;
             page-break-inside: avoid;
             display: block;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 0 !important; // Override any inherited margin
         }
     }
 

@@ -1,10 +1,3 @@
-const {
-    generateDimensionAttributes,
-    generateBorderAttributies,
-    generateBoxShadowAttributies,
-    generateNormalBGAttributes,
-} = window.zoloModule;
-
 import { generateResCounterAttributies } from '../../helpers/res-counter-helper';
 import { generateGapAttributes } from '../../helpers/gap-helper';
 import { FB_REVIEWS_COLUMNS, FB_REVIEWS_GAP } from './constants';
@@ -16,7 +9,7 @@ export const layoutTypes = {
     BADGE: 'badge',
 };
 
-export const defaultAttributes = {
+const attributes = {
     // global config
     globalConfig: {
         type: 'object',
@@ -139,21 +132,13 @@ export const defaultAttributes = {
         default: {},
     },
     ...generateResCounterAttributies(FB_REVIEWS_COLUMNS, {
-        deskRange: 3,
+        defaultRange: 3,
         tabRange: 2,
         mobRange: 1,
     }),
     ...generateGapAttributes(FB_REVIEWS_GAP, {
         defaultRange: 20,
-        defaultUnit: 'px',
     }),
-    // Advanced Options attributes
-    ...generateDimensionAttributes('fbReviewsMargin'),
-    ...generateDimensionAttributes('fbReviewsPadding'),
-    ...generateNormalBGAttributes('fbReviewsBg'),
-    ...generateBorderAttributies('fbReviewsBorder'),
-    ...generateDimensionAttributes('fbReviewsBorderRadius'),
-    ...generateBoxShadowAttributies('fbReviewsBoxShadow'),
 };
 
-export default defaultAttributes;
+export default attributes;

@@ -4,11 +4,11 @@ import { Notice, Spinner } from '@wordpress/components';
 import { useEffect, useState, useRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import classnames from 'classnames';
-import { layoutTypes, defaultAttributes } from './attributes';
+import { layoutTypes } from './attributes';
 import Inspector from './inspector';
 import Style from './styles';
 import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, A11y, Keyboard } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -38,6 +38,12 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         carouselAutoplay,
         carouselSpeed,
         carouselLoop,
+        zolo_fbReviewsColumnsRange,
+        zolo_TABfbReviewsColumnsRange,
+        zolo_MOBfbReviewsColumnsRange,
+        zolo_fbReviewsGapGap,
+        zolo_TABfbReviewsGapGap,
+        zolo_MOBfbReviewsGapGap,
         resMode,
         parentClasses,
     } = attributes;
@@ -159,65 +165,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
             .catch((error) => {
                 console.error('Error fetching Facebook reviews:', error);
                 setApiError(error.message || __('Failed to fetch Facebook reviews. Please check your API settings.', 'zoloblocks'));
-                
-                // Use demo reviews as fallback
-                const demoReviews = [
-                    {
-                        id: '1',
-                        reviewerName: 'Sarah Johnson',
-                        reviewerAvatar: 'https://ui-avatars.com/api/?name=Sarah+Johnson&size=100&background=FF6B6B&color=fff',
-                        date: '2 days ago',
-                        rating: 5,
-                        reviewText: 'Excellent service! The team was professional and delivered beyond our expectations. Highly recommend!',
-                        hasRecommendation: true,
-                    },
-                    {
-                        id: '2',
-                        reviewerName: 'Michael Chen',
-                        reviewerAvatar: 'https://ui-avatars.com/api/?name=Michael+Chen&size=100&background=4ECDC4&color=fff',
-                        date: '1 week ago',
-                        rating: 5,
-                        reviewText: 'Great experience from start to finish. Very responsive and attentive to details.',
-                        hasRecommendation: true,
-                    },
-                    {
-                        id: '3',
-                        reviewerName: 'Emily Rodriguez',
-                        reviewerAvatar: 'https://ui-avatars.com/api/?name=Emily+Rodriguez&size=100&background=45B7D1&color=fff',
-                        date: '2 weeks ago',
-                        rating: 4,
-                        reviewText: 'Quality work and friendly staff. Will definitely use their services again.',
-                        hasRecommendation: true,
-                    },
-                    {
-                        id: '4',
-                        reviewerName: 'David Kim',
-                        reviewerAvatar: 'https://ui-avatars.com/api/?name=David+Kim&size=100&background=FFA07A&color=fff',
-                        date: '3 weeks ago',
-                        rating: 5,
-                        reviewText: 'Outstanding! They went above and beyond to ensure everything was perfect.',
-                        hasRecommendation: true,
-                    },
-                    {
-                        id: '5',
-                        reviewerName: 'Jennifer Smith',
-                        reviewerAvatar: 'https://ui-avatars.com/api/?name=Jennifer+Smith&size=100&background=98D8C8&color=fff',
-                        date: '1 month ago',
-                        rating: 5,
-                        reviewText: 'Fantastic service! Professional, reliable, and excellent quality.',
-                        hasRecommendation: true,
-                    },
-                    {
-                        id: '6',
-                        reviewerName: 'Robert Taylor',
-                        reviewerAvatar: 'https://ui-avatars.com/api/?name=Robert+Taylor&size=100&background=F7DC6F&color=fff',
-                        date: '1 month ago',
-                        rating: 4,
-                        reviewText: 'Very satisfied with the results. Good communication throughout the process.',
-                        hasRecommendation: false,
-                    },
-                ];
-                setFacebookReviews(demoReviews.slice(0, reviewsPerPage));
+                setFacebookReviews([]);
                 setIsLoading(false);
             });
     }, [reviewsPerPage]);
@@ -234,7 +182,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 const slidesPerView = resMode === 'Desktop' ? deskCols : resMode === 'Tablet' ? tabCols : mobCols;
 
                 swiperInstance.current = new Swiper(container, {
-                    modules: [Navigation, Pagination, Autoplay],
+                    modules: [Navigation, Pagination, Autoplay, A11y, Keyboard],
                     slidesPerView: slidesPerView,
                     spaceBetween: 20,
                     loop: carouselLoop,
@@ -252,6 +200,17 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     pagination: {
                         el: '.swiper-pagination',
                         clickable: true,
+                        type: 'bullets',
+                        bulletElement: 'button',
+                    },
+                    a11y: {
+                        prevSlideMessage: __('Previous slide', 'zoloblocks'),
+                        nextSlideMessage: __('Next slide', 'zoloblocks'),
+                        paginationBulletMessage: __('Go to slide {{index}}', 'zoloblocks'),
+                    },
+                    keyboard: {
+                        enabled: true,
+                        onlyInViewport: true,
                     },
                 });
             }
@@ -271,64 +230,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
             swiperInstance.current.update();
         }
     }, [facebookReviews]);
-
-    // Demo reviews for preview
-    const demoReviews = [
-        {
-            id: 1,
-            reviewerName: 'MD Mehdi Hasan Asif',
-            reviewerAvatar: 'https://ui-avatars.com/api/?name=MD+Mehdi+Hasan+Asif&size=100&background=4267B2&color=fff',
-            date: 'August 20, 2025',
-            rating: 5,
-            reviewText: 'The photography here is always breathtaking, with so much passion and attention to detail in every shot.',
-            hasRecommendation: true,
-        },
-        {
-            id: 2,
-            reviewerName: 'Sarah Johnson',
-            reviewerAvatar: 'https://ui-avatars.com/api/?name=Sarah+Johnson&size=100&background=E91E63&color=fff',
-            date: 'July 15, 2025',
-            rating: 5,
-            reviewText: 'Absolutely amazing service! The team went above and beyond to ensure everything was perfect. Highly recommend!',
-            hasRecommendation: true,
-        },
-        {
-            id: 3,
-            reviewerName: 'John Smith',
-            reviewerAvatar: 'https://ui-avatars.com/api/?name=John+Smith&size=100&background=FF9800&color=fff',
-            date: 'June 30, 2025',
-            rating: 5,
-            reviewText: 'Outstanding quality and professionalism. I couldn\'t be happier with the results. Will definitely use again!',
-            hasRecommendation: true,
-        },
-        {
-            id: 4,
-            reviewerName: 'Emily Chen',
-            reviewerAvatar: 'https://ui-avatars.com/api/?name=Emily+Chen&size=100&background=9C27B0&color=fff',
-            date: 'May 10, 2025',
-            rating: 5,
-            reviewText: 'Exceptional experience from start to finish. The attention to detail is remarkable and truly sets them apart.',
-            hasRecommendation: true,
-        },
-        {
-            id: 5,
-            reviewerName: 'Michael Brown',
-            reviewerAvatar: 'https://ui-avatars.com/api/?name=Michael+Brown&size=100&background=00BCD4&color=fff',
-            date: 'April 22, 2025',
-            rating: 5,
-            reviewText: 'Best decision I made! Professional, creative, and delivered beyond my expectations. Five stars all the way!',
-            hasRecommendation: true,
-        },
-        {
-            id: 6,
-            reviewerName: 'Lisa Anderson',
-            reviewerAvatar: 'https://ui-avatars.com/api/?name=Lisa+Anderson&size=100&background=4CAF50&color=fff',
-            date: 'March 18, 2025',
-            rating: 5,
-            reviewText: 'Simply wonderful! The quality of work speaks for itself. I am extremely satisfied and would recommend to anyone.',
-            hasRecommendation: true,
-        },
-    ];
 
     const renderStars = (rating) => {
         const stars = [];
@@ -453,7 +354,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                                                 <div className="zolo-fb-rating-stars">
                                                     {renderStars(5)}
                                                 </div>
-                                                <span className="zolo-fb-rating-count">Suggested by {facebookReviews.length > 0 ? facebookReviews.length : demoReviews.length} Clients</span>
+                                                <span className="zolo-fb-rating-count">Suggested by {facebookReviews.length} Clients</span>
                                             </div>
                                         )}
                                     </div>
@@ -478,26 +379,40 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                             </div>
                         )}
 
-                        {layoutType !== 'badge' && (
+                        {layoutType !== 'badge' && facebookReviews.length > 0 && (
                         <div
                             ref={carouselRef}
                             className={`zolo-fb-reviews-container layout-${layoutType} zolo-facebook-reviews-${uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`}`}
+                            style={{
+                                '--masonry-columns': resMode === 'Tablet'
+                                    ? (zolo_TABfbReviewsColumnsRange || zolo_fbReviewsColumnsRange || 3)
+                                    : resMode === 'Mobile'
+                                    ? (zolo_MOBfbReviewsColumnsRange || zolo_fbReviewsColumnsRange || 3)
+                                    : (zolo_fbReviewsColumnsRange || 3),
+                                '--masonry-gap': `${
+                                    resMode === 'Tablet' 
+                                        ? (zolo_TABfbReviewsGapGap || zolo_fbReviewsGapGap || 20)
+                                        : resMode === 'Mobile'
+                                        ? (zolo_MOBfbReviewsGapGap || zolo_fbReviewsGapGap || 20)
+                                        : (zolo_fbReviewsGapGap || 20)
+                                }px`,
+                            }}
                         >
                         {layoutType === 'carousel' ? (
                             <div className="swiper">
                                 <div className="swiper-wrapper">
-                                    {(facebookReviews.length > 0 ? facebookReviews : demoReviews).map(review => (
+                                    {facebookReviews.map(review => (
                                         <div key={review.id} className="swiper-slide">
                                             {renderReview(review)}
                                         </div>
                                     ))}
                                 </div>
-                                <div className="swiper-button-prev"></div>
-                                <div className="swiper-button-next"></div>
-                                <div className="swiper-pagination"></div>
+                                <div className="swiper-button-prev" role="button" aria-label={__('Previous slide', 'zoloblocks')} tabIndex="0"></div>
+                                <div className="swiper-button-next" role="button" aria-label={__('Next slide', 'zoloblocks')} tabIndex="0"></div>
+                                <div className="swiper-pagination" role="group" aria-label={__('Carousel pagination', 'zoloblocks')}></div>
                             </div>
                         ) : (
-                            (facebookReviews.length > 0 ? facebookReviews : demoReviews).map(renderReview)
+                            facebookReviews.map(renderReview)
                         )}
                         </div>
                         )}
