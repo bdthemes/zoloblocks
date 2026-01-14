@@ -11,6 +11,10 @@ export default function Render({ panelProps }) {
     return (
         <>
             {shape.map((shapeItem, index) => {
+                if (!shapeItem.shape || !shapeItem.shape.shapeType) {
+                    return null;
+                }
+
                 const shapeData = SHAPES_DATA.find((s) => s.id === shapeItem.shape.shapeType);
 
                 if (!shapeData) {
@@ -18,14 +22,9 @@ export default function Render({ panelProps }) {
                 }
 
                 // Handle custom SVG upload
-                const { 
-                    id,
-                    shape,
-                    svgColor,
-                    animation
-                } = shapeItem;
+                const { id, shape, svgColor, animation } = shapeItem;
                 const isCustomSvg = shape.shapeType === 'custom';
-                const customSvg = isCustomSvg ? shape.custom.svg : null;
+                const customSvg = isCustomSvg && shape.custom ? shape.custom.svg : null;
 
                 const shapeId = id || index;
 
