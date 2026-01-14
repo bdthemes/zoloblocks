@@ -1,0 +1,31 @@
+.zolo-image-upload-btn {
+    position: relative;
+    &.zolo-image-upload-btn--has-image{
+        background-image: unset !important;
+        .zolo-image-upload-btn__image{
+            svg{
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .zolo-image-upload-btn__remove{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            svg{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}

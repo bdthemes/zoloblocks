@@ -41,6 +41,12 @@ class ShapeBuilder {
                 $editor_assets['version'],
                 true
             );
+            wp_register_style(
+                'zolo-shape-builder-editor-style',
+                trailingslashit(ZOLO_ADMIN_URL) . "build/extensions/shape-builder/index.css",
+                [],
+                $editor_assets['version']
+            );
         }
 
         // Register frontend script with GSAP dependency
@@ -58,6 +64,7 @@ class ShapeBuilder {
 
     public function enqueue_shape_builder_editor_assets() {
         wp_enqueue_script('zolo-shape-builder-editor-script');
+        wp_enqueue_style('zolo-shape-builder-editor-style');
     }
 
     public function modify_render_block_data($parsed_block) {

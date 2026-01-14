@@ -66,14 +66,15 @@ const ZoloRepeater = ({ repeaterItems = [], children, onChange, itemLabelName = 
                                             key: i,
                                             ...(childName
                                                 ? {
-                                                      value: item[childName],
-                                                      values: item[childName],
-                                                      checked: item[childName],
-                                                      onChange: (value) => handleItemChange(index, childName, value),
-                                                  }
+                                                    value: item[childName],
+                                                    values: item[childName],
+                                                    checked: item[childName],
+                                                    onChange: (value) => handleItemChange(index, childName, value),
+                                                    item: item,
+                                                }
                                                 : {
-                                                      id: item.id,
-                                                  }),
+                                                    id: item.id,
+                                                }),
                                         });
                                     })}
                                 </div>
