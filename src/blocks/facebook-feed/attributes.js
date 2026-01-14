@@ -126,7 +126,7 @@ const attributes = {
     },
     cacheExpiration: {
         type: 'number',
-        default: 300,
+        default: 43200,
     },
     resMode: {
         type: 'string',

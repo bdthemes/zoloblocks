@@ -40,7 +40,7 @@ class FacebookFeed extends PostBlock
                 'carouselAutoplay' => true,
                 'carouselSpeed' => 3000,
                 'carouselLoop' => true,
-                'cacheExpiration' => 300, // 5 minutes - shorter cache for more frequent updates
+                'cacheExpiration' => 43200, // 12 hours - default cache duration
                 'zolo_fbColumnsRange' => 3,
                 'zolo_TABfbColumnsRange' => 2,
                 'zolo_MOBfbColumnsRange' => 1,

@@ -116,6 +116,16 @@ function Inspector(props) {
                                     max={50}
                                 />
                             </div>
+                            <div className="zolo-flex-col-control">
+                                <ZoloRangeControl
+                                    label={__('Cache Duration (hours)', 'zoloblocks')}
+                                    value={attributes.cacheExpiration / 3600}
+                                    onChange={(value) => setAttributes({ cacheExpiration: value * 3600 })}
+                                    min={1}
+                                    max={72}
+                                    step={1}
+                                />
+                            </div>
                         </ZoloPanelBody>
 
                         {attributes.layoutType === 'carousel' && (
