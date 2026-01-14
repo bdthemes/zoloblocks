@@ -299,7 +299,7 @@ const StyleControls = ({ value, onChange }) => {
                                             />
                                             {value?.background?.imageUrl && (
                                                 <>
-                                                    <ZoloResponsive left="115px">
+                                                    <ZoloResponsive>
                                                         <ZoloRangeUnit
                                                             label="Background Size"
                                                             value={value?.background?.size?.[device]}
@@ -435,7 +435,7 @@ const StyleControls = ({ value, onChange }) => {
                                             })
                                         }}
                                     />
-                                    <ZoloResponsive left="62px">
+                                    <ZoloResponsive>
                                         <ZoloRangeUnit
                                             label="Width"
                                             value={value?.stroke?.width?.[device]}
@@ -455,7 +455,7 @@ const StyleControls = ({ value, onChange }) => {
                                             }}
                                         />
                                     </ZoloResponsive>
-                                    <ZoloResponsive left="90px">
+                                    <ZoloResponsive>
                                         <ZoloRangeUnit
                                             label="Dasharray"
                                             value={value?.stroke?.dasharray?.[device]}
@@ -559,7 +559,7 @@ const StyleControls = ({ value, onChange }) => {
                                                     })
                                                 }}
                                             />
-                                            <ZoloResponsive left="85px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Border Width"
                                                     value={value?.border?.width?.[device]}
@@ -580,7 +580,7 @@ const StyleControls = ({ value, onChange }) => {
                                                     }}
                                                 />
                                             </ZoloResponsive>
-                                            <ZoloResponsive left="95px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Border Radius"
                                                     value={value?.border?.radius?.[device]}
@@ -698,7 +698,7 @@ const StyleControls = ({ value, onChange }) => {
                         <Panel>
                             <PanelBody title={__('Layout', 'zoloblocks')} initialOpen={false}>
                                 <VStack>
-                                    <ZoloResponsive left="62px">
+                                    <ZoloResponsive>
                                         <ZoloRangeUnit
                                             label="Padding"
                                             value={value?.layout?.padding?.[device]}
@@ -720,7 +720,7 @@ const StyleControls = ({ value, onChange }) => {
                                             }}
                                         />
                                     </ZoloResponsive>
-                                    <ZoloResponsive left="62px">
+                                    <ZoloResponsive>
                                         <ZoloRangeUnit
                                             label="Margin"
                                             value={value?.layout?.margin?.[device]}
@@ -818,7 +818,7 @@ const StyleControls = ({ value, onChange }) => {
                                                     { label: 'Space Around', value: 'space-around', icon: justifySpaceAroundIcon },
                                                 ]}
                                             />
-                                            <ZoloResponsive left="95px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Column Gap"
                                                     value={value?.flex?.columnGap?.[device]}
@@ -840,7 +840,7 @@ const StyleControls = ({ value, onChange }) => {
                                                     }}
                                                 />
                                             </ZoloResponsive>
-                                            <ZoloResponsive left="62px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Row Gap"
                                                     value={value?.flex?.rowGap?.[device]}
@@ -958,7 +958,7 @@ const StyleControls = ({ value, onChange }) => {
                                                 min={0}
                                                 step={1}
                                             />
-                                            <ZoloResponsive left="95px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Column Gap"
                                                     value={value?.grid?.columnGap?.[device]}
@@ -980,7 +980,7 @@ const StyleControls = ({ value, onChange }) => {
                                                     }}
                                                 />
                                             </ZoloResponsive>
-                                            <ZoloResponsive left="62px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Row Gap"
                                                     value={value?.grid?.rowGap?.[device]}
@@ -1054,7 +1054,7 @@ const StyleControls = ({ value, onChange }) => {
                                     />
                                     {value?.position?.type && value?.position?.type !== '' && value?.position?.type !== 'static' && (
                                         <>
-                                            <ZoloResponsive left="62px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Top"
                                                     value={value?.position?.top?.[device]}
@@ -1076,7 +1076,7 @@ const StyleControls = ({ value, onChange }) => {
                                                     }}
                                                 />
                                             </ZoloResponsive>
-                                            <ZoloResponsive left="62px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Right"
                                                     value={value?.position?.right?.[device]}
@@ -1098,7 +1098,7 @@ const StyleControls = ({ value, onChange }) => {
                                                     }}
                                                 />
                                             </ZoloResponsive>
-                                            <ZoloResponsive left="62px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Bottom"
                                                     value={value?.position?.bottom?.[device]}
@@ -1120,7 +1120,7 @@ const StyleControls = ({ value, onChange }) => {
                                                     }}
                                                 />
                                             </ZoloResponsive>
-                                            <ZoloResponsive left="62px">
+                                            <ZoloResponsive>
                                                 <ZoloRangeUnit
                                                     label="Left"
                                                     value={value?.position?.left?.[device]}
