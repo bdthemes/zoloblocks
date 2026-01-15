@@ -11,20 +11,20 @@ export default function Render({ panelProps }) {
     return (
         <>
             {shape.map((shapeItem, index) => {
-                if (!shapeItem.shape || !shapeItem.shape.shapeType) {
+                if (!shapeItem.shapeType) {
                     return null;
                 }
 
-                const shapeData = SHAPES_DATA.find((s) => s.id === shapeItem.shape.shapeType);
+                const shapeData = SHAPES_DATA.find((s) => s.id === shapeItem.shapeType);
 
                 if (!shapeData) {
                     return null;
                 }
 
                 // Handle custom SVG upload
-                const { id, shape, svgColor, animation } = shapeItem;
-                const isCustomSvg = shape.shapeType === 'custom';
-                const customSvg = isCustomSvg && shape.custom ? shape.custom.svg : null;
+                const { id, shapeType, custom, svgColor = {}, animation } = shapeItem;
+                const isCustomSvg = shapeType === 'custom';
+                const customSvg = isCustomSvg && custom ? custom.svg : null;
 
                 const shapeId = id || index;
 
@@ -36,13 +36,18 @@ export default function Render({ panelProps }) {
                 const viewBoxHeight = viewboxBoxArr[3] || 100;
 
                 // Handle gradient
-                if (svgColor.fillType === 'gradient') {
+                if (svgColor?.fillType === 'gradient') {
                     fillColor = `url(#${gradId})`;
 
                     if (svgColor.gradientType === 'linear') {
+                        const angle = svgColor?.gradientAngle || 90;
                         gradientDef = (
                             <defs>
-                                <linearGradient id={gradId} gradientTransform={`rotate(${svgColor?.gradientAngle})`}>
+                                <linearGradient
+                                    id={gradId}
+                                    gradientUnits="objectBoundingBox"
+                                    gradientTransform={`rotate(${angle} 0.5 0.5)`}
+                                >
                                     <stop offset={`${svgColor?.gradientLocation1}%`} stopColor={svgColor?.gradientColor1} />
                                     <stop offset={`${svgColor?.gradientLocation2}%`} stopColor={svgColor?.gradientColor2} />
                                 </linearGradient>
@@ -51,14 +56,14 @@ export default function Render({ panelProps }) {
                     } else {
                         gradientDef = (
                             <defs>
-                                <radialGradient id={gradId}>
+                                <radialGradient id={gradId} cx="50%" cy="50%" r="50%" gradientUnits="objectBoundingBox">
                                     <stop offset={`${svgColor?.gradientLocation1}%`} stopColor={svgColor?.gradientColor1} />
                                     <stop offset={`${svgColor?.gradientLocation2}%`} stopColor={svgColor?.gradientColor2} />
                                 </radialGradient>
                             </defs>
                         );
                     }
-                } else if (svgColor.fillType === 'solid' && svgColor.color) {
+                } else if (svgColor?.fillType === 'solid' && svgColor?.color) {
                     fillColor = svgColor.color;
                 }
 

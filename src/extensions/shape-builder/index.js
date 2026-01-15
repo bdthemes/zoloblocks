@@ -17,21 +17,3 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/shape-builder', (panels, panel
     }
     return panels;
 });
-
-// addFilter('zolo.container.desktopAllStyle', 'zolo/shape-builder', (desktopAllStyle, props) => {
-//     if (!props.attributes.enableShapeBuilder) return desktopAllStyle;
-//     const { shapeBuilderDesktop } = Style(props);
-//     return desktopAllStyle + shapeBuilderDesktop;
-// });
-
-// addFilter('zolo.container.tabletAllStyle', 'zolo/shape-builder', (tabletAllStyle, props) => {
-//     if (!props.attributes.enableShapeBuilder) return tabletAllStyle;
-//     const { shapeBuilderTablet } = Style(props);
-//     return tabletAllStyle + shapeBuilderTablet;
-// });
-
-// addFilter('zolo.container.mobileAllStyle', 'zolo/shape-builder', (mobileAllStyle, props) => {
-//     if (!props.attributes.enableShapeBuilder) return mobileAllStyle;
-//     const { shapeBuilderMobile } = Style(props);
-//     return mobileAllStyle + shapeBuilderMobile;
-// });
