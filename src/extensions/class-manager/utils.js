@@ -84,8 +84,7 @@ export const verticalAlignOptions = [
 
 export const gridLayoutTypeOptions = [
     { label: __('Auto', 'zoloblocks'), value: 'auto' },
-    { label: __('Manual', 'zoloblocks'), value: 'manual' },
-    { label: __('Masonry', 'zoloblocks'), value: 'masonry' },
+    { label: __('Manual', 'zoloblocks'), value: 'manual' }
 ];
 
 export function minifyCSS(css) {

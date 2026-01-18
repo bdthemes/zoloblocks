@@ -1,36 +1,30 @@
-import { TabPanel, Panel, PanelBody, __experimentalVStack as VStack, Flex, FlexItem, FlexBlock, TextControl, RangeControl } from '@wordpress/components';
+import { TabPanel, Panel, PanelBody, __experimentalVStack as VStack, Flex, FlexItem, FlexBlock } from '@wordpress/components';
 import FontPicker from '../../controls/typography-control/fontPicker';
-import ZoloShadowControl from '../../controls/zolo-shadow-control';
-import { fontWeightOptions, borderStyles, overflowOptions, backgroundTypes, whiteSpaceOptions, displayOptions, positionOptions, floatOptions, clearOptions, verticalAlignOptions, gridLayoutTypeOptions } from './utils';
+import { fontWeightOptions, overflowOptions, backgroundTypes, whiteSpaceOptions, displayOptions, positionOptions, floatOptions, clearOptions, verticalAlignOptions, gridLayoutTypeOptions } from './utils';
 import { __ } from '@wordpress/i18n';
 import { reset, formatUppercase, formatLowercase, formatCapitalize, formatItalic, formatBold, formatUnderline, formatStrikethrough } from '@wordpress/icons';
-import { SVG, Path, Rect } from '@wordpress/components';
+import {
+    rowIcon,
+    rowReverseIcon,
+    columnIcon,
+    columnReverseIcon,
+    alignStartIcon,
+    alignCenterIcon,
+    alignEndIcon,
+    alignStretchIcon,
+    justifyStartIcon,
+    justifyCenterIcon,
+    justifyEndIcon,
+    justifySpaceBetweenIcon,
+    justifySpaceAroundIcon,
+    noWrapIcon,
+    wrapIcon
+} from './icons';
 
-// Flex Direction Icons
-const rowIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Path d="M4 11h16v2H4z"/><Path d="M16 7l4 5-4 5z"/></SVG>;
-const rowReverseIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Path d="M4 11h16v2H4z"/><Path d="M8 7L4 12l4 5z"/></SVG>;
-const columnIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Path d="M11 4v16h2V4z"/><Path d="M7 16l5 4 5-4z"/></SVG>;
-const columnReverseIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Path d="M11 4v16h2V4z"/><Path d="M7 8l5-4 5 4z"/></SVG>;
 
-// Flex Align Icons
-const alignStartIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="4" y="4" width="16" height="2"/><Rect x="7" y="9" width="10" height="10" fillOpacity="0.3"/></SVG>;
-const alignCenterIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="4" y="11" width="16" height="2"/><Rect x="7" y="7" width="10" height="10" fillOpacity="0.3"/></SVG>;
-const alignEndIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="4" y="18" width="16" height="2"/><Rect x="7" y="5" width="10" height="10" fillOpacity="0.3"/></SVG>;
-const alignStretchIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="4" y="4" width="16" height="2"/><Rect x="4" y="18" width="16" height="2"/><Rect x="7" y="8" width="10" height="8" fillOpacity="0.3"/></SVG>;
-
-// Flex Justify Icons
-const justifyStartIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="4" y="4" width="2" height="16"/><Rect x="9" y="7" width="4" height="10" fillOpacity="0.3"/><Rect x="15" y="7" width="4" height="10" fillOpacity="0.3"/></SVG>;
-const justifyCenterIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="11" y="4" width="2" height="16"/><Rect x="5" y="7" width="4" height="10" fillOpacity="0.3"/><Rect x="15" y="7" width="4" height="10" fillOpacity="0.3"/></SVG>;
-const justifyEndIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="18" y="4" width="2" height="16"/><Rect x="5" y="7" width="4" height="10" fillOpacity="0.3"/><Rect x="11" y="7" width="4" height="10" fillOpacity="0.3"/></SVG>;
-const justifySpaceBetweenIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="4" y="4" width="2" height="16"/><Rect x="18" y="4" width="2" height="16"/><Rect x="8" y="7" width="3" height="10" fillOpacity="0.3"/><Rect x="13" y="7" width="3" height="10" fillOpacity="0.3"/></SVG>;
-const justifySpaceAroundIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="5" y="7" width="5" height="10" fillOpacity="0.3"/><Rect x="14" y="7" width="5" height="10" fillOpacity="0.3"/></SVG>;
-
-// Flex Wrap Icons
-const noWrapIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="4" y="10" width="16" height="4" fillOpacity="0.3"/></SVG>;
-const wrapIcon = <SVG width="24" height="24" viewBox="0 0 24 24"><Rect x="4" y="6" width="8" height="4" fillOpacity="0.3"/><Rect x="4" y="14" width="6" height="4" fillOpacity="0.3"/><Path d="M16 8h4v2h-4z"/><Path d="M18 6l3 4-3 4z"/></SVG>;
 
 const StyleControls = ({ value, onChange }) => {
-    const { ZoloRangeUnit, ZoloResponsive, ZoloSelectControl, useDeviceType, ZoloChoose, ColorControl, GradientControl, ZoloMediaUpload } = window.zoloModule;
+    const { ZoloRangeUnit, ZoloResponsive, ZoloSelectControl, useDeviceType, ZoloChoose, ColorControl, GradientControl, ZoloMediaUpload, ZoloShadowControl, ZoloBorder, ZoloBoxControl, ZoloRangeControl, ZoloDualRangeUnit } = window.zoloModule;
     const device = useDeviceType();
 
     return (
@@ -215,7 +209,7 @@ const StyleControls = ({ value, onChange }) => {
                             </PanelBody>
                             <PanelBody title={__('Color', 'zoloblocks')} initialOpen={false}>
                                 <VStack>
-                                    <ColorControl 
+                                    <ColorControl
                                         label={__('Text Color', 'zoloblocks')}
                                         color={value?.colors?.textColor}
                                         onChange={(newValue) => {
@@ -242,7 +236,7 @@ const StyleControls = ({ value, onChange }) => {
                                         options={backgroundTypes}
                                     />
                                     {value?.background?.type === 'color' && (
-                                        <ColorControl 
+                                        <ColorControl
                                             label={__('Background Color', 'zoloblocks')}
                                             color={value?.background?.color}
                                             onChange={(newValue) => {
@@ -256,7 +250,7 @@ const StyleControls = ({ value, onChange }) => {
                                         />
                                     )}
                                     {value?.background?.type === 'gradient' && (
-                                        <GradientControl 
+                                        <GradientControl
                                             label={__('Background Gradient', 'zoloblocks')}
                                             value={value?.background?.gradient}
                                             onChange={(newValue) => {
@@ -273,7 +267,7 @@ const StyleControls = ({ value, onChange }) => {
                                         <>
                                             <ZoloMediaUpload
                                                 label={__('Upload Image', 'zoloblocks')}
-                                                onValue={{
+                                                value={{
                                                     id: value?.background?.imageId,
                                                     url: value?.background?.imageUrl
                                                 }}
@@ -392,38 +386,18 @@ const StyleControls = ({ value, onChange }) => {
                                 <ZoloShadowControl
                                     type="text"
                                     label={__('Text Shadow', 'zoloblocks')}
-                                    onValue={{
-                                        shadowUnit: value?.textShadow?.unit || 'px',
-                                        shadowColor: value?.textShadow?.color || '',
-                                        hShadow: value?.textShadow?.horizontal?.Desktop ? parseInt(value.textShadow.horizontal.Desktop) : '',
-                                        vShadow: value?.textShadow?.vertical?.Desktop ? parseInt(value.textShadow.vertical.Desktop) : '',
-                                        blur: value?.textShadow?.blur?.Desktop ? parseInt(value.textShadow.blur.Desktop) : '',
-                                    }}
-                                    onSelect={(shadowData) => {
+                                    value={value?.textShadow}
+                                    excludesControls={['spread', 'inset']}
+                                    onChange={(shadowData) => {
                                         onChange({
-                                            textShadow: {
-                                                unit: shadowData.shadowUnit,
-                                                color: shadowData.shadowColor,
-                                                horizontal: {
-                                                    ...value?.textShadow?.horizontal,
-                                                    Desktop: shadowData.hShadow !== '' ? shadowData.hShadow + (shadowData.shadowUnit || 'px') : ''
-                                                },
-                                                vertical: {
-                                                    ...value?.textShadow?.vertical,
-                                                    Desktop: shadowData.vShadow !== '' ? shadowData.vShadow + (shadowData.shadowUnit || 'px') : ''
-                                                },
-                                                blur: {
-                                                    ...value?.textShadow?.blur,
-                                                    Desktop: shadowData.blur !== '' ? shadowData.blur + (shadowData.shadowUnit || 'px') : ''
-                                                },
-                                            }
+                                            textShadow: shadowData
                                         });
                                     }}
                                 />
                             </PanelBody>
                             <PanelBody title={__('Stroke', 'zoloblocks')} initialOpen={false}>
                                 <VStack>
-                                    <ColorControl 
+                                    <ColorControl
                                         label={__('Color', 'zoloblocks')}
                                         color={value?.stroke?.color}
                                         onChange={(newValue) => {
@@ -475,7 +449,7 @@ const StyleControls = ({ value, onChange }) => {
                                             }}
                                         />
                                     </ZoloResponsive>
-                                    <RangeControl
+                                    <ZoloRangeControl
                                         label={__('Opacity', 'zoloblocks')}
                                         value={value?.stroke?.opacity || 1}
                                         onChange={(newValue) => {
@@ -531,117 +505,39 @@ const StyleControls = ({ value, onChange }) => {
                                 </VStack>
                             </PanelBody>
                             <PanelBody title={__('Border', 'zoloblocks')} initialOpen={false}>
-                                <VStack>
-                                    <ZoloSelectControl
-                                        label="Border Style"
-                                        value={value?.border?.style}
+                                <>
+                                    <ZoloBorder
+                                        label={__('Border', 'zoloblocks')}
+                                        value={value?.border}
                                         onChange={(newValue) => {
                                             onChange({
-                                                border: {
-                                                    ...value?.border,
-                                                    style: newValue
-                                                }
+                                                border: newValue
                                             })
                                         }}
-                                        options={borderStyles}
                                     />
-                                    {value?.border?.style && value?.border?.style !== 'none' && (
-                                        <>
-                                            <ColorControl 
-                                                label={__('Border Color', 'zoloblocks')}
-                                                color={value?.border?.color}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        border: {
-                                                            ...value?.border,
-                                                            color: newValue
-                                                        }
-                                                    })
-                                                }}
-                                            />
-                                            <ZoloResponsive>
-                                                <ZoloRangeUnit
-                                                    label="Border Width"
-                                                    value={value?.border?.width?.[device]}
-                                                    onChange={(newValue) => {
-                                                        onChange({
-                                                            border: {
-                                                                ...value?.border,
-                                                                width: {
-                                                                    ...value?.border?.width,
-                                                                    [device]: newValue
-                                                                }
-                                                            }
-                                                        })
-                                                    }}
-                                                    units={{
-                                                        px: { min: 0, max: 50, step: 1 },
-                                                        em: { min: 0, max: 5, step: 0.1 },
-                                                    }}
-                                                />
-                                            </ZoloResponsive>
-                                            <ZoloResponsive>
-                                                <ZoloRangeUnit
-                                                    label="Border Radius"
-                                                    value={value?.border?.radius?.[device]}
-                                                    onChange={(newValue) => {
-                                                        onChange({
-                                                            border: {
-                                                                ...value?.border,
-                                                                radius: {
-                                                                    ...value?.border?.radius,
-                                                                    [device]: newValue
-                                                                }
-                                                            }
-                                                        })
-                                                    }}
-                                                    units={{
-                                                        px: { min: 0, max: 200, step: 1 },
-                                                        '%': { min: 0, max: 100, step: 1 },
-                                                        em: { min: 0, max: 20, step: 0.1 },
-                                                    }}
-                                                />
-                                            </ZoloResponsive>
-                                        </>
-                                    )}
-                                </VStack>
+                                    <ZoloResponsive left='98px'>
+                                        <ZoloBoxControl
+                                            label={__('Border Radius', 'zoloblocks')}
+                                            value={value?.borderRadius?.[device]}
+                                            onChange={(newValue) => {
+                                                onChange({
+                                                    borderRadius: {
+                                                        ...value?.borderRadius,
+                                                        [device]: newValue
+                                                    }
+                                                })
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                </>
                             </PanelBody>
                             <PanelBody title={__('Box Shadow', 'zoloblocks')} initialOpen={false}>
                                 <ZoloShadowControl
-                                    type="box"
                                     label={__('Box Shadow', 'zoloblocks')}
-                                    onValue={{
-                                        shadowType: value?.boxShadow?.type || 'outset',
-                                        shadowUnit: value?.boxShadow?.unit || 'px',
-                                        shadowColor: value?.boxShadow?.color || '#7C7C7C',
-                                        hOffset: parseInt(value?.boxShadow?.horizontal?.Desktop) || 0,
-                                        vOffset: parseInt(value?.boxShadow?.vertical?.Desktop) || 0,
-                                        blur: parseInt(value?.boxShadow?.blur?.Desktop) || 0,
-                                        spread: parseInt(value?.boxShadow?.spread?.Desktop) || 0,
-                                    }}
-                                    onSelect={(shadowData) => {
+                                    value={value?.boxShadow}
+                                    onChange={(shadowData) => {
                                         onChange({
-                                            boxShadow: {
-                                                type: shadowData.shadowType,
-                                                unit: shadowData.shadowUnit,
-                                                color: shadowData.shadowColor,
-                                                horizontal: {
-                                                    ...value?.boxShadow?.horizontal,
-                                                    Desktop: shadowData.hOffset + (shadowData.shadowUnit || 'px')
-                                                },
-                                                vertical: {
-                                                    ...value?.boxShadow?.vertical,
-                                                    Desktop: shadowData.vOffset + (shadowData.shadowUnit || 'px')
-                                                },
-                                                blur: {
-                                                    ...value?.boxShadow?.blur,
-                                                    Desktop: shadowData.blur + (shadowData.shadowUnit || 'px')
-                                                },
-                                                spread: {
-                                                    ...value?.boxShadow?.spread,
-                                                    Desktop: shadowData.spread + (shadowData.shadowUnit || 'px')
-                                                },
-                                            }
+                                            boxShadow: shadowData
                                         });
                                     }}
                                 />
@@ -698,8 +594,8 @@ const StyleControls = ({ value, onChange }) => {
                         <Panel>
                             <PanelBody title={__('Layout', 'zoloblocks')} initialOpen={false}>
                                 <VStack>
-                                    <ZoloResponsive>
-                                        <ZoloRangeUnit
+                                    <ZoloResponsive left='55px'>
+                                        <ZoloBoxControl
                                             label="Padding"
                                             value={value?.layout?.padding?.[device]}
                                             onChange={(newValue) => {
@@ -713,15 +609,10 @@ const StyleControls = ({ value, onChange }) => {
                                                     }
                                                 })
                                             }}
-                                            units={{
-                                                px: { min: 0, max: 500, step: 1 },
-                                                '%': { min: 0, max: 100, step: 1 },
-                                                em: { min: 0, max: 50, step: 0.1 },
-                                            }}
                                         />
                                     </ZoloResponsive>
-                                    <ZoloResponsive>
-                                        <ZoloRangeUnit
+                                    <ZoloResponsive left='48px'>
+                                        <ZoloBoxControl
                                             label="Margin"
                                             value={value?.layout?.margin?.[device]}
                                             onChange={(newValue) => {
@@ -734,12 +625,6 @@ const StyleControls = ({ value, onChange }) => {
                                                         }
                                                     }
                                                 })
-                                            }}
-                                            units={{
-                                                px: { min: -500, max: 500, step: 1 },
-                                                '%': { min: -100, max: 100, step: 1 },
-                                                em: { min: -50, max: 50, step: 0.1 },
-                                                auto: { min: 0, max: 0, step: 0 },
                                             }}
                                         />
                                     </ZoloResponsive>
@@ -760,74 +645,90 @@ const StyleControls = ({ value, onChange }) => {
                                     />
                                     {value?.display === 'flex' && (
                                         <>
-                                            <ZoloChoose
-                                                label={__('Direction', 'zoloblocks')}
-                                                value={value?.flex?.direction}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        flex: {
-                                                            ...value?.flex,
-                                                            direction: newValue
-                                                        }
-                                                    })
-                                                }}
-                                                isDeselectable={true}
-                                                options={[
-                                                    { label: 'Row', value: 'row', icon: rowIcon },
-                                                    { label: 'Row Reverse', value: 'row-reverse', icon: rowReverseIcon },
-                                                    { label: 'Column', value: 'column', icon: columnIcon },
-                                                    { label: 'Column Reverse', value: 'column-reverse', icon: columnReverseIcon },
-                                                ]}
-                                            />
-                                            <ZoloChoose
-                                                label={__('Align', 'zoloblocks')}
-                                                value={value?.flex?.alignItems}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        flex: {
-                                                            ...value?.flex,
-                                                            alignItems: newValue
-                                                        }
-                                                    })
-                                                }}
-                                                isDeselectable={true}
-                                                options={[
-                                                    { label: 'Start', value: 'flex-start', icon: alignStartIcon },
-                                                    { label: 'Center', value: 'center', icon: alignCenterIcon },
-                                                    { label: 'End', value: 'flex-end', icon: alignEndIcon },
-                                                    { label: 'Stretch', value: 'stretch', icon: alignStretchIcon },
-                                                ]}
-                                            />
-                                            <ZoloChoose
-                                                label={__('Justify', 'zoloblocks')}
-                                                value={value?.flex?.justifyContent}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        flex: {
-                                                            ...value?.flex,
-                                                            justifyContent: newValue
-                                                        }
-                                                    })
-                                                }}
-                                                isDeselectable={true}
-                                                options={[
-                                                    { label: 'Start', value: 'flex-start', icon: justifyStartIcon },
-                                                    { label: 'Center', value: 'center', icon: justifyCenterIcon },
-                                                    { label: 'End', value: 'flex-end', icon: justifyEndIcon },
-                                                    { label: 'Space Between', value: 'space-between', icon: justifySpaceBetweenIcon },
-                                                    { label: 'Space Around', value: 'space-around', icon: justifySpaceAroundIcon },
-                                                ]}
-                                            />
                                             <ZoloResponsive>
-                                                <ZoloRangeUnit
-                                                    label="Column Gap"
-                                                    value={value?.flex?.columnGap?.[device]}
+                                                <ZoloChoose
+                                                    label={__('Direction', 'zoloblocks')}
+                                                    value={value?.flex?.direction?.[device]}
                                                     onChange={(newValue) => {
                                                         onChange({
                                                             flex: {
                                                                 ...value?.flex,
-                                                                columnGap: {
-                                                                    ...value?.flex?.columnGap,
+                                                                direction: {
+                                                                    ...value?.flex?.direction,
+                                                                    [device]: newValue
+                                                                }
+                                                            }
+                                                        })
+                                                    }}
+                                                    isDeselectable={true}
+                                                    options={[
+                                                        { label: 'Row', value: 'row', icon: rowIcon },
+                                                        { label: 'Row Reverse', value: 'row-reverse', icon: rowReverseIcon },
+                                                        { label: 'Column', value: 'column', icon: columnIcon },
+                                                        { label: 'Column Reverse', value: 'column-reverse', icon: columnReverseIcon },
+                                                    ]}
+                                                />
+                                            </ZoloResponsive>
+                                            <ZoloResponsive>
+                                                <ZoloChoose
+                                                    label={__('Align', 'zoloblocks')}
+                                                    value={value?.flex?.alignItems?.[device]}
+                                                    onChange={(newValue) => {
+                                                        onChange({
+                                                            flex: {
+                                                                ...value?.flex,
+                                                                alignItems: {
+                                                                    ...value?.flex?.alignItems,
+                                                                    [device]: newValue
+                                                                }
+                                                            }
+                                                        })
+                                                    }}
+                                                    isDeselectable={true}
+                                                    options={[
+                                                        { label: 'Start', value: 'flex-start', icon: alignStartIcon },
+                                                        { label: 'Center', value: 'center', icon: alignCenterIcon },
+                                                        { label: 'End', value: 'flex-end', icon: alignEndIcon },
+                                                        { label: 'Stretch', value: 'stretch', icon: alignStretchIcon },
+                                                    ]}
+                                                />
+                                            </ZoloResponsive>
+                                            <ZoloResponsive>
+                                                <ZoloChoose
+                                                    label={__('Justify', 'zoloblocks')}
+                                                    value={value?.flex?.justifyContent?.[device]}
+                                                    onChange={(newValue) => {
+                                                        onChange({
+                                                            flex: {
+                                                                ...value?.flex,
+                                                                justifyContent: {
+                                                                    ...value?.flex?.justifyContent,
+                                                                    [device]: newValue
+                                                                }
+                                                            }
+                                                        })
+                                                    }}
+                                                    isDeselectable={true}
+                                                    options={[
+                                                        { label: 'Start', value: 'flex-start', icon: justifyStartIcon },
+                                                        { label: 'Center', value: 'center', icon: justifyCenterIcon },
+                                                        { label: 'End', value: 'flex-end', icon: justifyEndIcon },
+                                                        { label: 'Space Between', value: 'space-between', icon: justifySpaceBetweenIcon },
+                                                        { label: 'Space Around', value: 'space-around', icon: justifySpaceAroundIcon },
+                                                    ]}
+                                                />
+                                            </ZoloResponsive>
+                                            <ZoloResponsive left='28px'>
+                                                <ZoloDualRangeUnit
+                                                    label="Gap Flex"
+                                                    dualLabel={[__('Row Gap', 'zoloblocks'), __('Column Gap', 'zoloblocks')]}
+                                                    value={value?.flex?.gap?.[device]}
+                                                    onChange={(newValue) => {
+                                                        onChange({
+                                                            flex: {
+                                                                ...value?.flex,
+                                                                gap: {
+                                                                    ...value?.flex?.gap,
                                                                     [device]: newValue
                                                                 }
                                                             }
@@ -841,90 +742,88 @@ const StyleControls = ({ value, onChange }) => {
                                                 />
                                             </ZoloResponsive>
                                             <ZoloResponsive>
-                                                <ZoloRangeUnit
-                                                    label="Row Gap"
-                                                    value={value?.flex?.rowGap?.[device]}
+                                                <ZoloChoose
+                                                    label={__('Flex Wrap', 'zoloblocks')}
+                                                    value={value?.flex?.flexWrap?.[device]}
                                                     onChange={(newValue) => {
                                                         onChange({
                                                             flex: {
                                                                 ...value?.flex,
-                                                                rowGap: {
-                                                                    ...value?.flex?.rowGap,
+                                                                flexWrap: {
+                                                                    ...value?.flex?.flexWrap,
                                                                     [device]: newValue
                                                                 }
                                                             }
                                                         })
                                                     }}
-                                                    units={{
-                                                        px: { min: 0, max: 200, step: 1 },
-                                                        em: { min: 0, max: 20, step: 0.1 },
-                                                        rem: { min: 0, max: 20, step: 0.1 },
-                                                    }}
+                                                    isDeselectable={true}
+                                                    options={[
+                                                        { label: 'No Wrap', value: 'nowrap', icon: noWrapIcon },
+                                                        { label: 'Wrap', value: 'wrap', icon: wrapIcon },
+                                                    ]}
                                                 />
                                             </ZoloResponsive>
-                                            <ZoloChoose
-                                                label={__('Flex Wrap', 'zoloblocks')}
-                                                value={value?.flex?.flexWrap}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        flex: {
-                                                            ...value?.flex,
-                                                            flexWrap: newValue
-                                                        }
-                                                    })
-                                                }}
-                                                isDeselectable={true}
-                                                options={[
-                                                    { label: 'No Wrap', value: 'nowrap', icon: noWrapIcon },
-                                                    { label: 'Wrap', value: 'wrap', icon: wrapIcon },
-                                                ]}
-                                            />
                                         </>
                                     )}
                                     {value?.display === 'block' && (
                                         <>
-                                            <ZoloChoose
-                                                label={__('Float', 'zoloblocks')}
-                                                value={value?.block?.float}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        block: {
-                                                            ...value?.block,
-                                                            float: newValue
-                                                        }
-                                                    })
-                                                }}
-                                                isDeselectable={true}
-                                                options={floatOptions}
-                                            />
-                                            <ZoloChoose
-                                                label={__('Clear', 'zoloblocks')}
-                                                value={value?.block?.clear}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        block: {
-                                                            ...value?.block,
-                                                            clear: newValue
-                                                        }
-                                                    })
-                                                }}
-                                                isDeselectable={true}
-                                                options={clearOptions}
-                                            />
-                                            <ZoloChoose
-                                                label={__('Overflow', 'zoloblocks')}
-                                                value={value?.block?.overflow}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        block: {
-                                                            ...value?.block,
-                                                            overflow: newValue
-                                                        }
-                                                    })
-                                                }}
-                                                isDeselectable={true}
-                                                options={overflowOptions}
-                                            />
+                                            <ZoloResponsive>
+                                                <ZoloChoose
+                                                    label={__('Float', 'zoloblocks')}
+                                                    value={value?.block?.float?.[device]}
+                                                    onChange={(newValue) => {
+                                                        onChange({
+                                                            block: {
+                                                                ...value?.block,
+                                                                float: {
+                                                                    ...value?.block?.float,
+                                                                    [device]: newValue
+                                                                }
+                                                            }
+                                                        })
+                                                    }}
+                                                    isDeselectable={true}
+                                                    options={floatOptions}
+                                                />
+                                            </ZoloResponsive>
+                                            <ZoloResponsive>
+                                                <ZoloChoose
+                                                    label={__('Clear', 'zoloblocks')}
+                                                    value={value?.block?.clear?.[device]}
+                                                    onChange={(newValue) => {
+                                                        onChange({
+                                                            block: {
+                                                                ...value?.block,
+                                                                clear: {
+                                                                    ...value?.block?.clear,
+                                                                    [device]: newValue
+                                                                }
+                                                            }
+                                                        })
+                                                    }}
+                                                    isDeselectable={true}
+                                                    options={clearOptions}
+                                                />
+                                            </ZoloResponsive>
+                                            <ZoloResponsive>
+                                                <ZoloChoose
+                                                    label={__('Overflow', 'zoloblocks')}
+                                                    value={value?.block?.overflow?.[device]}
+                                                    onChange={(newValue) => {
+                                                        onChange({
+                                                            block: {
+                                                                ...value?.block,
+                                                                overflow: {
+                                                                    ...value?.block?.overflow,
+                                                                    [device]: newValue
+                                                                }
+                                                            }
+                                                        })
+                                                    }}
+                                                    isDeselectable={true}
+                                                    options={overflowOptions}
+                                                />
+                                            </ZoloResponsive>
                                         </>
                                     )}
                                     {value?.display === 'grid' && (
@@ -943,53 +842,67 @@ const StyleControls = ({ value, onChange }) => {
                                                 isDeselectable={true}
                                                 options={gridLayoutTypeOptions}
                                             />
-                                            <TextControl
-                                                label={__('COLUMNS', 'zoloblocks')}
-                                                type="number"
-                                                value={value?.grid?.columns}
-                                                onChange={(newValue) => {
-                                                    onChange({
-                                                        grid: {
-                                                            ...value?.grid,
-                                                            columns: newValue
-                                                        }
-                                                    })
-                                                }}
-                                                min={0}
-                                                step={1}
-                                            />
-                                            <ZoloResponsive>
-                                                <ZoloRangeUnit
-                                                    label="Column Gap"
-                                                    value={value?.grid?.columnGap?.[device]}
+                                            {
+                                                value?.grid?.layoutType == 'auto' && (
+                                                    <ZoloResponsive>
+                                                        <ZoloRangeUnit
+                                                            label={__('Min Column Width', 'zoloblocks')}
+                                                            value={value?.grid?.minColumnWidth?.[device]}
+                                                            onChange={(newValue) => {
+                                                                onChange({
+                                                                    grid: {
+                                                                        ...value?.grid,
+                                                                        minColumnWidth: {
+                                                                            ...value?.grid?.minColumnWidth,
+                                                                            [device]: newValue
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }}
+                                                            units={{
+                                                                px: { min: 0, max: 1000, step: 1 },
+                                                                em: { min: 0, max: 50, step: 0.1 },
+                                                                rem: { min: 0, max: 50, step: 0.1 },
+                                                            }}
+                                                        />
+                                                    </ZoloResponsive>
+                                                )
+                                            }
+                                            {
+                                                value?.grid?.layoutType !== 'auto' && (
+                                                    <ZoloResponsive left='60px'>
+                                                        <ZoloRangeControl
+                                                            label={__('COLUMNS', 'zoloblocks')}
+                                                            value={value?.grid?.columns?.[device]}
+                                                            onChange={(newValue) => {
+                                                                onChange({
+                                                                    grid: {
+                                                                        ...value?.grid,
+                                                                        columns: {
+                                                                            ...value?.grid?.columns,
+                                                                            [device]: newValue
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }}
+                                                            min={0}
+                                                            step={1}
+                                                            max={12}
+                                                        />
+                                                    </ZoloResponsive>
+                                                )
+                                            }
+                                            <ZoloResponsive left='28px'>
+                                                <ZoloDualRangeUnit
+                                                    label="Gap"
+                                                    dualLabel={['Row Gap', 'Column Gap']}
+                                                    value={value?.grid?.gap?.[device]}
                                                     onChange={(newValue) => {
                                                         onChange({
                                                             grid: {
                                                                 ...value?.grid,
-                                                                columnGap: {
-                                                                    ...value?.grid?.columnGap,
-                                                                    [device]: newValue
-                                                                }
-                                                            }
-                                                        })
-                                                    }}
-                                                    units={{
-                                                        px: { min: 0, max: 200, step: 1 },
-                                                        em: { min: 0, max: 20, step: 0.1 },
-                                                        rem: { min: 0, max: 20, step: 0.1 },
-                                                    }}
-                                                />
-                                            </ZoloResponsive>
-                                            <ZoloResponsive>
-                                                <ZoloRangeUnit
-                                                    label="Row Gap"
-                                                    value={value?.grid?.rowGap?.[device]}
-                                                    onChange={(newValue) => {
-                                                        onChange({
-                                                            grid: {
-                                                                ...value?.grid,
-                                                                rowGap: {
-                                                                    ...value?.grid?.rowGap,
+                                                                gap: {
+                                                                    ...value?.grid?.gap,
                                                                     [device]: newValue
                                                                 }
                                                             }
@@ -1034,6 +947,112 @@ const StyleControls = ({ value, onChange }) => {
                                             />
                                         </>
                                     )}
+                                </VStack>
+                            </PanelBody>
+                            <PanelBody title={__('Size', 'zoloblocks')} initialOpen={false}>
+                                <VStack>
+                                    <ZoloResponsive>
+                                        <ZoloRangeUnit
+                                            label="Width"
+                                            value={value?.size?.width?.[device]}
+                                            onChange={(newValue) => {
+                                                onChange({
+                                                    size: {
+                                                        ...value?.size,
+                                                        width: {
+                                                            ...value?.size?.width,
+                                                            [device]: newValue
+                                                        }
+                                                    }
+                                                })
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                    <ZoloResponsive>
+                                        <ZoloRangeUnit
+                                            label="Minimum Width"
+                                            value={value?.size?.minWidth?.[device]}
+                                            onChange={(newValue) => {
+                                                onChange({
+                                                    size: {
+                                                        ...value?.size,
+                                                        minWidth: {
+                                                            ...value?.size?.minWidth,
+                                                            [device]: newValue
+                                                        }
+                                                    }
+                                                })
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                    <ZoloResponsive>
+                                        <ZoloRangeUnit
+                                            label="Maximum Width"
+                                            value={value?.size?.maxWidth?.[device]}
+                                            onChange={(newValue) => {
+                                                onChange({
+                                                    size: {
+                                                        ...value?.size,
+                                                        maxWidth: {
+                                                            ...value?.size?.maxWidth,
+                                                            [device]: newValue
+                                                        }
+                                                    }
+                                                })
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                    <ZoloResponsive>
+                                        <ZoloRangeUnit
+                                            label="Height"
+                                            value={value?.size?.height?.[device]}
+                                            onChange={(newValue) => {
+                                                onChange({
+                                                    size: {
+                                                        ...value?.size,
+                                                        height: {
+                                                            ...value?.size?.height,
+                                                            [device]: newValue
+                                                        }
+                                                    }
+                                                })
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                    <ZoloResponsive>
+                                        <ZoloRangeUnit
+                                            label="Minimum Height"
+                                            value={value?.size?.minHeight?.[device]}
+                                            onChange={(newValue) => {
+                                                onChange({
+                                                    size: {
+                                                        ...value?.size,
+                                                        minHeight: {
+                                                            ...value?.size?.minHeight,
+                                                            [device]: newValue
+                                                        }
+                                                    }
+                                                })
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                    <ZoloResponsive>
+                                        <ZoloRangeUnit
+                                            label="Maximum Height"
+                                            value={value?.size?.maxHeight?.[device]}
+                                            onChange={(newValue) => {
+                                                onChange({
+                                                    size: {
+                                                        ...value?.size,
+                                                        maxHeight: {
+                                                            ...value?.size?.maxHeight,
+                                                            [device]: newValue
+                                                        }
+                                                    }
+                                                })
+                                            }}
+                                        />
+                                    </ZoloResponsive>
                                 </VStack>
                             </PanelBody>
                             <PanelBody title={__('Position', 'zoloblocks')} initialOpen={false}>

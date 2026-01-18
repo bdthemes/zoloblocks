@@ -22,6 +22,8 @@ class ClassManager
 		add_action('enqueue_block_editor_assets', [$this, 'enqueue_class_manager_editor_assets']);
 		add_filter('render_block', [$this, 'render_block'], 10, 2);
 		add_filter('zolo_dynamic_styles', [$this, 'output_dynamic_styles']);
+		add_action( 'before_delete_post', [$this, 'delete_child_classes_on_parent_delete'] );
+
 	}
 
 	/**
@@ -160,4 +162,18 @@ class ClassManager
 		return $dynamic_styles;
 	}
 	
+
+	public function delete_child_classes_on_parent_delete($post_id) {
+		if (get_post_type($post_id) !== 'zolo-class-manager') {
+			return;
+		}
+
+		$children = get_posts([
+			'post_type' => 'zolo-class-manager',
+			'post_parent' => $post_id,
+		]);
+		foreach ($children as $child) {
+			wp_delete_post($child->ID, true);
+		}
+	}
 }

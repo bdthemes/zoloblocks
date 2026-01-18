@@ -2,6 +2,9 @@
 import '../controls/scss/controls.scss';
 
 //Export Controls
+export { default as UnitsBtn } from '../controls/units-btn';
+export { default as ResetBtn } from '../controls/reset-btn';
+export { default as ColorBtn } from '../controls/color-btn';
 export { default as BackgroundControl } from '../controls/background-control';
 export { default as BazierControl } from '../controls/bezier-control';
 export { default as BorderControl } from '../controls/border-control';
@@ -60,6 +63,9 @@ export { default as ZoloResponsive } from '../controls/responsive';
 export { default as ZoloRangeUnit } from '../controls/range-unit';
 export { default as ZoloDualRangeUnit } from '../controls/dual-range-unit';
 export { default as CounterControl } from '../controls/counter-control';
+export { default as ZoloShadowControl } from '../controls/shadow-control';
+export { default as ZoloBorder } from '../controls/border';
+export { default as ZoloBoxControl } from '../controls/box-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';
@@ -85,6 +91,8 @@ export { default as useDeviceType } from '../helpers/use-device-type';
 export { default as getResponsiveValue } from '../helpers/get-responsive-value';
 export { default as createResponsiveValue } from '../helpers/create-responsive-value';
 export { default as generateCSS } from '../helpers/generate-css';
+export { default as getBorderCSS } from '../helpers/get-border-css';
+export { default as getBoxControlValue } from '../helpers/get-box-control-value';
 
 export {
     DynamicTag,

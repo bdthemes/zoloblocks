@@ -1,5 +1,5 @@
 import { minifyCSS } from './utils';
-const { generateCSS } = window.zoloModule;
+const { generateCSS, getBorderCSS, getBoxControlValue } = window.zoloModule;
 
 const generateStyles = (styles, selector) => {
     const generateBackgroundCSS = (background, device = 'Desktop') => {
@@ -29,7 +29,7 @@ const generateStyles = (styles, selector) => {
         
         return css;
     };
-    
+
     const desktopAllStyle = `
         ${selector}{
             ${generateCSS({ attributes: styles?.typography, key: 'fontFamily', getValue: (value) => `font-family: ${value};`, device: 'Desktop' })}
@@ -42,47 +42,100 @@ const generateStyles = (styles, selector) => {
             ${generateCSS({ attributes: styles?.typography, key: 'fontStyle', getValue: (value) => `font-style: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.colors, key: 'textColor', getValue: (value) => `color: ${value};`, device: 'Desktop' })}
             ${generateBackgroundCSS(styles?.background, 'Desktop')}
-            ${styles?.textShadow?.color || styles?.textShadow?.horizontal?.Desktop || styles?.textShadow?.vertical?.Desktop || styles?.textShadow?.blur?.Desktop ? 
-                `text-shadow: ${styles?.textShadow?.horizontal?.Desktop || '0px'} ${styles?.textShadow?.vertical?.Desktop || '0px'} ${styles?.textShadow?.blur?.Desktop || '0px'} ${styles?.textShadow?.color || 'transparent'};` : ''}
-            ${styles?.stroke?.color ? `stroke: ${styles.stroke.color};` : ''}
+
+            ${generateCSS({ attributes: styles, key: 'textShadow', getValue: (value) => {
+                const x = `${value?.x || '0'}px`;
+                const y = `${value?.y || '0'}px`;
+                const blur = `${value?.blur || '0'}px`;
+                const color = value?.color || 'rgba(0, 0, 0, 0.5)';
+                return `text-shadow: ${x} ${y} ${blur} ${color};`;
+            }, device: 'Desktop' })}
+
+
+            ${generateCSS({ attributes: styles?.stroke, key: 'color', getValue: (value) => `stroke: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.stroke, key: 'width', getValue: (value) => `stroke-width: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.stroke, key: 'dasharray', getValue: (value) => `stroke-dasharray: ${value};`, device: 'Desktop' })}
-            ${styles?.stroke?.opacity !== undefined ? `stroke-opacity: ${styles.stroke.opacity};` : ''}
+            ${generateCSS({ attributes: styles?.stroke, key: 'opacity', getValue: (value) => `stroke-opacity: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.stroke, key: 'linecap', getValue: (value) => `stroke-linecap: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.stroke, key: 'linejoin', getValue: (value) => `stroke-linejoin: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.border, key: 'style', getValue: (value) => `border-style: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.border, key: 'color', getValue: (value) => `border-color: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.border, key: 'width', getValue: (value) => `border-width: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.border, key: 'radius', getValue: (value) => `border-radius: ${value};`, device: 'Desktop' })}
-            ${styles?.boxShadow?.color || styles?.boxShadow?.horizontal?.Desktop || styles?.boxShadow?.vertical?.Desktop || styles?.boxShadow?.blur?.Desktop || styles?.boxShadow?.spread?.Desktop ? 
-                `box-shadow: ${styles?.boxShadow?.type === 'inset' ? 'inset ' : ''}${styles?.boxShadow?.horizontal?.Desktop || '0px'} ${styles?.boxShadow?.vertical?.Desktop || '0px'} ${styles?.boxShadow?.blur?.Desktop || '0px'} ${styles?.boxShadow?.spread?.Desktop || '0px'} ${styles?.boxShadow?.color || 'transparent'};` : ''}
+
+            
+            ${generateCSS({ attributes: styles, key: 'border', getValue: (borderObjs) => {
+               return getBorderCSS(borderObjs);
+            }, device: 'Desktop' })}
+
+            ${generateCSS({ attributes: styles, key: 'borderRadius', getValue: (value) => {
+                return getBoxControlValue(value, 'border-radius');
+            }, device: 'Desktop' })}
+
+            ${generateCSS({ attributes: styles, key: 'boxShadow', getValue: (value) => {
+                const x = `${value?.x || '0'}px`;
+                const y = `${value?.y || '0'}px`;
+                const blur = `${value?.blur || '0'}px`;
+                const spread = `${value?.spread || '0'}px`;
+                const inset = value?.inset ? 'inset ' : '';
+                const color = value?.color || 'rgba(0, 0, 0, 0.5)';
+                return `box-shadow: ${inset}${x} ${y} ${blur} ${spread} ${color};`;
+            }, device: 'Desktop' })}
+
+            
             ${generateCSS({ attributes: styles?.overflow, key: 'overflowX', getValue: (value) => `overflow-x: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.overflow, key: 'overflowY', getValue: (value) => `overflow-y: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.overflow, key: 'whiteSpace', getValue: (value) => `white-space: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'padding', getValue: (value) => `padding: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'margin', getValue: (value) => `margin: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'width', getValue: (value) => `width: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'height', getValue: (value) => `height: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'minWidth', getValue: (value) => `min-width: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'minHeight', getValue: (value) => `min-height: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'maxWidth', getValue: (value) => `max-width: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'maxHeight', getValue: (value) => `max-height: ${value};`, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.layout, key: 'padding', getValue: (value) => {
+                return getBoxControlValue(value, 'padding');    
+            }, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.layout, key: 'margin', getValue: (value) => {
+                return getBoxControlValue(value, 'margin');
+            }, device: 'Desktop' })}
+
+
+            ${generateCSS({ attributes: styles?.size, key: 'width', getValue: (value) => `width: ${value};`, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.size, key: 'height', getValue: (value) => `height: ${value};`, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.size, key: 'minWidth', getValue: (value) => `min-width: ${value};`, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.size, key: 'minHeight', getValue: (value) => `min-height: ${value};`, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.size, key: 'maxWidth', getValue: (value) => `max-width: ${value};`, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.size, key: 'maxHeight', getValue: (value) => `max-height: ${value};`, device: 'Desktop' })}
+
+
             ${generateCSS({ attributes: styles, key: 'display', getValue: (value) => `display: ${value};`, device: 'Desktop' })}
+
             ${generateCSS({ attributes: styles?.flex, key: 'direction', getValue: (value) => `flex-direction: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.flex, key: 'alignItems', getValue: (value) => `align-items: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.flex, key: 'justifyContent', getValue: (value) => `justify-content: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.flex, key: 'flexWrap', getValue: (value) => `flex-wrap: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.flex, key: 'columnGap', getValue: (value) => `column-gap: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.flex, key: 'rowGap', getValue: (value) => `row-gap: ${value};`, device: 'Desktop' })}
-            ${styles?.grid?.columns ? `grid-template-columns: repeat(${styles.grid.columns}, 1fr);` : ''}
-            ${generateCSS({ attributes: styles?.grid, key: 'columnGap', getValue: (value) => `column-gap: ${value};`, device: 'Desktop' })}
-            ${generateCSS({ attributes: styles?.grid, key: 'rowGap', getValue: (value) => `row-gap: ${value};`, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'gap', getValue: (value) => {
+                return `gap: ${value?.first} ${value?.second};`;
+            }, device: 'Desktop' })}
+
+            ${generateCSS({ attributes: styles?.grid, key: 'columns', getValue: (value) => {
+                if(styles?.grid?.layoutType === 'manual') {
+                    return `grid-template-columns: repeat(${value}, minmax(0, 1fr));`;
+                }
+                return '';
+            }, device: 'Desktop' })}
+            ${generateCSS({ attributes: styles?.grid, key: 'minColumnWidth', getValue: (value) => {
+                if(styles?.grid?.layoutType === 'auto') {
+                    return `grid-template-columns: repeat(auto-fill, minmax(min(${value}, 100%), 1fr));`;
+                }
+                return '';
+            }, device: 'Desktop' })}
+
+            ${generateCSS({ attributes: styles?.grid, key: 'gap', getValue: (value) => {
+                return `gap: ${value?.first} ${value?.second};`;
+            }, device: 'Desktop' })}
+
+
             ${generateCSS({ attributes: styles?.block, key: 'float', getValue: (value) => `float: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.block, key: 'clear', getValue: (value) => `clear: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.block, key: 'overflow', getValue: (value) => `overflow: ${value};`, device: 'Desktop' })}
+
             ${generateCSS({ attributes: styles?.inline, key: 'verticalAlign', getValue: (value) => `vertical-align: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.inline, key: 'whiteSpace', getValue: (value) => `white-space: ${value};`, device: 'Desktop' })}
+
+
             ${generateCSS({ attributes: styles?.position, key: 'type', getValue: (value) => `position: ${value};`, device: 'Desktop' })}
+
             ${generateCSS({ attributes: styles?.position, key: 'top', getValue: (value) => `top: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.position, key: 'right', getValue: (value) => `right: ${value};`, device: 'Desktop' })}
             ${generateCSS({ attributes: styles?.position, key: 'bottom', getValue: (value) => `bottom: ${value};`, device: 'Desktop' })}
@@ -96,26 +149,56 @@ const generateStyles = (styles, selector) => {
             ${generateCSS({ attributes: styles?.typography, key: 'lineHeight', getValue: (value) => `line-height: ${value};`, device: 'Tablet' })}
             ${generateCSS({ attributes: styles?.typography, key: 'letterSpacing', getValue: (value) => `letter-spacing: ${value};`, device: 'Tablet' })}
             ${generateBackgroundCSS(styles?.background, 'Tablet')}
-            ${styles?.textShadow?.horizontal?.Tablet || styles?.textShadow?.vertical?.Tablet || styles?.textShadow?.blur?.Tablet ? 
-                `text-shadow: ${styles?.textShadow?.horizontal?.Tablet || styles?.textShadow?.horizontal?.Desktop || '0px'} ${styles?.textShadow?.vertical?.Tablet || styles?.textShadow?.vertical?.Desktop || '0px'} ${styles?.textShadow?.blur?.Tablet || styles?.textShadow?.blur?.Desktop || '0px'} ${styles?.textShadow?.color || 'transparent'};` : ''}
+
             ${generateCSS({ attributes: styles?.stroke, key: 'width', getValue: (value) => `stroke-width: ${value};`, device: 'Tablet' })}
             ${generateCSS({ attributes: styles?.stroke, key: 'dasharray', getValue: (value) => `stroke-dasharray: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.border, key: 'width', getValue: (value) => `border-width: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.border, key: 'radius', getValue: (value) => `border-radius: ${value};`, device: 'Tablet' })}
-            ${styles?.boxShadow?.horizontal?.Tablet || styles?.boxShadow?.vertical?.Tablet || styles?.boxShadow?.blur?.Tablet || styles?.boxShadow?.spread?.Tablet ? 
-                `box-shadow: ${styles?.boxShadow?.type === 'inset' ? 'inset ' : ''}${styles?.boxShadow?.horizontal?.Tablet || styles?.boxShadow?.horizontal?.Desktop || '0px'} ${styles?.boxShadow?.vertical?.Tablet || styles?.boxShadow?.vertical?.Desktop || '0px'} ${styles?.boxShadow?.blur?.Tablet || styles?.boxShadow?.blur?.Desktop || '0px'} ${styles?.boxShadow?.spread?.Tablet || styles?.boxShadow?.spread?.Desktop || '0px'} ${styles?.boxShadow?.color || 'transparent'};` : ''}
-            ${generateCSS({ attributes: styles?.layout, key: 'padding', getValue: (value) => `padding: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'margin', getValue: (value) => `margin: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.flex, key: 'columnGap', getValue: (value) => `column-gap: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.flex, key: 'rowGap', getValue: (value) => `row-gap: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.grid, key: 'columnGap', getValue: (value) => `column-gap: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.grid, key: 'rowGap', getValue: (value) => `row-gap: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'width', getValue: (value) => `width: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'height', getValue: (value) => `height: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'minWidth', getValue: (value) => `min-width: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'minHeight', getValue: (value) => `min-height: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'maxWidth', getValue: (value) => `max-width: ${value};`, device: 'Tablet' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'maxHeight', getValue: (value) => `max-height: ${value};`, device: 'Tablet' })}
+
+            ${generateCSS({ attributes: styles, key: 'borderRadius', getValue: (value) => {
+                return getBoxControlValue(value, 'border-radius');
+            }, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.layout, key: 'padding', getValue: (value) => {
+                return getBoxControlValue(value, 'padding');    
+            }, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.layout, key: 'margin', getValue: (value) => {
+                return getBoxControlValue(value, 'margin');
+            }, device: 'Tablet' })}
+
+            ${generateCSS({ attributes: styles?.size, key: 'width', getValue: (value) => `width: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.size, key: 'height', getValue: (value) => `height: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.size, key: 'minWidth', getValue: (value) => `min-width: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.size, key: 'minHeight', getValue: (value) => `min-height: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.size, key: 'maxWidth', getValue: (value) => `max-width: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.size, key: 'maxHeight', getValue: (value) => `max-height: ${value};`, device: 'Tablet' })}
+
+            ${generateCSS({ attributes: styles?.flex, key: 'direction', getValue: (value) => `flex-direction: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'alignItems', getValue: (value) => `align-items: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'justifyContent', getValue: (value) => `justify-content: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'flexWrap', getValue: (value) => `flex-wrap: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'gap', getValue: (value) => {
+                return `gap: ${value?.first} ${value?.second};`;
+            }, device: 'Tablet' })}
+
+            ${generateCSS({ attributes: styles?.grid, key: 'columns', getValue: (value) => {
+                if(styles?.grid?.layoutType === 'manual') {
+                    return `grid-template-columns: repeat(${value}, minmax(0, 1fr));`;
+                }
+                return '';
+            }, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.grid, key: 'minColumnWidth', getValue: (value) => {
+                if(styles?.grid?.layoutType === 'auto') {
+                    return `grid-template-columns: repeat(auto-fill, minmax(min(${value}, 100%), 1fr));`;
+                }
+                return '';
+            }, device: 'Tablet' })}
+
+            ${generateCSS({ attributes: styles?.grid, key: 'gap', getValue: (value) => {
+                return `gap: ${value?.first} ${value?.second};`;
+            }, device: 'Tablet' })}
+
+            ${generateCSS({ attributes: styles?.block, key: 'float', getValue: (value) => `float: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.block, key: 'clear', getValue: (value) => `clear: ${value};`, device: 'Tablet' })}
+            ${generateCSS({ attributes: styles?.block, key: 'overflow', getValue: (value) => `overflow: ${value};`, device: 'Tablet' })}
+
             ${generateCSS({ attributes: styles?.position, key: 'top', getValue: (value) => `top: ${value};`, device: 'Tablet' })}
             ${generateCSS({ attributes: styles?.position, key: 'right', getValue: (value) => `right: ${value};`, device: 'Tablet' })}
             ${generateCSS({ attributes: styles?.position, key: 'bottom', getValue: (value) => `bottom: ${value};`, device: 'Tablet' })}
@@ -128,26 +211,56 @@ const generateStyles = (styles, selector) => {
             ${generateCSS({ attributes: styles?.typography, key: 'lineHeight', getValue: (value) => `line-height: ${value};`, device: 'Mobile' })}
             ${generateCSS({ attributes: styles?.typography, key: 'letterSpacing', getValue: (value) => `letter-spacing: ${value};`, device: 'Mobile' })}
             ${generateBackgroundCSS(styles?.background, 'Mobile')}
-            ${styles?.textShadow?.horizontal?.Mobile || styles?.textShadow?.vertical?.Mobile || styles?.textShadow?.blur?.Mobile ? 
-                `text-shadow: ${styles?.textShadow?.horizontal?.Mobile || styles?.textShadow?.horizontal?.Desktop || '0px'} ${styles?.textShadow?.vertical?.Mobile || styles?.textShadow?.vertical?.Desktop || '0px'} ${styles?.textShadow?.blur?.Mobile || styles?.textShadow?.blur?.Desktop || '0px'} ${styles?.textShadow?.color || 'transparent'};` : ''}
+
             ${generateCSS({ attributes: styles?.stroke, key: 'width', getValue: (value) => `stroke-width: ${value};`, device: 'Mobile' })}
             ${generateCSS({ attributes: styles?.stroke, key: 'dasharray', getValue: (value) => `stroke-dasharray: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.border, key: 'width', getValue: (value) => `border-width: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.border, key: 'radius', getValue: (value) => `border-radius: ${value};`, device: 'Mobile' })}
-            ${styles?.boxShadow?.horizontal?.Mobile || styles?.boxShadow?.vertical?.Mobile || styles?.boxShadow?.blur?.Mobile || styles?.boxShadow?.spread?.Mobile ? 
-                `box-shadow: ${styles?.boxShadow?.type === 'inset' ? 'inset ' : ''}${styles?.boxShadow?.horizontal?.Mobile || styles?.boxShadow?.horizontal?.Desktop || '0px'} ${styles?.boxShadow?.vertical?.Mobile || styles?.boxShadow?.vertical?.Desktop || '0px'} ${styles?.boxShadow?.blur?.Mobile || styles?.boxShadow?.blur?.Desktop || '0px'} ${styles?.boxShadow?.spread?.Mobile || styles?.boxShadow?.spread?.Desktop || '0px'} ${styles?.boxShadow?.color || 'transparent'};` : ''}
-            ${generateCSS({ attributes: styles?.layout, key: 'padding', getValue: (value) => `padding: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'margin', getValue: (value) => `margin: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.flex, key: 'columnGap', getValue: (value) => `column-gap: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.flex, key: 'rowGap', getValue: (value) => `row-gap: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.grid, key: 'columnGap', getValue: (value) => `column-gap: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.grid, key: 'rowGap', getValue: (value) => `row-gap: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'width', getValue: (value) => `width: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'height', getValue: (value) => `height: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'minWidth', getValue: (value) => `min-width: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'minHeight', getValue: (value) => `min-height: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'maxWidth', getValue: (value) => `max-width: ${value};`, device: 'Mobile' })}
-            ${generateCSS({ attributes: styles?.layout, key: 'maxHeight', getValue: (value) => `max-height: ${value};`, device: 'Mobile' })}
+
+            ${generateCSS({ attributes: styles, key: 'borderRadius', getValue: (value) => {
+                return getBoxControlValue(value, 'border-radius');
+            }, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.layout, key: 'padding', getValue: (value) => {
+                return getBoxControlValue(value, 'padding');    
+            }, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.layout, key: 'margin', getValue: (value) => {
+                return getBoxControlValue(value, 'margin');
+            }, device: 'Mobile' })}
+
+            ${generateCSS({ attributes: styles?.size, key: 'width', getValue: (value) => `width: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.size, key: 'height', getValue: (value) => `height: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.size, key: 'minWidth', getValue: (value) => `min-width: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.size, key: 'minHeight', getValue: (value) => `min-height: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.size, key: 'maxWidth', getValue: (value) => `max-width: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.size, key: 'maxHeight', getValue: (value) => `max-height: ${value};`, device: 'Mobile' })}
+
+            ${generateCSS({ attributes: styles?.flex, key: 'direction', getValue: (value) => `flex-direction: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'alignItems', getValue: (value) => `align-items: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'justifyContent', getValue: (value) => `justify-content: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'flexWrap', getValue: (value) => `flex-wrap: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.flex, key: 'gap', getValue: (value) => {
+                return `gap: ${value?.first} ${value?.second};`;
+            }, device: 'Mobile' })}
+
+            ${generateCSS({ attributes: styles?.grid, key: 'columns', getValue: (value) => {
+                if(styles?.grid?.layoutType === 'manual') {
+                    return `grid-template-columns: repeat(${value}, minmax(0, 1fr));`;
+                }
+                return '';
+            }, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.grid, key: 'minColumnWidth', getValue: (value) => {
+                if(styles?.grid?.layoutType === 'auto') {
+                    return `grid-template-columns: repeat(auto-fill, minmax(min(${value}, 100%), 1fr));`;
+                }
+                return '';
+            }, device: 'Mobile' })}
+
+            ${generateCSS({ attributes: styles?.grid, key: 'gap', getValue: (value) => {
+                return `gap: ${value?.first} ${value?.second};`;
+            }, device: 'Mobile' })}
+
+            ${generateCSS({ attributes: styles?.block, key: 'float', getValue: (value) => `float: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.block, key: 'clear', getValue: (value) => `clear: ${value};`, device: 'Mobile' })}
+            ${generateCSS({ attributes: styles?.block, key: 'overflow', getValue: (value) => `overflow: ${value};`, device: 'Mobile' })}
+            
             ${generateCSS({ attributes: styles?.position, key: 'top', getValue: (value) => `top: ${value};`, device: 'Mobile' })}
             ${generateCSS({ attributes: styles?.position, key: 'right', getValue: (value) => `right: ${value};`, device: 'Mobile' })}
             ${generateCSS({ attributes: styles?.position, key: 'bottom', getValue: (value) => `bottom: ${value};`, device: 'Mobile' })}

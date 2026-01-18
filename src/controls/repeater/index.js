@@ -70,6 +70,7 @@ const ZoloRepeater = ({ repeaterItems = [], children, onChange, itemLabelName = 
                                                       values: item[childName],
                                                       checked: item[childName],
                                                       onChange: (value) => handleItemChange(index, childName, value),
+                                                      onSelect: (value) => handleItemChange(index, childName, value),
                                                   }
                                                 : {
                                                       id: item.id,

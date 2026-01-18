@@ -18,6 +18,10 @@ const generateCSS = ({ attributes, key, device = 'Desktop', getValue = (value) =
         }
     }
 
+    if(value !== undefined && value !== null && typeof value === 'object' && !isResponsive(value) && Object.keys(value).length > 0) {
+        return getValue(value);
+    }
+
     return '';
 }
 
