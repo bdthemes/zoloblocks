@@ -59,6 +59,7 @@ export { default as Skeleton } from '../controls/skeleton';
 export { default as ZoloResponsive } from '../controls/responsive';
 export { default as ZoloRangeUnit } from '../controls/range-unit';
 export { default as ZoloDualRangeUnit } from '../controls/dual-range-unit';
+export { default as CounterControl } from '../controls/counter-control';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';

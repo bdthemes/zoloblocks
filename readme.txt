@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -610,6 +610,12 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.5.2 [January 13, 2026]
+
+- **Improvements:**
+  - Fixed: Resolved minor user interface inconsistencies for improved user experience
+
 
 ### 2.5.1 [January 6, 2026]
 

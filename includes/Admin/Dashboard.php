@@ -56,6 +56,8 @@ if (! class_exists('Dashboard')) {
             $page = sanitize_text_field(wp_unslash($_GET['page']));
             if ($page === 'zoloblocks') {
                 remove_all_actions('admin_notices');
+                remove_all_actions('all_admin_notices');
+                remove_all_actions('network_admin_notices');
             }
         }
         /**
