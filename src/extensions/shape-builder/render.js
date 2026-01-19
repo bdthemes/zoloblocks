@@ -73,12 +73,45 @@ export default function Render({ panelProps }) {
 
                 // Render custom SVG if uploaded
                 if (isCustomSvg && customSvg) {
+                    // Get custom SVG colors from svgColor object
+                    const customFillColor = svgColor?.customSvgFillColor || '';
+                    const customStrokeColor = svgColor?.customSvgStrokeColor || '';
+
+                    // Modify the custom SVG to apply width/height and remove inline colors
+                    let modifiedSvg = customSvg;
+
+                    // Remove existing width/height/style attributes
+                    modifiedSvg = modifiedSvg
+                        .replace(/width="[^"]*"/gi, '')
+                        .replace(/height="[^"]*"/gi, '')
+                        .replace(/style="[^"]*"/gi, '');
+
+                    // Remove inline fill and stroke attributes so CSS can control them
+                    if (customFillColor) {
+                        modifiedSvg = modifiedSvg.replace(/fill="[^"]*"/gi, '').replace(/fill='[^']*'/gi, '');
+                    }
+                    if (customStrokeColor) {
+                        modifiedSvg = modifiedSvg.replace(/stroke="[^"]*"/gi, '').replace(/stroke='[^']*'/gi, '');
+                    }
+
+                    // Build inline style for SVG
+                    let svgStyle = `width: ${svgWidth}px; height: ${svgHeight}px;`;
+                    if (customFillColor) {
+                        svgStyle += ` fill: ${customFillColor}; color: ${customFillColor};`;
+                    }
+                    if (customStrokeColor) {
+                        svgStyle += ` stroke: ${customStrokeColor};`;
+                    }
+
+                    // Add width, height and color styles to SVG element
+                    modifiedSvg = modifiedSvg.replace(/<svg/i, `<svg width="${svgWidth}px" height="${svgHeight}px" style="${svgStyle}"`);
+
                     return (
                         <div
                             key={`${uniqueId}-shape-${shapeId}`}
                             className={`zolo-shape-builder zolo-shape-builder-custom zolo-shape-builder-${uniqueId}-${shapeId}`}
                             data-wrapper-id={`zolo-block-${uniqueId}`}
-                            dangerouslySetInnerHTML={{ __html: customSvg }}
+                            dangerouslySetInnerHTML={{ __html: modifiedSvg }}
                         />
                     );
                 }

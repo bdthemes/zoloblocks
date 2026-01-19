@@ -17,3 +17,28 @@ addFilter('zolo.blocks.render.hook.before', 'zolo/shape-builder', (panels, panel
     }
     return panels;
 });
+
+// Style filter hooks for desktop, tablet, and mobile
+addFilter('zolo.blocksAllStyle', 'zolo/shape-builder', (allStyle, props) => {
+    if (props.attributes.enableShapeBuilder) {
+        const { shapeBuilderDesktop } = Style(props);
+        return allStyle + shapeBuilderDesktop;
+    }
+    return allStyle;
+});
+
+addFilter('zolo.blocksTabStyle', 'zolo/shape-builder', (tabStyle, props) => {
+    if (props.attributes.enableShapeBuilder) {
+        const { shapeBuilderTablet } = Style(props);
+        return tabStyle + shapeBuilderTablet;
+    }
+    return tabStyle;
+});
+
+addFilter('zolo.blocksMobileStyle', 'zolo/shape-builder', (mobileStyle, props) => {
+    if (props.attributes.enableShapeBuilder) {
+        const { shapeBuilderMobile } = Style(props);
+        return mobileStyle + shapeBuilderMobile;
+    }
+    return mobileStyle;
+});

@@ -1,8 +1,8 @@
 const Style = (props) => {
     const { attributes } = props;
-    const { uniqueId, shapeBuilder, shape = [] } = attributes;
+    const { uniqueId, enableShapeBuilder, shape = [] } = attributes;
 
-    if (!shapeBuilder || !shapeBuilder.enabled || shape.length === 0) {
+    if (!enableShapeBuilder || shape.length === 0) {
         return {
             shapeBuilderDesktop: '',
             shapeBuilderTablet: '',
@@ -49,9 +49,12 @@ const Style = (props) => {
             filterContrastHover = 100,
             filterSaturateHover = 100,
             filterHueHover = 0,
-            customSvgFillColor = '',
-            customSvgStrokeColor = '',
+            svgColor = {},
         } = shapeItem;
+
+        // Extract custom SVG colors from svgColor object
+        const customSvgFillColor = svgColor.customSvgFillColor || '';
+        const customSvgStrokeColor = svgColor.customSvgStrokeColor || '';
 
         const transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
         const transformHover = `translate(${translateXHover}px, ${translateYHover}px) rotate(${rotateHover}deg)`;
@@ -82,7 +85,7 @@ const Style = (props) => {
             if (customSvgFillColor) {
                 shapeBuilderDesktop += `
                     ${selector}.zolo-shape-builder-custom svg *,
-                    ${selector}.zolo-shape-builder-custom img {
+                    ${selector}.zolo-shape-builder-custom svg {
                         fill: ${customSvgFillColor} !important;
                         color: ${customSvgFillColor} !important;
                     }
@@ -91,7 +94,7 @@ const Style = (props) => {
             if (customSvgStrokeColor) {
                 shapeBuilderDesktop += `
                     ${selector}.zolo-shape-builder-custom svg *,
-                    ${selector}.zolo-shape-builder-custom img {
+                    ${selector}.zolo-shape-builder-custom svg {
                         stroke: ${customSvgStrokeColor} !important;
                     }
                 `;

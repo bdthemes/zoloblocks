@@ -199,16 +199,30 @@ class ShapeBuilder {
 
          // Custom uploaded SVGs
         if (!empty($shape['is_custom'])) {
-            $customFillColor = $settings['customSvgFillColor'] ?? '';
-            $customStrokeColor = $settings['customSvgStrokeColor'] ?? '';
+            // Get colors from svgColor object (that's where inspector.js stores them)
+            $svgColor = $settings['svgColor'] ?? [];
+            $customFillColor = $svgColor['customSvgFillColor'] ?? '';
+            $customStrokeColor = $svgColor['customSvgStrokeColor'] ?? '';
             
-            $custom_styles = '';
-            if($customFillColor) $custom_styles .= "fill: {$customFillColor}; color: {$customFillColor};";
-            if($customStrokeColor) $custom_styles .= "stroke: {$customStrokeColor};";
+            $svg_content = $shape['custom_svg'];
+            
+            // Remove inline fill and stroke attributes so CSS/inline styles can control them
+            if ($customFillColor) {
+                $svg_content = preg_replace('/fill="[^"]*"/i', '', $svg_content);
+                $svg_content = preg_replace("/fill='[^']*'/i", '', $svg_content);
+            }
+            if ($customStrokeColor) {
+                $svg_content = preg_replace('/stroke="[^"]*"/i', '', $svg_content);
+                $svg_content = preg_replace("/stroke='[^']*'/i", '', $svg_content);
+            }
+            
+            // Build inline styles for SVG
+            $custom_styles = 'width: 100%; height: 100%; object-fit: contain;';
+            if ($customFillColor) $custom_styles .= " fill: {$customFillColor}; color: {$customFillColor};";
+            if ($customStrokeColor) $custom_styles .= " stroke: {$customStrokeColor};";
 
-            // Inject styles into the SVG string if possible, or wrap it
-            // Simple wrapper approach for now
-            $svg_content = str_replace('<svg', '<svg style="width: 100%; height: 100%; object-fit: contain; ' . esc_attr($custom_styles) . '"', $shape['custom_svg']);
+            // Inject styles into the SVG element
+            $svg_content = preg_replace('/<svg/i', '<svg style="' . esc_attr($custom_styles) . '"', $svg_content, 1);
 
             return '<div data-wrapper-id="' . esc_attr($wrapper_id) . '" class="zolo-shape-builder zolo-shape-builder-custom zolo-shape-builder-' . esc_attr($unique_id) . '-' . esc_attr($shape_id) . '"' . $animation_attrs . ' style="' . esc_attr($styles) . '">' .
                 $svg_content .
