@@ -14,6 +14,8 @@ const ApiSettings = () => {
     const [audienceID, setAudienceID] = useState('');
     const [facebookPageId, setFacebookPageId] = useState('');
     const [facebookAccessToken, setFacebookAccessToken] = useState('');
+    const [instagramAccessToken, setInstagramAccessToken] = useState('');
+    const [instagramUserId, setInstagramUserId] = useState('');
     const [webhooks, setWebhooks] = useState([
         {
             label: '',
@@ -50,6 +52,8 @@ const ApiSettings = () => {
                 zolo_mailchimp_audience_id,
                 zolo_facebook_page_id,
                 zolo_facebook_access_token,
+                zolo_instagram_access_token,
+                zolo_instagram_user_id,
                 zolo_webhooks,
             }) => {
                 setGoogleAPIKey(zolo_google_api_key);
@@ -60,6 +64,8 @@ const ApiSettings = () => {
                 setAudienceID(zolo_mailchimp_audience_id);
                 setFacebookPageId(zolo_facebook_page_id);
                 setFacebookAccessToken(zolo_facebook_access_token);
+                setInstagramAccessToken(zolo_instagram_access_token);
+                setInstagramUserId(zolo_instagram_user_id);
                 setWebhooks(zolo_webhooks);
             }
         );
@@ -177,7 +183,32 @@ const ApiSettings = () => {
             setFacebookAccessToken(zolo_facebook_access_token);
         });
     };
+    // update instagram access token
+    const onChangeInstagramAccessToken = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_instagram_access_token: value,
+            },
+        }).then(({ zolo_instagram_access_token }) => {
+            setInstagramAccessToken(zolo_instagram_access_token);
+        });
+    };
+    // update instagram user id
+    const onChangeInstagramUserId = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_instagram_user_id: value,
+            },
+        }).then(({ zolo_instagram_user_id }) => {
+            setInstagramUserId(zolo_instagram_user_id);
+        });
+    };
 
+    // 
     // Webhook
 
     const updateWebhookField = (index, field, value) => {
@@ -311,6 +342,32 @@ const ApiSettings = () => {
                         onChange={(value) => setFacebookAccessToken(value)}
                         value={facebookAccessToken}
                         placeholder={__('Enter your Facebook Access Token', 'zoloblocks')}
+                    />
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Instagram', 'zoloblocks')}
+                    description={__(
+                        'Connect your Instagram account to display feeds in the Instagram Feed block. Get your Access Token from Instagram Basic Display API.',
+                        'zoloblocks'
+                    )}
+                    docLink="https://developers.facebook.com/docs/instagram-basic-display-api"
+                    icon="instagram"
+                    onSave={() => {
+                        onChangeInstagramAccessToken(instagramAccessToken);
+                        onChangeInstagramUserId(instagramUserId);
+                    }}
+                >
+                    <ZoloTextControl
+                        label={__('User ID', 'zoloblocks')}
+                        onChange={(value) => setInstagramUserId(value)}
+                        value={instagramUserId}
+                        placeholder={__('Enter your Instagram User ID', 'zoloblocks')}
+                    />
+                    <ZoloTextControl
+                        label={__('Access Token', 'zoloblocks')}
+                        onChange={(value) => setInstagramAccessToken(value)}
+                        value={instagramAccessToken}
+                        placeholder={__('Enter your Instagram Access Token', 'zoloblocks')}
                     />
                 </SettingPanel>
                 <SettingPanel

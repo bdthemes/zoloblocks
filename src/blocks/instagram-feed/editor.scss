@@ -1,0 +1,99 @@
+// Editor-specific styles
+.zolo-instagram-feed {
+    * {
+        box-sizing: border-box;
+    }
+
+    .zolo-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+    }
+
+    // Instagram Header
+    .zolo-ig-header {
+        background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+        border: 1px solid #e5e7eb;
+
+        .zolo-ig-profile {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .zolo-ig-avatar {
+            flex-shrink: 0;
+            
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                border: 3px solid #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .zolo-ig-profile-info {
+            flex: 1;
+        }
+
+        .zolo-ig-username {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+
+            a {
+                color: #1f2937;
+                text-decoration: none;
+                
+                &:hover {
+                    color: #E1306C;
+                }
+            }
+        }
+
+        .zolo-ig-stats {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #6b7280;
+
+            span {
+                strong {
+                    color: #1f2937;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .zolo-ig-bio {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        .zolo-ig-follow-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(225, 48, 108, 0.2);
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
+            }
+        }
+    }
+}

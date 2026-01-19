@@ -1,0 +1,25 @@
+{
+    "apiVersion": 3,
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Instagram Feed",
+    "name": "zolo/instagram-feed",
+    "category": "zoloblocks",
+    "keywords": ["instagram", "feed", "social", "photos", "posts", "social media"],
+    "description": "Display Instagram posts in Grid, Masonry or Carousel layouts.",
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 800
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./frontend.js"
+}

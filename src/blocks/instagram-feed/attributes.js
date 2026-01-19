@@ -1,0 +1,137 @@
+import { generateResCounterAttributies } from '../../helpers/res-counter-helper';
+import { generateGapAttributes } from '../../helpers/gap-helper';
+import { IG_COLUMNS, IG_GAP } from './constants';
+
+export const layoutTypes = {
+    GRID: 'grid',
+    MASONRY: 'masonry',
+    CAROUSEL: 'carousel',
+};
+
+const attributes = {
+    // global config
+    globalConfig: {
+        type: 'object',
+        default: {
+            margin: {
+                prefix: 'igFeedMargin',
+            },
+            padding: {
+                prefix: 'igFeedPadding',
+            },
+            background: {
+                prefix: 'igFeedBg',
+            },
+            border: {
+                prefix: 'igFeedBorder',
+            },
+            borderRadius: {
+                prefix: 'igFeedBorderRadius',
+            },
+            boxShadow: {
+                prefix: 'igFeedBoxShadow',
+            },
+            responsiveControls: true,
+        },
+    },
+    uniqueId: {
+        type: 'string',
+        default: '',
+    },
+    layoutType: {
+        type: 'string',
+        default: layoutTypes.GRID,
+    },
+    postsPerPage: {
+        type: 'number',
+        default: 9,
+    },
+    showHeader: {
+        type: 'boolean',
+        default: true,
+    },
+    showUsername: {
+        type: 'boolean',
+        default: true,
+    },
+    showFollowers: {
+        type: 'boolean',
+        default: true,
+    },
+    showBio: {
+        type: 'boolean',
+        default: true,
+    },
+    showFollowButton: {
+        type: 'boolean',
+        default: true,
+    },
+    followButtonText: {
+        type: 'string',
+        default: 'Follow us on Instagram',
+    },
+    showCaption: {
+        type: 'boolean',
+        default: true,
+    },
+    captionLength: {
+        type: 'number',
+        default: 100,
+    },
+    showLikes: {
+        type: 'boolean',
+        default: true,
+    },
+    showComments: {
+        type: 'boolean',
+        default: true,
+    },
+    openInNewTab: {
+        type: 'boolean',
+        default: true,
+    },
+    imageRatio: {
+        type: 'string',
+        default: 'square',
+    },
+    carouselAutoplay: {
+        type: 'boolean',
+        default: true,
+    },
+    carouselSpeed: {
+        type: 'number',
+        default: 3000,
+    },
+    carouselLoop: {
+        type: 'boolean',
+        default: true,
+    },
+    cacheExpiration: {
+        type: 'number',
+        default: 43200, // 12 hours
+    },
+    flexGap: {
+        type: 'object',
+        default: {
+            Desktop: { first: '20px', second: '20px', linked: true },
+            Tablet: { first: '20px', second: '20px', linked: true },
+            Mobile: { first: '20px', second: '20px', linked: true },
+        },
+    },
+    resMode: {
+        type: 'string',
+        default: 'desktop',
+    },
+    // Column settings
+    ...generateResCounterAttributies(IG_COLUMNS, {
+        defaultRange: 3,
+        tabRange: 2,
+        mobRange: 1,
+    }),
+    // Gap settings
+    ...generateGapAttributes(IG_GAP, {
+        defaultRange: 20,
+    }),
+};
+
+export default attributes;

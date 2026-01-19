@@ -481,6 +481,34 @@ if (! class_exists('Settings')) {
                 ]
             );
 
+            // Instagram Access Token
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_instagram_access_token',
+                [
+                    'type'              => 'string',
+                    'default'           => '',
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'string'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
+            // Instagram User ID
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_instagram_user_id',
+                [
+                    'type'              => 'string',
+                    'default'           => '',
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'string'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_enable_template_library',
