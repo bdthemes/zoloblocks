@@ -22,7 +22,7 @@ export default function Render({ panelProps }) {
                 }
 
                 // Handle custom SVG upload
-                const { id, shapeType, custom, svgColor = {}, animation } = shapeItem;
+                const { id, shapeType, custom, svgColor = {}, animation, width, height } = shapeItem;
                 const isCustomSvg = shapeType === 'custom';
                 const customSvg = isCustomSvg && custom ? custom.svg : null;
 
@@ -34,6 +34,10 @@ export default function Render({ panelProps }) {
                 const viewboxBoxArr = shapeData.viewBox.split(' ');
                 const viewBoxWidth = viewboxBoxArr[2] || 100;
                 const viewBoxHeight = viewboxBoxArr[3] || 100;
+
+                // Use user-defined width/height if available, otherwise use viewBox dimensions
+                const svgWidth = width || viewBoxWidth;
+                const svgHeight = height || viewBoxHeight;
 
                 // Handle gradient
                 if (svgColor?.fillType === 'gradient') {
@@ -89,8 +93,8 @@ export default function Render({ panelProps }) {
                             viewBox={shapeData.viewBox}
                             xmlns="http://www.w3.org/2000/svg"
                             preserveAspectRatio="none"
-                            width={viewBoxWidth}
-                            height={viewBoxHeight}
+                            width={svgWidth}
+                            height={svgHeight}
                         >
                             {gradientDef}
                             {shapeData.transform ? (

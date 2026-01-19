@@ -1,13 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-const {
-    ZoloToggleControl,
-    ZoloSelectControl,
-    ZoloCardDivider,
-    ZoloPanelBody,
-    ZoloRepeater,
-    ZoloRangeControl,
-} = window.zoloModule;
+const { ZoloToggleControl, ZoloSelectControl, ZoloCardDivider, ZoloPanelBody, ZoloRepeater, ZoloRangeControl } = window.zoloModule;
 
 import {
     SHAPES_DATA,
@@ -22,6 +15,7 @@ import {
 import ShapeBuilderColorGroup from './components/color-group';
 import ShapeBuilderAnimation from './components/animation';
 import ShapeControl from './components/shape-control';
+import CustomSvgControl from './components/custom-svg-control';
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
@@ -47,14 +41,13 @@ const Inspector = ({ panelProps }) => {
                         defaultLabel="Shape"
                         addUniqueId={true}
                     >
-                        <ShapeControl
-                            name="shape"
+                        <ShapeControl name="shapeType" default="circle" />
+
+                        <CustomSvgControl
+                            name="custom"
                             default={{
-                                shapeType: 'circle',
-                                custom: {
-                                    id: '',
-                                    svg: ''
-                                },
+                                id: '',
+                                svg: '',
                             }}
                         />
 
