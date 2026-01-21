@@ -35,6 +35,7 @@ class InstagramFeed extends PostBlock
                 'showLikes' => true,
                 'showComments' => true,
                 'openInNewTab' => true,
+                'enableLightbox' => false,
                 'imageRatio' => 'square',
                 'carouselAutoplay' => true,
                 'carouselSpeed' => 3000,
@@ -88,6 +89,12 @@ class InstagramFeed extends PostBlock
             return '';
         }
 
+        // Enqueue lightbox if enabled
+        $enable_lightbox = $attributes['enableLightbox'] ?? false;
+        if ($enable_lightbox) {
+            \wp_enqueue_script('fslightbox');
+        }
+
         // Start output buffering
         \ob_start();
 
@@ -103,6 +110,9 @@ class InstagramFeed extends PostBlock
         <div class="parent-<?php echo $unique_id; ?> zolo-block <?php echo $unique_id; ?> zolo-instagram-feed zolo-instagram-feed-<?php echo $layout_type; ?>"
             data-layout="<?php echo $layout_type; ?>"
             data-unique-id="<?php echo $unique_id; ?>"
+            data-lightbox="<?php echo $enable_lightbox ? 'true' : 'false'; ?>"
+            data-entranceanimation="<?php echo \esc_attr($attributes['entranceAnimation'] ?? 'zolo-zoom-in'); ?>"
+            data-showthumb="<?php echo ($attributes['showLightboxThumb'] ?? false) ? 'true' : 'false'; ?>"
             data-carousel-autoplay="<?php echo $attributes['carouselAutoplay'] ? 'true' : 'false'; ?>"
             data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed']); ?>"
             data-carousel-loop="<?php echo $attributes['carouselLoop'] ? 'true' : 'false'; ?>"
@@ -203,15 +213,38 @@ class InstagramFeed extends PostBlock
         $truncated_caption = strlen($caption) > $attributes['captionLength']
             ? substr($caption, 0, $attributes['captionLength']) . '...'
             : $caption;
+        
+        $enable_lightbox = $attributes['enableLightbox'] ?? false;
+        $link_href = $enable_lightbox ? $image_url : $post['permalink'];
+        $link_target = $enable_lightbox ? '' : ($attributes['openInNewTab'] ? '_blank' : '_self');
+        
+        // Prepare lightbox data attributes
+        $lightbox_attrs = '';
+        if ($enable_lightbox) {
+            $lightbox_attrs .= ' data-fslightbox="instagram-gallery-' . esc_attr($attributes['uniqueId']) . '"';
+            
+            // Add caption if enabled
+            if ($attributes['showCaption'] && !empty($caption)) {
+                $caption_html = '<div class="zolo-lightbox-content"><h3 class="zolo-lightbox-caption">' . esc_html($caption) . '</h3></div>';
+                $lightbox_attrs .= ' data-caption="' . esc_attr($caption_html) . '"';
+            }
+            
+            // Add thumbnail for videos or use a smaller image size if available
+            if ($post['media_type'] === 'VIDEO' && !empty($post['thumbnail_url'])) {
+                $lightbox_attrs .= ' data-thumb="' . esc_url($post['thumbnail_url']) . '"';
+            } else {
+                $lightbox_attrs .= ' data-thumb="' . esc_url($image_url) . '"';
+            }
+        }
 
         \ob_start();
 ?>
         <div class="zolo-ig-item <?php echo \esc_attr($attributes['imageRatio']); ?>">
             <div class="zolo-ig-item-inner">
-                <a href="<?php echo \esc_url($post['permalink']); ?>" 
-                   target="<?php echo $attributes['openInNewTab'] ? '_blank' : '_self'; ?>"
+                <a href="<?php echo \esc_url($link_href); ?>" 
+                   <?php if (!$enable_lightbox) : ?>target="<?php echo $link_target; ?>"<?php endif; ?>
                    rel="noopener noreferrer"
-                   class="zolo-ig-link">
+                   class="zolo-ig-link"<?php echo $lightbox_attrs; ?>>
                     <div class="zolo-ig-image-wrapper">
                         <div class="zolo-ig-instagram-icon">
                             <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
@@ -377,6 +410,7 @@ class InstagramFeed extends PostBlock
         $tablet_columns = $attributes['zolo_TABigColumnsRange'] ?? 2;
         $mobile_columns = $attributes['zolo_MOBigColumnsRange'] ?? 1;
         $gap = $attributes['zolo_igGapGap'] ?? 20;
+        $lightbox_caption_size = $attributes['lightboxCaptionSize'] ?? 16;
 
         \ob_start();
 ?>
@@ -394,6 +428,10 @@ class InstagramFeed extends PostBlock
 
             .<?php echo $unique_id; ?> .zolo-ig-masonry .zolo-ig-item {
                 margin-bottom: <?php echo $gap; ?>px;
+            }
+
+            .zolo-lightbox-caption {
+                font-size: <?php echo $lightbox_caption_size; ?>px;
             }
 
             @media (max-width: 1024px) {

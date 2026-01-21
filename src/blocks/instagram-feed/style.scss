@@ -9,7 +9,6 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    overflow-x: hidden;
 
     * {
         box-sizing: border-box;
@@ -17,6 +16,7 @@
 
     .zolo-ig-container {
         width: 100%;
+        overflow: visible;
     }
 
     // Instagram Header
@@ -159,6 +159,7 @@
 
         .swiper-button-prev,
         .swiper-button-next {
+            position: absolute;
             color: #E1306C;
             width: 44px;
             height: 44px;

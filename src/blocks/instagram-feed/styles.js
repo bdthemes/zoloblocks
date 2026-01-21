@@ -32,6 +32,9 @@ const Style = (props) => {
             .${uniqueId} .zolo-ig-masonry {
                 ${columnCountDesk ? `column-count: ${columnCountDesk};` : ''}
             }
+            .zolo-lightbox-caption {
+                ${attributes.lightboxCaptionSize ? `font-size: ${attributes.lightboxCaptionSize}px;` : ''}
+            }
         ` +
         `.${uniqueId} .zolo-ig-grid{
             ${

@@ -5,11 +5,46 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/grid';
 
+console.log('Instagram Feed frontend.js loaded');
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Instagram Feed DOMContentLoaded triggered');
     const instagramFeedBlocks = document.querySelectorAll('.zolo-instagram-feed');
+    console.log('Instagram Feed blocks found:', instagramFeedBlocks.length);
 
     instagramFeedBlocks.forEach((block) => {
         const layoutType = block.dataset.layout;
+        const enableLightbox = block.dataset.lightbox === 'true';
+        const uniqueId = block.dataset.uniqueId;
+
+        console.log('Processing block:', {layoutType, enableLightbox, uniqueId});
+
+        // Initialize lightbox if enabled
+        if (enableLightbox && uniqueId) {
+            const entranceAnimation = block.dataset.entranceanimation || 'zolo-zoom-in';
+            const showLightboxThumb = block.dataset.showthumb === 'true';
+
+            const galleryKey = `instagram-gallery-${uniqueId}`;
+            
+            console.log('IG Lightbox Debug:', {
+                galleryKey,
+                entranceAnimation,
+                showLightboxThumb,
+                fsLightboxInstances: typeof fsLightboxInstances,
+                instanceExists: typeof fsLightboxInstances !== 'undefined' && fsLightboxInstances[galleryKey]
+            });
+            
+            // Set lightbox properties directly like image-gallery does
+            if (typeof fsLightboxInstances !== 'undefined' && fsLightboxInstances[galleryKey]) {
+                fsLightboxInstances[galleryKey].props.showThumbsOnMount = showLightboxThumb;
+                fsLightboxInstances[galleryKey].props.showThumbsWithCaptions = showLightboxThumb;
+                fsLightboxInstances[galleryKey].props.initialAnimation = entranceAnimation;
+                fsLightboxInstances[galleryKey].props.slideChangeAnimation = entranceAnimation;
+                console.log('✓ Animation set:', entranceAnimation);
+            } else {
+                console.error('✗ fsLightbox instance not found:', galleryKey);
+            }
+        }
 
         if (layoutType === 'carousel') {
             initCarousel(block);

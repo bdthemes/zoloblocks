@@ -272,6 +272,49 @@ function Inspector(props) {
                                     onChange={(value) => setAttributes({ openInNewTab: value })}
                                 />
                             </div>
+                            <div className="zolo-flex-col-control">
+                                <ZoloToggleControl
+                                    label={__('Enable Lightbox', 'zoloblocks')}
+                                    checked={attributes.enableLightbox}
+                                    onChange={(value) => setAttributes({ enableLightbox: value })}
+                                />
+                            </div>
+                            {attributes.enableLightbox && (
+                                <>
+                                    <div className="zolo-flex-col-control">
+                                        <ZoloSelectControl
+                                            label={__('Animation', 'zoloblocks')}
+                                            value={attributes.entranceAnimation}
+                                            onChange={(value) => setAttributes({ entranceAnimation: value })}
+                                            options={[
+                                                { label: __('Zoom', 'zoloblocks'), value: 'zolo-zoom-in' },
+                                                { label: __('Newspaper', 'zoloblocks'), value: 'zolo-newspaper' },
+                                                { label: __('Move Horizontal', 'zoloblocks'), value: 'zolo-move-horizontal' },
+                                                { label: __('Move Top', 'zoloblocks'), value: 'zolo-move-form-top' },
+                                                { label: __('3d Unfold', 'zoloblocks'), value: 'zolo-3d-unfold' },
+                                                { label: __('Zoom Out', 'zoloblocks'), value: 'zolo-zoom-out' },
+                                            ]}
+                                        />
+                                    </div>
+                                    <div className="zolo-flex-col-control">
+                                        <ZoloToggleControl
+                                            label={__('Show Thumbnails', 'zoloblocks')}
+                                            checked={attributes.showLightboxThumb}
+                                            onChange={(value) => setAttributes({ showLightboxThumb: value })}
+                                        />
+                                    </div>
+                                    <div className="zolo-flex-col-control">
+                                        <ZoloRangeControl
+                                            label={__('Caption Text Size', 'zoloblocks')}
+                                            value={attributes.lightboxCaptionSize}
+                                            onChange={(value) => setAttributes({ lightboxCaptionSize: value })}
+                                            min={10}
+                                            max={40}
+                                            step={1}
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </ZoloPanelBody>
 
                         {attributes.layoutType === 'carousel' && (

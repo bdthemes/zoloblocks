@@ -90,6 +90,22 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    enableLightbox: {
+        type: 'boolean',
+        default: false,
+    },
+    entranceAnimation: {
+        type: 'string',
+        default: 'zolo-zoom-in',
+    },
+    showLightboxThumb: {
+        type: 'boolean',
+        default: false,
+    },
+    lightboxCaptionSize: {
+        type: 'number',
+        default: 16,
+    },
     imageRatio: {
         type: 'string',
         default: 'square',
