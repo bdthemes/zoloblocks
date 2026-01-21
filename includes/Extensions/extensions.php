@@ -179,4 +179,12 @@ return apply_filters('zolo_extensions', [
         'demo' => 'https://demo.zoloblocks.com/transform',
         'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
     ],
+    'class-manager' => [
+        'name' => 'class-manager',
+        'title' => __('Class Manager', 'zoloblocks'),
+        'status' => true,
+        'is_pro' => false,
+        'demo' => 'https://demo.zoloblocks.com/class-manager',
+        'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
+    ],
 ]);

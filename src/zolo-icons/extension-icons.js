@@ -1,3 +1,6 @@
+import { settings } from '@wordpress/icons';
+import { cloneElement } from '@wordpress/element';
+
 const ExtensionIcons = {
     cursors: (
         <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -258,5 +261,9 @@ const ExtensionIcons = {
             />
         </svg>
     ),
+    'class-manager': cloneElement(settings, {
+        width: '24',
+        height: '24',
+    }),
 };
 export default ExtensionIcons;

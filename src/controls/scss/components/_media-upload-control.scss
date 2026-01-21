@@ -1,0 +1,123 @@
+.zb-control__media {
+    margin-bottom: 16px;
+
+    .zb-control__label {
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-transform: uppercase;
+        color: #1e1e1e;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .zb-control__media-body {
+        position: relative;
+    }
+
+    .zb-control__media-add {
+        width: 100%;
+        height: 130px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e9e9e9;
+        border-radius: 8px;
+        background: #f6f6f8;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        .dashicons {
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+            color: #757575;
+        }
+
+        &:hover {
+            .dashicons {
+                color: #2271b1;
+            }
+        }
+    }
+
+    .zb-control__media-preview {
+        position: relative;
+        height: 130px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #ccc;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .zb-control__media-delete {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        padding: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f5f5f5 !important;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        &:hover {
+            svg {
+                color: #d63638 !important;
+            }
+        }
+    }
+
+    .zb-control__media-replace {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px;
+        background: #f2f2f2bf;
+        border: none !important;
+        border-radius: 0 0 8px 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #1e1e1e;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(2px);
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        &:hover {
+            background: #b6b6b6;
+            color: #f5f5f5;
+
+            svg {
+                color: #f5f5f5;
+            }
+        }
+    }
+}
