@@ -1,7 +1,3 @@
-import { generateResCounterAttributies } from '../../helpers/res-counter-helper';
-import { generateGapAttributes } from '../../helpers/gap-helper';
-import { FB_COLUMNS, FB_GAP } from './constants';
-
 export const layoutTypes = {
     TIMELINE: 'timeline',
     GRID: 'grid',
@@ -112,34 +108,36 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    carouselSlidesPerView: {
-        type: 'number',
-        default: 3,
-    },
-    facebookPageId: {
-        type: 'string',
-        default: '',
-    },
-    facebookAccessToken: {
-        type: 'string',
-        default: '',
-    },
     cacheExpiration: {
         type: 'number',
-        default: 43200,
+        default: 43200, // 12 hours in seconds
+    },
+    fbGap: {
+        type: 'object',
+        default: {
+            Desktop: {
+                linked: true,
+                first: '20px',
+                second: '20px',
+            },
+        },
     },
     resMode: {
         type: 'string',
         default: 'desktop',
     },
-    ...generateResCounterAttributies(FB_COLUMNS, {
-        defaultRange: 3,
-        tabRange: 2,
-        mobRange: 1,
-    }),
-    ...generateGapAttributes(FB_GAP, {
-        defaultRange: 20,
-    }),
+    zolo_fbColumnsRange: {
+        type: 'number',
+        default: 3,
+    },
+    zolo_TABfbColumnsRange: {
+        type: 'number',
+        default: 2,
+    },
+    zolo_MOBfbColumnsRange: {
+        type: 'number',
+        default: 1,
+    },
 };
 
 export default attributes;

@@ -37,6 +37,12 @@ function initCarousel(block) {
     const container = block.querySelector('.zolo-fb-posts-container');
     if (!container) return;
 
+    // Check if Swiper is already initialized
+    const existingSwiper = container.querySelector('.swiper');
+    if (existingSwiper && existingSwiper.swiper) {
+        existingSwiper.swiper.destroy(true, true);
+    }
+
     const autoplay = block.dataset.carouselAutoplay === 'true';
     const speed = parseInt(block.dataset.carouselSpeed) || 3000;
     const loop = block.dataset.carouselLoop === 'true';

@@ -1,8 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useMemo } from '@wordpress/element';
 import objAttributes from './attributes';
-import { LAYOUT_OPTIONS, FB_COLUMNS, FB_GAP } from './constants';
+import { LAYOUT_OPTIONS, FB_COLUMNS } from './constants';
 
 const {
     ZoloSelectControl,
@@ -11,9 +11,12 @@ const {
     ZoloRangeControl,
     HeaderTabs,
     ZoloPanelBody,
-    ResGapControl,
     ResCounterControl,
+    ZoloDualRangeUnit,
+    ZoloResponsive,
     AdvancedOptions,
+    getResponsiveValue,
+    createResponsiveValue,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -33,12 +36,12 @@ function Inspector(props) {
             });
     }, []);
 
-    const requiredProps = {
+    const requiredProps = useMemo(() => ({
         resMode: attributes.resMode,
         setAttributes,
         attributes,
         objAttributes,
-    };
+    }), [attributes.resMode, setAttributes, attributes, objAttributes]);
 
     return (
         <InspectorControls key="controls">
@@ -291,12 +294,22 @@ function Inspector(props) {
                                 />
                             )}
 
-                            <ResGapControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={FB_GAP}
-                                requiredProps={requiredProps}
-                                max={100}
-                            />
+                            <ZoloResponsive left='30px'>
+                                <ZoloDualRangeUnit
+                                    label={__('Gap', 'zoloblocks')}
+                                    dualLabel={[__('Column Gap', 'zoloblocks'), __('Row Gap', 'zoloblocks')]}
+                                    value={getResponsiveValue(attributes, 'fbGap')}
+                                    onChange={(value) => {
+                                        setAttributes(createResponsiveValue(attributes, 'fbGap', value));
+                                    }}
+                                    units={{
+                                        px: { max: 200, min: 0, step: 1 },
+                                        rem: { max: 10, min: 0, step: 0.1 },
+                                        em: { max: 10, min: 0, step: 0.1 },
+                                        '%': { max: 100, min: 0, step: 1 },
+                                    }}
+                                />
+                            </ZoloResponsive>
                         </ZoloPanelBody>
                     </>
                 }

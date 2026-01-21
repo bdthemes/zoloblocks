@@ -44,11 +44,14 @@ class FacebookFeed extends PostBlock
                 'zolo_fbColumnsRange' => 3,
                 'zolo_TABfbColumnsRange' => 2,
                 'zolo_MOBfbColumnsRange' => 1,
-                'zolo_fbGapGap' => 20,
-                'zolo_fbGapIsLinked' => true,
-                'zolo_fbGapUnit' => 'px',
-                'zolo_TABfbGapUnit' => 'px',
-                'zolo_MOBfbGapUnit' => 'px',
+                'fbGap' => [
+                    'Desktop' => [
+                        'linked' => true,
+                        'first' => 20,
+                        'second' => 20,
+                        'unit' => 'px',
+                    ],
+                ],
             ]
         );
     }
@@ -300,25 +303,23 @@ class FacebookFeed extends PostBlock
         }
 
         $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
-        $is_linked = $attributes['zolo_fbGapIsLinked'] ?? true;
-        $unit = $attributes['zolo_fbGapUnit'] ?? 'px';
-        $gap = $attributes['zolo_fbGapGap'] ?? 20;
+        
+        // Get gap values from the new object structure
+        $gap_obj = $attributes['fbGap'] ?? [];
+        $desktop_gap = $gap_obj['Desktop'] ?? ['linked' => true, 'first' => 20, 'unit' => 'px'];
+        $is_linked = $desktop_gap['linked'] ?? true;
+        $unit = $desktop_gap['unit'] ?? 'px';
+        $col_gap_value = $desktop_gap['first'] ?? 20;
+        $row_gap_value = $desktop_gap['second'] ?? 20;
 
         if ($layout === 'grid' || $layout === 'gallery') {
             $gap_style = $is_linked
-                ? "gap: {$gap}{$unit};"
-                : \sprintf(
-                    'row-gap: %d%s; column-gap: %d%s;',
-                    $attributes['zolo_fbGapRowGap'] ?? 20,
-                    $unit,
-                    $attributes['zolo_fbGapColGap'] ?? 20,
-                    $unit
-                );
+                ? "gap: {$col_gap_value}{$unit};"
+                : "row-gap: {$row_gap_value}{$unit}; column-gap: {$col_gap_value}{$unit};";
             return "display: grid; grid-template-columns: repeat({$cols}, 1fr); {$gap_style}";
         }
 
-        $col_gap = $is_linked ? $gap : ($attributes['zolo_fbGapColGap'] ?? 20);
-        return "column-count: {$cols}; column-gap: {$col_gap}{$unit};";
+        return "column-count: {$cols}; column-gap: {$col_gap_value}{$unit};";
     }
 
     /**
@@ -336,32 +337,40 @@ class FacebookFeed extends PostBlock
             return '';
         }
 
-        $default_gap = $attributes['zolo_fbGapGap'] ?? 20;
+        // Get gap object
+        $gap_obj = $attributes['fbGap'] ?? [];
+        
+        // Desktop gap values
+        $desktop_gap = $gap_obj['Desktop'] ?? ['linked' => true, 'first' => 20, 'second' => 20, 'unit' => 'px'];
         $desktop = [
             'cols' => $attributes['zolo_fbColumnsRange'] ?? 3,
-            'is_linked' => $attributes['zolo_fbGapIsLinked'] ?? true,
-            'gap' => $default_gap,
-            'row_gap' => $attributes['zolo_fbGapRowGap'] ?? $default_gap,
-            'col_gap' => $attributes['zolo_fbGapColGap'] ?? $default_gap,
-            'unit' => $attributes['zolo_fbGapUnit'] ?? 'px',
+            'is_linked' => $desktop_gap['linked'] ?? true,
+            'gap' => $desktop_gap['first'] ?? 20,
+            'row_gap' => $desktop_gap['second'] ?? 20,
+            'col_gap' => $desktop_gap['first'] ?? 20,
+            'unit' => $desktop_gap['unit'] ?? 'px',
         ];
 
+        // Tablet gap values
+        $tablet_gap = $gap_obj['Tablet'] ?? $desktop_gap;
         $tablet = [
             'cols' => $attributes['zolo_TABfbColumnsRange'] ?? $desktop['cols'],
-            'is_linked' => $attributes['zolo_TABfbGapIsLinked'] ?? $desktop['is_linked'],
-            'gap' => $attributes['zolo_TABfbGapGap'] ?? $desktop['gap'],
-            'row_gap' => $attributes['zolo_TABfbGapRowGap'] ?? $desktop['row_gap'],
-            'col_gap' => $attributes['zolo_TABfbGapColGap'] ?? $desktop['col_gap'],
-            'unit' => $attributes['zolo_TABfbGapUnit'] ?? $desktop['unit'],
+            'is_linked' => $tablet_gap['linked'] ?? $desktop['is_linked'],
+            'gap' => $tablet_gap['first'] ?? $desktop['gap'],
+            'row_gap' => $tablet_gap['second'] ?? $desktop['row_gap'],
+            'col_gap' => $tablet_gap['first'] ?? $desktop['col_gap'],
+            'unit' => $tablet_gap['unit'] ?? $desktop['unit'],
         ];
 
+        // Mobile gap values
+        $mobile_gap = $gap_obj['Mobile'] ?? $tablet_gap;
         $mobile = [
             'cols' => $attributes['zolo_MOBfbColumnsRange'] ?? $tablet['cols'],
-            'is_linked' => $attributes['zolo_MOBfbGapIsLinked'] ?? $tablet['is_linked'],
-            'gap' => $attributes['zolo_MOBfbGapGap'] ?? $tablet['gap'],
-            'row_gap' => $attributes['zolo_MOBfbGapRowGap'] ?? $tablet['row_gap'],
-            'col_gap' => $attributes['zolo_MOBfbGapColGap'] ?? $tablet['col_gap'],
-            'unit' => $attributes['zolo_MOBfbGapUnit'] ?? $tablet['unit'],
+            'is_linked' => $mobile_gap['linked'] ?? $tablet['is_linked'],
+            'gap' => $mobile_gap['first'] ?? $tablet['gap'],
+            'row_gap' => $mobile_gap['second'] ?? $tablet['row_gap'],
+            'col_gap' => $mobile_gap['first'] ?? $tablet['col_gap'],
+            'unit' => $mobile_gap['unit'] ?? $tablet['unit'],
         ];
 
         return \sprintf(
