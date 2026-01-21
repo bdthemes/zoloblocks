@@ -720,7 +720,7 @@ const StyleControls = ({ value, onChange }) => {
                                             </ZoloResponsive>
                                             <ZoloResponsive left='28px'>
                                                 <ZoloDualRangeUnit
-                                                    label="Gap Flex"
+                                                    label="Gap"
                                                     dualLabel={[__('Row Gap', 'zoloblocks'), __('Column Gap', 'zoloblocks')]}
                                                     value={value?.flex?.gap?.[device]}
                                                     onChange={(newValue) => {
