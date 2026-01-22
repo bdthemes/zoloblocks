@@ -3,7 +3,6 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { Notice, Spinner } from '@wordpress/components';
 import { useEffect, useState, useRef, useMemo } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { layoutTypes } from './attributes';
 import Inspector from './inspector';
 import Style from './styles';
 import { LikeEmoji, LoveEmoji, CareEmoji, WowEmoji, HahaEmoji, SadEmoji, AngryEmoji } from './ReactionEmojis';
@@ -174,8 +173,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
             const container = carouselRef.current.querySelector('.swiper');
             if (container) {
                 // Get columns based on responsive mode (max 3 for carousel)
-                const deskCols = Math.min(attributes.zolo_fbColumnsRange || 3, 3);
-                const tabCols = Math.min(attributes.zolo_TABfbColumnsRange || 2, 2);
+                const deskCols = Math.min(attributes.fbColumns?.Desktop || 3, 3);
+                const tabCols = Math.min(attributes.fbColumns?.Tablet || 2, 2);
                 const mobCols = 1;
                 
                 const slidesPerView = attributes.resMode === 'Desktop' ? deskCols : 
@@ -224,9 +223,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         attributes.carouselSpeed,
         attributes.carouselLoop,
         attributes.resMode,
-        attributes.zolo_fbColumnsRange,
-        attributes.zolo_TABfbColumnsRange,
-        attributes.zolo_MOBfbColumnsRange
+        attributes.fbColumns
     ]);
 
     // Update Swiper when posts change

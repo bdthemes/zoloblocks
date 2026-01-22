@@ -134,18 +134,6 @@ const attributes = {
             Mobile: 1,
         },
     },
-    zolo_fbColumnsRange: {
-        type: 'number',
-        default: 3,
-    },
-    zolo_TABfbColumnsRange: {
-        type: 'number',
-        default: 2,
-    },
-    zolo_MOBfbColumnsRange: {
-        type: 'number',
-        default: 1,
-    },
 };
 
 export default attributes;

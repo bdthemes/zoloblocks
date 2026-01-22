@@ -4,167 +4,166 @@ import generateCSS from '../../helpers/generate-css';
 const { GlobalStyleHanlder } = window.zoloModule;
 
 const Style = ({ attributes, setAttributes }) => {
-    const { uniqueId, zolo_fbColumnsRange, zolo_TABfbColumnsRange, zolo_MOBfbColumnsRange } = attributes;
+    const { uniqueId, fbColumns } = attributes;
 
-    // Column counts for responsive layouts
-    const columnCountDesk = zolo_fbColumnsRange || 3;
-    const columnCountTab = zolo_TABfbColumnsRange || 2;
-    const columnCountMob = zolo_MOBfbColumnsRange || 1;
+    const columnCountDesk = fbColumns?.Desktop || 3;
+    const columnCountTab = fbColumns?.Tablet || 2;
+    const columnCountMob = fbColumns?.Mobile || 1;
 
     // Desktop styles
     const desktopAllStyle = useMemo(() => {
         const style = `
-            .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} .zolo-fb-post:not(:last-child) {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-timeline .zolo-fb-post:not(:last-child) {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `margin-bottom: ${value?.second} !important;`;
-                    return `margin-bottom: ${value?.first} !important;`;
+                    if(!value?.linked) return `margin-bottom: ${value?.second};`;
+                    return `margin-bottom: ${value?.first};`;
                 }, device: 'Desktop'})}
             }
             
-            .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-grid {
                 display: grid;
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Desktop'})}
                 ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
             }
             
-            .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-masonry {
                 ${columnCountDesk ? `column-count: ${columnCountDesk};` : ''}
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
                     const colGap = !value?.linked ? value?.first : value?.first;
-                    return `column-gap: ${colGap} !important; -webkit-column-gap: ${colGap} !important; -moz-column-gap: ${colGap} !important;`;
+                    return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
                 }, device: 'Desktop'})}
             }
             
-            .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-masonry .zolo-fb-post {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
                     const rowGap = !value?.linked ? value?.second : value?.first;
-                    return `margin-bottom: ${rowGap} !important;`;
+                    return `margin-bottom: ${rowGap};`;
                 }, device: 'Desktop'})}
             }
             
-            .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-carousel .swiper {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Desktop'})}
             }
             
-            .zolo-fb-posts-container.layout-gallery.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-gallery {
                 display: grid;
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Desktop'})}
                 ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
             }
         `;
         return style;
-    }, [uniqueId, attributes.fbGap, zolo_fbColumnsRange]);
+    }, [uniqueId, attributes.fbGap, fbColumns]);
 
     // Tablet styles
     const tabAllStyle = useMemo(() => {
         const style = `
-            .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} .zolo-fb-post:not(:last-child) {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-timeline .zolo-fb-post:not(:last-child) {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `margin-bottom: ${value?.second} !important;`;
-                    return `margin-bottom: ${value?.first} !important;`;
+                    if(!value?.linked) return `margin-bottom: ${value?.second};`;
+                    return `margin-bottom: ${value?.first};`;
                 }, device: 'Tablet'})}
             }
             
-            .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-grid {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Tablet'})}
                 ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr) !important;` : ''}
             }
             
-            .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-masonry {
                 ${columnCountTab ? `column-count: ${columnCountTab} !important;` : ''}
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
                     const colGap = !value?.linked ? value?.first : value?.first;
-                    return `column-gap: ${colGap} !important; -webkit-column-gap: ${colGap} !important; -moz-column-gap: ${colGap} !important;`;
+                    return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
                 }, device: 'Tablet'})}
             }
             
-            .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-masonry .zolo-fb-post {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
                     const rowGap = !value?.linked ? value?.second : value?.first;
-                    return `margin-bottom: ${rowGap} !important;`;
+                    return `margin-bottom: ${rowGap};`;
                 }, device: 'Tablet'})}
             }
             
-            .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-carousel .swiper {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Tablet'})}
             }
             
-            .zolo-fb-posts-container.layout-gallery.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-gallery {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Tablet'})}
                 ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr) !important;` : ''}
             }
         `;
         return style;
-    }, [uniqueId, attributes.fbGap, zolo_TABfbColumnsRange]);
+    }, [uniqueId, attributes.fbGap, fbColumns]);
 
     // Mobile styles
     const mobileAllStyle = useMemo(() => {
         const style = `
-            .zolo-fb-posts-container.layout-timeline.zolo-facebook-feed-${uniqueId} .zolo-fb-post:not(:last-child) {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-timeline .zolo-fb-post:not(:last-child) {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `margin-bottom: ${value?.second} !important;`;
-                    return `margin-bottom: ${value?.first} !important;`;
+                    if(!value?.linked) return `margin-bottom: ${value?.second};`;
+                    return `margin-bottom: ${value?.first};`;
                 }, device: 'Mobile'})}
             }
             
-            .zolo-fb-posts-container.layout-grid.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-grid {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Mobile'})}
                 ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr) !important;` : ''}
             }
             
-            .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-masonry {
                 ${columnCountMob ? `column-count: ${columnCountMob} !important;` : ''}
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
                     const colGap = !value?.linked ? value?.first : value?.first;
-                    return `column-gap: ${colGap} !important; -webkit-column-gap: ${colGap} !important; -moz-column-gap: ${colGap} !important;`;
+                    return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
                 }, device: 'Mobile'})}
             }
             
-            .zolo-fb-posts-container.layout-masonry.zolo-facebook-feed-${uniqueId} .zolo-fb-post {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-masonry .zolo-fb-post {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
                     const rowGap = !value?.linked ? value?.second : value?.first;
-                    return `margin-bottom: ${rowGap} !important;`;
+                    return `margin-bottom: ${rowGap};`;
                 }, device: 'Mobile'})}
             }
             
-            .zolo-fb-posts-container.layout-carousel.zolo-facebook-feed-${uniqueId} .swiper {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-carousel .swiper {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Mobile'})}
             }
             
-            .zolo-fb-posts-container.layout-gallery.zolo-facebook-feed-${uniqueId} {
+            .${uniqueId}.zolo-facebook-feed .zolo-fb-posts-container.layout-gallery {
                 ${generateCSS({attributes, key:'fbGap', getValue: (value) => {
-                    if(!value?.linked) return `row-gap: ${value?.second} !important; column-gap: ${value?.first} !important;`;
-                    return `gap: ${value?.first} !important;`;
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
                 }, device: 'Mobile'})}
                 ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr) !important;` : ''}
             }
         `;
         return style;
-    }, [uniqueId, attributes.fbGap, zolo_MOBfbColumnsRange]);
+    }, [uniqueId, attributes.fbGap, fbColumns]);
 
     return (
         <GlobalStyleHanlder

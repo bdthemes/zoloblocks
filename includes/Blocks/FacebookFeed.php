@@ -41,9 +41,11 @@ class FacebookFeed extends PostBlock
                 'carouselSpeed' => 3000,
                 'carouselLoop' => true,
                 'cacheExpiration' => 43200, // 12 hours - default cache duration
-                'zolo_fbColumnsRange' => 3,
-                'zolo_TABfbColumnsRange' => 2,
-                'zolo_MOBfbColumnsRange' => 1,
+                'fbColumns' => [
+                    'Desktop' => 3,
+                    'Tablet' => 2,
+                    'Mobile' => 1,
+                ],
                 'fbGap' => [
                     'Desktop' => [
                         'linked' => true,
@@ -103,7 +105,7 @@ class FacebookFeed extends PostBlock
         <div class="parent-<?php echo $unique_id; ?> zolo-block <?php echo $unique_id; ?> zolo-facebook-feed zolo-facebook-feed-<?php echo $layout_type; ?>"
             data-unique-id="<?php echo $unique_id; ?>"
             data-layout="<?php echo $layout_type; ?>"
-            data-columns="<?php echo \esc_attr($attributes['zolo_fbColumnsRange'] ?? 3); ?>"
+            data-columns="<?php echo \esc_attr($attributes['fbColumns']['Desktop'] ?? 3); ?>"
             data-carousel-autoplay="<?php echo $attributes['carouselAutoplay'] ? 'true' : 'false'; ?>"
             data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed'] ?? 3000); ?>"
             data-carousel-loop="<?php echo $attributes['carouselLoop'] ? 'true' : 'false'; ?>">
@@ -302,7 +304,8 @@ class FacebookFeed extends PostBlock
             return '';
         }
 
-        $cols = $attributes['zolo_fbColumnsRange'] ?? 3;
+        $fb_columns = $attributes['fbColumns'] ?? [];
+        $cols = $fb_columns['Desktop'] ?? 3;
         
         // Get gap values from the new object structure
         $gap_obj = $attributes['fbGap'] ?? [];
@@ -340,10 +343,13 @@ class FacebookFeed extends PostBlock
         // Get gap object
         $gap_obj = $attributes['fbGap'] ?? [];
         
+        // Get columns object
+        $fb_columns = $attributes['fbColumns'] ?? [];
+        
         // Desktop gap values
         $desktop_gap = $gap_obj['Desktop'] ?? ['linked' => true, 'first' => 20, 'second' => 20, 'unit' => 'px'];
         $desktop = [
-            'cols' => $attributes['zolo_fbColumnsRange'] ?? 3,
+            'cols' => $fb_columns['Desktop'] ?? 3,
             'is_linked' => $desktop_gap['linked'] ?? true,
             'gap' => $desktop_gap['first'] ?? 20,
             'row_gap' => $desktop_gap['second'] ?? 20,
@@ -354,7 +360,7 @@ class FacebookFeed extends PostBlock
         // Tablet gap values
         $tablet_gap = $gap_obj['Tablet'] ?? $desktop_gap;
         $tablet = [
-            'cols' => $attributes['zolo_TABfbColumnsRange'] ?? $desktop['cols'],
+            'cols' => $fb_columns['Tablet'] ?? $desktop['cols'],
             'is_linked' => $tablet_gap['linked'] ?? $desktop['is_linked'],
             'gap' => $tablet_gap['first'] ?? $desktop['gap'],
             'row_gap' => $tablet_gap['second'] ?? $desktop['row_gap'],
@@ -365,7 +371,7 @@ class FacebookFeed extends PostBlock
         // Mobile gap values
         $mobile_gap = $gap_obj['Mobile'] ?? $tablet_gap;
         $mobile = [
-            'cols' => $attributes['zolo_MOBfbColumnsRange'] ?? $tablet['cols'],
+            'cols' => $fb_columns['Mobile'] ?? $tablet['cols'],
             'is_linked' => $mobile_gap['linked'] ?? $tablet['is_linked'],
             'gap' => $mobile_gap['first'] ?? $tablet['gap'],
             'row_gap' => $mobile_gap['second'] ?? $tablet['row_gap'],
@@ -374,7 +380,8 @@ class FacebookFeed extends PostBlock
         ];
 
         return \sprintf(
-            '<style>%s@media (max-width: 1024px) {%s}@media (max-width: 767px) {%s}</style>',
+            '<style>.parent-%s.zolo-block { display: block; width: 100%%; margin-left: auto !important; margin-right: auto !important; box-sizing: border-box; } %s@media (max-width: 1024px) {%s}@media (max-width: 767px) {%s}</style>',
+            $unique_id,
             $this->generate_layout_css($layout, $unique_id, $desktop),
             $this->generate_layout_css($layout, $unique_id, $tablet, true),
             $this->generate_layout_css($layout, $unique_id, $mobile, true)
