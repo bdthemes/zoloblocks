@@ -126,6 +126,14 @@ const attributes = {
         type: 'string',
         default: 'desktop',
     },
+    fbColumns: {
+        type: 'object',
+        default: {
+            Desktop: 3,
+            Tablet: 2,
+            Mobile: 1,
+        },
+    },
     zolo_fbColumnsRange: {
         type: 'number',
         default: 3,

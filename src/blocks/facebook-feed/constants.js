@@ -10,5 +10,3 @@ export const LAYOUT_OPTIONS = [
     { label: __('Carousel', 'zoloblocks'), value: 'carousel' },
     { label: __('Gallery', 'zoloblocks'), value: 'gallery' },
 ];
-
-export const FB_COLUMNS = 'fbColumns';

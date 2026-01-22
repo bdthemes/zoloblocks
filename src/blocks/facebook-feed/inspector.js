@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { useState, useEffect, useMemo } from '@wordpress/element';
 import objAttributes from './attributes';
-import { LAYOUT_OPTIONS, FB_COLUMNS } from './constants';
+import { LAYOUT_OPTIONS } from './constants';
 
 const {
     ZoloSelectControl,
@@ -11,7 +11,7 @@ const {
     ZoloRangeControl,
     HeaderTabs,
     ZoloPanelBody,
-    ResCounterControl,
+    CounterControl,
     ZoloDualRangeUnit,
     ZoloResponsive,
     AdvancedOptions,
@@ -280,18 +280,15 @@ function Inspector(props) {
                     <>
                         <ZoloPanelBody title={__('Layout', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
                             {(attributes.layoutType === 'grid' || attributes.layoutType === 'masonry' || attributes.layoutType === 'carousel') && (
-                                <ResCounterControl
-                                    label={__('Columns', 'zoloblocks')}
-                                    controlName={FB_COLUMNS}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={6}
-                                    defaults={{
-                                        deskRange: 3,
-                                        tabRange: 2,
-                                        mobRange: 1,
-                                    }}
-                                />
+                                <ZoloResponsive left='60px'>
+                                    <CounterControl
+                                        label={__('Columns', 'zoloblocks')}
+                                        value={getResponsiveValue(attributes, 'fbColumns')}
+                                        onChange={(value) => setAttributes(createResponsiveValue(attributes, 'fbColumns', value))}
+                                        min={1}
+                                        max={6}
+                                    />
+                                </ZoloResponsive>
                             )}
 
                             <ZoloResponsive left='30px'>
