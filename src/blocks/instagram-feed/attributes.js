@@ -138,7 +138,6 @@ const attributes = {
         type: 'string',
         default: 'desktop',
     },
-    // Column settings
     igColumns: {
         type: 'object',
         default: {
@@ -146,6 +145,10 @@ const attributes = {
             Tablet: 2,
             Mobile: 1,
         },
+    },
+    zoloStyles: {
+        type: 'object',
+        default: {},
     },
 
 };
