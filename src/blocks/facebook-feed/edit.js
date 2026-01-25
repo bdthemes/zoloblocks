@@ -180,33 +180,42 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 const slidesPerView = attributes.resMode === 'Desktop' ? deskCols : 
                                      attributes.resMode === 'Tablet' ? tabCols : mobCols;
 
-                swiperInstance.current = new Swiper(container, {
-                    modules: [Navigation, Pagination, Autoplay],
-                    slidesPerView: slidesPerView,
-                    spaceBetween: 20,
-                    loop: attributes.carouselLoop,
-                    centeredSlides: false,
-                    watchSlidesProgress: true,
-                    watchOverflow: true,
-                    autoplay: attributes.carouselAutoplay ? {
-                        delay: attributes.carouselSpeed,
-                        disableOnInteraction: false,
-                    } : false,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                        type: 'bullets',
-                        bulletElement: 'button',
-                    },
-                    a11y: {
-                        prevSlideMessage: __('Previous slide', 'zoloblocks'),
-                        nextSlideMessage: __('Next slide', 'zoloblocks'),
-                        paginationBulletMessage: __('Go to slide {{index}}', 'zoloblocks'),
-                    },
+                requestAnimationFrame(() => {
+                    if (container && container.querySelector('.swiper-slide')) {
+                        if (swiperInstance.current) {
+                            swiperInstance.current.destroy();
+                            swiperInstance.current = null;
+                        }
+
+                        swiperInstance.current = new Swiper(container, {
+                            modules: [Navigation, Pagination, Autoplay],
+                            slidesPerView: slidesPerView,
+                            spaceBetween: 20,
+                            loop: attributes.carouselLoop,
+                            centeredSlides: false,
+                            watchSlidesProgress: true,
+                            watchOverflow: true,
+                            autoplay: attributes.carouselAutoplay ? {
+                                delay: attributes.carouselSpeed,
+                                disableOnInteraction: false,
+                            } : false,
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+                            pagination: {
+                                el: '.swiper-pagination',
+                                clickable: true,
+                                type: 'bullets',
+                                bulletElement: 'button',
+                            },
+                            a11y: {
+                                prevSlideMessage: __('Previous slide', 'zoloblocks'),
+                                nextSlideMessage: __('Next slide', 'zoloblocks'),
+                                paginationBulletMessage: __('Go to slide {{index}}', 'zoloblocks'),
+                            },
+                        });
+                    }
                 });
             }
         }
@@ -223,7 +232,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         attributes.carouselSpeed,
         attributes.carouselLoop,
         attributes.resMode,
-        attributes.fbColumns
+        attributes.fbColumns,
+        facebookPosts
     ]);
 
     // Update Swiper when posts change
@@ -232,52 +242,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
             swiperInstance.current.update();
         }
     }, [facebookPosts]);
-
-    // Demo posts for preview (memoized)
-    const demoPosts = useMemo(() => [
-        {
-            id: 1,
-            author: 'Sigmative',
-            avatar: 'https://i.pravatar.cc/50?img=1',
-            date: '2 weeks ago',
-            content: 'The Sigmative crew is all set for WordCamp Malaysia! 🇲🇾 Tomorrow, if you spot any of us at the venue, feel free to stop us, say hi, and let\'s chat about everything social media integration for WordPress sites! See you there!',
-            hashtags: ['#WordCampMY', '#WCMY25', '#WordCamp'],
-            image: 'https://picsum.photos/600/400?random=1',
-            reactions: { like: 0, love: 0, care: 8, wow: 0, haha: 0, sad: 0, angry: 0 },
-            totalReactions: 8,
-            comments: 5,
-            shares: 2,
-        },
-        {
-            id: 2,
-            author: 'Sigmative',
-            avatar: 'https://i.pravatar.cc/50?img=2',
-            date: '1 week ago',
-            content: 'Exciting news! We just launched our new feature that helps you connect with your audience better. Check it out!',
-            image: 'https://picsum.photos/600/400?random=2',
-            reactions: { like: 15, love: 7, care: 0, wow: 0, haha: 0, sad: 0, angry: 0 },
-            totalReactions: 22,
-            comments: 8,
-            shares: 4,
-        },
-        {
-            id: 3,
-            author: 'Sigmative',
-            avatar: 'https://i.pravatar.cc/50?img=3',
-            date: '3 days ago',
-            content: 'Thanks to all our amazing users for your continued support! We couldn\'t do this without you. 💙',
-            attachment: {
-                type: 'share',
-                title: 'Why Digital Portfolio And How To Make It',
-                description: 'When you are applying for jobs, one of the most important pieces of supplementary information you can provide...',
-                url: 'https://techbez.com/why-digital-portfolio',
-            },
-            reactions: { like: 25, love: 10, care: 0, wow: 0, haha: 0, sad: 0, angry: 0 },
-            totalReactions: 35,
-            comments: 12,
-            shares: 6,
-        },
-    ], []);
 
     // Gallery view - only show images
     const renderGalleryItem = (post) => {
@@ -470,12 +434,31 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 )}
 
                 {!isLoading && apiError && (
-                    <Notice status="error" isDismissible={false}>
-                        {__('Facebook API Error: ', 'zoloblocks')}{apiError}
-                    </Notice>
+                    <div style={{
+                        padding: '40px 20px',
+                        textAlign: 'center',
+                        background: '#f9fafb',
+                        border: '2px dashed #d1d5db',
+                        borderRadius: '8px',
+                        color: '#6b7280',
+                        marginTop: '20px'
+                    }}>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ margin: '0 auto 16px', opacity: 0.5 }}>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+                        </svg>
+                        <p style={{ margin: '0', fontSize: '16px', fontWeight: '600', color: '#374151' }}>
+                            {__('Facebook API Not Configured', 'zoloblocks')}
+                        </p>
+                        <p style={{ margin: '8px 0 0', fontSize: '14px' }}>
+                            {apiError === 'Facebook Page ID or Access Token not configured.' 
+                                ? <>{__('Please configure your Facebook Page ID and Access Token in the ', 'zoloblocks')} <a href={`${window.location.origin}/wp-admin/admin.php?page=zoloblocks#apiSettings`} target="_blank" rel="noopener noreferrer" style={{ color: '#1877f2', textDecoration: 'none' }}>{__('API Settings', 'zoloblocks')}</a>.</>
+                                : apiError
+                            }
+                        </p>
+                    </div>
                 )}
 
-                {!isLoading && !apiError && (
+                {!isLoading && !apiError && facebookPosts.length > 0 && (
                     <div
                         ref={carouselRef}
                         className={`zolo-fb-posts-container layout-${attributes.layoutType} zolo-facebook-feed-${finalUniqueId}`}
@@ -483,7 +466,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         {attributes.layoutType === 'carousel' ? (
                             <div className="swiper">
                                 <div className="swiper-wrapper">
-                                    {(facebookPosts.length > 0 ? facebookPosts : demoPosts).map(post => (
+                                    {facebookPosts.map(post => (
                                         <div key={post.id} className="swiper-slide">
                                             {renderPost(post)}
                                         </div>
@@ -495,17 +478,15 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                             </div>
                         ) : attributes.layoutType === 'gallery' ? (
                             <>
-                                {(facebookPosts.length > 0 ? facebookPosts : demoPosts)
-                                    .filter(post => post.image)
-                                    .map(renderGalleryItem)}
-                                {(facebookPosts.length > 0 ? facebookPosts : demoPosts).filter(post => post.image).length === 0 && (
+                                {facebookPosts.filter(post => post.image).map(renderGalleryItem)}
+                                {facebookPosts.filter(post => post.image).length === 0 && (
                                     <Notice status="info" isDismissible={false}>
                                         {__('No posts with images found for gallery view.', 'zoloblocks')}
                                     </Notice>
                                 )}
                             </>
                         ) : (
-                            (facebookPosts.length > 0 ? facebookPosts : demoPosts).map(renderPost)
+                            facebookPosts.map(renderPost)
                         )}
                     </div>
                 )}
@@ -514,6 +495,28 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     <Notice status="warning" isDismissible={false}>
                         {__('No posts found. The page might not have any published posts or the credentials may be incorrect.', 'zoloblocks')}
                     </Notice>
+                )}
+                
+                {!isLoading && !apiError && facebookPosts.length === 0 && !facebookPageId && (
+                     <div style={{
+                        padding: '40px 20px',
+                        textAlign: 'center',
+                        background: '#f9fafb',
+                        border: '2px dashed #d1d5db',
+                        borderRadius: '8px',
+                        color: '#6b7280',
+                        marginTop: '20px'
+                    }}>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ margin: '0 auto 16px', opacity: 0.5 }}>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+                        </svg>
+                        <p style={{ margin: '0', fontSize: '16px', fontWeight: '600', color: '#374151' }}>
+                            {__('Facebook API Not Configured', 'zoloblocks')}
+                        </p>
+                        <p style={{ margin: '8px 0 0', fontSize: '14px' }}>
+                            <>{__('Please configure your Facebook Page ID and Access Token in the ', 'zoloblocks')} <a href={`${window.location.origin}/wp-admin/admin.php?page=zoloblocks#apiSettings`} target="_blank" rel="noopener noreferrer" style={{ color: '#1877f2', textDecoration: 'none' }}>{__('API Settings', 'zoloblocks')}</a>.</>
+                        </p>
+                    </div>
                 )}
             </div>
         </>

@@ -106,7 +106,7 @@ class FacebookReviews extends PostBlock
             data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed'] ?? 3000); ?>"
             data-carousel-loop="<?php echo ($attributes['carouselLoop'] ?? true) ? 'true' : 'false'; ?>">
 
-            <?php if ($attributes['showHeader'] ?? true): ?>
+            <?php if (($attributes['showHeader'] ?? true) && !empty($page_id) && !empty($access_token)): ?>
                 <div class="zolo-fb-reviews-header">
                     <div class="zolo-fb-reviews-header-left">
                         <svg class="zolo-fb-logo" width="32" height="32" viewBox="0 0 24 24" fill="#1877F2">

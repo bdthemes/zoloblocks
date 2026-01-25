@@ -53,6 +53,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     const [facebookReviews, setFacebookReviews] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [apiError, setApiError] = useState(null);
+    const [facebookPageId, setFacebookPageId] = useState('');
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -85,6 +86,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 if (!pageId || !accessToken) {
                     throw new Error(__('Facebook Page ID or Access Token not configured.', 'zoloblocks'));
                 }
+
+                setFacebookPageId(pageId);
 
                 // Fetch directly from Facebook Graph API
                 const reviewsUrl = `https://graph.facebook.com/v18.0/${pageId}/ratings?fields=id,created_time,recommendation_type,review_text,reviewer{id,name,picture}&access_token=${accessToken}&limit=${reviewsPerPage}`;
@@ -169,46 +172,54 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         if (layoutType === 'carousel' && carouselRef.current && !swiperInstance.current) {
             const container = carouselRef.current.querySelector('.swiper');
             if (container) {
-                // Safely access nested attributes with fallbacks
                 const deskCols = Math.min(fbReviewsColumns?.Desktop || 3, 3);
                 const tabCols = Math.min(fbReviewsColumns?.Tablet || 2, 2);
                 const mobCols = Math.min(fbReviewsColumns?.Mobile || 1, 1);
 
                 const slidesPerView = resMode === 'Desktop' ? deskCols : resMode === 'Tablet' ? tabCols : mobCols;
 
-                swiperInstance.current = new Swiper(container, {
-                    modules: [Navigation, Pagination, Autoplay, A11y, Keyboard],
-                    slidesPerView: slidesPerView,
-                    spaceBetween: 20,
-                    loop: carouselLoop,
-                    centeredSlides: false,
-                    watchSlidesProgress: true,
-                    watchOverflow: true,
-                    autoplay: carouselAutoplay
-                        ? {
-                              delay: carouselSpeed,
-                              disableOnInteraction: false,
-                          }
-                        : false,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                        type: 'bullets',
-                        bulletElement: 'button',
-                    },
-                    a11y: {
-                        prevSlideMessage: __('Previous slide', 'zoloblocks'),
-                        nextSlideMessage: __('Next slide', 'zoloblocks'),
-                        paginationBulletMessage: __('Go to slide {{index}}', 'zoloblocks'),
-                    },
-                    keyboard: {
-                        enabled: true,
-                        onlyInViewport: true,
-                    },
+                requestAnimationFrame(() => {
+                    if (container && container.querySelector('.swiper-slide')) {
+                        if (swiperInstance.current) {
+                            swiperInstance.current.destroy();
+                            swiperInstance.current = null;
+                        }
+
+                        swiperInstance.current = new Swiper(container, {
+                            modules: [Navigation, Pagination, Autoplay, A11y, Keyboard],
+                            slidesPerView: slidesPerView,
+                            spaceBetween: 20,
+                            loop: carouselLoop,
+                            centeredSlides: false,
+                            watchSlidesProgress: true,
+                            watchOverflow: true,
+                            autoplay: carouselAutoplay
+                                ? {
+                                      delay: carouselSpeed,
+                                      disableOnInteraction: false,
+                                  }
+                                : false,
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+                            pagination: {
+                                el: '.swiper-pagination',
+                                clickable: true,
+                                type: 'bullets',
+                                bulletElement: 'button',
+                            },
+                            a11y: {
+                                prevSlideMessage: __('Previous slide', 'zoloblocks'),
+                                nextSlideMessage: __('Next slide', 'zoloblocks'),
+                                paginationBulletMessage: __('Go to slide {{index}}', 'zoloblocks'),
+                            },
+                            keyboard: {
+                                enabled: true,
+                                onlyInViewport: true,
+                            },
+                        });
+                    }
                 });
             }
         }
@@ -219,7 +230,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 swiperInstance.current = null;
             }
         };
-    }, [layoutType, carouselAutoplay, carouselSpeed, carouselLoop, resMode, fbReviewsColumns]);
+    }, [layoutType, carouselAutoplay, carouselSpeed, carouselLoop, resMode, fbReviewsColumns, facebookReviews]);
 
     // Update Swiper when reviews change
     useEffect(() => {
@@ -327,13 +338,31 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 )}
 
                 {!isLoading && apiError && (
-                    <Notice status="error" isDismissible={false}>
-                        {__('Facebook API Error: ', 'zoloblocks')}
-                        {apiError}
-                    </Notice>
+                    <div style={{
+                        padding: '40px 20px',
+                        textAlign: 'center',
+                        background: '#f9fafb',
+                        border: '2px dashed #d1d5db',
+                        borderRadius: '8px',
+                        color: '#6b7280',
+                        marginTop: '20px'
+                    }}>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ margin: '0 auto 16px', opacity: 0.5 }}>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+                        </svg>
+                        <p style={{ margin: '0', fontSize: '16px', fontWeight: '600', color: '#374151' }}>
+                            {__('Facebook API Not Configured', 'zoloblocks')}
+                        </p>
+                        <p style={{ margin: '8px 0 0', fontSize: '14px' }}>
+                            {apiError === 'Facebook Page ID or Access Token not configured.' 
+                                ? <>{__('Please configure your Facebook Page ID and Access Token in the ', 'zoloblocks')} <a href={`${window.location.origin}/wp-admin/admin.php?page=zoloblocks#apiSettings`} target="_blank" rel="noopener noreferrer" style={{ color: '#1877f2', textDecoration: 'none' }}>{__('API Settings', 'zoloblocks')}</a>.</>
+                                : apiError
+                            }
+                        </p>
+                    </div>
                 )}
 
-                {!isLoading && !apiError && (
+                {!isLoading && !apiError && facebookPageId && (
                     <>
                         {showHeader && (
                             <div className="zolo-fb-reviews-header">

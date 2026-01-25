@@ -91,9 +91,26 @@ class FacebookFeed extends PostBlock
             $posts = [];
         }
 
-        // Return early if no posts
+        // Show empty state if no posts
         if (empty($posts)) {
-            return '';
+            // If API is not configured, don't show anything on frontend
+            if (empty($facebook_page_id) || empty($access_token)) {
+                return '';
+            }
+
+            \ob_start();
+?>
+            <div class="parent-<?php echo $unique_id; ?> zolo-block <?php echo $unique_id; ?> zolo-facebook-feed">
+                <div style="padding: 40px 20px; text-align: center; background: #f9fafb; border: 2px dashed #d1d5db; border-radius: 8px; color: #6b7280;">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="margin: 0 auto 16px; opacity: 0.5;">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+                    </svg>
+                    <p style="margin: 0; font-size: 16px; font-weight: 600; color: #374151;">No Posts Found</p>
+                    <p style="margin: 8px 0 0; font-size: 14px;">No posts are available for this Facebook page yet.</p>
+                </div>
+            </div>
+        <?php
+            return \ob_get_clean();
         }
 
         // Start output buffering
@@ -102,7 +119,7 @@ class FacebookFeed extends PostBlock
         // Add responsive CSS
         echo $this->get_responsive_css($attributes, $unique_id);
 
-?>
+        ?>
         <div class="parent-<?php echo $unique_id; ?> zolo-block <?php echo $unique_id; ?> zolo-facebook-feed zolo-facebook-feed-<?php echo $layout_type; ?>"
             data-unique-id="<?php echo $unique_id; ?>"
             data-layout="<?php echo $layout_type; ?>"
