@@ -546,8 +546,8 @@ class FacebookFeed extends PostBlock
 
             $formatted_post = [
                 'id' => $post['id'] ?? $index,
-                'author' => $this->get_page_name($page_id, $access_token),
-                'avatar' => $this->get_page_picture($page_id, $access_token),
+                'author' => $this->get_page_name($page_id, $access_token, $cache_duration),
+                'avatar' => $this->get_page_picture($page_id, $access_token, $cache_duration),
                 'date' => $this->format_date($post['created_time'] ?? ''),
                 'content' => $post['message'] ?? '',
                 'hashtags' => $this->extract_hashtags($post['message'] ?? ''),
@@ -580,11 +580,12 @@ class FacebookFeed extends PostBlock
      *
      * @param string $page_id Page ID
      * @param string $access_token Access token
+     * @param int    $cache_duration Cache duration in hours
      * @return string
      */
-    private function get_page_name($page_id, $access_token)
+    private function get_page_name($page_id, $access_token, $cache_duration = 24)
     {
-        $cache_key = 'zolo_fb_page_name_' . \md5($page_id);
+        $cache_key = 'zolo_fb_page_name_' . \md5($page_id . $cache_duration);
         $cached_name = \get_transient($cache_key);
 
         if ($cached_name !== false) {
@@ -603,7 +604,7 @@ class FacebookFeed extends PostBlock
             $body = \wp_remote_retrieve_body($response);
             $data = \json_decode($body, true);
             $name = $data['name'] ?? 'Facebook Page';
-            \set_transient($cache_key, $name, 86400); // Cache for 24 hours
+            \set_transient($cache_key, $name, $cache_duration * 3600);
             return $name;
         }
 
@@ -615,11 +616,12 @@ class FacebookFeed extends PostBlock
      *
      * @param string $page_id Page ID
      * @param string $access_token Access token
+     * @param int    $cache_duration Cache duration in hours
      * @return string
      */
-    private function get_page_picture($page_id, $access_token)
+    private function get_page_picture($page_id, $access_token, $cache_duration = 24)
     {
-        $cache_key = 'zolo_fb_page_picture_' . \md5($page_id);
+        $cache_key = 'zolo_fb_page_picture_' . \md5($page_id . $cache_duration);
         $cached_picture = \get_transient($cache_key);
 
         if ($cached_picture !== false) {
@@ -638,7 +640,7 @@ class FacebookFeed extends PostBlock
             $body = \wp_remote_retrieve_body($response);
             $data = \json_decode($body, true);
             $picture = $data['data']['url'] ?? 'https://via.placeholder.com/50';
-            \set_transient($cache_key, $picture, 86400); // Cache for 24 hours
+            \set_transient($cache_key, $picture, $cache_duration * 3600);
             return $picture;
         }
 
