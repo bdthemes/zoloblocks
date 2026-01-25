@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { useState, useEffect } from '@wordpress/element';
 import objAttributes from './attributes';
-import { IG_COLUMNS, IG_GAP } from './constants';
+
 
 const LAYOUT_OPTIONS = [
     { label: __('Grid', 'zoloblocks'), value: 'grid' },
@@ -24,13 +24,12 @@ const {
     ZoloRangeControl,
     HeaderTabs,
     ZoloPanelBody,
-    ResGapControl,
-    ResCounterControl,
     AdvancedOptions,
     ZoloResponsive,
     getResponsiveValue,
     createResponsiveValue,
     ZoloDualRangeUnit,
+    CounterControl,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -148,18 +147,15 @@ function Inspector(props) {
                                 />
                             </div>
                             {(attributes.layoutType === 'grid' || attributes.layoutType === 'masonry') && (
-                                <ResCounterControl
-                                    label={__('Columns', 'zoloblocks')}
-                                    controlName={IG_COLUMNS}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={6}
-                                    defaults={{
-                                        deskRange: 3,
-                                        tabRange: 2,
-                                        mobRange: 1,
-                                    }}
-                                />
+                                <ZoloResponsive left='60px'>
+                                    <CounterControl
+                                        label={__('Columns', 'zoloblocks')}
+                                        value={getResponsiveValue(attributes, 'igColumns')}
+                                        onChange={(val) => setAttributes(createResponsiveValue(attributes, 'igColumns', val))}
+                                        min={1}
+                                        max={6}
+                                    />
+                                </ZoloResponsive>
                             )}
                             <div className="zolo-flex-col-control">
                                 <ZoloSelectControl
@@ -172,10 +168,10 @@ function Inspector(props) {
                             <div className="zolo-flex-col-control">
                                 <ZoloRangeControl
                                     label={__('Cache Duration (hours)', 'zoloblocks')}
-                                    value={attributes.cacheExpiration / 3600}
-                                    onChange={(value) => setAttributes({ cacheExpiration: value * 3600 })}
+                                    value={attributes.cacheExpiration}
+                                    onChange={(value) => setAttributes({ cacheExpiration: value })}
                                     min={1}
-                                    max={72}
+                                    max={168}
                                     step={1}
                                 />
                             </div>
@@ -319,18 +315,15 @@ function Inspector(props) {
 
                         {attributes.layoutType === 'carousel' && (
                             <ZoloPanelBody title={__('Carousel Settings', 'zoloblocks')} panelProps={props}>
-                                <ResCounterControl
-                                    label={__('Slides Per View', 'zoloblocks')}
-                                    controlName={IG_COLUMNS}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={6}
-                                    defaults={{
-                                        deskRange: 3,
-                                        tabRange: 2,
-                                        mobRange: 1,
-                                    }}
-                                />
+                                <ZoloResponsive left='60px'>
+                                    <CounterControl
+                                        label={__('Slides Per View', 'zoloblocks')}
+                                        value={getResponsiveValue(attributes, 'igColumns')}
+                                        onChange={(val) => setAttributes(createResponsiveValue(attributes, 'igColumns', val))}
+                                        min={1}
+                                        max={6}
+                                    />
+                                </ZoloResponsive>
                                 <div className="zolo-flex-col-control">
                                     <ZoloToggleControl
                                         label={__('Autoplay', 'zoloblocks')}
@@ -368,9 +361,9 @@ function Inspector(props) {
                                 <ZoloDualRangeUnit
                                     label={__('Gap', 'zoloblocks')}
                                     dualLabel={[__('Column Gap', 'zoloblocks'), __('Row Gap', 'zoloblocks')]}
-                                    value={getResponsiveValue(attributes, 'flexGap')}
+                                    value={getResponsiveValue(attributes, 'igGap')}
                                     onChange={(value) => {
-                                        setAttributes(createResponsiveValue(attributes, 'flexGap', value));
+                                        setAttributes(createResponsiveValue(attributes, 'igGap', value));
                                     }}
                                     units={{
                                         px: { max: 200, min: 0, step: 1 },

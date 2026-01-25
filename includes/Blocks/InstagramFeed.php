@@ -40,16 +40,22 @@ class InstagramFeed extends PostBlock
                 'carouselAutoplay' => true,
                 'carouselSpeed' => 3000,
                 'carouselLoop' => true,
-                'cacheExpiration' => 43200, // 12 hours
+                'cacheExpiration' => 12,
                 'resMode' => 'desktop',
-                'zolo_igColumnsRange' => 3,
-                'zolo_TABigColumnsRange' => 2,
-                'zolo_MOBigColumnsRange' => 1,
-                'zolo_igGapGap' => 20,
-                'zolo_igGapIsLinked' => true,
-                'zolo_igGapUnit' => 'px',
-                'zolo_TABigGapUnit' => 'px',
-                'zolo_MOBigGapUnit' => 'px',
+                'igColumns' => [
+                    'Desktop' => 3,
+                    'Tablet' => 2,
+                    'Mobile' => 1,
+                ],
+                'igGap' => [
+                    'Desktop' => [
+                        'linked' => true,
+                        'first' => '20px',
+                        'second' => '20px',
+                    ],
+                    'Tablet' => [],
+                    'Mobile' => [],
+                ],
             ]
         );
     }
@@ -101,10 +107,13 @@ class InstagramFeed extends PostBlock
         // Add responsive CSS
         echo $this->get_responsive_css($attributes, $unique_id);
 
-        $desktop_columns = $attributes['zolo_igColumnsRange'] ?? 3;
-        $tablet_columns = $attributes['zolo_TABigColumnsRange'] ?? 2;
-        $mobile_columns = $attributes['zolo_MOBigColumnsRange'] ?? 1;
-        $gap = $attributes['zolo_igGapGap'] ?? 20;
+        $desktop_columns = $attributes['igColumns']['Desktop'] ?? 3;
+        $tablet_columns = $attributes['igColumns']['Tablet'] ?? 2;
+        $mobile_columns = $attributes['igColumns']['Mobile'] ?? 1;
+
+        // Gap for data attribute (using desktop gap as primary)
+        $gap_object = $attributes['igGap']['Desktop'] ?? [];
+        $gap = $gap_object['first'] ?? '20px';
 
 ?>
         <div class="parent-<?php echo $unique_id; ?> zolo-block <?php echo $unique_id; ?> zolo-instagram-feed zolo-instagram-feed-<?php echo $layout_type; ?>"
@@ -120,7 +129,7 @@ class InstagramFeed extends PostBlock
             data-tablet-columns="<?php echo $tablet_columns; ?>"
             data-mobile-columns="<?php echo $mobile_columns; ?>"
             data-gap="<?php echo $gap; ?>">
-            
+
             <div class="zolo-ig-container">
                 <?php if ($attributes['showHeader']) : ?>
                     <div class="zolo-ig-header">
@@ -136,7 +145,7 @@ class InstagramFeed extends PostBlock
                                         </a>
                                     </div>
                                 <?php endif; ?>
-                                
+
                                 <div class="zolo-ig-stats">
                                     <span class="zolo-ig-posts">
                                         <strong><?php echo \esc_html($data['media_count']); ?></strong> Posts
@@ -147,18 +156,18 @@ class InstagramFeed extends PostBlock
                                         </span>
                                     <?php endif; ?>
                                 </div>
-                                
+
                                 <?php if ($attributes['showBio'] && !empty($data['bio'])) : ?>
                                     <div class="zolo-ig-bio"><?php echo \esc_html($data['bio']); ?></div>
                                 <?php endif; ?>
                             </div>
                         </div>
-                        
+
                         <?php if ($attributes['showFollowButton']) : ?>
-                            <a href="https://instagram.com/<?php echo \esc_attr($data['username']); ?>" 
-                               class="zolo-ig-follow-btn"
-                               target="_blank"
-                               rel="noopener noreferrer">
+                            <a href="https://instagram.com/<?php echo \esc_attr($data['username']); ?>"
+                                class="zolo-ig-follow-btn"
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 <?php echo \esc_html($attributes['followButtonText']); ?>
                             </a>
                         <?php endif; ?>
@@ -195,7 +204,7 @@ class InstagramFeed extends PostBlock
                 <?php endif; ?>
             </div>
         </div>
-<?php
+    <?php
         return \ob_get_clean();
     }
 
@@ -213,22 +222,22 @@ class InstagramFeed extends PostBlock
         $truncated_caption = strlen($caption) > $attributes['captionLength']
             ? substr($caption, 0, $attributes['captionLength']) . '...'
             : $caption;
-        
+
         $enable_lightbox = $attributes['enableLightbox'] ?? false;
         $link_href = $enable_lightbox ? $image_url : $post['permalink'];
         $link_target = $enable_lightbox ? '' : ($attributes['openInNewTab'] ? '_blank' : '_self');
-        
+
         // Prepare lightbox data attributes
         $lightbox_attrs = '';
         if ($enable_lightbox) {
             $lightbox_attrs .= ' data-fslightbox="instagram-gallery-' . esc_attr($attributes['uniqueId']) . '"';
-            
+
             // Add caption if enabled
             if ($attributes['showCaption'] && !empty($caption)) {
                 $caption_html = '<div class="zolo-lightbox-content"><h3 class="zolo-lightbox-caption">' . esc_html($caption) . '</h3></div>';
                 $lightbox_attrs .= ' data-caption="' . esc_attr($caption_html) . '"';
             }
-            
+
             // Add thumbnail for videos or use a smaller image size if available
             if ($post['media_type'] === 'VIDEO' && !empty($post['thumbnail_url'])) {
                 $lightbox_attrs .= ' data-thumb="' . esc_url($post['thumbnail_url']) . '"';
@@ -238,44 +247,44 @@ class InstagramFeed extends PostBlock
         }
 
         \ob_start();
-?>
+    ?>
         <div class="zolo-ig-item <?php echo \esc_attr($attributes['imageRatio']); ?>">
             <div class="zolo-ig-item-inner">
-                <a href="<?php echo \esc_url($link_href); ?>" 
-                   <?php if (!$enable_lightbox) : ?>target="<?php echo $link_target; ?>"<?php endif; ?>
-                   rel="noopener noreferrer"
-                   class="zolo-ig-link"<?php echo $lightbox_attrs; ?>>
+                <a href="<?php echo \esc_url($link_href); ?>"
+                    <?php if (!$enable_lightbox) : ?>target="<?php echo $link_target; ?>" <?php endif; ?>
+                    rel="noopener noreferrer"
+                    class="zolo-ig-link" <?php echo $lightbox_attrs; ?>>
                     <div class="zolo-ig-image-wrapper">
                         <div class="zolo-ig-instagram-icon">
                             <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                             </svg>
                         </div>
                         <img src="<?php echo \esc_url($image_url); ?>" alt="<?php echo \esc_attr($caption); ?>" loading="lazy">
-                        
+
                         <?php if ($post['media_type'] === 'VIDEO') : ?>
                             <div class="zolo-ig-video-icon">
                                 <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
-                                    <path d="M8 5v14l11-7z"/>
+                                    <path d="M8 5v14l11-7z" />
                                 </svg>
                             </div>
                         <?php endif; ?>
-                        
+
                         <div class="zolo-ig-overlay">
                             <div class="zolo-ig-overlay-content">
                                 <?php if ($attributes['showLikes'] && isset($post['like_count'])) : ?>
                                     <span class="zolo-ig-likes">
                                         <svg viewBox="0 0 24 24" fill="white" width="20" height="20">
-                                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
                                         <?php echo \esc_html($post['like_count']); ?>
                                     </span>
                                 <?php endif; ?>
-                                
+
                                 <?php if ($attributes['showComments'] && isset($post['comments_count'])) : ?>
                                     <span class="zolo-ig-comments">
                                         <svg viewBox="0 0 24 24" fill="white" width="20" height="20">
-                                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
                                         </svg>
                                         <?php echo \esc_html($post['comments_count']); ?>
                                     </span>
@@ -291,7 +300,7 @@ class InstagramFeed extends PostBlock
                 </a>
             </div>
         </div>
-<?php
+    <?php
         return \ob_get_clean();
     }
 
@@ -304,7 +313,7 @@ class InstagramFeed extends PostBlock
      * @param bool   $bypass_cache Whether to bypass cache
      * @return array|null
      */
-    private function get_instagram_data($access_token, $limit = 9, $cache_expiration = 43200, $bypass_cache = false)
+    private function get_instagram_data($access_token, $limit = 9, $cache_expiration = 12, $bypass_cache = false)
     {
         $cache_key = 'zolo_instagram_data_' . \md5($access_token . $limit);
 
@@ -337,7 +346,7 @@ class InstagramFeed extends PostBlock
 
         // Fetch profile picture from first media item (Instagram Basic Display API limitation)
         $profile_picture = 'https://ui-avatars.com/api/?name=' . urlencode($user_data['username'] ?? 'Instagram') . '&background=e9d5ff&color=7c3aed&size=150';
-        
+
         // Try to get user ID-based profile picture URL
         if (!empty($user_data['id'])) {
             $user_id = $user_data['id'];
@@ -346,13 +355,13 @@ class InstagramFeed extends PostBlock
                 \urlencode($user_id),
                 \urlencode($access_token)
             );
-            
+
             $profile_response = \wp_remote_get($profile_url, ['timeout' => 10]);
-            
+
             if (!\is_wp_error($profile_response)) {
                 $profile_body = \wp_remote_retrieve_body($profile_response);
                 $profile_data = \json_decode($profile_body, true);
-                
+
                 if (!empty($profile_data['profile_picture_url'])) {
                     $profile_picture = $profile_data['profile_picture_url'];
                 }
@@ -391,7 +400,7 @@ class InstagramFeed extends PostBlock
         ];
 
         // Cache the results
-        \set_transient($cache_key, $data, $cache_expiration);
+        \set_transient($cache_key, $data, $cache_expiration * 3600);
 
         return $data;
     }
@@ -406,28 +415,58 @@ class InstagramFeed extends PostBlock
     private function get_responsive_css($attributes, $unique_id)
     {
         $layout_type = $attributes['layoutType'] ?? 'grid';
-        $desktop_columns = $attributes['zolo_igColumnsRange'] ?? 3;
-        $tablet_columns = $attributes['zolo_TABigColumnsRange'] ?? 2;
-        $mobile_columns = $attributes['zolo_MOBigColumnsRange'] ?? 1;
-        $gap = $attributes['zolo_igGapGap'] ?? 20;
+
+        $desktop_columns = $attributes['igColumns']['Desktop'] ?? 3;
+        $tablet_columns = $attributes['igColumns']['Tablet'] ?? 2;
+        $mobile_columns = $attributes['igColumns']['Mobile'] ?? 1;
+
         $lightbox_caption_size = $attributes['lightboxCaptionSize'] ?? 16;
 
+        // Helper to generate gap CSS
+        $get_gap_css = function ($gap_data) {
+            if (empty($gap_data)) return '';
+
+            $linked = $gap_data['linked'] ?? true;
+            $first = $gap_data['first'] ?? '0px';
+            $second = $gap_data['second'] ?? '0px';
+
+            if ($linked) {
+                return "gap: {$first};";
+            } else {
+                return "column-gap: {$first}; row-gap: {$second};";
+            }
+        };
+
+        // Helper to get specific gap value (e.g. for masonry column-gap)
+        $get_col_gap = function ($gap_data) {
+            return $gap_data['first'] ?? '0px';
+        };
+
+        $get_row_gap = function ($gap_data) {
+            $linked = $gap_data['linked'] ?? true;
+            return $linked ? ($gap_data['first'] ?? '0px') : ($gap_data['second'] ?? '0px');
+        };
+
+        $desk_gap = $attributes['igGap']['Desktop'] ?? [];
+        $tab_gap = $attributes['igGap']['Tablet'] ?? [];
+        $mob_gap = $attributes['igGap']['Mobile'] ?? [];
+
         \ob_start();
-?>
+    ?>
         <style>
-            .<?php echo $unique_id; ?> .zolo-ig-grid {
+            .<?php echo $unique_id; ?>.zolo-ig-grid {
                 display: grid;
                 grid-template-columns: repeat(<?php echo $desktop_columns; ?>, 1fr);
-                gap: <?php echo $gap; ?>px;
+                <?php echo $get_gap_css($desk_gap); ?>
             }
 
-            .<?php echo $unique_id; ?> .zolo-ig-masonry {
+            .<?php echo $unique_id; ?>.zolo-ig-masonry {
                 column-count: <?php echo $desktop_columns; ?>;
-                column-gap: <?php echo $gap; ?>px;
+                column-gap: <?php echo $get_col_gap($desk_gap); ?>;
             }
 
-            .<?php echo $unique_id; ?> .zolo-ig-masonry .zolo-ig-item {
-                margin-bottom: <?php echo $gap; ?>px;
+            .<?php echo $unique_id; ?>.zolo-ig-masonry .zolo-ig-item {
+                margin-bottom: <?php echo $get_row_gap($desk_gap); ?>;
             }
 
             .zolo-lightbox-caption {
@@ -435,23 +474,41 @@ class InstagramFeed extends PostBlock
             }
 
             @media (max-width: 1024px) {
-                .<?php echo $unique_id; ?> .zolo-ig-grid {
+                .<?php echo $unique_id; ?>.zolo-ig-grid {
                     grid-template-columns: repeat(<?php echo $tablet_columns; ?>, 1fr);
+                    <?php echo $get_gap_css($tab_gap); ?>
                 }
 
-                .<?php echo $unique_id; ?> .zolo-ig-masonry {
+                .<?php echo $unique_id; ?>.zolo-ig-masonry {
                     column-count: <?php echo $tablet_columns; ?>;
+                    <?php if (!empty($tab_gap)) : ?>column-gap: <?php echo $get_col_gap($tab_gap); ?>;
+                    <?php endif; ?>
                 }
+
+                <?php if (!empty($tab_gap)) : ?>.<?php echo $unique_id; ?>.zolo-ig-masonry .zolo-ig-item {
+                    margin-bottom: <?php echo $get_row_gap($tab_gap); ?>;
+                }
+
+                <?php endif; ?>
             }
 
             @media (max-width: 768px) {
-                .<?php echo $unique_id; ?> .zolo-ig-grid {
+                .<?php echo $unique_id; ?>.zolo-ig-grid {
                     grid-template-columns: repeat(<?php echo $mobile_columns; ?>, 1fr);
+                    <?php echo $get_gap_css($mob_gap); ?>
                 }
 
-                .<?php echo $unique_id; ?> .zolo-ig-masonry {
+                .<?php echo $unique_id; ?>.zolo-ig-masonry {
                     column-count: <?php echo $mobile_columns; ?>;
+                    <?php if (!empty($mob_gap)) : ?>column-gap: <?php echo $get_col_gap($mob_gap); ?>;
+                    <?php endif; ?>
                 }
+
+                <?php if (!empty($mob_gap)) : ?>.<?php echo $unique_id; ?>.zolo-ig-masonry .zolo-ig-item {
+                    margin-bottom: <?php echo $get_row_gap($mob_gap); ?>;
+                }
+
+                <?php endif; ?>
             }
         </style>
 <?php

@@ -1,6 +1,4 @@
-import { generateResCounterAttributies } from '../../helpers/res-counter-helper';
-import { generateGapAttributes } from '../../helpers/gap-helper';
-import { IG_COLUMNS, IG_GAP } from './constants';
+
 
 export const layoutTypes = {
     GRID: 'grid',
@@ -124,14 +122,16 @@ const attributes = {
     },
     cacheExpiration: {
         type: 'number',
-        default: 43200, // 12 hours
+        default: 12,
     },
-    flexGap: {
+    igGap: {
         type: 'object',
         default: {
-            Desktop: { first: '20px', second: '20px', linked: true },
-            Tablet: { first: '20px', second: '20px', linked: true },
-            Mobile: { first: '20px', second: '20px', linked: true },
+            Desktop: {
+                linked: true,
+                first: '20px',
+                second: '20px',
+            },
         },
     },
     resMode: {
@@ -139,15 +139,15 @@ const attributes = {
         default: 'desktop',
     },
     // Column settings
-    ...generateResCounterAttributies(IG_COLUMNS, {
-        defaultRange: 3,
-        tabRange: 2,
-        mobRange: 1,
-    }),
-    // Gap settings
-    ...generateGapAttributes(IG_GAP, {
-        defaultRange: 20,
-    }),
+    igColumns: {
+        type: 'object',
+        default: {
+            Desktop: 3,
+            Tablet: 2,
+            Mobile: 1,
+        },
+    },
+
 };
 
 export default attributes;

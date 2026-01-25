@@ -1,4 +1,3 @@
-import { generateResCounterStyle } from '../../helpers/res-counter-helper';
 import { useMemo } from '@wordpress/element';
 
 const { GlobalStyleHanlder, generateCSS } = window.zoloModule;
@@ -6,22 +5,9 @@ const { GlobalStyleHanlder, generateCSS } = window.zoloModule;
 const Style = (props) => {
     const { attributes, setAttributes } = props;
     const { uniqueId } = attributes;
-
-    // Columns for grid and masonry layouts
-    const {
-        desktopRangeStyle: columnCountDesk,
-        tabRangeStyle: columnCountTab,
-        mobRangeStyle: columnCountMob,
-    } = generateResCounterStyle({
-        controlName: 'igColumns',
-        attributes,
-        noProperty: true,
-        defaults: {
-            deskRange: 3,
-            tabRange: 2,
-            mobRange: 1,
-        },
-    });
+    const columnCountDesk = attributes.igColumns?.Desktop || 3;
+    const columnCountTab = attributes.igColumns?.Tablet || 2;
+    const columnCountMob = attributes.igColumns?.Mobile || 1;
 
     const desktopCSS = useMemo(() => {
         const style = `
@@ -40,7 +26,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         if (!value?.linked) return `column-gap: ${value?.first}; row-gap: ${value?.second};`;
                         return `gap: ${value?.first};`;
@@ -53,7 +39,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         const colGap = value?.linked ? value?.first : value?.first;
                         return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
@@ -66,7 +52,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         const rowGap = value?.linked ? value?.first : value?.second;
                         return `margin-bottom: ${rowGap};`;
@@ -79,7 +65,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         if (!value?.linked) return `column-gap: ${value?.first}; row-gap: ${value?.second};`;
                         return `gap: ${value?.first};`;
@@ -105,7 +91,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         if (!value?.linked) return `column-gap: ${value?.first}; row-gap: ${value?.second};`;
                         return `gap: ${value?.first};`;
@@ -118,7 +104,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         const colGap = value?.linked ? value?.first : value?.first;
                         return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
@@ -131,7 +117,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         const rowGap = value?.linked ? value?.first : value?.second;
                         return `margin-bottom: ${rowGap};`;
@@ -157,7 +143,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         if (!value?.linked) return `column-gap: ${value?.first}; row-gap: ${value?.second};`;
                         return `gap: ${value?.first};`;
@@ -170,7 +156,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         const colGap = value?.linked ? value?.first : value?.first;
                         return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
@@ -183,7 +169,7 @@ const Style = (props) => {
             ${
                 generateCSS({
                     attributes,
-                    key: 'flexGap',
+                    key: 'igGap',
                     getValue: (value) => {
                         const rowGap = value?.linked ? value?.first : value?.second;
                         return `margin-bottom: ${rowGap};`;

@@ -5,19 +5,20 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/grid';
 
-console.log('Instagram Feed frontend.js loaded');
+// Constants
+const DEFAULT_GAP = 20;
+const DEFAULT_SPEED = 3000;
+const DEFAULT_DESKTOP_COLUMNS = 3;
+const DEFAULT_TABLET_COLUMNS = 2;
+const DEFAULT_MOBILE_COLUMNS = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Instagram Feed DOMContentLoaded triggered');
     const instagramFeedBlocks = document.querySelectorAll('.zolo-instagram-feed');
-    console.log('Instagram Feed blocks found:', instagramFeedBlocks.length);
 
     instagramFeedBlocks.forEach((block) => {
         const layoutType = block.dataset.layout;
         const enableLightbox = block.dataset.lightbox === 'true';
         const uniqueId = block.dataset.uniqueId;
-
-        console.log('Processing block:', {layoutType, enableLightbox, uniqueId});
 
         // Initialize lightbox if enabled
         if (enableLightbox && uniqueId) {
@@ -26,23 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const galleryKey = `instagram-gallery-${uniqueId}`;
             
-            console.log('IG Lightbox Debug:', {
-                galleryKey,
-                entranceAnimation,
-                showLightboxThumb,
-                fsLightboxInstances: typeof fsLightboxInstances,
-                instanceExists: typeof fsLightboxInstances !== 'undefined' && fsLightboxInstances[galleryKey]
-            });
-            
             // Set lightbox properties directly like image-gallery does
             if (typeof fsLightboxInstances !== 'undefined' && fsLightboxInstances[galleryKey]) {
                 fsLightboxInstances[galleryKey].props.showThumbsOnMount = showLightboxThumb;
                 fsLightboxInstances[galleryKey].props.showThumbsWithCaptions = showLightboxThumb;
                 fsLightboxInstances[galleryKey].props.initialAnimation = entranceAnimation;
                 fsLightboxInstances[galleryKey].props.slideChangeAnimation = entranceAnimation;
-                console.log('✓ Animation set:', entranceAnimation);
-            } else {
-                console.error('✗ fsLightbox instance not found:', galleryKey);
             }
         }
 
@@ -59,12 +49,12 @@ function initCarousel(block) {
     if (!container) return;
 
     const autoplay = block.dataset.carouselAutoplay === 'true';
-    const speed = parseInt(block.dataset.carouselSpeed) || 3000;
+    const speed = parseInt(block.dataset.carouselSpeed) || DEFAULT_SPEED;
     const loop = block.dataset.carouselLoop === 'true';
-    const desktopColumns = parseInt(block.dataset.desktopColumns) || 3;
-    const tabletColumns = parseInt(block.dataset.tabletColumns) || 2;
-    const mobileColumns = parseInt(block.dataset.mobileColumns) || 1;
-    const gap = parseInt(block.dataset.gap) || 20;
+    const desktopColumns = parseInt(block.dataset.desktopColumns) || DEFAULT_DESKTOP_COLUMNS;
+    const tabletColumns = parseInt(block.dataset.tabletColumns) || DEFAULT_TABLET_COLUMNS;
+    const mobileColumns = parseInt(block.dataset.mobileColumns) || DEFAULT_MOBILE_COLUMNS;
+    const gap = parseInt(block.dataset.gap) || DEFAULT_GAP;
 
     const swiperContainer = container.querySelector('.swiper');
     if (!swiperContainer) return;
@@ -117,7 +107,6 @@ function initCarousel(block) {
         },
         on: {
             init: function () {
-                // Ensure images are loaded properly
                 this.slides.forEach(slide => {
                     const img = slide.querySelector('img');
                     if (img && !img.complete) {

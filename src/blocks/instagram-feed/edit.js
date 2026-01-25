@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { Notice, Spinner } from '@wordpress/components';
-import { useEffect, useState, useRef } from '@wordpress/element';
+import { useEffect, useState, useRef, useCallback, useMemo } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import { layoutTypes } from './attributes';
 import Inspector from './inspector';
@@ -13,6 +13,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/grid';
 import './editor.scss';
+
+// Constants
+const DEFAULT_BIO = 'Bringing vibes to your feed! Discover the latest trends and must-have styles.';
+const SWIPER_INIT_DELAY = 100;
+const FALLBACK_AVATAR_BASE_URL = 'https://ui-avatars.com/api/';
+const FALLBACK_AVATAR_PARAMS = 'background=e9d5ff&color=7c3aed&size=150';
 
 const Edit = ({ attributes, setAttributes, clientId }) => {
     const carouselRef = useRef(null);
@@ -67,7 +73,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         return fetch(profileUrl)
                             .then(response => response.json())
                             .then(profileData => {
-                                const profilePicture = profileData.profile_picture_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.username)}&background=e9d5ff&color=7c3aed&size=150`;
+                                const profilePicture = profileData.profile_picture_url || `${FALLBACK_AVATAR_BASE_URL}?name=${encodeURIComponent(userData.username)}&${FALLBACK_AVATAR_PARAMS}`;
 
                                 // Fetch media
                                 const mediaUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,like_count,comments_count&limit=${attributes.postsPerPage}&access_token=${accessToken}`;
@@ -84,7 +90,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                                             account_type: userData.account_type || 'PERSONAL',
                                             media_count: userData.media_count || 0,
                                             followers: 0, // Basic Display API doesn't provide follower count
-                                            bio: 'Bringing vibes to your feed! Discover the latest trends and must-have styles.',
+                                            bio: DEFAULT_BIO,
                                             profile_picture: profilePicture,
                                             media: mediaData.data || []
                                         };
@@ -106,8 +112,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                                             account_type: userData.account_type || 'PERSONAL',
                                             media_count: userData.media_count || 0,
                                             followers: 0,
-                                            bio: 'Bringing vibes to your feed! Discover the latest trends and must-have styles.',
-                                            profile_picture: `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.username)}&background=e9d5ff&color=7c3aed&size=150`,
+                                            bio: DEFAULT_BIO,
+                                            profile_picture: `${FALLBACK_AVATAR_BASE_URL}?name=${encodeURIComponent(userData.username)}&${FALLBACK_AVATAR_PARAMS}`,
                                             media: mediaData.data || []
                                         };
                                     });
@@ -127,10 +133,19 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
             });
     }, [attributes.postsPerPage]);
 
-    // Initialize carousel when layout type is carousel
+   
+    const parseGap = useCallback((value) => {
+        return parseInt(value) || 0;
+    }, []);
+
+    const { desktopGap, tabletGap, mobileGap } = useMemo(() => ({
+        desktopGap: parseGap(attributes.igGap?.Desktop?.first),
+        tabletGap: parseGap(attributes.igGap?.Tablet?.first),
+        mobileGap: parseGap(attributes.igGap?.Mobile?.first)
+    }), [attributes.igGap, parseGap]);
+
     useEffect(() => {
         if (attributes.layoutType === layoutTypes.CAROUSEL && carouselRef.current && instagramData?.media?.length > 0) {
-            // Destroy existing instance
             if (swiperInstance.current) {
                 swiperInstance.current.destroy(true, true);
             }
@@ -142,7 +157,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     swiperInstance.current = new Swiper(swiperEl, {
                         modules: [Navigation, Pagination, Autoplay],
                         slidesPerView: 1,
-                        spaceBetween: attributes.zolo_igGapGap || 20,
+                        spaceBetween: desktopGap,
                         loop: attributes.carouselLoop,
                         autoplay: attributes.carouselAutoplay ? {
                             delay: attributes.carouselSpeed,
@@ -158,18 +173,21 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         },
                         breakpoints: {
                             640: {
-                                slidesPerView: attributes.zolo_MOBigColumnsRange || 1,
+                                slidesPerView: attributes?.['igColumns']?.Mobile || 1,
+                                spaceBetween: mobileGap
                             },
                             768: {
-                                slidesPerView: attributes.zolo_TABigColumnsRange || 2,
+                                slidesPerView: attributes?.['igColumns']?.Tablet || 2,
+                                spaceBetween: tabletGap
                             },
                             1024: {
-                                slidesPerView: attributes.zolo_igColumnsRange || 3,
+                                slidesPerView: attributes?.['igColumns']?.Desktop || 3,
+                                spaceBetween: desktopGap
                             },
                         },
                     });
                 }
-            }, 100);
+            }, SWIPER_INIT_DELAY);
         }
 
         return () => {
@@ -178,9 +196,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 swiperInstance.current = null;
             }
         };
-    }, [attributes.layoutType, instagramData, attributes.carouselAutoplay, attributes.carouselSpeed, attributes.carouselLoop, attributes.zolo_igColumnsRange, attributes.zolo_TABigColumnsRange, attributes.zolo_MOBigColumnsRange, attributes.zolo_igGapGap]);
+    }, [attributes.layoutType, instagramData, attributes.carouselAutoplay, attributes.carouselSpeed, attributes.carouselLoop, attributes.igColumns?.Desktop, attributes.igColumns?.Tablet, attributes.igColumns?.Mobile, desktopGap, tabletGap, mobileGap]);
 
-    const getTimeAgo = (timestamp) => {
+    const getTimeAgo = useCallback((timestamp) => {
         const createdDate = new Date(timestamp);
         const now = new Date();
         const diffTime = Math.abs(now - createdDate);
@@ -197,7 +215,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         } else {
             return 'Just now';
         }
-    };
+    }, []);
 
     const renderHeader = () => {
         if (!attributes.showHeader || !instagramData) return null;
@@ -248,7 +266,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         );
     };
 
-    const renderPost = (post, index) => {
+    const renderPost = useCallback((post, index) => {
         const imageUrl = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
         const caption = post.caption || '';
         const truncatedCaption = caption.length > attributes.captionLength
@@ -309,7 +327,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 </div>
             </div>
         );
-    };
+    }, [attributes.imageRatio, attributes.openInNewTab, attributes.showLikes, attributes.showComments, attributes.showCaption, attributes.captionLength]);
 
     const renderGrid = () => {
         if (!instagramData?.media) return null;
