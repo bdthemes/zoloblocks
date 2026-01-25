@@ -529,17 +529,12 @@
 
         .zolo-fb-posts-container.layout-carousel {
             .swiper {
-                padding: 0 35px 40px;
+                padding: 0 0 40px;
             }
 
             .swiper-button-prev,
             .swiper-button-next {
-                width: 32px;
-                height: 32px;
-                
-                &:after {
-                    font-size: 16px;
-                }
+                display: none !important;
             }
         }
     }
