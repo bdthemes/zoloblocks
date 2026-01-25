@@ -11,6 +11,3 @@ export const LAYOUT_OPTIONS = [
     { label: __('Carousel', 'zoloblocks'), value: 'carousel' },
     { label: __('Badge', 'zoloblocks'), value: 'badge' },
 ];
-
-export const FB_REVIEWS_COLUMNS = 'fbReviewsColumns';
-export const FB_REVIEWS_GAP = 'fbReviewsGap';

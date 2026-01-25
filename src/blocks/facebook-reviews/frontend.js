@@ -40,6 +40,18 @@ function initCarousel(block) {
     const speed = parseInt(block.dataset.carouselSpeed) || 3000;
     const loop = block.dataset.carouselLoop === 'true';
     const columns = parseInt(block.dataset.columns) || 3;
+    const columnsTablet = parseInt(block.dataset.columnsTablet) || 2;
+    const columnsMobile = parseInt(block.dataset.columnsMobile) || 1;
+    
+    // Helper to get gap with proper fallback, treating 0 as valid
+    const getGap = (val, fallback) => {
+        const parsed = parseInt(val);
+        return isNaN(parsed) ? fallback : parsed;
+    };
+
+    const gap = getGap(block.dataset.gap, 20);
+    const gapTablet = getGap(block.dataset.gapTablet, 20);
+    const gapMobile = getGap(block.dataset.gapMobile, 20);
 
     // Create swiper container if it doesn't exist
     let swiperContainer = container.querySelector('.swiper');
@@ -122,15 +134,15 @@ function initCarousel(block) {
         breakpoints: {
             320: {
                 slidesPerView: 1,
-                spaceBetween: 20,
+                spaceBetween: gapMobile,
             },
             768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+                slidesPerView: columnsTablet,
+                spaceBetween: gapTablet,
             },
             1024: {
                 slidesPerView: columns,
-                spaceBetween: 20,
+                spaceBetween: gap,
             },
         },
     });

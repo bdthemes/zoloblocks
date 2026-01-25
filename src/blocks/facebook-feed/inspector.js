@@ -122,11 +122,11 @@ function Inspector(props) {
                             <div className="zolo-flex-col-control">
                                 <ZoloRangeControl
                                     label={__('Cache Duration (hours)', 'zoloblocks')}
-                                    value={attributes.cacheExpiration / 3600}
-                                    onChange={(value) => setAttributes({ cacheExpiration: value * 3600 })}
+                                    value={attributes.cacheDuration}
+                                    onChange={(value) => setAttributes({ cacheDuration: value })}
                                     min={1}
-                                    max={72}
-                                    step={1}
+                                    max={168}
+                                    help={__('How long to cache posts before fetching new ones', 'zoloblocks')}
                                 />
                             </div>
                         </ZoloPanelBody>

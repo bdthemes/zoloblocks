@@ -1,120 +1,112 @@
-import { generateResCounterStyle } from '../../helpers/res-counter-helper';
-import { generateGapStyle } from '../../helpers/gap-helper';
-import { FB_REVIEWS_COLUMNS, FB_REVIEWS_GAP } from './constants';
+import { useMemo } from '@wordpress/element';
+import generateCSS from '../../helpers/generate-css';
 
 const { GlobalStyleHanlder } = window.zoloModule;
 
 const Style = ({ attributes, setAttributes }) => {
-    const { uniqueId, layoutType } = attributes;
+    const { uniqueId, layoutType, fbReviewsColumns } = attributes;
 
-    // Columns for grid and masonry layouts
-    const {
-        desktopRangeStyle: columnCountDesk,
-        tabRangeStyle: columnCountTab,
-        mobRangeStyle: columnCountMob,
-    } = generateResCounterStyle({
-        controlName: FB_REVIEWS_COLUMNS,
-        attributes,
-        noProperty: true,
-        defaults: {
-            deskRange: 3,
-            tabRange: 2,
-            mobRange: 1,
-        },
-    });
+    const columnCountDesk = fbReviewsColumns?.Desktop || 3;
+    const columnCountTab = fbReviewsColumns?.Tablet || 2;
+    const columnCountMob = fbReviewsColumns?.Mobile || 1;
 
-    // Gap styles
-    const {
-        gapStylesDesktop: gapDesk,
-        gapStylesTab: gapTab,
-        gapStylesMobile: gapMob,
-    } = generateGapStyle({
-        controlName: FB_REVIEWS_GAP,
-        attributes,
-    });
+    // Desktop styles
+    const desktopAllStyle = useMemo(() => {
+        const style = `
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-grid {
+                display: grid;
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
+                }, device: 'Desktop'})}
+                ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
+            }
+            
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-masonry {
+                ${columnCountDesk ? `column-count: ${columnCountDesk};` : ''}
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    const colGap = !value?.linked ? value?.first : value?.first;
+                    return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
+                }, device: 'Desktop'})}
+            }
+            
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-masonry .zolo-fb-review-card {
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    const rowGap = !value?.linked ? value?.second : value?.first;
+                    return `margin-bottom: ${rowGap};`;
+                }, device: 'Desktop'})}
+            }
+        `;
+        return style;
+    }, [uniqueId, attributes.fbReviewsGap, fbReviewsColumns]);
 
-    // Extract gap values for masonry
-    const extractGapValues = (gapStyle) => {
-        if (!gapStyle) return { columnGap: '20px', rowGap: '20px' };
-        
-        const columnGapMatch = gapStyle.match(/column-gap:\s*([^;]+)/);
-        const rowGapMatch = gapStyle.match(/row-gap:\s*([^;]+)/);
-        const gapMatch = gapStyle.match(/gap:\s*([^;]+)/);
-        
-        if (columnGapMatch && rowGapMatch) {
-            return { columnGap: columnGapMatch[1].trim(), rowGap: rowGapMatch[1].trim() };
-        } else if (gapMatch) {
-            const value = gapMatch[1].trim();
-            return { columnGap: value, rowGap: value };
-        }
-        
-        return { columnGap: '20px', rowGap: '20px' };
-    };
+    // Tablet styles
+    const tabAllStyle = useMemo(() => {
+        const style = `
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-grid {
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
+                }, device: 'Tablet'})}
+                ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr) !important;` : ''}
+            }
+            
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-masonry {
+                ${columnCountTab ? `column-count: ${columnCountTab} !important;` : ''}
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    const colGap = !value?.linked ? value?.first : value?.first;
+                    return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
+                }, device: 'Tablet'})}
+            }
+            
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-masonry .zolo-fb-review-card {
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    const rowGap = !value?.linked ? value?.second : value?.first;
+                    return `margin-bottom: ${rowGap};`;
+                }, device: 'Tablet'})}
+            }
+        `;
+        return style;
+    }, [uniqueId, attributes.fbReviewsGap, fbReviewsColumns]);
 
-    const gapDeskValues = extractGapValues(gapDesk);
-    const gapTabValues = extractGapValues(gapTab);
-    const gapMobValues = extractGapValues(gapMob);
-
-    const desktopCSS = `
-        .zolo-fb-reviews-container.layout-grid.zolo-facebook-reviews-${uniqueId} {
-            display: grid;
-            ${gapDesk}
-            ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
-        }
-        
-        .zolo-fb-reviews-container.layout-masonry.zolo-facebook-reviews-${uniqueId} {
-            ${columnCountDesk ? `column-count: ${columnCountDesk};` : ''}
-            column-gap: ${gapDeskValues.columnGap};
-        }
-        
-        .zolo-fb-reviews-container.layout-masonry.zolo-facebook-reviews-${uniqueId} .zolo-fb-review-card {
-            margin-bottom: ${gapDeskValues.rowGap};
-        }
-    `;
-
-    const tabCSS = `
-        .zolo-fb-reviews-container.layout-grid.zolo-facebook-reviews-${uniqueId} {
-            ${gapTab}
-            ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr) !important;` : ''}
-        }
-        
-        .zolo-fb-reviews-container.layout-masonry.zolo-facebook-reviews-${uniqueId} {
-            ${columnCountTab ? `column-count: ${columnCountTab} !important;` : ''}
-            column-gap: ${gapTabValues.columnGap};
-        }
-        
-        .zolo-fb-reviews-container.layout-masonry.zolo-facebook-reviews-${uniqueId} .zolo-fb-review-card {
-            margin-bottom: ${gapTabValues.rowGap};
-        }
-    `;
-
-    const mobCSS = `
-        .zolo-fb-reviews-container.layout-grid.zolo-facebook-reviews-${uniqueId} {
-            ${gapMob}
-            ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr) !important;` : ''}
-        }
-        
-        .zolo-fb-reviews-container.layout-masonry.zolo-facebook-reviews-${uniqueId} {
-            ${columnCountMob ? `column-count: ${columnCountMob} !important;` : ''}
-            column-gap: ${gapMobValues.columnGap};
-        }
-        
-        .zolo-fb-reviews-container.layout-masonry.zolo-facebook-reviews-${uniqueId} .zolo-fb-review-card {
-            margin-bottom: ${gapMobValues.rowGap};
-        }
-    `;
+    // Mobile styles
+    const mobileAllStyle = useMemo(() => {
+        const style = `
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-grid {
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    if(!value?.linked) return `row-gap: ${value?.second}; column-gap: ${value?.first};`;
+                    return `gap: ${value?.first};`;
+                }, device: 'Mobile'})}
+                ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr) !important;` : ''}
+            }
+            
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-masonry {
+                ${columnCountMob ? `column-count: ${columnCountMob} !important;` : ''}
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    const colGap = !value?.linked ? value?.first : value?.first;
+                    return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
+                }, device: 'Mobile'})}
+            }
+            
+            .${uniqueId}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-masonry .zolo-fb-review-card {
+                ${generateCSS({attributes, key:'fbReviewsGap', getValue: (value) => {
+                    const rowGap = !value?.linked ? value?.second : value?.first;
+                    return `margin-bottom: ${rowGap};`;
+                }, device: 'Mobile'})}
+            }
+        `;
+        return style;
+    }, [uniqueId, attributes.fbReviewsGap, fbReviewsColumns]);
 
     return (
-        <>
-            <GlobalStyleHanlder
-                attributes={attributes}
-                setAttributes={setAttributes}
-                desktopAllStyle={desktopCSS}
-                tabAllStyle={tabCSS}
-                mobileAllStyle={mobCSS}
-                blockName="zolo/facebook-reviews"
-            />
-        </>
+        <GlobalStyleHanlder
+            attributes={attributes}
+            setAttributes={setAttributes}
+            desktopAllStyle={desktopAllStyle}
+            tabAllStyle={tabAllStyle}
+            mobileAllStyle={mobileAllStyle}
+            blockName="zolo/facebook-reviews"
+        />
     );
 };
 

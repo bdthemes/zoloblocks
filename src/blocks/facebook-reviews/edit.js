@@ -38,9 +38,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         carouselAutoplay,
         carouselSpeed,
         carouselLoop,
-        zolo_fbReviewsColumnsRange,
-        zolo_TABfbReviewsColumnsRange,
-        zolo_MOBfbReviewsColumnsRange,
+        fbReviewsColumns, // Use the correct object attribute
+        fbReviewsGap,
         zolo_fbReviewsGapGap,
         zolo_TABfbReviewsGapGap,
         zolo_MOBfbReviewsGapGap,
@@ -91,8 +90,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 const reviewsUrl = `https://graph.facebook.com/v18.0/${pageId}/ratings?fields=id,created_time,recommendation_type,review_text,reviewer{id,name,picture}&access_token=${accessToken}&limit=${reviewsPerPage}`;
 
                 return fetch(reviewsUrl)
-                    .then(response => response.json())
-                    .then(data => {
+                    .then((response) => response.json())
+                    .then((data) => {
                         if (data.error) {
                             throw new Error(data.error.message);
                         }
@@ -128,16 +127,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         const reviewerName = review.reviewer?.name || 'Anonymous';
                         let reviewerAvatar = review.reviewer?.picture?.data?.url || review.reviewer?.picture?.url || '';
 
-                        console.log(review);
-                        console.log(review.reviewer?.name);
-                        console.log(review.reviewer?.picture?.data?.url)
-                        console.log(reviewerName)
-                        
                         // If picture is a string URL, use it directly
                         if (!reviewerAvatar && typeof review.reviewer?.picture === 'string') {
                             reviewerAvatar = review.reviewer.picture;
                         }
-                        
+
                         // Generate UI Avatar if no picture available
                         if (!reviewerAvatar) {
                             const colors = ['FF6B6B', '4ECDC4', '45B7D1', 'FFA07A', '98D8C8', 'F7DC6F'];
@@ -175,10 +169,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         if (layoutType === 'carousel' && carouselRef.current && !swiperInstance.current) {
             const container = carouselRef.current.querySelector('.swiper');
             if (container) {
-                const deskCols = Math.min(attributes.zolo_fbReviewsColumnsRange || 3, 3);
-                const tabCols = Math.min(attributes.zolo_TABfbReviewsColumnsRange || 2, 2);
-                const mobCols = 1;
-                
+                // Safely access nested attributes with fallbacks
+                const deskCols = Math.min(fbReviewsColumns?.Desktop || 3, 3);
+                const tabCols = Math.min(fbReviewsColumns?.Tablet || 2, 2);
+                const mobCols = Math.min(fbReviewsColumns?.Mobile || 1, 1);
+
                 const slidesPerView = resMode === 'Desktop' ? deskCols : resMode === 'Tablet' ? tabCols : mobCols;
 
                 swiperInstance.current = new Swiper(container, {
@@ -189,10 +184,12 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                     centeredSlides: false,
                     watchSlidesProgress: true,
                     watchOverflow: true,
-                    autoplay: carouselAutoplay ? {
-                        delay: carouselSpeed,
-                        disableOnInteraction: false,
-                    } : false,
+                    autoplay: carouselAutoplay
+                        ? {
+                              delay: carouselSpeed,
+                              disableOnInteraction: false,
+                          }
+                        : false,
                     navigation: {
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev',
@@ -222,7 +219,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                 swiperInstance.current = null;
             }
         };
-    }, [layoutType, carouselAutoplay, carouselSpeed, carouselLoop, resMode, attributes.zolo_fbReviewsColumnsRange, attributes.zolo_TABfbReviewsColumnsRange, attributes.zolo_MOBfbReviewsColumnsRange]);
+    }, [layoutType, carouselAutoplay, carouselSpeed, carouselLoop, resMode, fbReviewsColumns]);
 
     // Update Swiper when reviews change
     useEffect(() => {
@@ -253,69 +250,73 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     const renderReview = (review) => {
         const pageId = review.pageId || '';
         const fbReviewsLink = pageId ? `https://www.facebook.com/${pageId}/reviews` : '#';
-        
+
         return (
-        <div key={review.id} className="zolo-fb-review-card">
-            {showAvatar && (
-                <div className="zolo-fb-reviewer-image">
-                    <a href={fbReviewsLink} target="_blank" rel="noopener noreferrer" className="zolo-fb-reviewer-image-url">
-                        <img className="zolo-fb-reviewer-avatar" src={review.reviewerAvatar} alt={review.reviewerName} />
-                    </a>
-                </div>
-            )}
-            
-            <div className="zolo-fb-review-info">
-                <div className="zolo-fb-review-header">
-                    {showReviewerName && (
-                        <a href={fbReviewsLink} target="_blank" rel="noopener noreferrer" className="zolo-fb-reviewer-name-url">
-                            <span className="zolo-fb-reviewer-name">{review.reviewerName}</span>
+            <div key={review.id} className="zolo-fb-review-card">
+                {showAvatar && (
+                    <div className="zolo-fb-reviewer-image">
+                        <a href={fbReviewsLink} target="_blank" rel="noopener noreferrer" className="zolo-fb-reviewer-image-url">
+                            <img className="zolo-fb-reviewer-avatar" src={review.reviewerAvatar} alt={review.reviewerName} />
                         </a>
-                    )}
-                    
-                    {showRecommendation && review.hasRecommendation && (
-                        <div className="zolo-fb-rating-wrapper zolo-fb-rating">
-                            <svg className="wpsr-recommends" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 14l-3.293 3.293A1 1 0 0 1 4 16.586V14h-.154c-1.337 0-1.822-.14-2.311-.4A2.726 2.726 0 0 1 .4 12.464c-.261-.488-.4-.973-.4-2.309v-6.31c0-1.336.14-1.821.4-2.31A2.726 2.726 0 0 1 1.536.4c.488-.261.973-.4 2.309-.4h10.31c1.336 0 1.821.14 2.31.4.49.262.873.646 1.134 1.135.262.489.401.974.401 2.31v6.31c0 1.336-.14 1.821-.4 2.31a2.726 2.726 0 0 1-1.135 1.134c-.489.262-.974.401-2.31.401H9zm0-5l1.454.765a.5.5 0 0 0 .726-.527l-.278-1.62 1.177-1.147a.5.5 0 0 0-.277-.853l-1.626-.236-.728-1.474a.5.5 0 0 0-.896 0l-.728 1.474-1.626.236a.5.5 0 0 0-.277.853l1.177 1.147-.278 1.62a.5.5 0 0 0 .726.527L9 9z" fill="#f36b7f"/>
-                            </svg>
-                            <span>recommends</span>
+                    </div>
+                )}
+
+                <div className="zolo-fb-review-info">
+                    <div className="zolo-fb-review-header">
+                        {showReviewerName && (
+                            <a href={fbReviewsLink} target="_blank" rel="noopener noreferrer" className="zolo-fb-reviewer-name-url">
+                                <span className="zolo-fb-reviewer-name">{review.reviewerName}</span>
+                            </a>
+                        )}
+
+                        {showRecommendation && review.hasRecommendation && (
+                            <div className="zolo-fb-rating-wrapper zolo-fb-rating">
+                                <svg
+                                    className="wpsr-recommends"
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 18 18"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M9 14l-3.293 3.293A1 1 0 0 1 4 16.586V14h-.154c-1.337 0-1.822-.14-2.311-.4A2.726 2.726 0 0 1 .4 12.464c-.261-.488-.4-.973-.4-2.309v-6.31c0-1.336.14-1.821.4-2.31A2.726 2.726 0 0 1 1.536.4c.488-.261.973-.4 2.309-.4h10.31c1.336 0 1.821.14 2.31.4.49.262.873.646 1.134 1.135.262.489.401.974.401 2.31v6.31c0 1.336-.14 1.821-.4 2.31a2.726 2.726 0 0 1-1.135 1.134c-.489.262-.974.401-2.31.401H9zm0-5l1.454.765a.5.5 0 0 0 .726-.527l-.278-1.62 1.177-1.147a.5.5 0 0 0-.277-.853l-1.626-.236-.728-1.474a.5.5 0 0 0-.896 0l-.728 1.474-1.626.236a.5.5 0 0 0-.277.853l1.177 1.147-.278 1.62a.5.5 0 0 0 .726.527L9 9z"
+                                        fill="#f36b7f"
+                                    />
+                                </svg>
+                                <span>recommends</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {showDate && <span className="zolo-fb-review-date">{review.date}</span>}
+
+                    {showReviewText && review.reviewText && (
+                        <div className="zolo-fb-review-content">
+                            <p>
+                                {reviewTextLength > 0 && review.reviewText.length > reviewTextLength
+                                    ? review.reviewText.substring(0, reviewTextLength) + '...'
+                                    : review.reviewText}
+                            </p>
+                            {showReadMore && reviewTextLength > 0 && review.reviewText.length > reviewTextLength && (
+                                <span className="zolo-fb-read-more">{readMoreText}</span>
+                            )}
                         </div>
                     )}
                 </div>
-                
-                {showDate && (
-                    <span className="zolo-fb-review-date">{review.date}</span>
-                )}
-                
-                {showReviewText && review.reviewText && (
-                    <div className="zolo-fb-review-content">
-                        <p>
-                            {reviewTextLength > 0 && review.reviewText.length > reviewTextLength
-                                ? review.reviewText.substring(0, reviewTextLength) + '...'
-                                : review.reviewText}
-                        </p>
-                        {showReadMore && reviewTextLength > 0 && review.reviewText.length > reviewTextLength && (
-                            <span className="zolo-fb-read-more">{readMoreText}</span>
-                        )}
-                    </div>
-                )}
             </div>
-        </div>
-    );
+        );
     };
 
     return (
         <>
-            <Style 
-                attributes={attributes} 
-                setAttributes={setAttributes}
-                uniqueId={uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`} 
-            />
-
-            <Inspector
+            <Style
                 attributes={attributes}
                 setAttributes={setAttributes}
-                block={{ name: 'zolo/facebook-reviews', clientId }}
+                uniqueId={uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`}
             />
+
+            <Inspector attributes={attributes} setAttributes={setAttributes} block={{ name: 'zolo/facebook-reviews', clientId }} />
 
             <div {...blockProps}>
                 {isLoading && (
@@ -327,7 +328,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
                 {!isLoading && apiError && (
                     <Notice status="error" isDismissible={false}>
-                        {__('Facebook API Error: ', 'zoloblocks')}{apiError}
+                        {__('Facebook API Error: ', 'zoloblocks')}
+                        {apiError}
                     </Notice>
                 )}
 
@@ -337,7 +339,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                             <div className="zolo-fb-reviews-header">
                                 <div className="zolo-fb-reviews-header-left">
                                     <svg className="zolo-fb-logo" width="32" height="32" viewBox="0 0 24 24" fill="#1877F2">
-                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                                     </svg>
                                     <div className="zolo-fb-reviews-header-info">
                                         <RichText
@@ -351,17 +353,15 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                                         {showHeaderRating && (
                                             <div className="zolo-fb-reviews-header-rating">
                                                 <span className="zolo-fb-rating-number">5.0</span>
-                                                <div className="zolo-fb-rating-stars">
-                                                    {renderStars(5)}
-                                                </div>
+                                                <div className="zolo-fb-rating-stars">{renderStars(5)}</div>
                                                 <span className="zolo-fb-rating-count">Suggested by {facebookReviews.length} Clients</span>
                                             </div>
                                         )}
                                     </div>
                                 </div>
                                 {showWriteReviewBtn && (
-                                    <a 
-                                        href={writeReviewBtnUrl || '#'} 
+                                    <a
+                                        href={writeReviewBtnUrl || '#'}
                                         className="zolo-fb-write-review-btn"
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -380,41 +380,55 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
                         )}
 
                         {layoutType !== 'badge' && facebookReviews.length > 0 && (
-                        <div
-                            ref={carouselRef}
-                            className={`zolo-fb-reviews-container layout-${layoutType} zolo-facebook-reviews-${uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`}`}
-                            style={{
-                                '--masonry-columns': resMode === 'Tablet'
-                                    ? (zolo_TABfbReviewsColumnsRange || zolo_fbReviewsColumnsRange || 3)
-                                    : resMode === 'Mobile'
-                                    ? (zolo_MOBfbReviewsColumnsRange || zolo_fbReviewsColumnsRange || 3)
-                                    : (zolo_fbReviewsColumnsRange || 3),
-                                '--masonry-gap': `${
-                                    resMode === 'Tablet' 
-                                        ? (zolo_TABfbReviewsGapGap || zolo_fbReviewsGapGap || 20)
-                                        : resMode === 'Mobile'
-                                        ? (zolo_MOBfbReviewsGapGap || zolo_fbReviewsGapGap || 20)
-                                        : (zolo_fbReviewsGapGap || 20)
-                                }px`,
-                            }}
-                        >
-                        {layoutType === 'carousel' ? (
-                            <div className="swiper">
-                                <div className="swiper-wrapper">
-                                    {facebookReviews.map(review => (
-                                        <div key={review.id} className="swiper-slide">
-                                            {renderReview(review)}
+                            <div
+                                ref={carouselRef}
+                                className={`zolo-fb-reviews-container layout-${layoutType} zolo-facebook-reviews-${uniqueId || `zolo-fb-reviews-${clientId.substr(0, 8)}`}`}
+                                data-layout={layoutType}
+                                data-columns={fbReviewsColumns?.Desktop || 3}
+                                data-columns-tablet={fbReviewsColumns?.Tablet || 2}
+                                data-columns-mobile={fbReviewsColumns?.Mobile || 1}
+                                data-gap={fbReviewsGap?.Desktop?.first || 20}
+                                data-gap-tablet={fbReviewsGap?.Tablet?.first || fbReviewsGap?.Desktop?.first || 20}
+                                data-gap-mobile={
+                                    fbReviewsGap?.Mobile?.first || fbReviewsGap?.Tablet?.first || fbReviewsGap?.Desktop?.first || 20
+                                }
+                                data-carousel-autoplay={carouselAutoplay}
+                                data-carousel-speed={carouselSpeed}
+                                data-carousel-loop={carouselLoop}
+                            >
+                                {layoutType === 'carousel' ? (
+                                    <div className="swiper">
+                                        <div className="swiper-wrapper">
+                                            {facebookReviews.map((review) => (
+                                                <div key={review.id} className="swiper-slide">
+                                                    {renderReview(review)}
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
-                                <div className="swiper-button-prev" role="button" aria-label={__('Previous slide', 'zoloblocks')} tabIndex="0"></div>
-                                <div className="swiper-button-next" role="button" aria-label={__('Next slide', 'zoloblocks')} tabIndex="0"></div>
-                                <div className="swiper-pagination" role="group" aria-label={__('Carousel pagination', 'zoloblocks')}></div>
+                                        <div
+                                            className="swiper-button-prev"
+                                            role="button"
+                                            aria-label={__('Previous slide', 'zoloblocks')}
+                                            tabIndex="0"
+                                        ></div>
+                                        <div
+                                            className="swiper-button-next"
+                                            role="button"
+                                            aria-label={__('Next slide', 'zoloblocks')}
+                                            tabIndex="0"
+                                        ></div>
+                                        <div
+                                            className="swiper-pagination"
+                                            role="group"
+                                            aria-label={__('Carousel pagination', 'zoloblocks')}
+                                        ></div>
+                                    </div>
+                                ) : layoutType === 'masonry' ? (
+                                    facebookReviews.map(renderReview)
+                                ) : (
+                                    facebookReviews.map(renderReview)
+                                )}
                             </div>
-                        ) : (
-                            facebookReviews.map(renderReview)
-                        )}
-                        </div>
                         )}
                     </>
                 )}

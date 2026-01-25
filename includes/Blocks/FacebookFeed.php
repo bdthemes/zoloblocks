@@ -40,7 +40,7 @@ class FacebookFeed extends PostBlock
                 'carouselAutoplay' => true,
                 'carouselSpeed' => 3000,
                 'carouselLoop' => true,
-                'cacheExpiration' => 43200, // 12 hours - default cache duration
+                'cacheDuration' => 12, // Default 12 hours
                 'fbColumns' => [
                     'Desktop' => 3,
                     'Tablet' => 2,
@@ -85,7 +85,8 @@ class FacebookFeed extends PostBlock
 
         // Get posts from Facebook API or return empty if not configured
         if (!empty($facebook_page_id) && !empty($access_token)) {
-            $posts = $this->get_facebook_posts_from_api($facebook_page_id, $access_token, $posts_per_page, $attributes['cacheExpiration'], $bypass_cache);
+            $cache_duration = \absint($attributes['cacheDuration'] ?? 12);
+            $posts = $this->get_facebook_posts_from_api($facebook_page_id, $access_token, $posts_per_page, $cache_duration, $bypass_cache);
         } else {
             $posts = [];
         }
@@ -306,7 +307,7 @@ class FacebookFeed extends PostBlock
 
         $fb_columns = $attributes['fbColumns'] ?? [];
         $cols = $fb_columns['Desktop'] ?? 3;
-        
+
         // Get gap values from the new object structure
         $gap_obj = $attributes['fbGap'] ?? [];
         $desktop_gap = $gap_obj['Desktop'] ?? ['linked' => true, 'first' => 20, 'unit' => 'px'];
@@ -342,10 +343,10 @@ class FacebookFeed extends PostBlock
 
         // Get gap object
         $gap_obj = $attributes['fbGap'] ?? [];
-        
+
         // Get columns object
         $fb_columns = $attributes['fbColumns'] ?? [];
-        
+
         // Desktop gap values
         $desktop_gap = $gap_obj['Desktop'] ?? ['linked' => true, 'first' => 20, 'second' => 20, 'unit' => 'px'];
         $desktop = [
@@ -460,14 +461,14 @@ class FacebookFeed extends PostBlock
      * @param string $page_id Page ID or username
      * @param string $access_token Facebook access token
      * @param int    $count Number of posts to retrieve
-     * @param int    $cache_expiration Cache expiration in seconds
+     * @param int    $cache_duration Cache duration in hours
      * @param bool   $bypass_cache Whether to bypass cache
      * @return array
      */
-    private function get_facebook_posts_from_api($page_id, $access_token, $count = 6, $cache_expiration = 3600, $bypass_cache = false)
+    private function get_facebook_posts_from_api($page_id, $access_token, $count = 6, $cache_duration = 12, $bypass_cache = false)
     {
         // Create cache key
-        $cache_key = 'zolo_fb_posts_' . \md5($page_id . $access_token . $count);
+        $cache_key = 'zolo_fb_posts_' . \md5($page_id . $access_token . $count . $cache_duration);
 
         // Try to get from cache (skip if force refresh or editor context)
         if (!$bypass_cache && empty($_GET['fb_refresh']) && empty($_GET['nocache'])) {
@@ -552,7 +553,7 @@ class FacebookFeed extends PostBlock
         }
 
         // Cache the results
-        \set_transient($cache_key, $posts, $cache_expiration);
+        \set_transient($cache_key, $posts, $cache_duration * 3600);
 
         return $posts;
     }

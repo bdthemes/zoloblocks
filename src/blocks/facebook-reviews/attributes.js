@@ -1,7 +1,3 @@
-import { generateResCounterAttributies } from '../../helpers/res-counter-helper';
-import { generateGapAttributes } from '../../helpers/gap-helper';
-import { FB_REVIEWS_COLUMNS, FB_REVIEWS_GAP } from './constants';
-
 export const layoutTypes = {
     GRID: 'grid',
     MASONRY: 'masonry',
@@ -123,22 +119,36 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
+    cacheDuration: {
+        type: 'number',
+        default: 12,
+    },
     resMode: {
         type: 'string',
         default: 'desktop',
+    },
+    fbReviewsColumns: {
+        type: 'object',
+        default: {
+            Desktop: 3,
+            Tablet: 2,
+            Mobile: 1,
+        },
+    },
+    fbReviewsGap: {
+        type: 'object',
+        default: {
+            Desktop: {
+                linked: true,
+                first: '20px',
+                second: '20px',
+            },
+        },
     },
     zoloStyles: {
         type: 'object',
         default: {},
     },
-    ...generateResCounterAttributies(FB_REVIEWS_COLUMNS, {
-        defaultRange: 3,
-        tabRange: 2,
-        mobRange: 1,
-    }),
-    ...generateGapAttributes(FB_REVIEWS_GAP, {
-        defaultRange: 20,
-    }),
 };
 
 export default attributes;

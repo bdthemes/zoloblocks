@@ -1,8 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useMemo } from '@wordpress/element';
 import objAttributes from './attributes';
-import { LAYOUT_OPTIONS, FB_REVIEWS_COLUMNS, FB_REVIEWS_GAP } from './constants';
+import { LAYOUT_OPTIONS } from './constants';
 
 const {
     ZoloSelectControl,
@@ -11,9 +11,12 @@ const {
     ZoloRangeControl,
     HeaderTabs,
     ZoloPanelBody,
-    ResGapControl,
-    ResCounterControl,
+    CounterControl,
+    ZoloDualRangeUnit,
+    ZoloResponsive,
     AdvancedOptions,
+    getResponsiveValue,
+    createResponsiveValue,
 } = window.zoloModule;
 
 function Inspector(props) {
@@ -31,14 +34,13 @@ function Inspector(props) {
         showReadMore,
         readMoreText,
         showHeader,
-        headerTitle,
         showWriteReviewBtn,
-        writeReviewBtnText,
         writeReviewBtnUrl,
         showHeaderRating,
         carouselAutoplay,
         carouselSpeed,
         carouselLoop,
+        cacheDuration,
         resMode,
     } = attributes;
 
@@ -56,12 +58,12 @@ function Inspector(props) {
             });
     }, []);
 
-    const requiredProps = {
+    const requiredProps = useMemo(() => ({
         resMode,
         setAttributes,
         attributes,
-        objAttributes: objAttributes,
-    };
+        objAttributes,
+    }), [resMode, setAttributes, attributes, objAttributes]);
 
     return (
         <InspectorControls key="controls">
@@ -179,6 +181,16 @@ function Inspector(props) {
                                     max={50}
                                 />
                             </div>
+                            <div className="zolo-flex-col-control">
+                                <ZoloRangeControl
+                                    label={__('Cache Duration (hours)', 'zoloblocks')}
+                                    value={cacheDuration}
+                                    onChange={(value) => setAttributes({ cacheDuration: value })}
+                                    min={1}
+                                    max={168}
+                                    help={__('How long to cache reviews before fetching new ones', 'zoloblocks')}
+                                />
+                            </div>
                         </ZoloPanelBody>
 
                         {layoutType === 'carousel' && (
@@ -291,26 +303,33 @@ function Inspector(props) {
                     <>
                         {layoutType !== 'badge' && (
                             <ZoloPanelBody title={__('Layout', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
-                                <ResCounterControl
-                                    label={__('Columns', 'zoloblocks')}
-                                    controlName={FB_REVIEWS_COLUMNS}
-                                    requiredProps={requiredProps}
-                                    min={1}
-                                    max={6}
-                                    defaults={{
-                                        deskRange: 3,
-                                        tabRange: 2,
-                                        mobRange: 1,
-                                    }}
-                                />
+                                <ZoloResponsive left='60px'>
+                                    <CounterControl
+                                        label={__('Columns', 'zoloblocks')}
+                                        value={getResponsiveValue(attributes, 'fbReviewsColumns')}
+                                        onChange={(value) => setAttributes(createResponsiveValue(attributes, 'fbReviewsColumns', value))}
+                                        min={1}
+                                        max={6}
+                                    />
+                                </ZoloResponsive>
 
                                 {layoutType !== 'carousel' && (
-                                    <ResGapControl
-                                        label={__('Gap', 'zoloblocks')}
-                                        controlName={FB_REVIEWS_GAP}
-                                        requiredProps={requiredProps}
-                                        max={100}
-                                    />
+                                    <ZoloResponsive left='30px'>
+                                        <ZoloDualRangeUnit
+                                            label={__('Gap', 'zoloblocks')}
+                                            dualLabel={[__('Column Gap', 'zoloblocks'), __('Row Gap', 'zoloblocks')]}
+                                            value={getResponsiveValue(attributes, 'fbReviewsGap')}
+                                            onChange={(value) => {
+                                                setAttributes(createResponsiveValue(attributes, 'fbReviewsGap', value));
+                                            }}
+                                            units={{
+                                                px: { max: 200, min: 0, step: 1 },
+                                                rem: { max: 10, min: 0, step: 0.1 },
+                                                em: { max: 10, min: 0, step: 0.1 },
+                                                '%': { max: 100, min: 0, step: 1 },
+                                            }}
+                                        />
+                                    </ZoloResponsive>
                                 )}
                             </ZoloPanelBody>
                         )}

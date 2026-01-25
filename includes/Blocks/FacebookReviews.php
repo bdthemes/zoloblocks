@@ -1,4 +1,5 @@
 <?php
+
 namespace Zolo\Blocks;
 
 if (!defined('ABSPATH')) {
@@ -8,7 +9,8 @@ if (!defined('ABSPATH')) {
 /**
  * FacebookReviews Block Class
  */
-class FacebookReviews extends PostBlock {
+class FacebookReviews extends PostBlock
+{
 
     /**
      * Get default attributes
@@ -40,14 +42,16 @@ class FacebookReviews extends PostBlock {
                 'carouselAutoplay' => true,
                 'carouselSpeed' => 3000,
                 'carouselLoop' => true,
-                'zolo_fbReviewsColumnsRange' => 3,
-                'zolo_TABfbReviewsColumnsRange' => 2,
-                'zolo_MOBfbReviewsColumnsRange' => 1,
-                'zolo_fbReviewsGapGap' => 20,
-                'zolo_fbReviewsGapIsLinked' => true,
-                'zolo_fbReviewsGapUnit' => 'px',
-                'zolo_TABfbReviewsGapUnit' => 'px',
-                'zolo_MOBfbReviewsGapUnit' => 'px',
+                'fbReviewsColumns' => [
+                    'Desktop' => 3,
+                    'Tablet' => 2,
+                    'Mobile' => 1,
+                ],
+                'fbReviewsGap' => [
+                    'Desktop' => ['gap' => 20, 'isLinked' => true, 'unit' => 'px'],
+                    'Tablet' => ['gap' => 20, 'isLinked' => true, 'unit' => 'px'],
+                    'Mobile' => ['gap' => 20, 'isLinked' => true, 'unit' => 'px'],
+                ],
             ]
         );
     }
@@ -60,7 +64,8 @@ class FacebookReviews extends PostBlock {
      * @param object $block      Block object (optional)
      * @return string
      */
-    public function render($attributes, $content = '', $block = null) {
+    public function render($attributes, $content = '', $block = null)
+    {
         $attributes = \wp_parse_args($attributes, $this->get_default_attributes());
 
         // Extract attributes
@@ -75,7 +80,8 @@ class FacebookReviews extends PostBlock {
 
         // Fetch reviews
         if (!empty($page_id) && !empty($access_token)) {
-            $reviews = $this->get_facebook_reviews($page_id, $access_token, $reviews_per_page);
+            $cache_duration = \absint($attributes['cacheDuration'] ?? 12);
+            $reviews = $this->get_facebook_reviews($page_id, $access_token, $reviews_per_page, $cache_duration);
         } else {
             $reviews = [];
         }
@@ -85,23 +91,26 @@ class FacebookReviews extends PostBlock {
 
         // Add responsive CSS
         echo $this->get_responsive_css($attributes, $unique_id);
-        // Add responsive CSS
-        echo $this->get_responsive_css($attributes, $unique_id);
 
 ?>
         <div class="parent-<?php echo $unique_id; ?> zolo-block <?php echo $unique_id; ?> zolo-facebook-reviews zolo-facebook-reviews-<?php echo $layout_type; ?><?php echo !empty($attributes['parentClasses']) ? ' ' . \esc_attr(\implode(' ', $attributes['parentClasses'])) : ''; ?>"
-             data-unique-id="<?php echo $unique_id; ?>"
-             data-layout="<?php echo $layout_type; ?>"
-             data-columns="<?php echo \esc_attr($attributes['zolo_fbReviewsColumnsRange'] ?? 3); ?>"
-             data-carousel-autoplay="<?php echo ($attributes['carouselAutoplay'] ?? true) ? 'true' : 'false'; ?>"
-             data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed'] ?? 3000); ?>"
-             data-carousel-loop="<?php echo ($attributes['carouselLoop'] ?? true) ? 'true' : 'false'; ?>">
-            
+            data-unique-id="<?php echo $unique_id; ?>"
+            data-layout="<?php echo $layout_type; ?>"
+            data-columns="<?php echo \esc_attr($attributes['fbReviewsColumns']['Desktop'] ?? 3); ?>"
+            data-columns-tablet="<?php echo \esc_attr($attributes['fbReviewsColumns']['Tablet'] ?? 2); ?>"
+            data-columns-mobile="<?php echo \esc_attr($attributes['fbReviewsColumns']['Mobile'] ?? 1); ?>"
+            data-gap="<?php echo \esc_attr($attributes['fbReviewsGap']['Desktop']['first'] ?? 20); ?>"
+            data-gap-tablet="<?php echo \esc_attr($attributes['fbReviewsGap']['Tablet']['first'] ?? 20); ?>"
+            data-gap-mobile="<?php echo \esc_attr($attributes['fbReviewsGap']['Mobile']['first'] ?? 20); ?>"
+            data-carousel-autoplay="<?php echo ($attributes['carouselAutoplay'] ?? true) ? 'true' : 'false'; ?>"
+            data-carousel-speed="<?php echo \esc_attr($attributes['carouselSpeed'] ?? 3000); ?>"
+            data-carousel-loop="<?php echo ($attributes['carouselLoop'] ?? true) ? 'true' : 'false'; ?>">
+
             <?php if ($attributes['showHeader'] ?? true): ?>
                 <div class="zolo-fb-reviews-header">
                     <div class="zolo-fb-reviews-header-left">
                         <svg class="zolo-fb-logo" width="32" height="32" viewBox="0 0 24 24" fill="#1877F2">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                         </svg>
                         <div class="zolo-fb-reviews-header-info">
                             <h2 class="zolo-fb-reviews-title"><?php echo wp_kses_post($attributes['headerTitle'] ?? 'Reviews & Recommendations'); ?></h2>
@@ -129,81 +138,57 @@ class FacebookReviews extends PostBlock {
             <?php endif; ?>
 
             <?php if ($layout_type !== 'badge'): ?>
-            <div class="zolo-fb-reviews-container layout-<?php echo $layout_type; ?> zolo-facebook-reviews-<?php echo $unique_id; ?>"
-                style="<?php echo $this->get_container_style($attributes); ?>">
-                
-                <?php if (empty($reviews)): ?>
-                    <div class="zolo-fb-reviews-empty" style="padding: 40px 20px; text-align: center; background: #f9fafb; border: 2px dashed #d1d5db; border-radius: 8px; color: #6b7280;">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="margin: 0 auto 16px; opacity: 0.5;">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor"/>
-                        </svg>
-                        <?php if (empty($page_id) || empty($access_token)): ?>
-                            <p style="margin: 0; font-size: 16px; font-weight: 600; color: #374151;">Facebook API Not Configured</p>
-                            <p style="margin: 8px 0 0; font-size: 14px;">Please configure your Facebook Page ID and Access Token in the <a href="<?php echo admin_url('admin.php?page=zoloblocks#apiSettings'); ?>" style="color: #1877f2; text-decoration: none;">API Settings</a>.</p>
-                        <?php else: ?>
-                            <p style="margin: 0; font-size: 16px; font-weight: 600; color: #374151;">No Reviews Found</p>
-                            <p style="margin: 8px 0 0; font-size: 14px;">No reviews are available for this Facebook page yet.</p>
-                        <?php endif; ?>
-                    </div>
-                <?php elseif ($layout_type === 'carousel'): ?>
-                    <div class="swiper">
-                        <div class="swiper-wrapper">
-                            <?php foreach ($reviews as $review): ?>
-                                <div class="swiper-slide">
-                                    <?php echo $this->render_review_card($review, $attributes, $facebook_url); ?>
-                                </div>
-                            <?php endforeach; ?>
+                <div class="zolo-fb-reviews-container layout-<?php echo $layout_type; ?> zolo-facebook-reviews-<?php echo $unique_id; ?>"
+                    style="<?php echo $this->get_container_style($attributes); ?>">
+
+                    <?php if (empty($reviews)): ?>
+                        <div class="zolo-fb-reviews-empty" style="padding: 40px 20px; text-align: center; background: #f9fafb; border: 2px dashed #d1d5db; border-radius: 8px; color: #6b7280;">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="margin: 0 auto 16px; opacity: 0.5;">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+                            </svg>
+                            <?php if (empty($page_id) || empty($access_token)): ?>
+                                <p style="margin: 0; font-size: 16px; font-weight: 600; color: #374151;">Facebook API Not Configured</p>
+                                <p style="margin: 8px 0 0; font-size: 14px;">Please configure your Facebook Page ID and Access Token in the <a href="<?php echo admin_url('admin.php?page=zoloblocks#apiSettings'); ?>" style="color: #1877f2; text-decoration: none;">API Settings</a>.</p>
+                            <?php else: ?>
+                                <p style="margin: 0; font-size: 16px; font-weight: 600; color: #374151;">No Reviews Found</p>
+                                <p style="margin: 8px 0 0; font-size: 14px;">No reviews are available for this Facebook page yet.</p>
+                            <?php endif; ?>
                         </div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                <?php else: ?>
-                    <?php foreach ($reviews as $review): ?>
-                        <?php echo $this->render_review_card($review, $attributes, $facebook_url); ?>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+                    <?php elseif ($layout_type === 'carousel'): ?>
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <?php foreach ($reviews as $review): ?>
+                                    <div class="swiper-slide">
+                                        <?php echo $this->render_review_card($review, $attributes, $facebook_url); ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    <?php else: ?>
+                        <?php foreach ($reviews as $review): ?>
+                            <?php echo $this->render_review_card($review, $attributes, $facebook_url); ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
             <?php endif; ?>
         </div>
-<?php
+    <?php
         return \ob_get_clean();
     }
 
     /**
-     * Get container style based on layout
+     * Get container style based on layout (not used with responsive CSS)
      *
      * @param array $attributes Block attributes
      * @return string
      */
     private function get_container_style($attributes)
     {
-        $layout = $attributes['layoutType'] ?? 'grid';
-
-        if (!in_array($layout, ['grid', 'masonry'], true)) {
-            return '';
-        }
-
-        $cols = $attributes['zolo_fbReviewsColumnsRange'] ?? 3;
-        $is_linked = $attributes['zolo_fbReviewsGapIsLinked'] ?? true;
-        $unit = $attributes['zolo_fbReviewsGapUnit'] ?? 'px';
-        $gap = $attributes['zolo_fbReviewsGapGap'] ?? 20;
-
-        if ($layout === 'grid') {
-            $gap_style = $is_linked
-                ? "gap: {$gap}{$unit};"
-                : \sprintf(
-                    'row-gap: %d%s; column-gap: %d%s;',
-                    $attributes['zolo_fbReviewsGapRowGap'] ?? 20,
-                    $unit,
-                    $attributes['zolo_fbReviewsGapColGap'] ?? 20,
-                    $unit
-                );
-            return "display: grid; grid-template-columns: repeat({$cols}, 1fr); {$gap_style}";
-        }
-
-        $col_gap = $is_linked ? $gap : ($attributes['zolo_fbReviewsGapColGap'] ?? 20);
-        return "column-count: {$cols}; column-gap: {$col_gap}{$unit};";
+        // Return empty as styles are now handled by get_responsive_css
+        return '';
     }
 
     /**
@@ -221,37 +206,55 @@ class FacebookReviews extends PostBlock {
             return '';
         }
 
-        $default_gap = $attributes['zolo_fbReviewsGapGap'] ?? 20;
+        // Get columns responsive values
+        $fb_columns = $attributes['fbReviewsColumns'] ?? ['Desktop' => 3, 'Tablet' => 2, 'Mobile' => 1];
+        $fb_gap = $attributes['fbReviewsGap'] ?? [
+            'Desktop' => ['gap' => 20, 'isLinked' => true, 'unit' => 'px'],
+            'Tablet' => ['gap' => 20, 'isLinked' => true, 'unit' => 'px'],
+            'Mobile' => ['gap' => 20, 'isLinked' => true, 'unit' => 'px'],
+        ];
+
+        // Desktop config
+        $desktop_gap = $fb_gap['Desktop'] ?? [];
         $desktop = [
-            'cols' => $attributes['zolo_fbReviewsColumnsRange'] ?? 3,
-            'is_linked' => $attributes['zolo_fbReviewsGapIsLinked'] ?? true,
-            'gap' => $default_gap,
-            'row_gap' => $attributes['zolo_fbReviewsGapRowGap'] ?? $default_gap,
-            'col_gap' => $attributes['zolo_fbReviewsGapColGap'] ?? $default_gap,
-            'unit' => $attributes['zolo_fbReviewsGapUnit'] ?? 'px',
+            'cols' => $fb_columns['Desktop'] ?? 3,
+            'is_linked' => $desktop_gap['isLinked'] ?? true,
+            'gap' => isset($desktop_gap['first']) ? (float)$desktop_gap['first'] : 20,
+            'row_gap' => isset($desktop_gap['second']) ? (float)$desktop_gap['second'] : (isset($desktop_gap['first']) ? (float)$desktop_gap['first'] : 20),
+            'col_gap' => isset($desktop_gap['first']) ? (float)$desktop_gap['first'] : 20,
+            'unit' => $desktop_gap['unit'] ?? 'px',
         ];
 
+        // Tablet config
+        $tablet_gap = $fb_gap['Tablet'] ?? $desktop_gap;
         $tablet = [
-            'cols' => $attributes['zolo_TABfbReviewsColumnsRange'] ?? $desktop['cols'],
-            'is_linked' => $attributes['zolo_TABfbReviewsGapIsLinked'] ?? $desktop['is_linked'],
-            'gap' => $attributes['zolo_TABfbReviewsGapGap'] ?? $desktop['gap'],
-            'row_gap' => $attributes['zolo_TABfbReviewsGapRowGap'] ?? $desktop['row_gap'],
-            'col_gap' => $attributes['zolo_TABfbReviewsGapColGap'] ?? $desktop['col_gap'],
-            'unit' => $attributes['zolo_TABfbReviewsGapUnit'] ?? $desktop['unit'],
+            'cols' => $fb_columns['Tablet'] ?? $desktop['cols'],
+            'is_linked' => $tablet_gap['isLinked'] ?? $desktop['is_linked'],
+            'gap' => isset($tablet_gap['first']) ? (float)$tablet_gap['first'] : $desktop['gap'],
+            'row_gap' => isset($tablet_gap['second']) ? (float)$tablet_gap['second'] : (isset($tablet_gap['first']) ? (float)$tablet_gap['first'] : $desktop['row_gap']),
+            'col_gap' => isset($tablet_gap['first']) ? (float)$tablet_gap['first'] : $desktop['col_gap'],
+            'unit' => $tablet_gap['unit'] ?? $desktop['unit'],
         ];
 
+        // Mobile config
+        $mobile_gap = $fb_gap['Mobile'] ?? $tablet_gap;
         $mobile = [
-            'cols' => $attributes['zolo_MOBfbReviewsColumnsRange'] ?? $tablet['cols'],
-            'is_linked' => $attributes['zolo_MOBfbReviewsGapIsLinked'] ?? $tablet['is_linked'],
-            'gap' => $attributes['zolo_MOBfbReviewsGapGap'] ?? $tablet['gap'],
-            'row_gap' => $attributes['zolo_MOBfbReviewsGapRowGap'] ?? $tablet['row_gap'],
-            'col_gap' => $attributes['zolo_MOBfbReviewsGapColGap'] ?? $tablet['col_gap'],
-            'unit' => $attributes['zolo_MOBfbReviewsGapUnit'] ?? $tablet['unit'],
+            'cols' => $fb_columns['Mobile'] ?? $tablet['cols'],
+            'is_linked' => $mobile_gap['isLinked'] ?? $tablet['is_linked'],
+            'gap' => isset($mobile_gap['first']) ? (float)$mobile_gap['first'] : $tablet['gap'],
+            'row_gap' => isset($mobile_gap['second']) ? (float)$mobile_gap['second'] : (isset($mobile_gap['first']) ? (float)$mobile_gap['first'] : $tablet['row_gap']),
+            'col_gap' => isset($mobile_gap['first']) ? (float)$mobile_gap['first'] : $tablet['col_gap'],
+            'unit' => $mobile_gap['unit'] ?? $tablet['unit'],
         ];
+
+        // Get margin settings from GlobalStyleHandler
+        $margin = $attributes['zolo_margin'] ?? [];
+        $margin_css = $this->generate_margin_css($unique_id, $margin);
 
         return \sprintf(
-            '<style>%s@media (max-width: 1024px) {%s}@media (max-width: 767px) {%s}</style>',
+            '<style>%s%s@media (max-width: 1024px) {%s}@media (max-width: 767px) {%s}</style>',
             $this->generate_layout_css($layout, $unique_id, $desktop),
+            $margin_css,
             $this->generate_layout_css($layout, $unique_id, $tablet, true),
             $this->generate_layout_css($layout, $unique_id, $mobile, true)
         );
@@ -276,16 +279,16 @@ class FacebookReviews extends PostBlock {
 
         switch ($layout) {
             case 'carousel':
-                return ".zolo-fb-reviews-container.layout-carousel.zolo-facebook-reviews-{$unique_id} .swiper { {$gap_css} }";
+                return ".{$unique_id}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-carousel .swiper { {$gap_css} }";
 
             case 'grid':
-                return ".zolo-fb-reviews-container.layout-grid.zolo-facebook-reviews-{$unique_id} { grid-template-columns: repeat({$config['cols']}, 1fr){$important}; {$gap_css} }";
+                return ".{$unique_id}.zolo-facebook-reviews .zolo-fb-reviews-container.layout-grid { display: grid; grid-template-columns: repeat({$config['cols']}, 1fr){$important}; {$gap_css} }";
 
             case 'masonry':
                 $col_gap = $config['is_linked'] ? $config['gap'] : $config['col_gap'];
                 $row_gap = $config['is_linked'] ? $config['gap'] : $config['row_gap'];
                 return \sprintf(
-                    '.zolo-fb-reviews-container.layout-masonry.zolo-facebook-reviews-%s { column-count: %d%s; column-gap: %d%s; } .zolo-fb-reviews-container.layout-masonry.zolo-facebook-reviews-%s .zolo-fb-review-card { margin-bottom: %d%s; }',
+                    '.%s.zolo-facebook-reviews .zolo-fb-reviews-container.layout-masonry { column-count: %d%s; column-gap: %d%s; } .%s.zolo-facebook-reviews .zolo-fb-reviews-container.layout-masonry .zolo-fb-review-card { margin-bottom: %d%s; }',
                     $unique_id,
                     $config['cols'],
                     $important,
@@ -302,6 +305,27 @@ class FacebookReviews extends PostBlock {
     }
 
     /**
+     * Generate margin CSS for centering
+     *
+     * @param string $unique_id Unique block ID
+     * @param array  $margin    Margin settings
+     * @return string
+     */
+    private function generate_margin_css($unique_id, $margin)
+    {
+        if (empty($margin)) {
+            return '';
+        }
+
+        $desktop = $margin['Desktop'] ?? [];
+        if (!empty($desktop['left']) || !empty($desktop['right'])) {
+            return ".{$unique_id}.zolo-facebook-reviews .zolo-fb-reviews-container { margin-left: auto !important; margin-right: auto !important; }";
+        }
+
+        return '';
+    }
+
+    /**
      * Render single review card
      *
      * @param array  $review     Review data
@@ -309,9 +333,10 @@ class FacebookReviews extends PostBlock {
      * @param string $fb_url     Facebook URL
      * @return string
      */
-    private function render_review_card($review, $attributes, $fb_url = '#') {
+    private function render_review_card($review, $attributes, $fb_url = '#')
+    {
         \ob_start();
-        ?>
+    ?>
         <div class="zolo-fb-review-card">
             <?php if (($attributes['showAvatar'] ?? true) && !empty($review['avatar'])): ?>
                 <div class="zolo-fb-reviewer-image">
@@ -320,7 +345,7 @@ class FacebookReviews extends PostBlock {
                     </a>
                 </div>
             <?php endif; ?>
-            
+
             <div class="zolo-fb-review-info">
                 <div class="zolo-fb-review-header">
                     <?php if ($attributes['showReviewerName'] ?? true): ?>
@@ -328,21 +353,21 @@ class FacebookReviews extends PostBlock {
                             <span class="zolo-fb-reviewer-name"><?php echo \esc_html($review['name']); ?></span>
                         </a>
                     <?php endif; ?>
-                    
+
                     <?php if (($attributes['showRecommendation'] ?? true) && !empty($review['has_recommendation'])): ?>
                         <div class="zolo-fb-rating-wrapper zolo-fb-rating">
                             <svg class="wpsr-recommends" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 14l-3.293 3.293A1 1 0 0 1 4 16.586V14h-.154c-1.337 0-1.822-.14-2.311-.4A2.726 2.726 0 0 1 .4 12.464c-.261-.488-.4-.973-.4-2.309v-6.31c0-1.336.14-1.821.4-2.31A2.726 2.726 0 0 1 1.536.4c.488-.261.973-.4 2.309-.4h10.31c1.336 0 1.821.14 2.31.4.49.262.873.646 1.134 1.135.262.489.401.974.401 2.31v6.31c0 1.336-.14 1.821-.4 2.31a2.726 2.726 0 0 1-1.135 1.134c-.489.262-.974.401-2.31.401H9zm0-5l1.454.765a.5.5 0 0 0 .726-.527l-.278-1.62 1.177-1.147a.5.5 0 0 0-.277-.853l-1.626-.236-.728-1.474a.5.5 0 0 0-.896 0l-.728 1.474-1.626.236a.5.5 0 0 0-.277.853l1.177 1.147-.278 1.62a.5.5 0 0 0 .726.527L9 9z" fill="#f36b7f"/>
+                                <path d="M9 14l-3.293 3.293A1 1 0 0 1 4 16.586V14h-.154c-1.337 0-1.822-.14-2.311-.4A2.726 2.726 0 0 1 .4 12.464c-.261-.488-.4-.973-.4-2.309v-6.31c0-1.336.14-1.821.4-2.31A2.726 2.726 0 0 1 1.536.4c.488-.261.973-.4 2.309-.4h10.31c1.336 0 1.821.14 2.31.4.49.262.873.646 1.134 1.135.262.489.401.974.401 2.31v6.31c0 1.336-.14 1.821-.4 2.31a2.726 2.726 0 0 1-1.135 1.134c-.489.262-.974.401-2.31.401H9zm0-5l1.454.765a.5.5 0 0 0 .726-.527l-.278-1.62 1.177-1.147a.5.5 0 0 0-.277-.853l-1.626-.236-.728-1.474a.5.5 0 0 0-.896 0l-.728 1.474-1.626.236a.5.5 0 0 0-.277.853l1.177 1.147-.278 1.62a.5.5 0 0 0 .726.527L9 9z" fill="#f36b7f" />
                             </svg>
                             <span><?php echo \esc_html__('recommends', 'zoloblocks'); ?></span>
                         </div>
                     <?php endif; ?>
                 </div>
-                
+
                 <?php if ($attributes['showDate'] ?? true): ?>
                     <span class="zolo-fb-review-date"><?php echo \esc_html($review['date']); ?></span>
                 <?php endif; ?>
-                
+
                 <?php if (($attributes['showReviewText'] ?? true) && !empty($review['text'])): ?>
                     <div class="zolo-fb-review-content">
                         <p><?php echo \esc_html($review['text']); ?></p>
@@ -350,7 +375,7 @@ class FacebookReviews extends PostBlock {
                 <?php endif; ?>
             </div>
         </div>
-        <?php
+<?php
         return \ob_get_clean();
     }
 
@@ -360,15 +385,31 @@ class FacebookReviews extends PostBlock {
      * @param string $page_id      Page ID
      * @param string $access_token Access token
      * @param int    $limit        Number of reviews
+     * @param int    $cache_duration Cache duration in hours
      * @return array
      */
-    private function get_facebook_reviews($page_id, $access_token, $limit = 6) {
+    private function get_facebook_reviews($page_id, $access_token, $limit = 6, $cache_duration = 12)
+    {
         if (empty($page_id) || empty($access_token)) {
             return array();
         }
 
+        // Generate transient key
+        $transient_key = 'zolo_fb_reviews_' . md5($page_id . '_' . $limit . '_' . $cache_duration);
+
+        // Check for cached reviews
+        $cached_reviews = \get_transient($transient_key);
+        if ($cached_reviews !== false) {
+            return $cached_reviews;
+        }
+
         // Fetch from API
         $reviews = $this->fetch_reviews_from_api($page_id, $access_token, $limit);
+
+        // Save to transient if we got reviews
+        if (!empty($reviews)) {
+            \set_transient($transient_key, $reviews, $cache_duration * HOUR_IN_SECONDS);
+        }
 
         return $reviews;
     }
@@ -381,7 +422,8 @@ class FacebookReviews extends PostBlock {
      * @param int    $limit        Number of reviews
      * @return array
      */
-    private function fetch_reviews_from_api($page_id, $access_token, $limit) {
+    private function fetch_reviews_from_api($page_id, $access_token, $limit)
+    {
         $url = \add_query_arg(
             array(
                 'fields' => 'id,created_time,recommendation_type,review_text,reviewer{id,name,picture}',
@@ -449,7 +491,8 @@ class FacebookReviews extends PostBlock {
      * @param string $date_string Date string
      * @return string
      */
-    private function format_date($date_string) {
+    private function format_date($date_string)
+    {
         $timestamp = \strtotime($date_string);
         $diff = \time() - $timestamp;
 
@@ -472,7 +515,4 @@ class FacebookReviews extends PostBlock {
             return $years . ' year' . ($years > 1 ? 's' : '') . ' ago';
         }
     }
-
-
 }
-

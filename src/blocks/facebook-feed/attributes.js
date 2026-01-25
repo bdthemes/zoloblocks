@@ -108,9 +108,9 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    cacheExpiration: {
+    cacheDuration: {
         type: 'number',
-        default: 43200, // 12 hours in seconds
+        default: 12,
     },
     fbGap: {
         type: 'object',
