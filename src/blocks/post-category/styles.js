@@ -372,7 +372,8 @@ function Style({ props }) {
         }
 
         ${
-            preset === 'style-1'
+        preset === 'style-1' || preset === 'style-4'
+        
                 ? `
                 .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
                   ${itemPaddingDesk}
@@ -502,7 +503,7 @@ function Style({ props }) {
       }
 
       ${
-          preset === 'style-1'
+          preset === 'style-1' || preset === 'style-4'
               ? `
               .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
                   ${itemPaddingTab}
@@ -588,7 +589,7 @@ function Style({ props }) {
       }
 
       ${
-          preset === 'style-1'
+          preset === 'style-1' || preset === 'style-4'
               ? `
               .${uniqueId}.zolo-block.zolo-post-category-wrap .zolo-category-item{
                 ${itemPaddingMob}
