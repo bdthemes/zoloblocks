@@ -315,7 +315,7 @@ function Inspector(props) {
 
                         {attributes.layoutType === 'carousel' && (
                             <ZoloPanelBody title={__('Carousel Settings', 'zoloblocks')} panelProps={props}>
-                                <ZoloResponsive left='60px'>
+                                <ZoloResponsive left='95px'>
                                     <CounterControl
                                         label={__('Slides Per View', 'zoloblocks')}
                                         value={getResponsiveValue(attributes, 'igColumns')}
