@@ -4,6 +4,7 @@ export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Style 2 (Pro)', 'zoloblocks'), value: 'style-2', disabled: true },
     { label: __('Style 3 (Pro)', 'zoloblocks'), value: 'style-3', disabled: true },
+    { label: __('Style 4', 'zoloblocks'), value: 'style-4' },
 ];
 export const CAT_ORDER_BY = [
     { value: 'name', label: __('Name', 'zoloblocks') },
