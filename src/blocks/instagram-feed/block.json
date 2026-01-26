@@ -5,7 +5,7 @@
     "name": "zolo/instagram-feed",
     "category": "zoloblocks",
     "keywords": ["instagram", "feed", "social", "photos", "posts", "social media"],
-    "description": "Display Instagram posts in Grid, Masonry or Carousel layouts.",
+    "description": "Display Instagram posts in Grid or Carousel layouts.",
     "textdomain": "zoloblocks",
     "example": {
         "attributes": {

@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (layoutType === 'carousel') {
             initCarousel(block);
-        } else if (layoutType === 'masonry') {
-            initMasonry(block);
         }
     });
 });
@@ -120,36 +118,4 @@ function initCarousel(block) {
     });
 }
 
-function initMasonry(block) {
-    const container = block.querySelector('.zolo-ig-masonry');
-    if (!container) return;
 
-    // Masonry layout is handled by CSS columns, but we can ensure images are loaded
-    const images = container.querySelectorAll('img');
-    let loadedCount = 0;
-    const totalImages = images.length;
-
-    if (totalImages === 0) return;
-
-    images.forEach((img) => {
-        if (img.complete) {
-            loadedCount++;
-        } else {
-            img.addEventListener('load', () => {
-                loadedCount++;
-                if (loadedCount === totalImages) {
-                    // All images loaded, trigger reflow
-                    container.style.opacity = '0';
-                    setTimeout(() => {
-                        container.style.opacity = '1';
-                        container.style.transition = 'opacity 0.3s ease';
-                    }, 10);
-                }
-            });
-        }
-    });
-
-    if (loadedCount === totalImages) {
-        container.style.opacity = '1';
-    }
-}

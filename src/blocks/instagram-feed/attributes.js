@@ -2,7 +2,6 @@
 
 export const layoutTypes = {
     GRID: 'grid',
-    MASONRY: 'masonry',
     CAROUSEL: 'carousel',
 };
 
@@ -120,10 +119,7 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    cacheExpiration: {
-        type: 'number',
-        default: 12,
-    },
+
     igGap: {
         type: 'object',
         default: {

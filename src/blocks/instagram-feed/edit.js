@@ -339,15 +339,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         );
     };
 
-    const renderMasonry = () => {
-        if (!instagramData?.media) return null;
 
-        return (
-            <div className="zolo-ig-masonry">
-                {instagramData.media.map((post, index) => renderPost(post, index))}
-            </div>
-        );
-    };
 
     const renderCarousel = () => {
         if (!instagramData?.media) return null;
@@ -372,8 +364,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
     const renderContent = () => {
         switch (attributes.layoutType) {
-            case layoutTypes.MASONRY:
-                return renderMasonry();
             case layoutTypes.CAROUSEL:
                 return renderCarousel();
             case layoutTypes.GRID:

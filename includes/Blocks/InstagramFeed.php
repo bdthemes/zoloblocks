@@ -39,9 +39,7 @@ class InstagramFeed extends PostBlock
                 'imageRatio' => 'square',
                 'carouselAutoplay' => true,
                 'carouselSpeed' => 3000,
-                'carouselLoop' => true,
-                'cacheExpiration' => 12,
-                'resMode' => 'desktop',
+
                 'igColumns' => [
                     'Desktop' => 3,
                     'Tablet' => 2,
@@ -83,9 +81,12 @@ class InstagramFeed extends PostBlock
         // Bypass cache in editor context (REST API requests or admin)
         $bypass_cache = \defined('REST_REQUEST') && REST_REQUEST;
 
+        // Get cache expiration from global settings (default 12 hours)
+        $cache_expiration = \get_option('zolo_instagram_cache_expiration', 12);
+
         // Get posts from Instagram API or return empty if not configured
         if (!empty($access_token)) {
-            $data = $this->get_instagram_data($access_token, $posts_per_page, $attributes['cacheExpiration'], $bypass_cache);
+            $data = $this->get_instagram_data($access_token, $posts_per_page, $cache_expiration, $bypass_cache);
         } else {
             $data = null;
         }
@@ -188,12 +189,6 @@ class InstagramFeed extends PostBlock
                             <div class="swiper-button-next" role="button" aria-label="Next slide" tabindex="0"></div>
                             <div class="swiper-pagination" role="group" aria-label="Carousel pagination"></div>
                         </div>
-                    </div>
-                <?php elseif ($layout_type === 'masonry') : ?>
-                    <div class="zolo-ig-masonry">
-                        <?php foreach ($data['media'] as $index => $post) : ?>
-                            <?php echo $this->render_post($post, $attributes); ?>
-                        <?php endforeach; ?>
                     </div>
                 <?php else : ?>
                     <div class="zolo-ig-grid">
@@ -437,15 +432,7 @@ class InstagramFeed extends PostBlock
             }
         };
 
-        // Helper to get specific gap value (e.g. for masonry column-gap)
-        $get_col_gap = function ($gap_data) {
-            return $gap_data['first'] ?? '0px';
-        };
 
-        $get_row_gap = function ($gap_data) {
-            $linked = $gap_data['linked'] ?? true;
-            return $linked ? ($gap_data['first'] ?? '0px') : ($gap_data['second'] ?? '0px');
-        };
 
         $desk_gap = $attributes['igGap']['Desktop'] ?? [];
         $tab_gap = $attributes['igGap']['Tablet'] ?? [];
@@ -460,14 +447,7 @@ class InstagramFeed extends PostBlock
                 <?php echo $get_gap_css($desk_gap); ?>
             }
 
-            .<?php echo $unique_id; ?>.zolo-ig-masonry {
-                column-count: <?php echo $desktop_columns; ?>;
-                column-gap: <?php echo $get_col_gap($desk_gap); ?>;
-            }
 
-            .<?php echo $unique_id; ?>.zolo-ig-masonry .zolo-ig-item {
-                margin-bottom: <?php echo $get_row_gap($desk_gap); ?>;
-            }
 
             .zolo-lightbox-caption {
                 font-size: <?php echo $lightbox_caption_size; ?>px;
@@ -479,17 +459,7 @@ class InstagramFeed extends PostBlock
                     <?php echo $get_gap_css($tab_gap); ?>
                 }
 
-                .<?php echo $unique_id; ?>.zolo-ig-masonry {
-                    column-count: <?php echo $tablet_columns; ?>;
-                    <?php if (!empty($tab_gap)) : ?>column-gap: <?php echo $get_col_gap($tab_gap); ?>;
-                    <?php endif; ?>
-                }
 
-                <?php if (!empty($tab_gap)) : ?>.<?php echo $unique_id; ?>.zolo-ig-masonry .zolo-ig-item {
-                    margin-bottom: <?php echo $get_row_gap($tab_gap); ?>;
-                }
-
-                <?php endif; ?>
             }
 
             @media (max-width: 768px) {
@@ -498,17 +468,7 @@ class InstagramFeed extends PostBlock
                     <?php echo $get_gap_css($mob_gap); ?>
                 }
 
-                .<?php echo $unique_id; ?>.zolo-ig-masonry {
-                    column-count: <?php echo $mobile_columns; ?>;
-                    <?php if (!empty($mob_gap)) : ?>column-gap: <?php echo $get_col_gap($mob_gap); ?>;
-                    <?php endif; ?>
-                }
 
-                <?php if (!empty($mob_gap)) : ?>.<?php echo $unique_id; ?>.zolo-ig-masonry .zolo-ig-item {
-                    margin-bottom: <?php echo $get_row_gap($mob_gap); ?>;
-                }
-
-                <?php endif; ?>
             }
         </style>
 <?php

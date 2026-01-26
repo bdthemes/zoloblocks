@@ -15,9 +15,7 @@ const Style = (props) => {
                 display: grid;
                 ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
             }
-            .${uniqueId} .zolo-ig-masonry {
-                ${columnCountDesk ? `column-count: ${columnCountDesk};` : ''}
-            }
+
             .zolo-lightbox-caption {
                 ${attributes.lightboxCaptionSize ? `font-size: ${attributes.lightboxCaptionSize}px;` : ''}
             }
@@ -35,32 +33,7 @@ const Style = (props) => {
                 })
             }
         }
-        .${uniqueId} .zolo-ig-masonry {
-            ${
-                generateCSS({
-                    attributes,
-                    key: 'igGap',
-                    getValue: (value) => {
-                        const colGap = value?.linked ? value?.first : value?.first;
-                        return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
-                    },
-                    device: 'Desktop'
-                })
-            }
-        }
-        .${uniqueId} .zolo-ig-masonry .zolo-ig-item {
-            ${
-                generateCSS({
-                    attributes,
-                    key: 'igGap',
-                    getValue: (value) => {
-                        const rowGap = value?.linked ? value?.first : value?.second;
-                        return `margin-bottom: ${rowGap};`;
-                    },
-                    device: 'Desktop'
-                })
-            }
-        }
+
         .${uniqueId} .zolo-ig-carousel .swiper {
             ${
                 generateCSS({
@@ -83,9 +56,7 @@ const Style = (props) => {
             .${uniqueId} .zolo-ig-grid {
                 ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr);` : ''}
             }
-            .${uniqueId} .zolo-ig-masonry {
-                ${columnCountTab ? `column-count: ${columnCountTab};` : ''}
-            }
+
         ` +
         `.${uniqueId} .zolo-ig-grid{
             ${
@@ -100,32 +71,7 @@ const Style = (props) => {
                 })
             }
         }
-        .${uniqueId} .zolo-ig-masonry {
-            ${
-                generateCSS({
-                    attributes,
-                    key: 'igGap',
-                    getValue: (value) => {
-                        const colGap = value?.linked ? value?.first : value?.first;
-                        return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
-                    },
-                    device: 'Tablet'
-                })
-            }
-        }
-        .${uniqueId} .zolo-ig-masonry .zolo-ig-item {
-            ${
-                generateCSS({
-                    attributes,
-                    key: 'igGap',
-                    getValue: (value) => {
-                        const rowGap = value?.linked ? value?.first : value?.second;
-                        return `margin-bottom: ${rowGap};`;
-                    },
-                    device: 'Tablet'
-                })
-            }
-        }
+
         `;
         return style;
     }, [JSON.stringify(attributes)]);
@@ -135,9 +81,7 @@ const Style = (props) => {
             .${uniqueId} .zolo-ig-grid {
                 ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr);` : ''}
             }
-            .${uniqueId} .zolo-ig-masonry {
-                ${columnCountMob ? `column-count: ${columnCountMob};` : ''}
-            }
+
         ` +
         `.${uniqueId} .zolo-ig-grid{
             ${
@@ -152,32 +96,7 @@ const Style = (props) => {
                 })
             }
         }
-        .${uniqueId} .zolo-ig-masonry {
-            ${
-                generateCSS({
-                    attributes,
-                    key: 'igGap',
-                    getValue: (value) => {
-                        const colGap = value?.linked ? value?.first : value?.first;
-                        return `column-gap: ${colGap}; -webkit-column-gap: ${colGap}; -moz-column-gap: ${colGap};`;
-                    },
-                    device: 'Mobile'
-                })
-            }
-        }
-        .${uniqueId} .zolo-ig-masonry .zolo-ig-item {
-            ${
-                generateCSS({
-                    attributes,
-                    key: 'igGap',
-                    getValue: (value) => {
-                        const rowGap = value?.linked ? value?.first : value?.second;
-                        return `margin-bottom: ${rowGap};`;
-                    },
-                    device: 'Mobile'
-                })
-            }
-        }
+
         `;
         return style;
     }, [JSON.stringify(attributes)]);

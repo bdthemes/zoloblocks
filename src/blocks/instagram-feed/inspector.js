@@ -6,7 +6,6 @@ import objAttributes from './attributes';
 
 const LAYOUT_OPTIONS = [
     { label: __('Grid', 'zoloblocks'), value: 'grid' },
-    { label: __('Masonry', 'zoloblocks'), value: 'masonry' },
     { label: __('Carousel', 'zoloblocks'), value: 'carousel' },
 ];
 
@@ -146,7 +145,7 @@ function Inspector(props) {
                                     max={30}
                                 />
                             </div>
-                            {(attributes.layoutType === 'grid' || attributes.layoutType === 'masonry') && (
+                            {attributes.layoutType === 'grid' && (
                                 <ZoloResponsive left='60px'>
                                     <CounterControl
                                         label={__('Columns', 'zoloblocks')}
@@ -165,16 +164,7 @@ function Inspector(props) {
                                     onChange={(value) => setAttributes({ imageRatio: value })}
                                 />
                             </div>
-                            <div className="zolo-flex-col-control">
-                                <ZoloRangeControl
-                                    label={__('Cache Duration (hours)', 'zoloblocks')}
-                                    value={attributes.cacheExpiration}
-                                    onChange={(value) => setAttributes({ cacheExpiration: value })}
-                                    min={1}
-                                    max={168}
-                                    step={1}
-                                />
-                            </div>
+
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Header Settings', 'zoloblocks')} panelProps={props}>

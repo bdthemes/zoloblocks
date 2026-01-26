@@ -2,7 +2,7 @@ import SettingPanel from './setting-panel';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { ZoloTextControl, ZoloButton } from '../../../controls/core-controls';
+import { ZoloTextControl, ZoloButton, ZoloRangeControl } from '../../../controls/core-controls';
 
 const ApiSettings = () => {
     const [isAIExtensionActive, setisAIExtensionActive] = useState(true);
@@ -16,6 +16,7 @@ const ApiSettings = () => {
     const [facebookAccessToken, setFacebookAccessToken] = useState('');
     const [instagramAccessToken, setInstagramAccessToken] = useState('');
     const [instagramUserId, setInstagramUserId] = useState('');
+    const [instagramCacheExpiration, setInstagramCacheExpiration] = useState(12);
     const [webhooks, setWebhooks] = useState([
         {
             label: '',
@@ -54,6 +55,7 @@ const ApiSettings = () => {
                 zolo_facebook_access_token,
                 zolo_instagram_access_token,
                 zolo_instagram_user_id,
+                zolo_instagram_cache_expiration,
                 zolo_webhooks,
             }) => {
                 setGoogleAPIKey(zolo_google_api_key);
@@ -66,6 +68,7 @@ const ApiSettings = () => {
                 setFacebookAccessToken(zolo_facebook_access_token);
                 setInstagramAccessToken(zolo_instagram_access_token);
                 setInstagramUserId(zolo_instagram_user_id);
+                setInstagramCacheExpiration(zolo_instagram_cache_expiration);
                 setWebhooks(zolo_webhooks);
             }
         );
@@ -205,6 +208,19 @@ const ApiSettings = () => {
             },
         }).then(({ zolo_instagram_user_id }) => {
             setInstagramUserId(zolo_instagram_user_id);
+        });
+    };
+
+    // update instagram cache expiration
+    const onChangeInstagramCacheExpiration = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_instagram_cache_expiration: value,
+            },
+        }).then(({ zolo_instagram_cache_expiration }) => {
+            setInstagramCacheExpiration(zolo_instagram_cache_expiration);
         });
     };
 
@@ -355,6 +371,7 @@ const ApiSettings = () => {
                     onSave={() => {
                         onChangeInstagramAccessToken(instagramAccessToken);
                         onChangeInstagramUserId(instagramUserId);
+                        onChangeInstagramCacheExpiration(instagramCacheExpiration);
                     }}
                 >
                     <ZoloTextControl
@@ -368,6 +385,14 @@ const ApiSettings = () => {
                         onChange={(value) => setInstagramAccessToken(value)}
                         value={instagramAccessToken}
                         placeholder={__('Enter your Instagram Access Token', 'zoloblocks')}
+                    />
+                    <ZoloRangeControl
+                        label={__('Cache Duration (hours)', 'zoloblocks')}
+                        value={instagramCacheExpiration}
+                        onChange={(value) => setInstagramCacheExpiration(value)}
+                        min={1}
+                        max={168}
+                        step={1}
                     />
                 </SettingPanel>
                 <SettingPanel
