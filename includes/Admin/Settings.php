@@ -481,6 +481,20 @@ if (! class_exists('Settings')) {
                 ]
             );
 
+             // Facebook Cache Duration
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_facebook_cache_duration',
+                [
+                    'type'              => 'integer',
+                    'default'           => 12,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'integer'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_enable_template_library',

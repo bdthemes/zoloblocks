@@ -85,10 +85,15 @@ class FacebookFeed extends PostBlock
 
         // Get posts from Facebook API or return empty if not configured
         if (!empty($facebook_page_id) && !empty($access_token)) {
-            $cache_duration = \absint($attributes['cacheDuration'] ?? 12);
-            $posts = $this->get_facebook_posts_from_api($facebook_page_id, $access_token, $posts_per_page, $cache_duration, $bypass_cache);
+            $cache_duration = \absint(get_option('zolo_facebook_cache_duration', 12));
+            $fb_data = $this->get_facebook_data($facebook_page_id, $access_token, $posts_per_page, $cache_duration, $bypass_cache);
+            $posts = $fb_data['posts'] ?? [];
+            $page_name = $fb_data['page']['name'] ?? '';
+            $page_picture = $fb_data['page']['picture'] ?? '';
         } else {
             $posts = [];
+            $page_name = '';
+            $page_picture = '';
         }
 
         // Show empty state if no posts
@@ -473,7 +478,7 @@ class FacebookFeed extends PostBlock
     }
 
     /**
-     * Get Facebook posts from API
+     * Get Facebook data (posts, page name, picture) from API
      *
      * @param string $page_id Page ID or username
      * @param string $access_token Facebook access token
@@ -482,170 +487,117 @@ class FacebookFeed extends PostBlock
      * @param bool   $bypass_cache Whether to bypass cache
      * @return array
      */
-    private function get_facebook_posts_from_api($page_id, $access_token, $count = 6, $cache_duration = 12, $bypass_cache = false)
+    private function get_facebook_data($page_id, $access_token, $count = 6, $cache_duration = 12, $bypass_cache = false)
     {
         // Create cache key
-        $cache_key = 'zolo_fb_posts_' . \md5($page_id . $access_token . $count . $cache_duration);
+        $cache_key = 'zolo_facebook_data_' . \md5($page_id . $access_token . $count . $cache_duration);
 
         // Try to get from cache (skip if force refresh or editor context)
         if (!$bypass_cache && empty($_GET['fb_refresh']) && empty($_GET['nocache'])) {
-            $cached_posts = \get_transient($cache_key);
-            if ($cached_posts !== false) {
-                return $cached_posts;
+            $cached_data = \get_transient($cache_key);
+            if ($cached_data !== false) {
+                return $cached_data;
             }
         }
 
-        // Fetch from Facebook Graph API
-        $api_url = \sprintf(
+        $data = [
+            'page' => [
+                'name' => 'Facebook Page',
+                'picture' => 'https://via.placeholder.com/50',
+            ],
+            'posts' => [],
+        ];
+
+        // Fetch Page Info
+        $page_api_url = \sprintf(
+            'https://graph.facebook.com/v18.0/%s?fields=name,picture.type(small)&access_token=%s',
+            \urlencode($page_id),
+            \urlencode($access_token)
+        );
+
+        $page_response = \wp_remote_get($page_api_url);
+
+        if (!\is_wp_error($page_response)) {
+            $page_body = \wp_remote_retrieve_body($page_response);
+            $page_data = \json_decode($page_body, true);
+            $data['page']['name'] = $page_data['name'] ?? 'Facebook Page';
+            $data['page']['picture'] = $page_data['picture']['data']['url'] ?? 'https://via.placeholder.com/50';
+        }
+
+        // Fetch Posts
+        $posts_api_url = \sprintf(
             'https://graph.facebook.com/v18.0/%s/posts?fields=id,message,created_time,full_picture,attachments{title,description,media_type,type,url,unshimmed_url,target{id}},reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(CARE).limit(0).summary(total_count).as(reactions_care),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry),reactions.limit(0).summary(total_count).as(reactions_total),comments.summary(true),shares&limit=%d&access_token=%s',
             \urlencode($page_id),
             $count,
             \urlencode($access_token)
         );
 
-        $response = \wp_remote_get($api_url, [
+        $posts_response = \wp_remote_get($posts_api_url, [
             'timeout' => 15,
             'sslverify' => true,
         ]);
 
-        if (\is_wp_error($response)) {
-            return [];
-        }
+        if (!\is_wp_error($posts_response)) {
+            $posts_body = \wp_remote_retrieve_body($posts_response);
+            $posts_data = \json_decode($posts_body, true);
 
-        $body = \wp_remote_retrieve_body($response);
-        $data = \json_decode($body, true);
+            if (!empty($posts_data['data'])) {
+                foreach ($posts_data['data'] as $index => $post) {
+                    // Parse attachment if exists
+                    $attachment = null;
+                    $has_link_attachment = false;
+                    if (!empty($post['attachments']['data'][0])) {
+                        $attach_data = $post['attachments']['data'][0];
+                        $has_link_attachment = ($attach_data['type'] ?? '') === 'share';
+                        $attachment = [
+                            'type' => $attach_data['type'] ?? '',
+                            'media_type' => $attach_data['media_type'] ?? '',
+                            'title' => $attach_data['title'] ?? '',
+                            'description' => $attach_data['description'] ?? '',
+                            'url' => $attach_data['unshimmed_url'] ?? $attach_data['url'] ?? '',
+                        ];
+                    }
 
-        if (empty($data['data'])) {
-            return [];
-        }
+                    // Only use full_picture if it's not just a link preview thumbnail
+                    $post_image = null;
+                    if (!empty($post['full_picture']) && !$has_link_attachment) {
+                        $post_image = $post['full_picture'];
+                    }
 
-        // Format posts
-        $posts = [];
-        foreach ($data['data'] as $index => $post) {
-            // Parse attachment if exists
-            $attachment = null;
-            $has_link_attachment = false;
-            if (!empty($post['attachments']['data'][0])) {
-                $attach_data = $post['attachments']['data'][0];
-                $has_link_attachment = ($attach_data['type'] ?? '') === 'share';
-                $attachment = [
-                    'type' => $attach_data['type'] ?? '',
-                    'media_type' => $attach_data['media_type'] ?? '',
-                    'title' => $attach_data['title'] ?? '',
-                    'description' => $attach_data['description'] ?? '',
-                    'url' => $attach_data['unshimmed_url'] ?? $attach_data['url'] ?? '',
-                ];
+                    $formatted_post = [
+                        'id' => $post['id'] ?? $index,
+                        'author' => $data['page']['name'], // Use fetched page name directly
+                        'avatar' => $data['page']['picture'], // Use fetched page picture directly
+                        'date' => $this->format_date($post['created_time'] ?? ''),
+                        'content' => $post['message'] ?? '',
+                        'hashtags' => $this->extract_hashtags($post['message'] ?? ''),
+                        'image' => $post_image,
+                        'attachment' => $attachment,
+                        'reactions' => $post['reactions_total']['summary']['total_count'] ?? 0,
+                        'reaction_types' => [
+                            'like' => $post['reactions_like']['summary']['total_count'] ?? 0,
+                            'love' => $post['reactions_love']['summary']['total_count'] ?? 0,
+                            'care' => $post['reactions_care']['summary']['total_count'] ?? 0,
+                            'wow' => $post['reactions_wow']['summary']['total_count'] ?? 0,
+                            'haha' => $post['reactions_haha']['summary']['total_count'] ?? 0,
+                            'sad' => $post['reactions_sad']['summary']['total_count'] ?? 0,
+                            'angry' => $post['reactions_angry']['summary']['total_count'] ?? 0,
+                        ],
+                        'comments' => $post['comments']['summary']['total_count'] ?? 0,
+                        'shares' => $post['shares']['count'] ?? 0,
+                    ];
+                    $data['posts'][] = $formatted_post;
+                }
             }
-
-            // Only use full_picture if it's not just a link preview thumbnail
-            // If post has a link attachment, skip the image as it's just the preview
-            $post_image = null;
-            if (!empty($post['full_picture']) && !$has_link_attachment) {
-                $post_image = $post['full_picture'];
-            }
-
-            $formatted_post = [
-                'id' => $post['id'] ?? $index,
-                'author' => $this->get_page_name($page_id, $access_token, $cache_duration),
-                'avatar' => $this->get_page_picture($page_id, $access_token, $cache_duration),
-                'date' => $this->format_date($post['created_time'] ?? ''),
-                'content' => $post['message'] ?? '',
-                'hashtags' => $this->extract_hashtags($post['message'] ?? ''),
-                'image' => $post_image,
-                'attachment' => $attachment,
-                'reactions' => $post['reactions_total']['summary']['total_count'] ?? 0,
-                'reaction_types' => [
-                    'like' => $post['reactions_like']['summary']['total_count'] ?? 0,
-                    'love' => $post['reactions_love']['summary']['total_count'] ?? 0,
-                    'care' => $post['reactions_care']['summary']['total_count'] ?? 0,
-                    'wow' => $post['reactions_wow']['summary']['total_count'] ?? 0,
-                    'haha' => $post['reactions_haha']['summary']['total_count'] ?? 0,
-                    'sad' => $post['reactions_sad']['summary']['total_count'] ?? 0,
-                    'angry' => $post['reactions_angry']['summary']['total_count'] ?? 0,
-                ],
-                'comments' => $post['comments']['summary']['total_count'] ?? 0,
-                'shares' => $post['shares']['count'] ?? 0,
-            ];
-            $posts[] = $formatted_post;
         }
 
         // Cache the results
-        \set_transient($cache_key, $posts, $cache_duration * 3600);
+        \set_transient($cache_key, $data, $cache_duration * 3600);
 
-        return $posts;
+        return $data;
     }
 
-    /**
-     * Get Facebook page name
-     *
-     * @param string $page_id Page ID
-     * @param string $access_token Access token
-     * @param int    $cache_duration Cache duration in hours
-     * @return string
-     */
-    private function get_page_name($page_id, $access_token, $cache_duration = 24)
-    {
-        $cache_key = 'zolo_fb_page_name_' . \md5($page_id . $cache_duration);
-        $cached_name = \get_transient($cache_key);
 
-        if ($cached_name !== false) {
-            return $cached_name;
-        }
-
-        $api_url = \sprintf(
-            'https://graph.facebook.com/v18.0/%s?fields=name&access_token=%s',
-            \urlencode($page_id),
-            \urlencode($access_token)
-        );
-
-        $response = \wp_remote_get($api_url);
-
-        if (!\is_wp_error($response)) {
-            $body = \wp_remote_retrieve_body($response);
-            $data = \json_decode($body, true);
-            $name = $data['name'] ?? 'Facebook Page';
-            \set_transient($cache_key, $name, $cache_duration * 3600);
-            return $name;
-        }
-
-        return 'Facebook Page';
-    }
-
-    /**
-     * Get Facebook page profile picture
-     *
-     * @param string $page_id Page ID
-     * @param string $access_token Access token
-     * @param int    $cache_duration Cache duration in hours
-     * @return string
-     */
-    private function get_page_picture($page_id, $access_token, $cache_duration = 24)
-    {
-        $cache_key = 'zolo_fb_page_picture_' . \md5($page_id . $cache_duration);
-        $cached_picture = \get_transient($cache_key);
-
-        if ($cached_picture !== false) {
-            return $cached_picture;
-        }
-
-        $api_url = \sprintf(
-            'https://graph.facebook.com/v18.0/%s/picture?type=small&redirect=false&access_token=%s',
-            \urlencode($page_id),
-            \urlencode($access_token)
-        );
-
-        $response = \wp_remote_get($api_url);
-
-        if (!\is_wp_error($response)) {
-            $body = \wp_remote_retrieve_body($response);
-            $data = \json_decode($body, true);
-            $picture = $data['data']['url'] ?? 'https://via.placeholder.com/50';
-            \set_transient($cache_key, $picture, $cache_duration * 3600);
-            return $picture;
-        }
-
-        return 'https://via.placeholder.com/50';
-    }
 
     /**
      * Format date to relative time

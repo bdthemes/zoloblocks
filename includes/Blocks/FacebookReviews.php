@@ -78,9 +78,8 @@ class FacebookReviews extends PostBlock
         $access_token = get_option('zolo_facebook_access_token', '');
         $facebook_url = $page_id ? 'https://www.facebook.com/' . \urlencode($page_id) . '/reviews' : 'https://www.facebook.com';
 
-        // Fetch reviews
         if (!empty($page_id) && !empty($access_token)) {
-            $cache_duration = \absint($attributes['cacheDuration'] ?? 12);
+            $cache_duration = \absint(get_option('zolo_facebook_cache_duration', 12));
             $reviews = $this->get_facebook_reviews($page_id, $access_token, $reviews_per_page, $cache_duration);
         } else {
             $reviews = [];

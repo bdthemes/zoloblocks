@@ -2,7 +2,7 @@ import SettingPanel from './setting-panel';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { ZoloTextControl, ZoloButton } from '../../../controls/core-controls';
+import { ZoloTextControl, ZoloButton, ZoloRangeControl } from '../../../controls/core-controls';
 
 const ApiSettings = () => {
     const [isAIExtensionActive, setisAIExtensionActive] = useState(true);
@@ -14,6 +14,7 @@ const ApiSettings = () => {
     const [audienceID, setAudienceID] = useState('');
     const [facebookPageId, setFacebookPageId] = useState('');
     const [facebookAccessToken, setFacebookAccessToken] = useState('');
+    const [facebookCacheDuration, setFacebookCacheDuration] = useState(12);
     const [webhooks, setWebhooks] = useState([
         {
             label: '',
@@ -50,6 +51,7 @@ const ApiSettings = () => {
                 zolo_mailchimp_audience_id,
                 zolo_facebook_page_id,
                 zolo_facebook_access_token,
+                zolo_facebook_cache_duration,
                 zolo_webhooks,
             }) => {
                 setGoogleAPIKey(zolo_google_api_key);
@@ -60,6 +62,7 @@ const ApiSettings = () => {
                 setAudienceID(zolo_mailchimp_audience_id);
                 setFacebookPageId(zolo_facebook_page_id);
                 setFacebookAccessToken(zolo_facebook_access_token);
+                setFacebookCacheDuration(zolo_facebook_cache_duration || 12);
                 setWebhooks(zolo_webhooks);
             }
         );
@@ -175,6 +178,19 @@ const ApiSettings = () => {
             },
         }).then(({ zolo_facebook_access_token }) => {
             setFacebookAccessToken(zolo_facebook_access_token);
+        });
+    };
+
+    // update facebook cache duration
+    const onChangeFacebookCacheDuration = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_facebook_cache_duration: value,
+            },
+        }).then(({ zolo_facebook_cache_duration }) => {
+            setFacebookCacheDuration(zolo_facebook_cache_duration);
         });
     };
 
@@ -298,6 +314,7 @@ const ApiSettings = () => {
                     onSave={() => {
                         onChangeFacebookPageId(facebookPageId);
                         onChangeFacebookAccessToken(facebookAccessToken);
+                        onChangeFacebookCacheDuration(facebookCacheDuration);
                     }}
                 >
                     <ZoloTextControl
@@ -312,6 +329,16 @@ const ApiSettings = () => {
                         value={facebookAccessToken}
                         placeholder={__('Enter your Facebook Access Token', 'zoloblocks')}
                     />
+                    <div style={{ marginTop: '20px' }}>
+                        <ZoloRangeControl
+                            label={__('Cache Duration (hours)', 'zoloblocks')}
+                            value={facebookCacheDuration}
+                            onChange={(value) => setFacebookCacheDuration(value)}
+                            min={1}
+                            max={168}
+                            help={__('How long to cache posts/reviews before fetching new ones', 'zoloblocks')}
+                        />
+                    </div>
                 </SettingPanel>
                 <SettingPanel
                     title={__('Webhook', 'zoloblocks')}
