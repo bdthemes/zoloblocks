@@ -123,6 +123,14 @@ export default function Inspector(props) {
                     showImage: true,
                 });
                 break;
+            
+            case 'style-4':
+                setAttributes({
+                    showCount: false,
+                });
+                break;
+            default:
+                break;
         }
     };
     const multipleBgControl = applyFilters('zolo.blocks.postCategory.style.controls.multipleBg', [], props);
@@ -149,6 +157,16 @@ export default function Inspector(props) {
                                 checked={showCount}
                                 onChange={(showCount) => setAttributes({ showCount })}
                             />
+
+                            {preset === 'style-4'  && (
+                                <ResGapControl
+                                    label={__('Item Gap', 'zoloblocks')}
+                                    controlName={COLUMNS_GAP}
+                                    requiredProps={requiredProps}
+                                    max={200}
+                                />
+                            )}
+
                             {preset === 'style-1' && (
                                 <ZoloToggleControl
                                     label={__('Text', 'zoloblocks')}
@@ -214,26 +232,29 @@ export default function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
-                            <ResCounterControl
-                                label={__('Column', 'zoloblocks')}
-                                controlName={GRID_COLUMNS}
-                                requiredProps={requiredProps}
-                                min={1}
-                                max={6}
-                                defaults={{
-                                    deskRange: 3,
-                                    tabRange: 2,
-                                    mobRange: 1,
-                                }}
-                            />
-                            <ResGapControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={COLUMNS_GAP}
-                                requiredProps={requiredProps}
-                                max={200}
-                            />
-                        </ZoloPanelBody>
+                        {preset !== 'style-4' && (
+                            <ZoloPanelBody title={__('Grid', 'zoloblocks')} panelProps={props}>
+                                <ResCounterControl
+                                    label={__('Column', 'zoloblocks')}
+                                    controlName={GRID_COLUMNS}
+                                    requiredProps={requiredProps}
+                                    min={1}
+                                    max={6}
+                                    defaults={{
+                                        deskRange: 3,
+                                        tabRange: 2,
+                                        mobRange: 1,
+                                    }}
+                                />
+                                <ResGapControl
+                                    label={__('Gap', 'zoloblocks')}
+                                    controlName={COLUMNS_GAP}
+                                    requiredProps={requiredProps}
+                                    max={200}
+                                />
+                            </ZoloPanelBody>
+                        )}
+
                         <ZoloPanelBody title={__('Query', 'zoloblocks')} panelProps={props}>
                             <QuerySettings attributes={attributes} setAttributes={setAttributes} />
                         </ZoloPanelBody>
