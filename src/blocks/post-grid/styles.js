@@ -35,6 +35,7 @@ import {
     PAG_BORDER_RADIUS,
     PAG_MARGIN,
     PAG_PADDING,
+    PAGINATIONS_THIKNESS,
     PAG_ALIGN,
     META_SPACE,
     META_ARROW_SPACE,
@@ -704,6 +705,16 @@ function Style({ props }) {
         attributes,
     });
 
+ const {
+        desktopRangeStyle: pagiThiknessDesk,
+        tabRangeStyle: pagiThiknessTab,
+        mobRangeStyle: pagiThiknessMob,
+    } = generateResRangeStyle({
+        controlName: PAGINATIONS_THIKNESS,
+        property: 'border-left-width',
+        attributes,
+    });
+
     /**
      * All Style Combination
      */
@@ -928,6 +939,7 @@ function Style({ props }) {
 
       .${uniqueId}.zolo-pagination-wrap .page-numbers + .page-numbers {
         border-left: 1px solid ${pagSeparatorColor ? pagSeparatorColor : '#d9d9d9'};
+        ${pagiThiknessDesk}
       }
 
       .${uniqueId}.zolo-pagination-wrap .page-numbers.current {
@@ -1162,6 +1174,10 @@ function Style({ props }) {
     .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-6 .zolo-post-bottom-content{
         ${bottomContentSpacingTab}
     }
+
+    .${uniqueId}.zolo-pagination-wrap .page-numbers + .page-numbers {
+        ${pagiThiknessTab}
+    }
   `;
 
     const mobileAllStyle = `
@@ -1316,6 +1332,9 @@ function Style({ props }) {
       .${uniqueId}.zolo-post-grid-wrap.zolo-post-style-6 .zolo-post-bottom-content{
           ${bottomContentSpacingMob}
       }
+    .${uniqueId}.zolo-pagination-wrap .page-numbers + .page-numbers {
+            ${pagiThiknessMob}
+        }
     `;
 
     return (

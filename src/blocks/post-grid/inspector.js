@@ -83,6 +83,7 @@ import {
     INNER_CONTENT_BORDER_RADIUS,
     INNER_CONTENT_SHADOW,
     BOTTOM_CONTENT_SPACING,
+    PAGINATIONS_THIKNESS
 } from './constants';
 
 import {
@@ -1170,6 +1171,15 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
+
+                                             <ResRangeControl
+                                                    label={__('Thickness', 'zoloblocks')}
+                                                    controlName={PAGINATIONS_THIKNESS}
+                                                    requiredProps={requiredProps}
+                                                    min={0}
+                                                    max={50}
+                                                    step={1}
+                                                />
 
                                             <ZoloCardDivider />
 
