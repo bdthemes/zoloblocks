@@ -998,56 +998,36 @@ function Inspector(props) {
                                     ]}
                                     normalComponents={
                                         <>
-                                            <TabPanelControl
-                                                normalComponents={
-                                                    <>
-                                                        <ColorControl
-                                                            label={__('Color', 'zoloblocks')}
-                                                            color={countColor}
-                                                            onChange={(countColor) => setAttributes({ countColor })}
-                                                        />
-                                                        <TypographyDropdown
-                                                            label={__('Typography', 'zoloblocks')}
-                                                            typoPrefixConstant={COUNT_TYPOGRAPHY}
-                                                            requiredProps={requiredProps}
-                                                        />
-                                                        <ResRangeControl
-                                                            label={__('Size', 'zoloblocks')}
-                                                            controlName={COUNT_SIZE}
-                                                            requiredProps={requiredProps}
-                                                        />
-                                                        <BorderControl
-                                                            label={__('Border', 'zoloblocks')}
-                                                            controlName={COUNT_BORDER}
-                                                            requiredProps={requiredProps}
-                                                        />
-                                                        <ResDimensionsControl
-                                                            label={__('Border Radius', 'zoloblocks')}
-                                                            controlName={COUNT_BORDER_RADIUS}
-                                                            requiredProps={requiredProps}
-                                                            forBorderRadius={true}
-                                                        />
-                                                        <ColorControl
-                                                            label={__('Background Color', 'zoloblocks')}
-                                                            color={countBGColor}
-                                                            onChange={(countBGColor) => setAttributes({ countBGColor })}
-                                                        />
-                                                    </>
-                                                }
-                                                hoverComponents={
-                                                    <>
-                                                        <ColorControl
-                                                            label={__('Hover Color', 'zoloblocks')}
-                                                            color={countHoverColor}
-                                                            onChange={(countHoverColor) => setAttributes({ countHoverColor })}
-                                                        />
-                                                        <ColorControl
-                                                            label={__('Hover Background Color', 'zoloblocks')}
-                                                            color={countHoverBGColor}
-                                                            onChange={(countHoverBGColor) => setAttributes({ countHoverBGColor })}
-                                                        />
-                                                    </>
-                                                }
+                                            <ColorControl
+                                                label={__('Color', 'zoloblocks')}
+                                                color={countColor}
+                                                onChange={(countColor) => setAttributes({ countColor })}
+                                            />
+                                            <TypographyDropdown
+                                                label={__('Typography', 'zoloblocks')}
+                                                typoPrefixConstant={COUNT_TYPOGRAPHY}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResRangeControl
+                                                label={__('Size', 'zoloblocks')}
+                                                controlName={COUNT_SIZE}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <BorderControl
+                                                label={__('Border', 'zoloblocks')}
+                                                controlName={COUNT_BORDER}
+                                                requiredProps={requiredProps}
+                                            />
+                                            <ResDimensionsControl
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                controlName={COUNT_BORDER_RADIUS}
+                                                requiredProps={requiredProps}
+                                                forBorderRadius={true}
+                                            />
+                                            <ColorControl
+                                                label={__('Background Color', 'zoloblocks')}
+                                                color={countBGColor}
+                                                onChange={(countBGColor) => setAttributes({ countBGColor })}
                                             />
                                         </>
                                     }
