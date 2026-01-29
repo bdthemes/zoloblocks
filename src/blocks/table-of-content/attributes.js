@@ -247,6 +247,15 @@ const attributes = {
     openBtnIconHoverBorderColor: {
         type: 'string',
     },
+    listColor: {
+        type: 'string',
+    },
+    listHoverColor: {
+        type: 'string',
+    },
+    listActiveColor: {
+        type: 'string',
+    },
 };
 
 export default attributes;
