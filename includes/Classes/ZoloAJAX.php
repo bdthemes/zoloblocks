@@ -340,48 +340,71 @@ class ZoloAJAX {
      * @param array $data .
      * @return array
      */
-    public static function zolo_post_category_query( $data ) {
-        $catExclude = !empty( $data['catExclude'] ) && is_array( $data['catExclude'] ) ? wp_list_pluck( $data['catExclude'], 'value' ) : [];
-        $imageSize  = !empty( $data['catThumbnail'] ) ? sanitize_text_field( $data['catThumbnail'] ) : 'thumbnail';
-        $args       = [
-            'taxonomy'   => !empty( $data['catTaxonomy'] ) ? sanitize_text_field( $data['catTaxonomy'] ) : 'category',
-            'orderby'    => !empty( $data['catOrderby'] ) ? sanitize_text_field( $data['catOrderby'] ) : 'name',
-            'order'      => !empty( $data['catOrder'] ) ? sanitize_text_field( $data['catOrder'] ) : 'desc',
-            'hide_empty' => 0,
-            'exclude'    => $catExclude, // phpcs:ignore
-            'parent'     => isset( $data['catParent'] ) ? intval( $data['catParent'] ) : '',
-        ];
-        $categories = get_categories( $args );
-        $results    = [];
+    public static function zolo_post_category_query($data, $post_ID = '')
+    {
+        $catExclude = ! empty($data['catExclude']) && is_array($data['catExclude'])
+            ? wp_list_pluck($data['catExclude'], 'value')
+            : [];
 
-        foreach ( $categories as $index => $cat ) {
-            $category_image_id = get_term_meta( $cat->cat_ID, 'zolo-category-image-id', true );
-            $category_url      = '';
+        $imageSize = ! empty($data['catThumbnail'])
+            ? sanitize_text_field($data['catThumbnail'])
+            : 'thumbnail';
 
-            if ( !empty( $category_image_id ) ) {
-                $category_url = wp_get_attachment_image_url( $category_image_id, $imageSize );
+        $taxonomy = ! empty($data['catTaxonomy'])
+            ? sanitize_text_field($data['catTaxonomy'])
+            : 'category';
+
+        /* ------------------------------------
+     * If post ID exists → get post terms
+     * ------------------------------------ */
+        if (! empty($post_ID)) {
+            $categories = wp_get_post_terms($post_ID, $taxonomy, [
+                'exclude' => $catExclude,
+            ]);
+        } else {
+            /* ------------------------------------
+         * Otherwise → get all categories
+         * ------------------------------------ */
+            $args = [
+                'taxonomy'   => $taxonomy,
+                'orderby'    => ! empty($data['catOrderby']) ? sanitize_text_field($data['catOrderby']) : 'name',
+                'order'      => ! empty($data['catOrder']) ? sanitize_text_field($data['catOrder']) : 'DESC',
+                'hide_empty' => 0,
+                'exclude'    => $catExclude,
+                'parent'     => isset($data['catParent']) ? intval($data['catParent']) : '',
+            ];
+
+            $categories = get_categories($args);
+        }
+
+        if (empty($categories) || is_wp_error($categories)) {
+            return [];
+        }
+
+        $results = [];
+
+        foreach ($categories as $index => $cat) {
+            $term_id = isset($cat->term_id) ? $cat->term_id : $cat->cat_ID;
+
+            $image_id = get_term_meta($term_id, 'zolo-category-image-id', true);
+            $image    = $image_id ? wp_get_attachment_image_url($image_id, $imageSize) : '';
+
+            $results[] = [
+                'name'        => $cat->name,
+                'description' => $cat->description,
+                'count'       => $cat->count,
+                'image'       => $image,
+                'link'        => get_term_link($term_id),
+            ];
+
+            if (! empty($data['catItemLimit']) && ($data['catItemLimit'] - 1) === $index) {
+                break;
             }
-
-            $category                = [];
-            $category['name']        = $cat->cat_name;
-            $category['description'] = $cat->category_description;
-            $category['count']       = $cat->category_count;
-            $category['image']       = $category_url;
-            $category['link']        = get_category_link( $cat->cat_ID );
-            $results[]               = $category;
-
-            if ( !empty( $data['catItemLimit'] ) ) {
-
-                if ( ( $data['catItemLimit'] - 1 ) == $index ) {
-                    break;
-                }
-
-            }
-
         }
 
         return $results;
     }
+
 
     /**
      * Select2 ajax search response
