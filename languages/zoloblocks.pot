@@ -1,23 +1,23 @@
-# Copyright (C) 2025 BdThemes
+# Copyright (C) 2026 BdThemes
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: ZoloBlocks 2.4.0\n"
+"Project-Id-Version: ZoloBlocks 2.5.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zoloblocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-29T09:33:07+00:00\n"
+"POT-Creation-Date: 2026-02-01T11:41:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: zoloblocks\n"
 
 #. Plugin Name of the plugin
 #: zoloblocks.php
-#: includes/Admin/Dashboard.php:71
-#: includes/Admin/Dashboard.php:72
+#: includes/Admin/Dashboard.php:73
+#: includes/Admin/Dashboard.php:74
 #: includes/Classes/Registration.php:96
 #: src/controls/zolo-icon-picker/index.js:246
 msgid "ZoloBlocks"
@@ -44,7 +44,7 @@ msgid "https://bdthemes.com/"
 msgstr ""
 
 #: includes/Admin/Author.php:50
-#: includes/Blocks/Blocks.php:788
+#: includes/Blocks/Blocks.php:797
 #: includes/Form/Hooks.php:28
 #: src/blocks/newsletter/inspector.js:377
 #: src/blocks/newsletter/inspector.js:411
@@ -88,42 +88,42 @@ msgstr ""
 msgid "Dribbble"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:82
-#: includes/Admin/Dashboard.php:83
+#: includes/Admin/Dashboard.php:84
+#: includes/Admin/Dashboard.php:85
 #: src/admin/dashboard/index.js:122
 msgid "Dashboard"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:90
-#: includes/Admin/Dashboard.php:91
+#: includes/Admin/Dashboard.php:92
+#: includes/Admin/Dashboard.php:93
 #: src/admin/constants/index.js:11
 msgid "Blocks"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:101
-#: includes/Admin/Dashboard.php:102
+#: includes/Admin/Dashboard.php:103
+#: includes/Admin/Dashboard.php:104
 #: src/admin/constants/index.js:16
 #: src/admin/dashboard/Welcome/index.js:81
 msgid "Extensions"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:111
-#: includes/Admin/Dashboard.php:112
+#: includes/Admin/Dashboard.php:113
+#: includes/Admin/Dashboard.php:114
 #: src/admin/constants/index.js:21
 msgid "API Settings"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:121
-#: includes/Admin/Dashboard.php:122
+#: includes/Admin/Dashboard.php:123
+#: includes/Admin/Dashboard.php:124
 #: includes/zoloblocks-loader.php:58
 #: src/admin/constants/index.js:26
 #: src/blocks/google-map/inspector.js:250
 msgid "Settings"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:132
-#: includes/Admin/Dashboard.php:133
-#: includes/Blocks/Blocks.php:264
+#: includes/Admin/Dashboard.php:134
+#: includes/Admin/Dashboard.php:135
+#: includes/Blocks/Blocks.php:273
 #: includes/Popup/PopupBuilder.php:47
 #: includes/Popup/PopupBuilder.php:48
 #: includes/Popup/PopupBuilder.php:49
@@ -131,16 +131,16 @@ msgstr ""
 msgid "Popup Builder"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:140
-#: includes/Admin/Dashboard.php:141
+#: includes/Admin/Dashboard.php:142
+#: includes/Admin/Dashboard.php:143
 msgid "Form Entries"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:323
+#: includes/Admin/Dashboard.php:325
 msgid "Get Pro Version"
 msgstr ""
 
-#: includes/Admin/Dashboard.php:324
+#: includes/Admin/Dashboard.php:326
 msgid "Black Friday Limited Offer Up To 87%"
 msgstr ""
 
@@ -174,6 +174,7 @@ msgstr ""
 #: src/blocks/text-path/inspector.js:114
 #: src/blocks/text-path/inspector.js:207
 #: src/blocks/text-path/inspector.js:386
+#: src/extensions/class-manager/utils.js:38
 #: src/global/constants.js:755
 #: src/global/constants.js:1014
 msgid "Image"
@@ -291,7 +292,7 @@ msgstr ""
 #: src/blocks/counter/inspector.js:391
 #: src/blocks/navigation-submenu/inspector.js:62
 #: src/blocks/table-of-content/inspector.js:222
-#: src/global/constants.js:1089
+#: src/global/constants.js:1105
 msgid "Container"
 msgstr ""
 
@@ -373,35 +374,39 @@ msgid "CTA"
 msgstr ""
 
 #: includes/Blocks/Blocks.php:159
+msgid "Circle Info"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:168
 msgid "Fancy List"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:167
+#: includes/Blocks/Blocks.php:176
 msgid "Fancy List Child"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:175
+#: includes/Blocks/Blocks.php:184
 msgid "Post Featured Image"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:183
+#: includes/Blocks/Blocks.php:192
 msgid "Post Comments Form"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:192
+#: includes/Blocks/Blocks.php:201
 msgid "Post Navigation"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:200
+#: includes/Blocks/Blocks.php:209
 msgid "Flipbox"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:208
+#: includes/Blocks/Blocks.php:217
 #: src/admin/dashboard/API-Settings/index.js:201
 msgid "Google Map"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:216
+#: includes/Blocks/Blocks.php:225
 #: src/blocks/accordion-child/inspector.js:218
 #: src/blocks/accordion/inspector.js:339
 #: src/blocks/advanced-button/inspector.js:145
@@ -484,151 +489,151 @@ msgstr ""
 msgid "Icon"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:224
+#: includes/Blocks/Blocks.php:233
 msgid "Image Compare"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:232
+#: includes/Blocks/Blocks.php:241
 msgid "Image Gallery"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:240
+#: includes/Blocks/Blocks.php:249
 #: src/blocks/pricing-table/inspector.js:424
 #: src/blocks/table-of-content/inspector.js:406
 msgid "List"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:248
+#: includes/Blocks/Blocks.php:257
 msgid "Newsletter"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:256
+#: includes/Blocks/Blocks.php:265
 #: src/blocks/notice/inspector.js:363
 msgid "Notice"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:273
+#: includes/Blocks/Blocks.php:282
 msgid "Post Carousel"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:282
+#: includes/Blocks/Blocks.php:291
 msgid "Post Grid"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:291
-#: includes/Blocks/Blocks.php:491
+#: includes/Blocks/Blocks.php:300
+#: includes/Blocks/Blocks.php:500
 msgid "Post List"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:299
+#: includes/Blocks/Blocks.php:308
 msgid "Pricing Table"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:307
+#: includes/Blocks/Blocks.php:316
 msgid "Profile Card"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:315
+#: includes/Blocks/Blocks.php:324
 #: src/blocks/slider/constants/index.js:29
 msgid "Progress Bar"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:323
+#: includes/Blocks/Blocks.php:332
 msgid "Progress Bar Child"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:330
+#: includes/Blocks/Blocks.php:339
 msgid "Progress Pie"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:338
+#: includes/Blocks/Blocks.php:347
 #: src/blocks/qrcode/inspector.js:121
 #: src/blocks/qrcode/inspector.js:349
 msgid "QR Code"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:346
+#: includes/Blocks/Blocks.php:355
 #: src/admin/dashboard/Blocks/categories.js:104
 #: src/admin/dashboard/Extensions/categories.js:104
 msgid "Review"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:354
+#: includes/Blocks/Blocks.php:363
 msgid "Review Carousel"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:362
+#: includes/Blocks/Blocks.php:371
 msgid "Review Child"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:369
+#: includes/Blocks/Blocks.php:378
 msgid "Review Grid"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:377
+#: includes/Blocks/Blocks.php:386
 #: src/blocks/post-carousel/constants/index.js:14
 #: src/blocks/review-carousel/constants/index.js:18
 #: src/blocks/slider/constants/index.js:137
 msgid "Slide"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:384
+#: includes/Blocks/Blocks.php:393
 msgid "Slider"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:392
+#: includes/Blocks/Blocks.php:401
 #: src/blocks/author/inspector.js:174
 msgid "Social Links"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:400
+#: includes/Blocks/Blocks.php:409
 msgid "Social Share"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:408
+#: includes/Blocks/Blocks.php:417
 msgid "Spline Viewer"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:416
+#: includes/Blocks/Blocks.php:425
 msgid "Star Rating"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:424
+#: includes/Blocks/Blocks.php:433
 msgid "Tab"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:431
+#: includes/Blocks/Blocks.php:440
 #: src/blocks/tabs/inspector.js:277
 msgid "Tabs"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:439
-#: includes/Blocks/Blocks.php:447
+#: includes/Blocks/Blocks.php:448
+#: includes/Blocks/Blocks.php:456
 msgid "Team Grid"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:454
+#: includes/Blocks/Blocks.php:463
 #: src/blocks/text-path/inspector.js:270
 msgid "Text Path"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:464
+#: includes/Blocks/Blocks.php:473
 msgid "Post Category"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:473
+#: includes/Blocks/Blocks.php:482
 msgid "Post Timeline"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:482
+#: includes/Blocks/Blocks.php:491
 msgid "Tag Cloud"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:499
+#: includes/Blocks/Blocks.php:508
 msgid "Lightbox"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:508
+#: includes/Blocks/Blocks.php:517
 #: src/blocks/author/constants/index.js:17
 #: src/blocks/post-carousel/inspector.js:279
 #: src/blocks/post-carousel/inspector.js:363
@@ -644,113 +649,113 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:516
+#: includes/Blocks/Blocks.php:525
 msgid "Social Count"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:524
+#: includes/Blocks/Blocks.php:533
 msgid "Social Count Child"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:532
+#: includes/Blocks/Blocks.php:541
 msgid "Post Comments"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:541
+#: includes/Blocks/Blocks.php:550
 msgid "Breadcrumbs"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:550
+#: includes/Blocks/Blocks.php:559
 #: src/blocks/post-navigation/inspector.js:103
 #: src/blocks/post-title/edit.js:55
 msgid "Post Title"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:558
+#: includes/Blocks/Blocks.php:567
 msgid "Unfold"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:567
+#: includes/Blocks/Blocks.php:576
 msgid "Data Table"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:576
+#: includes/Blocks/Blocks.php:585
 msgid "Image Hotspot"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:585
-#: includes/Blocks/Blocks.php:611
+#: includes/Blocks/Blocks.php:594
+#: includes/Blocks/Blocks.php:620
 msgid "Mega Menu"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:593
+#: includes/Blocks/Blocks.php:602
 msgid "Mega Menu Item"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:602
+#: includes/Blocks/Blocks.php:611
 msgid "Mega Menu Submenu"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:621
+#: includes/Blocks/Blocks.php:630
 msgid "Post Meta"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:629
+#: includes/Blocks/Blocks.php:638
 msgid "Marquee"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:638
+#: includes/Blocks/Blocks.php:647
 msgid "Marquee Child"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:646
+#: includes/Blocks/Blocks.php:655
 #: src/blocks/table-of-content/edit.js:37
 #: src/blocks/table-of-content/save.js:84
 msgid "Table of Content"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:654
+#: includes/Blocks/Blocks.php:663
 msgid "Post Tab"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:664
+#: includes/Blocks/Blocks.php:673
 msgid "Loop Builder"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:674
+#: includes/Blocks/Blocks.php:683
 #: src/blocks/video/inspector.js:403
 msgid "Loop"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:685
+#: includes/Blocks/Blocks.php:694
 msgid "Loop Pagination"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:697
+#: includes/Blocks/Blocks.php:706
 msgid "Post Content"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:705
+#: includes/Blocks/Blocks.php:714
 msgid "Post Video Slider"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:715
+#: includes/Blocks/Blocks.php:724
 msgid "Lottie Image"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:724
+#: includes/Blocks/Blocks.php:733
 msgid "Form Builder"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:732
+#: includes/Blocks/Blocks.php:741
 msgid "Number Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:746
+#: includes/Blocks/Blocks.php:755
 msgid "Checkbox Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:753
+#: includes/Blocks/Blocks.php:762
 #: includes/Form/Hooks.php:36
 #: src/blocks/qrcode/inspector.js:188
 #: src/blocks/qrcode/inspector.js:213
@@ -758,34 +763,42 @@ msgstr ""
 msgid "Phone Number"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:760
+#: includes/Blocks/Blocks.php:769
 msgid "Country Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:767
+#: includes/Blocks/Blocks.php:776
 msgid "Select Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:774
+#: includes/Blocks/Blocks.php:783
 msgid "Textarea"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:781
+#: includes/Blocks/Blocks.php:790
 msgid "Radio Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:795
+#: includes/Blocks/Blocks.php:804
 msgid "Text Field"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:802
+#: includes/Blocks/Blocks.php:811
 #: src/controls/background-control/bg-control.js:143
 #: src/controls/background-control/bg-control.js:1413
 msgid "Video"
 msgstr ""
 
-#: includes/Blocks/Blocks.php:810
+#: includes/Blocks/Blocks.php:819
 msgid "Dual Button"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:827
+msgid "Switcher"
+msgstr ""
+
+#: includes/Blocks/Blocks.php:836
+msgid "Switcher Item"
 msgstr ""
 
 #: includes/Blocks/Breadcrumbs.php:239
@@ -873,7 +886,7 @@ msgstr ""
 #: includes/Blocks/PostCommentsForm.php:229
 #: src/blocks/post-comments-form/render-view.js:12
 #: src/blocks/post-comments-form/render-view.js:88
-#: src/global/constants.js:1088
+#: src/global/constants.js:1104
 msgid "Comment"
 msgstr ""
 
@@ -907,7 +920,7 @@ msgstr[1] ""
 
 #. translators: %d: estimated reading time in minutes
 #: includes/Blocks/PostMeta.php:183
-#: src/blocks/post-meta/meta-item.js:132
+#: src/blocks/post-meta/meta-item.js:136
 #, php-format,js-format
 msgid "%d Min Read"
 msgstr ""
@@ -922,6 +935,11 @@ msgstr ""
 
 #: includes/Classes/ZoloAJAX.php:531
 msgid "Nonce did not match"
+msgstr ""
+
+#: includes/Extensions/ClassManager.php:38
+#: includes/Extensions/extensions.php:184
+msgid "Class Manager"
 msgstr ""
 
 #: includes/Extensions/extensions.php:5
@@ -1940,7 +1958,7 @@ msgstr ""
 #: src/blocks/post-featured-image/inspector.js:68
 #: src/blocks/post-grid/inspector.js:253
 #: src/blocks/post-list/inspector.js:199
-#: src/blocks/post-meta/inspector.js:44
+#: src/blocks/post-meta/inspector.js:50
 #: src/blocks/post-navigation/inspector.js:93
 #: src/blocks/post-timeline/inspector.js:153
 #: src/blocks/post-title/inspector.js:63
@@ -2060,7 +2078,7 @@ msgstr ""
 #: src/blocks/image-compare/inspector.js:325
 #: src/blocks/list/inspector.js:439
 #: src/blocks/post-list/inspector.js:401
-#: src/blocks/post-meta/inspector.js:51
+#: src/blocks/post-meta/inspector.js:57
 #: src/blocks/progress-bar-child/inspector.js:81
 #: src/blocks/progress-bar/inspector.js:113
 #: src/blocks/review-carousel/inspector.js:438
@@ -2128,11 +2146,11 @@ msgstr ""
 #: src/blocks/counter/inspector.js:661
 #: src/blocks/cta/inspector.js:443
 #: src/blocks/cta/inspector.js:546
-#: src/blocks/dual-button/inspector.js:253
-#: src/blocks/dual-button/inspector.js:324
-#: src/blocks/dual-button/inspector.js:401
-#: src/blocks/dual-button/inspector.js:480
-#: src/blocks/dual-button/inspector.js:553
+#: src/blocks/dual-button/inspector.js:254
+#: src/blocks/dual-button/inspector.js:326
+#: src/blocks/dual-button/inspector.js:404
+#: src/blocks/dual-button/inspector.js:483
+#: src/blocks/dual-button/inspector.js:556
 #: src/blocks/email/inspector.js:218
 #: src/blocks/email/inspector.js:269
 #: src/blocks/fancy-list-child/inspector.js:247
@@ -2217,6 +2235,7 @@ msgstr ""
 #: src/blocks/post-list/inspector.js:503
 #: src/blocks/post-list/inspector.js:882
 #: src/blocks/post-list/inspector.js:1101
+#: src/blocks/post-meta/inspector.js:205
 #: src/blocks/post-navigation/inspector.js:314
 #: src/blocks/post-timeline/inspector.js:432
 #: src/blocks/post-timeline/inspector.js:716
@@ -2348,9 +2367,9 @@ msgstr ""
 #: src/blocks/counter/inspector.js:686
 #: src/blocks/cta/inspector.js:360
 #: src/blocks/cta/inspector.js:388
-#: src/blocks/dual-button/inspector.js:248
-#: src/blocks/dual-button/inspector.js:319
-#: src/blocks/dual-button/inspector.js:396
+#: src/blocks/dual-button/inspector.js:249
+#: src/blocks/dual-button/inspector.js:321
+#: src/blocks/dual-button/inspector.js:399
 #: src/blocks/email/inspector.js:226
 #: src/blocks/fancy-list-child/inspector.js:253
 #: src/blocks/fancy-list-child/inspector.js:317
@@ -2564,14 +2583,14 @@ msgstr ""
 #: src/blocks/counter/inspector.js:672
 #: src/blocks/cta/inspector.js:450
 #: src/blocks/cta/inspector.js:553
-#: src/blocks/dual-button/inspector.js:259
-#: src/blocks/dual-button/inspector.js:291
-#: src/blocks/dual-button/inspector.js:330
-#: src/blocks/dual-button/inspector.js:362
-#: src/blocks/dual-button/inspector.js:408
-#: src/blocks/dual-button/inspector.js:439
-#: src/blocks/dual-button/inspector.js:486
-#: src/blocks/dual-button/inspector.js:559
+#: src/blocks/dual-button/inspector.js:260
+#: src/blocks/dual-button/inspector.js:293
+#: src/blocks/dual-button/inspector.js:332
+#: src/blocks/dual-button/inspector.js:365
+#: src/blocks/dual-button/inspector.js:411
+#: src/blocks/dual-button/inspector.js:442
+#: src/blocks/dual-button/inspector.js:489
+#: src/blocks/dual-button/inspector.js:562
 #: src/blocks/email/inspector.js:207
 #: src/blocks/email/inspector.js:261
 #: src/blocks/fancy-list-child/inspector.js:260
@@ -2741,6 +2760,9 @@ msgstr ""
 #: src/blocks/video/inspector.js:629
 #: src/blocks/video/inspector.js:696
 #: src/blocks/video/inspector.js:834
+#: src/controls/border/index.js:5
+#: src/extensions/class-manager/style-controls.js:507
+#: src/extensions/class-manager/style-controls.js:510
 #: src/global/components/advancedOptions.js:359
 #: src/global/components/advancedOptions.js:362
 msgid "Border"
@@ -2803,11 +2825,11 @@ msgstr ""
 #: src/blocks/counter/inspector.js:677
 #: src/blocks/cta/inspector.js:467
 #: src/blocks/cta/inspector.js:570
-#: src/blocks/dual-button/inspector.js:265
-#: src/blocks/dual-button/inspector.js:336
-#: src/blocks/dual-button/inspector.js:414
-#: src/blocks/dual-button/inspector.js:492
-#: src/blocks/dual-button/inspector.js:565
+#: src/blocks/dual-button/inspector.js:266
+#: src/blocks/dual-button/inspector.js:338
+#: src/blocks/dual-button/inspector.js:417
+#: src/blocks/dual-button/inspector.js:495
+#: src/blocks/dual-button/inspector.js:568
 #: src/blocks/email/inspector.js:212
 #: src/blocks/email/inspector.js:263
 #: src/blocks/fancy-list-child/inspector.js:270
@@ -2987,6 +3009,7 @@ msgstr ""
 #: src/blocks/video/inspector.js:640
 #: src/blocks/video/inspector.js:707
 #: src/blocks/video/inspector.js:839
+#: src/extensions/class-manager/style-controls.js:520
 #: src/global/components/advancedOptions.js:371
 msgid "Border Radius"
 msgstr ""
@@ -3088,15 +3111,15 @@ msgstr ""
 #: src/blocks/cta/inspector.js:506
 #: src/blocks/cta/inspector.js:580
 #: src/blocks/dual-button/inspector.js:230
-#: src/blocks/dual-button/inspector.js:280
-#: src/blocks/dual-button/inspector.js:306
-#: src/blocks/dual-button/inspector.js:351
-#: src/blocks/dual-button/inspector.js:377
-#: src/blocks/dual-button/inspector.js:424
-#: src/blocks/dual-button/inspector.js:455
-#: src/blocks/dual-button/inspector.js:502
-#: src/blocks/dual-button/inspector.js:528
-#: src/blocks/dual-button/inspector.js:575
+#: src/blocks/dual-button/inspector.js:281
+#: src/blocks/dual-button/inspector.js:308
+#: src/blocks/dual-button/inspector.js:353
+#: src/blocks/dual-button/inspector.js:380
+#: src/blocks/dual-button/inspector.js:427
+#: src/blocks/dual-button/inspector.js:458
+#: src/blocks/dual-button/inspector.js:505
+#: src/blocks/dual-button/inspector.js:531
+#: src/blocks/dual-button/inspector.js:578
 #: src/blocks/email/inspector.js:279
 #: src/blocks/fancy-list-child/inspector.js:300
 #: src/blocks/fancy-list-child/inspector.js:336
@@ -3275,9 +3298,9 @@ msgstr ""
 #: src/blocks/post-list/inspector.js:1057
 #: src/blocks/post-list/inspector.js:1124
 #: src/blocks/post-list/inspector.js:1155
-#: src/blocks/post-meta/inspector.js:85
-#: src/blocks/post-meta/inspector.js:123
-#: src/blocks/post-meta/inspector.js:149
+#: src/blocks/post-meta/inspector.js:91
+#: src/blocks/post-meta/inspector.js:142
+#: src/blocks/post-meta/inspector.js:166
 #: src/blocks/post-navigation/inspector.js:225
 #: src/blocks/post-navigation/inspector.js:255
 #: src/blocks/post-navigation/inspector.js:289
@@ -3440,6 +3463,9 @@ msgstr ""
 #: src/controls/color-control-alt/index.js:28
 #: src/controls/color-control/index.js:28
 #: src/controls/text-gradient-control/index.js:1060
+#: src/extensions/class-manager/style-controls.js:210
+#: src/extensions/class-manager/style-controls.js:401
+#: src/extensions/class-manager/utils.js:36
 #: src/extensions/particles/inspector.js:355
 #: src/extensions/particles/multicolor.js:29
 #: src/extensions/shape-divider/inspector.js:130
@@ -3493,9 +3519,9 @@ msgstr ""
 #: src/blocks/cta/inspector.js:381
 #: src/blocks/cta/inspector.js:412
 #: src/blocks/cta/inspector.js:516
-#: src/blocks/dual-button/inspector.js:239
-#: src/blocks/dual-button/inspector.js:311
-#: src/blocks/dual-button/inspector.js:387
+#: src/blocks/dual-button/inspector.js:240
+#: src/blocks/dual-button/inspector.js:313
+#: src/blocks/dual-button/inspector.js:390
 #: src/blocks/email/inspector.js:200
 #: src/blocks/email/inspector.js:257
 #: src/blocks/fancy-list-child/inspector.js:309
@@ -3583,7 +3609,7 @@ msgstr ""
 #: src/blocks/post-list/inspector.js:945
 #: src/blocks/post-list/inspector.js:1010
 #: src/blocks/post-list/inspector.js:1089
-#: src/blocks/post-meta/inspector.js:132
+#: src/blocks/post-meta/inspector.js:189
 #: src/blocks/post-navigation/inspector.js:234
 #: src/blocks/post-navigation/inspector.js:298
 #: src/blocks/post-timeline/inspector.js:349
@@ -3694,8 +3720,8 @@ msgstr ""
 #: src/blocks/breadcrumbs/inspector.js:483
 #: src/blocks/counter/inspector.js:427
 #: src/blocks/counter/inspector.js:437
-#: src/blocks/dual-button/inspector.js:469
-#: src/blocks/dual-button/inspector.js:542
+#: src/blocks/dual-button/inspector.js:472
+#: src/blocks/dual-button/inspector.js:545
 #: src/blocks/fancy-list-child/inspector.js:402
 #: src/blocks/fancy-list/inspector.js:405
 #: src/blocks/flipbox/inspector.js:760
@@ -3724,7 +3750,7 @@ msgstr ""
 #: src/blocks/post-grid/inspector.js:1038
 #: src/blocks/post-list/inspector.js:481
 #: src/blocks/post-list/inspector.js:1015
-#: src/blocks/post-meta/inspector.js:91
+#: src/blocks/post-meta/inspector.js:97
 #: src/blocks/post-timeline/inspector.js:362
 #: src/blocks/post-timeline/inspector.js:416
 #: src/blocks/post-timeline/inspector.js:470
@@ -3780,6 +3806,7 @@ msgstr ""
 #: src/controls/background-control/overlay-control.js:2387
 #: src/controls/typography-control/index.js:178
 #: src/controls/typography-control/index.js:217
+#: src/extensions/class-manager/style-controls.js:952
 #: src/extensions/particles/inspector.js:326
 msgid "Size"
 msgstr ""
@@ -3993,6 +4020,7 @@ msgstr ""
 #: src/blocks/team-child/inspector.js:368
 #: src/blocks/team-grid/inspector.js:378
 #: src/controls/typography-control/constant.js:93
+#: src/extensions/class-manager/utils.js:42
 msgid "Normal"
 msgstr ""
 
@@ -4044,7 +4072,6 @@ msgstr ""
 #: src/blocks/post-list/inspector.js:622
 #: src/blocks/post-list/inspector.js:912
 #: src/blocks/post-list/inspector.js:961
-#: src/blocks/post-meta/inspector.js:147
 #: src/blocks/post-timeline/inspector.js:369
 #: src/blocks/post-timeline/inspector.js:520
 #: src/blocks/post-title/inspector.js:122
@@ -4315,7 +4342,7 @@ msgstr ""
 #: src/blocks/post-grid/inspector.js:1218
 #: src/blocks/post-list/inspector.js:271
 #: src/blocks/post-list/inspector.js:1083
-#: src/blocks/post-meta/inspector.js:59
+#: src/blocks/post-meta/inspector.js:65
 #: src/blocks/post-timeline/inspector.js:698
 #: src/blocks/post-title/inspector.js:103
 #: src/blocks/pricing-table/inspector.js:227
@@ -4493,8 +4520,8 @@ msgstr ""
 #: src/blocks/container/inspector.js:203
 #: src/blocks/countdown/inspector.js:264
 #: src/blocks/cta/inspector.js:170
-#: src/blocks/dual-button/inspector.js:475
-#: src/blocks/dual-button/inspector.js:548
+#: src/blocks/dual-button/inspector.js:478
+#: src/blocks/dual-button/inspector.js:551
 #: src/blocks/fancy-list-child/inspector.js:522
 #: src/blocks/fancy-list/inspector.js:214
 #: src/blocks/fancy-list/inspector.js:525
@@ -4546,6 +4573,9 @@ msgstr ""
 #: src/blocks/video/inspector.js:635
 #: src/controls/boxshadow-control/index.js:40
 #: src/controls/boxshadow-control/index.js:105
+#: src/controls/shadow-control/index.js:43
+#: src/extensions/class-manager/style-controls.js:534
+#: src/extensions/class-manager/style-controls.js:536
 msgid "Box Shadow"
 msgstr ""
 
@@ -4567,6 +4597,7 @@ msgstr ""
 #: src/blocks/post-grid/inspector.js:926
 #: src/blocks/text-field/inspector.js:230
 #: src/blocks/textarea/inspector.js:230
+#: src/extensions/class-manager/style-controls.js:213
 msgid "Text Color"
 msgstr ""
 
@@ -4618,6 +4649,7 @@ msgstr ""
 #: src/controls/background-control/overlay-control.js:1338
 #: src/controls/typography-control/constant.js:24
 #: src/controls/typography-control/constant.js:63
+#: src/extensions/class-manager/utils.js:17
 #: src/global/constants.js:717
 #: src/global/constants.js:1072
 #: src/global/constants.js:1081
@@ -4715,8 +4747,8 @@ msgstr ""
 #: src/blocks/post-grid/inspector.js:1165
 #: src/blocks/post-list/inspector.js:346
 #: src/blocks/post-list/inspector.js:1142
-#: src/blocks/post-meta/inspector.js:66
-#: src/blocks/post-meta/inspector.js:79
+#: src/blocks/post-meta/inspector.js:72
+#: src/blocks/post-meta/inspector.js:85
 #: src/blocks/post-timeline/inspector.js:682
 #: src/blocks/post-timeline/inspector.js:757
 #: src/blocks/pricing-table/inspector.js:827
@@ -4753,7 +4785,7 @@ msgstr ""
 #: src/blocks/navigation-item/edit.js:130
 #: src/blocks/post-content/inspector.js:167
 #: src/blocks/post-content/inspector.js:611
-#: src/blocks/post-meta/sortable.js:120
+#: src/blocks/post-meta/sortable.js:121
 #: src/blocks/profile-card/sortable.js:85
 #: src/blocks/social-count-child/inspector.js:87
 #: src/blocks/social-links/sortable.js:80
@@ -4802,6 +4834,7 @@ msgstr ""
 #: src/controls/background-control/overlay-control.js:1416
 #: src/controls/background-control/overlay-control.js:1770
 #: src/controls/background-control/overlay-control.js:2136
+#: src/extensions/class-manager/style-controls.js:1058
 #: src/global/components/advancedOptions.js:154
 #: src/global/components/advancedOptions.js:183
 msgid "Position"
@@ -4841,6 +4874,7 @@ msgstr ""
 #: src/blocks/slider/inspector.js:719
 #: src/blocks/tabs/inspector.js:189
 #: src/blocks/text-path/inspector.js:137
+#: src/extensions/class-manager/style-controls.js:650
 #: src/extensions/particles/inspector.js:225
 msgid "Direction"
 msgstr ""
@@ -4933,7 +4967,7 @@ msgstr ""
 #: src/blocks/post-carousel/inspector.js:1240
 #: src/blocks/post-carousel/inspector.js:1292
 #: src/blocks/post-featured-image/inspector.js:128
-#: src/blocks/post-meta/inspector.js:102
+#: src/blocks/post-meta/inspector.js:108
 #: src/blocks/post-timeline/inspector.js:322
 #: src/blocks/pricing-table/inspector.js:838
 #: src/blocks/review-carousel/inspector.js:473
@@ -4991,7 +5025,7 @@ msgstr ""
 #: src/blocks/post-featured-image/inspector.js:136
 #: src/blocks/post-grid/inspector.js:602
 #: src/blocks/post-list/inspector.js:540
-#: src/blocks/post-meta/inspector.js:110
+#: src/blocks/post-meta/inspector.js:116
 #: src/blocks/progress-bar-child/inspector.js:83
 #: src/blocks/progress-bar/inspector.js:115
 #: src/blocks/review-carousel/inspector.js:480
@@ -5054,6 +5088,7 @@ msgstr ""
 #: src/blocks/post-category/inspector.js:320
 #: src/blocks/tag-cloud/inspector.js:144
 #: src/blocks/video/inspector.js:854
+#: src/extensions/class-manager/style-controls.js:453
 msgid "Opacity"
 msgstr ""
 
@@ -5080,6 +5115,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:172
 #: src/controls/text-gradient-control/index.js:461
 #: src/controls/text-gradient-control/index.js:749
+#: src/extensions/class-manager/style-controls.js:354
 msgid "Top Left"
 msgstr ""
 
@@ -5106,6 +5142,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:176
 #: src/controls/text-gradient-control/index.js:465
 #: src/controls/text-gradient-control/index.js:753
+#: src/extensions/class-manager/style-controls.js:355
 msgid "Top Right"
 msgstr ""
 
@@ -5132,6 +5169,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:184
 #: src/controls/text-gradient-control/index.js:473
 #: src/controls/text-gradient-control/index.js:761
+#: src/extensions/class-manager/style-controls.js:357
 msgid "Bottom Left"
 msgstr ""
 
@@ -5158,6 +5196,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:188
 #: src/controls/text-gradient-control/index.js:477
 #: src/controls/text-gradient-control/index.js:765
+#: src/extensions/class-manager/style-controls.js:358
 msgid "Bottom Right"
 msgstr ""
 
@@ -5165,6 +5204,7 @@ msgstr ""
 #: src/blocks/popup-builder/constants/index.js:31
 #: src/controls/border-control/border.js:71
 #: src/controls/dimensions-control/dimension.js:106
+#: src/extensions/class-manager/utils.js:78
 #: src/extensions/shape-divider/constants/index.js:8
 #: src/global/constants.js:916
 msgid "Top"
@@ -5175,6 +5215,7 @@ msgstr ""
 #: src/blocks/pricing-table/constants/index.js:24
 #: src/controls/border-control/border.js:81
 #: src/controls/dimensions-control/dimension.js:134
+#: src/extensions/class-manager/utils.js:80
 #: src/extensions/shape-divider/constants/index.js:12
 #: src/global/constants.js:930
 msgid "Bottom"
@@ -5191,6 +5232,8 @@ msgstr ""
 #: src/blocks/tabs/constants/index.js:75
 #: src/controls/border-control/border.js:86
 #: src/controls/dimensions-control/dimension.js:148
+#: src/extensions/class-manager/utils.js:66
+#: src/extensions/class-manager/utils.js:71
 msgid "Left"
 msgstr ""
 
@@ -5205,6 +5248,8 @@ msgstr ""
 #: src/blocks/tabs/constants/index.js:85
 #: src/controls/border-control/border.js:76
 #: src/controls/dimensions-control/dimension.js:120
+#: src/extensions/class-manager/utils.js:67
+#: src/extensions/class-manager/utils.js:72
 msgid "Right"
 msgstr ""
 
@@ -5352,7 +5397,7 @@ msgstr ""
 #: src/blocks/notice/inspector.js:233
 #: src/blocks/post-grid/inspector.js:408
 #: src/blocks/post-list/inspector.js:365
-#: src/blocks/post-meta/sortable.js:74
+#: src/blocks/post-meta/sortable.js:75
 #: src/blocks/slider/inspector.js:689
 #: src/blocks/social-links/inspector.js:127
 #: src/blocks/social-share/inspector.js:128
@@ -5480,6 +5525,7 @@ msgstr ""
 #: src/blocks/advanced-image/constants/index.js:18
 #: src/blocks/image-gallery/inspector.js:561
 #: src/controls/boxshadow-control/index.js:166
+#: src/controls/shadow-control/index.js:121
 #: src/controls/textshadow-control/index.js:112
 msgid "Blur"
 msgstr ""
@@ -5521,24 +5567,28 @@ msgstr ""
 
 #: src/blocks/advanced-image/constants/index.js:80
 #: src/blocks/post-timeline/constants/index.js:12
+#: src/extensions/class-manager/utils.js:18
 #: src/global/constants.js:718
 msgid "Solid"
 msgstr ""
 
 #: src/blocks/advanced-image/constants/index.js:84
 #: src/blocks/post-timeline/constants/index.js:14
+#: src/extensions/class-manager/utils.js:19
 #: src/global/constants.js:724
 msgid "Dotted"
 msgstr ""
 
 #: src/blocks/advanced-image/constants/index.js:88
 #: src/blocks/post-timeline/constants/index.js:13
+#: src/extensions/class-manager/utils.js:20
 #: src/global/constants.js:723
 msgid "Dashed"
 msgstr ""
 
 #: src/blocks/advanced-image/constants/index.js:92
 #: src/blocks/post-timeline/constants/index.js:15
+#: src/extensions/class-manager/utils.js:21
 #: src/global/constants.js:725
 msgid "Double"
 msgstr ""
@@ -5584,6 +5634,7 @@ msgstr ""
 #: src/blocks/social-links/inspector.js:138
 #: src/blocks/social-share/inspector.js:139
 #: src/blocks/tabs/inspector.js:155
+#: src/extensions/class-manager/style-controls.js:595
 msgid "Layout"
 msgstr ""
 
@@ -5654,10 +5705,10 @@ msgstr ""
 
 #: src/blocks/advanced-image/inspector.js:327
 #: src/blocks/advanced-search/inspector.js:116
-#: src/blocks/post-meta/inspector.js:68
+#: src/blocks/post-meta/inspector.js:74
 #: src/blocks/post-timeline/inspector.js:330
 #: src/blocks/review/inspector.js:139
-#: src/controls/header-tabs/index.js:92
+#: src/controls/header-tabs/index.js:98
 msgid "Style"
 msgstr ""
 
@@ -5713,6 +5764,8 @@ msgstr ""
 
 #: src/blocks/advanced-paragraph/inspector.js:241
 #: src/controls/textshadow-control/index.js:67
+#: src/extensions/class-manager/style-controls.js:385
+#: src/extensions/class-manager/style-controls.js:388
 msgid "Text Shadow"
 msgstr ""
 
@@ -5767,6 +5820,7 @@ msgstr ""
 #: src/blocks/social-links/inspector.js:154
 #: src/blocks/social-share/inspector.js:155
 #: src/blocks/team-grid/inspector.js:246
+#: src/extensions/class-manager/utils.js:54
 msgid "Grid"
 msgstr ""
 
@@ -5928,7 +5982,7 @@ msgid "Style 3 (Pro)"
 msgstr ""
 
 #: src/blocks/brand-grid/constants/index.js:14
-#: src/controls/header-tabs/index.js:64
+#: src/controls/header-tabs/index.js:70
 #: src/extensions/shape-divider/inspector.js:120
 #: src/extensions/shape-divider/inspector.js:224
 msgid "Basic"
@@ -6040,7 +6094,8 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:955
 #: src/global/constants.js:719
 #: src/global/constants.js:1034
-#: src/global/constants.js:1179
+#: src/global/constants.js:1131
+#: src/global/constants.js:1204
 msgid "Custom"
 msgstr ""
 
@@ -6062,7 +6117,7 @@ msgstr ""
 #: src/blocks/flexbox/utils.js:61
 #: src/blocks/post-carousel/inspector.js:1274
 #: src/blocks/post-comments-form/inspector.js:508
-#: src/blocks/post-meta/inspector.js:53
+#: src/blocks/post-meta/inspector.js:59
 #: src/blocks/post-timeline/inspector.js:673
 #: src/blocks/pricing-table/inspector.js:1011
 #: src/blocks/radio-field/inspector.js:275
@@ -6273,6 +6328,7 @@ msgid "Pan"
 msgstr ""
 
 #: src/blocks/charts/inspector.js:480
+#: src/controls/counter-control/index.js:16
 msgid "Reset"
 msgstr ""
 
@@ -6393,6 +6449,7 @@ msgstr ""
 #: src/blocks/review-grid/inspector.js:283
 #: src/blocks/social-links/inspector.js:141
 #: src/blocks/social-share/inspector.js:142
+#: src/extensions/class-manager/style-controls.js:636
 msgid "Layout Type"
 msgstr ""
 
@@ -6526,6 +6583,8 @@ msgstr ""
 #: src/blocks/lightbox/inspector.js:720
 #: src/blocks/post-list/inspector.js:1031
 #: src/blocks/post-list/inspector.js:1066
+#: src/blocks/post-meta/inspector.js:151
+#: src/blocks/post-meta/inspector.js:175
 #: src/blocks/qrcode/inspector.js:335
 #: src/blocks/qrcode/inspector.js:497
 #: src/blocks/radio-field/inspector.js:283
@@ -6534,6 +6593,7 @@ msgstr ""
 #: src/controls/background-control/bg-control.js:154
 #: src/controls/background-control/bg-control.js:1424
 #: src/controls/normal-bg-control/index.js:129
+#: src/extensions/class-manager/style-controls.js:240
 msgid "Background Color"
 msgstr ""
 
@@ -6558,6 +6618,7 @@ msgstr ""
 #: src/blocks/container/edit.js:84
 #: src/blocks/container/edit.js:85
 #: src/controls/image-avatar/index.js:57
+#: src/controls/media-upload-control/index.js:50
 msgid "Replace"
 msgstr ""
 
@@ -6656,6 +6717,7 @@ msgstr ""
 #: src/blocks/list/inspector.js:307
 #: src/blocks/social-links/inspector.js:150
 #: src/blocks/social-share/inspector.js:151
+#: src/extensions/class-manager/utils.js:53
 msgid "Flex"
 msgstr ""
 
@@ -6687,6 +6749,8 @@ msgstr ""
 
 #: src/blocks/countdown/inspector.js:419
 #: src/blocks/review/inspector.js:481
+#: src/extensions/class-manager/style-controls.js:545
+#: src/extensions/class-manager/style-controls.js:810
 #: src/global/components/advancedOptions.js:147
 msgid "Overflow"
 msgstr ""
@@ -6813,7 +6877,7 @@ msgid "Dual Button Preview"
 msgstr ""
 
 #: src/blocks/dual-button/inspector.js:133
-#: src/blocks/dual-button/inspector.js:372
+#: src/blocks/dual-button/inspector.js:375
 #: src/blocks/post-comments/inspector.js:96
 msgid "Middle Text"
 msgstr ""
@@ -6833,20 +6897,20 @@ msgid "Add Icon"
 msgstr ""
 
 #: src/blocks/dual-button/inspector.js:189
-#: src/blocks/dual-button/inspector.js:301
+#: src/blocks/dual-button/inspector.js:303
 msgid "Button Two"
 msgstr ""
 
-#: src/blocks/dual-button/inspector.js:271
-#: src/blocks/dual-button/inspector.js:342
+#: src/blocks/dual-button/inspector.js:272
+#: src/blocks/dual-button/inspector.js:344
 msgid "Text Alignment"
 msgstr ""
 
-#: src/blocks/dual-button/inspector.js:450
+#: src/blocks/dual-button/inspector.js:453
 msgid "Button One Icon"
 msgstr ""
 
-#: src/blocks/dual-button/inspector.js:523
+#: src/blocks/dual-button/inspector.js:526
 msgid "Button Two Icon"
 msgstr ""
 
@@ -6984,10 +7048,12 @@ msgstr ""
 #: src/blocks/flexbox/inspector.js:172
 #: src/blocks/post-carousel/inspector.js:415
 #: src/blocks/review-carousel/inspector.js:271
+#: src/extensions/class-manager/style-controls.js:724
 msgid "Column Gap"
 msgstr ""
 
 #: src/blocks/flexbox/inspector.js:172
+#: src/extensions/class-manager/style-controls.js:724
 msgid "Row Gap"
 msgstr ""
 
@@ -7089,17 +7155,17 @@ msgid "Bottom to Top Angle"
 msgstr ""
 
 #: src/blocks/flipbox/constants/index.js:50
-#: src/global/constants.js:1176
+#: src/global/constants.js:1201
 msgid "Ease Out"
 msgstr ""
 
 #: src/blocks/flipbox/constants/index.js:51
-#: src/global/constants.js:1177
+#: src/global/constants.js:1202
 msgid "Ease In Out"
 msgstr ""
 
 #: src/blocks/flipbox/constants/index.js:52
-#: src/global/constants.js:1178
+#: src/global/constants.js:1203
 msgid "Linear"
 msgstr ""
 
@@ -7316,6 +7382,7 @@ msgid "Enter label.."
 msgstr ""
 
 #: src/blocks/form/inspector.js:380
+#: src/blocks/post-meta/sortable.js:133
 msgid "Show Icon"
 msgstr ""
 
@@ -7819,6 +7886,9 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:904
 #: src/controls/text-gradient-control/index.js:939
 #: src/controls/typography-control/constant.js:10
+#: src/extensions/class-manager/style-controls.js:349
+#: src/extensions/class-manager/style-controls.js:374
+#: src/extensions/class-manager/utils.js:4
 #: src/global/constants.js:1004
 #: src/global/constants.js:1051
 #: src/global/constants.js:1058
@@ -8413,8 +8483,10 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:364
 #: src/controls/text-gradient-control/index.js:652
 #: src/controls/text-gradient-control/index.js:943
+#: src/extensions/class-manager/utils.js:32
+#: src/extensions/class-manager/utils.js:86
 #: src/global/constants.js:1052
-#: src/global/constants.js:1132
+#: src/global/constants.js:1157
 msgid "Auto"
 msgstr ""
 
@@ -8524,6 +8596,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:168
 #: src/controls/text-gradient-control/index.js:457
 #: src/controls/text-gradient-control/index.js:745
+#: src/extensions/class-manager/style-controls.js:353
 msgid "Top Center"
 msgstr ""
 
@@ -8548,6 +8621,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:160
 #: src/controls/text-gradient-control/index.js:449
 #: src/controls/text-gradient-control/index.js:737
+#: src/extensions/class-manager/style-controls.js:351
 msgid "Center Left"
 msgstr ""
 
@@ -8572,7 +8646,8 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:156
 #: src/controls/text-gradient-control/index.js:445
 #: src/controls/text-gradient-control/index.js:733
-#: src/global/constants.js:1112
+#: src/extensions/class-manager/style-controls.js:350
+#: src/global/constants.js:1137
 msgid "Center Center"
 msgstr ""
 
@@ -8597,6 +8672,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:164
 #: src/controls/text-gradient-control/index.js:453
 #: src/controls/text-gradient-control/index.js:741
+#: src/extensions/class-manager/style-controls.js:352
 msgid "Center Right"
 msgstr ""
 
@@ -8622,6 +8698,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:180
 #: src/controls/text-gradient-control/index.js:469
 #: src/controls/text-gradient-control/index.js:757
+#: src/extensions/class-manager/style-controls.js:356
 msgid "Bottom Center"
 msgstr ""
 
@@ -8801,7 +8878,7 @@ msgstr ""
 #: src/blocks/post-list/inspector.js:224
 #: src/blocks/post-list/inspector.js:344
 #: src/blocks/post-list/inspector.js:700
-#: src/blocks/post-meta/inspector.js:121
+#: src/blocks/post-meta/inspector.js:127
 #: src/blocks/post-timeline/inspector.js:186
 #: src/blocks/post-timeline/inspector.js:657
 #: src/blocks/review-child/inspector.js:550
@@ -9435,8 +9512,8 @@ msgid "Time"
 msgstr ""
 
 #: src/blocks/post-meta/constants/index.js:15
-#: src/global/constants.js:1288
-#: src/global/constants.js:1295
+#: src/global/constants.js:1313
+#: src/global/constants.js:1320
 msgid "Terms"
 msgstr ""
 
@@ -9444,38 +9521,38 @@ msgstr ""
 msgid "No metadata available"
 msgstr ""
 
-#: src/blocks/post-meta/inspector.js:138
+#: src/blocks/post-meta/inspector.js:195
 msgid "Indent"
 msgstr ""
 
-#: src/blocks/post-meta/meta-item.js:98
+#: src/blocks/post-meta/meta-item.js:102
 #: src/template-library/components/sidebar/index.js:45
 #: src/template-library/page-templates/index.js:79
 msgid "Categories"
 msgstr ""
 
-#: src/blocks/post-meta/meta-item.js:110
+#: src/blocks/post-meta/meta-item.js:114
 #, js-format
 msgid "%d Comments"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:26
+#: src/blocks/post-meta/sortable.js:27
 msgid "Add a Meta Data"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:88
+#: src/blocks/post-meta/sortable.js:89
 msgid "Date Type"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:98
+#: src/blocks/post-meta/sortable.js:99
 msgid "Post Published"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:99
+#: src/blocks/post-meta/sortable.js:100
 msgid "Post Modified"
 msgstr ""
 
-#: src/blocks/post-meta/sortable.js:105
+#: src/blocks/post-meta/sortable.js:106
 msgid "Taxonomy"
 msgstr ""
 
@@ -9504,6 +9581,7 @@ msgid "Center (Pro)"
 msgstr ""
 
 #: src/blocks/post-timeline/constants/index.js:16
+#: src/extensions/class-manager/utils.js:22
 #: src/global/constants.js:726
 msgid "Groove"
 msgstr ""
@@ -9529,6 +9607,7 @@ msgid " Comments"
 msgstr ""
 
 #: src/blocks/pricing-table/constants/index.js:23
+#: src/extensions/class-manager/utils.js:79
 msgid "Middle"
 msgstr ""
 
@@ -9976,6 +10055,7 @@ msgstr ""
 #: src/controls/background-control/overlay-control.js:152
 #: src/controls/background-control/overlay-control.js:1331
 #: src/controls/normal-bg-control/index.js:110
+#: src/extensions/class-manager/style-controls.js:225
 msgid "Background Type"
 msgstr ""
 
@@ -10531,6 +10611,7 @@ msgid "Open"
 msgstr ""
 
 #: src/blocks/tabs/constants/index.js:103
+#: src/extensions/class-manager/style-controls.js:698
 msgid "Justify"
 msgstr ""
 
@@ -10917,6 +10998,7 @@ msgstr ""
 #: src/controls/background-control/overlay-control.js:1374
 #: src/controls/normal-bg-control/index.js:153
 #: src/controls/text-gradient-control/index.js:117
+#: src/extensions/class-manager/style-controls.js:269
 msgid "Upload Image"
 msgstr ""
 
@@ -11000,6 +11082,8 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:294
 #: src/controls/text-gradient-control/index.js:583
 #: src/controls/text-gradient-control/index.js:873
+#: src/extensions/class-manager/style-controls.js:375
+#: src/extensions/class-manager/utils.js:31
 #: src/global/constants.js:1054
 msgid "Scroll"
 msgstr ""
@@ -11022,6 +11106,8 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:298
 #: src/controls/text-gradient-control/index.js:587
 #: src/controls/text-gradient-control/index.js:877
+#: src/extensions/class-manager/style-controls.js:376
+#: src/extensions/class-manager/utils.js:61
 #: src/global/constants.js:1061
 msgid "Fixed"
 msgstr ""
@@ -11056,7 +11142,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:333
 #: src/controls/text-gradient-control/index.js:622
 #: src/controls/text-gradient-control/index.js:912
-#: src/global/constants.js:1125
+#: src/global/constants.js:1150
 msgid "Repeat"
 msgstr ""
 
@@ -11142,7 +11228,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:656
 #: src/controls/text-gradient-control/index.js:947
 #: src/global/constants.js:1075
-#: src/global/constants.js:1133
+#: src/global/constants.js:1158
 msgid "Cover"
 msgstr ""
 
@@ -11165,7 +11251,7 @@ msgstr ""
 #: src/controls/text-gradient-control/index.js:660
 #: src/controls/text-gradient-control/index.js:951
 #: src/global/constants.js:1074
-#: src/global/constants.js:1134
+#: src/global/constants.js:1159
 msgid "Contain"
 msgstr ""
 
@@ -11219,6 +11305,7 @@ msgstr ""
 
 #: src/controls/background-control/overlay-control.js:161
 #: src/controls/background-control/overlay-control.js:1340
+#: src/extensions/class-manager/utils.js:37
 #: src/global/constants.js:738
 #: src/global/constants.js:750
 msgid "Gradient"
@@ -11235,16 +11322,21 @@ msgid "Overlay Image"
 msgstr ""
 
 #: src/controls/boxshadow-control/index.js:139
+#: src/controls/shadow-control/index.js:84
 #: src/controls/textshadow-control/index.js:85
+#: src/extensions/class-manager/style-controls.js:332
 msgid "X"
 msgstr ""
 
 #: src/controls/boxshadow-control/index.js:152
+#: src/controls/shadow-control/index.js:102
 #: src/controls/textshadow-control/index.js:98
+#: src/extensions/class-manager/style-controls.js:333
 msgid "Y"
 msgstr ""
 
 #: src/controls/boxshadow-control/index.js:180
+#: src/controls/shadow-control/index.js:140
 msgid "Spread"
 msgstr ""
 
@@ -11258,6 +11350,14 @@ msgstr ""
 #: src/controls/color-control-alt/index.js:105
 #: src/controls/color-control/index.js:114
 msgid "Default Colors"
+msgstr ""
+
+#: src/controls/counter-control/index.js:26
+msgid "Minus"
+msgstr ""
+
+#: src/controls/counter-control/index.js:42
+msgid "Plus"
 msgstr ""
 
 #: src/controls/customcss-control/index.js:68
@@ -11300,16 +11400,16 @@ msgstr ""
 msgid "Enter location"
 msgstr ""
 
-#: src/controls/header-tabs/index.js:119
+#: src/controls/header-tabs/index.js:125
 msgid "Extra"
 msgstr ""
 
-#: src/controls/header-tabs/index.js:133
+#: src/controls/header-tabs/index.js:139
 #: src/controls/pro-notice/index.js:28
 msgid "Get Zoloblocks Pro for advanced blocks and features."
 msgstr ""
 
-#: src/controls/header-tabs/index.js:134
+#: src/controls/header-tabs/index.js:140
 #: src/controls/pro-notice/index.js:30
 msgid "Go Premium"
 msgstr ""
@@ -11322,19 +11422,19 @@ msgstr ""
 msgid "https://"
 msgstr ""
 
-#: src/controls/mask-control/index.js:20
+#: src/controls/mask-control/index.js:25
 msgid "Mask Shape"
 msgstr ""
 
-#: src/controls/mask-control/index.js:32
+#: src/controls/mask-control/index.js:52
 msgid "Mask Size"
 msgstr ""
 
-#: src/controls/mask-control/index.js:43
+#: src/controls/mask-control/index.js:63
 msgid "Mask Position"
 msgstr ""
 
-#: src/controls/mask-control/index.js:54
+#: src/controls/mask-control/index.js:74
 msgid "Mask Repeat"
 msgstr ""
 
@@ -11351,7 +11451,7 @@ msgid "Prev"
 msgstr ""
 
 #: src/controls/query-control/index.js:45
-#: src/global/constants.js:1293
+#: src/global/constants.js:1318
 msgid "Current Post"
 msgstr ""
 
@@ -11369,8 +11469,8 @@ msgstr ""
 
 #: src/controls/query-control/index.js:134
 #: src/controls/query-control/index.js:231
-#: src/global/constants.js:1287
-#: src/global/constants.js:1292
+#: src/global/constants.js:1312
+#: src/global/constants.js:1317
 msgid "Authors"
 msgstr ""
 
@@ -11398,8 +11498,18 @@ msgstr ""
 msgid "maximum"
 msgstr ""
 
-#: src/controls/responsive/index.js:17
+#: src/controls/responsive/index.js:30
 msgid "Select a device"
+msgstr ""
+
+#: src/controls/shadow-control/index.js:58
+#: src/global/constants.js:763
+msgid "Outer"
+msgstr ""
+
+#: src/controls/shadow-control/index.js:62
+#: src/global/constants.js:767
+msgid "Inner"
 msgstr ""
 
 #: src/controls/textstroke-control/index.js:62
@@ -11415,38 +11525,47 @@ msgid "Use this shape"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:11
+#: src/extensions/class-manager/utils.js:5
 msgid "100"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:12
+#: src/extensions/class-manager/utils.js:6
 msgid "200"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:13
+#: src/extensions/class-manager/utils.js:7
 msgid "300"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:14
+#: src/extensions/class-manager/utils.js:8
 msgid "400"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:15
+#: src/extensions/class-manager/utils.js:9
 msgid "500"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:16
+#: src/extensions/class-manager/utils.js:10
 msgid "600"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:17
+#: src/extensions/class-manager/utils.js:11
 msgid "700"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:18
+#: src/extensions/class-manager/utils.js:12
 msgid "800"
 msgstr ""
 
 #: src/controls/typography-control/constant.js:19
+#: src/extensions/class-manager/utils.js:13
 msgid "900"
 msgstr ""
 
@@ -11507,14 +11626,17 @@ msgid "Line Height"
 msgstr ""
 
 #: src/controls/typography-control/index.js:538
+#: src/extensions/class-manager/style-controls.js:148
 msgid "Text Transform"
 msgstr ""
 
 #: src/controls/typography-control/index.js:550
+#: src/extensions/class-manager/style-controls.js:169
 msgid "Font Style"
 msgstr ""
 
 #: src/controls/typography-control/index.js:560
+#: src/extensions/class-manager/style-controls.js:189
 msgid "Text Decoration"
 msgstr ""
 
@@ -11650,6 +11772,167 @@ msgstr ""
 
 #: src/extensions/background-video/inspector.js:81
 msgid "Poster (optional)"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:254
+msgid "Background Gradient"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:319
+msgid "Background Repeat"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:331
+msgid "Yes"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:334
+msgid "No"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:362
+msgid "Background Attachment"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:398
+msgid "Stroke"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:468
+msgid "Linecap"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:487
+msgid "Linejoin"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:633
+msgid "Display"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:674
+msgid "Align"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:746
+msgid "Flex Wrap"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:772
+msgid "Float"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:791
+msgid "Clear"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:832
+msgid "Grid Layout Type"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:849
+msgid "Min Column Width"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:875
+msgid "COLUMNS"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:923
+msgid "Vertical Align"
+msgstr ""
+
+#: src/extensions/class-manager/style-controls.js:936
+msgid "White Space"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:23
+#: src/global/constants.js:728
+msgid "Ridge"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:24
+msgid "Inset"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:25
+#: src/global/constants.js:727
+msgid "Outset"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:29
+msgid "Visible"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:30
+#: src/global/constants.js:1053
+msgid "Hidden"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:43
+msgid "Nowrap"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:44
+msgid "Pre"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:45
+msgid "Pre Line"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:46
+msgid "Pre Wrap"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:47
+msgid "Break Spaces"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:51
+msgid "Block"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:52
+msgid "Inline"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:58
+msgid "Static"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:59
+#: src/global/constants.js:1059
+msgid "Relative"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:60
+#: src/global/constants.js:1060
+msgid "Absolute"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:62
+msgid "Sticky"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:73
+msgid "Both"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:77
+msgid "Baseline"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:81
+msgid "Text Top"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:82
+msgid "Text Bottom"
+msgstr ""
+
+#: src/extensions/class-manager/utils.js:87
+msgid "Manual"
 msgstr ""
 
 #: src/extensions/export-pattern/index.js:44
@@ -11925,22 +12208,6 @@ msgstr ""
 msgid "Span"
 msgstr ""
 
-#: src/global/constants.js:727
-msgid "Outset"
-msgstr ""
-
-#: src/global/constants.js:728
-msgid "Ridge"
-msgstr ""
-
-#: src/global/constants.js:763
-msgid "Outer"
-msgstr ""
-
-#: src/global/constants.js:767
-msgid "Inner"
-msgstr ""
-
 #: src/global/constants.js:948
 msgid "No Icon"
 msgstr ""
@@ -11982,20 +12249,8 @@ msgstr ""
 msgid "Boxed"
 msgstr ""
 
-#: src/global/constants.js:1053
-msgid "Hidden"
-msgstr ""
-
 #: src/global/constants.js:1055
 msgid "Clip"
-msgstr ""
-
-#: src/global/constants.js:1059
-msgid "Relative"
-msgstr ""
-
-#: src/global/constants.js:1060
-msgid "Absolute"
 msgstr ""
 
 #: src/global/constants.js:1067
@@ -12014,155 +12269,155 @@ msgstr ""
 msgid "Abstract"
 msgstr ""
 
-#: src/global/constants.js:1083
+#: src/global/constants.js:1084
 msgid "Abstract Brush 1"
 msgstr ""
 
-#: src/global/constants.js:1084
+#: src/global/constants.js:1089
 msgid "Abstract Brush 2"
 msgstr ""
 
-#: src/global/constants.js:1085
+#: src/global/constants.js:1094
 msgid "Aesthetic Blob"
 msgstr ""
 
-#: src/global/constants.js:1086
+#: src/global/constants.js:1099
 msgid "Amorphous Blob"
 msgstr ""
 
-#: src/global/constants.js:1087
+#: src/global/constants.js:1103
 msgid "Brush"
 msgstr ""
 
-#: src/global/constants.js:1090
+#: src/global/constants.js:1107
 msgid "Hand Drawn Blob"
 msgstr ""
 
-#: src/global/constants.js:1091
+#: src/global/constants.js:1111
 msgid "Hexagon"
 msgstr ""
 
-#: src/global/constants.js:1092
+#: src/global/constants.js:1112
 msgid "Hexagon Blob"
 msgstr ""
 
-#: src/global/constants.js:1093
+#: src/global/constants.js:1114
 msgid "Irregular Blob"
 msgstr ""
 
-#: src/global/constants.js:1094
+#: src/global/constants.js:1118
 msgid "Minimal Round"
 msgstr ""
 
-#: src/global/constants.js:1095
+#: src/global/constants.js:1119
 msgid "Octagon"
 msgstr ""
 
-#: src/global/constants.js:1096
+#: src/global/constants.js:1120
 msgid "Organic Blob"
 msgstr ""
 
-#: src/global/constants.js:1097
+#: src/global/constants.js:1121
 msgid "Oval Blob"
 msgstr ""
 
-#: src/global/constants.js:1098
+#: src/global/constants.js:1122
 msgid "Pattern"
 msgstr ""
 
-#: src/global/constants.js:1099
+#: src/global/constants.js:1123
 msgid "Popup 1"
 msgstr ""
 
-#: src/global/constants.js:1100
+#: src/global/constants.js:1124
 msgid "Popup 2"
 msgstr ""
 
-#: src/global/constants.js:1101
+#: src/global/constants.js:1125
 msgid "Popup 3"
 msgstr ""
 
-#: src/global/constants.js:1102
+#: src/global/constants.js:1126
 msgid "Round Brush"
 msgstr ""
 
-#: src/global/constants.js:1103
+#: src/global/constants.js:1127
 msgid "Round Design"
 msgstr ""
 
-#: src/global/constants.js:1104
+#: src/global/constants.js:1128
 msgid "Square Pattern"
 msgstr ""
 
-#: src/global/constants.js:1105
+#: src/global/constants.js:1129
 msgid "Testimonial"
 msgstr ""
 
-#: src/global/constants.js:1106
+#: src/global/constants.js:1130
 msgid "Triangle Blob"
 msgstr ""
 
-#: src/global/constants.js:1111
+#: src/global/constants.js:1136
 msgid "Center Top"
 msgstr ""
 
-#: src/global/constants.js:1113
+#: src/global/constants.js:1138
 msgid "Center Bottom"
 msgstr ""
 
-#: src/global/constants.js:1114
+#: src/global/constants.js:1139
 msgid "Left Top"
 msgstr ""
 
-#: src/global/constants.js:1115
+#: src/global/constants.js:1140
 msgid "Left Center"
 msgstr ""
 
-#: src/global/constants.js:1116
+#: src/global/constants.js:1141
 msgid "Left Bottom"
 msgstr ""
 
-#: src/global/constants.js:1117
+#: src/global/constants.js:1142
 msgid "Right Top"
 msgstr ""
 
-#: src/global/constants.js:1118
+#: src/global/constants.js:1143
 msgid "Right Center"
 msgstr ""
 
-#: src/global/constants.js:1119
+#: src/global/constants.js:1144
 msgid "Right Bottom"
 msgstr ""
 
-#: src/global/constants.js:1124
+#: src/global/constants.js:1149
 msgid "No Repeat"
 msgstr ""
 
-#: src/global/constants.js:1126
+#: src/global/constants.js:1151
 msgid "Repeat X"
 msgstr ""
 
-#: src/global/constants.js:1127
+#: src/global/constants.js:1152
 msgid "Repeat Y"
 msgstr ""
 
-#: src/global/constants.js:1294
+#: src/global/constants.js:1319
 msgid "Manual Selection"
 msgstr ""
 
-#: src/global/constants.js:1298
+#: src/global/constants.js:1323
 msgid "Default Pagination"
 msgstr ""
 
-#: src/global/constants.js:1299
+#: src/global/constants.js:1324
 msgid "Ajax Pagination"
 msgstr ""
 
-#: src/global/constants.js:1300
+#: src/global/constants.js:1325
 msgid "Load More-Click"
 msgstr ""
 
-#: src/global/constants.js:1301
+#: src/global/constants.js:1326
 msgid "Load More-Scroll"
 msgstr ""
 

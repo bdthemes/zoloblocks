@@ -16,11 +16,17 @@ const {
     ResRangeControl,
     AdvancedOptions,
     ZoloPanelBody,
+    ZoloTabPanel,
+    ZoloBoxControl,
+    ZoloBorderRadius,
+    ZoloResponsive,
+    getResponsiveValue,
+    createResponsiveValue
 } = window.zoloModule;
 
 import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT, ICON_SIZE, TEXT_INDENT } from './constants';
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
-import { DEFAULT_ALIGNS } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, NORMAL_HOVER } from '../../../src/global/constants';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
@@ -119,21 +125,72 @@ function Inspector(props) {
                         </ZoloPanelBody>
 
                         <ZoloPanelBody title={__('Meta', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Color', 'zoloblocks')}
-                                color={textColor}
-                                onChange={(color) =>
-                                    setAttributes({
-                                        textColor: color,
-                                    })
-                                }
-                            />
+                            <ZoloTabPanel
+                                className="zolo-tab-panel"
+                                activeClass="active-tab"
+                                tabs={NORMAL_HOVER.map(({ value, label }) => ({
+                                    name: value,
+                                    title: label,
+                                    className: `zolo-tab ${value}`,
+                                }))}
+                            >
+                                {({ name }) => {
+                                    if (name === 'normal') {
+                                        return (
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={textColor}
+                                                    onChange={(color) =>
+                                                        setAttributes({
+                                                            textColor: color,
+                                                        })
+                                                    }
+                                                />
+                                                <ColorControl
+                                                    label={__('Background Color', 'zoloblocks')}
+                                                    color={attributes?.metaBackgroundColor}
+                                                    onChange={(color) =>
+                                                        setAttributes({
+                                                            metaBackgroundColor: color,
+                                                        })
+                                                    }
+                                                />
+                                            </>
+                                        );
+                                    }
+                                    if (name === 'hover') {
+                                        return (
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={hoverColor}
+                                                    onChange={(color) =>
+                                                        setAttributes({
+                                                            hoverColor: color,
+                                                        })
+                                                    }
+                                                />
+                                                <ColorControl
+                                                    label={__('Background Color', 'zoloblocks')}
+                                                    color={attributes?.metaHoverBackgroundColor}
+                                                    onChange={(color) =>
+                                                        setAttributes({
+                                                            metaHoverBackgroundColor: color,
+                                                        })
+                                                    }
+                                                />
+                                            </>
+                                        );
+                                    }
+                                }}
+                            </ZoloTabPanel>
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={TEXT_TYPOGRAPHY}
                                 requiredProps={requiredProps}
                             />
-                            <ZoloCardDivider />
+                            
                             <ResRangeControl
                                 label={__('Indent', 'zoloblocks')}
                                 controlName={TEXT_INDENT}
@@ -142,20 +199,20 @@ function Inspector(props) {
                                 max={50}
                                 step={1}
                             />
-                            {metaData?.some((item) => item.link) && (
-                                <>
-                                    <div className="zolo-custom-heading">{__('Hover', 'zoloblocks')}</div>
-                                    <ColorControl
-                                        label={__('Color', 'zoloblocks')}
-                                        color={hoverColor}
-                                        onChange={(color) =>
-                                            setAttributes({
-                                                hoverColor: color,
-                                            })
-                                        }
-                                    />
-                                </>
-                            )}
+                            <ZoloCardDivider />
+                            <ZoloResponsive left='7ch'>
+                                <ZoloBoxControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    value={getResponsiveValue(attributes, 'metaPadding')}
+                                    onChange={(metaPadding) => setAttributes(createResponsiveValue(attributes, 'metaPadding', metaPadding))}
+                                />
+                            </ZoloResponsive>
+                            <ZoloResponsive left='6ch'>
+                                <ZoloBorderRadius
+                                    value={getResponsiveValue(attributes, 'metaBorderRadius') || {}}
+                                    onChange={(metaBorderRadius) => setAttributes(createResponsiveValue(attributes, 'metaBorderRadius', metaBorderRadius))}
+                                />
+                            </ZoloResponsive>
                         </ZoloPanelBody>
                     </>
                 }

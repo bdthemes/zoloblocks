@@ -47,11 +47,23 @@ const attributes = {
     separatorColor: {
         type: 'string',
     },
+    textColor: {
+        type: 'string',
+    },
+    metaBackgroundColor: {
+        type: 'string',
+    },
+    metaHoverBackgroundColor: {
+        type: 'string',
+    },
     hoverColor: {
         type: 'string',
     },
-    textColor: {
-        type: 'string',
+    metaPadding: {
+        type: 'object'
+    },
+    metaBorderRadius: {
+        type: 'object'
     },
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     ...generateGapAttributes(META_GAP, {

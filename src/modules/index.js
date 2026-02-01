@@ -66,6 +66,7 @@ export { default as CounterControl } from '../controls/counter-control';
 export { default as ZoloShadowControl } from '../controls/shadow-control';
 export { default as ZoloBorder } from '../controls/border';
 export { default as ZoloBoxControl } from '../controls/box-control';
+export { default as ZoloBorderRadius } from '../controls/border-radius';
 
 //Export Helpers
 export { generateBackgroundAttributes, generateBackgroundControlStyles } from '../helpers/backgroundHelpers';
@@ -93,6 +94,7 @@ export { default as createResponsiveValue } from '../helpers/create-responsive-v
 export { default as generateCSS } from '../helpers/generate-css';
 export { default as getBorderCSS } from '../helpers/get-border-css';
 export { default as getBoxControlValue } from '../helpers/get-box-control-value';
+export { default as getBorderRadiusValue } from '../helpers/get-border-radius-value';
 
 export {
     DynamicTag,
