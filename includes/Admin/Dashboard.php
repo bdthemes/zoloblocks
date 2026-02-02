@@ -30,7 +30,50 @@ if (! class_exists('Dashboard')) {
         public function __construct() {
             add_action('admin_menu', [$this, 'zolo_admin_menu']);
             add_action('admin_init', [$this, 'disable_admin_notice']);
+            add_action('admin_init', [$this, 'handle_tab_redirect']);
             add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
+        }
+
+        /**
+         * Handle tab redirect
+         *
+         * @return void
+         */
+        public function handle_tab_redirect() {
+            $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+
+            // Only redirect for specific tab pages
+            $tab_pages = ['zolo-blocks', 'zolo-extensions', 'zolo-api-settings', 'zolo-settings'];
+
+            if (in_array($current_page, $tab_pages)) {
+                // Map page slugs to tab hashes
+                $tab_mapping = [
+                    'zolo-blocks' => 'blocks',
+                    'zolo-extensions' => 'extensions',
+                    'zolo-api-settings' => 'apiSettings',
+                    'zolo-settings' => 'settings',
+                ];
+
+                $tab = isset($tab_mapping[$current_page]) ? $tab_mapping[$current_page] : 'welcome';
+
+                // Build the redirect URL
+                $redirect_url = admin_url('admin.php?page=zoloblocks#' . $tab);
+
+                // Perform the redirect
+                wp_safe_redirect($redirect_url);
+                exit;
+            }
+        }
+
+        /**
+         * Dummy page for submenu items (redirects are handled by admin_init)
+         *
+         * @return void
+         */
+        public function tab_redirect() {
+            // This function is never actually called because handle_tab_redirect() redirects first
+            // But it's required to avoid WordPress errors
+            echo '<div class="wrap"></div>';
         }
 
         /**
@@ -93,9 +136,7 @@ if (! class_exists('Dashboard')) {
                 __('Blocks', 'zoloblocks'),
                 'manage_options',
                 'zolo-blocks',
-                function () {
-                    echo '<script>document.location.href = "/wp-admin/admin.php?page=zoloblocks#blocks";</script>';
-                }
+                [$this, 'tab_redirect']
             );
 
             add_submenu_page(
@@ -104,9 +145,7 @@ if (! class_exists('Dashboard')) {
                 __('Extensions', 'zoloblocks'),
                 'manage_options',
                 'zolo-extensions',
-                function () {
-                    echo '<script>document.location.href = "/wp-admin/admin.php?page=zoloblocks#extensions";</script>';
-                }
+                [$this, 'tab_redirect']
             );
             add_submenu_page(
                 'zoloblocks',
@@ -114,9 +153,7 @@ if (! class_exists('Dashboard')) {
                 __('API Settings', 'zoloblocks'),
                 'manage_options',
                 'zolo-api-settings',
-                function () {
-                    echo '<script>document.location.href = "/wp-admin/admin.php?page=zoloblocks#apiSettings";</script>';
-                }
+                [$this, 'tab_redirect']
             );
             add_submenu_page(
                 'zoloblocks',
@@ -124,9 +161,7 @@ if (! class_exists('Dashboard')) {
                 __('Settings', 'zoloblocks'),
                 'manage_options',
                 'zolo-settings',
-                function () {
-                    echo '<script>document.location.href = "/wp-admin/admin.php?page=zoloblocks#settings";</script>';
-                }
+                [$this, 'tab_redirect']
             );
 
             add_submenu_page(
