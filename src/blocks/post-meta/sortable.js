@@ -13,6 +13,7 @@ const {
     ZoloSelectControl,
     ZoloButton,
     ZoloCorePanelBody,
+    ZoloChoose
 } = window.zoloModule;
 
 const taxonomiesArray = GET_TAXONOMIEX(zoloParams.get_taxonomies);
@@ -33,7 +34,7 @@ const Sortable = ({ metaData, setAttributes }) => {
                                     id: metaData.length + 1,
                                     type: 'author',
                                     link: true,
-                                    showIcon: 'icon',
+                                    showIcon: true,
                                     icon: MetaIcon.author,
                                 },
                             ],
@@ -128,6 +129,17 @@ const Sortable = ({ metaData, setAttributes }) => {
                                                 }}
                                             />
                                         )}
+                                        <ZoloToggleControl
+                                            label={__('Show Icon', 'zoloblocks')}
+                                            checked={meta?.showIcon === 'icon'}
+                                            onChange={(v) => {
+                                                const newItems = [...deepCloneMetaData];
+                                                newItems[index].showIcon = v ? 'icon' : 'none';
+                                                setAttributes({
+                                                    metaData: newItems,
+                                                });
+                                            }}
+                                        />
                                     </ZoloCorePanelBody>
                                 </SortableItem>
                             </div>

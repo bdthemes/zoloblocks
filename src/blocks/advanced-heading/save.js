@@ -118,6 +118,12 @@ const Save = (props) => {
                             {showSubTitleBadgeIcon && <DisplayZoloIcon icon={subTitleBadgeIcon} />}
                         </div>
                     ))}
+
+                {showSeparator && separatorPosition === 'bottom' && (
+                    <div className="zolo-separator-wrapper">
+                        <div className="zolo-ah-separator"></div>
+                    </div>
+                )}
             </div>
             {renderHookAfter && renderHookAfter}
         </div>

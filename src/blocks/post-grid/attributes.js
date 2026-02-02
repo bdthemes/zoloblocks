@@ -49,6 +49,7 @@ import {
     PAG_MARGIN,
     PAG_ALIGN,
     PAG_PADDING,
+    PAGINATIONS_THIKNESS,
     META_SPACE,
     CONTENT_PADDING,
     META_ARROW_SPACE,
@@ -398,6 +399,7 @@ const attributes = {
     ...generateDimensionAttributes(PAG_MARGIN),
     ...generateDimensionAttributes(PAG_PADDING),
     ...generateResAlignmentAttributies(PAG_ALIGN),
+    ...generateResRangeAttributies(PAGINATIONS_THIKNESS),
 
     // post meta
     ...generateResRangeAttributies(META_SPACE),

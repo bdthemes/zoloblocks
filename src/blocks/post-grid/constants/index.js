@@ -75,6 +75,7 @@ export const PAG_BORDER_RADIUS = 'pagBRadius';
 export const PAG_MARGIN = 'pagMargin';
 export const PAG_PADDING = 'pagPadding';
 export const PAG_ALIGN = 'pagAlign';
+export const PAGINATIONS_THIKNESS = 'paginationsThikness';
 
 // post meta
 export const META_SPACE = 'metaSpace';

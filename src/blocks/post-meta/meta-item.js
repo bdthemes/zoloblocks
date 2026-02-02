@@ -84,14 +84,18 @@ const TermsMeta = ({ post, meta }) => {
                           <a className="term-name" href={sanitizeUrl(term.link)} onClick={(event) => event.preventDefault()}>
                               {term.name}
                           </a>
-                          <span className="separator">{separator}</span>
+                          {
+                            categories.length == 1 ? '' : <span className="separator">{separator}</span>
+                          }
                       </>
                   );
               }
               return (
                   <>
                       <span className="term-name">{term.name}</span>
-                      <span className="separator">{separator}</span>
+                      {
+                        categories.length == 1 ? '' : <span className="separator">{separator}</span>
+                      }
                   </>
               );
           })

@@ -701,7 +701,6 @@ export default function Style({ props }) {
     }
       .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper {
       ${separatorWidthDesktop}
-      ${subTitlePosition === 'bottom' ? 'display: unset;' : ''}
     }
 `;
 

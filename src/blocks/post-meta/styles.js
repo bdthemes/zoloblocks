@@ -3,7 +3,7 @@ import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT
 
 import { TEXT_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
-const { generateGapStyle, generateResRangeStyle, generateTypographyStyles, GlobalStyleHanlder, generateResAlignmentStyle } =
+const { generateGapStyle, generateResRangeStyle, generateTypographyStyles, GlobalStyleHanlder, generateResAlignmentStyle, generateCSS, getBoxControlValue, getBorderRadiusValue } =
     window.zoloModule;
 
 function Style({ props }) {
@@ -129,10 +129,25 @@ function Style({ props }) {
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info,
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info a{
         ${textTypoDesk}
-        ${textColor ? `color:${textColor};` : ''}
+        ${generateCSS({attributes, key:'textColor', getValue: (value) => `color: ${value};`, device: 'Desktop'})}
+        ${generateCSS({attributes, key:'metaBackgroundColor', getValue: (value) => `background-color: ${value};`, device: 'Desktop'})}
+        
+      }
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info{
+        ${generateCSS({attributes, key:'metaPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Desktop'})}
+        ${generateCSS({attributes, key:'metaBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Desktop'})}
       }
 
-      ${hoverColor ? `.${uniqueId}.wp-block-zolo-post-meta.zolo-block :is(.zolo-meta-info a:hover, .zolo-meta-info.terms:hover){color:${hoverColor};}` : ''}
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info:hover,
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info:hover a
+      {
+        ${generateCSS({attributes, key:'metaHoverBackgroundColor', getValue: (value) => `background-color: ${value};`, device: 'Desktop'})}
+      }
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info:hover .zolo-icon svg,
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info:hover .zolo-text :is(a, .separator)
+      {
+        ${generateCSS({attributes, key:'hoverColor', getValue: (value) => `color: ${value};`, device: 'Desktop'})}
+      }
 
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info,
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info > a{
@@ -164,6 +179,10 @@ function Style({ props }) {
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info > a{
         ${textIndentTab}
       }
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info{
+        ${generateCSS({attributes, key:'metaPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Tablet'})}
+        ${generateCSS({attributes, key:'metaBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Tablet'})}
+      }
     `;
 
     const mobileAllStyle = `
@@ -189,6 +208,10 @@ function Style({ props }) {
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info,
       .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info > a{
         ${textIndentMob}
+      }
+      .${uniqueId}.wp-block-zolo-post-meta.zolo-block .zolo-meta-info{
+        ${generateCSS({attributes, key:'metaPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Mobile'})}
+        ${generateCSS({attributes, key:'metaBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Mobile'})}
       }
   `;
 

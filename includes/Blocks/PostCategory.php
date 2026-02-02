@@ -48,13 +48,12 @@ class PostCategory extends PostBlock {
 	 * @param array $attributes .
 	 * @return false|string
 	 */
-	public function render($attributes) {
-
+	public function render($attributes, $content, $block) {
+		$post_ID            = $block->context['postId'] ?? '';
 		$attributes = wp_parse_args($attributes, $this->get_default_attributes());
-		$categories = ZoloAJAX::zolo_post_category_query($attributes['catQuery']);
+		$categories = ZoloAJAX::zolo_post_category_query($attributes['catQuery'], $post_ID);
 		$cat_json   = wp_json_encode($categories);
 		$cat_object = json_decode($cat_json);
-
 		$multiple_bg_create = [];
 
 		if (!empty($attributes['postCategoryPro']['enableMultipleBG']) && ! empty($attributes['postCategoryPro']['multipleBG'])) {
