@@ -148,6 +148,10 @@ const attributes = {
             h6: true,
         },
     },
+    contentSelector: {
+        type: 'string',
+        default: '',
+    },
     listStyle: {
         type: 'string',
         default: 'ol',

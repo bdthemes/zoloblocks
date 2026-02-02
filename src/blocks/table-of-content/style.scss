@@ -193,3 +193,77 @@
         visibility: visible;
     }
 }
+
+// updated css
+
+/* Minimal adapted styles from original */
+.wp-block-zolo-table-of-content .zolo-toc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.wp-block-zolo-table-of-content .toc-item {
+    margin: 0;
+    list-style: none;
+    position: relative;
+}
+.wp-block-zolo-table-of-content .toc-header {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border-radius: 4px;
+}
+.wp-block-zolo-table-of-content .toc-link {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+    text-decoration: none;
+    color: #475569;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.wp-block-zolo-table-of-content .toc-link:hover {
+    color: #0969da;
+    background: #f0f6ff;
+}
+.wp-block-zolo-table-of-content .toc-toggle {
+    width: 24px;
+    height: 24px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 0.25rem;
+    transition: transform 0.2s;
+    color: #6b7280;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wp-block-zolo-table-of-content .child-list[hidden] {
+    display: none;
+    max-height: 0;
+    opacity: 0;
+}
+.wp-block-zolo-table-of-content .toc-item.active > .toc-header > .toc-link {
+    color: #0969da;
+    font-weight: 600;
+    background: #f0f6ff;
+}
+@media (max-width: 768px) {
+    .wp-block-zolo-table-of-content {
+        padding: 0.75rem;
+        border-radius: 6px;
+    }
+    .wp-block-zolo-table-of-content .toc-link {
+        padding: 0.6rem 0.4rem;
+        font-size: 0.9rem;
+    }
+    .wp-block-zolo-table-of-content .child-list {
+        padding-left: 1rem;
+    }
+}

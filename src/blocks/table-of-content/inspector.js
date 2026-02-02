@@ -90,6 +90,7 @@ function Inspector(props) {
         headingText,
         headingTags,
         listStyle,
+        contentSelector,
         //box
         boxBgColor,
         boxSeparatorColor,
@@ -187,6 +188,15 @@ function Inspector(props) {
                                     closeMenuOnSelect={true}
                                 />
                             </ZoloBaseControl>
+
+                            <ZoloCardDivider />
+                            <ZoloTextControl
+                                label={__('Content Selector', 'zoloblocks')}
+                                value={contentSelector}
+                                placeholder={__('Enter CSS selector (e.g., #content, .post-content, main)', 'zoloblocks')}
+                                onChange={(contentSelector) => setAttributes({ contentSelector })}
+                                help={__('Enter CSS selector to find headings within specific element. Leave empty to search entire document. Changes are applied when you save the block.', 'zoloblocks')}
+                            />
                         </ZoloPanelBody>
 
                         {applyFilters(

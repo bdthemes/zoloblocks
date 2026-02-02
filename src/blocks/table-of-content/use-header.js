@@ -94,12 +94,52 @@ function getAllHeaderBlocks(blocks) {
     return headerBlocks;
 }
 
-// Modified useHeader hook to include child blocks
-const useHeader = () => {
+// Function to parse headers directly from HTML content with selector support
+function parseHeadersFromHTML(htmlContent, contentSelector = '') {
+    if (!htmlContent || typeof htmlContent !== 'string') {
+        return [];
+    }
+
+    // Create a temporary DOM parser
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, 'text/html');
+
+    let searchScope = doc.body;
+
+    // Use custom selector if provided, otherwise use entire document
+    if (contentSelector) {
+        searchScope = doc.querySelector(contentSelector) || doc.body;
+    }
+
+    const headers = searchScope.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const headerList = [];
+
+    headers.forEach((header) => {
+        const level = parseInt(header.tagName.charAt(1));
+        const content = header.textContent.trim();
+
+        if (content) {
+            headerList.push({
+                level,
+                content,
+                anchor: parseTocSlug(content),
+            });
+        }
+    });
+
+    return headerList;
+}
+
+// Modified useHeader hook to include child blocks (selector ignored in editor)
+const useHeader = (contentSelector = '') => {
     const allBlocks = useSelect((select) => select('core/block-editor').getBlocks(), []);
 
     const headerBlocks = getAllHeaderBlocks(allBlocks);
-    return getArrayFromBlocks(headerBlocks);
+    const blockHeaders = getArrayFromBlocks(headerBlocks);
+
+    // In editor, ignore content selector and only use block-based detection
+    // This prevents errors while typing in the editor
+    return blockHeaders;
 };
 
 export default useHeader;

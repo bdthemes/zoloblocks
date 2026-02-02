@@ -18,6 +18,7 @@ export default function Save(props) {
         headers,
         listStyle,
         allowedHeading,
+        contentSelector,
     } = attributes;
     const ListTag = listStyle === 'ol' ? 'ol' : 'ul';
 
@@ -31,6 +32,7 @@ export default function Save(props) {
                 'data-headers': JSON.stringify(headers),
                 'data-tags': JSON.stringify(allowedHeading),
                 'data-collapsed': JSON.stringify(isCollapsed),
+                'data-content-selector': contentSelector || '',
             })}
         >
             {showSticky && (
