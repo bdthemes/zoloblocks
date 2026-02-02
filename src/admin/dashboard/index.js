@@ -1,4 +1,4 @@
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
@@ -13,17 +13,31 @@ import Settings from './Settings';
 import Welcome from './Welcome';
 
 const Dashboard = () => {
-    // const [activeTab, setActiveTab] = useState(TABS[0].value);
     const getInitialStateFromURLQuery = () => {
         const hash = window.location.hash.slice(1); // Remove the '#' at the start
         return hash || 'welcome';
     };
     const [activeTab, setActiveTab] = useState(getInitialStateFromURLQuery);
 
-    if (activeTab) {
-        window.location.hash = activeTab;
-        window.history.pushState({}, '', `#${activeTab}`);
-    }
+    // Update URL hash when activeTab changes
+    useEffect(() => {
+        if (activeTab && window.location.hash.slice(1) !== activeTab) {
+            window.history.pushState({}, '', `#${activeTab}`);
+        }
+    }, [activeTab]);
+
+    // Handle browser back/forward buttons
+    useEffect(() => {
+        const handleHashChange = () => {
+            const hash = window.location.hash.slice(1) || 'welcome';
+            setActiveTab(hash);
+        };
+
+        window.addEventListener('hashchange', handleHashChange);
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+        };
+    }, []);
     const renderContent = () => {
         switch (activeTab) {
             case 'blocks':
