@@ -64,8 +64,16 @@ import {
     OPEN_BTN_H_BG,
     OPEN_BTN_H_SHADOW,
 
+    // list item marker
+    UNORDERED_LIST_ITEM_MARKER_SIZE,
+    UNORDERED_LIST_ITEM_MARKER_OFFSET,
+
     // LIST
     LIST_SPACE_BETWEEN,
+
+    // child list
+    CHILD_LIST_SPACE_BETWEEN,
+    CHILD_LIST_TIMELINE_WIDTH,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -212,7 +220,12 @@ const attributes = {
 
     // LIST
     ...generateResRangeAttributies(LIST_SPACE_BETWEEN),
+    ...generateResRangeAttributies(UNORDERED_LIST_ITEM_MARKER_SIZE),
+    ...generateResRangeAttributies(UNORDERED_LIST_ITEM_MARKER_OFFSET),
 
+    // child list
+    ...generateResRangeAttributies(CHILD_LIST_SPACE_BETWEEN),
+    ...generateResRangeAttributies(CHILD_LIST_TIMELINE_WIDTH),
     boxBgColor: {
         type: 'string',
     },
@@ -258,6 +271,22 @@ const attributes = {
         type: 'string',
     },
     listActiveColor: {
+        type: 'string',
+    },
+    // child list
+    childListColor: {
+        type: 'string',
+    },
+    childListHoverColor: {
+        type: 'string',
+    },
+    childListActiveColor: {
+        type: 'string',
+    },
+    childListTimelineColor: {
+        type: 'string',
+    },
+    childListTimelineActiveColor: {
         type: 'string',
     },
 };

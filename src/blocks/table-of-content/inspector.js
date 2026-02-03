@@ -73,9 +73,15 @@ import {
     OPEN_BTN_BORDER_RADIUS,
     OPEN_BTN_H_BG,
     OPEN_BTN_H_SHADOW,
+    UNORDERED_LIST_ITEM_MARKER_SIZE,
+    UNORDERED_LIST_ITEM_MARKER_OFFSET,
+    CHILD_LIST_TIMELINE_WIDTH,
+
+    // child list
+    CHILD_LIST_SPACE_BETWEEN,
 } from './constants';
 
-import { HEADER_TYPOGRAPHY, LIST_TYPOGRAPHY, STICKY_OPEN_BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { HEADER_TYPOGRAPHY, LIST_TYPOGRAPHY, STICKY_OPEN_BUTTON_TYPOGRAPHY, CHILD_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 function Inspector(props) {
@@ -114,6 +120,13 @@ function Inspector(props) {
         openBtnIconColor,
         openBtnIconHoverColor,
         openBtnIconHoverBorderColor,
+
+        // child list
+        childListColor,
+        childListHoverColor,
+        childListActiveColor,
+        childListTimelineColor,
+        childListTimelineActiveColor,
     } = attributes;
 
     const requiredProps = {
@@ -455,6 +468,29 @@ function Inspector(props) {
                                             max={100}
                                             step={1}
                                         />
+                                        {listStyle === 'ul' && (
+                                            <>
+                                                <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>
+                                                    {__('List Item Marker', 'zoloblocks')}
+                                                </div>
+                                                <ResRangeControl
+                                                    label={__('Size', 'zoloblocks')}
+                                                    controlName={UNORDERED_LIST_ITEM_MARKER_SIZE}
+                                                    requiredProps={requiredProps}
+                                                    min={0}
+                                                    max={100}
+                                                    step={1}
+                                                />
+                                                <ResRangeControl
+                                                    label={__('Offset', 'zoloblocks')}
+                                                    controlName={UNORDERED_LIST_ITEM_MARKER_OFFSET}
+                                                    requiredProps={requiredProps}
+                                                    min={-100}
+                                                    max={100}
+                                                    step={1}
+                                                />
+                                            </>
+                                        )}
                                     </>
                                 }
                                 hoverComponents={
@@ -485,6 +521,111 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Child List', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                            <TabPanelControl
+                                options={[
+                                    {
+                                        value: 'normal',
+                                        label: __('Normal', 'zoloblocks'),
+                                    },
+                                    {
+                                        value: 'hover',
+                                        label: __('Hover', 'zoloblocks'),
+                                    },
+                                    {
+                                        value: 'active',
+                                        label: __('Active', 'zoloblocks'),
+                                    },
+                                ]}
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={childListColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    childListColor: color,
+                                                })
+                                            }
+                                        />
+                                        <TypographyDropdown
+                                            label={__('Typography', 'zoloblocks')}
+                                            typoPrefixConstant={CHILD_LIST_TYPOGRAPHY}
+                                            requiredProps={requiredProps}
+                                        />
+
+                                        <ZoloCardDivider />
+                                        <ResRangeControl
+                                            label={__('Gap', 'zoloblocks')}
+                                            controlName={CHILD_LIST_SPACE_BETWEEN}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+
+                                        <div className="zolo-custom-heading">
+                                            {__('Timeline', 'zoloblocks')}
+                                        </div>
+                                        <ResRangeControl
+                                            label={__('Size', 'zoloblocks')}
+                                            controlName={CHILD_LIST_TIMELINE_WIDTH}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={10}
+                                            step={1}
+                                        />
+
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={childListTimelineColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    childListTimelineColor: color,
+                                                })
+                                            }
+                                        />
+                                         <ColorControl
+                                            label={__('Active / Hover Color', 'zoloblocks')}
+                                            color={childListTimelineActiveColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    childListTimelineActiveColor: color,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={childListHoverColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    childListHoverColor: color,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                                activeComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={childListActiveColor}
+                                            onChange={(color) =>
+                                                setAttributes({
+                                                    childListActiveColor: color,
+                                                })
+                                            }
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody>
+
                         {showSticky && (
                             <ZoloPanelBody title={__('Sticky Button', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
