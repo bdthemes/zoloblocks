@@ -101,7 +101,7 @@ export default function Edit(props) {
                                             iconTypeImage: media,
                                         });
                                     }}
-                                    allowedTypes={['image']}
+                                    allowedTypes={['image', 'image/svg+xml']}
                                     value={iconTypeImage && iconTypeImage.id}
                                     render={({ open }) => (
                                         <ZoloToolbarButton
@@ -160,7 +160,7 @@ export default function Edit(props) {
                                         });
                                     }}
                                     accept="image/*"
-                                    allowedTypes={['image']}
+                                    allowedTypes={['image', 'image/svg+xml']}
                                 />
                             )}
                         </div>

@@ -415,7 +415,7 @@ function Inspector(props) {
                                                                 iconTypeImage: media,
                                                             });
                                                         }}
-                                                        allowedTypes={['image']}
+                                                        allowedTypes={['image', 'image/svg+xml']}
                                                         value={iconTypeImage && iconTypeImage.id}
                                                         render={({ open }) => (
                                                             <ZoloButton className="zolo-image-upload-btn" onClick={open}>
