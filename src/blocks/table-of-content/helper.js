@@ -75,7 +75,7 @@ export const parseList = (list, ListTag = 'ul') =>
 export function parseTocSlug(slug) {
     if (!slug) return slug;
 
-    return slug
+    const parsedSlug = slug
         .toString()
         .toLowerCase()
         .replace(/(<.+?>)/g, '')
@@ -86,4 +86,6 @@ export function parseTocSlug(slug) {
         .replace(/[&\/\\#,^!+()$~%.'":*?<>{}@‘’”“]/g, '')
         .replace(/-{2,}/g, '-')
         .replace(/^-+|-+$/g, '');
+
+    return `zolo-${parsedSlug}`;
 }

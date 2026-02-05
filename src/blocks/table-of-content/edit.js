@@ -12,11 +12,11 @@ const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId } = props;
-    const { showHeading, showCollapsible, isCollapsed, headingText, headers, listStyle, allowedHeading, preview, uniqueId, parentClasses } =
+    const { showHeading, showCollapsible, isCollapsed, headingText, headers, listStyle, allowedHeading, preview, uniqueId, parentClasses, contentSelector } =
         attributes;
     const ListTag = listStyle === 'ol' ? 'ol' : 'ul';
 
-    const headerList = useHeader();
+    const headerList = useHeader(contentSelector);
 
     useEffect(() => {
         if (JSON.stringify(headerList) !== JSON.stringify(headers)) {
