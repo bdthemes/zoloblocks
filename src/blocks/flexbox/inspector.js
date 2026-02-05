@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 import objAttributes from './attributes';
 
 import { FLEX_DIRECTIONS, FLEX_WRAPS } from '@/global/constants.js';
-import { alignItemsOptions, innerWidthTypes, justifyContentOptions, tagList, useInenerFlexboxWidthType, widthTypes } from './utils';
+import { alignItemsOptions, innerWidthTypes, justifyContentOptions, overflowOptions, tagList, useInenerFlexboxWidthType, widthTypes } from './utils';
 import classNames from 'classnames';
 
 function Inspector(props) {
@@ -36,7 +36,7 @@ function Inspector(props) {
     return (
         <InspectorControls key="controls">
             <HeaderTabs
-                block="zolo/container"
+                block="zolo/flexbox"
                 attributes={attributes}
                 setAttributes={setAttributes}
                 generalTab={
@@ -154,6 +154,12 @@ function Inspector(props) {
                                     onChange={(value) => setAttributes({ link: value })}
                                 />
                             )}
+                            <ZoloSelectControl
+                                label={__('Overflow', 'zoloblocks')}
+                                value={attributes?.overflow}
+                                options={overflowOptions}
+                                onChange={(overflow) => setAttributes({ overflow })}
+                            />
                         </ZoloPanelBody>
                     </>
                 }

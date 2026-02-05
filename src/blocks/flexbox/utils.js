@@ -97,6 +97,29 @@ export const alignItemsOptions = [
     },
 ];
 
+export const overflowOptions = [
+    {
+        label: __('Default', 'zoloblocks'),
+        value: '',
+    },
+    {
+        label: __('Hidden', 'zoloblocks'),
+        value: 'hidden',
+    },
+    {
+        label: __('Visible', 'zoloblocks'),
+        value: 'visible',
+    },
+    {
+        label: __('Scroll', 'zoloblocks'),
+        value: 'scroll',
+    },
+    {
+        label: __('Auto', 'zoloblocks'),
+        value: 'auto',
+    },
+];
+
 const useInenerFlexboxWidthType = (hasParent, flexWidthType, setAttributes) => {
     useEffect(() => {
         if (hasParent && flexWidthType == 'alignwide') {

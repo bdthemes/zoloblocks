@@ -43,6 +43,10 @@ const attributes = {
             openInNewTab: false,
         },
     },
+    overflow: {
+        type: 'string',
+        default: '',
+    },
     flexDirection: {
         type: 'object',
     },
