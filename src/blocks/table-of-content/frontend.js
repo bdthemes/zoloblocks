@@ -133,32 +133,118 @@ const injectAnchors = (headers, tocWrapper) => {
     });
 };
 
-// Collapse everything
-const collapseAll = (tocWrapper) => {
-    if (!tocWrapper) return;
-    tocWrapper.querySelectorAll('.child-list').forEach((cl) => (cl.hidden = true));
-    tocWrapper.querySelectorAll('.toc-toggle').forEach((t) => {
-        t.setAttribute('aria-expanded', 'false');
-        t.style.transform = 'rotate(0deg)';
-    });
+// Animation Helpers
+const slideUp = (target, duration = 300) => {
+    if (target.hidden) return;
+    target.style.transitionProperty = 'height, margin, padding';
+    target.style.transitionDuration = duration + 'ms';
+    target.style.boxSizing = 'border-box';
+    target.style.height = target.offsetHeight + 'px';
+    target.offsetHeight; // force reflow
+    target.style.overflow = 'hidden';
+    target.style.height = 0;
+    target.style.paddingTop = 0;
+    target.style.paddingBottom = 0;
+    target.style.marginTop = 0;
+    target.style.marginBottom = 0;
+    window.setTimeout(() => {
+        target.hidden = true;
+        target.style.removeProperty('height');
+        target.style.removeProperty('padding-top');
+        target.style.removeProperty('padding-bottom');
+        target.style.removeProperty('margin-top');
+        target.style.removeProperty('margin-bottom');
+        target.style.removeProperty('overflow');
+        target.style.removeProperty('transition-duration');
+        target.style.removeProperty('transition-property');
+    }, duration);
 };
 
-// Expand parents for a given .toc-link element
-const expandParents = (link) => {
-    let item = link.closest('.toc-item');
-    while (item) {
-        const list = item.querySelector(':scope > .child-list');
-        if (list) {
-            list.hidden = false;
-            const toggle = item.querySelector(':scope > .toc-header .toc-toggle');
+const slideDown = (target, duration = 300) => {
+    if (!target.hidden) return;
+    target.hidden = false;
+    let height = target.offsetHeight; // Get height if it were open (but hidden logic might prevent this, so we perform trick)
+
+    // Trick to get height
+    target.style.height = 'auto';
+    height = target.offsetHeight;
+
+    target.style.height = 0;
+    target.style.overflow = 'hidden';
+    target.style.paddingTop = 0;
+    target.style.paddingBottom = 0;
+    target.style.marginTop = 0;
+    target.style.marginBottom = 0;
+    target.offsetHeight; // force reflow
+
+    target.style.transitionProperty = 'height, margin, padding';
+    target.style.transitionDuration = duration + 'ms';
+    target.style.height = height + 'px';
+    target.style.removeProperty('padding-top');
+    target.style.removeProperty('padding-bottom');
+    target.style.removeProperty('margin-top');
+    target.style.removeProperty('margin-bottom');
+
+    window.setTimeout(() => {
+        target.style.removeProperty('height');
+        target.style.removeProperty('overflow');
+        target.style.removeProperty('transition-duration');
+        target.style.removeProperty('transition-property');
+    }, duration);
+};
+
+// Smart Toggle: Only close what needs closing, open what needs opening
+const updateExpandedState = (tocWrapper, activeLinkItem) => {
+    if (!tocWrapper) return;
+
+    // 1. Identify lists that MUST be open (ancestry of active item)
+    const listsToKeepOpen = new Set();
+    const togglesToKeepActive = new Set();
+
+    let curr = activeLinkItem;
+    while(curr && curr !== tocWrapper) {
+        if (curr.classList.contains('toc-item')) {
+            const childList = curr.querySelector(':scope > .child-list');
+            const toggle = curr.querySelector(':scope > .toc-header .toc-toggle');
+            if (childList) listsToKeepOpen.add(childList);
+            if (toggle) togglesToKeepActive.add(toggle);
+        }
+        curr = curr.parentElement;
+    }
+
+    // 2. Identify currently open lists
+    const currentlyOpenLists = Array.from(tocWrapper.querySelectorAll('.child-list:not([hidden])'));
+
+    // 3. Close unneeded lists
+    currentlyOpenLists.forEach(list => {
+        if (!listsToKeepOpen.has(list)) {
+            // Find its toggle
+            const parentItem = list.closest('.toc-item');
+            const toggle = parentItem?.querySelector(':scope > .toc-header .toc-toggle');
+
+            slideUp(list);
+            if (toggle) {
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.style.transform = 'rotate(0deg)';
+            }
+        }
+    });
+
+    // 4. Open needed lists
+    listsToKeepOpen.forEach(list => {
+        if (list.hidden) {
+            slideDown(list);
+            const parentItem = list.closest('.toc-item');
+            const toggle = parentItem?.querySelector(':scope > .toc-header .toc-toggle');
             if (toggle) {
                 toggle.setAttribute('aria-expanded', 'true');
                 toggle.style.transform = 'rotate(180deg)';
             }
         }
-        item = item.parentElement.closest('.toc-item');
-    }
+    });
 };
+
+
 
 // Single delegated click handler for toggles & links
 const attachDelegatedClicks = (tocWrapper) => {
@@ -170,15 +256,16 @@ const attachDelegatedClicks = (tocWrapper) => {
             const ctl = toggle.getAttribute('aria-controls');
             const childList = document.getElementById(ctl);
             const expanded = toggle.getAttribute('aria-expanded') === 'true';
+
             if (expanded) {
                 toggle.setAttribute('aria-expanded', 'false');
-                if (childList) childList.hidden = true;
+                slideUp(childList);
                 toggle.style.transform = 'rotate(0deg)';
             } else {
-                // collapse others, then expand this
-                collapseAll(tocWrapper);
+                // Optional: Collapsing siblings could be done here if 'accordion' mode is desired
+                // For now, simple toggle
                 toggle.setAttribute('aria-expanded', 'true');
-                if (childList) childList.hidden = false;
+                slideDown(childList);
                 toggle.style.transform = 'rotate(180deg)';
             }
             return;
@@ -186,13 +273,14 @@ const attachDelegatedClicks = (tocWrapper) => {
 
         const link = e.target.closest('.toc-link');
         if (link) {
-            // Handle internal clicks (smooth scroll)
             const hash = link.getAttribute('href') || '';
-            tocWrapper.querySelectorAll('.toc-item').forEach((li) => li.classList.remove('active'));
-            link.closest('.toc-item').classList.add('active');
+            const item = link.closest('.toc-item');
 
-            collapseAll(tocWrapper);
-            expandParents(link);
+            tocWrapper.querySelectorAll('.toc-item').forEach((li) => li.classList.remove('active'));
+            item.classList.add('active');
+
+            // Intelligently update expansion
+            updateExpandedState(tocWrapper, item);
 
             if (hash.startsWith('#')) {
                 e.preventDefault();
@@ -202,7 +290,6 @@ const attachDelegatedClicks = (tocWrapper) => {
                     const top = target.getBoundingClientRect().top + window.scrollY - offset;
                     window.scrollTo({ top, behavior: 'smooth' });
 
-                    // flash active on target
                     target.classList.add('active');
                     setTimeout(() => target.classList.remove('active'), 800);
                 }
@@ -217,19 +304,14 @@ const initScrollObserver = (tocWrapper) => {
 
     // Get content selector from wrapper data attribute with safe fallback
     const contentSelector = tocWrapper.getAttribute('data-content-selector') || '';
-
-    // Ensure contentSelector is a string
     const safeSelector = typeof contentSelector === 'string' ? contentSelector : '';
 
     let searchScope = document;
 
-    // Use custom selector if provided, otherwise use entire document
     if (safeSelector) {
         try {
-            const selectedElement = document.querySelector(safeSelector);
-            searchScope = selectedElement || document;
+            searchScope = document.querySelector(safeSelector) || document;
         } catch (error) {
-            console.warn('Invalid CSS selector provided:', safeSelector, error);
             searchScope = document;
         }
     }
@@ -245,10 +327,13 @@ const initScrollObserver = (tocWrapper) => {
                 const id = parseTocSlug(entry.target.textContent.trim());
                 const link = tocWrapper.querySelector(`.toc-link[href="#${id}"]`);
                 if (!link) return;
+
                 tocWrapper.querySelectorAll('.toc-item').forEach((li) => li.classList.remove('active'));
-                link.closest('.toc-item').classList.add('active');
-                collapseAll(tocWrapper);
-                expandParents(link);
+                const item = link.closest('.toc-item');
+                item.classList.add('active');
+
+                // Use smart update instead of collapseAll+expandParents
+                updateExpandedState(tocWrapper, item);
             });
         },
         { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 }
