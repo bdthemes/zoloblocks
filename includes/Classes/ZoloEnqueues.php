@@ -270,7 +270,7 @@ if (! class_exists('ZoloEnqueues')) {
                 wp_enqueue_style(
                     'zolo-editor-common-style',
                     trailingslashit(ZOLO_ADMIN_URL) . 'build/editor-common/style-index.css',
-                    $editor_common_dep['dependencies'],
+                    [],
                     $editor_common_dep['version'],
                     'all'
                 );

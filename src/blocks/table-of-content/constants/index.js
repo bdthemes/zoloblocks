@@ -70,3 +70,11 @@ export const OPEN_BTN_SHADOW = 'openBtnShadow';
 export const OPEN_BTN_BORDER_RADIUS = 'openBtnBRadius';
 export const OPEN_BTN_H_BG = 'openBtnHoverBg';
 export const OPEN_BTN_H_SHADOW = 'openBtnHoverShadow';
+
+// list item marker
+export const UNORDERED_LIST_ITEM_MARKER_SIZE = 'unorderedListItemMarkerSize';
+export const UNORDERED_LIST_ITEM_MARKER_OFFSET = 'unorderedListItemMarkerOffset';
+
+// child list
+export const CHILD_LIST_SPACE_BETWEEN = 'childListSpaceBetween';
+export const CHILD_LIST_TIMELINE_WIDTH = 'childListTimelineWidth';

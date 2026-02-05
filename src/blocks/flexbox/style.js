@@ -11,6 +11,11 @@ const Style = (props) => {
     const { uniqueId } = attributes;
     const desktopAllStyle = useMemo(() => {
         const style = `
+        .${uniqueId}{
+            ${
+                generateCSS({attributes, key:'overflow', getValue: (value) => `overflow: ${value};`, device: 'Desktop'})
+            }
+        }
         .${uniqueId}.zolo-flexbox.zolo-flexbox-custom-width{
             ${
                 generateCSS({attributes, key:'flexboxCustomWidth', getValue: (value) => `max-width: ${value};`, device: 'Desktop'})

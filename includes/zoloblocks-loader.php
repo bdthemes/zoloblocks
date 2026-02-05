@@ -57,10 +57,8 @@ class ZoloBlocks_Loader {
     public function add_settings_link($links) {
         $settings_link = '<a href="' . esc_url(get_admin_url(null, 'admin.php?page=zoloblocks')) . '">' . __('Settings', 'zoloblocks') . '</a>';
         array_unshift($links, $settings_link);
-
-        // Add Black Friday promotional link (only if Pro is not active)
         if (!defined('ZOLO_PRO_VERSION')) {
-            $promo_link = '<a href="https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=zoloblocks" target="_blank" rel="noopener noreferrer" style="color: #ef476f; font-weight: 600;">' . __('Black Friday Limited Offer Up To 87% Off!', 'zoloblocks') . '</a>';
+            $promo_link = '<a href="https://zoloblocks.com/pricing/" target="_blank" rel="noopener noreferrer" style="color: #ef476f; font-weight: 600;">' . __('Get Pro', 'zoloblocks') . '</a>';
             $links[] = $promo_link;
         }
 

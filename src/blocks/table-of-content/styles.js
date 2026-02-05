@@ -54,9 +54,17 @@ import {
     OPEN_BTN_BORDER_RADIUS,
     OPEN_BTN_H_BG,
     OPEN_BTN_H_SHADOW,
+
+    // list item marker
+    UNORDERED_LIST_ITEM_MARKER_SIZE,
+    UNORDERED_LIST_ITEM_MARKER_OFFSET,
+    CHILD_LIST_TIMELINE_WIDTH,
+
+    // child list
+    CHILD_LIST_SPACE_BETWEEN,
 } from './constants';
 
-import { HEADER_TYPOGRAPHY, LIST_TYPOGRAPHY, STICKY_OPEN_BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { HEADER_TYPOGRAPHY, LIST_TYPOGRAPHY, STICKY_OPEN_BUTTON_TYPOGRAPHY, CHILD_LIST_TYPOGRAPHY } from './constants/typoPrefixConstant';
 
 const {
     generateTextShadowStyles,
@@ -97,6 +105,12 @@ function Style({ props }) {
         openBtnIconColor,
         openBtnIconHoverColor,
         openBtnIconHoverBorderColor,
+        // child list
+        childListColor,
+        childListHoverColor,
+        childListActiveColor,
+        childListTimelineColor,
+        childListTimelineActiveColor,
     } = attributes;
 
     //box
@@ -513,6 +527,54 @@ function Style({ props }) {
         attributes,
     });
 
+    // list item marker
+    const {
+        desktopRangeStyle: unorderedListItemMarkerSizeDesk,
+        tabRangeStyle: unorderedListItemMarkerSizeTab,
+        mobRangeStyle: unorderedListItemMarkerSizeMob,
+    } = generateResRangeStyle({
+        controlName: UNORDERED_LIST_ITEM_MARKER_SIZE,
+        property: '--zolo-toc-list-item-marker-size',
+        attributes,
+    });
+    const {
+        desktopRangeStyle: unorderedListItemMarkerOffsetDesk,
+        tabRangeStyle: unorderedListItemMarkerOffsetTab,
+        mobRangeStyle: unorderedListItemMarkerOffsetMob,
+    } = generateResRangeStyle({
+        controlName: UNORDERED_LIST_ITEM_MARKER_OFFSET,
+        property: 'top',
+        attributes,
+    });
+
+    // child list
+    const {
+        desktopRangeStyle: childListSpaceBetweenDesk,
+        tabRangeStyle: childListSpaceBetweenTab,
+        mobRangeStyle: childListSpaceBetweenMob,
+    } = generateResRangeStyle({
+        controlName: CHILD_LIST_SPACE_BETWEEN,
+        property: 'margin-bottom',
+        attributes,
+    });
+    const {
+        typoStylesDesktop: childListTypoDesk,
+        typoStylesTab: childListTypoTab,
+        typoStylesMobile: childListTypoMob,
+    } = generateTypographyStyles({
+        prefixConstant: CHILD_LIST_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: childListTimelineWidthDesk,
+        tabRangeStyle: childListTimelineWidthTab,
+        mobRangeStyle: childListTimelineWidthMob,
+    } = generateResRangeStyle({
+        controlName: CHILD_LIST_TIMELINE_WIDTH,
+        property: '--timeline-width',
+        attributes,
+    });
     /**
      * All Style Combination
      */
@@ -624,6 +686,36 @@ function Style({ props }) {
          ${openBtnIconHoverBorderColor ? `border-color:${openBtnIconHoverBorderColor};` : ''}
     }
 
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content ul li::before{
+        ${unorderedListItemMarkerSizeDesk}
+        ${unorderedListItemMarkerOffsetDesk}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li{
+        ${childListSpaceBetweenDesk}
+        ${childListTypoDesk}
+        ${childListColor ? `color:${childListColor};` : ''}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li:hover{
+        ${childListHoverColor ? `color:${childListHoverColor};` : ''}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li.active{
+        ${childListActiveColor ? `color:${childListActiveColor};` : ''}
+    }
+
+    .${uniqueId}.wp-block-zolo-table-of-content {
+        ${childListTimelineWidthDesk}
+        ${childListTimelineColor ? `--timeline-color:${childListTimelineColor};` : ''}
+    }
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li:hover::before,
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li.active::before,
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li:hover::after,
+    .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li.active::after{
+        ${childListTimelineActiveColor ? `background-color:${childListTimelineActiveColor};` : ''}
+    }
+
   `;
 
     const tabletAllStyle = `
@@ -704,6 +796,20 @@ function Style({ props }) {
           ${listSpaceBetweenTab}
         }
 
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content ul li::before{
+            ${unorderedListItemMarkerSizeTab}
+            ${unorderedListItemMarkerOffsetTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li{
+            ${childListSpaceBetweenTab}
+            ${childListTypoTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content {
+            ${childListTimelineWidthTab}
+        }
+
     `;
 
     const mobileAllStyle = `
@@ -781,6 +887,19 @@ function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-open:hover{
             ${openBtnHoverBgMob}
+        }
+        
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content ul li::before{
+            ${unorderedListItemMarkerSizeMob}
+            ${unorderedListItemMarkerOffsetMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-table-of-content .zolo-toc-content .zolo-toc-list li .child-list li{
+            ${childListSpaceBetweenMob}
+            ${childListTypoMob}
+        }
+        .${uniqueId}.wp-block-zolo-table-of-content {
+            ${childListTimelineWidthTab}
         }
   `;
 
