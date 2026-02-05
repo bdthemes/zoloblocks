@@ -1,3 +1,14 @@
+### 2.6.0 [February 05, 2026]
+
+### Added
+- Introduced Class Manager for easy customization
+- Extended the flexbox with overflow option
+
+### Fixed
+- Resolved table of content block issues
+- Added post category (style 4) preset
+- Fixed spacing issue in advanced heading block
+
 ### 2.5.2 [January 13, 2026]
 
 - **Improvements:**
