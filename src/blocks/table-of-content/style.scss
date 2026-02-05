@@ -1,4 +1,12 @@
 .wp-block-zolo-table-of-content {
+    // CSS Variables
+    --zolo-toc-list-space: 20px;
+    --timeline-color: #ddd;
+    --timeline-width: 2px;
+    --timeline-active-color: var(--zoloblocks-brand-color, #0969da);
+    --timeline-dot-size: 6px;
+    --number-color: #60a5fa;
+
     border: 1px solid #efefef;
     border-radius: 6px;
     margin-bottom: 30px;
@@ -18,11 +26,13 @@
         &:focus {
             outline: none;
         }
+
         svg {
             width: 18px;
             height: 18px;
             fill: #6b697c;
         }
+
         &:hover {
             svg {
                 fill: #000;
@@ -39,9 +49,10 @@
         position: relative;
         display: flex;
         justify-content: space-between;
-        padding: 20px 30px;
+        padding: 20px clamp(15px, 2vw, 30px);
         align-items: center;
         border-bottom: 1px solid #efefef;
+
         .title {
             font-size: 20px;
             font-weight: 600;
@@ -50,38 +61,166 @@
     }
 
     .zolo-toc-content {
-        --zolo-toc-list-space: 20px;
-        padding: 20px 30px;
+        padding: 20px clamp(15px, 2vw, 30px);
+
         .zolo-toc-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
             li {
-                font-size: 18px;
-                color: #000;
+                font-size: 16px;
+                color: #1f2937;
                 font-weight: 500;
-                margin-bottom: 13px;
-                &:nth-last-child(1) {
+                margin-bottom: 12px;
+                position: relative;
+                line-height: 1.6;
+
+                &:last-child {
                     margin-bottom: 0;
                 }
+
                 .child-list {
-                    margin-top: 5px;
+                    margin-top: 8px;
+                    padding-left: 24px;
+                    position: relative;
+
+                    // Main vertical timeline line
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        bottom: 0;
+                        width: var(--timeline-width);
+                        background: var(--timeline-color);
+                        border-radius: var(--timeline-width);
+                        transition: background 0.3s ease;
+                    }
+
+                    &[hidden] {
+                        display: none;
+                        max-height: 0;
+                        opacity: 0;
+                    }
+
+                    li {
+                        position: relative;
+                        padding-left: 0;
+                        margin-bottom: 8px;
+                        font-size: 15px;
+                        color: #1f2937;
+                        font-weight: 400;
+
+                        // Vertical line continuation for each item
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            left: -24px;
+                            top: 0;
+                            bottom: 0;
+                            width: var(--timeline-width);
+                            background: var(--timeline-color);
+                            z-index: 0;
+                            transition: background 0.3s ease;
+                        }
+
+                        // Horizontal branch line
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            left: -24px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 16px;
+                            height: var(--timeline-width);
+                            background: var(--timeline-color);
+                            z-index: 1;
+                            transition: background 0.3s ease;
+                        }
+
+                        &:last-child {
+                            margin-bottom: 0;
+
+                            &::before {
+                                bottom: auto;
+                                height: 50%;
+                            }
+                        }
+
+                        a {
+                            color: currentColor;
+                        }
+
+                        &:hover {
+                            &::before,
+                            &::after {
+                                background: var(--timeline-active-color);
+                            }
+                        }
+
+                        &.active {
+                            &::before,
+                            &::after {
+                                background: var(--timeline-active-color);
+                            }
+
+                            li {
+                                color: var(--timeline-active-color);
+                                font-weight: 500;
+                            }
+                        }
+                    }
                 }
+
                 a {
                     text-decoration: none;
                     color: currentColor;
+                    position: relative;
+                    display: inline-block;
+                    transition: all 0.2s ease;
+
                     &:focus {
                         outline: none;
                         box-shadow: none;
                     }
                 }
-                &:hover,
+
+                &:hover {
+                    color: var(--zoloblocks-brand-color);
+                }
+
                 &.active {
                     color: var(--zoloblocks-brand-color);
+                    font-weight: 600;
                 }
             }
         }
 
         ul {
             padding: 0;
-            margin: 0 0 0 var(--zolo-toc-list-space);
+            margin: 0;
+            li {
+                --zolo-toc-list-item-marker-size: 5px;
+                position: relative;
+                padding-left: 18px;
+                &::before {
+                    content: '';
+                    margin-right: 10px;
+                    position: absolute;
+                    left: 0;
+                    top: 10px;
+                    width: var(--zolo-toc-list-item-marker-size);
+                    height: var(--zolo-toc-list-item-marker-size);
+                    background: currentColor;
+                    border-radius: 50%;
+                }
+                ul {
+                    li {
+                        list-style: none;
+                    }
+                }
+            }
         }
 
         ol {
@@ -89,15 +228,21 @@
             list-style: none;
             margin: 0;
             padding: 0;
+
             li {
                 position: relative;
                 padding-left: var(--zolo-toc-list-space);
+                margin-bottom: 10px;
+
                 &::before {
                     position: absolute;
                     left: 0;
                     counter-increment: listitem;
                     content: counters(listitem, '.') '.';
-                    background: none !important;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
                 }
             }
         }
@@ -112,32 +257,52 @@
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         cursor: pointer;
-        transition:
-            color 0.3s ease,
-            background 0.3s ease;
+        transition: color 0.3s ease, background 0.3s ease;
+
         svg {
             display: block;
             width: 14px;
             height: 14px;
         }
+
         &:hover {
             background: #d5d5d5;
         }
     }
+
     .zolo-toc-open {
+        left: 0;
+        position: absolute;
+        top: 0;
         padding: 10px 20px;
         border: 0;
         color: #fff;
         background: var(--zoloblocks-brand-color);
         cursor: pointer;
+        text-transform: none;
+        transform: rotate(90deg);
+        transform-origin: bottom left;
         transition: 0.3s ease;
+
         &:hover {
             background: var(--zoloblocks-brand-color-hover);
         }
     }
 
+    &.position-right .zolo-toc-open {
+        right: 0;
+        left: auto;
+        transform-origin: right top;
+        transform: rotate(90deg) translate(100%, 0);
+    }
+
     &.content-visible {
         visibility: visible;
+
+        .zolo-toc-open {
+            display: none;
+            visibility: hidden;
+        }
     }
 
     &.content-hidden {
@@ -146,6 +311,11 @@
         margin: 0 !important;
         padding: 0 !important;
         visibility: hidden !important;
+
+        .zolo-toc-open {
+            display: inline-block;
+            visibility: visible;
+        }
     }
 
     &.position-left.sticky-content {
@@ -167,29 +337,172 @@
         max-width: 300px;
     }
 
-    &.position-right .zolo-toc-open {
-        right: 0;
-        left: auto;
-        transform-origin: right top;
-        transform: rotate(90deg) translate(100%, 0);
+    // Updated styles for new structure
+    .zolo-toc-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
-    .zolo-toc-open {
-        left: 0;
-        position: absolute;
-        top: 0;
-        text-transform: none;
-        transform: rotate(90deg);
-        transform-origin: bottom left;
+    .toc-item {
+        margin: 0;
+        list-style: none;
+        position: relative;
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
-    &.content-visible .zolo-toc-open {
-        display: none;
-        visibility: hidden;
+    .toc-header {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        border-radius: 4px;
+        position: relative;
     }
 
-    &.content-hidden .zolo-toc-open {
-        display: inline-block;
-        visibility: visible;
+    .toc-link {
+        flex: 1;
+    }
+
+    .toc-toggle {
+        width: 24px;
+        height: 24px;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        padding: 0;
+        margin-right: 0.25rem;
+        transition: transform 0.2s;
+        color: #6b7280;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .child-list {
+        // Main vertical timeline line
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: var(--timeline-width);
+            background: var(--timeline-color);
+            border-radius: var(--timeline-width);
+            transition: background 0.3s ease;
+        }
+
+        &[hidden] {
+            display: none;
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .toc-item {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 8px;
+
+            // Vertical line continuation for each item
+            &::before {
+                content: '';
+                position: absolute;
+                left: -24px;
+                top: 0;
+                bottom: 0;
+                width: var(--timeline-width);
+                background: var(--timeline-color);
+                z-index: 0;
+                transition: background 0.3s ease;
+            }
+
+            // Horizontal branch line
+            &::after {
+                content: '';
+                position: absolute;
+                left: -24px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 16px;
+                height: 1.5px;
+                background: var(--timeline-color);
+                z-index: 1;
+                transition: background 0.3s ease;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+
+                &::before {
+                    bottom: auto;
+                    height: 50%;
+                }
+            }
+
+            .toc-link {
+                position: relative;
+                padding-left: 8px;
+            }
+
+            &:hover {
+                &::before,
+                &::after {
+                    background: var(--timeline-active-color);
+                }
+
+                li {
+                    color: var(--timeline-active-color);
+                }
+            }
+
+            &.active {
+                &::before,
+                &::after {
+                    background: var(--timeline-active-color);
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        --timeline-width: 1.5px;
+        
+        padding: 0.75rem;
+        border-radius: 6px;
+
+
+        .child-list {
+            margin-left: 20px;
+            padding-left: 20px;
+
+            &::before {
+                width: var(--timeline-width);
+            }
+
+            .toc-item {
+                padding-left: 24px;
+                margin-bottom: 6px;
+
+                &::before {
+                    width: var(--timeline-width);
+                    left: -20px;
+                }
+
+                &::after {
+                    width: 12px;
+                    height: 1.5px;
+                    left: -20px;
+                }
+
+                .toc-link {
+                    padding-left: 6px;
+                }
+            }
+        }
     }
 }
