@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.5.2
+Stable tag: 2.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -610,6 +610,17 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.6.0 [February 05, 2026]
+
+### Added
+- Introduced Class Manager for easy customization
+- Extended the flexbox with overflow option
+
+### Fixed
+- Resolved table of content block issues
+- Added post category (style 4) preset
+- Fixed spacing issue in advanced heading block
 
 ### 2.5.2 [January 13, 2026]
 
