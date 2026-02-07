@@ -267,13 +267,16 @@ if (! class_exists('ZoloEnqueues')) {
                     $editor_common_dep['version'],
                     true
                 );
-                wp_enqueue_style(
-                    'zolo-editor-common-style',
-                    trailingslashit(ZOLO_ADMIN_URL) . 'build/editor-common/style-index.css',
-                    [],
-                    $editor_common_dep['version'],
-                    'all'
-                );
+                $editor_common_css = trailingslashit(ZOLO_DIR_PATH) . 'build/editor-common/style-index.css';
+                if (file_exists($editor_common_css)) {
+                    wp_enqueue_style(
+                        'zolo-editor-common-style',
+                        trailingslashit(ZOLO_ADMIN_URL) . 'build/editor-common/style-index.css',
+                        [],
+                        $editor_common_dep['version'],
+                        'all'
+                    );
+                }
             }
 
             // template library
