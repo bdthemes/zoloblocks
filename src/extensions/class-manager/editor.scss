@@ -169,6 +169,7 @@
 .zb-class-manager-popover {
     min-width: 340px !important;
     max-width: 350px;
+    z-index: 99999 !important;
 
     .components-popover__content {
         width: 100% !important;
