@@ -902,6 +902,10 @@ textarea[readonly] {
             }
         }
     }
+
+    .zolo-select__menu {
+        z-index: 999999 !important;
+    }
 }
 
 .zolo-custom-heading {

@@ -8,13 +8,12 @@ const ZoloMediaUpload = ({
     value = null,
     onSelect,
 }) => {
-    const hasMedia = value && (value.url || value.source_url);
+    const hasMedia = value && (value.url || value.source_url || value.id);
     const mediaUrl = value?.url || value?.source_url || '';
+    const mediaId = value?.id || 0;
 
     const handleSelect = (media) => {
-        if (media?.url) {
-            onSelect(media);
-        }
+        onSelect(media);
     };
 
     return (
@@ -24,7 +23,7 @@ const ZoloMediaUpload = ({
                     <MediaUpload
                         onSelect={handleSelect}
                         allowedTypes={['image']}
-                        value={value?.id}
+                        value={mediaId}
                         render={({ open }) => (
                             <div className="zb-control__media-body">
                                 {hasMedia ? (

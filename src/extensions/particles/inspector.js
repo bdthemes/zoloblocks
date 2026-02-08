@@ -254,6 +254,7 @@ const Inspector = ({ panelProps }) => {
                                 isMulti
                                 isSearchable={false}
                                 closeMenuOnSelect={true}
+                                classNamePrefix="zolo-select"
                                 name="value"
                                 options={[
                                     { value: 'circle', label: __('Circle', 'zoloblocks') },
