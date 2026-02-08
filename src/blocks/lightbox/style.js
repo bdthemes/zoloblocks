@@ -68,6 +68,17 @@ export default function Style({ props }) {
         lightboxType,
     } = attributes;
 
+    // Helper function to convert hex to rgba
+    const hexToRgba = (hex, alpha) => {
+        if (!hex) return '';
+        // Remove # if present
+        const cleanHex = hex.replace('#', '');
+        const r = parseInt(cleanHex.slice(0, 2), 16);
+        const g = parseInt(cleanHex.slice(2, 4), 16);
+        const b = parseInt(cleanHex.slice(4, 6), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    };
+
     const {
         desktopRangeStyle: posterHeightDesk,
         tabRangeStyle: posterHeightTab,
@@ -143,6 +154,21 @@ export default function Style({ props }) {
         noMainBGIMG: false,
         attributes,
     });
+
+    // Extract hover background color for animation from generated styles
+    let hoverBgColor = '#2667ff'; // default
+
+    // Try to extract color from iconHBgColorDesk (format: "background-color: #xxx;" or "background-image: ...")
+    if (iconHBgColorDesk) {
+        const colorMatch = iconHBgColorDesk.match(/background-color:\s*(#[0-9A-Fa-f]{3,6}|rgba?\([^)]+\))/);
+        const gradientMatch = iconHBgColorDesk.match(/linear-gradient[^;]*(#[0-9A-Fa-f]{6})/);
+
+        if (colorMatch && colorMatch[1]) {
+            hoverBgColor = colorMatch[1];
+        } else if (gradientMatch && gradientMatch[1]) {
+            hoverBgColor = gradientMatch[1];
+        }
+    }
 
     const {
         desktopBorderStyle: posterBorderDesk,
@@ -362,6 +388,13 @@ export default function Style({ props }) {
     // style
 
     const desktopAllStyle = `
+        .${uniqueId} {
+            --zolo-play-btn-hover-bg: ${hoverBgColor};
+            --zolo-play-btn-hover-text: ${hoverBgColor};
+            --zolo-play-btn-hover-color-40: ${hexToRgba(hoverBgColor, 0.4)};
+            --zolo-play-btn-hover-color-20: ${hexToRgba(hoverBgColor, 0.2)};
+            --zolo-play-btn-hover-color-0: ${hexToRgba(hoverBgColor, 0)};
+        }
         .${uniqueId}.zolo-lightbox-button .zolo-play-btn{
             ${posterBgColorDesk}
             ${buttonBgColorDesk}

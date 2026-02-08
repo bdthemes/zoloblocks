@@ -61,22 +61,22 @@
     0% {
         transform: scale(1);
         box-shadow:
-            0 0 0 0 rgba(38, 103, 255, 0.4),
-            0 0 0 0 rgba(38, 103, 255, 0.2); 
+            0 0 0 0 var(--zolo-play-btn-hover-color-40, rgba(38, 103, 255, 0.4)),
+            0 0 0 0 var(--zolo-play-btn-hover-color-20, rgba(38, 103, 255, 0.2));
     }
     50% {
         transform: scale(1.1);
         box-shadow:
-            0 0 0 15px rgba(38, 103, 255, 0),
-            0 0 0 30px rgba(38, 103, 255, 0); 
-            opacity: 0.7;
+            0 0 0 15px var(--zolo-play-btn-hover-color-0, rgba(38, 103, 255, 0)),
+            0 0 0 30px var(--zolo-play-btn-hover-color-0, rgba(38, 103, 255, 0));
+        opacity: 0.7;
     }
     100% {
         transform: scale(1);
         box-shadow:
-            0 0 0 0 rgba(38, 103, 255, 0),
-            0 0 0 0 rgba(38, 103, 255, 0);
-            opacity: 0.8;
+            0 0 0 0 var(--zolo-play-btn-hover-color-0, rgba(38, 103, 255, 0)),
+            0 0 0 0 var(--zolo-play-btn-hover-color-0, rgba(38, 103, 255, 0));
+        opacity: 0.8;
     }
 }
 
@@ -90,7 +90,7 @@
     transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 1);
     content: '';
     position: absolute;
-    background: #2667ff;
+    background: var(--zolo-play-btn-hover-bg, #2667ff);
     transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
 }
 
@@ -105,7 +105,7 @@
 }
 
 .zolo-lightbox-btn-1.zolo-play-btn:hover .zolo-btn-text {
-    color: #2667ff;
+    color: var(--zolo-play-btn-hover-text, #2667ff);
 }
 
 /* Zolo Lightbox Button 2 */
