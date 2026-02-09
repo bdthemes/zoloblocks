@@ -4,6 +4,7 @@ export const META_TYPOGRAPHY = 'metaTypo';
 export const CAT_TYPOGRAPHY = 'catTypo';
 export const COUNT_TYPOGRAPHY = 'countTypo';
 export const PAG_TYPOGRAPHY = 'pagTypo';
+export const READMORE_TYPOGRAPHY = 'readmoreTypo';
 
 // featured post
 export const FTITLE_TYPOGRAPHY = 'ftitleTypo';
