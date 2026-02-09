@@ -167,6 +167,10 @@ const attributes = {
         type: 'boolean',
         default: false,
     },
+    badgeColor: {
+        type: 'string',
+        default: '',
+    },
     listProfiles: {
         type: 'array',
         default: [

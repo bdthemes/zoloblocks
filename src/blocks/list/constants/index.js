@@ -102,6 +102,7 @@ export const ITEM_ALIGNS_OPTION = [
     },
 ];
 
+export const BADGE_COLOR = 'badgeColor';
 export const BADGE_BG = 'badgeBg';
 export const BADGE_GAP = 'badgeGap';
 export const BADGE_BORDER = 'badgeBorder';

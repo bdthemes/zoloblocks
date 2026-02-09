@@ -83,6 +83,7 @@ const Style = ({ props }) => {
         listProfiles,
         highlightText,
         highlightTextColor,
+        badgeColor,
     } = attributes;
 
     //desc
@@ -472,6 +473,7 @@ const Style = ({ props }) => {
         ${desktopBadgeBorder}
         ${DesktopBadgePadding}
         ${DesktopBadgeRadius}
+        ${badgeColor ? `color: ${badgeColor};` : ''}
     }
 
     ${
@@ -592,6 +594,7 @@ const Style = ({ props }) => {
         ${tabBadgeBorder}
         ${TabBadgePadding}
         ${TabBadgeRadius}
+        ${badgeColor ? `color: ${badgeColor};` : ''}
     }
   		
 	`;
@@ -673,6 +676,7 @@ const Style = ({ props }) => {
         ${mobBadgeBorder}
         ${MobBadgePadding}
         ${MobBadgeRadius}
+        ${badgeColor ? `color: ${badgeColor};` : ''}
     }
   	`;
     return (

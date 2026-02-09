@@ -105,6 +105,7 @@ function Inspector(props) {
         globalIcon,
         isLinkable,
         showBadge,
+        badgeColor,
         listIconBorderHover,
         highlightText,
         highlightTextColor,
@@ -730,6 +731,12 @@ function Inspector(props) {
 
                         {showBadge && (
                             <ZoloPanelBody title={__('Badge', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={badgeColor}
+                                    onChange={(badgeColor) => setAttributes({ badgeColor })}
+                                />
+
                                 <NormalBGControl controlName={BADGE_BG} requiredProps={requiredProps} noMainBGImg={true} />
 
                                 <ResGapControl label={__('Gap', 'zoloblocks')} controlName={BADGE_GAP} requiredProps={requiredProps} />
