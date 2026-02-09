@@ -147,10 +147,6 @@
         margin: var(--zolo-title-margin);
         font-size: clamp(0.938rem, 1.5vw, 1.2rem);
         line-height: 1.4;
-
-        & a:not(.zolo-post-readmore) {
-            font-weight: 700;
-        }
     }
 
     .zolo-post-category {
@@ -324,6 +320,7 @@
 }
 
 .zolo-post-title {
+    font-weight: 700;
     &.zolo-post-has-readmore {
         display: flex;
         align-items: center;
