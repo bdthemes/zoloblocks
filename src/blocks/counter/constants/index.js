@@ -118,13 +118,7 @@ export const ZOLO_CONTENT_LAYOUT = [
         value: 'zolo-content-inline',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M6.64246 7.53723H17.2781"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                ></path>
+                <path d="M6.64246 7.53723H17.2781" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                 <path
                     d="M17.2781 7.53729L15.3485 5.28601"
                     stroke="#4D4D4D"
@@ -139,13 +133,7 @@ export const ZOLO_CONTENT_LAYOUT = [
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 ></path>
-                <path
-                    d="M6.64246 16.4172H17.2781"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                ></path>
+                <path d="M6.64246 16.4172H17.2781" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                 <path
                     d="M17.2781 16.4173L15.3485 14.1774"
                     stroke="#4D4D4D"
@@ -160,20 +148,8 @@ export const ZOLO_CONTENT_LAYOUT = [
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 ></path>
-                <path
-                    d="M2.85132 21.1473V2.85278"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                ></path>
-                <path
-                    d="M21.1487 21.1473V2.85278"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                ></path>
+                <path d="M2.85132 21.1473V2.85278" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                <path d="M21.1487 21.1473V2.85278" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
             </svg>
         ),
     },
@@ -185,13 +161,7 @@ export const ZOLO_CONTENT_LAYOUT_4 = [
         value: '',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M6.64246 7.53723H17.2781"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                ></path>
+                <path d="M6.64246 7.53723H17.2781" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                 <path
                     d="M17.2781 7.53729L15.3485 5.28601"
                     stroke="#4D4D4D"
@@ -206,13 +176,7 @@ export const ZOLO_CONTENT_LAYOUT_4 = [
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 ></path>
-                <path
-                    d="M6.64246 16.4172H17.2781"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                ></path>
+                <path d="M6.64246 16.4172H17.2781" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                 <path
                     d="M17.2781 16.4173L15.3485 14.1774"
                     stroke="#4D4D4D"
@@ -227,20 +191,8 @@ export const ZOLO_CONTENT_LAYOUT_4 = [
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 ></path>
-                <path
-                    d="M2.85132 21.1473V2.85278"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                ></path>
-                <path
-                    d="M21.1487 21.1473V2.85278"
-                    stroke="#4D4D4D"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                ></path>
+                <path d="M2.85132 21.1473V2.85278" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                <path d="M21.1487 21.1473V2.85278" stroke="#4D4D4D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
             </svg>
         ),
     },
@@ -304,6 +256,7 @@ export const CONTENT_V_ALIGN = 'contentVAlign';
 
 // Item
 export const CONTAINER_BACKGROUND = 'containerBg';
+export const CONTAINER_HOVER_BG = 'containerHoverBg';
 export const CONTAINER_BORDER = 'containerBorder';
 export const CONTAINER_BORDER_RADIUS = 'containerBorderRadius';
 export const CONTAINER_BOX_SHADOW = 'containerBoxShadow';
@@ -328,6 +281,7 @@ export const ICON_BORDER_RADIUS = 'iconBorderRadius';
 export const ICON_SIZE = 'iconSize';
 export const ICON_TEXT_SPACING = 'iconTextSpacing';
 export const ICON_BACKGROUND = 'iconBg';
+export const ICON_HOVER_BG = 'iconHoverBg';
 
 // Button
 export const BUTTON_BG_COLOR = 'buttonBgColor';
@@ -349,6 +303,8 @@ export const TITLE_BACKGROUND = 'titleBg';
 export const TITLE_BORDER = 'titleBorder';
 export const TITLE_BORDER_RADIUS = 'titleBorderRadius';
 export const TITLE_PADDING = 'titlePadding';
+export const TITLE_BOX_SHADOW = 'titleBoxShadow';
+export const TITLE_HOVER_BOX_SHADOW = 'titleHoverBoxShadow';
 
 // image
 export const ICON_IMAGE_SIZE = 'iconImageSize';
@@ -363,3 +319,4 @@ export const NUMBER_PADDING = 'numberPadding';
 export const NUMBER_BORDER = 'numberBorder';
 export const NUMBER_BORDER_RADIUS = 'numberBorderRadius';
 export const NUMBER_BOX_SHADOW = 'numberTextShadow';
+export const NUMBER_HOVER_BOX_SHADOW = 'numberHoverBoxShadow';

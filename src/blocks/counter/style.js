@@ -23,9 +23,11 @@ import {
     CONTENT_ALIGN,
     CONTENT_V_ALIGN,
     CONTAINER_BACKGROUND,
+    CONTAINER_HOVER_BG,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_MARGIN,
     CONTAINER_PADDING,
     COUNTER_MARGIN,
@@ -39,6 +41,9 @@ import {
     ICON_PADDING,
     ICON_MARGIN,
     ICON_BACKGROUND,
+    ICON_HOVER_BG,
+    ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
     TITLE_MARGIN,
     TITLE_TEXT_SHADOW,
     TITLE_TEXT_STROKE,
@@ -46,13 +51,15 @@ import {
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_PADDING,
-    ICON_BOX_SHADOW,
+    TITLE_BOX_SHADOW,
+    TITLE_HOVER_BOX_SHADOW,
     NUMBER_BG_MASK,
     NUMBER_BACKGROUND,
     NUMBER_BG_SIZE,
     NUMBER_PADDING,
     NUMBER_BORDER,
     NUMBER_BOX_SHADOW,
+    NUMBER_HOVER_BOX_SHADOW,
     NUMBER_BORDER_RADIUS,
 } from './constants';
 
@@ -61,7 +68,19 @@ import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { preset, uniqueId, titleTextColor, textColor, suffixColor, descColor, iconColor } = attributes;
+    const {
+        preset,
+        uniqueId,
+        titleTextColor,
+        titleHoverColor,
+        textColor,
+        suffixColor,
+        descColor,
+        iconColor,
+        iconHoverColor,
+        numberHoverColor,
+        suffixHoverColor,
+    } = attributes;
 
     // content align
     const {
@@ -117,6 +136,21 @@ const Style = ({ props }) => {
     const { boxShadowStyle: containerBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: CONTAINER_BOX_SHADOW,
+    });
+
+    const {
+        backgroundStylesDesktop: containerHoverDeskBGStyle,
+        backgroundStylesTab: containerHoverTabBGStyle,
+        backgroundStylesMobile: containerHoverMobBGStyle,
+    } = generateNormalBGControlStyles({
+        controlName: CONTAINER_HOVER_BG,
+        attributes,
+        noMainBGImg: false,
+    });
+
+    const { boxShadowStyle: containerHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: CONTAINER_HOVER_BOX_SHADOW,
     });
 
     const {
@@ -256,6 +290,16 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const { boxShadowStyle: titleBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: TITLE_BOX_SHADOW,
+    });
+
+    const { boxShadowStyle: titleHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: TITLE_HOVER_BOX_SHADOW,
+    });
+
     // ICON - IMAGE
     const {
         desktopRangeStyle: iconImageWidthDesk,
@@ -341,6 +385,21 @@ const Style = ({ props }) => {
         noMainBGImg: true,
     });
 
+    const {
+        backgroundStylesDesktop: iconHoverBgDesk,
+        backgroundStylesTab: iconHoverBgTab,
+        backgroundStylesMobile: iconHoverBgMob,
+    } = generateNormalBGControlStyles({
+        controlName: ICON_HOVER_BG,
+        attributes,
+        noMainBGImg: true,
+    });
+
+    const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: ICON_HOVER_BOX_SHADOW,
+    });
+
     // masking
     const { maskStyle: maskStyles } = generateMaskStyles({
         attributes,
@@ -402,6 +461,11 @@ const Style = ({ props }) => {
         attributes,
     });
 
+    const { boxShadowStyle: numberHoverBoxShadow } = generateBoxShadowStyles({
+        attributes,
+        controlName: NUMBER_HOVER_BOX_SHADOW,
+    });
+
     /**
      * All Style Combination
      */
@@ -415,6 +479,12 @@ const Style = ({ props }) => {
 			${containerMarginDesk}
 			${containerPaddingDesk}
         }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover {
+            ${containerHoverDeskBGStyle}
+            ${containerHoverBoxShadow}
+        }
+
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-wrap.style-1 .zolo-counter-item {
             ${contentAlignvDesk}
         }
@@ -430,6 +500,15 @@ const Style = ({ props }) => {
             ${counterGapDesk}
         }
 
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-count {
+            ${numberHoverColor ? `color: ${numberHoverColor};` : ''}
+            ${numberHoverBoxShadow}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-sub-text {
+            ${suffixHoverColor ? `color: ${suffixHoverColor};` : ''}
+        }
+
 		.${uniqueId}.zolo-block.wp-block-zolo-counter .animated-counter, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-sub-text{
 			${counterTypoDesktop}
 			${counterTextShadowStyle}
@@ -442,6 +521,12 @@ const Style = ({ props }) => {
             ${titleMarginDesktop}
             ${titleTextShadowStyle}
             ${titleTextStrokeStyle}
+            ${titleBoxShadow}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-title {
+            ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
+            ${titleHoverBoxShadow}
         }
 
         ${
@@ -471,6 +556,16 @@ const Style = ({ props }) => {
 			${iconBoxShadow}
             ${mediaBgDesk}
 		}
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-icon svg {
+            ${iconHoverColor ? `fill: ${iconHoverColor};` : ''}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-icon .zolo__display-icon,
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-icon img {
+            ${iconHoverBgDesk}
+            ${iconHoverBoxShadow}
+        }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon img {
             ${iconImageWidthDesk}
@@ -505,6 +600,11 @@ const Style = ({ props }) => {
             ${containerMarginTab}
             ${containerPaddingTab}
         }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover {
+            ${containerHoverTabBGStyle}
+        }
+
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-wrap.style-1 .zolo-counter-item {
             ${contentAlignvTab}
         }
@@ -517,6 +617,14 @@ const Style = ({ props }) => {
             ${counterGapTab}
         }
 
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-count {
+            ${numberHoverColor ? `color: ${numberHoverColor};` : ''}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-sub-text {
+            ${suffixHoverColor ? `color: ${suffixHoverColor};` : ''}
+        }
+
         .${uniqueId}.zolo-block.wp-block-zolo-counter .animated-counter, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-sub-text{
             ${counterTypoTab}
         }
@@ -525,6 +633,10 @@ const Style = ({ props }) => {
             ${titleTypoTab}
             ${titleMarginTab}
             ${tabTitleTextStrokeStyle}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-title {
+            ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
         }
         
         ${
@@ -546,6 +658,11 @@ const Style = ({ props }) => {
             ${iconMarginTab}
             ${iconBoxShadow}
             ${mediaBgTab}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-icon .zolo__display-icon,
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-icon img {
+            ${iconHoverBgTab}
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon svg {
@@ -581,6 +698,11 @@ const Style = ({ props }) => {
             ${containerMarginMob}
             ${containerPaddingMob}
         }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover {
+            ${containerHoverMobBGStyle}
+        }
+
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-wrap.style-1 .zolo-counter-item {
             ${contentAlignvMob}
         }
@@ -593,6 +715,14 @@ const Style = ({ props }) => {
             ${counterGapMob}
         }
 
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-count {
+            ${numberHoverColor ? `color: ${numberHoverColor};` : ''}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-sub-text {
+            ${suffixHoverColor ? `color: ${suffixHoverColor};` : ''}
+        }
+
         .${uniqueId}.zolo-block.wp-block-zolo-counter .animated-counter, .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-sub-text{
             ${counterTypoMobile}
         }
@@ -601,6 +731,10 @@ const Style = ({ props }) => {
             ${titleTypoMobile}
             ${titleMarginMob}
             ${mobTitleTextStrokeStyle}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-title {
+            ${titleHoverColor ? `color: ${titleHoverColor};` : ''}
         }
 
         ${
@@ -622,6 +756,11 @@ const Style = ({ props }) => {
             ${iconMarginMob}
             ${iconBoxShadow}
             ${mediaBgMob}
+        }
+
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-icon .zolo__display-icon,
+        .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-item:hover .zolo-counter-icon img {
+            ${iconHoverBgMob}
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-counter .zolo-counter-icon svg {
