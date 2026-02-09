@@ -21,17 +21,23 @@ import {
     TITLE_BORDER,
     TITLE_BORDER_RADIUS,
     TITLE_PADDING,
+    TITLE_BOX_SHADOW,
+    TITLE_HOVER_BOX_SHADOW,
     ICON_BORDER,
     ICON_BOX_SHADOW,
+    ICON_HOVER_BOX_SHADOW,
     ICON_BORDER_RADIUS,
     ICON_SIZE,
     ICON_PADDING,
     ICON_MARGIN,
     ICON_BACKGROUND,
+    ICON_HOVER_BG,
     CONTAINER_BACKGROUND,
+    CONTAINER_HOVER_BG,
     CONTAINER_BORDER,
     CONTAINER_BORDER_RADIUS,
     CONTAINER_BOX_SHADOW,
+    CONTAINER_HOVER_BOX_SHADOW,
     CONTAINER_PADDING,
     COUNTER_MARGIN,
     COUNTER_GAP,
@@ -44,6 +50,7 @@ import {
     NUMBER_PADDING,
     NUMBER_BORDER,
     NUMBER_BOX_SHADOW,
+    NUMBER_HOVER_BOX_SHADOW,
     NUMBER_BORDER_RADIUS,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -78,10 +85,12 @@ const attributes = {
     ...generateResAlignmentAttributies(CONTENT_V_ALIGN),
     // Item
     ...generateNormalBGAttributes(CONTAINER_BACKGROUND),
+    ...generateNormalBGAttributes(CONTAINER_HOVER_BG),
     ...generateDimensionAttributes(CONTAINER_PADDING),
     ...generateBorderAttributies(CONTAINER_BORDER),
     ...generateDimensionAttributes(CONTAINER_BORDER_RADIUS),
     ...generateBoxShadowAttributies(CONTAINER_BOX_SHADOW),
+    ...generateBoxShadowAttributies(CONTAINER_HOVER_BOX_SHADOW),
 
     // Counter
     ...generateDimensionAttributes(COUNTER_MARGIN),
@@ -97,7 +106,14 @@ const attributes = {
     ...generateDimensionAttributes(ICON_PADDING),
     ...generateDimensionAttributes(ICON_MARGIN),
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
+    ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
     ...generateNormalBGAttributes(ICON_BACKGROUND),
+    ...generateNormalBGAttributes(ICON_HOVER_BG),
+
+    iconHoverColor: {
+        type: 'string',
+        default: '',
+    },
 
     // Title
     ...generateDimensionAttributes(TITLE_MARGIN),
@@ -107,6 +123,13 @@ const attributes = {
     ...generateBorderAttributies(TITLE_BORDER),
     ...generateDimensionAttributes(TITLE_BORDER_RADIUS),
     ...generateDimensionAttributes(TITLE_PADDING),
+    ...generateBoxShadowAttributies(TITLE_BOX_SHADOW),
+    ...generateBoxShadowAttributies(TITLE_HOVER_BOX_SHADOW),
+
+    titleHoverColor: {
+        type: 'string',
+        default: '',
+    },
 
     // Typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
@@ -120,7 +143,17 @@ const attributes = {
     ...generateDimensionAttributes(NUMBER_PADDING),
     ...generateBorderAttributies(NUMBER_BORDER),
     ...generateBoxShadowAttributies(NUMBER_BOX_SHADOW),
+    ...generateBoxShadowAttributies(NUMBER_HOVER_BOX_SHADOW),
     ...generateDimensionAttributes(NUMBER_BORDER_RADIUS),
+
+    numberHoverColor: {
+        type: 'string',
+        default: '',
+    },
+    suffixHoverColor: {
+        type: 'string',
+        default: '',
+    },
 
     //Block Specific Attributes
     preset: {
