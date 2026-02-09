@@ -27,6 +27,10 @@ const {
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
+    ZoloResponsive,
+    getResponsiveValue,
+    createResponsiveValue,
+    ZoloRangeUnit
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
@@ -242,6 +246,24 @@ function Inspector(props) {
                                         />
                                         <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={BUTTON_BG} noMainBGImg={false} />
+                                        <ZoloResponsive left='5ch'>
+                                            <ZoloRangeUnit
+                                                label={__('Width', 'zoloblocks')}
+                                                value={getResponsiveValue(attributes, 'buttonWidth')}
+                                                onChange={(value) => {
+                                                    setAttributes(createResponsiveValue(attributes, 'buttonWidth', value));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
+                                        <ZoloResponsive left='9ch'>
+                                            <ZoloRangeUnit
+                                                label={__('Min Height', 'zoloblocks')}
+                                                value={getResponsiveValue(attributes, 'buttonMinHeight')}
+                                                onChange={(value) => {
+                                                    setAttributes(createResponsiveValue(attributes, 'buttonMinHeight', value));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
                                         <ResDimensionsControl
                                             label={__('Padding', 'zoloblocks')}
                                             controlName={BUTTON_PADDING}

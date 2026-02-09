@@ -15,6 +15,7 @@ const {
     generateBoxShadowStyles,
     generateTypographyStyles,
     GlobalStyleHanlder,
+    generateCSS
 } = window.zoloModule;
 
 import {
@@ -407,6 +408,8 @@ export default function Style({ props }) {
 			${paddingDesktop}
             ${normalDeskBGStyle}
             ${normalBoxShadowStyle}
+            ${ generateCSS({attributes, key:'buttonWidth', getValue: (value) => `width: ${value};`, device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'buttonMinHeight', getValue: (value) => `min-height: ${value};`, device: 'Desktop'}) }
 		}
 
         ${
@@ -608,6 +611,8 @@ export default function Style({ props }) {
 			${borderRadiusTab}
 			${paddingTab}
             ${normalTabBGStyle}
+            ${ generateCSS({attributes, key:'buttonWidth', getValue: (value) => `width: ${value};`, device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'buttonMinHeight', getValue: (value) => `min-height: ${value};`, device: 'Tablet'}) }
 		}
      
 		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{
@@ -727,6 +732,8 @@ export default function Style({ props }) {
 			${borderRadiusMob}
 			${normalMobBGStyle}
 			${paddingMob}
+            ${ generateCSS({attributes, key:'buttonWidth', getValue: (value) => `width: ${value};`, device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'buttonMinHeight', getValue: (value) => `min-height: ${value};`, device: 'Mobile'}) }
 		}
         
 		.wp-block-zolo-advanced-button .zolo-advanced-button.${uniqueId} .zolo-button:hover{

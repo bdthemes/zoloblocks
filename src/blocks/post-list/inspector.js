@@ -23,6 +23,14 @@ const {
     ZoloPanelBody,
     IconicBtnGroup,
     ResCounterControl,
+    ZoloIconPicker,
+    ZoloResponsive,
+    getResponsiveValue,
+    createResponsiveValue,
+    ZoloBorder,
+    ZoloBoxControl,
+    ZoloBorderRadius,
+    ZoloRangeUnit
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -83,6 +91,7 @@ import {
     FEXCERPT_TYPOGRAPHY,
     FMETA_TYPOGRAPHY,
     FCAT_TYPOGRAPHY,
+    READMORE_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 import { DEFAULT_ALIGNS, HEADING, THUMBNAIL_SIZE, TEXT_ALIGN_OPTIONS, PAGINARION_TYPE } from '../../../src/global/constants';
@@ -142,6 +151,14 @@ function Inspector(props) {
         previousText,
         nextText,
         loadMoreText,
+        showReadmore,
+        readMoreText,
+        readMoreIcon,
+        readMoreColor,
+        readMoreBackgroundColor,
+        readMoreHoverColor,
+        readMoreHoverBackgroundColor,
+        readMoreHoverBorderColor
     } = attributes;
 
     const requiredProps = {
@@ -238,6 +255,14 @@ function Inspector(props) {
                                     label={__('Count', 'zoloblocks')}
                                     checked={showCount}
                                     onChange={(showCount) => setAttributes({ showCount })}
+                                />
+                            )}
+
+                            {'style-1' !== preset && (
+                                <ZoloToggleControl
+                                    label={__('Show Read More', 'zoloblocks')}
+                                    checked={showReadmore}
+                                    onChange={(showReadmore) => setAttributes({ showReadmore })}
                                 />
                             )}
 
@@ -394,6 +419,25 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
+
+                        {
+                            showReadmore && (
+                                <ZoloPanelBody title={__('Read More', 'zoloblocks')} panelProps={props}>
+                                    <ZoloTextControl
+                                        label={__('Text', 'zoloblocks')}
+                                        value={readMoreText}
+                                        onChange={(readMoreText) => setAttributes({ readMoreText })}
+                                    />
+                                    <ZoloIconPicker
+                                        label={__('Icon', 'zoloblocks')}
+                                        value={readMoreIcon}
+                                        onChange={(readMoreIcon) =>
+                                            setAttributes({ readMoreIcon })
+                                        }
+                                    />
+                                </ZoloPanelBody>
+                            )
+                        }
                     </>
                 }
                 styleTab={
@@ -633,6 +677,118 @@ function Inspector(props) {
                                 }
                             />
                         </ZoloPanelBody>
+
+                        {
+                            showReadmore && (
+                                <ZoloPanelBody title={__('Read More', 'zoloblocks')} stylePanel={true} panelProps={props}>
+                                    <TabPanelControl
+                                        options={[
+                                            {
+                                                value: 'normal',
+                                                label: __('Normal', 'zoloblocks'),
+                                            },
+                                            {
+                                                value: 'hover',
+                                                label: __('Hover', 'zoloblocks'),
+                                            },
+                                        ]}
+                                        normalComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={readMoreColor}
+                                                    onChange={(readMoreColor) => setAttributes({ readMoreColor })}
+                                                />
+                                                <ColorControl
+                                                    label={__('Background Color', 'zoloblocks')}
+                                                    color={readMoreBackgroundColor}
+                                                    onChange={(readMoreBackgroundColor) => setAttributes({ readMoreBackgroundColor })}
+                                                />
+                                                <ZoloBorder
+                                                    label={__('Border', 'zoloblocks')}
+                                                    value={attributes?.readMoreBorder}
+                                                    onChange={(newValue) => {
+                                                        setAttributes({ readMoreBorder: newValue });
+                                                    }}
+                                                />
+                                                <ZoloResponsive>
+                                                    <ZoloBorderRadius
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        value={attributes?.readMoreBorderRadius}
+                                                        onChange={(newValue) => {
+                                                            setAttributes({ readMoreBorderRadius: newValue });
+                                                        }}
+                                                    />
+                                                </ZoloResponsive>
+                                            </>
+                                        }
+                                        hoverComponents={
+                                            <>
+                                                <ColorControl
+                                                    label={__('Color', 'zoloblocks')}
+                                                    color={readMoreHoverColor}
+                                                    onChange={(readMoreHoverColor) => setAttributes({ readMoreHoverColor })}
+                                                />
+                                                <ColorControl
+                                                    label={__('Background Color', 'zoloblocks')}
+                                                    color={readMoreHoverBackgroundColor}
+                                                    onChange={(readMoreHoverBackgroundColor) => setAttributes({ readMoreHoverBackgroundColor })}
+                                                />
+                                                <ColorControl
+                                                    label={__('Border Color', 'zoloblocks')}
+                                                    color={readMoreHoverBorderColor}
+                                                    onChange={(readMoreHoverBorderColor) => setAttributes({ readMoreHoverBorderColor })}
+                                                />
+                                                <ZoloResponsive left='11ch'>
+                                                    <ZoloBorderRadius
+                                                        label={__('Border Radius', 'zoloblocks')}
+                                                        value={attributes?.readMoreHoverBorderRadius}
+                                                        onChange={(newValue) => {
+                                                            setAttributes({ readMoreHoverBorderRadius: newValue });
+                                                        }}
+                                                    />
+                                                </ZoloResponsive>
+                                            </>
+                                        }
+                                    />
+                                    <div className="zolo-custom-heading">{__('Text', 'zoloblocks')}</div>
+                                    <TypographyDropdown
+                                        label={__('Typography', 'zoloblocks')}
+                                        typoPrefixConstant={READMORE_TYPOGRAPHY}
+                                        requiredProps={requiredProps}
+                                    />
+                                    <div className="zolo-custom-heading">{__('Icon', 'zoloblocks')}</div>
+                                    <ZoloResponsive left='4ch'>
+                                        <ZoloRangeUnit
+                                            label={__('Size', 'zoloblocks')}
+                                            value={getResponsiveValue(attributes, 'readMoreIconSize')}
+                                            onChange={(value) => {
+                                                setAttributes(createResponsiveValue(attributes, 'readMoreIconSize', value));
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                    <ZoloCardDivider />
+                                    <ZoloResponsive left='55px'>
+                                        <ZoloBoxControl
+                                            label={__('Padding', 'zoloblocks')}
+                                            value={getResponsiveValue(attributes, 'readMorePadding')}
+                                            onChange={(newValue) => {
+                                                setAttributes(createResponsiveValue(attributes, 'readMorePadding', newValue));
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                    <ZoloResponsive left='48px'>
+                                        <ZoloBoxControl
+                                            label={__('Margin', 'zoloblocks')}
+                                            value={getResponsiveValue(attributes, 'readMoreMargin')}
+                                            onChange={(newValue) => {
+                                                setAttributes(createResponsiveValue(attributes, 'readMoreMargin', newValue));
+                                            }}
+                                        />
+                                    </ZoloResponsive>
+                                </ZoloPanelBody>
+                            )
+                        }
 
                         {showExcerpt && (
                             <ZoloPanelBody title={__('Excerpt', 'zoloblocks')} stylePanel={true} panelProps={props}>

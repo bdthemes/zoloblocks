@@ -90,7 +90,7 @@ $zolo_data_settings   = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_k
 		}
 		?>
 
-		<?php echo wp_kses( $zolo_html, 'post' ); ?>
+		<?php echo $zolo_html; ?>
 	</div>
 
 
