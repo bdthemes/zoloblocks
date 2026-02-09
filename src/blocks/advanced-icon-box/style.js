@@ -700,6 +700,12 @@ export default function Style({ props }) {
 			${iconImageBorderRadiusDesk}
 		}
 
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-1 .zolo-block-item .zolo-block-icon-wrap img,
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-2 .zolo-block-item .zolo-block-icon-wrap img {
+            ${iconImageSizeDesk}
+            ${iconImageHDesk}
+        }
+
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
             ${iconImageSizeDesk}
@@ -841,6 +847,12 @@ export default function Style({ props }) {
 			${iconImageBorderRadiusTab}
 		}
 
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-1 .zolo-block-item .zolo-block-icon-wrap img,
+        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-2 .zolo-block-item .zolo-block-icon-wrap img {
+            ${iconImageSizeTab}
+            ${iconImageHTab}
+        }
+
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
             ${iconImageSizeTab}
@@ -950,6 +962,12 @@ export default function Style({ props }) {
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
+
+            .${uniqueId}.wp-block-zolo-advanced-icon-box.style-1 .zolo-block-item .zolo-block-icon-wrap img,
+            .${uniqueId}.wp-block-zolo-advanced-icon-box.style-2 .zolo-block-item .zolo-block-icon-wrap img {
+                ${iconImageSizeMob}
+                ${iconImageHMob}
+            }
 
             .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
             .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
