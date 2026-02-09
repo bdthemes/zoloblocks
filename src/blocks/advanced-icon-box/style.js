@@ -707,6 +707,7 @@ export default function Style({ props }) {
             
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
             ${iconImageHDesk}
+            ${iconImageBorderRadiusDesk}
         }
 
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
@@ -847,6 +848,7 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
             ${iconImageHTab}
+            ${iconImageBorderRadiusTab}
         }
 
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
@@ -949,17 +951,18 @@ export default function Style({ props }) {
 			${iconImageBorderRadiusMob}
 		}
 
-        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
-        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
-            ${iconImageSizeMob}
-        }
+            .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
+            .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
+                ${iconImageSizeMob}
+            }
+            
+            .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
+                ${iconImageHMob}
+                ${iconImageBorderRadiusMob}
+            }
 
-        .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
-            ${iconImageHMob}
-        }
-
-        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
-            ${buttonBGMobStyle}
+            .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button {
+                ${buttonBGMobStyle}
 			${gapMob}
 			${buttonBorderStylesMob}
 			${buttonBorderRadiusMob}
