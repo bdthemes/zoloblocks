@@ -68,14 +68,14 @@ const Save = (props) => {
                     <div className="zolo-price-info">
                         {orginalPrice && sale && (
                             <span className="zolo-orginal-price">
-                                {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}    
+                                {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}
                                 <span className="price">{sanitizeText(orginalPrice)}</span>
                             </span>
                         )}
 
                         {price && (
                             <span className="zolo-price">
-                                {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}    
+                                {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}
                                 <span className="price">{sanitizeText(price)}</span>
                                 {priceSuffix && <span className="fractional">{sanitizeText(priceSuffix)}</span>}
                             </span>
@@ -103,7 +103,7 @@ const Save = (props) => {
                                             tagName="a"
                                             className="zolo-buy-btn"
                                             value={buttonText}
-                                            href={buttonLink && buttonLink.url ? sanitizeUrl(buttonLink.url) : '# '} 
+                                            href={buttonLink && buttonLink.url ? sanitizeUrl(buttonLink.url) : '# '}
                                             target={buttonLink && buttonLink.openInNewTab ? '_blank' : undefined}
                                             rel={buttonLink && buttonLink.openInNewTab ? 'noopener noreferrer' : undefined}
                                         />
@@ -132,9 +132,15 @@ const Save = (props) => {
                     {features.length !== 0 && showFeatures && (
                         <ul className="features">
                             {features.map((item, index) => (
-                                <li key={index}>
+                                <li key={index} style={{ '--zolo-item-text-color': item.color }}>
                                     {item.icon && hideFeatureIcon !== true && (
-                                        <span className="zolo-check-icon">
+                                        <span
+                                            className="zolo-check-icon"
+                                            style={{
+                                                '--zolo-item-icon-color': item.iconColor,
+                                                '--zolo-item-icon-bg-color': item.iconBgColor,
+                                            }}
+                                        >
                                             <DisplayZoloIcon icon={item.icon} />
                                         </span>
                                     )}
