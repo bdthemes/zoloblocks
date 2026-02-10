@@ -10,6 +10,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const hoverPlayPause = settings?.hoverPlayPause;
         const autoPlay = settings?.autoPlay;
 
+        // Initialize FsLightbox for popup videos
+        const popupTrigger = element.querySelector('.popup-trigger-button');
+        const popupContent = element.querySelector('.video-player-popup-content');
+        
+        if (popupTrigger && popupContent && typeof FsLightbox !== 'undefined') {
+            // Check if it should open in new tab (has target="_blank")
+            const shouldOpenInNewTab = popupTrigger.hasAttribute('target') && popupTrigger.getAttribute('target') === '_blank';
+            
+            if (!shouldOpenInNewTab) {
+                // Normal popup behavior
+                const lightbox = new FsLightbox();
+                lightbox.props.sources = [popupContent];
+                
+                popupTrigger.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    lightbox.open();
+                });
+            }
+        }
+
         if (!video) return;
 
         // play video

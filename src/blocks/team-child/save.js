@@ -101,7 +101,7 @@ const Save = ({ attributes }) => {
                                                 key={uniqueKey}
                                                 target={profile.link && profile.link.openInNewTab ? '_blank' : undefined}
                                                 rel={profile.link && profile.link.openInNewTab ? 'noopener noreferrer' : undefined}
-                                                className={`zolo-social-item zolo-${profile.platform}`}
+                                                className={`zolo-social-link zolo-${profile.platform}`}
                                             >
                                                 <DisplayZoloIcon icon={profile.icon} />
                                             </a>

@@ -220,7 +220,7 @@ const Style = ({ props }) => {
 			${paddingDesktop}
 			${gapDesktop}
 			${btnRadiusDesk}
-			${normalShadow}
+			${socialColor === 'custom' ? normalShadow : ''}
 
 		}
          ${

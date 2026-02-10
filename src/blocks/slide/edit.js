@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter, applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
@@ -56,13 +56,13 @@ export default function Edit(props) {
 
     const innerBlocksProps = useInnerBlocksProps(
         {
-            className: `swiper-content-outer`,
+            className: 'swiper-content-outer',
             slot: 'container-start',
         },
         {
             template: [],
             templateLock: false,
-            orientation: 'horizontal',
+            renderAppender: InnerBlocks.DefaultBlockAppender,
         }
     );
 
