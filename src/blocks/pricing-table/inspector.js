@@ -91,6 +91,7 @@ import {
     BTNS_DIRECTIONS,
     BTNS_MARGIN,
     PRESETS,
+    FEATURE_ICON_VERTICAL_ALIGN,
 } from './constants';
 import {
     BTN_TYPOGRAPHY,
@@ -106,7 +107,7 @@ import {
     TITLE_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
-import { DEFAULT_ALIGNS, HEADING } from '../../../src/global/constants';
+import { DEFAULT_ALIGNS, HEADING, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 
 import Sortable from './sortable';
 import { applyFilters } from '@wordpress/hooks';
@@ -957,6 +958,13 @@ const Inspector = (props) => {
                                             min={0}
                                             max={100}
                                             step={1}
+                                        />
+                                        <ZoloCardDivider />
+                                        <ResAlignmentControl
+                                            label={__('Vertical Alignment', 'zoloblocks')}
+                                            controlName={FEATURE_ICON_VERTICAL_ALIGN}
+                                            requiredProps={requiredProps}
+                                            alignOptions={FLEX_ALIGN_OPTIONS}
                                         />
 
                                         <div className="zolo-custom-heading">{__('Icon', 'zoloblocks')}</div>

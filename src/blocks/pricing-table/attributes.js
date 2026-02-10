@@ -68,6 +68,7 @@ import {
     FEATURE_ICON_PADDING,
     SEPARATOR_WIDTH,
     BTNS_MARGIN,
+    FEATURE_ICON_VERTICAL_ALIGN,
 } from './constants';
 import * as typographyObjs from './constants/typoPrefixConstant';
 
@@ -394,6 +395,7 @@ const attributes = {
     ...generateBorderAttributies(FEATURE_ICON_BORDER),
     ...generateDimensionAttributes(FEATURE_ICON_RADIUS),
     ...generateBoxShadowAttributies(FEATURE_ICON_SHADOW),
+    ...generateResAlignmentAttributies(FEATURE_ICON_VERTICAL_ALIGN),
 
     //button
     ...generateDimensionAttributes(BTNS_MARGIN),
