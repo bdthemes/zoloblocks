@@ -988,12 +988,12 @@ export default function Style({ props }) {
 			${buttonMarginMob}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button svg{
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button svg{
 			${buttonIconSizeMob}
             ${buttonIconHSizeMob}
 		}
 
-		.${uniqueId} .zolo-block-body-content .zolo-box-button {
+		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-body-content .zolo-box-button{
 			${btnTypoMobile}
 		}
 

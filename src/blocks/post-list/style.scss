@@ -64,6 +64,7 @@
             .zolo-post-image {
                 width: 100%;
                 height: var(--zolo-feature-item-image-height);
+
                 &::before {
                     content: '';
                     position: absolute;
@@ -117,6 +118,7 @@
         width: var(--zolo-img-width);
         overflow: hidden;
         border-radius: var(--zolo-item-border-radius);
+
         img {
             width: 100%;
             height: auto;
@@ -134,6 +136,7 @@
         display: flex;
         align-items: center;
         gap: 6px;
+
         a {
             color: currentColor;
             text-decoration: none;
@@ -141,10 +144,9 @@
     }
 
     .zolo-post-title {
-        font-size: clamp(0.938rem, 1.5vw, 1.2rem);
         margin: var(--zolo-title-margin);
+        font-size: clamp(0.938rem, 1.5vw, 1.2rem);
         line-height: 1.4;
-        font-weight: 700;
     }
 
     .zolo-post-category {
@@ -262,8 +264,10 @@
     &.zolo-post-style-4,
     &.zolo-post-style-5 {
         .zolo-post-item {
+
             // padding: 0 30px;
             &.featured-post {
+
                 // padding: 0;
                 .zolo-post-image {
                     display: block;
@@ -306,9 +310,49 @@
                 padding: 0;
                 border-bottom: 0;
             }
+
             &:nth-last-child(1) {
                 padding-bottom: 0;
                 border-bottom: 0;
+            }
+        }
+    }
+}
+
+.zolo-post-title {
+    font-weight: 700;
+    &.zolo-post-has-readmore {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+
+        a.zolo-post-readmore {
+            font-size: 16px;
+            font-weight: 400;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            background-color: #ecf2fe;
+            color: var(--zolo-readmore-color);
+            padding: 5px 10px;
+            border-radius: var(--zoloblocks-button-border-radius);
+            transition: all 0.3s ease;
+            outline: none !important;
+
+            .zolo__display-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+            svg {
+                width: 15px;
+                height: 15px;
+                fill: currentColor;
             }
         }
     }

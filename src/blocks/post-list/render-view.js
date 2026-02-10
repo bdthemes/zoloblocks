@@ -1,6 +1,7 @@
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-const { DynamicTag, sanitizeText, sanitizeUrl } = window.zoloModule;
+import classNames from 'classnames';
+const { DynamicTag, sanitizeText, sanitizeUrl, DisplayZoloIcon } = window.zoloModule;
 
 function RenderView({ attributes, postResults }) {
     const {
@@ -11,12 +12,14 @@ function RenderView({ attributes, postResults }) {
         excerptWords,
         excerptindicator,
         showCategory,
-
+        showReadmore,
         showMeta,
         showCount,
         showReadingTime,
         metaSeparator,
         authorPrefix,
+        readMoreText,
+        readMoreIcon,
     } = attributes;
 
     const defaultAuthorPrefix = __('Posted By', 'zoloblocks');
@@ -88,10 +91,35 @@ function RenderView({ attributes, postResults }) {
                                 <div className="zolo-post-inner-content">
                                     {showCategory && categoriesHtml}
 
-                                    <DynamicTag tagName={titleTag} className="zolo-post-title">
+                                    <DynamicTag 
+                                        tagName={titleTag} 
+                                        className={classNames("zolo-post-title", {
+                                            "zolo-post-has-readmore": showReadmore && (readMoreText || readMoreIcon),
+                                        })}
+                                    >
                                         <a href={sanitizeUrl(post.permalink)} onClick={(e) => e.preventDefault()}>
                                             <RawHTML>{titleLimitWords}</RawHTML>
                                         </a>
+                                        {
+                                            showReadmore && (readMoreText || readMoreIcon) && (
+                                                <a
+                                                    href={sanitizeUrl(post.permalink)}
+                                                    className="zolo-post-readmore"
+                                                    onClick={(e) => e.preventDefault()}
+                                                >
+                                                    {
+                                                        readMoreText && (
+                                                            <span>{sanitizeText(readMoreText)}</span>
+                                                        )
+                                                    }
+                                                    {
+                                                        readMoreIcon && (
+                                                            <DisplayZoloIcon icon={readMoreIcon} />
+                                                        )
+                                                    }
+                                                </a>
+                                            )
+                                        }
                                     </DynamicTag>
                                     {showExcerpt && (
                                         <div className="zolo-post-desc">

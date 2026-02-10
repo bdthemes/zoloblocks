@@ -53,6 +53,7 @@ import {
     FEXCERPT_TYPOGRAPHY,
     FMETA_TYPOGRAPHY,
     FCAT_TYPOGRAPHY,
+    READMORE_TYPOGRAPHY,
 } from './constants/typoPrefixConstant';
 
 const {
@@ -65,6 +66,10 @@ const {
     GlobalStyleHanlder,
     generateResAlignmentStyle,
     generateResCounterStyle,
+    generateCSS, 
+    getBorderCSS, 
+    getBoxControlValue,
+    getBorderRadiusValue
 } = window.zoloModule;
 
 function Style({ props }) {
@@ -167,6 +172,15 @@ function Style({ props }) {
         typoStylesMobile: fcatTypoMob,
     } = generateTypographyStyles({
         prefixConstant: FCAT_TYPOGRAPHY,
+        attributes,
+    });
+
+    const {
+        typoStylesDesktop: readMoreTypographyDesktop,
+        typoStylesTab: readMoreTypographyTablet,
+        typoStylesMobile: readMoreTypographyMobile,
+    } = generateTypographyStyles({
+        prefixConstant: READMORE_TYPOGRAPHY,
         attributes,
     });
 
@@ -843,6 +857,25 @@ function Style({ props }) {
               : ''
       }
 
+      .${uniqueId} .zolo-post-title.zolo-post-has-readmore .zolo-post-readmore{
+        ${ generateCSS({attributes, key:'readMoreColor', getValue: (value) => `color: ${value};`, device: 'Desktop'}) }
+        ${ generateCSS({attributes, key:'readMoreBackgroundColor', getValue: (value) => `background-color: ${value};`, device: 'Desktop'}) }
+        ${ generateCSS({attributes, key:'readMoreBorder', getValue: (value) => getBorderCSS(value), device: 'Desktop'}) }
+        ${ generateCSS({attributes, key:'readMoreBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Desktop'}) }
+        ${ readMoreTypographyDesktop }
+        ${ generateCSS({attributes, key:'readMorePadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Desktop'}) }
+        ${ generateCSS({attributes, key:'readMoreMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Desktop'}) }
+      }
+      .${uniqueId} .zolo-post-title.zolo-post-has-readmore .zolo-post-readmore .zolo__display-icon svg{
+        ${ generateCSS({attributes, key:'readMoreIconSize', getValue: (value) => `width: ${value};height: ${value};`, device: 'Desktop'}) }
+      }
+      .${uniqueId} .zolo-post-title.zolo-post-has-readmore:hover .zolo-post-readmore{
+        ${ generateCSS({attributes, key:'readMoreHoverColor', getValue: (value) => `color: ${value};`, device: 'Desktop'}) }
+        ${ generateCSS({attributes, key:'readMoreHoverBackgroundColor', getValue: (value) => `background-color: ${value};`, device: 'Desktop'}) }
+        ${ generateCSS({attributes, key:'readMoreHoverBorderColor', getValue: (value) => `border-color: ${value};`, device: 'Desktop'}) }
+        ${ generateCSS({attributes, key:'readMoreHoverBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Desktop'}) }
+      }
+
     `;
 
     const tabletAllStyle = `
@@ -976,6 +1009,19 @@ function Style({ props }) {
       ${pagTypoTab}
       ${pagPaddingTab}
     }
+
+    .${uniqueId} .zolo-post-title.zolo-post-has-readmore .zolo-post-readmore{
+        ${ generateCSS({attributes, key:'readMoreBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Tablet'}) }
+        ${ readMoreTypographyTablet }
+        ${ generateCSS({attributes, key:'readMorePadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Tablet'}) }
+        ${ generateCSS({attributes, key:'readMoreMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Tablet'}) }
+      }
+      .${uniqueId} .zolo-post-title.zolo-post-has-readmore .zolo-post-readmore .zolo__display-icon svg{
+        ${ generateCSS({attributes, key:'readMoreIconSize', getValue: (value) => `width: ${value};height: ${value};`, device: 'Tablet'}) }
+      }
+      .${uniqueId} .zolo-post-title.zolo-post-has-readmore:hover .zolo-post-readmore{
+        ${ generateCSS({attributes, key:'readMoreHoverBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Tablet'}) }
+      }
   `;
 
     const mobileAllStyle = `
@@ -1108,6 +1154,19 @@ function Style({ props }) {
       .${uniqueId}.zolo-pagination-wrap .page-numbers {
         ${pagTypoMob}
         ${pagPaddingMob}
+      }
+
+      .${uniqueId} .zolo-post-title.zolo-post-has-readmore .zolo-post-readmore{
+        ${ generateCSS({attributes, key:'readMoreBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Mobile'}) }
+        ${ readMoreTypographyMobile }
+        ${ generateCSS({attributes, key:'readMorePadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Mobile'}) }
+        ${ generateCSS({attributes, key:'readMoreMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Mobile'}) }
+      }
+      .${uniqueId} .zolo-post-title.zolo-post-has-readmore .zolo-post-readmore .zolo__display-icon svg{
+        ${ generateCSS({attributes, key:'readMoreIconSize', getValue: (value) => `width: ${value};height: ${value};`, device: 'Mobile'}) }
+      }
+      .${uniqueId} .zolo-post-title.zolo-post-has-readmore:hover .zolo-post-readmore{
+        ${ generateCSS({attributes, key:'readMoreHoverBorderRadius', getValue: (value) => getBorderRadiusValue(value), device: 'Mobile'}) }
       }
     `;
 

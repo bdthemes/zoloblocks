@@ -219,6 +219,12 @@ const attributes = {
     presetBgColor: {
         type: 'string',
     },
+    buttonWidth: {
+        type: 'object',
+    },
+    buttonMinHeight: {
+        type: 'object',
+    },
 };
 
 export default attributes;

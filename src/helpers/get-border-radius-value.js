@@ -5,7 +5,7 @@ function getBorderRadiusValue(radius) {
         bottomRight = '',
         bottomLeft = ''
     } = radius;
-
+    
     if (
         topLeft === topRight &&
         topLeft === bottomRight &&
