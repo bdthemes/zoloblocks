@@ -88,7 +88,9 @@ export default function Edit(props) {
             sliderE.swiper.destroy();
         }
 
-        const pagination = sliderE.querySelector('.swiper-pagination');
+        const wrapper = sliderE.parentElement;
+        const pagination = wrapper ? Array.from(wrapper.children).find((el) => el.classList.contains('swiper-pagination')) : null;
+
         const defaultOptions = {
             pagination: {
                 el: pagination,
@@ -111,7 +113,16 @@ export default function Edit(props) {
                 },
             },
         };
-        new Swiper(sliderE, Object.keys(options).length > 0 ? options : defaultOptions);
+
+        const finalOptions = {
+            ...options,
+            pagination: {
+                ...options.pagination,
+                el: pagination, // Override el with the actual DOM element
+            },
+        };
+
+        new Swiper(sliderE, Object.keys(options).length > 0 ? finalOptions : defaultOptions);
     };
 
     //slider initialize
