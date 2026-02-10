@@ -273,10 +273,7 @@ export default function Edit(props) {
                     <div {...innerBlocksProps} />
                 </div>
                 {(showPagination || showPagination === undefined) && (
-                    <div
-                        className="swiper-pagination swiper-pagination-position-bottom"
-                        style={{ position: 'absolute', width: '100%', left: 0, bottom: 0 }}
-                    ></div>
+                    <div className="swiper-pagination swiper-pagination-position-bottom"></div>
                 )}
 
                 {showNavigation && (
