@@ -6,6 +6,7 @@ import { NAME_TYPOGRAPHY, COUNT_TYPOGRAPHY } from './constants/typoPrefixConstan
 import QuerySettings from './query-settings';
 
 const {
+    ZoloSelectControl,
     ZoloCardDivider,
     ZoloToggleControl,
     ZoloTextControl,
@@ -45,6 +46,7 @@ export default function Inspector(props) {
         catQuery,
         resMode,
         preset,
+        skin,
         showCount,
         nameColor,
         nameHoverColor,
@@ -72,6 +74,16 @@ export default function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <ZoloSelectControl
+                                label={__('Skin', 'zoloblocks')}
+                                value={skin}
+                                options={[
+                                    { label: __('Default', 'zoloblocks'), value: 'default' },
+                                    { label: __('Animated', 'zoloblocks'), value: 'animated' },
+                                    { label: __('Typography', 'zoloblocks'), value: 'typography' },
+                                ]}
+                                onChange={(skin) => setAttributes({ skin })}
+                            />
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ZoloToggleControl
                                 label={__('Count', 'zoloblocks')}

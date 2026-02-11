@@ -11,10 +11,14 @@ const { classArrayToStr, SidebarOpener } = window.zoloModule;
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId } = props;
-    const { preview, uniqueId, parentClasses, catQuery, preset } = attributes;
+    const { preview, uniqueId, parentClasses, catQuery, preset, skin } = attributes;
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId} zolo-tag-cloud-wrap zolo-tag-${preset}`, classArrayToStr(parentClasses)),
+        className: classnames(
+            className,
+            `${uniqueId} zolo-tag-cloud-wrap zolo-tag-${preset} zolo-tag-skin-${skin}`,
+            classArrayToStr(parentClasses)
+        ),
     });
     useEffect(() => {
         if (typeof catQuery === 'undefined') {

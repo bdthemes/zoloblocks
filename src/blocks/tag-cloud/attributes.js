@@ -62,6 +62,10 @@ const attributes = {
     type: 'boolean',
     default: true
   },
+  skin: {
+    type: 'string',
+    default: 'default',
+  },
 
   itemHoverOpacity:{
     type: 'number',
