@@ -212,6 +212,69 @@
         transform: translateX(-50%);
     }
 
+    /* Style 4 (Vertical Continuous Border with Track) */
+    .zolo-tab_animation-style-4 .zolo-tab_head-item {
+        /* Create a stacking context for pseudo-elements */
+        z-index: 1;
+    }
+
+    /* Background Track */
+    .zolo-tab_animation-style-4 .zolo-tab_head-item::after {
+        content: '';
+        position: absolute;
+        width: var(--zolo-tab-animation-height);
+        background: rgba(0, 0, 0, 0.06); /* Default neutral track color */
+        left: calc(-1 * var(--zolo-tab-indicator-gap, 0px));
+        top: 0;
+        bottom: auto;
+        height: calc(100% + var(--zolo-tab-head-wrap-gap, 20px));
+        z-index: -1; /* Behind content */
+        transition: background 0.3s ease;
+    }
+
+    /* Active/Progress Line */
+    .zolo-tab_animation-style-4 .zolo-tab_head-item::before {
+        content: '';
+        position: absolute;
+        width: var(--zolo-tab-animation-height);
+        background: var(--zoloblocks-brand-color, #000);
+        left: calc(-1 * var(--zolo-tab-indicator-gap, 0px));
+        top: 0;
+        bottom: auto;
+        height: 100%; /* Only cover the item itself */
+
+        /* Hidden by default */
+        visibility: hidden;
+        opacity: 0;
+        z-index: 2; /* Above track */
+        transition: opacity 0.3s ease;
+    }
+
+    /* Active item: Show Indicator */
+    .zolo-tab_animation-style-4 .zolo-tab_head-item.active::before {
+        height: 100%;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Right Vertical Layout Adjustments */
+    .zolo-tab_vertical-right.zolo-tab_animation-style-4 .zolo-tab_head-item::before,
+    .zolo-tab_vertical-right.zolo-tab_animation-style-4 .zolo-tab_head-item::after {
+        left: auto;
+        right: calc(-1 * var(--zolo-tab-indicator-gap, 0px));
+    }
+
+    /* Ensure width is respected for both */
+    .zolo-tab_animation-style-4 .zolo-tab_head-item:before,
+    .zolo-tab_animation-style-4 .zolo-tab_head-item:after {
+        width: var(--zolo-tab-animation-height);
+    }
+
+    /* Ensure width is respected */
+    .zolo-tab_animation-style-4 .zolo-tab_head-item:before {
+        width: var(--zolo-tab-animation-height);
+    }
+
     // vertical preset style
 
     .vpreset-2 {

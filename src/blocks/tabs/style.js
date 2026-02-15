@@ -32,6 +32,7 @@ import {
     TITLE_MARGIN,
     DESC_MARGIN,
     ACTIVE_HINT_HEIGHT,
+    INDICATOR_GAP,
     ICON_BG,
     ICON_HBG,
     ICON_ABG,
@@ -159,6 +160,16 @@ const Style = ({ props }) => {
     } = generateResRangeStyle({
         controlName: ACTIVE_HINT_HEIGHT,
         property: '--zolo-tab-animation-height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: indicatorGapDesktop,
+        tabRangeStyle: indicatorGapTab,
+        mobRangeStyle: indicatorGapMob,
+    } = generateResRangeStyle({
+        controlName: INDICATOR_GAP,
+        property: '--zolo-tab-indicator-gap',
         attributes,
     });
 
@@ -404,6 +415,7 @@ const Style = ({ props }) => {
             ${tabItemPaddingDesktop}
             ${tabItemBorderRadiusDesktop}
             ${activeHintHeightDesktop}
+            ${indicatorGapDesktop}
             ${contentDeskAlign}
             ${itemBorderStylesDesk}
             ${itemBoxShadow}
@@ -519,6 +531,7 @@ const Style = ({ props }) => {
             ${tabItemPaddingTab}
             ${tabItemBorderRadiusTab}
             ${activeHintHeightTab}
+            ${indicatorGapTab}
             ${contentTabAlign}
             ${itemBorderStylesTab}
             ${iconTabAlign}
@@ -582,6 +595,7 @@ const Style = ({ props }) => {
             ${tabItemPaddingMobile}
             ${tabItemBorderRadiusMobile}
             ${activeHintHeightMob}
+            ${indicatorGapMob}
             ${contentMobAlign}
             ${itemBorderStylesMob}
             ${iconMobAlign}
