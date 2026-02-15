@@ -18,7 +18,26 @@ class TagCloud extends PostBlock {
 	protected $default_block_attributes = [
 		'preset'           => 'style-1',
 		'showCount'        => true,
+		'openInNewTab'     => false,
 		'itemHoverOpacity' => 1,
+		'canvasSize'       => 400,
+		'activeCursor'     => 'pointer',
+		'depth'			   => 80,
+		'speed'           => 50,
+		'triggerOn' => 'always',
+		'dragControl' => false,
+		'wheelZoom' => false,
+		'visibleTime' => 1,
+		'animatedTextShadowColor' => '#fff',
+		'animatedTextShadowBlur' => 10,
+		'animatedBackgroundRadius' => 0,
+		'animatedOutlineColor' => '#ddd',
+		'animatedOutlineThickness' => 2,
+		'animatedOutlineDash' => 0,
+		'animatedOutlineDashSpace' => 2,
+		'animatedOutlineDashSpeed' => 3,
+		'animatedIncrease' => 5,
+		'animatedBorderRadius' => 2
 	];
 
 	/**

@@ -219,6 +219,14 @@ if (! class_exists('ZoloEnqueues')) {
                 ZOLO_VERSION,
                 true
             );
+
+            wp_register_script(
+                'zolo-tag-canvas-script',
+                trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/tag-canvas/tagcanvas.min.js',
+                [],
+                ZOLO_VERSION,
+                true
+            );
         }
         /**
          * Load Block Editor Assets

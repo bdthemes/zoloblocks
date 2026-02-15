@@ -3,7 +3,7 @@ import apiFetch from '@wordpress/api-fetch';
 import CategoryItem from './category-item';
 const { isEmpty, strToHex, ZoloSpinner } = window.zoloModule;
 
-export default function RenderView({ attributes }) {
+export default function RenderView({ attributes, setHasData }) {
     const { catQuery, tagCloudPro } = attributes;
     const { enableMultipleBG, multipleBG } = tagCloudPro ?? {};
     const [isLoading, setIsLoading] = useState(true);
@@ -24,12 +24,15 @@ export default function RenderView({ attributes }) {
             });
             if (response.success) {
                 setCatResults(response.data.results);
+                setHasData(true);
             } else {
                 setCatResults([]);
+                setHasData(false);
             }
         } catch (error) {
             console.error('Error:', error);
             setCatResults([]);
+            setHasData(false);
         } finally {
             setIsLoading(false);
         }
