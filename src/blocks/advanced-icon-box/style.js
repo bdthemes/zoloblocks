@@ -955,11 +955,11 @@ export default function Style({ props }) {
 		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap .zolo__display-icon {
 			${borderStylesMob}
 			${iconBorderRadiusMob}
-			${iconMarginMob}
             ${iconSizeMob}
-		}
-
-		.${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
+		}            
+            
+        .${uniqueId}.zolo-block-advanced-icon-box .zolo-block-icon-wrap {
+            ${iconMarginMob}
 			${iconImageBorderMob}
 			${iconImageBorderRadiusMob}
 		}
