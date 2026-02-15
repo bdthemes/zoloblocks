@@ -186,6 +186,10 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    activeHintTrackColor: {
+        type: 'string',
+        default: '',
+    },
     //tabs style description color
     descColors: {
         type: 'object',

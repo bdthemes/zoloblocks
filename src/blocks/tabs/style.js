@@ -56,7 +56,8 @@ import { DESC_TYPOGRAPHY, TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, tabTitleColors, descColors, activeHintTabColor, iconColors, showIndicator, itemBorderColors } = attributes;
+    const { uniqueId, tabTitleColors, descColors, activeHintTabColor, activeHintTrackColor, iconColors, showIndicator, itemBorderColors } =
+        attributes;
 
     // tabs container
     const {
@@ -470,6 +471,12 @@ const Style = ({ props }) => {
         .${uniqueId} .tab__item.zolo-tab_head-item:before {
             ${showIndicator ? `content: '';` : ''}
             background-color: ${activeHintTabColor};
+        }
+
+        /* Vertical Border Track Color */
+        .${uniqueId} .tab__item.zolo-tab_head-item:after {
+            background-color: ${activeHintTrackColor ? `${activeHintTrackColor}` : 'rgba(0, 0, 0, 0.06)'};
+            transition: background 0.3s ease;
         }
 
         .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item .zolo-tab_icon {

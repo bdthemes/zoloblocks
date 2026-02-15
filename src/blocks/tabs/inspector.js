@@ -690,6 +690,18 @@ function Inspector(props) {
                                         }}
                                     />
                                     {tabIndicatorStyle === 'animation-style-4' && (
+                                        <ColorControl
+                                            label={__('Secondary Color', 'zoloblocks')}
+                                            color={attributes.activeHintTrackColor}
+                                            onChange={(newTrackColor) => {
+                                                setAttributes({
+                                                    activeHintTrackColor: newTrackColor,
+                                                });
+                                            }}
+                                        />
+                                    )}
+                                    <ZoloCardDivider />
+                                    {tabIndicatorStyle === 'animation-style-4' && (
                                         <ResRangeControl
                                             label={__('Gap', 'zoloblocks')}
                                             controlName={INDICATOR_GAP}
