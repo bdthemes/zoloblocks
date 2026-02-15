@@ -66,6 +66,14 @@ const attributes = {
     type: 'string',
     default: 'default',
   },
+  openInNewTab: {
+    type: 'boolean',
+    default: false,
+  },
+  cloudStyle: {
+    type: 'string',
+    default: 'square',
+  },
 
   itemHoverOpacity:{
     type: 'number',

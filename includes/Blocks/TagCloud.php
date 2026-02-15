@@ -18,6 +18,8 @@ class TagCloud extends PostBlock {
 	protected $default_block_attributes = [
 		'preset'           => 'style-1',
 		'showCount'        => true,
+		'openInNewTab'     => false,
+		'cloudStyle'       => 'square',
 		'itemHoverOpacity' => 1,
 	];
 

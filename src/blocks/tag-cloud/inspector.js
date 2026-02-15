@@ -47,6 +47,8 @@ export default function Inspector(props) {
         resMode,
         preset,
         skin,
+        openInNewTab,
+        cloudStyle,
         showCount,
         nameColor,
         nameHoverColor,
@@ -80,9 +82,23 @@ export default function Inspector(props) {
                                 options={[
                                     { label: __('Default', 'zoloblocks'), value: 'default' },
                                     { label: __('Animated', 'zoloblocks'), value: 'animated' },
-                                    { label: __('Typography', 'zoloblocks'), value: 'typography' },
                                 ]}
                                 onChange={(skin) => setAttributes({ skin })}
+                            />
+                            <ZoloToggleControl
+                                label={__('Open in a New tab', 'zoloblocks')}
+                                checked={openInNewTab}
+                                onChange={(openInNewTab) => setAttributes({ openInNewTab })}
+                            />
+                            <ZoloSelectControl
+                                label={__('Cloud Style', 'zoloblocks')}
+                                value={cloudStyle}
+                                options={[
+                                    { label: __('Circle', 'zoloblocks'), value: 'circle' },
+                                    { label: __('Square', 'zoloblocks'), value: 'square' },
+                                    { label: __('Star', 'zoloblocks'), value: 'star' },
+                                ]}
+                                onChange={(cloudStyle) => setAttributes({ cloudStyle })}
                             />
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ZoloToggleControl
