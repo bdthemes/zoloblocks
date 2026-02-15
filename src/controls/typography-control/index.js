@@ -77,6 +77,10 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
                         onReset={() => {
                             setAttributes({
                                 [`${prefix}${typoPrefixConstant}FontFamily`]: '',
+                                [`${prefix}${typoPrefixConstant}FontWeight`]: '',
+                                [`${prefix}${typoPrefixConstant}FontStyle`]: '',
+                                [`${prefix}${typoPrefixConstant}TextTransform`]: '',
+                                [`${prefix}${typoPrefixConstant}TextDecoration`]: '',
                                 [`${prefix}${typoPrefixConstant}FontSize`]:
                                     defaultFontSize || (objAttributes[`${typoPrefixConstant}ZRPFontSize`] || {}).default,
                                 [`${prefix}TAB${typoPrefixConstant}FontSize`]: (objAttributes[`TAB${typoPrefixConstant}ZRPFontSize`] || {})

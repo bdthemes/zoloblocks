@@ -4,6 +4,8 @@ import CustomPlayer from './custom-player';
 
 const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
     let iframeMarkup = null;
+    let externalVideoUrl = null;
+    let openInNewTab = false;
 
     const {
         videoSource,
@@ -66,6 +68,9 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
 
             const src = addQueryArgs(`https://www.youtube${isPrivacyMode ? '-nocookie' : ''}.com/embed/${youtubeVideoId}`, queryParams);
 
+            externalVideoUrl = rawUrl;
+            openInNewTab = youtubeUrl?.openInNewTab || false;
+
             iframeMarkup = (
                 <iframe
                     style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 99999999, border: 0 }}
@@ -100,6 +105,9 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
 
             const src = addQueryArgs(`https://player.vimeo.com/video/${vimeoVideoId}`, queryParams);
 
+            externalVideoUrl = rawUrl;
+            openInNewTab = vimeoUrl?.openInNewTab || false;
+
             iframeMarkup = (
                 <iframe
                     style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 99999999, border: 0 }}
@@ -122,6 +130,9 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
                 console.warn('Missing custom video URL');
                 break;
             }
+
+            externalVideoUrl = customVideoUrl;
+            openInNewTab = externalCustomVideoUrl?.openInNewTab || false;
 
             iframeMarkup = <CustomPlayer src={customVideoUrl} attributes={attributes} anchor={anchor} isEdit={isEdit} />;
             break;

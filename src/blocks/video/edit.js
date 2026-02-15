@@ -86,14 +86,39 @@ export default function Edit(props) {
 
     let markup = null;
 
+    // Check if open in new tab is enabled
+    const getVideoUrl = () => {
+        const { videoSource, youtubeUrl, vimeoUrl, externalCustomVideoUrl, isExternalCustomUrl } = attributes;
+        if (videoSource === 'youtube') return youtubeUrl?.url;
+        if (videoSource === 'vimeo') return vimeoUrl?.url;
+        if (videoSource === 'custom') return isExternalCustomUrl ? externalCustomVideoUrl?.url : null;
+        return null;
+    };
+
+    const shouldOpenInNewTab = attributes?.videoLayoutType === 'popup' && (
+        attributes?.youtubeUrl?.openInNewTab || 
+        attributes?.vimeoUrl?.openInNewTab || 
+        attributes?.externalCustomVideoUrl?.openInNewTab
+    );
+
     if (attributes?.videoLayoutType === 'popup') {
         markup = (
             <>
                 <div className="video-player-popoup">
                     <div className={`video-player-popup-inline-content ${attributes?.popupType || ''}`}>
                         <a
-                            onClick={() => setOpenPopup(!openPopup)}
-                            href={sanitizeUrl(`#video-player-popup-${attributes?.uniqueId}`)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (shouldOpenInNewTab) {
+                                    const videoUrl = getVideoUrl();
+                                    if (videoUrl) {
+                                        window.open(videoUrl, '_blank', 'noopener,noreferrer');
+                                    }
+                                } else {
+                                    setOpenPopup(!openPopup);
+                                }
+                            }}
+                            href={shouldOpenInNewTab ? sanitizeUrl(getVideoUrl()) : sanitizeUrl(`#video-player-popup-${attributes?.uniqueId}`)}
                             className="popup-trigger-button"
                             data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
                         >
