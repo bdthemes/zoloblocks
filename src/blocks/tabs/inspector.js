@@ -71,6 +71,7 @@ import {
     TAB_WRAP_PADDING,
     TAB_WRAP_BSHADOW,
     VERTICAL_PRESETS,
+    INDICATOR_GAP,
 } from './constants';
 import { FLEX_HORIZONTAL_OPTIONS, TEXT_ALIGN_OPTIONS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
 import Sortable from './sortable';
@@ -154,11 +155,15 @@ function Inspector(props) {
                                 <IconicBtnGroup
                                     label={__('Layout', 'zoloblocks')}
                                     value={tabsLayout}
-                                    onChange={(newTabsLayout) =>
-                                        setAttributes({
+                                    onChange={(newTabsLayout) => {
+                                        const newAttrs = {
                                             tabsLayout: newTabsLayout,
-                                        })
-                                    }
+                                        };
+                                        if (newTabsLayout === 'horizontal' && tabIndicatorStyle === 'animation-style-4') {
+                                            newAttrs.tabIndicatorStyle = 'animation-style-1';
+                                        }
+                                        setAttributes(newAttrs);
+                                    }}
                                     options={LAYOUTS}
                                 />
                             </div>
@@ -223,7 +228,11 @@ function Inspector(props) {
                                 <ZoloSelectControl
                                     label={__('Indicator Style', 'zoloblocks')}
                                     value={tabIndicatorStyle}
-                                    options={INDICATOR_STYLES}
+                                    options={
+                                        tabsLayout === 'horizontal'
+                                            ? INDICATOR_STYLES.filter((item) => item.value !== 'animation-style-4')
+                                            : INDICATOR_STYLES
+                                    }
                                     onChange={(newIndicatorStyle) =>
                                         setAttributes({
                                             tabIndicatorStyle: newIndicatorStyle,
@@ -680,8 +689,34 @@ function Inspector(props) {
                                             });
                                         }}
                                     />
+                                    {tabIndicatorStyle === 'animation-style-4' && (
+                                        <ColorControl
+                                            label={__('Secondary Color', 'zoloblocks')}
+                                            color={attributes.activeHintTrackColor}
+                                            onChange={(newTrackColor) => {
+                                                setAttributes({
+                                                    activeHintTrackColor: newTrackColor,
+                                                });
+                                            }}
+                                        />
+                                    )}
+                                    <ZoloCardDivider />
+                                    {tabIndicatorStyle === 'animation-style-4' && (
+                                        <ResRangeControl
+                                            label={__('Gap', 'zoloblocks')}
+                                            controlName={INDICATOR_GAP}
+                                            requiredProps={requiredProps}
+                                            min={0}
+                                            max={100}
+                                            step={1}
+                                        />
+                                    )}
                                     <ResRangeControl
-                                        label={__('Active height', 'zoloblocks')}
+                                        label={
+                                            tabIndicatorStyle === 'animation-style-4'
+                                                ? __('Active Width', 'zoloblocks')
+                                                : __('Active Height', 'zoloblocks')
+                                        }
                                         controlName={ACTIVE_HINT_HEIGHT}
                                         requiredProps={requiredProps}
                                         min={1}

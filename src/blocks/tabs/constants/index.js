@@ -134,6 +134,10 @@ export const INDICATOR_STYLES = [
         value: 'animation-style-3',
         label: __('Style 3', 'zoloblocks'),
     },
+    {
+        value: 'animation-style-4',
+        label: __('Vertical Border', 'zoloblocks'),
+    },
 ];
 
 // Block Settings
@@ -168,6 +172,7 @@ export const TAB_WRAP_BSHADOW = 'tabWrapBShadow';
 // title
 export const TITLE_MARGIN = 'tabTitleMargin';
 export const ACTIVE_HINT_HEIGHT = 'activeHintHeight';
+export const INDICATOR_GAP = 'indicatorGap';
 
 // desc
 export const DESC_MARGIN = 'tabDescMargin';

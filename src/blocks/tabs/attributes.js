@@ -45,6 +45,7 @@ import {
     TAB_WRAP_BORDER,
     TAB_WRAP_BSHADOW,
     VERTICAL_PRESETS,
+    INDICATOR_GAP,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -185,6 +186,10 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    activeHintTrackColor: {
+        type: 'string',
+        default: '',
+    },
     //tabs style description color
     descColors: {
         type: 'object',
@@ -256,6 +261,7 @@ const attributes = {
     // title
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateResRangeAttributies(ACTIVE_HINT_HEIGHT),
+    ...generateResRangeAttributies(INDICATOR_GAP),
     // desc
     ...generateDimensionAttributes(DESC_MARGIN),
     // ICON

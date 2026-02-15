@@ -32,6 +32,7 @@ import {
     TITLE_MARGIN,
     DESC_MARGIN,
     ACTIVE_HINT_HEIGHT,
+    INDICATOR_GAP,
     ICON_BG,
     ICON_HBG,
     ICON_ABG,
@@ -55,7 +56,8 @@ import { DESC_TYPOGRAPHY, TITLE_TYPO } from './constants/typoPrefixConstant';
 
 const Style = ({ props }) => {
     const { attributes, setAttributes } = props;
-    const { uniqueId, tabTitleColors, descColors, activeHintTabColor, iconColors, showIndicator, itemBorderColors } = attributes;
+    const { uniqueId, tabTitleColors, descColors, activeHintTabColor, activeHintTrackColor, iconColors, showIndicator, itemBorderColors } =
+        attributes;
 
     // tabs container
     const {
@@ -159,6 +161,16 @@ const Style = ({ props }) => {
     } = generateResRangeStyle({
         controlName: ACTIVE_HINT_HEIGHT,
         property: '--zolo-tab-animation-height',
+        attributes,
+    });
+
+    const {
+        desktopRangeStyle: indicatorGapDesktop,
+        tabRangeStyle: indicatorGapTab,
+        mobRangeStyle: indicatorGapMob,
+    } = generateResRangeStyle({
+        controlName: INDICATOR_GAP,
+        property: '--zolo-tab-indicator-gap',
         attributes,
     });
 
@@ -404,6 +416,7 @@ const Style = ({ props }) => {
             ${tabItemPaddingDesktop}
             ${tabItemBorderRadiusDesktop}
             ${activeHintHeightDesktop}
+            ${indicatorGapDesktop}
             ${contentDeskAlign}
             ${itemBorderStylesDesk}
             ${itemBoxShadow}
@@ -458,6 +471,12 @@ const Style = ({ props }) => {
         .${uniqueId} .tab__item.zolo-tab_head-item:before {
             ${showIndicator ? `content: '';` : ''}
             background-color: ${activeHintTabColor};
+        }
+
+        /* Vertical Border Track Color */
+        .${uniqueId} .tab__item.zolo-tab_head-item:after {
+            background-color: ${activeHintTrackColor ? `${activeHintTrackColor}` : 'rgba(0, 0, 0, 0.06)'};
+            transition: background 0.3s ease;
         }
 
         .${uniqueId}.wp-block-zolo-tabs .tab__item.zolo-tab_head-item .zolo-tab_icon {
@@ -519,6 +538,7 @@ const Style = ({ props }) => {
             ${tabItemPaddingTab}
             ${tabItemBorderRadiusTab}
             ${activeHintHeightTab}
+            ${indicatorGapTab}
             ${contentTabAlign}
             ${itemBorderStylesTab}
             ${iconTabAlign}
@@ -582,6 +602,7 @@ const Style = ({ props }) => {
             ${tabItemPaddingMobile}
             ${tabItemBorderRadiusMobile}
             ${activeHintHeightMob}
+            ${indicatorGapMob}
             ${contentMobAlign}
             ${itemBorderStylesMob}
             ${iconMobAlign}
