@@ -65,7 +65,8 @@ import {
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
     ICON_IMAGE_BORDER_RADIUS,
-    ICON_IMAGE_SIZE,
+    ICON_IMAGE_WIDTH,
+    ICON_IMAGE_HEIGHT,
     ICON_MARGIN,
     ICON_PADDING,
     ICON_SIZE,
@@ -738,10 +739,17 @@ function Inspector(props) {
                                 {iconType === 'image' && (
                                     <>
                                         <ResRangeControl
-                                            label={__('Size', 'zoloblocks')}
-                                            controlName={ICON_IMAGE_SIZE}
+                                            label={__('Width', 'zoloblocks')}
+                                            controlName={ICON_IMAGE_WIDTH}
                                             requiredProps={requiredProps}
-                                            min={200}
+                                            min={0}
+                                            max={1000}
+                                        />
+                                        <ResRangeControl
+                                            label={__('Height', 'zoloblocks')}
+                                            controlName={ICON_IMAGE_HEIGHT}
+                                            requiredProps={requiredProps}
+                                            min={0}
                                             max={1000}
                                         />
                                         {preset == 'style-2' && (
