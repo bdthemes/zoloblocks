@@ -42,7 +42,8 @@ import {
     BUTTON_BORDER_RADIUS,
     BUTTON_MARGIN,
     BUTTON_PADDING,
-    ICON_IMAGE_SIZE,
+    ICON_IMAGE_WIDTH,
+    ICON_IMAGE_HEIGHT,
     IMAGE_BORDER,
     CONTENT_ALIGNMENT,
     ICON_IMAGE_BORDER_RADIUS,
@@ -508,11 +509,11 @@ export default function Style({ props }) {
 
     // generate image size
     const {
-        desktopRangeStyle: iconImageSizeDesk,
-        tabRangeStyle: iconImageSizeTab,
-        mobRangeStyle: iconImageSizeMob,
+        desktopRangeStyle: iconImageWidthDesk,
+        tabRangeStyle: iconImageWidthTab,
+        mobRangeStyle: iconImageWidthMob,
     } = generateResRangeStyle({
-        controlName: ICON_IMAGE_SIZE,
+        controlName: ICON_IMAGE_WIDTH,
         property: 'width',
         attributes,
     });
@@ -522,7 +523,7 @@ export default function Style({ props }) {
         tabRangeStyle: iconImageHTab,
         mobRangeStyle: iconImageHMob,
     } = generateResRangeStyle({
-        controlName: ICON_IMAGE_SIZE,
+        controlName: ICON_IMAGE_HEIGHT,
         property: 'height',
         attributes,
     });
@@ -702,13 +703,13 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-1 .zolo-block-item .zolo-block-icon-wrap img,
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-2 .zolo-block-item .zolo-block-icon-wrap img {
-            ${iconImageSizeDesk}
+            ${iconImageWidthDesk}
             ${iconImageHDesk}
         }
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
-            ${iconImageSizeDesk}
+            ${iconImageWidthDesk}
         }
             
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
@@ -849,13 +850,13 @@ export default function Style({ props }) {
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-1 .zolo-block-item .zolo-block-icon-wrap img,
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-2 .zolo-block-item .zolo-block-icon-wrap img {
-            ${iconImageSizeTab}
+            ${iconImageWidthTab}
             ${iconImageHTab}
         }
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
-            ${iconImageSizeTab}
+            ${iconImageWidthTab}
         }
 
         .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{
@@ -965,13 +966,13 @@ export default function Style({ props }) {
 
             .${uniqueId}.wp-block-zolo-advanced-icon-box.style-1 .zolo-block-item .zolo-block-icon-wrap img,
             .${uniqueId}.wp-block-zolo-advanced-icon-box.style-2 .zolo-block-item .zolo-block-icon-wrap img {
-                ${iconImageSizeMob}
+                ${iconImageWidthMob}
                 ${iconImageHMob}
             }
 
             .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row-reverse .zolo-block-item .zolo-block-icon-wrap,
             .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3.zolo-directions-row .zolo-block-item .zolo-block-icon-wrap {
-                ${iconImageSizeMob}
+                ${iconImageWidthMob}
             }
             
             .${uniqueId}.wp-block-zolo-advanced-icon-box.style-3 .zolo-block-item .zolo-block-icon-wrap img{

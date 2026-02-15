@@ -269,7 +269,8 @@ export const TITLE_TEXT_STROKE = 'titleTextStroke';
 export const DESCRIPTION_MARGIN = 'descMargin';
 
 // image
-export const ICON_IMAGE_SIZE = 'iconImageSize';
+export const ICON_IMAGE_WIDTH = 'iconImageWidth';
+export const ICON_IMAGE_HEIGHT = 'iconImageHeight';
 export const IMAGE_BORDER = 'imageBorder';
 export const ICON_IMAGE_BORDER_RADIUS = 'iconImageBorderRadius';
 

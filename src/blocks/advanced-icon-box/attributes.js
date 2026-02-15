@@ -33,7 +33,8 @@ import {
     BUTTON_BORDER_RADIUS,
     BUTTON_MARGIN,
     BUTTON_PADDING,
-    ICON_IMAGE_SIZE,
+    ICON_IMAGE_WIDTH,
+    ICON_IMAGE_HEIGHT,
     IMAGE_BORDER,
     ICON_IMAGE_BORDER_RADIUS,
     CONTENT_ALIGNMENT,
@@ -141,7 +142,8 @@ const attributes = {
 
     // Image
     ...generateBorderAttributies(IMAGE_BORDER),
-    ...generateResRangeAttributies(ICON_IMAGE_SIZE),
+    ...generateResRangeAttributies(ICON_IMAGE_WIDTH),
+    ...generateResRangeAttributies(ICON_IMAGE_HEIGHT),
     ...generateDimensionAttributes(ICON_IMAGE_BORDER_RADIUS),
 
     // content alignment
