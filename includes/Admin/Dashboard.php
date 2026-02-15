@@ -40,6 +40,7 @@ if (! class_exists('Dashboard')) {
          * @return void
          */
         public function handle_tab_redirect() {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
 
             // Only redirect for specific tab pages

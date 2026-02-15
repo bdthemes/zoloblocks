@@ -359,6 +359,7 @@ class ZoloAJAX {
      * ------------------------------------ */
         if (! empty($post_ID)) {
             $categories = wp_get_post_terms($post_ID, $taxonomy, [
+                // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
                 'exclude' => $catExclude,
             ]);
         } else {
@@ -370,6 +371,7 @@ class ZoloAJAX {
                 'orderby'    => ! empty($data['catOrderby']) ? sanitize_text_field($data['catOrderby']) : 'name',
                 'order'      => ! empty($data['catOrder']) ? sanitize_text_field($data['catOrder']) : 'DESC',
                 'hide_empty' => 0,
+                // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
                 'exclude'    => $catExclude,
                 'parent'     => isset($data['catParent']) ? intval($data['catParent']) : '',
             ];
