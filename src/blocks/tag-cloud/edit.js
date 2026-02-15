@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
-import { useEffect, useRef, useState } from '@wordpress/element';
+import { useEffect, useRef, useState, useLayoutEffect } from '@wordpress/element';
 import { useMergeRefs } from '@wordpress/compose';
 import classnames from 'classnames';
 import Inspector from './inspector';
@@ -16,6 +16,7 @@ export default function Edit(props) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasData, setHasData] = useState(false);
     const tagCloudRef = useRef(null);
+    const tagCanvasRef = useRef(null);
     // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         ref: useMergeRefs([tagCloudRef]),
@@ -53,45 +54,85 @@ export default function Edit(props) {
             return;
         }
 
-       editorWindow.addEventListener('load', () => {
-           const script = ownerDocument.querySelector('#zolo-tag-canvas-script-js');
-           if (script) {
-               setIsLoaded(true);
-           }
-       })
+        editorWindow.addEventListener('load', () => {
+            const script = ownerDocument.querySelector('#zolo-tag-canvas-script-js');
+            if (script) {
+                setIsLoaded(true);
+            }
+        })
     }, [tagCloudRef.current, attributes?.uniqueId, attributes?.resMode]);
 
+    const settings = {
+        textColour: attributes?.animatedColor || '',
+        outlineColour: attributes?.animatedOutlineColor || '',
+        reverse: true,
+        initial: attributes?.triggerOn == 'hover' ? null : [0.2, 0.1],
+        depth: (attributes?.depth / 100) || 0.8,
+        maxSpeed: (attributes?.speed / 1000) || 0.05,
+        activeCursor: attributes?.activeCursor || 'pointer',
+        bgColour: attributes?.animatedBackgroundColor || null,
+        bgOutlineThickness: attributes?.animatedOutlineThickness || 0,
+        bgRadius: attributes?.animatedBackgroundRadius || null,
+        dragControl: attributes?.triggerOn == 'hover' && attributes?.dragControl || false,
+        fadeIn: attributes?.visibleTime,
+        outlineDash: attributes?.animatedOutlineDash,
+        outlineDashSpace: attributes?.animatedOutlineDashSpace,
+        outlineDashSpeed: attributes?.animatedOutlineDashSpeed,
+        outlineIncrease: attributes?.animatedIncrease,
+        outlineRadius: attributes?.animatedBorderRadius,
+        outlineThickness: attributes?.animatedOutlineThickness,
+        shadow: attributes?.animatedTextShadowColor || null,
+        shadowBlur: attributes?.animatedTextShadowBlur || null,
+        wheelZoom: attributes?.wheelZoom || false,
+    }
 
-    useEffect(() => {
-        if (!tagCloudRef.current || !hasData) return;
+    useLayoutEffect(() => {
+        if (!hasData) return;
+        if (!tagCloudRef.current) return;
 
         const { ownerDocument } = tagCloudRef.current;
         const editorWindow = ownerDocument.defaultView || window;
+        if (!editorWindow.TagCanvas) return;
 
-        const canvas = tagCloudRef.current.querySelector('.zolo-tag-cloud-canvas');
-        const wrap = tagCloudRef.current.querySelector('.zolo-tag-cloud-wrap');
+        const { TagCanvas } = editorWindow;
 
-       if(!editorWindow.TagCanvas) return;
+        let frame;
 
-       const { TagCanvas } = editorWindow;
+        frame = requestAnimationFrame(() => {
+            const canvas = tagCanvasRef.current;
+            const wrap = tagCloudRef.current?.querySelector('.zolo-tag-cloud-wrap');
 
-       try{
-           const start = TagCanvas.Start(canvas.id, wrap.id, {
-               textColour: '#ff0000',
-               outlineColour: '#ff00ff',
-               reverse: true,
-               depth: 0.8,
-               maxSpeed: 0.05
-           });
+            if (!canvas || !wrap) return;
 
-           if (!start) {
-               console.error('TagCanvas failed to start.');
-           }
-       }catch (error) {
-           console.error(error);
-       }
-       
-    }, [isLoaded, tagCloudRef.current, hasData]);
+            try {
+                // Important: delete previous instance first
+                TagCanvas.Delete(canvas.id);
+
+                TagCanvas.Start(canvas.id, wrap.id, settings);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        return () => {
+            cancelAnimationFrame(frame);
+
+            const canvas = tagCanvasRef.current;
+            if (canvas?.id) {
+                try {
+                    TagCanvas.Delete(canvas.id);
+                } catch (e) { }
+            }
+        };
+
+    }, [skin, hasData, isLoaded, catQuery, settings]);
+
+
+    useEffect(() => {
+        if (tagCloudRef.current && tagCloudRef.current.querySelector('.zolo-tag-cloud-wrap') && skin == 'default') {
+            tagCloudRef.current.querySelector('.zolo-tag-cloud-wrap').setAttribute('style', '');
+        }
+    }, [tagCloudRef.current, skin]);
 
 
     // preview image
@@ -107,7 +148,7 @@ export default function Edit(props) {
                 <SidebarOpener clientId={clientId} />
                 {
                     attributes?.skin === 'animated' && (
-                        <canvas width={600} height={600} className="zolo-tag-cloud-canvas" id={`${uniqueId}-canvas`}>
+                        <canvas ref={tagCanvasRef} width={attributes?.canvasSize || 400} height={attributes?.canvasSize || 400} className="zolo-tag-cloud-canvas" id={`${uniqueId}-canvas`}>
                             {__('Your browser does not support the canvas element.', 'zoloblocks')}
                         </canvas>
                     )

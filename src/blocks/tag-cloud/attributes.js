@@ -70,12 +70,39 @@ const attributes = {
     type: 'boolean',
     default: false,
   },
-  cloudStyle: {
-    type: 'string',
-    default: 'square',
+  canvasSize: {
+    type: 'number',
+    default: 400,
   },
-
-  itemHoverOpacity:{
+  activeCursor: {
+    type: 'string',
+    default: 'pointer',
+  },
+  depth: {
+    type: 'number',
+    default: 80
+  },
+  speed: {
+    type: 'number',
+    default: 50
+  },
+  triggerOn: {
+    type: 'string',
+    default: 'always'
+  },
+  dragControl: {
+    type: 'boolean',
+    default: false
+  },
+  wheelZoom: {
+    type: 'boolean',
+    default: false
+  },
+  visibleTime: {
+    type: 'number',
+    default: 1
+  },
+  itemHoverOpacity: {
     type: 'number',
   },
 
@@ -117,5 +144,52 @@ const attributes = {
   ...generateBorderAttributies(COUNT_BORDER),
   ...generateDimensionAttributes(COUNT_BORDER_RADIUS),
   ...generateBoxShadowAttributies(COUNT_SHADOW),
+  //animated controls
+  animatedColor: {
+    type: 'string'
+  },
+  animatedBackgroundColor: {
+    type: 'string'
+  },
+  animatedTextShadowColor: {
+    type: 'string',
+    default: '#fff'
+  },
+  animatedTextShadowBlur: {
+    type: 'number',
+    default: 10
+  },
+  animatedBackgroundRadius: {
+    type: 'number',
+    default: 0
+  },
+  animatedOutlineColor: {
+    type: 'string',
+    default: '#ddd'
+  },
+  animatedOutlineThickness: {
+    type: 'number',
+    default: 2
+  },
+  animatedOutlineDash: {
+    type: 'number',
+    default: 0
+  },
+  animatedOutlineDashSpace:{
+    type: 'number',
+    default: 2
+  },
+  animatedOutlineDashSpeed: {
+    type: 'number',
+    default: 3
+  },
+  animatedIncrease: {
+    type: 'number',
+    default: 5
+  },
+  animatedBorderRadius: {
+    type: 'number',
+    default: 2
+  },
 }
 export default attributes;

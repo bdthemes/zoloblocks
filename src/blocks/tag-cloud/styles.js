@@ -150,10 +150,10 @@ function Style({props}) {
     controlName: COUNT_SHADOW,
   });
   const desktopAllStyle = `
-        .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
+        .${uniqueId}.zolo-block .zolo-tag-cloud-wrap{
           ${colGapDesk}
         }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-item{
         ${itemBGDesk}
         ${itemPaddingDesk}
         ${itemBorderDesk}
@@ -161,24 +161,24 @@ function Style({props}) {
         ${itemBoxShadow}
       }
 
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-item:hover{
        ${itemHoverBGDesk}
        ${itemHoverBoxShadow}
        ${itemHoverOpacity ? `opacity:${itemHoverOpacity};` : ''}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover .zolo-name {
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-item:hover .zolo-name {
         ${nameHoverColor ? `color:${nameHoverColor};` : ''}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item:hover .zolo-count{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-item:hover .zolo-count{
         ${countHoverColor ? `color:${countHoverColor};` : ''}
         ${countBgHoverColor ? `background-color:${countBgHoverColor};` : ''}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-name{
         ${nameTypoDesk}
         ${nameColor ? `color:${nameColor};` : ''}
       }
 
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-count{
         ${countTypoDesk}
         ${countPaddingDesk}
         ${countBorderDesk}
@@ -192,20 +192,20 @@ function Style({props}) {
   `;
 
   const tabletAllStyle = `
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap{
         ${colGapTab}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-item{
         ${itemBGTab}
         ${itemPaddingTab}
         ${itemBorderTab}
         ${itemBorderRadiusTab}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-name{
         ${nameTypoTab}
       }
 
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-count{
         ${countTypoTab}
         ${countPaddingTab}
         ${countBorderTab}
@@ -214,21 +214,21 @@ function Style({props}) {
 
   `;
   const mobileAllStyle = `
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap{
         ${colGapMob}
       }
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-item{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-item{
         ${itemBGMob}
         ${itemPaddingMob}
         ${itemBorderMob}
         ${itemBorderRadiusMob}
       }
 
-      .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-name{
+      .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-name{
         ${nameTypoMob}
       }
 
-       .${uniqueId}.zolo-block.zolo-tag-cloud-wrap .zolo-count{
+       .${uniqueId}.zolo-block .zolo-tag-cloud-wrap .zolo-count{
         ${countTypoMob}
         ${countPaddingMob}
         ${countBorderMob}
