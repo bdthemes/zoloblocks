@@ -53,6 +53,7 @@ import {
     DSC_MARGIN,
     //icon
     LIST_ICON_SIZE,
+    LIST_ICON_GAP,
     ICON_LIST_BORDER,
     ICON_RADIUS,
     ICON_LIST_BG,
@@ -602,6 +603,13 @@ function Inspector(props) {
                                                 min={0}
                                                 max={100}
                                                 step={1}
+                                            />
+                                            <ResGapControl
+                                                label={__('Gap', 'zoloblocks')}
+                                                controlName={LIST_ICON_GAP}
+                                                requiredProps={requiredProps}
+                                                max={100}
+                                                min={0}
                                             />
                                             <ZoloCardDivider />
                                             <NormalBGControl

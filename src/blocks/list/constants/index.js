@@ -48,6 +48,7 @@ export const DSC_MARGIN = 'dscMargin';
 
 // icon
 export const LIST_ICON_SIZE = 'listIconSize';
+export const LIST_ICON_GAP = 'listIconGap';
 export const ICON_LIST_BG = 'iconListBg';
 export const ICON_LIST_HOVER_BG = 'iconListHoverBg';
 export const ICON_LIST_PADDING = 'iconListPadding';

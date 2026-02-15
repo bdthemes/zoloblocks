@@ -60,6 +60,7 @@ import {
     RIBBON_BG,
     SEPARATOR_WIDTH,
     BTNS_MARGIN,
+    FEATURE_ICON_VERTICAL_ALIGN,
 } from './constants';
 
 import {
@@ -450,6 +451,17 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: ALIGNENT,
         property: 'text-align',
+        attributes,
+    });
+
+    // feature icon vertical alignment
+    const {
+        desktopAlignStyle: featureIconVAlignDesktop,
+        tabAlignStyle: featureIconVAlignTab,
+        mobAlignStyle: featureIconVAlignMob,
+    } = generateResAlignmentStyle({
+        controlName: FEATURE_ICON_VERTICAL_ALIGN,
+        property: 'align-items',
         attributes,
     });
 
@@ -937,7 +949,7 @@ const Style = ({ props }) => {
     }
 
     .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon{
-      ${featureIconBgColor ? `background-color: ${featureIconBgColor};` : ''}
+      background-color: var(--zolo-item-icon-bg-color, ${featureIconBgColor || 'var(--zoloblocks-brand-color)'});
       ${featureIconDeskPadding}
       ${featureIconBorderDesktop}
       ${featureIconDeskRadius}
@@ -945,7 +957,7 @@ const Style = ({ props }) => {
     }
 
     .zolo-block.wp-block-zolo-pricing-table.${uniqueId} .zolo-features-info .zolo-check-icon svg{
-      ${featureIconColor ? `fill: ${featureIconColor};` : ''}
+      fill: var(--zolo-item-icon-color, ${featureIconColor || 'var(--zoloblocks-brand-button-color)'});
       ${featureIconSizeDesktop}
       ${featureIconHSizeDesktop}
     }
@@ -954,7 +966,8 @@ const Style = ({ props }) => {
       ${featureTypoDesktop}
       ${alignDesktop}
       ${featureIconGapDesktop}
-      ${featureColor ? `color: ${featureColor};` : ''}
+      ${featureIconVAlignDesktop}
+      color: var(--zolo-item-text-color, ${featureColor || 'var(--zolo-feature-list-color, inherit)'});
     }
   `;
     const featuresStylesTab = `
@@ -988,6 +1001,7 @@ const Style = ({ props }) => {
       ${featureTypoTab}
       ${alignTab}
       ${featureIconGapTab}
+      ${featureIconVAlignTab}
     }
   `;
     const featuresStylesMobile = `
@@ -1021,6 +1035,7 @@ const Style = ({ props }) => {
       ${featureTypoMobile}
       ${alignMob}
       ${featureIconGapMob}
+      ${featureIconVAlignMob}
     }
   `;
 

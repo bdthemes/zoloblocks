@@ -28,6 +28,7 @@ import {
     DSC_MARGIN,
     //icon
     LIST_ICON_SIZE,
+    LIST_ICON_GAP,
     ICON_LIST_BG,
     ICON_LIST_HOVER_BG,
     ICON_LIST_PADDING,
@@ -86,6 +87,10 @@ const attributes = {
 
     //icon
     ...generateResRangeAttributies(LIST_ICON_SIZE),
+    ...generateGapAttributes(LIST_ICON_GAP, {
+        defaultRange: 10,
+        defaultUnit: 'px',
+    }),
     ...generateNormalBGAttributes(ICON_LIST_BG),
     ...generateNormalBGAttributes(ICON_LIST_HOVER_BG),
     ...generateDimensionAttributes(ICON_LIST_PADDING),

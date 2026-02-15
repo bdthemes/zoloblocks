@@ -65,6 +65,7 @@ export const FEATURE_MARGIN = 'featureMargin';
 export const FEATURE_PADDING = 'featurePadding';
 export const FEATURE_ITEM_GAP = 'featureItemGap';
 export const FEATURE_ICON_PADDING = 'featureIconPadding';
+export const FEATURE_ICON_VERTICAL_ALIGN = 'featureIconVerticalAlign';
 
 // primary button style
 export const BTN_MARGIN = 'btnMargin';

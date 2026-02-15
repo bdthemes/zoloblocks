@@ -36,6 +36,7 @@ import {
     DSC_MARGIN,
     // icon
     LIST_ICON_SIZE,
+    LIST_ICON_GAP,
     ICON_LIST_BG,
     ICON_LIST_HOVER_BG,
     ICON_LIST_PADDING,
@@ -172,6 +173,16 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: ICON_LIST_MARGIN,
         styleFor: 'margin',
+        attributes,
+    });
+
+    // Icon Gap
+    const {
+        gapStylesDesktop: iconGapDesk,
+        gapStylesTab: iconGapTab,
+        gapStylesMobile: iconGapMob,
+    } = generateGapStyle({
+        controlName: LIST_ICON_GAP,
         attributes,
     });
 
@@ -386,6 +397,9 @@ const Style = ({ props }) => {
         ${boxshadowListitem}
         ${DeskListBg}
         ${preset == 'zolo-list-style-4' && desktopHVListAlign}
+        display: flex;
+        align-items: start;
+        ${iconGapDesk}
     }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover{
           ${BorderHovColor && `border-color:${BorderHovColor}`}
@@ -395,6 +409,7 @@ const Style = ({ props }) => {
     }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-icon-and-content-wrap{
         ${preset == 'zolo-list-style-4' && desktopVListAlign}
+        ${iconGapDesk}
     }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover {
         ${boxshadowHListitem}
@@ -528,6 +543,8 @@ const Style = ({ props }) => {
         ${TabListp}
         ${TabListBg}
         ${preset == 'zolo-list-style-4' && tabHVListAlign}
+        display: flex;
+        ${iconGapTab}
     }
 
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
@@ -535,6 +552,7 @@ const Style = ({ props }) => {
     }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-icon-and-content-wrap{
         ${preset == 'zolo-list-style-4' && tabVListAlign}
+        ${iconGapTab}
     }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover {
         ${TabHListBg}
@@ -614,12 +632,15 @@ const Style = ({ props }) => {
         ${MobListp}
         ${MobListBg}
         ${preset == 'zolo-list-style-4' && mobHVListAlign}
-    }
+        display: flex;
+        ${iconGapMob}
+    } 
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
         ${preset == 'zolo-list-style-3' && mobVListAlign}
     }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-icon-and-content-wrap{
         ${preset == 'zolo-list-style-4' && mobVListAlign}
+        ${iconGapMob}
     }
      .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover {
         ${MobHListBg}

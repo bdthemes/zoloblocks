@@ -119,7 +119,7 @@ const Edit = (props) => {
 
                             {price && (
                                 <span className="zolo-price">
-                                    {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}    
+                                    {pricePrefix && <span className="currency">{sanitizeText(pricePrefix)}</span>}
                                     <span className="price">{sanitizeText(price)}</span>
                                     {priceSuffix && <span className="fractional">{sanitizeText(priceSuffix)}</span>}
                                 </span>
@@ -201,9 +201,15 @@ const Edit = (props) => {
                         {features.length !== 0 && showFeatures && (
                             <ul className="features">
                                 {features.map((item, index) => (
-                                    <li key={index}>
+                                    <li key={index} style={{ '--zolo-item-text-color': item.color }}>
                                         {item.icon && hideFeatureIcon !== true && (
-                                            <span className="zolo-check-icon">
+                                            <span
+                                                className="zolo-check-icon"
+                                                style={{
+                                                    '--zolo-item-icon-color': item.iconColor,
+                                                    '--zolo-item-icon-bg-color': item.iconBgColor,
+                                                }}
+                                            >
                                                 <DisplayZoloIcon icon={item.icon} />
                                             </span>
                                         )}

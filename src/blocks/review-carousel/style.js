@@ -774,21 +774,21 @@ const Style = ({ props }) => {
             fill: ${navHoverColor};
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
             ${pagSpacingDesktop}
         }
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
             ${pagBottomSpacingDesktop}
         }
 
-        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination .swiper-pagination-bullet {
             ${pagDeskWidth}
             ${pagDeskHeight}
             ${pagBorderStyles}
             ${pagBorderRadiusDesktop}
             ${pagNormalBGStyle}
         }
-        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination .swiper-pagination-bullet-active {
             ${apagDeskWidth}
             ${apagDeskHeight}
             ${apagBorderStyles}
@@ -931,7 +931,7 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
             ${pagBottomSpacingTab}
         }
-        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination .swiper-pagination-bullet-active {
             ${apagTabWidth}
             ${apagTabHeight}
             ${apagBorderStylesTab}
@@ -1052,7 +1052,7 @@ const Style = ({ props }) => {
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination {
             ${pagBottomSpacingMob}
         }
-        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination-bullets .swiper-pagination-bullet-active {
+        .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper-pagination .swiper-pagination-bullet-active {
 
             ${apagMobWidth}
             ${apagMobHeight}
