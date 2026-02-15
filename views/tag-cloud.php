@@ -46,6 +46,9 @@ $zolo_tag_canvas_settings = [
 	'shadow'             => $settings['animatedTextShadowColor'] ?? null,
 	'shadowBlur'         => isset( $settings['animatedTextShadowBlur'] ) ? (float) $settings['animatedTextShadowBlur'] : null,
 	'wheelZoom'          => ! empty( $settings['wheelZoom'] ),
+	'textHeight'         => isset( $settings['animatedTextSize'] ) ? (float) $settings['animatedTextSize'] : 15,
+	'shape'              => $settings['cloudShape'] ?? 'sphere',
+	'lock'		 	 	 => $settings['rotationLock'] ?? null,
 ];
 ?>
 

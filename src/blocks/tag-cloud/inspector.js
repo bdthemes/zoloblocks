@@ -101,6 +101,31 @@ export default function Inspector(props) {
                             {
                                 skin === 'animated' && (
                                     <>
+                                        <ZoloSelectControl
+                                            label={__('Cloud Shape', 'zoloblocks')}
+                                            value={attributes?.cloudShape}
+                                            options={[
+                                                { label: __('Sphere', 'zoloblocks'), value: 'sphere' },
+                                                { label: __('Vcylinder', 'zoloblocks'), value: 'vcylinder' },
+                                                { label: __('Hcylinder', 'zoloblocks'), value: 'hcylinder' },
+                                                { label: __('Hring', 'zoloblocks'), value: 'hring' },
+                                            ]}
+                                            onChange={(cloudShape) => {
+                                                setAttributes({ cloudShape });
+                                            }}
+                                        />
+                                        <ZoloSelectControl
+                                            label={__('Rotation Lock', 'zoloblocks')}
+                                            value={attributes?.rotationLock}
+                                            options={[
+                                                { label: __('None', 'zoloblocks'), value: '' },
+                                                { label: __('X', 'zoloblocks'), value: 'x' },
+                                                { label: __('Y', 'zoloblocks'), value: 'y' },
+                                            ]}
+                                            onChange={(rotationLock) => {
+                                                setAttributes({ rotationLock });
+                                            }}
+                                        />
                                         <ZoloNumberControl
                                             label={__('Canvas Size', 'zoloblocks')}
                                             value={Number(attributes.canvasSize)}
@@ -379,6 +404,13 @@ export default function Inspector(props) {
                             skin === 'animated' && (
                                 <>
                                     <ZoloPanelBody title={__('Animated', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                                        <ZoloRangeControl
+                                            label={__('Text Size', 'zoloblocks')}
+                                            value={attributes?.animatedTextSize}
+                                            onChange={(newValue) => {
+                                                setAttributes({ animatedTextSize: newValue });
+                                            }}
+                                        />
                                         <ColorControl
                                             label={__('Color', 'zoloblocks')}
                                             color={attributes?.animatedColor}

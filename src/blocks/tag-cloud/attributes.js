@@ -66,6 +66,14 @@ const attributes = {
     type: 'string',
     default: 'default',
   },
+  cloudShape: {
+    type: 'string',
+    default: 'sphere',
+  },
+  rotationLock: {
+    type: 'string',
+    default: ''
+  },
   openInNewTab: {
     type: 'boolean',
     default: false,
@@ -145,6 +153,9 @@ const attributes = {
   ...generateDimensionAttributes(COUNT_BORDER_RADIUS),
   ...generateBoxShadowAttributies(COUNT_SHADOW),
   //animated controls
+  animatedTextSize: {
+    type: 'number'
+  },
   animatedColor: {
     type: 'string'
   },

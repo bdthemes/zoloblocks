@@ -84,7 +84,11 @@ export default function Edit(props) {
         shadow: attributes?.animatedTextShadowColor || null,
         shadowBlur: attributes?.animatedTextShadowBlur || null,
         wheelZoom: attributes?.wheelZoom || false,
+        textHeight: attributes?.animatedTextSize || 15,
+        shape: attributes?.cloudShape || 'sphere',
+        lock: attributes?.rotationLock || null,
     }
+    
 
     useLayoutEffect(() => {
         if (!hasData) return;
