@@ -81,6 +81,8 @@ if (! class_exists('Dashboard')) {
          */
 
         public function enqueue_scripts() {
+            global $pagenow;
+            if ($pagenow == 'post.php' || $pagenow == 'post-new.php' || $pagenow == 'site-editor.php' || $pagenow == 'widgets.php') return;
             wp_enqueue_style('zolo-dashboard-css', trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/assets/css/dashboard.css', [], ZOLO_VERSION, 'all');
         }
         /**

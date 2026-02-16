@@ -29,6 +29,9 @@ class Biggopties {
 	 * @param string $hook_suffix The current admin page.
 	 */
 	public function enqueue_biggopti_scripts($hook_suffix) {
+		global $pagenow;
+
+		if ($pagenow == 'post.php' || $pagenow == 'post-new.php' || $pagenow == 'site-editor.php' || $pagenow == 'widgets.php') return;
 		// Enqueue jQuery
 		wp_enqueue_script('jquery');
 

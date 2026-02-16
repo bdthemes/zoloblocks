@@ -27,6 +27,7 @@ if (! class_exists('PopupBuilder')) {
          * @return void
          */
         public function __construct() {
+            //TODO: Need proper investigation on this
             add_action('init', [$this, 'register_post_type']);
             add_action('init', [$this, 'check_and_set_popup_cookie']);
             add_filter('manage_zolo-popup_posts_columns', [$this, 'set_custom_edit_zolo_popup_columns']);

@@ -168,7 +168,11 @@ class PostCategoryImage {
      *
      * @return void
      */
-    public function load_media_files() {
+    public function load_media_files($hook_suffix) {
+        if (!$this->is_category_taxonomy_screen($hook_suffix)) {
+            return;
+        }
+
         wp_enqueue_media();
     }
 
@@ -178,6 +182,10 @@ class PostCategoryImage {
      * @return void
      */
     public function load_category_media_scripts() {
+        if (!$this->is_category_taxonomy_screen()) {
+            return;
+        }
+
     ?>
         <script>
             (function($) {
@@ -203,5 +211,26 @@ class PostCategoryImage {
             })(jQuery);
         </script>
 <?php
+    }
+
+    /**
+     * Check if current admin screen is category taxonomy add/edit page.
+     *
+     * @param string $hook_suffix Current admin page hook.
+     * @return bool
+     */
+    private function is_category_taxonomy_screen($hook_suffix = '') {
+        $taxonomy = isset($_GET['taxonomy']) ? sanitize_key(wp_unslash($_GET['taxonomy'])) : '';
+        $page_taxonomy = isset($_GET['tax']) ? sanitize_key(wp_unslash($_GET['tax'])) : '';
+
+        if ('category' !== $taxonomy && 'category' !== $page_taxonomy) {
+            return false;
+        }
+
+        if ('' !== $hook_suffix && !in_array($hook_suffix, ['edit-tags.php', 'term.php'], true)) {
+            return false;
+        }
+
+        return true;
     }
 }
