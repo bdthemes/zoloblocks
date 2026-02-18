@@ -76,7 +76,6 @@ export { generateDimensionAttributes, generateDimensionStyle } from '../helpers/
 export { generateGapAttributes, generateGapStyle } from '../helpers/gap-helper';
 export { generateMaskAttributes, generateMaskStyles } from '../helpers/mask-helper';
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from '../helpers/normal-bg-helpers';
-export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from '../helpers/preview-btns-helper';
 export { generateResAlignmentAttributies, generateResAlignmentStyle } from '../helpers/res-alignment-helper';
 export { generateResCounterAttributies, generateResCounterStyle } from '../helpers/res-counter-helper';
 export { generateResRangeAttributies, generateResRangeStyle } from '../helpers/res-range-helper';

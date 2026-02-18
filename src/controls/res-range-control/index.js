@@ -17,7 +17,9 @@ const ResRangeControl = ({
     object = false,
     objectName = '',
 }) => {
-    const { attributes, setAttributes, resMode } = requiredProps;
+    const { attributes, setAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const desktopRange = object ? attributes?.[objectName][`${prefix}${controlName}Range`] : attributes?.[`${prefix}${controlName}Range`];
     const tabRange = object ? attributes?.[objectName][`${prefix}TAB${controlName}Range`] : attributes?.[`${prefix}TAB${controlName}Range`];

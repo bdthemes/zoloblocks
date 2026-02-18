@@ -10,7 +10,9 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import ColorBtn from '../color-btn';
 
 function TextShadowControl({ label = '', controlName, requiredProps }) {
-    const { attributes, setAttributes, resMode, objAttributes } = requiredProps;
+    const { attributes, setAttributes, objAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const strokeWidthAttr = `${resMode === 'Desktop' ? '' : resMode.slice(0, 3).toUpperCase()}${controlName}strokeWidth`;
     const strokeUnitAttr = `${resMode === 'Desktop' ? '' : resMode.slice(0, 3).toUpperCase()}${controlName}strokeUnit`;

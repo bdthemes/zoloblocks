@@ -6,7 +6,9 @@ import classNames from 'classnames';
 import ResetBtn from '../reset-btn';
 
 const ResAlignmentControl = ({ label, controlName, requiredProps, alignOptions, customClass = '', toggle= false }) => {
-    const { attributes, setAttributes, resMode } = requiredProps;
+    const { attributes, setAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const {
         [`${controlName}ZRPAlign`]: desktopAlignment,

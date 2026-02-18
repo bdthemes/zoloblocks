@@ -7,7 +7,9 @@ import LinkUnlink from '../link-unlink';
 import ResRange from './range';
 
 const ResGapControl = ({ label, controlName, requiredProps, units = null, max = null }) => {
-    const { attributes, setAttributes, resMode } = requiredProps;
+    const { attributes, setAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const {
         [`${prefix}${controlName}Gap`]: desktopGap,

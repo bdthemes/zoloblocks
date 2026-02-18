@@ -1,5 +1,6 @@
 // attributes
 import './attributes';
+import './block-wrapper-props';
 // copy paste
 import './copy-paste';
 
