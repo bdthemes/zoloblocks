@@ -575,10 +575,8 @@ addFilter('blocks.registerBlockType', 'zolo/extension/background-parallax', (set
                 type: 'object',
                 default: {
                     active: false,
-                    orientation: 'up',
-                    scale: 1.4,
-                    delay: 0.4,
-
+                    direction: 'up',
+                    speed: 0.3,
                 },
             },
         };

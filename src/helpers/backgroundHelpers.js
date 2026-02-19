@@ -944,7 +944,7 @@ export const generateBackgroundControlStyles = ({
   }
 
   ${
-      isBgOverlay
+      isBgOverlay || backgroundParallax?.active
           ? `
         z-index: 2;
         position: relative;
