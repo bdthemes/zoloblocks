@@ -1,5 +1,6 @@
 import { addQueryArgs } from '@wordpress/url';
 import { __ } from '@wordpress/i18n';
+import { SandBox } from '@wordpress/components';
 import CustomPlayer from './custom-player';
 
 const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
@@ -59,7 +60,6 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
             }
 
             const queryParams = {
-                enablejsapi: 1,
                 mute: mute ? 1 : 0,
                 controls: playerControl ? 1 : 0,
                 playsinline: 1,
@@ -68,10 +68,9 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
                 playlist: loop ? youtubeVideoId : undefined,
                 modestbranding: youtubeModestBranding ? 1 : 0,
                 autoplay: autoPlay ? 1 : 0,
-                start: startTime || 0,
+                start: startTime || undefined,
                 end: endTime || undefined,
                 cc_load_policy: showCaption ? '1' : '0',
-                origin: window.location.origin, // Required for enablejsapi=1
             };
 
             const src = addQueryArgs(`https://www.youtube${isPrivacyMode ? '-nocookie' : ''}.com/embed/${youtubeVideoId}`, queryParams);
@@ -79,18 +78,34 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
             externalVideoUrl = rawUrl;
             openInNewTab = youtubeUrl?.openInNewTab || false;
 
-            iframeMarkup = (
-                <iframe
-                    style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 99999999, border: 0 }}
-                    className="youtube-iframe video-iframe"
-                    src={src}
-                    title={__('YouTube video player', 'zoloblocks')}
-                    allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    loading={isLazyLoad ? 'lazy' : 'auto'}
-                />
-            );
+            if (isEdit) {
+                // In editor: use WordPress SandBox component to avoid nested iframe referrer issues (Error 153)
+                const sandboxHtml = `<iframe style="width:100%; aspect-ratio:16/9; border:0;" src="${src}" title="YouTube video player" allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+                iframeMarkup = (
+                    <div
+                        key={`youtube-sandbox-${youtubeVideoId}`}
+                        className="youtube-iframe video-iframe"
+                        style={{ width: '100%', aspectRatio: '16 / 9' }}
+                    >
+                        <SandBox html={sandboxHtml} />
+                    </div>
+                );
+            } else {
+                // On frontend: render the actual iframe directly
+                iframeMarkup = (
+                    <iframe
+                        key={`youtube-${youtubeVideoId}`}
+                        style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 99999999, border: 0 }}
+                        className="youtube-iframe video-iframe"
+                        src={src}
+                        title={__('YouTube video player', 'zoloblocks')}
+                        allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                        loading={isLazyLoad ? 'lazy' : 'auto'}
+                    />
+                );
+            }
             break;
         }
 
