@@ -39,8 +39,15 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
 
             let youtubeVideoId;
             try {
-                const parsedUrl = new URL(rawUrl);
-                youtubeVideoId = parsedUrl.searchParams.get('v');
+                // Support for various YouTube URL formats:
+                // - standard: youtube.com/watch?v=ID
+                // - short: youtu.be/ID
+                // - embed: youtube.com/embed/ID
+                // - shorts: youtube.com/shorts/ID
+                const match = rawUrl.match(
+                    /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|v\/)|youtu\.be\/)([^?&"'>]+)/
+                );
+                youtubeVideoId = match && match[1];
             } catch (err) {
                 console.warn('Invalid YouTube URL format:', rawUrl);
                 break;
@@ -64,6 +71,7 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
                 start: startTime || 0,
                 end: endTime || undefined,
                 cc_load_policy: showCaption ? '1' : '0',
+                origin: window.location.origin, // Required for enablejsapi=1
             };
 
             const src = addQueryArgs(`https://www.youtube${isPrivacyMode ? '-nocookie' : ''}.com/embed/${youtubeVideoId}`, queryParams);
