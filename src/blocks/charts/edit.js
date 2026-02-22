@@ -3,7 +3,6 @@ import { useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import ApexCharts from 'react-apexcharts';
-import { applyFilters } from '@wordpress/hooks';
 
 const { classArrayToStr, SidebarOpener, sanitizeText } = window.zoloModule;
 
@@ -138,15 +137,11 @@ export default function Edit( props ) {
         parentClasses,
         barChartData,
         chartType,
-        uploadStatus,
-        sourceType,
-        chartInputData,
         showTitle,
         showSubTitle,
         showLegend,
         showTooltip,
         showGrid,
-        showDropshadow,
         titleObject,
         subTitleObject,
         legendObject,
@@ -154,7 +149,6 @@ export default function Edit( props ) {
         showGridY,
         showGridX,
         pieChartData,
-        chartBackground,
         pieChartColor,
         xAxisColor,
         xAxisFontSize,
@@ -261,19 +255,14 @@ export default function Edit( props ) {
         className: classnames( className, `${ uniqueId }`, classArrayToStr( parentClasses ) ),
     } );
 
-    const renderHookBefore = applyFilters( 'zolo.blocks.render.hook.before', [], props );
-    const renderHookAfter = applyFilters( 'zolo.blocks.render.hook.after', [], props );
-
     if ( preview ) {
         return <img src={ zoloParams.blocksPreview.charts } alt={ __( 'Charts Preview', 'zoloblocks' ) } />;
     }
-
     return (
         <>
             { isSelected && <Inspector attributes={ attributes } setAttributes={ setAttributes } /> }
             <Style props={ props } />
             <div { ...blockProps }>
-                { renderHookBefore && renderHookBefore }
                 <SidebarOpener clientId={ clientId } />
                 <ApexCharts
                     options={ chartOptions }
@@ -282,7 +271,6 @@ export default function Edit( props ) {
                     width={ '100%' }
                     height={ chartHeight }
                 />
-                { renderHookAfter && renderHookAfter }
             </div>
         </>
     );
