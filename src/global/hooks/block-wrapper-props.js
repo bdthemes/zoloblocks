@@ -3,6 +3,40 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 import { useMemo, useEffect, useRef } from '@wordpress/element';
 import classnames from 'classnames';
 
+
+export const getChangedAttributes = (prev = {}, next = {}) => {
+    const changes = [];
+
+    const allKeys = new Set([
+        ...Object.keys(prev),
+        ...Object.keys(next),
+    ]);
+
+    allKeys.forEach((key) => {
+        const prevVal = prev[key];
+        const nextVal = next[key];
+
+        // deep compare using JSON stringify (debug use only)
+        const isEqual =
+            JSON.stringify(prevVal) === JSON.stringify(nextVal);
+
+        if (!isEqual) {
+            changes.push({
+                key,
+                before: prevVal,
+                after: nextVal,
+            });
+        }
+    });
+
+    return {
+        count: changes.length,
+        keys: changes.map(c => c.key),
+        changes,
+    };
+};
+
+
 const withBlockWrapperProps = createHigherOrderComponent((BlockListBlock) => {
     return (props) => {
         const { attributes, clientId, name, setAttributes } = props;
@@ -23,7 +57,11 @@ const withBlockWrapperProps = createHigherOrderComponent((BlockListBlock) => {
             }, []);
 
             useEffect(() => {
+                if(uniqueId === newUniqueId) return;
                 if (JSON.stringify(oldAttributes.current) !== JSON.stringify(attributes)) {
+                    const changedAttributes = getChangedAttributes(oldAttributes.current, attributes);
+                    console.log({changedAttributes});
+                    
                     setAttributes({
                         uniqueId: newUniqueId,
                     })

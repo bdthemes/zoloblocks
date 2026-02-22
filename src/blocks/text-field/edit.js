@@ -43,16 +43,6 @@ export default function Edit(props) {
         customNameAttribute,
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
     const blockProps = useBlockProps({
         className: classnames(
             className,
@@ -68,15 +58,23 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.text} alt={__('Text Preview', 'zoloblocks')} />;
     }
 
-    /**
-     * context
-     */
+    const childContextData = {
+        preset: context['zolo/preset'],
+        showFieldIcon: context['zolo/showFieldIcon'],
+    }
+
+    const childContextAttributes = {
+        preset: attributes.preset,
+        showFieldIcon: attributes.showIcon,
+    }
+
     useEffect(() => {
-        setAttributes({
-            showIcon: context['zolo/showFieldIcon'],
-            preset: context['zolo/preset'],
-        });
-    }, [context]);
+        if (!context) return;
+
+        if (JSON.stringify(childContextData) !== JSON.stringify(childContextAttributes)) {
+            setAttributes(childContextData);
+        }
+    }, [childContextData]);
 
     return (
         <>

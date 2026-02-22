@@ -238,15 +238,6 @@ export default function Edit(props) {
         showReset,
     ]);
 
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });

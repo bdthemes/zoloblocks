@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { useBlockProps, BlockControls, MediaUpload } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -13,9 +12,8 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup, sanitizeUrl, sanitizeText } = window.zoloModule;
+const { classArrayToStr, ZoloToolbarButton, ZoloToolbarGroup, sanitizeUrl, sanitizeText } = window.zoloModule;
 
-import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
 
 // import style
@@ -44,16 +42,6 @@ export default function Edit(props) {
         imageRes,
         showCircleImg,
     } = attributes;
-
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),

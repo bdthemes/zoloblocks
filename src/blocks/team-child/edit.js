@@ -49,18 +49,28 @@ export default function Edit(props) {
         onClick: (e) => e.preventDefault(),
     };
 
-    /**
-     * context
-     */
+    const childContextData = {
+        preset: context['zolo/preset'],
+        addDetailPageLink: context['zolo/addDetailPageLink'],
+        showDesignation: context['zolo/showDesignation'],
+        showShortBio: context['zolo/showShortBio'],
+        showSocialProfiles: context['zolo/showSocialProfiles'],
+    }
+
+    const childContextAttributes = {
+        preset: attributes.preset,
+        addDetailPageLink: attributes.addDetailPageLink,
+        showDesignation: attributes.showDesignation,
+        showShortBio: attributes.showShortBio,
+        showSocialProfiles: attributes.showSocialProfiles,
+    }
     useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-            addDetailPageLink: context['zolo/addDetailPageLink'],
-            showDesignation: context['zolo/showDesignation'],
-            showShortBio: context['zolo/showShortBio'],
-            showSocialProfiles: context['zolo/showSocialProfiles'],
-        });
-    }, [context]);
+        if (!context) return;
+
+        if (JSON.stringify(childContextData) !== JSON.stringify(childContextAttributes)) {
+            setAttributes(childContextData);
+        }
+    }, [childContextData]);
 
     return (
         <>
