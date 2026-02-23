@@ -76,3 +76,25 @@
         background: #230aed;
     }
 }
+
+.zolo-border-control {
+    .components-border-control {
+        .components-input-control__suffix {
+            .components-unit-control__select {
+                width: 36px;
+               border-radius: 6px;
+                margin-left: 2px;
+            }
+        }
+        .components-input-control__input {
+            border-radius: 6px;
+            width: 36px !important;
+        }
+        button.components-button.is-tertiary {
+            border-radius: 6px;
+            border: 1px solid #e8e8e8;
+            width: 32px !important;
+            height: 34px !important;
+        }
+    }
+}
