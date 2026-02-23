@@ -1,6 +1,16 @@
 .wp-block-zolo-review-carousel {
     position: relative;
     box-sizing: border-box;
+
+    // &[class*='zolo-pag-ps-'] {
+    //     --swiper-pagination-bottom-padding: 50px;
+    //     .swiper {
+    //         padding-bottom: var(--swiper-pagination-bottom-padding);
+    //     }
+    //     .swiper-navigation-wrap {
+    //         margin-top: calc(-1 * var(--swiper-pagination-bottom-padding));
+    //     }
+    // }
     .swiper {
         --review-carousel-mask-offset: 300px;
     }

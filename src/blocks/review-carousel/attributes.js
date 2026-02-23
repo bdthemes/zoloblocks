@@ -292,6 +292,10 @@ const attributes = {
         type: 'string',
         default: 'center',
     },
+    pagiPosition: {
+        type: 'string',
+        default: 'bottom-center',
+    },
     paginationType: {
         type: 'string',
         default: 'bullets',

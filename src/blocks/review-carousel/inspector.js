@@ -25,6 +25,7 @@ const {
     ZoloPanelBody,
     ResGapControl,
     ZoloIconPicker,
+    SimpleRangeControl,
 } = window.zoloModule;
 
 import {
@@ -106,12 +107,12 @@ function Inspector(props) {
         carouselEffect,
         coverFlowEffect,
         infiniteLoop,
-        autoplay,
-        autoplayDelay,
-        pauseOnMouseEnter,
+        // autoplay,
+        // autoplayDelay,
+        // pauseOnMouseEnter,
         showNavigation,
         showPagination,
-        speed,
+        // speed,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
@@ -122,7 +123,24 @@ function Inspector(props) {
         navHoverBg,
         navWidth,
         presetFiveArrowColor,
+        sliderOptions,
     } = attributes;
+
+
+        const {
+            speed = 800,
+            loop = true,
+            autoplay = true,
+            autoplayDelay = 3000,
+            pauseOnMouseEnter = true,
+            effect = 'slide',
+            coverflowEffect = { slideShadows: true },
+            pagination = true,
+            navigation = false,
+            navPosition = 'center-center',
+            paginationType = 'bullets',
+            pagiPosition,
+        } = sliderOptions || {};
 
     const requiredProps = {
         resMode,
@@ -255,10 +273,13 @@ function Inspector(props) {
                                 options={CAROUSEL_EFFECTS}
                                 onChange={(effect) =>
                                     setAttributes({
-                                        carouselEffect: effect,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            effect,
+                                        },
                                     })
                                 }
-                                value={carouselEffect}
+                                value={effect || 'slide'}
                             />
                             <ResCounterControl
                                 label={__('Column Number', 'zoloblocks')}
@@ -283,60 +304,163 @@ function Inspector(props) {
                                 value={speed}
                                 onChange={(v) =>
                                     setAttributes({
-                                        speed: v,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            speed: v,
+                                        },
                                     })
                                 }
                                 min={1}
                                 max={100}
                                 help={__('Speed:', 'zoloblocks') + speed * 100 + 'ms'}
                             />
-                            {carouselEffect === 'coverflow' && (
+                            {effect === 'coverflow' && (
                                 <>
-                                    <ZoloCardDivider />
-                                    <ZoloRangeControl
-                                        className="zolo-flex-col-control"
+                                    <ZoloToggleControl
+                                        label={__('Slide Shadows', 'zoloblocks')}
+                                        checked={coverflowEffect?.slideShadows || false}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        slideShadows: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                    />
+                                    <SimpleRangeControl
                                         label={__('Rotate', 'zoloblocks')}
-                                        value={coverFlowEffect.rotate}
-                                        onChange={onChangeRotate}
-                                        min={0}
+                                        value={coverflowEffect?.rotate || 50}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        rotate: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        rotate: 50,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={-360}
                                         max={360}
+                                        noUnits={true}
                                     />
-                                    <ZoloRangeControl
-                                        className="zolo-flex-col-control"
+                                    <SimpleRangeControl
                                         label={__('Stretch', 'zoloblocks')}
-                                        value={coverFlowEffect.stretch}
-                                        onChange={onChangeStretch}
+                                        value={coverflowEffect?.stretch || 0}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        stretch: value,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        min={-360}
+                                        max={360}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        stretch: 0,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
                                     />
-                                    <ZoloRangeControl
-                                        className="zolo-flex-col-control"
+
+                                    <SimpleRangeControl
                                         label={__('Depth', 'zoloblocks')}
-                                        value={coverFlowEffect.depth}
-                                        onChange={onChangeDepth}
+                                        value={coverflowEffect?.depth || 100}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        depth: value,
+                                                    },
+                                                },
+                                            })
+                                        }
                                         min={0}
                                         max={1000}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        depth: 100,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
                                     />
-                                    <ZoloRangeControl
-                                        className="zolo-flex-col-control"
+                                    <SimpleRangeControl
                                         label={__('Modifier', 'zoloblocks')}
-                                        value={coverFlowEffect.modifier}
-                                        onChange={onChangeModifier}
+                                        value={coverflowEffect?.modifier || 1}
+                                        onChange={(value) =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        modifier: value,
+                                                    },
+                                                },
+                                            })
+                                        }
                                         min={0}
-                                        max={10}
-                                    />
-                                    <ZoloToggleControl
-                                        label={__('Shadow', 'zoloblocks')}
-                                        checked={coverFlowEffect.slideShadows}
-                                        onChange={onChangeSlideShadows}
+                                        max={1}
+                                        step={0.01}
+                                        onReset={() =>
+                                            setAttributes({
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    coverflowEffect: {
+                                                        ...coverflowEffect,
+                                                        modifier: 1,
+                                                    },
+                                                },
+                                            })
+                                        }
+                                        noUnits={true}
                                     />
                                 </>
                             )}
                             <div className="zolo-custom-heading">{__('Show/hide elements', 'zoloblocks')}</div>
                             <ZoloToggleControl
                                 label={__('Infinite Loop', 'zoloblocks')}
-                                checked={infiniteLoop}
+                                checked={loop}
                                 onChange={() =>
                                     setAttributes({
-                                        infiniteLoop: !infiniteLoop,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            loop: !loop,
+                                        },
                                     })
                                 }
                             />
@@ -345,7 +469,10 @@ function Inspector(props) {
                                 checked={autoplay}
                                 onChange={() =>
                                     setAttributes({
-                                        autoplay: !autoplay,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            autoplay: !autoplay,
+                                        },
                                     })
                                 }
                             />
@@ -353,48 +480,60 @@ function Inspector(props) {
                                 <>
                                     <ZoloRangeControl
                                         className="zolo-flex-col-control"
-                                        label={__('Autoplay Delay', 'zoloblocks')}
+                                        label={__('Autoplay Delay (ms)', 'zoloblocks')}
                                         value={autoplayDelay}
                                         onChange={(v) =>
                                             setAttributes({
-                                                autoplayDelay: v,
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    autoplayDelay: v,
+                                                },
                                             })
                                         }
                                         min={1}
-                                        max={100}
-                                        help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay * 100 + 'ms'}
+                                        max={10000}
+                                        help={__('Autoplay Dealy:', 'zoloblocks') + autoplayDelay + 'ms'}
                                     />
                                     <ZoloToggleControl
                                         label={__('Pause on Mouse Enter', 'zoloblocks')}
                                         checked={pauseOnMouseEnter}
                                         onChange={() =>
                                             setAttributes({
-                                                pauseOnMouseEnter: !pauseOnMouseEnter,
+                                                sliderOptions: {
+                                                    ...sliderOptions,
+                                                    pauseOnMouseEnter: !pauseOnMouseEnter,
+                                                },
                                             })
                                         }
                                     />
                                 </>
                             )}
                             <ZoloToggleControl
-                                label={__('Navigation', 'zoloblocks')}
-                                checked={showNavigation}
+                                label={__('Show Navigation', 'zoloblocks')}
+                                checked={navigation || false}
                                 onChange={() =>
                                     setAttributes({
-                                        showNavigation: !showNavigation,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            navigation: !navigation,
+                                        },
                                     })
                                 }
                             />
                             <ZoloToggleControl
                                 label={__('Pagination', 'zoloblocks')}
-                                checked={showPagination}
+                                checked={pagination}
                                 onChange={() =>
                                     setAttributes({
-                                        showPagination: !showPagination,
+                                        sliderOptions: {
+                                            ...sliderOptions,
+                                            pagination: !pagination,
+                                        },
                                     })
                                 }
                             />
                         </ZoloPanelBody>
-                        {showNavigation && (
+                        {navigation && (
                             <>
                                 <ZoloPanelBody title={__('Navigation', 'zoloblocks')} panelProps={props}>
                                     <ZoloToggleControl

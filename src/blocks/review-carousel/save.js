@@ -17,8 +17,37 @@ const Save = ({ attributes }) => {
         prevNavIcon,
         nextNavIcon,
     } = attributes;
+
+    const {
+        pagination = true,
+        navigation = false,
+        paginationType = 'bullets',
+        pagiPosition = 'bottom-center',
+        navPosition = 'center-center',
+        progressDirection = 'top',
+    } = sliderOptions || {};
+
+    //merge slider options
+    const defaultOptions = {
+        perviewDesktop: attributes?.zolo_carouselColumnsRange,
+        perviewTab: attributes?.zolo_TABcarouselColumnsRange,
+        perviewMobile: attributes?.zolo_MOBcarouselColumnsRange,
+        spacingDesktop: attributes?.zolo_carouselGapRange,
+        spacingTab: attributes?.zolo_TABcarouselGapRange,
+        spacingMob: attributes?.zolo_MOBcarouselGapRange,
+    };
+    const swiperOptions = {
+        ...defaultOptions,
+        ...attributes?.sliderOptions,
+    };
+    // Block Props
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
+        className: classnames(
+            uniqueId,
+            classArrayToStr(parentClasses),
+            preset,
+            pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''
+        ),
     });
 
     return (
@@ -27,16 +56,9 @@ const Save = ({ attributes }) => {
             {...(zoloId && {
                 id: zoloId,
             })}
-            data-swiper-breakpoints={JSON.stringify(breakpoints)}
-            {...(sliderOptions &&
-                (Object.keys(sliderOptions).length > 2 ||
-                    sliderOptions?.breakpoints['1024']['slidesPerView'] !== '3' ||
-                    sliderOptions?.breakpoints['1024']['spaceBetween'] !== 30 ||
-                    sliderOptions?.breakpoints['768']['slidesPerView'] !== '2' ||
-                    sliderOptions?.breakpoints['768']['spaceBetween'] !== 30 ||
-                    sliderOptions?.breakpoints['640']['slidesPerView'] !== '1' ||
-                    sliderOptions?.breakpoints['640']['spaceBetween'] !== 0) && {
-                    'data-swiper-options': JSON.stringify(sliderOptions),
+            {...(swiperOptions &&
+                Object.keys(swiperOptions).length > 1 && {
+                    'data-swiper-options': JSON.stringify(swiperOptions),
                 })}
         >
             <div className="swiper">
@@ -71,6 +93,6 @@ const Save = ({ attributes }) => {
             )}
         </div>
     );
-};
+};;
 
 export default Save;
