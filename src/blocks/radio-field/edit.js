@@ -40,16 +40,6 @@ export default function Edit(props) {
         radioDirection,
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), radioDirection, 'form-group-editor'),
     });
@@ -59,14 +49,15 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.text} alt={__('Text Preview', 'zoloblocks')} />;
     }
 
-    /**
-     * context
-     */
+    const contextPreset = context['zolo/preset'];
     useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-        });
-    }, [context]);
+        if (!context) return;
+        if(contextPreset !== preset) {
+            setAttributes({
+                preset: contextPreset,
+            })
+        }
+    }, [contextPreset]);
 
     const optionArray = convertToOptionsArray(optionData);
     const defaultCheck = transformToValueFormat(defaultValue);

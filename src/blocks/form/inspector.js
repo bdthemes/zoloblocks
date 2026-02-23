@@ -149,9 +149,11 @@ function Inspector(props) {
             path: '/wp/v2/settings',
             method: 'GET',
         }).then(({ zolo_enable_recaptcha }) => {
-            setAttributes({
-                reCaptcha: zolo_enable_recaptcha,
-            });
+            if(reCaptcha !== zolo_enable_recaptcha) {
+                setAttributes({
+                    reCaptcha: zolo_enable_recaptcha,
+                });
+            }
         });
     }, []);
 

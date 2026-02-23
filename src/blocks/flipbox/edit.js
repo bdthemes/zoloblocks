@@ -4,7 +4,7 @@
 import { useBlockProps, MediaPlaceholder } from '@wordpress/block-editor';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { useRef, useEffect } from '@wordpress/element';
+import { useRef } from '@wordpress/element';
 import classnames from 'classnames';
 
 /**

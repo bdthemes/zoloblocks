@@ -20,6 +20,7 @@ import Inspector from './inspector';
 
 // import style
 import Style from './style';
+import { use } from 'react';
 
 /**
  * Edit Function
@@ -29,27 +30,25 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected, context } = props;
     const { preview, uniqueId, parentClasses, preset, progressH, barTitleToggle, barpercentToggle, progressText, progressTextTag } =
         attributes;
+    const childContextData = {
+        preset: context['zolo/preset'],
+        barTitleToggle: context['zolo/titleToggle'],
+        barpercentToggle: context['zolo/percentToggle'],
+        progressTextTag: context['zolo/progressTextTag'],
+    }
+    const childContextAttributes = {
+        preset: attributes.preset,
+        barTitleToggle: attributes.barTitleToggle,
+        barpercentToggle: attributes.barpercentToggle,
+        progressTextTag: attributes.progressTextTag,
+    }
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
     useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
-    useEffect(
-        () =>
-            setAttributes({
-                preset: context['zolo/preset'],
-                barTitleToggle: context['zolo/titleToggle'],
-                barpercentToggle: context['zolo/percentToggle'],
-                progressTextTag: context['zolo/progressTextTag'],
-            }),
-        [context]
-    );
+        if (!context) return;
+        if (JSON.stringify(childContextData) !== JSON.stringify(childContextAttributes)) {
+            setAttributes(childContextData);
+        }
+    }, [childContextData]);
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, `${preset ? preset : 'style-1'}`, classArrayToStr(parentClasses)),

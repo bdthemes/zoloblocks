@@ -59,8 +59,6 @@ const Edit = (props) => {
         btnsDirection,
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-
     //block wrapper class
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses), preset !== '' && preset),
