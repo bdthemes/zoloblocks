@@ -59,11 +59,6 @@ const withBlockWrapperProps = createHigherOrderComponent((BlockListBlock) => {
             useEffect(() => {
                 if(uniqueId === newUniqueId) return;
                 if (JSON.stringify(oldAttributes.current) !== JSON.stringify(attributes)) {
-                    const changedAttributes = getChangedAttributes(oldAttributes.current, attributes);
-                    console.log({
-                        [name]: changedAttributes
-                    });
-                    
                     setAttributes({
                         uniqueId: newUniqueId,
                     })
