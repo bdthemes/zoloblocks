@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText, MediaPlaceholder, MediaUpload, BlockControls } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -60,15 +59,6 @@ export default function Edit(props) {
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
 
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),

@@ -4,7 +4,7 @@
 import { useBlockProps, MediaPlaceholder } from '@wordpress/block-editor';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { useRef, useEffect } from '@wordpress/element';
+import { useRef } from '@wordpress/element';
 import classnames from 'classnames';
 
 /**
@@ -75,8 +75,7 @@ export default function Edit(props) {
     if (preview) {
         return <img src={zoloParams.blocksPreview.flipbox} alt={__('Flip Box Preview', 'zoloblocks')} />;
     }
-
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });

@@ -101,7 +101,7 @@ const attributes = {
     ...generateDimensionAttributes(ANIMATED_BORDER_SIZE),
     preset: {
         type: 'string',
-        default: '',
+        default: 'preset-1',
     },
     // Tab Icons
     collapseIcon: {
