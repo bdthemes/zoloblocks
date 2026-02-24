@@ -5,7 +5,7 @@ import { useBlockProps, BlockControls, InnerBlocks, useInnerBlocksProps } from '
 import { __ } from '@wordpress/i18n';
 import { useRef, useEffect } from '@wordpress/element';
 import { useMergeRefs } from '@wordpress/compose';
-import { useSelect, dispatch } from '@wordpress/data';
+import { useSelect, dispatch, select } from '@wordpress/data';
 import classnames from 'classnames';
 import { createBlock } from '@wordpress/blocks';
 
@@ -17,7 +17,6 @@ const {
     generateResCounterStyle,
     classArrayToStr,
     DisplayZoloIcon,
-    SidebarOpener,
     ZoloToolbarButton,
     ZoloToolbarGroup,
 } = window.zoloModule;
@@ -25,28 +24,14 @@ const {
 import {
     A11y,
     Autoplay,
-    Controller,
     EffectCoverflow,
     EffectCube,
     EffectFade,
     EffectFlip,
     EffectCreative,
     EffectCards,
-    HashNavigation,
-    History,
-    Keyboard,
-    Lazy,
-    Mousewheel,
     Navigation,
     Pagination,
-    Parallax,
-    Scrollbar,
-    Thumbs,
-    Virtual,
-    Zoom,
-    FreeMode,
-    Grid,
-    Manipulation,
 } from 'swiper/modules';
 import { Swiper } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -65,24 +50,12 @@ export default function Edit(props) {
         parentClasses,
         preset,
         resMode,
-        slideItems,
-        sliderType,
-        // autoplay,
-        // autoplayDelay,
-        // pauseOnMouseEnter,
-        infiniteLoop,
         showNavigation,
-        // paginationType,
-        dynamicBullets,
-        // speed,
-        carouselEffect,
         addNewSlideBlock,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        coverFlowEffect,
         sliderOptions,
-        contentPosition,
         pagiPosition,
         showPagination = true,
     } = attributes;
@@ -102,7 +75,6 @@ export default function Edit(props) {
             scale: 1,
             modifier: 1,
         },
-        navigation = false,
         navPosition = 'center-center',
         paginationType = 'bullets',
         progressDirection,
@@ -182,9 +154,9 @@ export default function Edit(props) {
 
     // add new slide
     const appendBlock = () => {
-        const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
-        const newBlock = wp.blocks.createBlock('zolo/review-child', {});
-        wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
+        const childBlocks = select('core/block-editor').getBlocks(clientId);
+        const newBlock = createBlock('zolo/review-child', {});
+        dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
         setAttributes({
             addNewSlideBlock: !addNewSlideBlock,
         });

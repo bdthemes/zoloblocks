@@ -288,10 +288,6 @@ const attributes = {
         type: 'boolean',
         default: true,
     },
-    contentPosition: {
-        type: 'string',
-        default: 'center',
-    },
     pagiPosition: {
         type: 'string',
         default: 'bottom-center',

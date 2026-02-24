@@ -13,21 +13,17 @@ const Save = ({ attributes }) => {
         showPagination = true,
         customNavIcon,
         sliderOptions,
-        breakpoints,
         prevNavIcon,
         nextNavIcon,
-        pagiPosition: attrPagiPosition,
+        pagiPosition,
     } = attributes;
 
     const {
         navigation = false,
         paginationType = 'bullets',
-        pagiPosition = 'bottom-center',
-        navPosition = 'center-center',
         progressDirection = 'top',
     } = sliderOptions || {};
 
-    const pagiPos = attrPagiPosition ?? pagiPosition;
     const isNavVisible = showNavigation !== undefined ? showNavigation : navigation;
     const isPaginationVisible = showPagination !== false;
 
@@ -52,7 +48,7 @@ const Save = ({ attributes }) => {
             uniqueId,
             classArrayToStr(parentClasses),
             preset,
-            showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPos}`) : ''
+            showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''
         ),
     });
 
