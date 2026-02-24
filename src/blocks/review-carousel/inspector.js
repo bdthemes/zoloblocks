@@ -136,9 +136,6 @@ function Inspector(props) {
             effect = 'slide',
             coverflowEffect = { slideShadows: true },
             navigation = false,
-            navPosition = 'center-center',
-            paginationType = 'bullets',
-            pagiPosition,
         } = sliderOptions || {};
 
     const requiredProps = {
