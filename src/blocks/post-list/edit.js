@@ -27,7 +27,6 @@ export default function Edit(props) {
         showfeatureimg,
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId} zolo-post-featured-list-wrap zolo-post-${preset}`, classArrayToStr(parentClasses), {
             'list-grid': !showfeatureimg,

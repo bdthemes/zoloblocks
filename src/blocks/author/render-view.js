@@ -38,8 +38,6 @@ export default function RenderView({ attributes }) {
         dataFetch();
     }, [authorQuery]);
 
-    useEffect(() => {}, []);
-
     return (
         <>
             {isLoading ? (

@@ -41,7 +41,7 @@ const Save = (props) => {
         textError,
         textSubscribed,
         provider: provider ? provider : 'mailchimp',
-        selectedWebhook,
+        selectedWebhook: selectedWebhook ? selectedWebhook : '',
     };
 
     // filter hooks for render

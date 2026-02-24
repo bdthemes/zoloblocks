@@ -38,6 +38,7 @@ function addAttributes(settings) {
         },
         zoloStyles: {
             type: 'object',
+            default: {},
         },
         selectedPanel: {
             type: 'string',

@@ -28,22 +28,31 @@ export default function Edit(props) {
     const { attributes, setAttributes, isSelected, context } = props;
     const { uniqueId, collapseIcon, expandIcon, title, titleTag, parentClasses } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses), 'zolo-accordion-item'),
     });
 
-    /**
-     * context
-     */
+    const childContextData = {
+        preset: context['zolo/preset'],
+        collapseIcon: context['zolo/collapseIcon'],
+        expandIcon: context['zolo/expandIcon'],
+        titleTag: context['zolo/titleTag'],
+    }
+
+    const childContextAttributes = {
+        preset: attributes.preset,
+        collapseIcon: attributes.collapseIcon,
+        expandIcon: attributes.expandIcon,
+        titleTag: attributes.titleTag,
+    }
+
     useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-            collapseIcon: context['zolo/collapseIcon'],
-            expandIcon: context['zolo/expandIcon'],
-            titleTag: context['zolo/titleTag'],
-        });
-    }, [context]);
+        if (!context) return;
+
+        if (JSON.stringify(childContextData) !== JSON.stringify(childContextAttributes)) {
+            setAttributes(childContextData);
+        }
+    }, [childContextData]);
 
     return (
         <>

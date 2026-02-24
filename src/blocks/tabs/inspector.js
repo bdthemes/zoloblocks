@@ -206,17 +206,50 @@ function Inspector(props) {
                             <ZoloToggleControl
                                 label={__('Icon', 'zoloblocks')}
                                 checked={showIcon}
-                                onChange={(newShowIcon) => setAttributes({ showIcon: newShowIcon })}
+                                onChange={(newShowIcon) => {
+                                    const newTabTitles = tabTitles.map((tab) => {
+                                        return {
+                                            ...tab,
+                                            hasMedia: newShowIcon,
+                                        };
+                                    });
+                                    setAttributes({ 
+                                        tabTitles: newTabTitles,
+                                        showIcon: newShowIcon
+                                    });
+                                }}
                             />
                             <ZoloToggleControl
                                 label={__('Title', 'zoloblocks')}
                                 checked={showTitle}
-                                onChange={(newShowTitle) => setAttributes({ showTitle: newShowTitle })}
+                                onChange={(newShowTitle) => {
+                                    const newTabTitles = tabTitles.map((tab) => {
+                                        return {
+                                            ...tab,
+                                            hasTitle: newShowTitle,
+                                        };
+                                    });
+                                    setAttributes({ 
+                                        tabTitles: newTabTitles,
+                                        showTitle: newShowTitle
+                                    });
+                                }}
                             />
                             <ZoloToggleControl
                                 label={__('Description', 'zoloblocks')}
                                 checked={showDesc}
-                                onChange={(newShowDesc) => setAttributes({ showDesc: newShowDesc })}
+                                onChange={(newShowDesc) => {
+                                    const newTabTitles = tabTitles.map((tab) => {
+                                        return {
+                                            ...tab,
+                                            hasDescription: newShowDesc,
+                                        };
+                                    });
+                                    setAttributes({ 
+                                        tabTitles: newTabTitles,
+                                        showDesc: newShowDesc
+                                    });
+                                }}
                             />
                             <ZoloToggleControl
                                 label={__('Active Indicator', 'zoloblocks')}
@@ -294,6 +327,9 @@ function Inspector(props) {
                                 activeTabId={activeTabId}
                                 setActiveTabId={setActiveTabId}
                                 addNewTabStatus={addNewTabStatus}
+                                showTitle={showTitle}
+                                showIcon={showIcon}
+                                showDesc={showDesc}
                             />
                         </ZoloPanelBody>
                     </>

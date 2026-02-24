@@ -64,18 +64,32 @@ export default function Edit(props) {
         onClick: (e) => e.preventDefault(),
     };
 
+    const childContextData = {
+        preset: context['zolo/preset'],
+        brandNameVisible: context['zolo/brandNameVisible'],
+        brandLabelVisible: context['zolo/brandLabelVisible'],
+        enableLogoLink: context['zolo/enableLogoLink'],
+        logoLinkType: context['zolo/logoLinkType'],
+    }
+
+    const childContextAttributes = {
+        preset: attributes.preset,
+        brandNameVisible: attributes.brandNameVisible,
+        brandLabelVisible: attributes.brandLabelVisible,
+        enableLogoLink: attributes.enableLogoLink,
+        logoLinkType: attributes.logoLinkType,
+    }
+
     /**
      * context
      */
     useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-            brandNameVisible: context['zolo/brandNameVisible'],
-            brandLabelVisible: context['zolo/brandLabelVisible'],
-            enableLogoLink: context['zolo/enableLogoLink'],
-            logoLinkType: context['zolo/logoLinkType'],
-        });
-    }, [context]);
+        if(!context) return;
+
+        if (JSON.stringify(childContextData) !== JSON.stringify(childContextAttributes)) {
+            setAttributes(childContextData);
+        }
+    }, [childContextData]);
 
     return (
         <>

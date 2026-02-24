@@ -29,10 +29,12 @@ export default function Edit(props) {
      * context
      */
     useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-        });
-    }, [context]);
+        if(!context) return;
+
+        if (JSON.stringify(attributes?.preset) !== JSON.stringify(context['zolo/preset'])) {
+            setAttributes({ preset: context['zolo/preset'] });
+        }
+    }, [context['zolo/preset']]);
 
     return (
         <>

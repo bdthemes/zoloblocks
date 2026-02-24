@@ -36,7 +36,7 @@ export default function Edit(props) {
                 ],
             });
         }
-    }, [metaData, setAttributes]);
+    }, [metaData]);
 
     const post = useSelect((select) => select('core').getEditedEntityRecord('postType', postType, postId), [postType, postId]);
 
