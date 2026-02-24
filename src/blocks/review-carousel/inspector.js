@@ -135,7 +135,6 @@ function Inspector(props) {
             pauseOnMouseEnter = true,
             effect = 'slide',
             coverflowEffect = { slideShadows: true },
-            pagination = true,
             navigation = false,
             navPosition = 'center-center',
             paginationType = 'bullets',
@@ -510,30 +509,30 @@ function Inspector(props) {
                             )}
                             <ZoloToggleControl
                                 label={__('Show Navigation', 'zoloblocks')}
-                                checked={navigation || false}
-                                onChange={() =>
+                                checked={(showNavigation !== undefined ? showNavigation : navigation) !== false}
+                                onChange={() => {
+                                    const isOn = (showNavigation !== undefined ? showNavigation : navigation) !== false;
+                                    const next = !isOn;
                                     setAttributes({
+                                        showNavigation: next,
                                         sliderOptions: {
                                             ...sliderOptions,
-                                            navigation: !navigation,
+                                            navigation: next,
                                         },
-                                    })
-                                }
+                                    });
+                                }}
                             />
                             <ZoloToggleControl
                                 label={__('Pagination', 'zoloblocks')}
-                                checked={pagination}
+                                checked={showPagination !== false}
                                 onChange={() =>
                                     setAttributes({
-                                        sliderOptions: {
-                                            ...sliderOptions,
-                                            pagination: !pagination,
-                                        },
+                                        showPagination: showPagination === false,
                                     })
                                 }
                             />
                         </ZoloPanelBody>
-                        {navigation && (
+                        {(showNavigation !== undefined ? showNavigation : navigation) && (
                             <>
                                 <ZoloPanelBody title={__('Navigation', 'zoloblocks')} panelProps={props}>
                                     <ZoloToggleControl
@@ -826,7 +825,7 @@ function Inspector(props) {
                             </ZoloPanelBody>
                         )}
 
-                        {showNavigation && (
+                        {(showNavigation !== undefined ? showNavigation : navigation) && (
                             <ZoloPanelBody title={__('Navigation', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     normalComponents={
@@ -920,7 +919,7 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-                        {showPagination && (
+                        {showPagination !== false && (
                             <ZoloPanelBody title={__('Pagination', 'zoloblocks')} stylePanel={true} panelProps={props}>
                                 <TabPanelControl
                                     options={[

@@ -25,23 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 spacingMob = 10,
             } = sliderOptions;
 
+            const paginationEl = carousel.querySelector('.swiper-pagination');
+            const prevEl = carousel.querySelector('.swiper-button-prev');
+            const nextEl = carousel.querySelector('.swiper-button-next');
+
             const defaultOptions = {
-                // loop: loop && carousel.querySelectorAll('.swiper-slide').length > (perviewDesktop || 4) ? true : false,
                 autoplay: autoplay
                     ? { delay: autoplayDelay || 3000, disableOnInteraction: false, pauseOnMouseEnter: pauseOnMouseEnter || false }
                     : false,
                 speed: speed || 800,
                 effect: effect || 'slide',
                 observer: true,
-                // slidesPerView: perviewMobile || 1,
                 spaceBetween: spacingMob ? spacingMob : 10,
-                navigation: navigation
-                    ? {
-                          nextEl: sliderSelector.querySelector('.swiper-button-next'),
-                          prevEl: sliderSelector.querySelector('.swiper-button-prev'),
-                      }
+                navigation: navigation && prevEl && nextEl
+                    ? { nextEl, prevEl }
                     : false,
-                pagination: pagination ? { el: '.swiper-pagination', type: paginationType || 'bullets', clickable: true } : false,
+                pagination: pagination && paginationEl
+                    ? { el: paginationEl, type: paginationType || 'bullets', clickable: true }
+                    : false,
 
                 breakpoints: {
                     768: {

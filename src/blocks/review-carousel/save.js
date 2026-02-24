@@ -10,22 +10,26 @@ const Save = ({ attributes }) => {
         preset,
         zoloId,
         showNavigation,
-        showPagination,
+        showPagination = true,
         customNavIcon,
         sliderOptions,
         breakpoints,
         prevNavIcon,
         nextNavIcon,
+        pagiPosition: attrPagiPosition,
     } = attributes;
 
     const {
-        pagination = true,
         navigation = false,
         paginationType = 'bullets',
         pagiPosition = 'bottom-center',
         navPosition = 'center-center',
         progressDirection = 'top',
     } = sliderOptions || {};
+
+    const pagiPos = attrPagiPosition ?? pagiPosition;
+    const isNavVisible = showNavigation !== undefined ? showNavigation : navigation;
+    const isPaginationVisible = showPagination !== false;
 
     //merge slider options
     const defaultOptions = {
@@ -39,6 +43,8 @@ const Save = ({ attributes }) => {
     const swiperOptions = {
         ...defaultOptions,
         ...attributes?.sliderOptions,
+        navigation: isNavVisible,
+        pagination: isPaginationVisible,
     };
     // Block Props
     const blockProps = useBlockProps.save({
@@ -46,7 +52,7 @@ const Save = ({ attributes }) => {
             uniqueId,
             classArrayToStr(parentClasses),
             preset,
-            pagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''
+            showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPos}`) : ''
         ),
     });
 
@@ -66,18 +72,18 @@ const Save = ({ attributes }) => {
                     <InnerBlocks.Content />
                 </div>
             </div>
-            {(showPagination || showPagination === undefined) && (
+            {showPagination && (
                 <div className="swiper-pagination swiper-pagination-position-bottom"></div>
             )}
-            {showNavigation && (
+            {isNavVisible && (
                 <>
                     <div className={`swiper-navigation-wrap  swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}>
                         {customNavIcon && (
                             <>
-                                <div className="swiper-nav-button swiper-zolo-prev">
+                                <div className="swiper-nav-button swiper-zolo-prev swiper-button-prev">
                                     <DisplayZoloIcon icon={prevNavIcon} />
                                 </div>
-                                <div className="swiper-nav-button swiper-zolo-next">
+                                <div className="swiper-nav-button swiper-zolo-next swiper-button-next">
                                     <DisplayZoloIcon icon={nextNavIcon} />
                                 </div>
                             </>
@@ -93,6 +99,6 @@ const Save = ({ attributes }) => {
             )}
         </div>
     );
-};;
+};
 
 export default Save;
