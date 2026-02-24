@@ -95,9 +95,9 @@ export default function Edit(props) {
         showPhoto: context['zolo/showPhoto'],
         showName: context['zolo/showName'],
         showRating: context['zolo/showRating'],
-        showQuote: context['zolo/showQuote'],
+        showQuote: context['zolo/showQuote'] || true,
         addReviewerWebsiteLink: context['zolo/addReviewerWebsiteLink'],
-        presetFourLayout: context['zolo/presetFourLayout'],
+        presetFourLayout: context['zolo/presetFourLayout'] || 'zolo-fl-normal',
     }
 
     const childContextAttributes = {
