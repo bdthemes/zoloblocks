@@ -25,10 +25,8 @@ const {
     TextGradientControl,
     IconicBtnGroup,
     AdvancedOptions,
-    TabPanelControl,
     ZoloPanelBody,
     ImageAvatar,
-    BackgroundControl,
     ZoloIconPicker,
     NormalBGControl,
 } = window.zoloModule;
@@ -345,18 +343,16 @@ const Inspector = (props) => {
 
                         {showSeparator && (
                             <ZoloPanelBody title={__('Separator', 'zoloblocks')} panelProps={props}>
-                                <div className="zolo-flex-row-control-tab">
-                                    <IconicBtnGroup
-                                        label={__('Position', 'zoloblocks')}
-                                        value={separatorPosition}
-                                        onChange={(value) =>
-                                            setAttributes({
-                                                separatorPosition: value,
-                                            })
-                                        }
-                                        options={ST_POSITION}
-                                    />
-                                </div>
+                                <ZoloSelectControl
+                                    label={__('Position', 'zoloblocks')}
+                                    value={separatorPosition}
+                                    onChange={(value) =>
+                                        setAttributes({
+                                            separatorPosition: value,
+                                        })
+                                    }
+                                    options={ST_POSITION}
+                                />
                             </ZoloPanelBody>
                         )}
                         {showTransparentTitle && (

@@ -69,6 +69,9 @@ const Edit = (props) => {
         onChange: (newSubTitleText) => setAttributes({ subTitleText: newSubTitleText }),
     };
 
+    console.log(separatorPosition);
+    
+
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}
@@ -116,6 +119,13 @@ const Edit = (props) => {
                         ))}
 
                     <DynamicTag tagName={titleTagName} className="zolo-ah-title">
+                        {
+                            showSeparator && separatorPosition.includes('left') && (
+                                <span className="zolo-separator-wrapper">
+                                    <span className="zolo-ah-separator"></span>
+                                </span>
+                            )
+                        }
                         <RichText
                             tagName={enableTitleLink && titleLink ? 'a' : 'span'}
                             className={`zolo-ah-main-title ${enableTitleLink ? 'has-link' : ''}`}
@@ -131,6 +141,13 @@ const Edit = (props) => {
                                   }
                                 : {})}
                         />
+                        {
+                            showSeparator && separatorPosition.includes('right') && (
+                                <span className="zolo-separator-wrapper">
+                                    <span className="zolo-ah-separator"></span>
+                                </span>
+                            )
+                        }
                     </DynamicTag>
 
                     {showSubTitle &&
