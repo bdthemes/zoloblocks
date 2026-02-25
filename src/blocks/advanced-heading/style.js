@@ -98,6 +98,7 @@ export default function Style({ props }) {
         subTitleStyles,
         subTitleBadgeColor,
         subTitleIconColor,
+        separatorPosition,
     } = attributes;
 
     //title style generate
@@ -196,13 +197,14 @@ export default function Style({ props }) {
         property: 'border-width',
         attributes,
     });
+
     const {
         desktopRangeStyle: separatorSpacingDesktop,
         tabRangeStyle: separatorSpacingTab,
         mobRangeStyle: separatorSpacingMob,
     } = generateResRangeStyle({
         controlName: SEPARATOR_SPACING,
-        property: 'margin-top',
+        property: '--separator-spacing',
         attributes,
     });
 
@@ -695,11 +697,14 @@ export default function Style({ props }) {
       border-style: none none solid;
       ${separatorColor ? `border-color: ${separatorColor};` : ''}
       ${separatorHeightDesktop}
-      ${separatorSpacingDesktop}
        ${separatorWidthDesktop}
     }
-      .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper {
+    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper {
       ${separatorWidthDesktop}
+    }
+    
+    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper .zolo-ah-separator {
+      ${separatorSpacingDesktop}
     }
 `;
 
@@ -707,22 +712,28 @@ export default function Style({ props }) {
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightTab}
       ${separatorWidthTab}
-      ${separatorSpacingTab}
       ${separatorWidthTab}
     }
     .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper {
           ${separatorWidthTab}
-        }
+    }
+  
+    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper .zolo-ah-separator {
+        ${separatorSpacingTab}
+    }
 `;
 
     const separatorStylesMobile = `
     .zolo-block-wrapper.${uniqueId} .zolo-ah-separator {
       ${separatorHeightMob}
-      ${separatorSpacingMob}
       ${separatorWidthMob}
     }
      .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper {
         ${separatorWidthMob}
+    }
+    
+    .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper .zolo-ah-separator {
+      ${separatorSpacingMob}
     }
 `;
 

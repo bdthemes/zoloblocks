@@ -22,10 +22,7 @@
         color: var(--zolo-subtitle-color);
         font-weight: 500;
         text-transform: capitalize;
-        // border: 1px solid rgba(194, 194, 194, 0.612);
-        // padding: 10px 12px;
         display: inline-block;
-        // border-radius: 6px;
     }
 
     .zolo-transparent-heading-wrap {
@@ -34,7 +31,6 @@
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        // color: rgba(156, 156, 156);
     }
 
     .zolo-ah-title {
@@ -46,7 +42,6 @@
     .zolo-ah-title {
         font-size: clamp(1.5rem, 4vw, 2.25rem);
         font-weight: 700;
-        // text-transform: capitalize;
         z-index: 1;
         &:hover {
             text-decoration: none;
@@ -88,6 +83,28 @@
 .zolo-separator-wrapper {
     display: inline-flex;
     vertical-align: top;
+
+    .zolo-ah-separator {
+        margin-block-start: var(--separator-spacing);
+    }
+
+    &.zolo-separator-left, &.zolo-separator-right {
+        vertical-align: middle;
+    }
+
+    &.zolo-separator-left {
+        .zolo-ah-separator {
+            margin-block-start: 0;
+            margin-inline-end: var(--separator-spacing);
+        }
+    }
+
+    &.zolo-separator-right {
+        .zolo-ah-separator {
+            margin-block-start: 0;
+            margin-inline-start: var(--separator-spacing);
+        }
+    }
 }
 
 .zolo-transform-origin-top-left {

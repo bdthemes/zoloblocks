@@ -121,7 +121,7 @@ const Edit = (props) => {
                     <DynamicTag tagName={titleTagName} className="zolo-ah-title">
                         {
                             showSeparator && separatorPosition.includes('left') && (
-                                <span className="zolo-separator-wrapper">
+                                <span className='zolo-separator-wrapper zolo-separator-left'>
                                     <span className="zolo-ah-separator"></span>
                                 </span>
                             )
@@ -143,7 +143,7 @@ const Edit = (props) => {
                         />
                         {
                             showSeparator && separatorPosition.includes('right') && (
-                                <span className="zolo-separator-wrapper">
+                                <span className='zolo-separator-wrapper zolo-separator-right'>
                                     <span className="zolo-ah-separator"></span>
                                 </span>
                             )

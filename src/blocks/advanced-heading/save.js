@@ -91,6 +91,13 @@ const Save = (props) => {
                     ))}
 
                 <DynamicTag tagName={titleTagName} className="zolo-ah-title">
+                    {
+                        showSeparator && separatorPosition.includes('left') && (
+                            <span className='zolo-separator-wrapper zolo-separator-left'>
+                                <span className="zolo-ah-separator"></span>
+                            </span>
+                        )
+                    }
                     <RichText.Content
                         tagName={enableTitleLink && titleLink ? 'a' : 'span'}
                         className={`zolo-ah-main-title ${enableTitleLink ? 'has-link' : ''}`}
@@ -98,13 +105,20 @@ const Save = (props) => {
                         allowedFormats={['core/bold', 'core/italic']}
                         {...(enableTitleLink && titleLink
                             ? {
-                                  href: sanitizeUrl(titleLink.url),
-                                  target: titleLink.openInNewTab ? '_blank' : '_self',
-                                  rel: titleLink.openInNewTab ? 'noopener noreferrer' : 'noopener',
-                                  title: sanitizeText(titleText),
-                              }
+                                href: sanitizeUrl(titleLink.url),
+                                target: titleLink.openInNewTab ? '_blank' : '_self',
+                                rel: titleLink.openInNewTab ? 'noopener noreferrer' : 'noopener',
+                                title: sanitizeText(titleText),
+                            }
                             : {})}
                     />
+                    {
+                        showSeparator && separatorPosition.includes('right') && (
+                            <span className='zolo-separator-wrapper zolo-separator-right'>
+                                <span className="zolo-ah-separator"></span>
+                            </span>
+                        )
+                    }
                 </DynamicTag>
 
                 {showSubTitle &&
