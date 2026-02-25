@@ -2,15 +2,15 @@
  * WordPress dependencies
  */
 import { RichText, useBlockProps, InnerBlocks } from '@wordpress/block-editor';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useMemo } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
-
+import { getBlockTypes } from '@wordpress/blocks';
 /**
  * Internal depencencies
  */
-const { classArrayToStr, DisplayZoloIcon, SidebarOpener, sanitizeText, sanitizeUrl } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener, sanitizeText } = window.zoloModule;
 
 import Inspector from './inspector';
 import Style from './style';
@@ -83,6 +83,12 @@ export default function Edit(props) {
     if (preview) {
         return <img src={zoloParams.blocksPreview.button} alt={__('Button Preview', 'zoloblocks')} />;
     }
+
+    const allowedBlocks = useMemo(() => {
+        return getBlockTypes()
+            .map(block => block.name)
+            .filter(name => name !== 'zolo/modal');
+    }, []);
 
     return (
         <>
@@ -302,7 +308,7 @@ export default function Edit(props) {
                                     </svg>
                                 </button>
                                 <div className="zolo-modal-inner">
-                                    <InnerBlocks templateLock={false} />
+                                    <InnerBlocks templateLock={false} allowedBlocks={allowedBlocks} />
                                 </div>
                             </div>
                         </div>
