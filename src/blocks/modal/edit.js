@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { RichText, useBlockProps, InnerBlocks } from '@wordpress/block-editor';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
@@ -20,6 +20,7 @@ export default function Edit(props) {
     const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, iconAnimation } = attributes;
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
 
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
@@ -28,6 +29,34 @@ export default function Edit(props) {
     const blockProps = useBlockProps({
         className: classnames(uniqueId, classArrayToStr(parentClasses)),
     });
+
+    const openModal = () => {
+        setIsOpen(true);
+        // Small delay to ensure display: block is applied before opacity transition
+        setTimeout(() => setIsAnimating(true), 10);
+    };
+
+    const closeModal = () => {
+        setIsAnimating(false);
+        // Wait for CSS transition (0.3s) to finish before removing from DOM
+        setTimeout(() => setIsOpen(false), 300);
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape' && isOpen) {
+                closeModal();
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('keydown', handleKeyDown);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isOpen]);
 
     const buttonLinkProps = {
         className: classnames(
@@ -43,7 +72,10 @@ export default function Edit(props) {
         title: sanitizeText(label),
         onClick: (e) => {
             e.preventDefault();
-            setIsOpen(true);
+        },
+
+        onClickCapture: () => {
+            openModal();
         }
     };
 
@@ -246,25 +278,35 @@ export default function Edit(props) {
                     </a>
 
                     {/* Modal Overlay and Content */}
-                    <div className={classnames('zolo-modal-overlay', { 'is-open': isOpen })}>
-                        <div className="zolo-modal-content">
-                            <button
-                                className="zolo-modal-close"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setIsOpen(false);
-                                }}
-                                aria-label={__('Close modal', 'zoloblocks')}
-                            >
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                                    <path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z" />
-                                </svg>
-                            </button>
-                            <div className="zolo-modal-inner">
-                                <InnerBlocks templateLock={false} />
+                    {isOpen && (
+                        <div
+                            className={classnames('zolo-modal-overlay', { 'is-open': isAnimating })}
+                            onClick={(e) => {
+                                // Only close if clicking exactly on the overlay background, not the content
+                                if (e.target === e.currentTarget) {
+                                    closeModal();
+                                }
+                            }}
+                        >
+                            <div className="zolo-modal-content">
+                                <button
+                                    className="zolo-modal-close"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        closeModal();
+                                    }}
+                                    aria-label={__('Close modal', 'zoloblocks')}
+                                >
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                        <path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z" />
+                                    </svg>
+                                </button>
+                                <div className="zolo-modal-inner">
+                                    <InnerBlocks templateLock={false} />
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
 
                 </div>
                 {renderHookAfter && renderHookAfter}
