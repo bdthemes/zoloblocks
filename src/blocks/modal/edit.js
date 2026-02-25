@@ -1,7 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useState } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
@@ -17,6 +18,8 @@ import Style from './style';
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
     const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, link, iconAnimation } = attributes;
+
+    const [isOpen, setIsOpen] = useState(false);
 
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
@@ -40,7 +43,10 @@ export default function Edit(props) {
         rel: link?.openInNewTab ? 'noreferrer noopener' : undefined,
         target: link?.openInNewTab ? '_blank' : undefined,
         title: sanitizeText(label),
-        onClick: (e) => e.preventDefault(),
+        onClick: (e) => {
+            e.preventDefault();
+            setIsOpen(true);
+        }
     };
 
     // preview image
@@ -240,6 +246,28 @@ export default function Edit(props) {
                             </>
                         )}
                     </a>
+
+                    {/* Modal Overlay and Content */}
+                    <div className={classnames('zolo-modal-overlay', { 'is-open': isOpen })}>
+                        <div className="zolo-modal-content">
+                            <button
+                                className="zolo-modal-close"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setIsOpen(false);
+                                }}
+                                aria-label={__('Close modal', 'zoloblocks')}
+                            >
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                    <path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z" />
+                                </svg>
+                            </button>
+                            <div className="zolo-modal-inner">
+                                <InnerBlocks templateLock={false} />
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 {renderHookAfter && renderHookAfter}
             </div>

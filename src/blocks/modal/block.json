@@ -19,5 +19,6 @@
         "align": ["wide", "full"]
     },
     "editorScript": "file:./index.js",
+    "viewScript": "file:./frontend.js",
     "style": "file:./style-index.css"
 }

@@ -41,6 +41,7 @@
 }
 
 .zolo-modal {
+
     // overflow: hidden;
     .zolo-button {
         white-space: nowrap;
@@ -52,6 +53,7 @@
         background-color: var(--zoloblocks-brand-color);
         position: relative;
         font-weight: 600;
+
         &:hover {
             background-color: var(--zoloblocks-brand-color-hover);
         }
@@ -78,6 +80,7 @@
     &.button-1 {
         .zolo-button {
             overflow: hidden;
+
             &::before {
                 content: '';
                 position: absolute;
@@ -93,11 +96,13 @@
                     -webkit-clip-path 0.2s;
                 transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
             }
+
             &:hover {
                 &::before {
                     transition-duration: 0.3s;
                     clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
                 }
+
                 .zolo-button-content,
                 .zolo__display-icon {
                     animation:
@@ -105,6 +110,7 @@
                         MoveUpEnd 0.2s forwards 0.2s;
                 }
             }
+
             .zolo-button-content,
             .zolo__display-icon {
                 overflow: hidden;
@@ -145,6 +151,7 @@
                 transition: all 0.05s ease-out;
                 z-index: -1;
             }
+
             &:hover:not(.disabled):not(:disabled) {
                 transform: translate(-8px, -8px);
             }
@@ -152,6 +159,7 @@
             &:hover:not(.disabled):not(:disabled):before {
                 transform: translate(8px, 8px);
             }
+
             .zolo-button-content {
                 z-index: 99;
             }
@@ -164,6 +172,7 @@
     &.button-3 {
         .zolo-button {
             overflow: hidden;
+
             &::before {
                 position: absolute;
                 top: 0;
@@ -181,6 +190,7 @@
                     transform: scale3d(0, 1, 1);
                     transform-origin: 0% 50%;
                 }
+
                 .zolo-button-content,
                 .zolo__display-icon {
                     animation:
@@ -188,6 +198,7 @@
                         MoveUpEnd 0.2s forwards 0.2s;
                 }
             }
+
             .zolo-button-content,
             .zolo__display-icon {
                 overflow: hidden;
@@ -274,6 +285,7 @@
                 box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
                 transform: translate3d(0, 2px, 0);
             }
+
             svg {
                 fill: rgba(63, 69, 78, 1);
             }
@@ -322,8 +334,10 @@
 	*/
     &.button-8 {
         --button-8-color: #000;
+
         .zolo-button {
             position: relative;
+
             &::before,
             &::after {
                 content: '';
@@ -336,20 +350,24 @@
                 border-radius: var(--zoloblocks-button-border-radius);
                 pointer-events: none;
             }
+
             &::before {
                 background-color: var(--button-8-color);
                 top: -6px;
                 left: -6px;
             }
+
             &::after {
                 bottom: -6px;
                 right: -6px;
             }
+
             &:hover {
                 &::before {
                     top: 6px;
                     left: 6px;
                 }
+
                 &::after {
                     bottom: 6px;
                     right: 6px;
@@ -365,6 +383,7 @@
         text-align: center;
         text-decoration: none;
         outline: none;
+
         &.top {
             flex-direction: column-reverse;
         }
@@ -392,6 +411,7 @@
         display: block;
         z-index: 1;
         position: relative;
+
         svg {
             width: 16px;
             height: 16px;
@@ -405,17 +425,20 @@
     &.icon-animation-1 {
         .zolo-button {
             position: relative;
+
             &:hover {
                 .zolo__display-icon {
                     opacity: 1;
                     transform: translate(-50%, -50%);
                 }
+
                 .zolo-button-content {
                     opacity: 0;
                     transform: translateY(20px);
                 }
             }
         }
+
         .zolo__display-icon {
             position: absolute;
             top: 50%;
@@ -427,6 +450,7 @@
                 transform 0.3s ease,
                 opacity 0.3s ease;
         }
+
         .zolo-button-content {
             opacity: 1;
             overflow: hidden;
@@ -440,17 +464,20 @@
     &.icon-animation-2 {
         .zolo-button {
             position: relative;
+
             &:hover {
                 .zolo__display-icon {
                     opacity: 1;
                     transform: translate(-50%, -50%);
                 }
+
                 .zolo-button-content {
                     opacity: 0;
                     transform: translateY(-20px);
                 }
             }
         }
+
         .zolo__display-icon {
             position: absolute;
             top: 50%;
@@ -462,6 +489,7 @@
                 transform 0.3s ease,
                 opacity 0.3s ease;
         }
+
         .zolo-button-content {
             opacity: 1;
             overflow: hidden;
@@ -475,17 +503,20 @@
     &.icon-animation-3 {
         .zolo-button {
             position: relative;
+
             &:hover {
                 .zolo__display-icon {
                     opacity: 1;
                     transform: translate(-50%, -50%);
                 }
+
                 .zolo-button-content {
                     opacity: 0;
                     transform: translateX(20px);
                 }
             }
         }
+
         .zolo__display-icon {
             position: absolute;
             top: 50%;
@@ -497,6 +528,7 @@
                 transform 0.3s ease,
                 opacity 0.3s ease;
         }
+
         .zolo-button-content {
             opacity: 1;
             overflow: hidden;
@@ -510,16 +542,19 @@
     &.icon-animation-4 {
         .zolo-button {
             position: relative;
+
             &:hover {
                 .zolo__display-icon {
                     opacity: 1;
                     transform: translateX(0);
                 }
+
                 .zolo-button-content {
                     transform: translateX(0);
                 }
             }
         }
+
         .zolo__display-icon {
             opacity: 0;
             overflow: hidden;
@@ -528,6 +563,7 @@
                 transform 0.3s ease,
                 opacity 0.3s ease;
         }
+
         .zolo-button-content {
             opacity: 1;
             overflow: hidden;
@@ -543,16 +579,19 @@
         .zolo-button {
             position: relative;
             flex-direction: row-reverse;
+
             &:hover {
                 .zolo__display-icon {
                     opacity: 1;
                     transform: translateX(0);
                 }
+
                 .zolo-button-content {
                     transform: translateX(0);
                 }
             }
         }
+
         .zolo__display-icon {
             opacity: 0;
             overflow: hidden;
@@ -561,6 +600,7 @@
                 transform 0.3s ease,
                 opacity 0.3s ease;
         }
+
         .zolo-button-content {
             opacity: 1;
             overflow: hidden;
@@ -580,45 +620,55 @@
             &:hover {
                 background: transparent;
                 border-color: var(--zoloblocks-brand-color);
+
                 .zolo-button-content {
                     color: var(--zoloblocks-brand-color);
                 }
+
                 .zolo__display-icon {
                     svg {
                         fill: var(--zoloblocks-brand-color);
                     }
                 }
+
                 .zolo-star {
                     opacity: 1;
                     z-index: 2;
                     filter: drop-shadow(0 0 10px #fffdef);
                 }
+
                 .zolo-star-1 {
                     top: -80%;
                     left: -30%;
                 }
+
                 .zolo-star-2 {
                     top: -25%;
                     left: 10%;
                 }
+
                 .zolo-star-3 {
                     top: 55%;
                     left: 25%;
                 }
+
                 .zolo-star-4 {
                     top: 30%;
                     left: 80%;
                 }
+
                 .zolo-star-5 {
                     top: 25%;
                     left: 115%;
                 }
+
                 .zolo-star-6 {
                     top: 5%;
                     left: 60%;
                 }
             }
         }
+
         .zolo-star {
             position: absolute;
             z-index: -5;
@@ -669,6 +719,7 @@
                 transition: all 0.8s ease;
             }
         }
+
         .zolo-star-icon {
             fill: var(--zoloblocks-brand-color);
         }
@@ -680,6 +731,7 @@
             overflow: hidden;
             position: relative;
             border-radius: 0;
+
             &::after,
             &::before {
                 position: absolute;
@@ -690,60 +742,23 @@
                 z-index: 1;
                 opacity: 0;
                 transition: 0.2s ease;
-                clip-path: polygon(
-                    0% 74%,
-                    4% 75%,
-                    8% 76%,
-                    11% 77%,
-                    15% 78%,
-                    20% 78%,
-                    25% 77%,
-                    32% 77%,
-                    37% 75%,
-                    40% 74%,
-                    43% 74%,
-                    46% 73%,
-                    52% 72%,
-                    57% 72%,
-                    65% 74%,
-                    66% 75%,
-                    71% 78%,
-                    75% 82%,
-                    81% 86%,
-                    83% 88%,
-                    88% 91%,
-                    90% 94%,
-                    94% 96%,
-                    98% 98%,
-                    100% 100%,
-                    82% 100%,
-                    0 100%
-                );
-            }
-            &::before {
-                transform: rotate(180deg);
-            }
-            &:hover {
-                &::after,
-                &::before {
-                    clip-path: polygon(
-                        0 30%,
-                        9% 34%,
-                        7% 39%,
-                        11% 43%,
-                        13% 33%,
-                        17% 30%,
-                        24% 34%,
-                        25% 35%,
-                        30% 31%,
-                        30% 38%,
-                        39% 33%,
-                        35% 43%,
-                        43% 45%,
-                        55% 46%,
+                clip-path: polygon(0% 74%,
+                        4% 75%,
+                        8% 76%,
+                        11% 77%,
+                        15% 78%,
+                        20% 78%,
+                        25% 77%,
+                        32% 77%,
+                        37% 75%,
+                        40% 74%,
+                        43% 74%,
+                        46% 73%,
+                        52% 72%,
+                        57% 72%,
                         65% 74%,
-                        67% 66%,
-                        81% 57%,
+                        66% 75%,
+                        71% 78%,
                         75% 82%,
                         81% 86%,
                         83% 88%,
@@ -753,17 +768,55 @@
                         98% 98%,
                         100% 100%,
                         82% 100%,
-                        0 100%
-                    );
+                        0 100%);
+            }
+
+            &::before {
+                transform: rotate(180deg);
+            }
+
+            &:hover {
+
+                &::after,
+                &::before {
+                    clip-path: polygon(0 30%,
+                            9% 34%,
+                            7% 39%,
+                            11% 43%,
+                            13% 33%,
+                            17% 30%,
+                            24% 34%,
+                            25% 35%,
+                            30% 31%,
+                            30% 38%,
+                            39% 33%,
+                            35% 43%,
+                            43% 45%,
+                            55% 46%,
+                            65% 74%,
+                            67% 66%,
+                            81% 57%,
+                            75% 82%,
+                            81% 86%,
+                            83% 88%,
+                            88% 91%,
+                            90% 94%,
+                            94% 96%,
+                            98% 98%,
+                            100% 100%,
+                            82% 100%,
+                            0 100%);
                     height: 100%;
                     opacity: 1;
                 }
             }
         }
+
         .zolo-button-content {
             position: relative;
             z-index: 99;
         }
+
         .zolo__display-icon {
             z-index: 99;
         }
@@ -773,6 +826,7 @@
     &.button-11 {
         .zolo-button {
             overflow: hidden;
+
             .zolo-circle {
                 position: absolute;
                 left: 50%;
@@ -785,22 +839,28 @@
                 opacity: 0.3;
                 visibility: hidden;
                 transition: 0.6s ease;
+
                 &.zolo-circle1 {
                     transform: translate(-3.3em, -4em);
                 }
+
                 &.zolo-circle2 {
                     transform: translate(-6em, 1.3em);
                 }
+
                 &.zolo-circle3 {
                     transform: translate(-0.2em, 1.8em);
                 }
+
                 &.zolo-circle4 {
                     transform: translate(3.5em, 1.4em);
                 }
+
                 &.zolo-circle5 {
                     transform: translate(3.5em, -3.8em);
                 }
             }
+
             &:hover {
                 .zolo-circle {
                     opacity: 1;
@@ -870,11 +930,13 @@
         transform: translate(0);
     }
 }
+
 @keyframes MoveUpInitial {
     100% {
         transform: translate3d(0, -105%, 0);
     }
 }
+
 @keyframes MoveUpEnd {
     0% {
         transform: translate3d(0, 100%, 0);
@@ -911,5 +973,87 @@
 
     button.zolo-preset-button.active {
         border-color: #2567ff;
+    }
+}
+
+/* Modal Overlay Styles */
+.zolo-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
+
+    &.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .zolo-modal-content {
+        position: relative;
+        background: #fff;
+        // padding: 40px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transform: translateY(-20px);
+        transition: transform 0.3s ease;
+
+        .zolo-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            transition: color 0.2s ease;
+            z-index: 999;
+            border-radius: 30px;
+            border: 1px solid red;
+
+            &:hover {
+                color: #000;
+            }
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    &.is-open .zolo-modal-content {
+        transform: translateY(0);
+    }
+}
+
+/* Editor Specific Overrides for Modal */
+.block-editor-block-list__block .zolo-modal-overlay {
+    // position: absolute;
+    z-index: -1;
+
+    &.is-open {
+        // position: relative;
+        opacity: 1;
+        // pointer-events: auto;
+        z-index: 10;
     }
 }
