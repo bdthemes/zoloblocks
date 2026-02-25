@@ -1002,7 +1002,7 @@
     .zolo-modal-content {
         position: relative;
         background: #fff;
-        // padding: 40px;
+        padding: 30px;
         border-radius: 8px;
         width: 100%;
         max-width: 600px;
@@ -1047,13 +1047,11 @@
 
 /* Editor Specific Overrides for Modal */
 .block-editor-block-list__block .zolo-modal-overlay {
-    // position: absolute;
     z-index: -1;
 
     &.is-open {
-        // position: relative;
         opacity: 1;
-        // pointer-events: auto;
+        pointer-events: auto;
         z-index: 10;
     }
 }
