@@ -44,3 +44,31 @@
         }
     }
 }
+
+.zolo-responsive-dropdown {
+    .components-base-control {
+        margin-bottom: 0 !important;
+    }
+    .components-input-control__input {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+    .components-input-control__suffix {
+        .components-unit-control__select {
+            width: 40px !important;
+            border-top-right-radius: 6px !important;
+            border-bottom-right-radius: 6px !important;
+            border-left-color: #fff !important;
+        }
+    }
+    .zb-box-control-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .zb-range-unit {
+        margin-bottom: 10px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

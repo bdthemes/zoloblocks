@@ -1,25 +1,25 @@
-.zolo-toggle-group-control {
-    .components-toggle-group-control-option-base {
-        &[data-active-item="true"] {
-            background-color: #2667ff;
-        }
+// .zolo-toggle-group-control {
+//     .components-toggle-group-control-option-base {
+//         &[data-active-item="true"] {
+//             background-color: #2667ff;
+//         }
 
-        &[aria-pressed="true"] {
-            &:focus{
-                box-shadow: none !important;
-                outline: none !important;
-            }
-            svg {
-                fill: #ffffff;
+//         &[aria-pressed="true"] {
+//             &:focus{
+//                 box-shadow: none !important;
+//                 outline: none !important;
+//             }
+//             svg {
+//                 fill: #ffffff;
 
-                path {
-                    stroke: #ffffff;
-                }
-            }
-        }
-    }
+//                 path {
+//                     stroke: #ffffff;
+//                 }
+//             }
+//         }
+//     }
 
-    .components-toggle-group-control::before {
-        background: #2667ff !important;
-    }
-}
+//     .components-toggle-group-control::before {
+//         background: #2667ff !important;
+//     }
+// }
