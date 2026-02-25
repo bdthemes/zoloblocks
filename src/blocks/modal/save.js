@@ -36,7 +36,7 @@ const Save = (props) => {
             >
                 <a
                     className={classnames(
-                        'zolo-button',
+                        'zolo-modal-button',
                         `${
                             iconAnimation === '' ||
                             iconAnimation === null ||
@@ -49,7 +49,7 @@ const Save = (props) => {
                     href={'javascript:void(0)'}
                     title={sanitizeText(label)}
                 >
-                    {iconType !== 'iconOnly' && <RichText.Content tagName="span" className={`zolo-button-content`} value={label} />}
+                    {iconType !== 'iconOnly' && <RichText.Content tagName="span" className={`zolo-modal-button-content`} value={label} />}
                     {iconType !== 'none' && <DisplayZoloIcon icon={icon} />}
                     {preset === 'button-9' && (
                         <>

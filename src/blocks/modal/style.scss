@@ -43,7 +43,7 @@
 .zolo-modal {
 
     // overflow: hidden;
-    .zolo-button {
+    .zolo-modal-button {
         white-space: nowrap;
         transition: 0.2s ease-in;
         box-sizing: border-box;
@@ -59,17 +59,17 @@
         }
     }
 
-    .zolo-button-content {
+    .zolo-modal-button-content {
         font-size: 16px;
         color: var(--secondary-color);
         z-index: 1;
     }
 
-    .zolo-button-icon {
+    .zolo-modal-button-icon {
         fill: var(--secondary-color);
     }
 
-    .zolo-button {
+    .zolo-modal-button {
         gap: 8px;
         padding: 12px 30px;
     }
@@ -78,7 +78,7 @@
     * Button Style: 01
 	*/
     &.button-1 {
-        .zolo-button {
+        .zolo-modal-button {
             overflow: hidden;
 
             &::before {
@@ -103,7 +103,7 @@
                     clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
                 }
 
-                .zolo-button-content,
+                .zolo-modal-button-content,
                 .zolo__display-icon {
                     animation:
                         MoveUpInitial 0.2s forwards,
@@ -111,7 +111,7 @@
                 }
             }
 
-            .zolo-button-content,
+            .zolo-modal-button-content,
             .zolo__display-icon {
                 overflow: hidden;
             }
@@ -122,7 +122,7 @@
 	* Button Style: 02
 	*/
     &.button-2 {
-        .zolo-button {
+        .zolo-modal-button {
             background-color: var(--zoloblocks-brand-color);
             border-radius: 6px;
             border: 2px solid var(--zoloblocks-brand-color);
@@ -160,7 +160,7 @@
                 transform: translate(8px, 8px);
             }
 
-            .zolo-button-content {
+            .zolo-modal-button-content {
                 z-index: 99;
             }
         }
@@ -170,7 +170,7 @@
 		* Button Style: 03
 		*/
     &.button-3 {
-        .zolo-button {
+        .zolo-modal-button {
             overflow: hidden;
 
             &::before {
@@ -191,7 +191,7 @@
                     transform-origin: 0% 50%;
                 }
 
-                .zolo-button-content,
+                .zolo-modal-button-content,
                 .zolo__display-icon {
                     animation:
                         MoveUpInitial 0.2s forwards,
@@ -199,7 +199,7 @@
                 }
             }
 
-            .zolo-button-content,
+            .zolo-modal-button-content,
             .zolo__display-icon {
                 overflow: hidden;
             }
@@ -210,7 +210,7 @@
 	* Button Style: 04
 	*/
     &.button-4 {
-        .zolo-button {
+        .zolo-modal-button {
             // background: var(--color-bg4);
             box-shadow: 6px 0px 0px var(--zoloblocks-brand-color-hover);
             outline: transparent;
@@ -242,7 +242,7 @@
 	* Button Style: 05
 	*/
     &.button-5 {
-        .zolo-button {
+        .zolo-modal-button {
             transform: rotate(-2deg);
 
             &::after {
@@ -269,7 +269,7 @@
 	* Button Style: 06
 	*/
     &.button-6 {
-        .zolo-button {
+        .zolo-modal-button {
             background-color: var(--secondary-color);
             border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
             border-style: solid;
@@ -291,11 +291,11 @@
             }
         }
 
-        .zolo-button-content {
+        .zolo-modal-button-content {
             color: var(--primary-color);
         }
 
-        .zolo-button-icon {
+        .zolo-modal-button-icon {
             fill: var(--primary-color);
         }
     }
@@ -304,7 +304,7 @@
 	* Button Style: 07
 	*/
     &.button-7 {
-        .zolo-button {
+        .zolo-modal-button {
             border-radius: var(--zoloblocks-button-border-radius);
 
             &::after {
@@ -335,7 +335,7 @@
     &.button-8 {
         --button-8-color: #000;
 
-        .zolo-button {
+        .zolo-modal-button {
             position: relative;
 
             &::before,
@@ -376,7 +376,7 @@
         }
     }
 
-    .zolo-button {
+    .zolo-modal-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -402,7 +402,7 @@
     }
 
     // button icon
-    .zolo-button-icon {
+    .zolo-modal-button-icon {
         width: 20px;
         display: block;
     }
@@ -423,7 +423,7 @@
 
     // pro preset style 9
     &.icon-animation-1 {
-        .zolo-button {
+        .zolo-modal-button {
             position: relative;
 
             &:hover {
@@ -432,7 +432,7 @@
                     transform: translate(-50%, -50%);
                 }
 
-                .zolo-button-content {
+                .zolo-modal-button-content {
                     opacity: 0;
                     transform: translateY(20px);
                 }
@@ -451,7 +451,7 @@
                 opacity 0.3s ease;
         }
 
-        .zolo-button-content {
+        .zolo-modal-button-content {
             opacity: 1;
             overflow: hidden;
             transition:
@@ -462,7 +462,7 @@
 
     // pro preset style 10
     &.icon-animation-2 {
-        .zolo-button {
+        .zolo-modal-button {
             position: relative;
 
             &:hover {
@@ -471,7 +471,7 @@
                     transform: translate(-50%, -50%);
                 }
 
-                .zolo-button-content {
+                .zolo-modal-button-content {
                     opacity: 0;
                     transform: translateY(-20px);
                 }
@@ -490,7 +490,7 @@
                 opacity 0.3s ease;
         }
 
-        .zolo-button-content {
+        .zolo-modal-button-content {
             opacity: 1;
             overflow: hidden;
             transition:
@@ -501,7 +501,7 @@
 
     // pro preset style 11
     &.icon-animation-3 {
-        .zolo-button {
+        .zolo-modal-button {
             position: relative;
 
             &:hover {
@@ -510,7 +510,7 @@
                     transform: translate(-50%, -50%);
                 }
 
-                .zolo-button-content {
+                .zolo-modal-button-content {
                     opacity: 0;
                     transform: translateX(20px);
                 }
@@ -529,7 +529,7 @@
                 opacity 0.3s ease;
         }
 
-        .zolo-button-content {
+        .zolo-modal-button-content {
             opacity: 1;
             overflow: hidden;
             transition:
@@ -540,7 +540,7 @@
 
     // pro preset style 12
     &.icon-animation-4 {
-        .zolo-button {
+        .zolo-modal-button {
             position: relative;
 
             &:hover {
@@ -549,7 +549,7 @@
                     transform: translateX(0);
                 }
 
-                .zolo-button-content {
+                .zolo-modal-button-content {
                     transform: translateX(0);
                 }
             }
@@ -564,7 +564,7 @@
                 opacity 0.3s ease;
         }
 
-        .zolo-button-content {
+        .zolo-modal-button-content {
             opacity: 1;
             overflow: hidden;
             transform: translateX(10px);
@@ -576,7 +576,7 @@
 
     // pro preset style 13
     &.icon-animation-5 {
-        .zolo-button {
+        .zolo-modal-button {
             position: relative;
             flex-direction: row-reverse;
 
@@ -586,7 +586,7 @@
                     transform: translateX(0);
                 }
 
-                .zolo-button-content {
+                .zolo-modal-button-content {
                     transform: translateX(0);
                 }
             }
@@ -601,7 +601,7 @@
                 opacity 0.3s ease;
         }
 
-        .zolo-button-content {
+        .zolo-modal-button-content {
             opacity: 1;
             overflow: hidden;
             transform: translateX(-10px);
@@ -613,7 +613,7 @@
 
     // button 10 style
     &.button-9 {
-        .zolo-button {
+        .zolo-modal-button {
             position: relative;
             border: 2px solid var(--zoloblocks-brand-color);
 
@@ -621,7 +621,7 @@
                 background: transparent;
                 border-color: var(--zoloblocks-brand-color);
 
-                .zolo-button-content {
+                .zolo-modal-button-content {
                     color: var(--zoloblocks-brand-color);
                 }
 
@@ -727,7 +727,7 @@
 
     // button 11 style pro
     &.button-10 {
-        .zolo-button {
+        .zolo-modal-button {
             overflow: hidden;
             position: relative;
             border-radius: 0;
@@ -812,7 +812,7 @@
             }
         }
 
-        .zolo-button-content {
+        .zolo-modal-button-content {
             position: relative;
             z-index: 99;
         }
@@ -824,7 +824,7 @@
 
     // button 12 style pro
     &.button-11 {
-        .zolo-button {
+        .zolo-modal-button {
             overflow: hidden;
 
             .zolo-circle {
@@ -1026,8 +1026,6 @@
             color: #666;
             transition: color 0.2s ease;
             z-index: 999;
-            border-radius: 30px;
-            border: 1px solid red;
 
             &:hover {
                 color: #000;

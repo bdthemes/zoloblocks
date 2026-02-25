@@ -60,7 +60,7 @@ export default function Edit(props) {
 
     const buttonLinkProps = {
         className: classnames(
-            'zolo-button',
+            'zolo-modal-button',
             iconAnimation === '' ||
                 iconAnimation === null ||
                 iconAnimation === undefined ||
@@ -104,7 +104,7 @@ export default function Edit(props) {
                         {iconType !== 'iconOnly' && (
                             <RichText
                                 tagName="span"
-                                className={`zolo-button-content`}
+                                className={`zolo-modal-button-content`}
                                 value={label}
                                 onChange={(text) => setAttributes({ label: text })}
                                 placeholder={__('Button Text', 'zoloblocks')}

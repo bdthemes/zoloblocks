@@ -395,12 +395,12 @@ export default function Style({ props }) {
 			${buttonAlignmentDesktop}
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button:hover{
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button:hover{
 			${hoverBoxShadowStyle}
 			border-color: ${borderHoverColor ? borderHoverColor : ''};
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button {
 			${gap}
             ${btnDeskAlign}
 			${borderStyles}
@@ -415,7 +415,7 @@ export default function Style({ props }) {
         ${
             preset === 'button-2'
                 ? `
-            .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button {
+            .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button {
                 border-color: ${buttonTwoBorderColor || ''};
             }
         `
@@ -425,7 +425,7 @@ export default function Style({ props }) {
          ${
              preset !== 'button-10' && preset !== 'button-11'
                  ? `
-                       .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button:hover{
+                       .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button:hover{
                             ${hoverDeskBGStyle}
                         }
                 `
@@ -435,8 +435,8 @@ export default function Style({ props }) {
         ${
             preset === 'button-10'
                 ? `
-                    .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-10 .zolo-button::after,
-                    .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-10 .zolo-button::before {
+                    .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-10 .zolo-modal-button::after,
+                    .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-10 .zolo-modal-button::before {
                         background: ${presetBgColor ? presetBgColor : ''};
                     }
                 `
@@ -446,23 +446,23 @@ export default function Style({ props }) {
         ${
             preset === 'button-11'
                 ? `
-                    .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-11 .zolo-button .zolo-circle {
+                    .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-11 .zolo-modal-button .zolo-circle {
                        background: ${presetBgColor ? presetBgColor : ''};
                     }
                 `
                 : ''
         }
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button-content {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button-content {
 			${btnTypoDesktop}
 			color: ${textColor ? textColor : ''};
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button:hover .zolo-button-content {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button:hover .zolo-modal-button-content {
 			color: ${textHoverColor ? textHoverColor : ''};
 		}
 
-        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button .zolo__display-icon {
+        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon {
 			${iconBorderDesktop}
 			${iconBorderRadiusDesktop}
 			${iconNormalBoxShadow}
@@ -470,41 +470,41 @@ export default function Style({ props }) {
             background: ${iconBg ? iconBg : ''};
         }
 
-        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button .zolo__display-icon svg {
+        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon svg {
 			${iconHeight}
 			${iconWidth}
         }
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button svg {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button svg {
 			fill: ${iconColor ? iconColor : ''};
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button:hover .zolo__display-icon {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button:hover .zolo__display-icon {
 			${iconHoverBoxShadow}
 			background: ${iconHoverBg ? iconHoverBg : ''};
 			border-color: ${iconBorderHoverColor ? iconBorderHoverColor : ''};
 		}
 
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button:hover svg {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button:hover svg {
 			fill: ${iconHoverColor ? iconHoverColor : ''};
 		}
 
 		${
             preset === 'button-1'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-1 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-1 .zolo-modal-button:before {
 				${ptBGDesk}
 			}`
                 : ''
         }
 		${
             preset === 'button-2'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:after {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
 				${ptDeskBorderRadius}
-			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:before {
+			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before {
 				${pthBGDesk}
 			}
-            .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:after {
+            .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
 				${ptDeskBorder}
 			}
             `
@@ -512,7 +512,7 @@ export default function Style({ props }) {
         }
 		${
             preset === 'button-3'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-3 .zolo-button:before{
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-3 .zolo-modal-button:before{
                 ${pfthBGDesk}
 			}
             `
@@ -520,13 +520,13 @@ export default function Style({ props }) {
         }
 		${
             preset === 'button-4'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-button{
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-modal-button{
 					${
                         presetFourStyles && (presetFourStyles.shadowColor || pfDeskShadowWidth)
                             ? `box-shadow: ${pfDeskShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
                             : ''
                     }
-				} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-button:after {
+				} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-modal-button:after {
 					${presetFourStyles && presetFourStyles.colorOne ? `background: ${presetFourStyles.colorOne};` : ''}
 					${presetFourStyles && presetFourStyles.textShadowColor ? `text-shadow: -3px -3px 0px ${presetFourStyles.textShadowColor};` : ''}
 					${presetFourStyles && presetFourStyles.textColor ? `color: ${presetFourStyles.textColor};` : ''}
@@ -535,7 +535,7 @@ export default function Style({ props }) {
         }
 		${
             preset === 'button-5'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-button:after {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-modal-button:after {
 				${pfvDeskBorder}
 				${pfvDeskBorderRadius}
 			}`
@@ -546,7 +546,7 @@ export default function Style({ props }) {
                 ? `
 					${
                         presetSixStyle
-                            ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-6 .zolo-button{
+                            ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-6 .zolo-modal-button{
 								box-shadow: ${presetSixStyle} 15px 28px 25px -18px;
 					}`
                             : ''
@@ -559,7 +559,7 @@ export default function Style({ props }) {
                 ? `
 					${
                         presetSevenStyles
-                            ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-button:after {
+                            ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-modal-button:after {
                             background-color: ${presetSevenStyles && presetSevenStyles.bgColor};
                             ${psDeskBorder}
                             ${psDeskBorderRadius}
@@ -572,7 +572,7 @@ export default function Style({ props }) {
 
        	${
             preset === 'button-8'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                     ${pseDeskBorder}
                     ${pseDeskBorderRadius}
                 }
@@ -581,7 +581,7 @@ export default function Style({ props }) {
         }
         ${
             preset === 'button-8'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                 ${pseDeskBGStyle}
 
                 }
@@ -604,7 +604,7 @@ export default function Style({ props }) {
 			${buttonAlignmentTab}
 		}
 
-        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button {
+        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button {
 			${gapTab}
             ${btnTabAlign}
             ${borderStylesTab}
@@ -615,29 +615,29 @@ export default function Style({ props }) {
             ${ generateCSS({attributes, key:'buttonMinHeight', getValue: (value) => `min-height: ${value};`, device: 'Tablet'}) }
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button:hover{
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button:hover{
 			${hoverTabBGStyle}
 		}
 
-        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button-content {
+        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button-content {
 			${btnTypoTab}
 		}
 
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button .zolo__display-icon {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon {
 			${iconBorderTab}
 			${iconBorderRadiusTab}
 			${iconPaddingTab}
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button .zolo__display-icon svg {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon svg {
 			${iconHeightTab}
 			${iconWidthTab}
 		}
 
 		${
             preset === 'button-1'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-1 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-1 .zolo-modal-button:before {
 				${ptBGTab}
 			}`
                 : ''
@@ -645,12 +645,12 @@ export default function Style({ props }) {
 
         ${
             preset === 'button-2'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:after {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
 				${ptTabBorderRadius}
-			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:before {
+			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before {
 				${pthBGTab}
 			}
-            .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:after {
+            .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
 				${ptTabBorder}
 			}
             `
@@ -659,7 +659,7 @@ export default function Style({ props }) {
 
 		${
             preset === 'button-3'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-3 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-3 .zolo-modal-button:before {
 				${pfthBGTab}
 			}`
                 : ''
@@ -667,7 +667,7 @@ export default function Style({ props }) {
 
         ${
             preset === 'button-4'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-button{
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-modal-button{
 					${
                         presetFourStyles && (presetFourStyles.shadowColor || pfTabShadowWidth)
                             ? `box-shadow: ${pfTabShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
@@ -679,7 +679,7 @@ export default function Style({ props }) {
 
 		${
             preset === 'button-5'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-button:after {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-modal-button:after {
 				${pfvTabBorder}
 				${pfvTabBorderRadius}
 			}`
@@ -691,7 +691,7 @@ export default function Style({ props }) {
                 ? `
 					${
                         presetSevenStyles
-                            ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-button:after {
+                            ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-modal-button:after {
                             ${psTabBorder}
                             ${psTabBorderRadius}
 					}`
@@ -703,7 +703,7 @@ export default function Style({ props }) {
 
      	${
             preset === 'button-8'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                    ${pseTabBorder}
                   ${pseTabBorderRadius}
                 }
@@ -712,7 +712,7 @@ export default function Style({ props }) {
         }
          ${
              preset === 'button-8'
-                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:before {
+                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                 ${pseTabBGStyle}
 
                 }
@@ -725,7 +725,7 @@ export default function Style({ props }) {
 			${buttonAlignmentMob}
 		}
 
-        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button {
+        .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button {
 			${gapMob}
             ${btnMobAlign}
             ${borderStylesMob}
@@ -736,28 +736,28 @@ export default function Style({ props }) {
             ${ generateCSS({attributes, key:'buttonMinHeight', getValue: (value) => `min-height: ${value};`, device: 'Mobile'}) }
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button:hover{
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button:hover{
 			${hoverMobBGStyle}
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button-content {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button-content {
 			${btnTypoMob}
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button .zolo__display-icon {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon {
 			${iconBorderMob}
 			${iconBorderRadiusMob}
 			${iconPaddingMob}
 		}
 
-		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-button .zolo__display-icon svg {
+		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon svg {
 			${iconHeightMob}
 			${iconWidthMob}
 		}
 
 		${
             preset === 'button-1'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-1 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-1 .zolo-modal-button:before {
 				${ptBGMob}
 			}`
                 : ''
@@ -765,12 +765,12 @@ export default function Style({ props }) {
 
         ${
             preset === 'button-2'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:after {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
 				${ptMobBorderRadius}
-			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:before {
+			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before {
 				${pthBGMob}
 			}
-            .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-button:after {
+            .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
 				${ptMobBorder}
 			}
             `
@@ -779,7 +779,7 @@ export default function Style({ props }) {
 
 		${
             preset === 'button-3'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-3 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-3 .zolo-modal-button:before {
 				${pfthBGMob}
 			}`
                 : ''
@@ -787,7 +787,7 @@ export default function Style({ props }) {
 
         ${
             preset === 'button-4'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-button{
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-modal-button{
 					${
                         presetFourStyles && (presetFourStyles.shadowColor || pfMobShadowWidth)
                             ? `box-shadow: ${pfMobShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
@@ -799,7 +799,7 @@ export default function Style({ props }) {
 
 		${
             preset === 'button-5'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-button:after {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-modal-button:after {
 				${pfvMobBorder}
 				${pfvMobBorderRadius}
 			}`
@@ -811,7 +811,7 @@ export default function Style({ props }) {
                 ? `
 					${
                         presetSevenStyles
-                            ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-button:after {
+                            ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-modal-button:after {
                             ${psMobBorder}
                             ${psMobBorderRadius}
 					}`
@@ -823,7 +823,7 @@ export default function Style({ props }) {
 
     	${
             preset === 'button-8'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                   ${pseMobBorder}
                      ${pseMobBorderRadius}
                 }
@@ -832,7 +832,7 @@ export default function Style({ props }) {
         }
         ${
             preset === 'button-8'
-                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-button:before {
+                ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                 ${pseMobBGStyle}
 
                 }

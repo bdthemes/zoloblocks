@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modals = document.querySelectorAll('.zolo-modal');
 
     modals.forEach((modalContainer) => {
-        const triggerButton = modalContainer.querySelector('.zolo-button');
+        const triggerButton = modalContainer.querySelector('.zolo-modal-button');
         const overlay = modalContainer.querySelector('.zolo-modal-overlay');
         const closeButton = modalContainer.querySelector('.zolo-modal-close');
 
