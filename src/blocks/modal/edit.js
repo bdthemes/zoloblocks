@@ -17,7 +17,7 @@ import Style from './style';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId, isSelected } = props;
-    const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, link, iconAnimation } = attributes;
+    const { uniqueId, preview, preset, label, parentClasses, iconType, icon, iconPosition, iconAnimation } = attributes;
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -39,9 +39,7 @@ export default function Edit(props) {
                 ? iconPosition
                 : ''
         ),
-        href: link?.url ? sanitizeUrl(link.url) : '',
-        rel: link?.openInNewTab ? 'noreferrer noopener' : undefined,
-        target: link?.openInNewTab ? '_blank' : undefined,
+        href: 'javascript:void(0)',
         title: sanitizeText(label),
         onClick: (e) => {
             e.preventDefault();

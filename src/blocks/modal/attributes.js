@@ -157,14 +157,7 @@ const attributes = {
 
     label: {
         type: 'string',
-        default: 'Explore Now',
-    },
-    link: {
-        type: 'object',
-        default: {
-            url: '#',
-            openInNewTab: false,
-        },
+        default: 'Click Me',
     },
     iconType: {
         type: 'string',

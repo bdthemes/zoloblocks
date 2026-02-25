@@ -74,7 +74,6 @@ function Inspector(props) {
     const {
         resMode,
         label,
-        link,
         iconType,
         icon,
         iconPosition,
@@ -119,6 +118,18 @@ function Inspector(props) {
                 generalTab={
                     <>
                         <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
+
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Button', 'zoloblocks')} panelProps={props}>
+                            {iconType !== 'iconOnly' && (
+                                <ZoloTextControl
+                                    label={__('Text', 'zoloblocks')}
+                                    onChange={(value) => setAttributes({ label: value })}
+                                    value={label}
+                                    placeholder={__('Label', 'zoloblocks')}
+                                />
+                            )}
                             <ZoloSelectControl
                                 label={__('Styles', 'zoloblocks')}
                                 value={preset}
@@ -132,16 +143,6 @@ function Inspector(props) {
                                 requiredProps={requiredProps}
                                 alignOptions={TEXT_ALIGN_OPTIONS}
                             />
-                        </ZoloPanelBody>
-                        <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
-                            {iconType !== 'iconOnly' && (
-                                <ZoloTextControl
-                                    label={__('Text', 'zoloblocks')}
-                                    onChange={(value) => setAttributes({ label: value })}
-                                    value={label}
-                                    placeholder={__('Label', 'zoloblocks')}
-                                />
-                            )}
                             <div className="zolo-flex-row-control-tab">
                                 <IconicBtnGroup
                                     label={__('Icon', 'zoloblocks')}
@@ -154,11 +155,6 @@ function Inspector(props) {
                                     options={ICON_STATUS}
                                 />
                             </div>
-                            <LinkControl
-                                label={__('URL', 'zoloblocks')}
-                                value={link}
-                                onChange={(value) => setAttributes({ link: value })}
-                            />
                             {iconType !== 'none' && (
                                 <>
                                     <ZoloIconPicker

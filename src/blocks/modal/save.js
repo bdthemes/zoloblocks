@@ -9,7 +9,7 @@ const { classArrayToStr, DisplayZoloIcon, sanitizeText, sanitizeUrl } = window.z
 
 const Save = (props) => {
     const { attributes } = props;
-    const { uniqueId, preset, label, link, iconType, iconPosition, icon, parentClasses, zoloId, iconAnimation } = attributes;
+    const { uniqueId, preset, label, iconType, iconPosition, icon, parentClasses, zoloId, iconAnimation } = attributes;
 
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
@@ -46,9 +46,7 @@ const Save = (props) => {
                                 : ''
                         }`
                     )}
-                    href={link?.url ? sanitizeUrl(link.url) : sanitizeUrl('#')}
-                    {...(link?.openInNewTab && { rel: 'noreferrer noopener' })}
-                    {...(link?.openInNewTab && { target: '_blank' })}
+                    href={'javascript:void(0)'}
                     title={sanitizeText(label)}
                 >
                     {iconType !== 'iconOnly' && <RichText.Content tagName="span" className={`zolo-button-content`} value={label} />}
