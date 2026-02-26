@@ -2,43 +2,26 @@
  * Internal dependencies
  */
 const {
-    generateResAlignmentAttributies,
-    generateResRangeAttributies,
     generateBorderAttributies,
-    generateDimensionAttributes,
     generateNormalBGAttributes,
     generateBoxShadowAttributies,
     generateTypographyAttributes,
 } = window.zoloModule;
 
 import {
-    BUTTON_ALIGNMENT,
     BUTTON_BG,
     BUTTON_HOVER_BG_COLOR,
     BUTTON_BORDER,
-    BUTTON_BORDER_RADIUS,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
-    BUTTON_PADDING,
-    ICON_SIZE,
-    ICON_TEXT_SPACING,
     ICON_BORDER,
-    ICON_BORDER_RADIUS,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    ICON_PADDING,
-    PO_SWIDTH,
     PT_BORDER,
-    PT_BORDER_RADIUS,
     PTH_BORDER,
-    PTH_BORDER_RADIUS,
-    PF_SWIDTH,
     PFV_BORDER,
-    PFV_BORDER_RADIUS,
     PS_BORDER,
-    PS_BORDER_RADIUS,
     PSE_BORDER,
-    PSE_BRADIUS,
     PSE_BG,
     PT_BG,
     PTH_BG,
@@ -73,48 +56,32 @@ const attributes = {
         },
     },
     // Button Generators
-    ...generateResAlignmentAttributies(BUTTON_ALIGNMENT),
     ...generateBorderAttributies(BUTTON_BORDER),
-    ...generateResRangeAttributies(ICON_SIZE),
-    ...generateResRangeAttributies(ICON_TEXT_SPACING),
-    ...generateDimensionAttributes(BUTTON_BORDER_RADIUS),
     ...generateNormalBGAttributes(BUTTON_BG),
     ...generateNormalBGAttributes(BUTTON_HOVER_BG_COLOR),
     ...generateBoxShadowAttributies(BUTTON_BOX_SHADOW),
     ...generateBoxShadowAttributies(BUTTON_HOVER_BOX_SHADOW),
     ...generateTypographyAttributes(Object.values(typographyObjs)),
-    ...generateDimensionAttributes(BUTTON_PADDING),
 
     // button icon generator
     ...generateBorderAttributies(ICON_BORDER),
-    ...generateDimensionAttributes(ICON_BORDER_RADIUS),
     ...generateBoxShadowAttributies(ICON_BOX_SHADOW),
     ...generateBoxShadowAttributies(ICON_HOVER_BOX_SHADOW),
-    ...generateDimensionAttributes(ICON_PADDING),
 
     // presets
-    ...generateResRangeAttributies(PO_SWIDTH),
-
     ...generateNormalBGAttributes(PT_BG),
     ...generateNormalBGAttributes(PTH_BG),
     ...generateNormalBGAttributes(PFTH_BG),
 
     ...generateBorderAttributies(PT_BORDER),
-    ...generateDimensionAttributes(PT_BORDER_RADIUS),
 
     ...generateBorderAttributies(PTH_BORDER),
-    ...generateDimensionAttributes(PTH_BORDER_RADIUS),
-
-    ...generateResRangeAttributies(PF_SWIDTH),
 
     ...generateBorderAttributies(PFV_BORDER),
-    ...generateDimensionAttributes(PFV_BORDER_RADIUS),
 
     ...generateBorderAttributies(PS_BORDER),
-    ...generateDimensionAttributes(PS_BORDER_RADIUS),
 
     ...generateBorderAttributies(PSE_BORDER),
-    ...generateDimensionAttributes(PSE_BRADIUS),
     ...generateNormalBGAttributes(PSE_BG),
 
     //Block specific Attributes
@@ -216,6 +183,91 @@ const attributes = {
         type: 'object',
     },
     buttonMinHeight: {
+        type: 'object',
+    },
+    buttonPadding: {
+        type: 'object',
+    },
+    buttonMargin: {
+        type: 'object',
+    },
+    iconPadding: {
+        type: 'object',
+    },
+    iconMargin: {
+        type: 'object',
+    },
+    buttonBorderRadius: {
+        type: 'object',
+    },
+    iconBorderRadius: {
+        type: 'object',
+    },
+    presetFVBorderRadius: {
+        type: 'object',
+    },
+    presetSBorderRadius: {
+        type: 'object',
+    },
+    pseBorderRadius: {
+        type: 'object',
+    },
+    buttonAlignment: {
+        type: 'object',
+    },
+    iconSize: {
+        type: 'object',
+    },
+    iconTextSpacing: {
+        type: 'object',
+    },
+    presetOSWidth: {
+        type: 'object',
+    },
+    presetFSWidth: {
+        type: 'object',
+    },
+    presetTRadius: {
+        type: 'object',
+    },
+    presetTHRadius: {
+        type: 'object',
+    },
+    // Popup Modal Styling
+    modalOverlayBg: {
+        type: 'string',
+    },
+    modalContentBg: {
+        type: 'string',
+    },
+    modalWidth: {
+        type: 'object',
+    },
+    modalPadding: {
+        type: 'object',
+    },
+    modalBorderRadius: {
+        type: 'object',
+    },
+    modalCloseColor: {
+        type: 'string',
+    },
+    modalCloseHoverColor: {
+        type: 'string',
+    },
+    modalCloseBg: {
+        type: 'string',
+    },
+    modalCloseHoverBg: {
+        type: 'string',
+    },
+    modalCloseSize: {
+        type: 'object',
+    },
+    modalCloseTop: {
+        type: 'object',
+    },
+    modalCloseRight: {
         type: 'object',
     },
 };
