@@ -7,44 +7,29 @@ import { __ } from '@wordpress/i18n';
  * Internal depencencies
  */
 const {
-    generateResAlignmentStyle,
-    generateResRangeStyle,
     generateBorderStyle,
-    generateDimensionStyle,
     generateNormalBGControlStyles,
     generateBoxShadowStyles,
     generateTypographyStyles,
     GlobalStyleHanlder,
-    generateCSS
+    generateCSS,
+    getBoxControlValue,
 } = window.zoloModule;
 
 import {
-    BUTTON_ALIGNMENT,
     BUTTON_BORDER,
-    BUTTON_BORDER_RADIUS,
     BUTTON_BG,
     BUTTON_HOVER_BG_COLOR,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
-    BUTTON_PADDING,
-    ICON_SIZE,
-    ICON_TEXT_SPACING,
     ICON_BORDER,
-    ICON_BORDER_RADIUS,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    ICON_PADDING,
     PT_BORDER,
-    PT_BORDER_RADIUS,
     PTH_BORDER,
-    PTH_BORDER_RADIUS,
-    PF_SWIDTH,
     PFV_BORDER,
-    PFV_BORDER_RADIUS,
     PS_BORDER,
-    PS_BORDER_RADIUS,
     PSE_BORDER,
-    PSE_BRADIUS,
     PSE_BG,
     PT_BG,
     PTH_BG,
@@ -75,18 +60,13 @@ export default function Style({ props }) {
         buttonTwoBorderColor,
         psStarColor,
         presetBgColor,
+        modalOverlayBg,
+        modalContentBg,
+        modalCloseColor,
+        modalCloseHoverColor,
+        modalCloseBg,
+        modalCloseHoverBg,
     } = attributes;
-
-    // alignment
-    const {
-        desktopAlignStyle: buttonAlignmentDesktop,
-        tabAlignStyle: buttonAlignmentTab,
-        mobAlignStyle: buttonAlignmentMob,
-    } = generateResAlignmentStyle({
-        controlName: BUTTON_ALIGNMENT,
-        property: 'text-align',
-        attributes,
-    });
 
     // generate Background
     const {
@@ -120,49 +100,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    // generate border radius
-    const {
-        dimensionStylesDesktop: borderRadiusDesktop,
-        dimensionStylesTab: borderRadiusTab,
-        dimensionStylesMobile: borderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: BUTTON_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    // generate icon size
-    const {
-        desktopRangeStyle: iconHeight,
-        tabRangeStyle: iconHeightTab,
-        mobRangeStyle: iconHeightMob,
-    } = generateResRangeStyle({
-        controlName: ICON_SIZE,
-        property: 'height',
-        attributes,
-    });
-
-    const {
-        desktopRangeStyle: iconWidth,
-        tabRangeStyle: iconWidthTab,
-        mobRangeStyle: iconWidthMob,
-    } = generateResRangeStyle({
-        controlName: ICON_SIZE,
-        property: 'width',
-        attributes,
-    });
-
-    // Spacing between icon and text
-    const {
-        desktopRangeStyle: gap,
-        tabRangeStyle: gapTab,
-        mobRangeStyle: gapMob,
-    } = generateResRangeStyle({
-        controlName: ICON_TEXT_SPACING,
-        property: 'gap',
-        attributes,
-    });
-
     // Generate Box Shadow
     const { boxShadowStyle: normalBoxShadowStyle } = generateBoxShadowStyles({
         controlName: BUTTON_BOX_SHADOW,
@@ -186,17 +123,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    // Generate Padding
-    const {
-        dimensionStylesDesktop: paddingDesktop,
-        dimensionStylesTab: paddingTab,
-        dimensionStylesMobile: paddingMob,
-    } = generateDimensionStyle({
-        controlName: BUTTON_PADDING,
-        styleFor: 'padding',
-        attributes,
-    });
-
     /**
      * Button Icon
      */
@@ -206,17 +132,6 @@ export default function Style({ props }) {
         mobBorderStyle: iconBorderMob,
     } = generateBorderStyle({
         controlName: ICON_BORDER,
-        attributes,
-    });
-
-    // generate border radius
-    const {
-        dimensionStylesDesktop: iconBorderRadiusDesktop,
-        dimensionStylesTab: iconBorderRadiusTab,
-        dimensionStylesMobile: iconBorderRadiusMob,
-    } = generateDimensionStyle({
-        controlName: ICON_BORDER_RADIUS,
-        styleFor: 'border-radius',
         attributes,
     });
 
@@ -230,17 +145,6 @@ export default function Style({ props }) {
     const { boxShadowStyle: iconHoverBoxShadow } = generateBoxShadowStyles({
         attributes,
         controlName: ICON_HOVER_BOX_SHADOW,
-    });
-
-    // padding
-    const {
-        dimensionStylesDesktop: iconPaddingDesktop,
-        dimensionStylesTab: iconPaddingTab,
-        dimensionStylesMobile: iconPaddingMob,
-    } = generateDimensionStyle({
-        controlName: ICON_PADDING,
-        styleFor: 'padding',
-        attributes,
     });
 
     /**
@@ -277,16 +181,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    const {
-        dimensionStylesDesktop: ptDeskBorderRadius,
-        dimensionStylesTab: ptTabBorderRadius,
-        dimensionStylesMobile: ptMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: PT_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
     // preset three
     const {
         backgroundStylesDesktop: pfthBGDesk,
@@ -296,17 +190,6 @@ export default function Style({ props }) {
         controlName: PFTH_BG,
         attributes,
         noMainBGImg: false,
-    });
-
-    // preset four
-    const {
-        desktopRangeStyle: pfDeskShadowWidth,
-        tabRangeStyle: pfTabShadowWidth,
-        mobRangeStyle: pfMobShadowWidth,
-    } = generateResRangeStyle({
-        controlName: PF_SWIDTH,
-        attributes,
-        noProperty: true,
     });
 
     // preset five
@@ -319,16 +202,6 @@ export default function Style({ props }) {
         attributes,
     });
 
-    const {
-        dimensionStylesDesktop: pfvDeskBorderRadius,
-        dimensionStylesTab: pfvTabBorderRadius,
-        dimensionStylesMobile: pfvMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: PFV_BORDER_RADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
     // preset seven
     const {
         desktopBorderStyle: psDeskBorder,
@@ -336,16 +209,6 @@ export default function Style({ props }) {
         mobBorderStyle: psMobBorder,
     } = generateBorderStyle({
         controlName: PS_BORDER,
-        attributes,
-    });
-
-    const {
-        dimensionStylesDesktop: psDeskBorderRadius,
-        dimensionStylesTab: psTabBorderRadius,
-        dimensionStylesMobile: psMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: PS_BORDER_RADIUS,
-        styleFor: 'border-radius',
         attributes,
     });
 
@@ -360,16 +223,6 @@ export default function Style({ props }) {
     });
 
     const {
-        dimensionStylesDesktop: pseDeskBorderRadius,
-        dimensionStylesTab: pseTabBorderRadius,
-        dimensionStylesMobile: pseMobBorderRadius,
-    } = generateDimensionStyle({
-        controlName: PSE_BRADIUS,
-        styleFor: 'border-radius',
-        attributes,
-    });
-
-    const {
         backgroundStylesDesktop: pseDeskBGStyle,
         backgroundStylesTab: pseTabBGStyle,
         backgroundStylesMobile: pseMobBGStyle,
@@ -379,20 +232,14 @@ export default function Style({ props }) {
         noMainBGImg: true,
     });
 
-    /**
-     * Generate Alignment Class
-     */
 
-    const btnDeskAlign = `display: ${buttonAlignmentDesktop === 'text-align:justify;' ? 'flex' : ''};`;
-    const btnTabAlign = `display: ${buttonAlignmentTab === 'text-align:justify;' ? 'flex' : ''};`;
-    const btnMobAlign = `display: ${buttonAlignmentMob === 'text-align:justify;' ? 'flex' : ''};`;
 
     /**
      * All Style Combination
      */
     const desktopAllStyle = `
 		.wp-block-zolo-modal.${uniqueId} {
-			${buttonAlignmentDesktop}
+			${ generateCSS({attributes, key:'buttonAlignment', getValue: (value) => `text-align: ${value};`, device: 'Desktop'}) }
 		}
 
 		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button:hover{
@@ -401,13 +248,13 @@ export default function Style({ props }) {
 		}
 
 		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button {
-			${gap}
-            ${btnDeskAlign}
+			${ generateCSS({attributes, key:'iconTextSpacing', getValue: (value) => `gap: ${value};`, device: 'Desktop'}) }
 			${borderStyles}
-			${borderRadiusDesktop}
-			${paddingDesktop}
             ${normalDeskBGStyle}
             ${normalBoxShadowStyle}
+            ${ generateCSS({attributes, key:'buttonBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'buttonPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'buttonMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Desktop'}) }
             ${ generateCSS({attributes, key:'buttonWidth', getValue: (value) => `width: ${value};`, device: 'Desktop'}) }
             ${ generateCSS({attributes, key:'buttonMinHeight', getValue: (value) => `min-height: ${value};`, device: 'Desktop'}) }
 		}
@@ -464,15 +311,16 @@ export default function Style({ props }) {
 
         .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon {
 			${iconBorderDesktop}
-			${iconBorderRadiusDesktop}
 			${iconNormalBoxShadow}
-			${iconPaddingDesktop}
+            ${ generateCSS({attributes, key:'iconBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'iconPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'iconMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Desktop'}) }
             background: ${iconBg ? iconBg : ''};
         }
 
         .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon svg {
-			${iconHeight}
-			${iconWidth}
+			${ generateCSS({attributes, key:'iconSize', getValue: (value) => `height: ${value};`, device: 'Desktop'}) }
+			${ generateCSS({attributes, key:'iconSize', getValue: (value) => `width: ${value};`, device: 'Desktop'}) }
         }
 
 		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button svg {
@@ -500,7 +348,7 @@ export default function Style({ props }) {
 		${
             preset === 'button-2'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
-				${ptDeskBorderRadius}
+				${ generateCSS({attributes, key:'presetTRadius', getValue: (value) => `border-radius: ${value};`, device: 'Desktop'}) }
 			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before {
 				${pthBGDesk}
 			}
@@ -521,11 +369,7 @@ export default function Style({ props }) {
 		${
             preset === 'button-4'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-modal-button{
-					${
-                        presetFourStyles && (presetFourStyles.shadowColor || pfDeskShadowWidth)
-                            ? `box-shadow: ${pfDeskShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
-                            : ''
-                    }
+					${ generateCSS({attributes, key:'presetFSWidth', getValue: (value) => presetFourStyles && presetFourStyles.shadowColor && value ? `box-shadow: ${value} 0px 0px ${presetFourStyles.shadowColor};` : '', device: 'Desktop'}) }
 				} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-modal-button:after {
 					${presetFourStyles && presetFourStyles.colorOne ? `background: ${presetFourStyles.colorOne};` : ''}
 					${presetFourStyles && presetFourStyles.textShadowColor ? `text-shadow: -3px -3px 0px ${presetFourStyles.textShadowColor};` : ''}
@@ -537,7 +381,7 @@ export default function Style({ props }) {
             preset === 'button-5'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-modal-button:after {
 				${pfvDeskBorder}
-				${pfvDeskBorderRadius}
+				${ generateCSS({attributes, key:'presetFVBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Desktop'}) }
 			}`
                 : ''
         }
@@ -562,7 +406,7 @@ export default function Style({ props }) {
                             ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-modal-button:after {
                             background-color: ${presetSevenStyles && presetSevenStyles.bgColor};
                             ${psDeskBorder}
-                            ${psDeskBorderRadius}
+                            ${ generateCSS({attributes, key:'presetSBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Desktop'}) }
 					}`
                             : ''
                     }
@@ -574,7 +418,7 @@ export default function Style({ props }) {
             preset === 'button-8'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                     ${pseDeskBorder}
-                    ${pseDeskBorderRadius}
+                    ${ generateCSS({attributes, key:'pseBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Desktop'}) }
                 }
 				`
                 : ''
@@ -598,19 +442,49 @@ export default function Style({ props }) {
 				`
                 : ''
         }
+
+        /* Popup Modal Styles */
+        .zolo-modal-overlay.${uniqueId} {
+            ${modalOverlayBg ? `background-color: ${modalOverlayBg};` : ''}
+        }
+
+        .zolo-modal-content.${uniqueId} {
+            ${modalContentBg ? `background-color: ${modalContentBg};` : ''}
+            overflow: visible;
+            ${ generateCSS({attributes, key:'modalWidth', getValue: (value) => `max-width: ${value};`, device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'modalPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'modalBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Desktop'}) }
+        }
+
+        .zolo-modal-content.${uniqueId} .zolo-modal-close {
+            ${modalCloseColor ? `color: ${modalCloseColor};` : ''}
+            ${modalCloseBg ? `background-color: ${modalCloseBg};` : ''}
+            ${ generateCSS({attributes, key:'modalCloseSize', getValue: (value) => `width: ${value}; height: ${value};`, device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'modalCloseTop', getValue: (value) => `top: ${value};`, device: 'Desktop'}) }
+            ${ generateCSS({attributes, key:'modalCloseRight', getValue: (value) => `right: ${value};`, device: 'Desktop'}) }
+        }
+
+        .zolo-modal-content.${uniqueId} .zolo-modal-close svg {
+            ${ generateCSS({attributes, key:'modalCloseSize', getValue: (value) => `width: ${value}; height: ${value};`, device: 'Desktop'}) }
+        }
+
+        .zolo-modal-content.${uniqueId} .zolo-modal-close:hover {
+            ${modalCloseHoverColor ? `color: ${modalCloseHoverColor};` : ''}
+            ${modalCloseHoverBg ? `background-color: ${modalCloseHoverBg};` : ''}
+        }
   	`;
     const tabletAllStyle = `
 		.wp-block-zolo-modal.${uniqueId} {
-			${buttonAlignmentTab}
+			${ generateCSS({attributes, key:'buttonAlignment', getValue: (value) => `text-align: ${value};`, device: 'Tablet'}) }
 		}
 
         .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button {
-			${gapTab}
-            ${btnTabAlign}
+			${ generateCSS({attributes, key:'iconTextSpacing', getValue: (value) => `gap: ${value};`, device: 'Tablet'}) }
             ${borderStylesTab}
-			${borderRadiusTab}
-			${paddingTab}
             ${normalTabBGStyle}
+            ${ generateCSS({attributes, key:'buttonBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'buttonPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'buttonMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Tablet'}) }
             ${ generateCSS({attributes, key:'buttonWidth', getValue: (value) => `width: ${value};`, device: 'Tablet'}) }
             ${ generateCSS({attributes, key:'buttonMinHeight', getValue: (value) => `min-height: ${value};`, device: 'Tablet'}) }
 		}
@@ -626,13 +500,14 @@ export default function Style({ props }) {
 
 		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon {
 			${iconBorderTab}
-			${iconBorderRadiusTab}
-			${iconPaddingTab}
+            ${ generateCSS({attributes, key:'iconBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'iconPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'iconMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Tablet'}) }
 		}
 
 		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon svg {
-			${iconHeightTab}
-			${iconWidthTab}
+			${ generateCSS({attributes, key:'iconSize', getValue: (value) => `height: ${value};`, device: 'Tablet'}) }
+			${ generateCSS({attributes, key:'iconSize', getValue: (value) => `width: ${value};`, device: 'Tablet'}) }
 		}
 
 		${
@@ -646,7 +521,7 @@ export default function Style({ props }) {
         ${
             preset === 'button-2'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
-				${ptTabBorderRadius}
+				${ generateCSS({attributes, key:'presetTRadius', getValue: (value) => `border-radius: ${value};`, device: 'Tablet'}) }
 			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before {
 				${pthBGTab}
 			}
@@ -668,11 +543,7 @@ export default function Style({ props }) {
         ${
             preset === 'button-4'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-modal-button{
-					${
-                        presetFourStyles && (presetFourStyles.shadowColor || pfTabShadowWidth)
-                            ? `box-shadow: ${pfTabShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
-                            : ''
-                    }
+					${ generateCSS({attributes, key:'presetFSWidth', getValue: (value) => presetFourStyles && presetFourStyles.shadowColor && value ? `box-shadow: ${value} 0px 0px ${presetFourStyles.shadowColor};` : '', device: 'Tablet'}) }
 				}`
                 : ''
         }
@@ -681,7 +552,7 @@ export default function Style({ props }) {
             preset === 'button-5'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-modal-button:after {
 				${pfvTabBorder}
-				${pfvTabBorderRadius}
+				${ generateCSS({attributes, key:'presetFVBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Tablet'}) }
 			}`
                 : ''
         }
@@ -693,7 +564,7 @@ export default function Style({ props }) {
                         presetSevenStyles
                             ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-modal-button:after {
                             ${psTabBorder}
-                            ${psTabBorderRadius}
+                            ${ generateCSS({attributes, key:'presetSBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Tablet'}) }
 					}`
                             : ''
                     }
@@ -705,7 +576,7 @@ export default function Style({ props }) {
             preset === 'button-8'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                    ${pseTabBorder}
-                  ${pseTabBorderRadius}
+                  ${ generateCSS({attributes, key:'pseBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Tablet'}) }
                 }
 				`
                 : ''
@@ -719,19 +590,36 @@ export default function Style({ props }) {
 				`
                  : ''
          }
+
+        /* Popup Modal Styles - Tablet */
+        .zolo-modal-content.${uniqueId} {
+            ${ generateCSS({attributes, key:'modalWidth', getValue: (value) => `max-width: ${value};`, device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'modalPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'modalBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Tablet'}) }
+        }
+
+        .zolo-modal-content.${uniqueId} .zolo-modal-close {
+            ${ generateCSS({attributes, key:'modalCloseSize', getValue: (value) => `width: ${value}; height: ${value};`, device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'modalCloseTop', getValue: (value) => `top: ${value};`, device: 'Tablet'}) }
+            ${ generateCSS({attributes, key:'modalCloseRight', getValue: (value) => `right: ${value};`, device: 'Tablet'}) }
+        }
+
+        .zolo-modal-content.${uniqueId} .zolo-modal-close svg {
+            ${ generateCSS({attributes, key:'modalCloseSize', getValue: (value) => `width: ${value}; height: ${value};`, device: 'Tablet'}) }
+        }
 	`;
     const mobileAllStyle = `
 		.wp-block-zolo-modal.${uniqueId} {
-			${buttonAlignmentMob}
+			${ generateCSS({attributes, key:'buttonAlignment', getValue: (value) => `text-align: ${value};`, device: 'Mobile'}) }
 		}
 
         .wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button {
-			${gapMob}
-            ${btnMobAlign}
+			${ generateCSS({attributes, key:'iconTextSpacing', getValue: (value) => `gap: ${value};`, device: 'Mobile'}) }
             ${borderStylesMob}
-			${borderRadiusMob}
 			${normalMobBGStyle}
-			${paddingMob}
+            ${ generateCSS({attributes, key:'buttonBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'buttonPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'buttonMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Mobile'}) }
             ${ generateCSS({attributes, key:'buttonWidth', getValue: (value) => `width: ${value};`, device: 'Mobile'}) }
             ${ generateCSS({attributes, key:'buttonMinHeight', getValue: (value) => `min-height: ${value};`, device: 'Mobile'}) }
 		}
@@ -746,13 +634,14 @@ export default function Style({ props }) {
 
 		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon {
 			${iconBorderMob}
-			${iconBorderRadiusMob}
-			${iconPaddingMob}
+            ${ generateCSS({attributes, key:'iconBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'iconPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'iconMargin', getValue: (value) => getBoxControlValue(value, 'margin'), device: 'Mobile'}) }
 		}
 
 		.wp-block-zolo-modal .zolo-modal.${uniqueId} .zolo-modal-button .zolo__display-icon svg {
-			${iconHeightMob}
-			${iconWidthMob}
+			${ generateCSS({attributes, key:'iconSize', getValue: (value) => `height: ${value};`, device: 'Mobile'}) }
+			${ generateCSS({attributes, key:'iconSize', getValue: (value) => `width: ${value};`, device: 'Mobile'}) }
 		}
 
 		${
@@ -766,7 +655,7 @@ export default function Style({ props }) {
         ${
             preset === 'button-2'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:after {
-				${ptMobBorderRadius}
+				${ generateCSS({attributes, key:'presetTRadius', getValue: (value) => `border-radius: ${value};`, device: 'Mobile'}) }
 			} .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-2 .zolo-modal-button:before {
 				${pthBGMob}
 			}
@@ -788,11 +677,7 @@ export default function Style({ props }) {
         ${
             preset === 'button-4'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-4 .zolo-modal-button{
-					${
-                        presetFourStyles && (presetFourStyles.shadowColor || pfMobShadowWidth)
-                            ? `box-shadow: ${pfMobShadowWidth.replace(/;/g, '')} 0px 0px ${presetFourStyles.shadowColor};`
-                            : ''
-                    }
+					${ generateCSS({attributes, key:'presetFSWidth', getValue: (value) => presetFourStyles && presetFourStyles.shadowColor && value ? `box-shadow: ${value} 0px 0px ${presetFourStyles.shadowColor};` : '', device: 'Mobile'}) }
 				}`
                 : ''
         }
@@ -801,7 +686,7 @@ export default function Style({ props }) {
             preset === 'button-5'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-5 .zolo-modal-button:after {
 				${pfvMobBorder}
-				${pfvMobBorderRadius}
+				${ generateCSS({attributes, key:'presetFVBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Mobile'}) }
 			}`
                 : ''
         }
@@ -813,7 +698,7 @@ export default function Style({ props }) {
                         presetSevenStyles
                             ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-7 .zolo-modal-button:after {
                             ${psMobBorder}
-                            ${psMobBorderRadius}
+                            ${ generateCSS({attributes, key:'presetSBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Mobile'}) }
 					}`
                             : ''
                     }
@@ -825,7 +710,7 @@ export default function Style({ props }) {
             preset === 'button-8'
                 ? `.wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:after, .wp-block-zolo-modal .zolo-modal.${uniqueId}.button-8 .zolo-modal-button:before {
                   ${pseMobBorder}
-                     ${pseMobBorderRadius}
+                     ${ generateCSS({attributes, key:'pseBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Mobile'}) }
                 }
 				`
                 : ''
@@ -838,6 +723,23 @@ export default function Style({ props }) {
                 }
 				`
                 : ''
+        }
+
+        /* Popup Modal Styles - Mobile */
+        .zolo-modal-content.${uniqueId} {
+            ${ generateCSS({attributes, key:'modalWidth', getValue: (value) => `max-width: ${value};`, device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'modalPadding', getValue: (value) => getBoxControlValue(value, 'padding'), device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'modalBorderRadius', getValue: (value) => `border-radius: ${value};`, device: 'Mobile'}) }
+        }
+
+        .zolo-modal-content.${uniqueId} .zolo-modal-close {
+            ${ generateCSS({attributes, key:'modalCloseSize', getValue: (value) => `width: ${value}; height: ${value};`, device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'modalCloseTop', getValue: (value) => `top: ${value};`, device: 'Mobile'}) }
+            ${ generateCSS({attributes, key:'modalCloseRight', getValue: (value) => `right: ${value};`, device: 'Mobile'}) }
+        }
+
+        .zolo-modal-content.${uniqueId} .zolo-modal-close svg {
+            ${ generateCSS({attributes, key:'modalCloseSize', getValue: (value) => `width: ${value}; height: ${value};`, device: 'Mobile'}) }
         }
   	`;
 

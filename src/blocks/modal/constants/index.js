@@ -102,3 +102,11 @@ export const ICON_ANIMATIONS = [
         value: 'icon-animation-5',
     },
 ];
+
+/**
+ * Popup Modal
+ */
+export const MODAL_WIDTH = 'modalWidth';
+export const MODAL_PADDING = 'modalPadding';
+export const MODAL_BORDER_RADIUS = 'modalBorderRadius';
+export const MODAL_CLOSE_SIZE = 'modalCloseSize';

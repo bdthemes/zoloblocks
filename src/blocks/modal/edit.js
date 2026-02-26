@@ -286,7 +286,7 @@ export default function Edit(props) {
                     {/* Modal Overlay and Content */}
                     {isOpen && (
                         <div
-                            className={classnames('zolo-modal-overlay', { 'is-open': isAnimating })}
+                            className={classnames('zolo-modal-overlay', uniqueId, { 'is-open': isAnimating })}
                             onClick={(e) => {
                                 // Only close if clicking exactly on the overlay background, not the content
                                 if (e.target === e.currentTarget) {
@@ -294,7 +294,7 @@ export default function Edit(props) {
                                 }
                             }}
                         >
-                            <div className="zolo-modal-content">
+                            <div className={classnames('zolo-modal-content', uniqueId)}>
                                 <button
                                     className="zolo-modal-close"
                                     onClick={(e) => {

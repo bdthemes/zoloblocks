@@ -13,58 +13,48 @@ const {
     ZoloTextControl,
     ZoloCardDivider,
     HeaderTabs,
-    ResAlignmentControl,
-    ResRangeControl,
     ColorControl,
     BorderControl,
-    ResDimensionsControl,
     TypographyDropdown,
     TabPanelControl,
     NormalBGControl,
     BoxShadowControl,
     LinkControl,
-    IconicBtnGroup,
     AdvancedOptions,
     ZoloIconPicker,
     ZoloPanelBody,
     ZoloResponsive,
     useResponsiveValue,
-    ZoloRangeUnit
+    ZoloRangeUnit,
+    ZoloBoxControl,
+    ZoloChoose,
 } = window.zoloModule;
 
 import { TEXT_ALIGN_OPTIONS, ICON_POSITIONS, ICON_STATUS } from '../../../src/global/constants';
 import objAttributes from './attributes';
 import {
-    BUTTON_ALIGNMENT,
     PRESETS,
     BUTTON_BORDER,
-    BUTTON_BORDER_RADIUS,
-    BUTTON_PADDING,
     BUTTON_BG,
     BUTTON_HOVER_BG_COLOR,
     BUTTON_BOX_SHADOW,
     BUTTON_HOVER_BOX_SHADOW,
-    ICON_SIZE,
-    ICON_TEXT_SPACING,
     ICON_BORDER,
-    ICON_BORDER_RADIUS,
     ICON_BOX_SHADOW,
     ICON_HOVER_BOX_SHADOW,
-    ICON_PADDING,
     PT_BORDER,
-    PT_BORDER_RADIUS,
-    PF_SWIDTH,
     PFV_BORDER,
-    PFV_BORDER_RADIUS,
     PS_BORDER,
-    PS_BORDER_RADIUS,
     PSE_BORDER,
-    PSE_BRADIUS,
     PSE_BG,
     PT_BG,
     PTH_BG,
     PFTH_BG,
     ICON_ANIMATIONS,
+    MODAL_WIDTH,
+    MODAL_PADDING,
+    MODAL_BORDER_RADIUS,
+    MODAL_CLOSE_SIZE,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -93,6 +83,12 @@ function Inspector(props) {
         buttonTwoBorderColor,
         psStarColor,
         presetBgColor,
+        modalOverlayBg,
+        modalContentBg,
+        modalCloseColor,
+        modalCloseHoverColor,
+        modalCloseBg,
+        modalCloseHoverBg,
     } = attributes;
 
     const requiredProps = {
@@ -117,10 +113,6 @@ function Inspector(props) {
                 setAttributes={setAttributes}
                 generalTab={
                     <>
-                        <ZoloPanelBody title={__('General', 'zoloblocks')} panelProps={props} firstOpen={true}>
-
-                        </ZoloPanelBody>
-
                         <ZoloPanelBody title={__('Button', 'zoloblocks')} panelProps={props}>
                             {iconType !== 'iconOnly' && (
                                 <ZoloTextControl
@@ -137,24 +129,27 @@ function Inspector(props) {
                                 onChange={(value) => onPresetChange(value)}
                             />
 
-                            <ResAlignmentControl
-                                label={__('Alignment', 'zoloblocks')}
-                                controlName={BUTTON_ALIGNMENT}
-                                requiredProps={requiredProps}
-                                alignOptions={TEXT_ALIGN_OPTIONS}
-                            />
-                            <div className="zolo-flex-row-control-tab">
-                                <IconicBtnGroup
-                                    label={__('Icon', 'zoloblocks')}
-                                    value={iconType}
-                                    onChange={(value) =>
-                                        setAttributes({
-                                            iconType: value,
-                                        })
-                                    }
-                                    options={ICON_STATUS}
+                            <ZoloResponsive left='65px'>
+                                <ZoloChoose
+                                    label={__('Alignment', 'zoloblocks')}
+                                    value={getResponsiveValue('buttonAlignment')}
+                                    onChange={(value) => {
+                                        setAttributes(createResponsiveValue('buttonAlignment', value));
+                                    }}
+                                    options={TEXT_ALIGN_OPTIONS}
+                                    isDeselectable
                                 />
-                            </div>
+                            </ZoloResponsive>
+                            <ZoloChoose
+                                label={__('Icon', 'zoloblocks')}
+                                value={iconType}
+                                onChange={(value) =>
+                                    setAttributes({
+                                        iconType: value,
+                                    })
+                                }
+                                options={ICON_STATUS}
+                            />
                             {iconType !== 'none' && (
                                 <>
                                     <ZoloIconPicker
@@ -177,19 +172,19 @@ function Inspector(props) {
                                                     iconAnimation !== undefined &&
                                                     iconAnimation !== 'undefined' &&
                                                     (preset === 'button-1' || preset === 'button-3'))) && (
-                                                <>
-                                                    <IconicBtnGroup
-                                                        label={__('Icon Position', 'zoloblocks')}
-                                                        value={iconPosition}
-                                                        onChange={(value) =>
-                                                            setAttributes({
-                                                                iconPosition: value,
-                                                            })
-                                                        }
-                                                        options={ICON_POSITIONS}
-                                                    />
-                                                </>
-                                            )}
+                                                    <>
+                                                        <ZoloChoose
+                                                            label={__('Icon Position', 'zoloblocks')}
+                                                            value={iconPosition}
+                                                            onChange={(value) =>
+                                                                setAttributes({
+                                                                    iconPosition: value,
+                                                                })
+                                                            }
+                                                            options={ICON_POSITIONS}
+                                                        />
+                                                    </>
+                                                )}
                                         </>
                                     )}
                                 </>
@@ -215,6 +210,26 @@ function Inspector(props) {
                                 )}
                             </>
                         )}
+                        <ZoloPanelBody title={__('Popup Modal', 'zoloblocks')} panelProps={props} firstOpen={true}>
+                            <ZoloResponsive>
+                                <ZoloRangeUnit
+                                    label={__('Width', 'zoloblocks')}
+                                    value={getResponsiveValue('modalWidth')}
+                                    onChange={(value) => setAttributes(createResponsiveValue('modalWidth', value))}
+                                    min={300}
+                                    max={1200}
+                                    step={10}
+                                />
+                            </ZoloResponsive>
+
+                            <ZoloResponsive left='55px'>
+                                <ZoloBoxControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    value={getResponsiveValue('modalPadding')}
+                                    onChange={(value) => setAttributes(createResponsiveValue('modalPadding', value))}
+                                />
+                            </ZoloResponsive>
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
@@ -240,7 +255,7 @@ function Inspector(props) {
                                         />
                                         <ZoloCardDivider />
                                         <NormalBGControl requiredProps={requiredProps} controlName={BUTTON_BG} noMainBGImg={false} />
-                                        <ZoloResponsive left='5ch'>
+                                        <ZoloResponsive left='45px'>
                                             <ZoloRangeUnit
                                                 label={__('Width', 'zoloblocks')}
                                                 value={getResponsiveValue('buttonWidth')}
@@ -249,7 +264,7 @@ function Inspector(props) {
                                                 }}
                                             />
                                         </ZoloResponsive>
-                                        <ZoloResponsive left='9ch'>
+                                        <ZoloResponsive left='70px'>
                                             <ZoloRangeUnit
                                                 label={__('Min Height', 'zoloblocks')}
                                                 value={getResponsiveValue('buttonMinHeight')}
@@ -258,12 +273,24 @@ function Inspector(props) {
                                                 }}
                                             />
                                         </ZoloResponsive>
-                                        <ResDimensionsControl
-                                            label={__('Padding', 'zoloblocks')}
-                                            controlName={BUTTON_PADDING}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={false}
-                                        />
+                                        <ZoloResponsive left='55px'>
+                                            <ZoloBoxControl
+                                                label={__('Padding', 'zoloblocks')}
+                                                value={getResponsiveValue('buttonPadding')}
+                                                onChange={(newValue) => {
+                                                    setAttributes(createResponsiveValue('buttonPadding', newValue));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
+                                        <ZoloResponsive left='48px'>
+                                            <ZoloBoxControl
+                                                label={__('Margin', 'zoloblocks')}
+                                                value={getResponsiveValue('buttonMargin')}
+                                                onChange={(newValue) => {
+                                                    setAttributes(createResponsiveValue('buttonMargin', newValue));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
                                         <ZoloCardDivider />
                                         <BorderControl
                                             label={__('Border', 'zoloblocks')}
@@ -273,12 +300,15 @@ function Inspector(props) {
                                         {preset !== 'button-4' && preset !== 'button-6' && (
                                             <BoxShadowControl controlName={BUTTON_BOX_SHADOW} requiredProps={requiredProps} />
                                         )}
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={BUTTON_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
+                                        <ZoloResponsive left='88px'>
+                                            <ZoloRangeUnit
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                value={getResponsiveValue('buttonBorderRadius')}
+                                                onChange={(value) => {
+                                                    setAttributes(createResponsiveValue('buttonBorderRadius', value));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
                                     </>
                                 }
                                 hoverComponents={
@@ -351,23 +381,27 @@ function Inspector(props) {
                                             />
                                             {iconType !== 'none' && (
                                                 <>
-                                                    <ResRangeControl
-                                                        label={__('Size', 'zoloblocks')}
-                                                        controlName={ICON_SIZE}
-                                                        requiredProps={requiredProps}
-                                                        min={0}
-                                                        max={36}
-                                                        step={1}
-                                                    />
-                                                    {iconType !== 'iconOnly' && (
-                                                        <ResRangeControl
-                                                            label={__('Gap', 'zoloblocks')}
-                                                            controlName={ICON_TEXT_SPACING}
-                                                            requiredProps={requiredProps}
+                                                    <ZoloResponsive left='45px'>
+                                                        <ZoloRangeUnit
+                                                            label={__('Size', 'zoloblocks')}
+                                                            value={getResponsiveValue('iconSize')}
+                                                            onChange={(value) => createResponsiveValue('iconSize', value)}
                                                             min={0}
-                                                            max={100}
+                                                            max={36}
                                                             step={1}
                                                         />
+                                                    </ZoloResponsive>
+                                                    {iconType !== 'iconOnly' && (
+                                                        <ZoloResponsive>
+                                                            <ZoloRangeUnit
+                                                                label={__('Gap', 'zoloblocks')}
+                                                                value={getResponsiveValue('iconTextSpacing')}
+                                                                onChange={(value) => createResponsiveValue('iconTextSpacing', value)}
+                                                                min={0}
+                                                                max={100}
+                                                                step={1}
+                                                            />
+                                                        </ZoloResponsive>
                                                     )}
                                                 </>
                                             )}
@@ -382,12 +416,24 @@ function Inspector(props) {
                                                     })
                                                 }
                                             />
-                                            <ResDimensionsControl
-                                                label={__('Padding', 'zoloblocks')}
-                                                controlName={ICON_PADDING}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={false}
-                                            />
+                                            <ZoloResponsive left='55px'>
+                                                <ZoloBoxControl
+                                                    label={__('Padding', 'zoloblocks')}
+                                                    value={getResponsiveValue('iconPadding')}
+                                                    onChange={(newValue) => {
+                                                        setAttributes(createResponsiveValue('iconPadding', newValue));
+                                                    }}
+                                                />
+                                            </ZoloResponsive>
+                                            <ZoloResponsive left='48px'>
+                                                <ZoloBoxControl
+                                                    label={__('Margin', 'zoloblocks')}
+                                                    value={getResponsiveValue('iconMargin')}
+                                                    onChange={(newValue) => {
+                                                        setAttributes(createResponsiveValue('iconMargin', newValue));
+                                                    }}
+                                                />
+                                            </ZoloResponsive>
                                             <ZoloCardDivider />
                                             <BorderControl
                                                 label={__('Border', 'zoloblocks')}
@@ -410,13 +456,15 @@ function Inspector(props) {
                                                 controlName={ICON_BOX_SHADOW}
                                                 requiredProps={requiredProps}
                                             />
-                                            <ResDimensionsControl
-                                                label={__('Border Radius', 'zoloblocks')}
-                                                nBg
-                                                controlName={ICON_BORDER_RADIUS}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={true}
-                                            />
+                                            <ZoloResponsive left='88px'>
+                                                <ZoloRangeUnit
+                                                    label={__('Border Radius', 'zoloblocks')}
+                                                    value={getResponsiveValue('iconBorderRadius')}
+                                                    onChange={(value) => {
+                                                        setAttributes(createResponsiveValue('iconBorderRadius', value));
+                                                    }}
+                                                />
+                                            </ZoloResponsive>
                                         </>
                                     }
                                     hoverComponents={
@@ -475,13 +523,15 @@ function Inspector(props) {
                                                             })
                                                         }
                                                     />
-                                                    <ResRangeControl
-                                                        label={__('Shadow Width', 'zoloblocks')}
-                                                        controlName={PF_SWIDTH}
-                                                        requiredProps={requiredProps}
-                                                        min={1}
-                                                        max={100}
-                                                    />
+                                                    <ZoloResponsive>
+                                                        <ZoloRangeUnit
+                                                            label={__('Shadow Width', 'zoloblocks')}
+                                                            value={getResponsiveValue('presetFSWidth')}
+                                                            onChange={(value) => createResponsiveValue('presetFSWidth', value)}
+                                                            min={1}
+                                                            max={100}
+                                                        />
+                                                    </ZoloResponsive>
                                                 </>
                                             }
                                             hoverComponents={
@@ -535,12 +585,15 @@ function Inspector(props) {
                                             controlName={PFV_BORDER}
                                             requiredProps={requiredProps}
                                         />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={PFV_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
+                                        <ZoloResponsive left='88px'>
+                                            <ZoloRangeUnit
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                value={getResponsiveValue('presetFVBorderRadius')}
+                                                onChange={(value) => {
+                                                    setAttributes(createResponsiveValue('presetFVBorderRadius', value));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
                                     </>
                                 )}
                                 {preset === 'button-6' && (
@@ -576,12 +629,15 @@ function Inspector(props) {
                                             controlName={PS_BORDER}
                                             requiredProps={requiredProps}
                                         />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={PS_BORDER_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
+                                        <ZoloResponsive left='88px'>
+                                            <ZoloRangeUnit
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                value={getResponsiveValue('presetSBorderRadius')}
+                                                onChange={(value) => {
+                                                    setAttributes(createResponsiveValue('presetSBorderRadius', value));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
                                     </>
                                 )}
 
@@ -594,12 +650,15 @@ function Inspector(props) {
                                             controlName={PSE_BORDER}
                                             requiredProps={requiredProps}
                                         />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={PSE_BRADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
+                                        <ZoloResponsive left='88px'>
+                                            <ZoloRangeUnit
+                                                label={__('Border Radius', 'zoloblocks')}
+                                                value={getResponsiveValue('pseBorderRadius')}
+                                                onChange={(value) => {
+                                                    setAttributes(createResponsiveValue('pseBorderRadius', value));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
                                     </>
                                 )}
 
@@ -618,6 +677,99 @@ function Inspector(props) {
                                 )}
                             </ZoloPanelBody>
                         )}
+
+                        <ZoloPanelBody title={__('Popup Modal', 'zoloblocks')} panelProps={props} stylePanel={true}>
+                            <ColorControl
+                                label={__('Overlay Background', 'zoloblocks')}
+                                color={modalOverlayBg}
+                                onChange={(value) => setAttributes({ modalOverlayBg: value })}
+                            />
+
+                            <ColorControl
+                                label={__('Content Background', 'zoloblocks')}
+                                color={modalContentBg}
+                                onChange={(value) => setAttributes({ modalContentBg: value })}
+                            />
+
+                            <ZoloResponsive left='88px'>
+                                <ZoloRangeUnit
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    value={getResponsiveValue('modalBorderRadius')}
+                                    onChange={(value) => setAttributes(createResponsiveValue('modalBorderRadius', value))}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                />
+                            </ZoloResponsive>
+                        </ZoloPanelBody>
+
+                        <ZoloPanelBody title={__('Close Button', 'zoloblocks')} panelProps={props} stylePanel={true}>
+                            <TabPanelControl
+                                normalComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={modalCloseColor}
+                                            onChange={(value) => setAttributes({ modalCloseColor: value })}
+                                        />
+
+                                        <ColorControl
+                                            label={__('Background', 'zoloblocks')}
+                                            color={modalCloseBg}
+                                            onChange={(value) => setAttributes({ modalCloseBg: value })}
+                                        />
+
+                                        <ZoloResponsive left='55px'>
+                                            <ZoloRangeUnit
+                                                label={__('Size', 'zoloblocks')}
+                                                value={getResponsiveValue('modalCloseSize')}
+                                                onChange={(value) => setAttributes(createResponsiveValue('modalCloseSize', value))}
+                                                min={16}
+                                                max={48}
+                                                step={1}
+                                            />
+                                        </ZoloResponsive>
+
+                                        <ZoloResponsive left='80px'>
+                                            <ZoloRangeUnit
+                                                label={__('Top Position', 'zoloblocks')}
+                                                value={getResponsiveValue('modalCloseTop')}
+                                                onChange={(value) => setAttributes(createResponsiveValue('modalCloseTop', value))}
+                                                min={-200}
+                                                max={200}
+                                                step={1}
+                                            />
+                                        </ZoloResponsive>
+
+                                        <ZoloResponsive left='85px'>
+                                            <ZoloRangeUnit
+                                                label={__('Right Position', 'zoloblocks')}
+                                                value={getResponsiveValue('modalCloseRight')}
+                                                onChange={(value) => setAttributes(createResponsiveValue('modalCloseRight', value))}
+                                                min={-200}
+                                                max={200}
+                                                step={1}
+                                            />
+                                        </ZoloResponsive>
+                                    </>
+                                }
+                                hoverComponents={
+                                    <>
+                                        <ColorControl
+                                            label={__('Color', 'zoloblocks')}
+                                            color={modalCloseHoverColor}
+                                            onChange={(value) => setAttributes({ modalCloseHoverColor: value })}
+                                        />
+
+                                        <ColorControl
+                                            label={__('Background', 'zoloblocks')}
+                                            color={modalCloseHoverBg}
+                                            onChange={(value) => setAttributes({ modalCloseHoverBg: value })}
+                                        />
+                                    </>
+                                }
+                            />
+                        </ZoloPanelBody>
                     </>
                 }
                 advancedTab={
