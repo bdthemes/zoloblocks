@@ -357,3 +357,54 @@
         }
     }
 }
+
+// pagination css  start
+.zolo-pagination-nav {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+
+    .page-numbers {
+        transition: 0.2s;
+        font-size: 14px;
+        padding: 8px 15px;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #f0f0f4;
+        cursor: pointer;
+
+        + .page-numbers {
+            border-left: 1px solid #d9d9d9;
+        }
+
+        &.current {
+            background-color: #c5c5c5;
+        }
+    }
+}
+
+.zolo-pagination-wrap {
+    text-align: center;
+    padding-top: 30px;
+
+    .zolo-pagination-button {
+        cursor: pointer;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background-color: #c5c5c5;
+        text-decoration: none;
+        padding: 9px 20px;
+        display: inline-block;
+        color: #333;
+        transition:
+            color 0.2s ease-in-out,
+            background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #b0b0b0;
+            color: #111;
+        }
+    }
+}

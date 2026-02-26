@@ -330,6 +330,7 @@ class ZoloHelpers {
                 ]
             );
         }
+        return '';
     }
 
     /**
