@@ -281,7 +281,7 @@ function Inspector(props) {
                                 label={__('Column Number', 'zoloblocks')}
                                 controlName={CAROUSEL_COLUMNS}
                                 requiredProps={requiredProps}
-                                min={2}
+                                min={1}
                                 max={5}
                             />
                             <ResRangeControl
