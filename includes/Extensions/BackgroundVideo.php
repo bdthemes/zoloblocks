@@ -20,6 +20,7 @@ class BackgroundVideo {
     }
 
     public function enqueue_background_video_editor_assets() {
+        //TODO: LOad only when background video extension is active
         $editor_asset = trailingslashit(ZOLO_DIR_PATH) . "build/extensions/background-video/index.asset.php";
         if (file_exists($editor_asset)) {
             $editor_assets = include $editor_asset;

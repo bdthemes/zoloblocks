@@ -50,7 +50,6 @@ import './editor.scss';
 
 // import style
 import Style from './style';
-import { add } from '@dnd-kit/utilities';
 
 export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;

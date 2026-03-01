@@ -65,20 +65,31 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.cta} alt={__('Call to Action Preview', 'zoloblocks')} />;
     }
 
-    /**
-     * context
-     */
+    const childContextData = {
+        preset: context['zolo/preset'],
+        titleToggle: context['zolo/titleToggle'],
+        textToggle: context['zolo/textToggle'],
+        imageToggle: context['zolo/imageToggle'],
+        iconToggle: context['zolo/iconToggle'],
+        mediaType: context['zolo/mediaType'],
+        fancyDirection: context['zolo/fancyDirection'],
+    }
+
+    const childContextAttributes = {
+        preset: attributes.preset,
+        titleToggle: attributes.titleToggle,
+        textToggle: attributes.textToggle,
+        imageToggle: attributes.imageToggle,
+        iconToggle: attributes.iconToggle,
+        mediaType: attributes.mediaType,
+        fancyDirection: attributes.fancyDirection,
+    }
     useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-            titleToggle: context['zolo/titleToggle'],
-            textToggle: context['zolo/textToggle'],
-            imageToggle: context['zolo/imageToggle'],
-            iconToggle: context['zolo/iconToggle'],
-            mediaType: context['zolo/mediaType'],
-            fancyDirection: context['zolo/fancyDirection'],
-        });
-    }, [context]);
+        if (!context) return;
+        if (JSON.stringify(childContextData) !== JSON.stringify(childContextAttributes)) {
+            setAttributes(childContextData);
+        }
+    }, [childContextData]);
 
     return (
         <>

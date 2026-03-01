@@ -18,6 +18,7 @@ class ClassManager
 
 	public function __construct()
 	{
+		//TODO : Need to load when zolo-class-manager is active
 		add_action('init', [$this, 'register_post_type']);
 		add_action('enqueue_block_editor_assets', [$this, 'enqueue_class_manager_editor_assets']);
 		add_filter('render_block', [$this, 'render_block'], 10, 2);

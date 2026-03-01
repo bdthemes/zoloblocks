@@ -40,36 +40,33 @@ export default function Edit(props) {
         checkboxDirection,
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
     const blockProps = useBlockProps({
         className: classnames(className, uniqueId, classArrayToStr(parentClasses), checkboxDirection, 'form-group-editor'),
     });
+
+    const childContextData = {
+        preset: context['zolo/preset'],
+    }
+
+    const childContextAttributes = {
+        preset: attributes.preset,
+    }
+    useEffect(() => {
+        if (!context) return;
+
+        if (JSON.stringify(childContextData) !== JSON.stringify(childContextAttributes)) {
+            setAttributes(childContextData);
+        }
+    }, [childContextData]);
+
+    const optionArray = convertToOptionsArray(optionData);
+    const defaultCheck = convertToDefaultValueArray(defaultValue);
 
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.text} alt={__('Text Preview', 'zoloblocks')} />;
     }
 
-    /**
-     * context
-     */
-    useEffect(() => {
-        setAttributes({
-            preset: context['zolo/preset'],
-        });
-    }, [context]);
-
-    const optionArray = convertToOptionsArray(optionData);
-    const defaultCheck = convertToDefaultValueArray(defaultValue);
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}

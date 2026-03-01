@@ -10,15 +10,46 @@ const Save = ({ attributes }) => {
         preset,
         zoloId,
         showNavigation,
-        showPagination,
+        showPagination = true,
         customNavIcon,
         sliderOptions,
-        breakpoints,
         prevNavIcon,
         nextNavIcon,
+        pagiPosition,
     } = attributes;
+
+    const {
+        navigation = false,
+        paginationType = 'bullets',
+        progressDirection = 'top',
+    } = sliderOptions || {};
+
+    const isNavVisible = showNavigation !== undefined ? showNavigation : navigation;
+    const isPaginationVisible = showPagination !== false;
+
+    //merge slider options
+    const defaultOptions = {
+        perviewDesktop: attributes?.zolo_carouselColumnsRange,
+        perviewTab: attributes?.zolo_TABcarouselColumnsRange,
+        perviewMobile: attributes?.zolo_MOBcarouselColumnsRange,
+        spacingDesktop: attributes?.zolo_carouselGapRange,
+        spacingTab: attributes?.zolo_TABcarouselGapRange,
+        spacingMob: attributes?.zolo_MOBcarouselGapRange,
+    };
+    const swiperOptions = {
+        ...defaultOptions,
+        ...attributes?.sliderOptions,
+        navigation: isNavVisible,
+        pagination: isPaginationVisible,
+    };
+    // Block Props
     const blockProps = useBlockProps.save({
-        className: classnames(uniqueId, classArrayToStr(parentClasses), preset),
+        className: classnames(
+            uniqueId,
+            classArrayToStr(parentClasses),
+            preset,
+            showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : ''
+        ),
     });
 
     return (
@@ -27,16 +58,9 @@ const Save = ({ attributes }) => {
             {...(zoloId && {
                 id: zoloId,
             })}
-            data-swiper-breakpoints={JSON.stringify(breakpoints)}
-            {...(sliderOptions &&
-                (Object.keys(sliderOptions).length > 2 ||
-                    sliderOptions?.breakpoints['1024']['slidesPerView'] !== '3' ||
-                    sliderOptions?.breakpoints['1024']['spaceBetween'] !== 30 ||
-                    sliderOptions?.breakpoints['768']['slidesPerView'] !== '2' ||
-                    sliderOptions?.breakpoints['768']['spaceBetween'] !== 30 ||
-                    sliderOptions?.breakpoints['640']['slidesPerView'] !== '1' ||
-                    sliderOptions?.breakpoints['640']['spaceBetween'] !== 0) && {
-                    'data-swiper-options': JSON.stringify(sliderOptions),
+            {...(swiperOptions &&
+                Object.keys(swiperOptions).length > 1 && {
+                    'data-swiper-options': JSON.stringify(swiperOptions),
                 })}
         >
             <div className="swiper">
@@ -44,18 +68,18 @@ const Save = ({ attributes }) => {
                     <InnerBlocks.Content />
                 </div>
             </div>
-            {(showPagination || showPagination === undefined) && (
+            {showPagination && (
                 <div className="swiper-pagination swiper-pagination-position-bottom"></div>
             )}
-            {showNavigation && (
+            {isNavVisible && (
                 <>
                     <div className={`swiper-navigation-wrap  swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}>
                         {customNavIcon && (
                             <>
-                                <div className="swiper-nav-button swiper-zolo-prev">
+                                <div className="swiper-nav-button swiper-zolo-prev swiper-button-prev">
                                     <DisplayZoloIcon icon={prevNavIcon} />
                                 </div>
-                                <div className="swiper-nav-button swiper-zolo-next">
+                                <div className="swiper-nav-button swiper-zolo-next swiper-button-next">
                                     <DisplayZoloIcon icon={nextNavIcon} />
                                 </div>
                             </>

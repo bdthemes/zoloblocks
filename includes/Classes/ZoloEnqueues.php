@@ -300,6 +300,7 @@ if (! class_exists('ZoloEnqueues')) {
                         $script_dependecy['version'],
                         true
                     );
+                    //TODO: need to load some part dynamically
                     wp_register_style('zolo-template-library-editor-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/template-library/index.css', [], $script_dependecy['version'], 'all');
                     wp_enqueue_script('zolo-template-library-editor-script');
                     wp_enqueue_style('zolo-template-library-editor-style');
@@ -337,6 +338,7 @@ if (! class_exists('ZoloEnqueues')) {
                 'blocksPreview'  => apply_filters('zolo_blocks_preview', [
                     'advancedSearch' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-search.svg',
                     'button'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-button.svg',
+                    'modal'       => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/modal.svg',
                     'businessHour' => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/business-hour.svg',
                     'heading'      => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/advanced-heading.svg',
                     'icon'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/blocks-preview/icon.svg',

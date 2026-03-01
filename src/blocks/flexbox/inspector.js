@@ -10,7 +10,7 @@ import { alignItemsOptions, innerWidthTypes, justifyContentOptions, overflowOpti
 import classNames from 'classnames';
 
 function Inspector(props) {
-    const { attributes, setAttributes, isParent, hasParent } = props;
+    const { attributes, setAttributes, isParent, hasParent, getResponsiveValue, createResponsiveValue } = props;
     useInenerFlexboxWidthType(hasParent, attributes?.flexWidthType, setAttributes);
     const {
         HeaderTabs,
@@ -20,8 +20,6 @@ function Inspector(props) {
         LinkControl,
         ZoloChoose,
         ZoloResponsive,
-        getResponsiveValue,
-        createResponsiveValue,
         ZoloRangeUnit,
         ZoloDualRangeUnit
     } = window.zoloModule;
@@ -58,9 +56,9 @@ function Inspector(props) {
                                     <ZoloResponsive left='90px'>
                                         <ZoloRangeUnit
                                             label={__('Custom Width', 'zoloblocks')}
-                                            value={getResponsiveValue(attributes, 'flexboxCustomWidth')}
+                                            value={getResponsiveValue('flexboxCustomWidth')}
                                             onChange={(value) => {
-                                                setAttributes(createResponsiveValue(attributes, 'flexboxCustomWidth', value));
+                                                setAttributes(createResponsiveValue('flexboxCustomWidth', value));
                                             }}
                                             units={{
                                                 px: { max: 1000, min: 100, step: 1 },
@@ -75,9 +73,9 @@ function Inspector(props) {
                             <ZoloResponsive left='103px'>
                                 <ZoloRangeUnit
                                     label={__('Minimum Height', 'zoloblocks')}
-                                    value={getResponsiveValue(attributes, 'minHeight')}
+                                    value={getResponsiveValue('minHeight')}
                                     onChange={(value) => {
-                                        setAttributes(createResponsiveValue(attributes, 'minHeight', value));
+                                        setAttributes(createResponsiveValue('minHeight', value));
                                     }}
                                     units={{
                                         px: { max: 1000, min: 0, step: 1 },
@@ -92,9 +90,9 @@ function Inspector(props) {
                             <ZoloResponsive left={'58px'}>
                                 <ZoloChoose
                                     label={__('Direction', 'zoloblocks')}
-                                    value={getResponsiveValue(attributes, 'flexDirection')}
+                                    value={getResponsiveValue('flexDirection')}
                                     onChange={(value) => {
-                                        setAttributes(createResponsiveValue(attributes, 'flexDirection', value));
+                                        setAttributes(createResponsiveValue('flexDirection', value));
                                     }}
                                     options={FLEX_DIRECTIONS}
                                     isDeselectable
@@ -103,12 +101,12 @@ function Inspector(props) {
                             <ZoloResponsive left={'96px'}>
                                 <ZoloChoose
                                     label={__('Justify Content', 'zoloblocks')}
-                                    value={getResponsiveValue(attributes, 'flexJustifyContent')}
+                                    value={getResponsiveValue('flexJustifyContent')}
                                     className={classNames({
-                                        [`zolo-flex-justify-content-${getResponsiveValue(attributes, 'flexDirection') || 'row'}`]: true
+                                        [`zolo-flex-justify-content-${getResponsiveValue('flexDirection') || 'row'}`]: true
                                     })}
                                     onChange={(value) => {
-                                        setAttributes(createResponsiveValue(attributes, 'flexJustifyContent', value));
+                                        setAttributes(createResponsiveValue('flexJustifyContent', value));
                                     }}
                                     options={justifyContentOptions}
                                     isDeselectable
@@ -117,12 +115,12 @@ function Inspector(props) {
                             <ZoloResponsive left={'70px'}>
                                 <ZoloChoose
                                     label={__('Align Items', 'zoloblocks')}
-                                    value={getResponsiveValue(attributes, 'flexAlignItems')}
+                                    value={getResponsiveValue('flexAlignItems')}
                                     className={classNames({
-                                        [`zolo-flex-align-items-${getResponsiveValue(attributes, 'flexDirection') || 'row'}`]: true
+                                        [`zolo-flex-align-items-${getResponsiveValue('flexDirection') || 'row'}`]: true
                                     })}
                                     onChange={(value) => {
-                                        setAttributes(createResponsiveValue(attributes, 'flexAlignItems', value));
+                                        setAttributes(createResponsiveValue('flexAlignItems', value));
                                     }}
                                     options={alignItemsOptions}
                                     isDeselectable
@@ -131,9 +129,9 @@ function Inspector(props) {
                             <ZoloResponsive left={'35px'}>
                                 <ZoloChoose
                                     label={__('Wrap', 'zoloblocks')}
-                                    value={getResponsiveValue(attributes, 'flexWrap')}
+                                    value={getResponsiveValue('flexWrap')}
                                     onChange={(value) => {
-                                        setAttributes(createResponsiveValue(attributes, 'flexWrap', value));
+                                        setAttributes(createResponsiveValue('flexWrap', value));
                                     }}
                                     options={FLEX_WRAPS}
                                     isDeselectable
@@ -166,19 +164,13 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Flexbox Gap', 'zoloblocks')} stylePanel={true} firstOpen={true} panelProps={props}>
-                            {/* <ResGapControl
-                                label={__('Gap', 'zoloblocks')}
-                                controlName={FLEXBOX_GAP}
-                                requiredProps={requiredProps}
-                                max={200}
-                            /> */}
                             <ZoloResponsive left='30px'>
                                 <ZoloDualRangeUnit
                                     label={__('Gap', 'zoloblocks')}
                                     dualLabel={[__('Column Gap', 'zoloblocks'), __('Row Gap', 'zoloblocks')]}
-                                    value={getResponsiveValue(attributes, 'flexGap')}
+                                    value={getResponsiveValue('flexGap')}
                                     onChange={(value) => {
-                                        setAttributes(createResponsiveValue(attributes, 'flexGap', value));
+                                        setAttributes(createResponsiveValue('flexGap', value));
                                     }}
                                     units={{
                                         px: { max: 200, min: 0, step: 1 },

@@ -1,150 +1,159 @@
-import { createRoot } from 'react-dom/client';
-import React from 'react';
+import ApexCharts from 'apexcharts';
 
-import ApexCharts from 'react-apexcharts';
-import { v4 as uuidv4 } from 'uuid';
 document.addEventListener('DOMContentLoaded', () => {
-    const uid = uuidv4();
-    const apexChartsItems = document.querySelectorAll('.zolo-chart');
+	const blocks = document.querySelectorAll('.zolo-block-charts');
+	if (!blocks.length) return;
 
-    if (apexChartsItems.length > 0) {
-        apexChartsItems.forEach((item) => {
-            const options = JSON.parse(item.dataset.options);
-            try {
-                const {
-                    chartType,
-                    showTitle,
-                    showSubTitle,
-                    chartHeight,
-                    showLegend,
-                    showTooltip,
-                    showGrid,
-                    showDropshadow,
-                    titleObject,
-                    subTitleObject,
-                    legendObject,
-                    tooltipObject,
-                    showGridY,
-                    showGridX,
-                    gridObject,
-                    chartBackground,
-                    pieChartColor,
-                    xAxisColor,
-                    xAxisFontSize,
-                    yAxisColor,
-                    yAxisFontSize,
-                    barChartData,
-                    pieChartData,
-                    showToolbar,
-                    showDownload,
-                    showSelection,
-                    showZoom,
-                    showZoomIn,
-                    showZoomOut,
-                    showPanel,
-                    showReset,
-                } = options;
+	blocks.forEach((block) => {
+		const options = JSON.parse(block.dataset.options);
+		try {
+			const {
+				chartType,
+				showTitle,
+				showSubTitle,
+				chartHeight,
+				showLegend,
+				showTooltip,
+				showGrid,
+				showDropshadow,
+				titleObject,
+				subTitleObject,
+				legendObject,
+				tooltipObject,
+				showGridY,
+				showGridX,
+				gridObject,
+				chartBackground,
+				pieChartColor,
+				xAxisColor,
+				xAxisFontSize,
+				yAxisColor,
+				yAxisFontSize,
+				barChartData,
+				pieChartData,
+				showToolbar,
+				showDownload,
+				showSelection,
+				showZoom,
+				showZoomIn,
+				showZoomOut,
+				showPanel,
+				showReset,
+				uniqueId,
+			} = options;
 
-                const commonOptions = {
-                    dataLabels: { enabled: false },
-                    colors: pieChartColor,
-                    chart: {
-                        id: `chart-${uid}`,
-                        background: 'transparent',
-                        toolbar: {
-                            show: showToolbar,
-                            tools: {
-                                download: showDownload,
-                                selection: showSelection,
-                                zoom: showZoom,
-                                zoomin: showZoomIn,
-                                zoomout: showZoomOut,
-                                pan: showPanel,
-                                reset: showReset,
-                            },
-                        },
-                    },
-                    title: {
-                        text: showTitle ? titleObject.text : undefined,
-                        align: titleObject.align,
-                        style: {
-                            color: titleObject.style.color,
-                        },
-                    },
-                    subtitle: {
-                        text: showSubTitle ? subTitleObject.text : undefined,
-                        align: subTitleObject.align,
-                        style: {
-                            color: subTitleObject.style.color,
-                        },
-                    },
-                    legend: {
-                        show: showLegend,
-                        position: legendObject.position,
-                        horizontalAlign: legendObject.horizontalAlign,
-                        floating: legendObject.floating,
-                        offsetY: legendObject.offsetY,
-                        offsetX: legendObject.offsetX,
-                        labels: {
-                            colors: legendObject.labels?.colors,
-                            useSeriesColors: legendObject.labels?.useSeriesColors,
-                        },
-                    },
-                    tooltip: {
-                        enabled: showTooltip,
-                        shared: tooltipObject.shared,
-                        followCursor: tooltipObject.followCursor,
-                        intersect: tooltipObject.intersect,
-                        inverseOrder: tooltipObject.inverseOrder,
-                        hideEmptySeries: tooltipObject.hideEmptySeries,
-                        fillSeriesColor: tooltipObject.fillSeriesColor,
-                        theme: tooltipObject.theme,
-                    },
-                    grid: {
-                        show: showGrid,
-                        xaxis: { lines: { show: showGrid ? showGridY : false } },
-                        yaxis: { lines: { show: showGrid ? showGridX : false } },
-                    },
-                    labels: barChartData.options.labels,
-                };
-                const newChartOptions = {
-                    ...commonOptions,
-                    xaxis: {
-                        labels: {
-                            style: {
-                                colors: xAxisColor,
-                                fontSize: xAxisFontSize,
-                            },
-                        },
-                    },
-                    yaxis: {
-                        labels: {
-                            style: {
-                                colors: yAxisColor,
-                                fontSize: yAxisFontSize,
-                            },
-                        },
-                    },
-                };
-                const newPieChartOptions = {
-                    ...commonOptions,
-                    labels: pieChartData.labels,
-                };
+			const isPieOrDonut = chartType === 'pie' || chartType === 'donut';
 
-                const root = createRoot(item);
-                root.render(
-                    <ApexCharts
-                        key={`chart-${uid}`}
-                        options={chartType === 'pie' || chartType === 'donut' ? newPieChartOptions : newChartOptions}
-                        series={chartType === 'pie' || chartType === 'donut' ? pieChartData.series : barChartData.series}
-                        type={chartType}
-                        width={'100%'}
-                        height={chartHeight !== undefined ? chartHeight : 300}
-                    />
-                );
-            } catch (error) {
-                console.error(error);
-            }
-        });
-    }
+			const commonOptions = {
+				dataLabels: { enabled: false },
+				colors: pieChartColor && pieChartColor.length ? pieChartColor : undefined,
+				chart: {
+					id: `chart-${uniqueId || Math.random().toString(36).substr(2, 9)}`,
+					type: chartType,
+					height: chartHeight !== undefined ? chartHeight : 300,
+					background: 'transparent',
+					toolbar: {
+						show: showToolbar,
+						tools: {
+							download: showDownload,
+							selection: showSelection,
+							zoom: showZoom,
+							zoomin: showZoomIn,
+							zoomout: showZoomOut,
+							pan: showPanel,
+							reset: showReset,
+						},
+					},
+					dropShadow: {
+						enabled: showDropshadow,
+					},
+				},
+				title: {
+					text: showTitle ? titleObject.text : undefined,
+					align: titleObject.align,
+					style: {
+						color: titleObject.style?.color,
+					},
+				},
+				subtitle: {
+					text: showSubTitle ? subTitleObject.text : undefined,
+					align: subTitleObject.align,
+					style: {
+						color: subTitleObject.style?.color,
+					},
+				},
+				legend: {
+					show: showLegend,
+					position: legendObject.position,
+					horizontalAlign: legendObject.horizontalAlign,
+					floating: legendObject.floating,
+					offsetY: legendObject.offsetY,
+					offsetX: legendObject.offsetX,
+					labels: {
+						colors: legendObject.labels?.colors,
+						useSeriesColors: legendObject.labels?.useSeriesColors,
+					},
+				},
+				tooltip: {
+					enabled: showTooltip,
+					shared: tooltipObject.shared,
+					followCursor: tooltipObject.followCursor,
+					intersect: tooltipObject.intersect,
+					inverseOrder: tooltipObject.inverseOrder,
+					hideEmptySeries: tooltipObject.hideEmptySeries,
+					fillSeriesColor: tooltipObject.fillSeriesColor,
+					theme: tooltipObject.theme,
+				},
+				grid: {
+					show: showGrid,
+					xaxis: {
+						lines: {
+							show: showGrid ? showGridY : false,
+						},
+					},
+					yaxis: {
+						lines: {
+							show: showGrid ? showGridX : false,
+						},
+					},
+				},
+				labels: barChartData.options.labels,
+			};
+
+			let finalOptions;
+			if (isPieOrDonut) {
+				finalOptions = {
+					...commonOptions,
+					series: pieChartData.series,
+					labels: pieChartData.labels,
+				};
+			} else {
+				finalOptions = {
+					...commonOptions,
+					series: barChartData.series,
+					xaxis: {
+						labels: {
+							style: {
+								colors: xAxisColor,
+								fontSize: xAxisFontSize,
+							},
+						},
+					},
+					yaxis: {
+						labels: {
+							style: {
+								colors: yAxisColor,
+								fontSize: yAxisFontSize,
+							},
+						},
+					},
+				};
+			}
+
+			const chart = new ApexCharts(block, finalOptions);
+			chart.render();
+		} catch (error) {
+			console.error('Zolo Charts Error:', error);
+		}
+	});
 });

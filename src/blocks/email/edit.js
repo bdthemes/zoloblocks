@@ -68,15 +68,21 @@ export default function Edit(props) {
         return <img src={zoloParams.blocksPreview.mail} alt={__('Email Preview', 'zoloblocks')} />;
     }
 
-    /**
-     * context
-     */
+    const contextData = {
+        showIcon: context['zolo/showFieldIcon'],
+        preset: context['zolo/preset'],
+    };
+
+    const contextAttributes = {
+        showIcon: attributes.showIcon,
+        preset: attributes.preset,
+    };
     useEffect(() => {
-        setAttributes({
-            showIcon: context['zolo/showFieldIcon'],
-            preset: context['zolo/preset'],
-        });
-    }, [context]);
+        if (!context) return;
+        if (JSON.stringify(contextData) !== JSON.stringify(contextAttributes)) {
+            setAttributes(contextData);
+        }
+    }, [contextData]);
 
     return (
         <>

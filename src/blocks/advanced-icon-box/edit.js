@@ -55,7 +55,6 @@ export default function Edit(props) {
     // filter hooks for render
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
     const renderHookAfter = applyFilters('zolo.blocks.render.hook.after', [], props);
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
 
     const blockProps = useBlockProps({
         className: classnames(

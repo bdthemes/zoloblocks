@@ -17,7 +17,9 @@ const TextGradientControl = ({
     defaultColor = '',
     onChangeDefault = null,
 }) => {
-    const { setAttributes, attributes, resMode } = requiredProps;
+    const { setAttributes, attributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
     const {
         //attributes for background type normal start
         [`${controlName}backgroundType`]: backgroundType,

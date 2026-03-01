@@ -23,7 +23,6 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, clientId, isSelected } = props;
     const { preview, uniqueId, parentClasses, preset, layoutType } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset, layoutType),
     });

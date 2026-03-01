@@ -5,7 +5,9 @@ import { prefix } from '../../global/constants';
 import { __ } from '@wordpress/i18n';
 
 const ResCounterControl = ({ label, controlName, requiredProps, min, max, step, defaults = {}, noteText = '' }) => {
-    const { attributes, setAttributes, resMode } = requiredProps;
+    const { attributes, setAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
     const {
         [`${prefix}${controlName}Range`]: desktopRange = defaults.deskRange || 3,
         [`${prefix}TAB${controlName}Range`]: tabRange = defaults.tabRange || 2,

@@ -26,7 +26,7 @@ export default function Edit(props) {
     const { attributes, setAttributes, className, isSelected, clientId } = props;
     const { preview, uniqueId, preset, parentClasses, socialText, socialMedia, socialColor, layout } = attributes;
     const socialMediaInfoFiltered = zoloArraysMergeIfUniqueValue(socialMedia, socialMediaInfo, 'value');
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+
     const blockProps = useBlockProps({
         className: classnames(className, `${preset} ${uniqueId}`, layout, classArrayToStr(parentClasses)),
     });

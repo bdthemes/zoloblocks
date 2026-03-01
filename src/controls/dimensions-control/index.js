@@ -7,7 +7,9 @@ import ResetBtn from '../reset-btn';
 import LinkUnlink from '../link-unlink';
 
 const ResDimensionsControl = ({ label, help="", controlName, requiredProps, forBorderRadius, units, max = null }) => {
-    const { attributes, setAttributes, resMode } = requiredProps;
+    const { attributes, setAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const {
         [`${prefix}${controlName}Unit`]: dimensionUnit,

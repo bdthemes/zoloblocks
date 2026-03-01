@@ -12,7 +12,9 @@ import { __ } from '@wordpress/i18n';
 import ColorBtn from '../color-btn';
 import LinkUnlink from '../link-unlink';
 const BorderControl = ({ label, controlName, requiredProps, units, hoverControl = null }) => {
-    const { attributes, setAttributes, resMode } = requiredProps;
+    const { attributes, setAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
     const [displayPanel, setDisplayPanel] = useState(false);
 
     const {

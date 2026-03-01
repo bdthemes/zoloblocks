@@ -10,7 +10,7 @@ import useElementResize from "./use-element-resizer";
 
 const Edit = (props) => {
     const { clientId, attributes, setAttributes } = props;
-    const { classArrayToStr, getResponsiveValue, createResponsiveValue } = window.zoloModule;
+    const { classArrayToStr, useResponsiveValue } = window.zoloModule;
     const { hasChildBlocks, hasParent, isParent } = useSelect(
         (select) => {
             const { getBlockOrder, getBlockParentsByBlockName } = select(blockEditorStore);
@@ -36,18 +36,20 @@ const Edit = (props) => {
         renderAppender: hasChildBlocks ? false : InnerBlocks.ButtonBlockAppender
     });
 
+    const [getResponsiveValue, createResponsiveValue] = useResponsiveValue(attributes);
+
     useElementResize({
         element: wrapperRef?.current,
         position: 'right',
         cssProperty: 'max-width',
-        value: getResponsiveValue(attributes, 'flexboxCustomWidth'),
+        value: getResponsiveValue('flexboxCustomWidth'),
         onResizeStart: () => {
             setAttributes({
                 flexShrink: Number(0)
             });
         },
         onResizeEnd: (value) => {
-            setAttributes(createResponsiveValue(attributes, 'flexboxCustomWidth', value));
+            setAttributes(createResponsiveValue('flexboxCustomWidth', value));
         },
         condition: (element) => {
             return element?.classList?.contains('zolo-flexbox-custom-width') && element?.classList?.contains('is-selected');
@@ -57,14 +59,14 @@ const Edit = (props) => {
         element: wrapperRef?.current,
         position: 'left',
         cssProperty: 'max-width',
-        value: getResponsiveValue(attributes, 'flexboxCustomWidth'),
+        value: getResponsiveValue('flexboxCustomWidth'),
         onResizeStart: () => {
             setAttributes({
                 flexShrink: Number(0)
             })
         },
         onResizeEnd: (value) => {
-            setAttributes(createResponsiveValue(attributes, 'flexboxCustomWidth', value));
+            setAttributes(createResponsiveValue('flexboxCustomWidth', value));
         },
         condition: (element) => {
             return element?.classList?.contains('zolo-flexbox-custom-width') && element?.classList?.contains('is-selected');
@@ -83,7 +85,13 @@ const Edit = (props) => {
     } else {
         content = (
             <>
-                <Inspector {...props} isParent={isParent} hasParent={hasParent} />
+                <Inspector 
+                    {...props} 
+                    isParent={isParent} 
+                    hasParent={hasParent} 
+                    getResponsiveValue={getResponsiveValue} 
+                    createResponsiveValue={createResponsiveValue} 
+                />
                 <Style {...props} />
                 <TAG {...innerBlocksProps} />
             </>

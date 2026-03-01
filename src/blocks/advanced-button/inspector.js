@@ -28,8 +28,7 @@ const {
     ZoloIconPicker,
     ZoloPanelBody,
     ZoloResponsive,
-    getResponsiveValue,
-    createResponsiveValue,
+    useResponsiveValue,
     ZoloRangeUnit
 } = window.zoloModule;
 
@@ -109,8 +108,7 @@ function Inspector(props) {
         setAttributes({ preset: selected });
     };
 
-    // preset options
-    const presetOptions = applyFilters('zolo.advancedButton.presets', PRESETS);
+    const [getResponsiveValue, createResponsiveValue] = useResponsiveValue(attributes);
 
     return (
         <InspectorControls key="controls">
@@ -249,18 +247,18 @@ function Inspector(props) {
                                         <ZoloResponsive left='5ch'>
                                             <ZoloRangeUnit
                                                 label={__('Width', 'zoloblocks')}
-                                                value={getResponsiveValue(attributes, 'buttonWidth')}
+                                                value={getResponsiveValue('buttonWidth')}
                                                 onChange={(value) => {
-                                                    setAttributes(createResponsiveValue(attributes, 'buttonWidth', value));
+                                                    setAttributes(createResponsiveValue('buttonWidth', value));
                                                 }}
                                             />
                                         </ZoloResponsive>
                                         <ZoloResponsive left='9ch'>
                                             <ZoloRangeUnit
                                                 label={__('Min Height', 'zoloblocks')}
-                                                value={getResponsiveValue(attributes, 'buttonMinHeight')}
+                                                value={getResponsiveValue('buttonMinHeight')}
                                                 onChange={(value) => {
-                                                    setAttributes(createResponsiveValue(attributes, 'buttonMinHeight', value));
+                                                    setAttributes(createResponsiveValue('buttonMinHeight', value));
                                                 }}
                                             />
                                         </ZoloResponsive>

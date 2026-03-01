@@ -25,7 +25,9 @@ import { applyFilters } from '@wordpress/hooks';
 
 const BGControl = (props) => {
     const { controlName, requiredProps, noMainBGImg, video } = props;
-    const { setAttributes, attributes, resMode } = requiredProps;
+    const { setAttributes, attributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
     const backgroundVideo = applyFilters('zolo.extensions.controls.backgroundVideo', [], requiredProps);
     const {
         [`${controlName}backgroundType`]: backgroundType,

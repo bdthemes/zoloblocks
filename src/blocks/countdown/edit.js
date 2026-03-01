@@ -45,16 +45,6 @@ export default function Edit(props) {
         zolo_MOBcountBoxGridRange,
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
     // Initialize CountDate if not set
     useEffect(() => {
         if (!CountDate) {

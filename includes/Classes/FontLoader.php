@@ -28,8 +28,9 @@ if( ! class_exists( 'FontLoader' ) ) {
 		 * The Constructor.
 		 */
 		public function __construct() {
+			//TODO : Need to load fonts according to blocks attributes
 			add_action( 'wp_enqueue_scripts', array( $this, 'fonts_loader' ) );
-			add_action( 'enqueue_block_editor_assets', array( $this, 'fonts_loader' ), 9999 );
+			add_action( 'enqueue_block_assets', array( $this, 'fonts_loader' ), 9999 );
 			add_action( 'zolo_block_render_block', array( $this, 'font_generator' ) );
 		}
 	
@@ -62,7 +63,6 @@ if( ! class_exists( 'FontLoader' ) ) {
 		 * @since 1.0.0
 		 */
 		public function fonts_loader() {
-	
 			if (is_array(self::$all_fonts) && count(self::$all_fonts) > 0) {
 		
 				$fonts = array_filter(array_unique(self::$all_fonts));

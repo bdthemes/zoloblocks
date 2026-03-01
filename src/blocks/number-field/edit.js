@@ -63,20 +63,26 @@ export default function Edit(props) {
         ),
     });
 
+    const contextData = {
+        showIcon: context['zolo/showFieldIcon'],
+        preset: context['zolo/preset'],
+    }
+
+    const contextAttributes = {
+        showIcon: attributes.showIcon,
+        preset: attributes.preset,
+    }
+    useEffect(() => {
+        if (!context) return;
+        if (JSON.stringify(contextData) !== JSON.stringify(contextAttributes)) {
+            setAttributes(contextData);
+        }
+    }, [contextData]);
+
     // preview image
     if (preview) {
         return <img src={zoloParams.blocksPreview.text} alt={__('Text Preview', 'zoloblocks')} />;
     }
-
-    /**
-     * context
-     */
-    useEffect(() => {
-        setAttributes({
-            showIcon: context['zolo/showFieldIcon'],
-            preset: context['zolo/preset'],
-        });
-    }, [context]);
 
     return (
         <>

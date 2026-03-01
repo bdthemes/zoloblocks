@@ -25,8 +25,7 @@ const {
     ResCounterControl,
     ZoloIconPicker,
     ZoloResponsive,
-    getResponsiveValue,
-    createResponsiveValue,
+    useResponsiveValue,
     ZoloBorder,
     ZoloBoxControl,
     ZoloBorderRadius,
@@ -160,6 +159,7 @@ function Inspector(props) {
         readMoreHoverBackgroundColor,
         readMoreHoverBorderColor
     } = attributes;
+    const [getResponsiveValue, createResponsiveValue] = useResponsiveValue(attributes);
 
     const requiredProps = {
         resMode,
@@ -711,15 +711,13 @@ function Inspector(props) {
                                                         setAttributes({ readMoreBorder: newValue });
                                                     }}
                                                 />
-                                                <ZoloResponsive>
-                                                    <ZoloBorderRadius
-                                                        label={__('Border Radius', 'zoloblocks')}
-                                                        value={attributes?.readMoreBorderRadius}
-                                                        onChange={(newValue) => {
-                                                            setAttributes({ readMoreBorderRadius: newValue });
-                                                        }}
-                                                    />
-                                                </ZoloResponsive>
+                                                <ZoloBorderRadius
+                                                    label={__('Border Radius', 'zoloblocks')}
+                                                    value={attributes?.readMoreBorderRadius}
+                                                    onChange={(newValue) => {
+                                                        setAttributes({ readMoreBorderRadius: newValue });
+                                                    }}
+                                                />
                                             </>
                                         }
                                         hoverComponents={
@@ -761,9 +759,9 @@ function Inspector(props) {
                                     <ZoloResponsive left='4ch'>
                                         <ZoloRangeUnit
                                             label={__('Size', 'zoloblocks')}
-                                            value={getResponsiveValue(attributes, 'readMoreIconSize')}
+                                            value={getResponsiveValue('readMoreIconSize')}
                                             onChange={(value) => {
-                                                setAttributes(createResponsiveValue(attributes, 'readMoreIconSize', value));
+                                                setAttributes(createResponsiveValue('readMoreIconSize', value));
                                             }}
                                         />
                                     </ZoloResponsive>
@@ -771,18 +769,18 @@ function Inspector(props) {
                                     <ZoloResponsive left='55px'>
                                         <ZoloBoxControl
                                             label={__('Padding', 'zoloblocks')}
-                                            value={getResponsiveValue(attributes, 'readMorePadding')}
+                                            value={getResponsiveValue('readMorePadding')}
                                             onChange={(newValue) => {
-                                                setAttributes(createResponsiveValue(attributes, 'readMorePadding', newValue));
+                                                setAttributes(createResponsiveValue('readMorePadding', newValue));
                                             }}
                                         />
                                     </ZoloResponsive>
                                     <ZoloResponsive left='48px'>
                                         <ZoloBoxControl
                                             label={__('Margin', 'zoloblocks')}
-                                            value={getResponsiveValue(attributes, 'readMoreMargin')}
+                                            value={getResponsiveValue('readMoreMargin')}
                                             onChange={(newValue) => {
-                                                setAttributes(createResponsiveValue(attributes, 'readMoreMargin', newValue));
+                                                setAttributes(createResponsiveValue('readMoreMargin', newValue));
                                             }}
                                         />
                                     </ZoloResponsive>

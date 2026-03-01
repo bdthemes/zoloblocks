@@ -76,7 +76,6 @@ export { generateDimensionAttributes, generateDimensionStyle } from '../helpers/
 export { generateGapAttributes, generateGapStyle } from '../helpers/gap-helper';
 export { generateMaskAttributes, generateMaskStyles } from '../helpers/mask-helper';
 export { generateNormalBGAttributes, generateNormalBGControlStyles } from '../helpers/normal-bg-helpers';
-export { onDesktopBtnClick, onMobileBtnClick, onTabletBtnClick } from '../helpers/preview-btns-helper';
 export { generateResAlignmentAttributies, generateResAlignmentStyle } from '../helpers/res-alignment-helper';
 export { generateResCounterAttributies, generateResCounterStyle } from '../helpers/res-counter-helper';
 export { generateResRangeAttributies, generateResRangeStyle } from '../helpers/res-range-helper';
@@ -91,6 +90,7 @@ export { defaultDeviceList } from '../helpers/default-device-list';
 export { default as useDeviceType } from '../helpers/use-device-type';
 export { default as getResponsiveValue } from '../helpers/get-responsive-value';
 export { default as createResponsiveValue } from '../helpers/create-responsive-value';
+export { default as useResponsiveValue } from '../helpers/use-responsive-value';
 export { default as generateCSS } from '../helpers/generate-css';
 export { default as getBorderCSS } from '../helpers/get-border-css';
 export { default as getBoxControlValue } from '../helpers/get-box-control-value';

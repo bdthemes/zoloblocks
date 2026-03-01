@@ -66,7 +66,6 @@ export default function Edit(props) {
         showQuote,
     } = attributes;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
     const blockProps = useBlockProps({
         className: classnames(
             className,
@@ -89,22 +88,37 @@ export default function Edit(props) {
         onClick: (e) => e.preventDefault(),
     };
 
-    /**
-     * context
-     */
+    const childContextData = {
+        preset: context['zolo/preset'],
+        presetFourLayout: context['zolo/presetFourLayout'],
+        showDesignation: context['zolo/showDesignation'],
+        showTestimonialMessage: context['zolo/showTestimonialMessage'],
+        showPhoto: context['zolo/showPhoto'],
+        showName: context['zolo/showName'],
+        showRating: context['zolo/showRating'],
+        showQuote: context['zolo/showQuote'],
+        addReviewerWebsiteLink: context['zolo/addReviewerWebsiteLink'],
+    };
+    const childContextAttributes = {
+        preset: attributes.preset,
+        presetFourLayout: attributes.presetFourLayout,
+        showDesignation: attributes.showDesignation,
+        showTestimonialMessage: attributes.showTestimonialMessage,
+        showPhoto: attributes.showPhoto,
+        showName: attributes.showName,
+        showRating: attributes.showRating,
+        showQuote: attributes.showQuote,
+        addReviewerWebsiteLink: attributes.addReviewerWebsiteLink,
+    };
+
+
     useEffect(() => {
-        setAttributes({
-            showDesignation: context['zolo/showDesignation'],
-            showTestimonialMessage: context['zolo/showTestimonialMessage'],
-            preset: context['zolo/preset'],
-            showPhoto: context['zolo/showPhoto'],
-            showName: context['zolo/showName'],
-            showRating: context['zolo/showRating'],
-            showQuote: context['zolo/showQuote'],
-            addReviewerWebsiteLink: context['zolo/addReviewerWebsiteLink'],
-            presetFourLayout: context['zolo/presetFourLayout'],
-        });
-    }, [context]);
+        if (!childContextData) return;
+
+        if (JSON.stringify(childContextData) !== JSON.stringify(childContextAttributes)) {
+            setAttributes(childContextData);
+        }
+    }, [childContextData]);
 
     return (
         <>

@@ -16,7 +16,7 @@ import {
 } from './constants';
 
 const Style = ({ props }) => {
-    const { clientId, attributes, setAttributes } = props;
+    const { attributes, setAttributes } = props;
 
     const { uniqueId, isBlockRootParent, containerWidthType, contentWidthType } = attributes;
 
@@ -139,7 +139,7 @@ const Style = ({ props }) => {
         ${
             'custom_width' === containerWidthType
                 ? `
-                    #block-${clientId}.block-editor-block-list__block{
+                    .${uniqueId}.block-editor-block-list__block{
                         ${containerDeskWidth}
                     }`
                 : ''
@@ -148,7 +148,7 @@ const Style = ({ props }) => {
             ${containerDeskWidth}
         }
 
-        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
+        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block.${uniqueId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerDeskWidth}
             ${innerContainerDeskWidth}
@@ -178,7 +178,7 @@ const Style = ({ props }) => {
         ${
             'custom_width' === containerWidthType
                 ? `
-                    #block-${clientId}.block-editor-block-list__block{
+                    .${uniqueId}.block-editor-block-list__block{
                         ${containerTabWidth}
                     }`
                 : ''
@@ -188,7 +188,7 @@ const Style = ({ props }) => {
             ${containerTabWidth}
         }
 
-        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
+        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block.${uniqueId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerTabWidth}
             ${innerContainerTabWidth}
@@ -217,7 +217,7 @@ const Style = ({ props }) => {
         ${
             'custom_width' === containerWidthType
                 ? `
-                    #block-${clientId}.block-editor-block-list__block{
+                    .${uniqueId}.block-editor-block-list__block{
                         ${containerMobWidth}
                     }`
                 : ''
@@ -227,7 +227,7 @@ const Style = ({ props }) => {
             ${containerMobWidth}
         }
 
-        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${clientId},
+        .is-root-container > .block-editor-block-list__block .block-editor-block-list__block.${uniqueId},
         .wp-block-zolo-container.zolo-root-container.frontend .${uniqueId}:not(.zolo-background-parallax) {
             ${containerMobWidth}
             ${innerContainerMobWidth}
