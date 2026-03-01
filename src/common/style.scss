@@ -1,4 +1,5 @@
 [class*='zolo-block'] {
+    box-sizing: border-box;
     .swiper:not(.swiper-initialized) {
         opacity: 0;
         visibility: hidden;
