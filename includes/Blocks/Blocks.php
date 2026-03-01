@@ -55,6 +55,7 @@ return apply_filters('zolo_blocks_list_data', [
         'title' => __('Modal', 'zoloblocks'),
         'categories' => ['others'],
         'status' => true,
+        'is_pro' => true,
         'demo' => 'https://demo.zoloblocks.com/modal',
         'video' => 'https://www.youtube.com/watch?v=H10lSIUc-zo',
     ],
