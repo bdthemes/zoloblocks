@@ -56,7 +56,7 @@ export default function Edit(props) {
             }
         };
     }, [clientId, dispatch]);
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+    
     const blockProps = useBlockProps({
         ref: useMergeRefs([sliderRef]),
         className: classnames(className, uniqueId, classArrayToStr(parentClasses), comparisonOptions?.slidePositon),

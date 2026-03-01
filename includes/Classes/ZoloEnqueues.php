@@ -300,6 +300,7 @@ if (! class_exists('ZoloEnqueues')) {
                         $script_dependecy['version'],
                         true
                     );
+                    //TODO: need to load some part dynamically
                     wp_register_style('zolo-template-library-editor-style', trailingslashit(ZOLO_ADMIN_URL) . 'build/template-library/index.css', [], $script_dependecy['version'], 'all');
                     wp_enqueue_script('zolo-template-library-editor-script');
                     wp_enqueue_style('zolo-template-library-editor-style');

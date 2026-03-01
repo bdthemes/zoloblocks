@@ -101,6 +101,10 @@ const attributes = {
     //typography
     ...generateTypographyAttributes(Object.values(typographyObjs)),
     //Block specific Attributes
+    preset: {
+        type: 'string',
+        default: 'zb-brand-style-1',
+    },
     brandPhoto: {
         type: 'object',
         default: {

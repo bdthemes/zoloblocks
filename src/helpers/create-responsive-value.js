@@ -1,5 +1,4 @@
-const createResponsiveValue = (attributes, controlName, value) => {
-    const device = attributes?.resMode;
+const createResponsiveValue = (attributes, controlName, value, device) => {
     return {
         [controlName]: {
             ...attributes?.[controlName],

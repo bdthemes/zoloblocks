@@ -63,10 +63,11 @@ const FontFamilyPicker = ({ label, value, help, instanceId, onChange, className,
 
         let webFontConfig = {
             google: {
-                families: [selectedFont],
+                families: [`${selectedFont}:100,200,300,400,500,600,700,800,900`],
             },
             context: frames['editor-canvas'],
         };
+        
         WebFont.load(webFontConfig);
         onChange(selectedFont);
     };

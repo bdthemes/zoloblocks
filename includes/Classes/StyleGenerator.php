@@ -2,6 +2,7 @@
 
 namespace Zolo\Classes;
 
+use WP_HTML_Tag_Processor;
 use Zolo\Traits\SingletonTrait;
 use Zolo\Helpers\ZoloHelpers;
 
@@ -36,6 +37,16 @@ class StyleGenerator {
             if (isset($block['attrs']['zoloStyles'])) {
                 $style = ZoloHelpers::zolo_generate_style($block['attrs']['zoloStyles']);
                 $this->dynamic_styles .= $style;
+            }
+
+            $attributes = $block['attrs'];
+            if (isset($attributes['uniqueId'])) {
+                $tag = new WP_HTML_Tag_Processor($block_content);
+                $tag->next_tag();
+                $tag->add_class('zolo-block');
+                $tag->add_class($attributes['uniqueId']);
+                $tag->add_class('parent-' . $attributes['uniqueId']);
+                $block_content = $tag->get_updated_html();
             }
         }
 

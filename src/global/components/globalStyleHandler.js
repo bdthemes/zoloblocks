@@ -20,6 +20,8 @@ export const GlobalStyleHanlder = (props) => {
         return null;
     }
 
+    const { useDeviceType } = window.zoloModule;
+
     const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {}, blockName = '' } = props;
 
     const {
@@ -39,6 +41,8 @@ export const GlobalStyleHanlder = (props) => {
         transformFlipVerticalHover,
         transformFlipVertical,
     } = attributes;
+
+    const resMode = useDeviceType();
 
     // Define useEffect before any conditional returns to ensure hooks are always called in the same order
     useEffect(() => {
@@ -589,7 +593,6 @@ export const GlobalStyleHanlder = (props) => {
             ${overflow ? `overflow: ${overflow};` : ''}
             ${transformStylesDesktop}
             ${positionDesktop}
-            box-sizing: border-box;
           }
 
           ${
@@ -730,9 +733,8 @@ export const GlobalStyleHanlder = (props) => {
         let tabletStyles = filteredTabAllStyle + tabGlobalStyles;
         let mobileStyles = filteredMobileAllStyle + mobileGlobalStyles;
 
-        // Add Desktop styles if resMode is Desktop, Tablet, or Mobile
         if (
-            (attributes?.resMode === 'Desktop' || attributes?.resMode === 'Tablet' || attributes?.resMode === 'Mobile') &&
+            (resMode === 'Desktop' || resMode === 'Tablet' || resMode === 'Mobile') &&
             (desktopStyles?.includes(':') && desktopStyles?.includes(';'))
         ) {
             styles.push(softMinifyCssStrings(desktopStyles));
@@ -740,7 +742,7 @@ export const GlobalStyleHanlder = (props) => {
 
         // Add Tablet styles if resMode is Tablet or Mobile
         if (
-            (attributes?.resMode === 'Tablet' || attributes?.resMode === 'Mobile') &&
+            (resMode === 'Tablet' || resMode === 'Mobile') &&
             (tabletStyles?.includes(':') && tabletStyles?.includes(';'))
         ) {
             styles.push(`
@@ -752,7 +754,7 @@ export const GlobalStyleHanlder = (props) => {
 
         // Add Mobile styles if resMode is Mobile
         if (
-            attributes?.resMode === 'Mobile' &&
+            resMode === 'Mobile' &&
             (mobileStyles?.includes(':') && mobileStyles?.includes(';'))
         ) {
             styles.push(`
@@ -780,7 +782,7 @@ export const GlobalStyleHanlder = (props) => {
                 zoloStyles: { ...styleAttributes },
             });
         }
-    }, [attributes]);
+    }, [attributes, resMode]);
 
     if (!uniqueId) {
         return (
@@ -1334,7 +1336,6 @@ export const GlobalStyleHanlder = (props) => {
         ${overflow ? `overflow: ${overflow};` : ''}
         ${transformStylesDesktop}
         ${positionDesktop}
-        box-sizing: border-box;
       }
 
       ${
@@ -1477,7 +1478,7 @@ export const GlobalStyleHanlder = (props) => {
 
     // Add Desktop styles if resMode is Desktop, Tablet, or Mobile
     if (
-        (attributes?.resMode === 'Desktop' || attributes?.resMode === 'Tablet' || attributes?.resMode === 'Mobile') &&
+        (resMode === 'Desktop' || resMode === 'Tablet' || resMode === 'Mobile') &&
         (desktopStyles?.includes(':') && desktopStyles?.includes(';'))
     ) {
         styles.push(softMinifyCssStrings(desktopStyles));
@@ -1485,7 +1486,7 @@ export const GlobalStyleHanlder = (props) => {
 
     // Add Tablet styles if resMode is Tablet or Mobile
     if (
-        (attributes?.resMode === 'Tablet' || attributes?.resMode === 'Mobile') &&
+        (resMode === 'Tablet' || resMode === 'Mobile') &&
         (tabletStyles?.includes(':') && tabletStyles?.includes(';'))
     ) {
         styles.push(`
@@ -1497,7 +1498,7 @@ export const GlobalStyleHanlder = (props) => {
 
     // Add Mobile styles if resMode is Mobile
     if (
-        attributes?.resMode === 'Mobile' &&
+        resMode === 'Mobile' &&
         (mobileStyles?.includes(':') && mobileStyles?.includes(';'))
     ) {
         styles.push(`

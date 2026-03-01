@@ -1,22 +1,21 @@
 import useClickOutside from './use-click-outside';
 
 import { useState, useRef, useCallback } from '@wordpress/element';
-import { dispatch } from '@wordpress/data';
+import { useDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 const WithResDeviceBtn = ({ label, requiredProps, children, controlName, noResetBtn = false, noResponsive = false }) => {
-    const { resMode, objAttributes, setAttributes } = requiredProps;
+    const { objAttributes, setAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const [switcherIsOpen, setSwitcherIsOpen] = useState(false);
-    const [device, setDevice] = useState(() => resMode || 'Desktop');
     const devicesRef = useRef();
     const closeDevices = useCallback(() => setSwitcherIsOpen(false), []);
+    const { setDeviceType } = useDispatch('core/editor');
 
     const onClickHandler = (_device) => {
-        const editor_type = `core/${zoloParams?.editor_type || 'edit-post'}`;
-        setAttributes({ resMode: _device });
-        setDevice(_device);
-        dispatch(editor_type).__experimentalSetPreviewDeviceType(_device);
+        setDeviceType(_device);
         setSwitcherIsOpen(() => !switcherIsOpen);
     };
 
@@ -30,12 +29,12 @@ const WithResDeviceBtn = ({ label, requiredProps, children, controlName, noReset
                     {!noResponsive && (
                         <div
                             ref={devicesRef}
-                            className={`zb-device-switchers active-${device} ${switcherIsOpen ? 'zb-device-switchers-open' : ''} `}
+                            className={`zb-device-switchers active-${resMode} ${switcherIsOpen ? 'zb-device-switchers-open' : ''} `}
                             onClick={() => setSwitcherIsOpen(() => !switcherIsOpen)}
                         >
                             <div className="zb-device-switchers-wrap">
                                 <button
-                                    className={`zb-device-switcher zb-device-switcher-desktop ${device === 'Desktop' ? 'active' : ''}`}
+                                    className={`zb-device-switcher zb-device-switcher-desktop ${resMode === 'Desktop' ? 'active' : ''}`}
                                     onClick={() => onClickHandler('Desktop')}
                                     data-tooltip={__('Desktop')}
                                 >
@@ -48,7 +47,7 @@ const WithResDeviceBtn = ({ label, requiredProps, children, controlName, noReset
                                     </svg>
                                 </button>
                                 <button
-                                    className={`zb-device-switcher zb-device-switcher-laptop ${device === 'Tablet' ? 'active' : ''}`}
+                                    className={`zb-device-switcher zb-device-switcher-laptop ${resMode === 'Tablet' ? 'active' : ''}`}
                                     onClick={() => onClickHandler('Tablet')}
                                     data-tooltip={__('Tablet')}
                                 >
@@ -58,7 +57,7 @@ const WithResDeviceBtn = ({ label, requiredProps, children, controlName, noReset
                                     </svg>
                                 </button>
                                 <button
-                                    className={`zb-device-switcher zb-device-switcher-tablet ${device === 'Mobile' ? 'active' : ' '}`}
+                                    className={`zb-device-switcher zb-device-switcher-tablet ${resMode === 'Mobile' ? 'active' : ' '}`}
                                     onClick={() => onClickHandler('Mobile')}
                                     data-tooltip={__('Mobile')}
                                 >

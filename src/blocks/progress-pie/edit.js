@@ -31,16 +31,6 @@ export default function Edit(props) {
     const { preview, uniqueId, progressPie, parentClasses, progPieMultiColor } = attributes;
     const { value, duration, title, toggleLabel, prefix, suffix, toggleSuffixPrefix, fillColor } = progressPie;
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        handleUniqueId({
-            BLOCK_PREFIX,
-            uniqueId,
-            setAttributes,
-            clientId,
-        });
-    }, []);
-
     const blockProps = useBlockProps({
         className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses)),
     });

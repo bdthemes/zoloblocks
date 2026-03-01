@@ -10,7 +10,7 @@ import {
 } from '../core-controls';
 
 import { __ } from '@wordpress/i18n';
-import { BACKGROUND_TYPES, NORMAL_HOVER } from '../../global/constants';
+import { NORMAL_HOVER } from '../../global/constants';
 import ColorControl from '../color-control';
 import GradientControl from '../gradient-control';
 import ImageAvatar from '../image-avatar';
@@ -19,7 +19,9 @@ import WithResDeviceBtn from '../with-res-device-btn';
 import PopoverControl from '../popover-control';
 
 const OverflowControl = ({ controlName, requiredProps, noOverlayBGImg }) => {
-    const { setAttributes, attributes, resMode } = requiredProps;
+    const { setAttributes, attributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const {
         [`${controlName}ovl_hoverType`]: ovl_hoverType,

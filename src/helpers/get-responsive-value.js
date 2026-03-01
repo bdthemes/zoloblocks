@@ -1,5 +1,4 @@
-const getResponsiveValue = (attributes, controlName) => {
-    const device = attributes?.resMode;
+const getResponsiveValue = (attributes, controlName, device) => {
     const value = attributes?.[controlName];
     if (!value || typeof value !== 'object') return null;
 

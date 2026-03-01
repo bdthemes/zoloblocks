@@ -5,7 +5,9 @@ import classNames from 'classnames';
 import ResetBtn from '../reset-btn';
 
 const ResSelectControl = ({ label, controlName, requiredProps, alignOptions, customClass = '' }) => {
-    const { attributes, setAttributes, resMode } = requiredProps;
+    const { attributes, setAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const {
         [`${controlName}ZRPSelect`]: desktopSelect,

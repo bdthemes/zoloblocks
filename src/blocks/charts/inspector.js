@@ -27,7 +27,6 @@ const {
     ColorControl,
     HeaderTabs,
     IconicBtnGroup,
-    AdvancedOptions,
     ZoloPanelBody,
     NormalBGControl,
     BoxShadowControl,
@@ -38,7 +37,7 @@ const {
 
 import objAttributes from './attributes';
 
-import { CHART_TYPES, SOURCE_TYPES, POSITIONS, THEME_TYPES, CHART_HEIGHT } from './constants';
+import { CHART_TYPES, SOURCE_TYPES, POSITIONS, THEME_TYPES } from './constants';
 import { CHART_BG_COLOR, CHART_BORDER, CHART_BORDER_RADIUS, CHART_MARGIN, CHART_PADDING, CHART_BOX_SHADOW } from './constants';
 import { DEFAULT_ALIGNS } from '../../../src/global/constants';
 import { TITLE_TYPO, SUB_TITLE_TYPO } from './constants/typoPrefixConstant';
@@ -64,24 +63,18 @@ function Inspector(props) {
         subTitleObject,
         legendObject,
         tooltipObject,
-        chartBackground,
         pieChartLength,
         barChartLength,
-        pieChartLabels,
         xAxisColor,
         yAxisColor,
         showToolbar,
         showDownload,
-        showSelection,
         showZoom,
         showZoomIn,
         showZoomOut,
         showPanel,
         showReset,
-        showDropshadow,
         fileUrl,
-        barChartData,
-        pieChartData,
     } = attributes;
 
     const requiredProps = {

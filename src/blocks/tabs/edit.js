@@ -16,7 +16,7 @@ import classnames from 'classnames';
 /**
  * Internal depencencies
  */
-const { handleUniqueId, StarRating, classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
+const { classArrayToStr, DisplayZoloIcon, SidebarOpener } = window.zoloModule;
 
 import { BLOCK_PREFIX } from './constants';
 import Inspector from './inspector';
@@ -70,24 +70,11 @@ const Edit = (props) => {
     const [activeTabId, setActiveTabId] = useState(false);
     const activeDefaultTabId = (tabTitles.find((item) => item.isDefault) || { id: tabActiveItemNo }).id;
 
-    // update tabTitles
-    useEffect(() => {
-        // update all tabTitles hasMedia based on showIcon
-        const newTabTitles = tabTitles.map((tab) => {
-            return {
-                ...tab,
-                hasTitle: showTitle,
-                hasMedia: showIcon,
-                hasDescription: showDesc,
-            };
-        });
-        setAttributes({ tabTitles: newTabTitles });
-    }, [showIcon, showTitle, showDesc, addNewTabStatus]);
-
     const { innerBlocks } = useSelect((select) => select('core/block-editor').getBlocksByClientId(clientId)[0]);
     useEffect(() => {
         const { updateBlockAttributes } = dispatch('core/block-editor');
         times(innerBlocks.length, (n) => {
+            if (innerBlocks[n]?.attributes?.tabParentId) return false;
             updateBlockAttributes(innerBlocks[n].clientId, {
                 tabParentId: `${uniqueId}`,
             });

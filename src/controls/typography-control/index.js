@@ -19,7 +19,9 @@ import { fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDec
 import { googleFonts } from './fontPicker/googleFonts';
 
 const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultFontSize, max = 136 }) => {
-    const { attributes, setAttributes, resMode, objAttributes } = requiredProps;
+    const { attributes, setAttributes, objAttributes } = requiredProps;
+    const { useDeviceType } = window.zoloModule;
+    const resMode = useDeviceType();
 
     const {
         [`${prefix}${typoPrefixConstant}FontFamily`]: fontFamily,

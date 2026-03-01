@@ -20,8 +20,7 @@ const {
     ZoloBoxControl,
     ZoloBorderRadius,
     ZoloResponsive,
-    getResponsiveValue,
-    createResponsiveValue
+    useResponsiveValue
 } = window.zoloModule;
 
 import { META_GAP, META_ALIGN, SEPARATOR_SIZE, SEPARATOR_WIDTH, SEPARATOR_HEIGHT, ICON_SIZE, TEXT_INDENT } from './constants';
@@ -31,6 +30,7 @@ import { DEFAULT_ALIGNS, NORMAL_HOVER } from '../../../src/global/constants';
 function Inspector(props) {
     const { attributes, setAttributes } = props;
     const { resMode, metaData, separatorStyle, customSeparator, separatorColor, hoverColor, textColor } = attributes;
+    const [getResponsiveValue, createResponsiveValue] = useResponsiveValue(attributes);
 
     const requiredProps = {
         resMode,
@@ -203,14 +203,14 @@ function Inspector(props) {
                             <ZoloResponsive left='7ch'>
                                 <ZoloBoxControl
                                     label={__('Padding', 'zoloblocks')}
-                                    value={getResponsiveValue(attributes, 'metaPadding')}
-                                    onChange={(metaPadding) => setAttributes(createResponsiveValue(attributes, 'metaPadding', metaPadding))}
+                                    value={getResponsiveValue('metaPadding')}
+                                    onChange={(metaPadding) => setAttributes(createResponsiveValue('metaPadding', metaPadding))}
                                 />
                             </ZoloResponsive>
                             <ZoloResponsive left='6ch'>
                                 <ZoloBorderRadius
-                                    value={getResponsiveValue(attributes, 'metaBorderRadius') || {}}
-                                    onChange={(metaBorderRadius) => setAttributes(createResponsiveValue(attributes, 'metaBorderRadius', metaBorderRadius))}
+                                    value={getResponsiveValue('metaBorderRadius') || {}}
+                                    onChange={(metaBorderRadius) => setAttributes(createResponsiveValue('metaBorderRadius', metaBorderRadius))}
                                 />
                             </ZoloResponsive>
                         </ZoloPanelBody>
