@@ -347,25 +347,25 @@ if (! class_exists('Dashboard')) {
                 }
             );
 
-            if (!class_exists('Zolo_Blocks_Pro')) {
-                add_submenu_page(
-                    'zoloblocks',
-                    __('Upgrade', 'zoloblocks'),
-                    __('Upgrade', 'zoloblocks'),
-                    'manage_options',
-                    'zolo-pro',
-                    function () {
-                        echo '<script>document.location.href = "https://zoloblocks.com/pricing/";</script>';
-                    }
-                );
-                // add_submenu_page(
-                //     'zoloblocks',
-                //     __('Get Pro Version', 'zoloblocks'),
-                //     '<span style="color: #ef476f; font-weight: 600;">' . __('Black Friday Limited Offer Up To 87%', 'zoloblocks') . '</span>',
-                //     'manage_options',
-                //     'https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=zoloblocks'
-                // );
-            }
+            // if (!class_exists('Zolo_Blocks_Pro')) {
+            //     add_submenu_page(
+            //         'zoloblocks',
+            //         __('Upgrade', 'zoloblocks'),
+            //         __('Upgrade', 'zoloblocks'),
+            //         'manage_options',
+            //         'zolo-pro',
+            //         function () {
+            //             echo '<script>document.location.href = "https://zoloblocks.com/pricing/";</script>';
+            //         }
+            //     );
+            //     // add_submenu_page(
+            //     //     'zoloblocks',
+            //     //     __('Get Pro Version', 'zoloblocks'),
+            //     //     '<span style="color: #ef476f; font-weight: 600;">' . __('Black Friday Limited Offer Up To 87%', 'zoloblocks') . '</span>',
+            //     //     'manage_options',
+            //     //     'https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=zoloblocks'
+            //     // );
+            // }
         }
 
         /**
