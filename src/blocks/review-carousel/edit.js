@@ -4,8 +4,10 @@
 import { useBlockProps, BlockControls, useInnerBlocksProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useRef, useEffect } from '@wordpress/element';
-
+import { useMergeRefs } from '@wordpress/compose';
+import { useSelect, dispatch, select } from '@wordpress/data';
 import classnames from 'classnames';
+import { createBlock } from '@wordpress/blocks';
 
 /**
  * Internal depencencies
@@ -15,11 +17,24 @@ const {
     generateResCounterStyle,
     classArrayToStr,
     DisplayZoloIcon,
-    SidebarOpener,
     ZoloToolbarButton,
     ZoloToolbarGroup,
 } = window.zoloModule;
-
+// Import Swiper core and required modules
+import {
+    A11y,
+    Autoplay,
+    EffectCoverflow,
+    EffectCube,
+    EffectFade,
+    EffectFlip,
+    EffectCreative,
+    EffectCards,
+    Navigation,
+    Pagination,
+} from 'swiper/modules';
+import { Swiper } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 import { CAROUSEL_COLUMNS, CAROUSEL_GAP } from './constants';
 
 import Inspector from './inspector';
@@ -35,32 +50,85 @@ export default function Edit(props) {
         parentClasses,
         preset,
         resMode,
-        slideItems,
-        sliderType,
-        autoplay,
-        autoplayDelay,
-        pauseOnMouseEnter,
-        infiniteLoop,
         showNavigation,
-        showPagination,
-        paginationType,
-        dynamicBullets,
-        speed,
-        carouselEffect,
         addNewSlideBlock,
         customNavIcon,
         prevNavIcon,
         nextNavIcon,
-        coverFlowEffect,
+        sliderOptions,
+        pagiPosition,
+        showPagination = true,
     } = attributes;
+    // Swiper Options
+    const {
+        speed = 800,
+        loop = true,
+        autoplay = true,
+        pauseOnMouseEnter = true,
+        autoplayDelay = 3000,
+        effect = 'slide',
+        coverflowEffect = {
+            slideShadows: true,
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            scale: 1,
+            modifier: 1,
+        },
+        navPosition = 'center-center',
+        paginationType = 'bullets',
+        progressDirection,
+    } = sliderOptions || {};
 
     // Revies Carousel Ref
-    const reviewCarouselRef = useRef(null);
+    const swiperRef = useRef(null);
+    const sliderRef = useRef(null);
+    useEffect(() => {
+        const handleClick = (event) => {
+            const childBlock = event?.target?.closest('.wp-block');
+            if (!childBlock) {
+                return;
+            }
+            const childBlockID = childBlock?.dataset?.block;
+            if (childBlockID) {
+                dispatch('core/block-editor').selectBlock(childBlockID);
+            }
+        };
 
-    // this useEffect is for creating a unique id for each block's unique className by a random unique number
+        const sliderElement = sliderRef.current;
+
+        if (sliderElement) {
+            sliderElement.addEventListener('click', handleClick);
+        }
+
+        return () => {
+            if (sliderElement) {
+                sliderElement.removeEventListener('click', handleClick);
+            }
+        };
+    }, [clientId, dispatch]);
+
+    const handlePrev = () => {
+        if (!swiperRef.current) return;
+        swiperRef.current.swiper.slidePrev();
+    };
+    const handleNext = () => {
+        if (!swiperRef.current) return;
+        swiperRef.current.swiper.slideNext();
+    };
+
     const blockProps = useBlockProps({
-        className: classnames(className, `${uniqueId}`, classArrayToStr(parentClasses), preset, `${resMode !== 'Desktop' ? resMode : ''}`),
+        ref: useMergeRefs([sliderRef]),
+        className: classnames(
+            className,
+            uniqueId,
+            showPagination ? (paginationType === 'progressbar' ? `zolo-progress-${progressDirection}` : `zolo-pag-ps-${pagiPosition}`) : '',
+            classArrayToStr(parentClasses),
+            preset,
+            resMode !== 'Desktop' ? resMode : ''
+        ),
     });
+
     // columns count
     const {
         desktopRangeStyle: deskCol,
@@ -82,153 +150,13 @@ export default function Edit(props) {
         noProperty: true,
         noUnits: true,
     });
-    // slider options init
-    const zoloSliderInit = function (sliderE, options) {
-        if (sliderE.swiper) {
-            sliderE.swiper.destroy();
-        }
+    const deviceType = useSelect((select) => select('core/editor').getDeviceType());
 
-        const wrapper = sliderE.parentElement;
-        const pagination = wrapper ? Array.from(wrapper.children).find((el) => el.classList.contains('swiper-pagination')) : null;
-
-        const defaultOptions = {
-            pagination: {
-                el: pagination,
-                clickable: true,
-                type: 'bullets',
-            },
-            effect: 'slide',
-            breakpoints: {
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30,
-                },
-                640: {
-                    slidesPerView: 1,
-                    spaceBetween: 0,
-                },
-            },
-        };
-
-        const finalOptions = {
-            ...options,
-            pagination: {
-                ...options.pagination,
-                el: pagination, // Override el with the actual DOM element
-            },
-        };
-
-        new Swiper(sliderE, Object.keys(options).length > 0 ? finalOptions : defaultOptions);
-    };
-
-    //slider initialize
-    useEffect(() => {
-        let breakpoints = {};
-        breakpoints = {
-            ...((deskCol !== '' || deskColGap !== '') && {
-                1024: {
-                    slidesPerView: deskCol || 3,
-                    spaceBetween: parseInt(deskColGap.slice(0, -1)) || 30,
-                },
-            }),
-            ...((tabCol !== '' || tabColGap !== '') && {
-                768: {
-                    slidesPerView: tabCol || 2,
-                    spaceBetween: parseInt(tabColGap.slice(0, -1)) || 30,
-                },
-            }),
-            ...((mobCol !== '' || mobColGap !== '') && {
-                640: {
-                    slidesPerView: mobCol || 1,
-                    spaceBetween: parseInt(mobColGap.slice(0, -1)) || 0,
-                },
-            }),
-        };
-
-        let options = {
-            ...(infiniteLoop !== undefined && { loop: infiniteLoop }),
-            ...(speed !== undefined && { speed: speed * 100 }),
-            ...(carouselEffect !== 'slide' && {
-                effect: carouselEffect,
-            }),
-            ...(carouselEffect === 'coverflow' && {
-                coverflowEffect: coverFlowEffect,
-            }),
-            ...(autoplay && {
-                autoplay: autoplay
-                    ? {
-                          delay: autoplayDelay * 100,
-                          pauseOnMouseEnter: pauseOnMouseEnter,
-                      }
-                    : false,
-            }),
-            ...(showNavigation !== undefined && {
-                navigation: showNavigation
-                    ? {
-                          nextEl: customNavIcon ? `.${uniqueId} .swiper-zolo-next` : `.${uniqueId} .swiper-button-next`,
-                          prevEl: customNavIcon ? `.${uniqueId} .swiper-zolo-prev` : `.${uniqueId} .swiper-button-prev`,
-                      }
-                    : false,
-            }),
-            // ...((showPagination || showPagination !== undefined) && {
-            pagination:
-                showPagination || showPagination === undefined
-                    ? {
-                          el: `.${uniqueId} .swiper-pagination`,
-                          clickable: true,
-                          type: paginationType,
-                          dynamicBullets: dynamicBullets,
-                      }
-                    : false,
-            // }),
-            // breakpoints: breakpoints,
-            ...(Object.keys(breakpoints).length > 0 && {
-                breakpoints: breakpoints,
-            }),
-        };
-
-        setAttributes({ sliderOptions: options });
-        if (reviewCarouselRef.current) {
-            zoloSliderInit(reviewCarouselRef.current, options);
-        }
-    }, [
-        reviewCarouselRef.current,
-        deskCol,
-        tabCol,
-        mobCol,
-        deskColGap,
-        tabColGap,
-        mobColGap,
-        autoplay,
-        autoplayDelay,
-        pauseOnMouseEnter,
-        infiniteLoop,
-        showNavigation,
-        showPagination,
-        paginationType,
-        dynamicBullets,
-        speed,
-        carouselEffect,
-        slideItems,
-        customNavIcon,
-        prevNavIcon,
-        nextNavIcon,
-        addNewSlideBlock,
-        resMode,
-        coverFlowEffect,
-    ]);
-
-    /**
-     * Custom Append Button for InnerBlocks
-     */
-    const childBlocks = wp.data.select('core/block-editor').getBlocks(clientId);
+    // add new slide
     const appendBlock = () => {
-        const newBlock = wp.blocks.createBlock('zolo/review-child', {});
-        wp.data.dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
+        const childBlocks = select('core/block-editor').getBlocks(clientId);
+        const newBlock = createBlock('zolo/review-child', {});
+        dispatch('core/block-editor').insertBlock(newBlock, childBlocks.length, clientId);
         setAttributes({
             addNewSlideBlock: !addNewSlideBlock,
         });
@@ -247,8 +175,8 @@ export default function Edit(props) {
         {
             allowedBlocks: ['zolo/review-child'],
             template: [['zolo/review-child'], ['zolo/review-child'], ['zolo/review-child'], ['zolo/review-child'], ['zolo/review-child']],
-            templateLock: false,
-            renderAppender: false,
+            // templateLock: false,
+            // renderAppender: false,
             orientation: 'horizontal',
         }
     );
@@ -268,33 +196,88 @@ export default function Edit(props) {
                 </ZoloToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <SidebarOpener clientId={clientId} />
-                <div className="swiper" ref={reviewCarouselRef}>
+                <Swiper
+                    key={`${addNewSlideBlock}${paginationType}${pagiPosition}${progressDirection}${JSON.stringify(sliderOptions)}`}
+                    ref={swiperRef}
+                    modules={[
+                        A11y,
+                        Autoplay,
+                        Navigation,
+                        Pagination,
+                        EffectCoverflow,
+                        EffectCube,
+                        EffectFade,
+                        EffectFlip,
+                        EffectCreative,
+                        EffectCards,
+                    ]}
+                    observer={true}
+                    observeParents={true}
+                    loop={wp.data.select('core/block-editor').getBlocks(clientId).length > (sliderOptions?.perviewDesktop || 4) ? loop : false}
+                    pagination={
+                        showPagination
+                            ? {
+                                  clickable: true,
+                                  type: paginationType || 'bullets',
+                              }
+                            : false
+                    }
+                    effect={effect || 'slide'}
+                    coverflowEffect={effect === 'coverflow' ? coverflowEffect : {}}
+                    slidesPerView={deviceType === 'Desktop' ? (deskCol ?? 3) : deviceType === 'Tablet' ? (tabCol ?? 2) : (mobCol ?? 1)}
+                    spaceBetween={
+                        deviceType === 'Desktop'
+                            ? deskColGap && deskColGap !== ''
+                                ? deskColGap
+                                : 30
+                            : deviceType === 'Tablet'
+                              ? tabColGap && tabColGap !== ''
+                                  ? tabColGap
+                                  : 20
+                              : mobColGap && mobColGap !== ''
+                                ? mobColGap
+                                : 10
+                    }
+                    speed={speed || 800}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay || 3000,
+                                  disableOnInteraction: false,
+                                  pauseOnMouseEnter: pauseOnMouseEnter || false,
+                              }
+                            : false
+                    }
+                >
                     <div {...innerBlocksProps} />
-                </div>
-                {(showPagination || showPagination === undefined) && (
-                    <div className="swiper-pagination swiper-pagination-position-bottom"></div>
-                )}
-
+                </Swiper>
                 {showNavigation && (
                     <>
                         <div
-                            className={`swiper-navigation-wrap swiper-navigation-position-center ${customNavIcon ? 'zolo-custom-nav' : ''}`}
+                            className={`swiper-navigation-wrap ${navPosition ? `zolo-nav-ps-${navPosition}` : ''} ${customNavIcon ? 'zolo-custom-nav' : ''}`}
                         >
                             {customNavIcon && (
                                 <>
-                                    <div className="swiper-nav-button swiper-zolo-prev">
+                                    <div
+                                        slot="navigation"
+                                        className="swiper-nav-button swiper-zolo-prev swiper-button-prev"
+                                        onClick={handlePrev}
+                                    >
                                         <DisplayZoloIcon icon={prevNavIcon} />
                                     </div>
-                                    <div className="swiper-nav-button swiper-zolo-next">
+                                    <div
+                                        slot="navigation"
+                                        className="swiper-nav-button swiper-zolo-next swiper-button-next"
+                                        onClick={handleNext}
+                                    >
                                         <DisplayZoloIcon icon={nextNavIcon} />
                                     </div>
                                 </>
                             )}
                             {!customNavIcon && (
                                 <>
-                                    <div className="swiper-nav-button swiper-button-prev"></div>
-                                    <div className="swiper-nav-button swiper-button-next"></div>
+                                    <div slot="navigation" className="swiper-nav-button swiper-button-prev" onClick={handlePrev}></div>
+                                    <div slot="navigation" className="swiper-nav-button swiper-button-next" onClick={handleNext}></div>
                                 </>
                             )}
                         </div>

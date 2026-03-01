@@ -141,6 +141,14 @@ const attributes = {
     inactiveRatingColor: {
         type: 'string',
     },
+    presetFourLayout: {
+        type: 'string',
+        default: 'zolo-fl-normal',
+    },
+    showQuote: {
+        type: 'boolean',
+        default: true,
+    },
     // DPL icon color
     dplIconColor: {
         type: 'string',
@@ -279,6 +287,10 @@ const attributes = {
     showPagination: {
         type: 'boolean',
         default: true,
+    },
+    pagiPosition: {
+        type: 'string',
+        default: 'bottom-center',
     },
     paginationType: {
         type: 'string',

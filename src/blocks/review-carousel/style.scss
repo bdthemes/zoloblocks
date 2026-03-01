@@ -1,6 +1,16 @@
 .wp-block-zolo-review-carousel {
     position: relative;
     box-sizing: border-box;
+
+    &[class*='zolo-pag-ps-'] {
+        --swiper-pagination-bottom-padding: 50px;
+        .swiper {
+            padding-bottom: var(--swiper-pagination-bottom-padding);
+        }
+        .swiper-navigation-wrap {
+            margin-top: calc(-1 * var(--swiper-pagination-bottom-padding));
+        }
+    }
     .swiper {
         --review-carousel-mask-offset: 300px;
     }
@@ -15,7 +25,7 @@
     }
 
     .swiper-pagination {
-        --zolo-pagination-offset: 50px;
+        --zolo-pagination-offset: -10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -29,6 +39,7 @@
             height: 8px;
             border: 1px solid var(--zoloblocks-brand-color);
             transition: all 0.3s ease;
+            outline: none;
 
             &.swiper-pagination-bullet-active {
                 transform: scale(1.3);
@@ -96,6 +107,16 @@
     .swiper-button-prev:after,
     .swiper-rtl .swiper-button-next:after {
         content: 'prev';
+    }
+
+    // Hide default Swiper arrows when using custom icons
+    .zolo-custom-nav {
+        .swiper-button-next,
+        .swiper-button-prev {
+            &::after {
+                content: none;
+            }
+        }
     }
 }
 // pagination css  start

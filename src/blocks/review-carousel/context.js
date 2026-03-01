@@ -6,6 +6,8 @@ const Context = {
     'zolo/addReviewerWebsiteLink': 'addReviewerWebsiteLink',
     'zolo/showDesignation': 'showDesignation',
     'zolo/showTestimonialMessage': 'showTestimonialMessage',
+    'zolo/presetFourLayout': 'presetFourLayout',
+    'zolo/showQuote': 'showQuote',
 };
 
 export default Context;

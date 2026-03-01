@@ -86,6 +86,26 @@ const attributes = {
         type: 'string',
         default: 'zolo-fl-normal',
     },
+    showDesignation: {
+        type: 'boolean',
+        default: true,
+    },
+    showTestimonialMessage: {
+        type: 'boolean',
+        default: true,
+    },
+    showRating: {
+        type: 'boolean',
+        default: true,
+    },
+    showPhoto: {
+        type: 'boolean',
+        default: true,
+    },
+    showName: {
+        type: 'boolean',
+        default: true,
+    },
     // Generators content
     ...generateResAlignmentAttributies(CONTENT_ALIGNMENT),
 
