@@ -5,7 +5,7 @@
     position: relative;
     margin-top: 8px;
     margin-bottom: 8px;
-    background-color: #fff
+    background-color: #fff;
 }
 
 .zoloblocks-biggopti .bdt-admin-api-biggopti-dismiss {
@@ -14,7 +14,7 @@
     right: 8px;
     cursor: pointer;
     background: transparent;
-    border: none
+    border: none;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global {
@@ -24,31 +24,31 @@
     gap: 15px;
     padding: 25px;
     border-color: #e2e2e5;
-    z-index: 99
+    z-index: 99;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-logo img {
     width: 45px;
     height: auto;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-content h3 {
     margin: 0 0 10px;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-content p {
     margin: 0;
     color: #5f6169;
-    max-width: 750px
+    max-width: 750px;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-button-wrap {
     margin-top: 14px;
     display: flex;
     align-items: center;
-    gap: 10px
+    gap: 10px;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-button {
@@ -57,35 +57,35 @@
     line-height: 1;
     font-size: 12px;
     font-weight: 500;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-button-allow {
-    color: #fff
+    color: #fff;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-button-skip {
     border: 0;
-    color: #08c2ff
+    color: #08c2ff;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-allow {
     --primaryColor: #4e6af5;
     --secondaryColor: #08c2ff;
-    background: linear-gradient(313deg, var(--primaryColor), var(--secondaryColor) 100%)
+    background: linear-gradient(313deg, var(--primaryColor), var(--secondaryColor) 100%);
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-allow:hover {
     --primaryColor: #08c2ff;
-    --secondaryColor: #4e6af5
+    --secondaryColor: #4e6af5;
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-skip {
-    background-color: rgba(86, 220, 88, 0.15)
+    background-color: rgba(86, 220, 88, 0.15);
 }
 
 .zoloblocks-biggopti .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-skip:hover {
-    background-color: rgba(86, 220, 88, 0.2)
+    background-color: rgba(86, 220, 88, 0.2);
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-plugin-logo-wrapper img {
@@ -93,32 +93,32 @@
     width: clamp(25px, 3vw, 40px);
     height: auto;
     animation: logoSlideIn .6s ease-out .3s both;
-    transition: transform .3s ease
+    transition: transform .3s ease;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-plugin-logo-wrapper:hover img {
-    transform: scale(1.1) rotate(5deg)
+    transform: scale(1.1) rotate(5deg);
 }
 
 @keyframes wrapperSlideInTop {
     0% {
-        opacity: 0
+        opacity: 0;
     }
 
     100% {
-        opacity: 1
+        opacity: 1;
     }
 }
 
 @keyframes logoSlideIn {
     0% {
         opacity: 0;
-        transform: scale(.5) rotate(-10deg)
+        transform: scale(.5) rotate(-10deg);
     }
 
     100% {
         opacity: 1;
-        transform: scale(1) rotate(0deg)
+        transform: scale(1) rotate(0deg);
     }
 }
 
@@ -132,21 +132,21 @@
     animation-fill-mode: both;
     position: relative;
     overflow: hidden;
-    margin: 0
+    margin: 0;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .has-background-image {
     background-position: left;
     background-repeat: no-repeat;
     background-color: #000;
-    background-size: cover
+    background-size: cover;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-api-biggopti-content {
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: 100px
+    min-height: 100px;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-content {
@@ -159,32 +159,32 @@
     box-sizing: border-box;
     margin-left: clamp(10px, 2vw, 40px);
     backface-visibility: hidden;
-    transform: translateZ(0)
+    transform: translateZ(0);
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-content-right,
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-content-inner {
     display: flex;
     align-items: center;
-    gap: 20px
+    gap: 20px;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-title-description {
-    max-width: 450px
+    max-width: 450px;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-logo-wrapper {
-    animation: biggoptiLogoSlideIn .7s ease-out .35s both
+    animation: biggoptiLogoSlideIn .7s ease-out .35s both;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-logo-wrapper img {
     width: clamp(50px, 5vw, 100px);
     height: auto;
-    transition: transform .3s ease
+    transition: transform .3s ease;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-logo-wrapper:hover img {
-    transform: scale(1.05)
+    transform: scale(1.05);
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-title-description .bdt-biggopti-title {
@@ -194,7 +194,7 @@
     font-weight: 700;
     animation: titleSlideIn .8s ease-out .4s both;
     transform-origin: left center;
-    text-shadow: 2px 2px 2px #000000
+    text-shadow: 2px 2px 2px #000000;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-html-content {
@@ -205,24 +205,24 @@
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-admin-api-biggopti-dismiss:before {
-    color: #ffffff91
+    color: #ffffff91;
 }
 
 @keyframes titleSlideIn {
     0% {
         opacity: 0;
-        transform: translateX(-30px)
+        transform: translateX(-30px);
     }
 
     100% {
         opacity: 1;
-        transform: translateX(0)
+        transform: translateX(0);
     }
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-countdown {
     height: 100%;
-    animation: countdownSlideIn .8s ease-out .5s both
+    animation: countdownSlideIn .8s ease-out .5s both;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-countdown .countdown-timer {
@@ -234,7 +234,7 @@
     border-left: 1px solid rgba(255, 255, 255, 0.251);
     border-right: 1px solid rgba(255, 255, 255, 0.251);
     padding: 0 15px;
-    min-height: 100px
+    min-height: 100px;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-countdown .countdown-item {
@@ -243,7 +243,7 @@
     align-items: center;
     gap: 3px;
     min-width: 40px;
-    flex-shrink: 0
+    flex-shrink: 0;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-countdown .number {
@@ -254,7 +254,7 @@
     transition: transform .3s ease;
     min-width: 24px;
     text-align: center;
-    font-family: 'Courier New', monospace
+    font-family: 'Courier New', monospace;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-countdown .label {
@@ -262,41 +262,41 @@
     text-transform: capitalize;
     font-size: clamp(10px, 1vw, 13px);
     font-weight: 500;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-countdown .separator {
     height: 30px;
     width: 1px;
-    background: rgba(255, 255, 255, 0.251)
+    background: rgba(255, 255, 255, 0.251);
 }
 
 @keyframes countdownSlideIn {
     0% {
         opacity: 0;
-        transform: translateY(-20px)
+        transform: translateY(-20px);
     }
 
     100% {
         opacity: 1;
-        transform: translateY(0)
+        transform: translateY(0);
     }
 }
 
 @keyframes biggoptiLogoSlideIn {
     0% {
         opacity: 0;
-        transform: scale(.3) translateY(-20px)
+        transform: scale(.3) translateY(-20px);
     }
 
     50% {
         opacity: .7;
-        transform: scale(1.1) translateY(-5px)
+        transform: scale(1.1) translateY(-5px);
     }
 
     100% {
         opacity: 1;
-        transform: scale(1) translateY(0)
+        transform: scale(1) translateY(0);
     }
 }
 
@@ -307,18 +307,18 @@
     --nm-spacing-xs: 10px;
     --nm-anim-duration-fast: .3s;
     text-align: right;
-    animation: buttonSlideIn .8s ease-out .6s both
+    animation: buttonSlideIn .8s ease-out .6s both;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn a {
     background: transparent;
     border: 0;
     padding: 0;
-    margin: 0
+    margin: 0;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn a:hover {
-    background: transparent
+    background: transparent;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn {
@@ -334,81 +334,81 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.68);
     padding-bottom: 4px;
     text-align: left;
-    transition: all var(--nm-anim-duration-fast) ease
+    transition: all var(--nm-anim-duration-fast) ease;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn:hover {
     color: var(--nm-accent);
-    border-color: var(--nm-accent)
+    border-color: var(--nm-accent);
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star {
     opacity: 1;
     z-index: 2;
-    filter: drop-shadow(0 0 10px var(--nm-shadow-color))
+    filter: drop-shadow(0 0 10px var(--nm-shadow-color));
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn svg {
     width: 16px;
     height: 16px;
-    display: block
+    display: block;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-1 {
     top: 21%;
-    left: -18%
+    left: -18%;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-2 {
     top: -25%;
-    left: 10%
+    left: 10%;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-3 {
     top: 69%;
-    left: 25%
+    left: 25%;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-4 {
     top: -34%;
-    left: 80%
+    left: 80%;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-5 {
     top: 25%;
-    left: 115%
+    left: 115%;
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-btn .nm-biggopti-btn:hover .zolo-star-6 {
     top: 5%;
-    left: 60%
+    left: 60%;
 }
 
 @keyframes buttonSlideIn {
     0% {
         opacity: 0;
-        transform: translateX(30px)
+        transform: translateX(30px);
     }
 
     100% {
         opacity: 1;
-        transform: translateX(0)
+        transform: translateX(0);
     }
 }
 
 [id^="bdt-admin-biggopti-api-biggopti"].animations-complete * {
     will-change: auto;
-    animation: none
+    animation: none;
 }
 
 @media (min-width:1460px) {
 
     [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-content-right,
     [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-content-inner {
-        gap: 30px
+        gap: 30px;
     }
 
     [id^="bdt-admin-biggopti-api-biggopti"] .bdt-biggopti-countdown .countdown-timer {
-        padding: 0 30px
+        padding: 0 30px;
     }
 }
