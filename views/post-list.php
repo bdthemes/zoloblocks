@@ -90,7 +90,7 @@ $zolo_data_settings   = ! empty( $parentWrap ) ? ZoloHelpers::extract_settings_k
 		}
 		?>
 
-		<?php echo $zolo_html; ?>
+		<?php echo wp_kses( $zolo_html, ZoloHelpers::wp_kses_allowed_svg() ); ?>
 	</div>
 
 
