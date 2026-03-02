@@ -59,6 +59,8 @@
         img {
             width: var(--zolo-icon-img-width);
             height: auto;
+            border-radius: inherit;
+            object-fit: cover;
         }
     }
 

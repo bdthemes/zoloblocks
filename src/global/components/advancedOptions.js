@@ -32,11 +32,12 @@ import {
 } from '../constants';
 
 import { popoverHasAttrVal } from '../../helpers/helper';
+import useDeviceType from '../../helpers/use-device-type';
 
 export const AdvancedOptions = (props) => {
     const { attributes, setAttributes, requiredProps, block } = props;
     const panelProps = { attributes, setAttributes, requiredProps };
-
+    const resMode = useDeviceType();
     const {
         responsiveness,
         parentClasses,
@@ -49,7 +50,6 @@ export const AdvancedOptions = (props) => {
         widthTypeZRPSelect,
         TABwidthTypeZRPSelect,
         MOBwidthTypeZRPSelect,
-        resMode,
     } = attributes;
 
     const handleResponsiveness = (key, value, classname) => {

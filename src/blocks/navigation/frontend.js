@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const navigationWrapper = navigation.querySelector('.zolo-navigation-wrapper');
         const navigationOverlay = navigation.querySelector('.zolo-navigation-overlay');
         const sidebarClose = navigation.querySelector('.zolo-navigation-sidebar-close');
+        const submenuToggleBtns = navigation.querySelectorAll('.zolo-submenu-arrow');
         let timer;
         hamburger.addEventListener('click', (e) => {
             e.preventDefault();
@@ -35,10 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentItem.classList.contains('has-submenu') || currentItem.classList.contains('has-megamenu')) {
                     if(currentItem.classList.contains('triggerby-click')) {
                         e.preventDefault();
+                        currentItem.classList.toggle('zolo-navigation-submenu-open');
+                        currentItem.classList.toggle('submenu-open');
                     }
-                    currentItem.classList.toggle('zolo-navigation-submenu-open');
-                    currentItem.classList.toggle('submenu-open');
                 }
+            });
+        });
+
+        submenuToggleBtns.forEach((btn) => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const currentItem = this.closest('.zolo-navigation-item');
+                currentItem.classList.toggle('zolo-navigation-submenu-open');
+                currentItem.classList.toggle('submenu-open');
             });
         });
         sidebarClose.addEventListener('click', () => {
