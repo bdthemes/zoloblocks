@@ -1,3 +1,32 @@
+### 2.7.0 [March 03, 2026]
+
+**New Features:**
+- Introduced Modal Block (Pro)
+- Added badge color options to the List Block
+- Added hover controls to the Counter Block
+- Added list color and background color options to the Pricing Table Block
+- Added vertical alignment control to the Pricing Table Block
+- Introduced animated skin for the Tag Cloud Block
+- Added new border style to the Vertical Tabs Block
+
+**Bug Fixes:**
+- Fixed Lightbox animation color issue
+- Resolved media upload control not working issue
+- Fixed image radius issue in Advanced Image Block (Preset Style 3)
+- Fixed image size issue in Advanced Icon Box (Preset Style 1)
+- Resolved pagination issue in Review Carousel Block
+- Fixed video link functionality issue
+- Fixed column number issue in Review Carousel Block
+
+**Improvements:**
+- Performance optimization across the entire plugin
+- Enhanced performance for Video, Social Share, and Team blocks (resolved block recovery issues)
+- Added gap control to the List Block
+- Fixed pagination issue in Post Timeline Block
+- Replaced image size with height and width controls in Advanced Icon Block
+- Fixed mobile margin issue in Advanced Icon Box Block
+- Added additional separator position options
+
 ### 2.6.0 [February 05, 2026]
 
 ### Added
