@@ -30,6 +30,8 @@ const {
     AdvancedOptions,
     ZoloPanelBody,
     ImageSizes,
+    ZoloResponsive,
+    useResponsiveValue,
 } = window.zoloModule;
 
 import objAttributes from './attributes';
@@ -55,6 +57,7 @@ import {
     BRAND_PHOTO_PADDING,
     BRAND_PHOTO_MARGIN,
     IMAGE_WIDTH,
+    SPAN_OPTIONS,
 } from './constants';
 
 import { TITLE_TYPOGRAPHY, LINK_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -87,6 +90,7 @@ function Inspector(props) {
         resMode,
         objAttributes,
     };
+    const [getResponsiveValue, createResponsiveValue] = useResponsiveValue(attributes);
 
     // css filter
     const cssFilters = applyFilters('zolo.extensions.controls.cssFilters', [], block, props);
@@ -278,6 +282,26 @@ function Inspector(props) {
                                             min={0}
                                             max={1000}
                                         />
+                                        <ZoloResponsive left='10ch'>
+                                            <ZoloSelectControl 
+                                                label={__('Column Start', 'zoloblocks')}
+                                                value={getResponsiveValue('columnStart') || ''}
+                                                options={SPAN_OPTIONS}
+                                                onChange={(value) => {
+                                                    setAttributes(createResponsiveValue('columnStart', value));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
+                                        <ZoloResponsive left='10ch'>
+                                            <ZoloSelectControl 
+                                                label={__('Column End', 'zoloblocks')}
+                                                value={getResponsiveValue('columnEnd') || ''}
+                                                options={SPAN_OPTIONS}
+                                                onChange={(value) => {
+                                                    setAttributes(createResponsiveValue('columnEnd', value));
+                                                }}
+                                            />
+                                        </ZoloResponsive>
                                     </>
                                 }
                                 hoverComponents={

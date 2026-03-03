@@ -15,6 +15,7 @@ const {
     generateResRangeStyle,
     generateBorderStyle,
     GlobalStyleHanlder,
+    generateCSS,
 } = window.zoloModule;
 
 import {
@@ -311,6 +312,8 @@ const Style = ({ props }) => {
             ${containerPaddingDesk}
             ${containerMarginDesk}
             ${containerDeskBGStyle}
+            ${ generateCSS({attributes, key:'columnStart', getValue: (value) => `grid-column-start:${value};`, device: 'Desktop'})}
+            ${ generateCSS({attributes, key:'columnEnd', getValue: (value) => `grid-column-end: ${value};`, device: 'Desktop'})}
 		}
 		.${uniqueId}.wp-block-zolo-brand-child.zb-brand-item:hover .zb-brand-content{
             ${containerDeskBGHStyle}
@@ -401,6 +404,8 @@ const Style = ({ props }) => {
             ${containerTabBGStyle}
             ${containerPaddingTab}
             ${containerMarginTab}
+            ${ generateCSS({attributes, key:'columnStart', getValue: (value) => `grid-column-start:${value};`, device: 'Tablet'})}
+            ${ generateCSS({attributes, key:'rowSpan', getValue: (value) => `grid-column-end: ${value};`, device: 'Tablet'})}
         }
         .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingTab}
@@ -434,6 +439,8 @@ const Style = ({ props }) => {
             ${containerMobBGStyle}
             ${containerPaddingMob}
             ${containerMarginMob}
+            ${ generateCSS({attributes, key:'columnStart', getValue: (value) => `grid-column-start:${value};`, device: 'Mobile'})}
+            ${ generateCSS({attributes, key:'rowSpan', getValue: (value) => `grid-column-end: ${value};`, device: 'Mobile'})}
         }
         .${uniqueId}.wp-block-zolo-brand-child .zb-brand-image img{
             ${brandPhotoPaddingMob}

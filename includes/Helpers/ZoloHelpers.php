@@ -371,6 +371,7 @@ class ZoloHelpers {
                 'id'                  => true,
                 'data-name'           => true,
                 'style'               => true,
+                'customframe'         => true,
             ],
             'rect' => [
                 'x'                   => true,
@@ -443,6 +444,8 @@ class ZoloHelpers {
                 'opacity'             => true,
                 'id'                  => true,
                 'style'               => true,
+                'transform'           => true,
+                'fill-rule'           => true,
             ],
             'polygon' => [
                 'points'              => true,

@@ -165,6 +165,18 @@ const attributes = {
             openInNewTab: false,
         },
     },
+    columnStart: {
+        type: 'object',
+        default: {
+            Desktop: ''
+        },
+    },
+    columnEnd: {
+        type: 'object',
+        default: {
+            Desktop: ''
+        },
+    },
 };
 
 export default attributes;

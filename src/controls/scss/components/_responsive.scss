@@ -1,5 +1,6 @@
 .zolo-responsive-dropdown {
     position: relative;
+
     .zolo-responsive-dropdown-menu {
         position: absolute;
         top: 0;
@@ -14,19 +15,59 @@
             height: auto !important;
             background-color: #f2f2f2 !important;
             border-radius: 50% !important;
+
             svg {
                 height: 20px;
                 width: 20px;
             }
         }
     }
+
+    .components-base-control {
+        margin-bottom: 0 !important;
+    }
+
+    .components-input-control__input {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    .components-input-control__suffix {
+        .components-unit-control__select {
+            width: 40px !important;
+            border-top-right-radius: 6px !important;
+            border-bottom-right-radius: 6px !important;
+            border-left-color: #fff !important;
+        }
+    }
+
+    .zb-box-control-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .zb-range-unit {
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .components-select-control{
+        margin-bottom: 16px !important;
+        .components-input-base {
+            flex-direction: column !important;
+            align-items: normal !important;
+            gap: calc(8px) !important;
+        }
+    }
 }
 
-.zolo-responsive-dropdown-popover{
+.zolo-responsive-dropdown-popover {
     .components-popover__content {
         padding: 0 !important;
 
-        .components-dropdown-menu__menu-item{
+        .components-dropdown-menu__menu-item {
             min-width: auto !important;
             min-height: auto !important;
             padding: 3px !important;
@@ -41,34 +82,6 @@
                 height: 20px;
                 width: 20px;
             }
-        }
-    }
-}
-
-.zolo-responsive-dropdown {
-    .components-base-control {
-        margin-bottom: 0 !important;
-    }
-    .components-input-control__input {
-        border-top-right-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-    }
-    .components-input-control__suffix {
-        .components-unit-control__select {
-            width: 40px !important;
-            border-top-right-radius: 6px !important;
-            border-bottom-right-radius: 6px !important;
-            border-left-color: #fff !important;
-        }
-    }
-    .zb-box-control-wrapper {
-        margin-bottom: 20px;
-    }
-
-    .zb-range-unit {
-        margin-bottom: 10px;
-        &:last-child {
-            margin-bottom: 0;
         }
     }
 }
