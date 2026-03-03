@@ -619,7 +619,7 @@ export default function Style({ props }) {
       ${titleShadow}
     }
 
-    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title, .zolo-block-wrapper.${uniqueId} .zolo-ah-title {
+    .zolo-block-wrapper.${uniqueId} .zolo-ah-main-title {
       ${titleTypoDesktop}
       ${titleColor ? `color: ${titleColor};` : ''}
     }
