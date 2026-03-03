@@ -1,814 +1,782 @@
 ### 2.7.0 [March 03, 2026]
 
-**New Features:**
-- Introduced Modal Block (Pro)
-- Added badge color options to the List Block
-- Added hover controls to the Counter Block
-- Added list color and background color options to the Pricing Table Block
-- Added vertical alignment control to the Pricing Table Block
-- Introduced animated skin for the Tag Cloud Block
-- Added new border style to the Vertical Tabs Block
+#### New Features
+- **Tag Cloud Block:** Introduced animated skin for enhanced visual appeal.
+- **List Block:** Added badge color options and gap control for improved customization.
+- **Counter Block:** Added hover controls for interactive styling.
+- **Pricing Table Block:** Added list color, background color, and vertical alignment controls.
+- **Vertical Tabs Block:** Added new border style option.
+- **Separator:** Added additional position options for greater layout flexibility.
+- **Post List Block:** Added read more options for better content display.
 
-**Bug Fixes:**
-- Fixed Lightbox animation color issue
-- Resolved media upload control not working issue
-- Fixed image radius issue in Advanced Image Block (Preset Style 3)
-- Fixed image size issue in Advanced Icon Box (Preset Style 1)
-- Resolved pagination issue in Review Carousel Block
-- Fixed video link functionality issue
-- Fixed column number issue in Review Carousel Block
+#### Bug Fixes
+- **Advanced Image Block:** Fixed image radius issue in Preset Style 3.
+- **Navigation Block:** Resolved submenu not opening issue.
+- **Lightbox Block:** Fixed animation color issue.
+- **Advanced Icon Box Block:** Fixed image size issue in Preset Style 1 and mobile margin issue.
+- **Review Carousel Block:** Resolved pagination issue.
+- **Video Block:** Fixed video link functionality issue.
+- **Post Carousel Block:** Fixed column number issue.
+- **Review Carousel Block:** Fixed column number issue.
+- **Post Timeline Block:** Fixed pagination issue.
+- **Media Upload Control:** Resolved control not working issue.
+- **All Blocks:** Fixed box sizing issue.
+- **General:** Fixed responsive issues and plugin checker compatibility.
 
-**Improvements:**
-- Performance optimization across the entire plugin
-- Enhanced performance for Video, Social Share, and Team blocks (resolved block recovery issues)
-- Added gap control to the List Block
-- Fixed pagination issue in Post Timeline Block
-- Replaced image size with height and width controls in Advanced Icon Block
-- Fixed mobile margin issue in Advanced Icon Box Block
-- Added additional separator position options
+#### Improvements
+- Optimized overall plugin performance for faster loading and smoother interactions.
+- Enhanced Review Carousel, Progress Pie, and Post List blocks with improved UI and functionality.
+- Improved Video, Social Share, and Team blocks performance (resolved block recovery issues).
+- Replaced image size control with height and width controls in Advanced Icon Block.
+- Refined control UI across multiple blocks for better user experience.
+
 
 ### 2.6.0 [February 05, 2026]
 
-### Added
-- Introduced Class Manager for easy customization
-- Extended the flexbox with overflow option
+#### New Features
+- **Class Manager:** Introduced for easy customization.
+- **Flexbox Block:** Extended with overflow option.
 
-### Fixed
-- Resolved table of content block issues
-- Added post category (style 4) preset
-- Fixed spacing issue in advanced heading block
+#### Bug Fixes
+- **Table of Content Block:** Resolved various issues.
+- **Post Category Block:** Added style 4 preset.
+- **Advanced Heading Block:** Fixed spacing issue.
 
 ### 2.5.2 [January 13, 2026]
 
-- **Improvements:**
-  - Fixed: Resolved minor user interface inconsistencies for improved user experience
+#### Improvements
+- **User Interface:** Resolved minor inconsistencies for improved user experience.
 
 ### 2.5.1 [January 6, 2026]
 
-- **New Features:**
-  - Added Custom Masking option for the Image block. (pro)
+#### New Features
+- **Image Block:** Added Custom Masking option. (pro)
 
-- **Fixes:**
-  - Fixed the dual button color issue.
+#### Bug Fixes
+- **Dual Button:** Fixed color issue.
 
 ### 2.5.0 [December 31, 2025]
 
-- **New Features:**
-  - Added Flexbox block
-  - Added Circle Info block (pro)
-  - Added Switcher block (pro)
+#### New Features
+- **Flexbox Block:** Added new block.
+- **Circle Info Block:** Added new block. (pro)
+- **Switcher Block:** Added new block. (pro)
 
 ### 2.4.0 [December 4, 2025]
 
-**Bug Fixes:**
-WordPress latest version compatibility issues are fixed
-Template library importing issues are fixed
+#### Bug Fixes
+- **WordPress Compatibility:** Fixed latest version compatibility issues.
+- **Template Library:** Fixed importing issues.
 
-### Version 2.3.18 - November 20, 2025
+### 2.3.18 [November 20, 2025]
 
-* **Improved:** System and Notice updates for improved stability and reliability.
+#### Improvements
+- **System:** Updated system and notice updates for improved stability and reliability.
 
-### Version 2.3.17 - November 12, 2025
+### 2.3.17 [November 12, 2025]
 
-- **Bug Fixes:**
-  - System update and Notice update
+#### Bug Fixes
+- **System:** Updated system and notice handling.
 
-### Version 2.3.16 - November 11, 2025
+### 2.3.16 [November 11, 2025]
 
-- **Bug Fixes:**
-  - System update and Notice update
+#### Bug Fixes
+- **System:** Updated system and notice handling.
 
-### Version 2.3.15 - November 10, 2025
+### 2.3.15 [November 10, 2025]
 
-- **Bug Fixes:**
-  - Resolved Template Library pages and templates imported issue.
+#### Bug Fixes
+- **Template Library:** Resolved pages and templates imported issue.
 
-### Version 2.3.14 - November 6, 2025
+### 2.3.14 [November 6, 2025]
 
-- **Bug Fixes:**
-  - Resolved Template Library broken issue. (Template Library API changed. Please update the plugin to the latest version.)
+#### Bug Fixes
+- **Template Library:** Resolved broken issue. (Template Library API changed. Please update the plugin to the latest version.)
 
 
-### Version 2.3.13 - October 21, 2025
+### 2.3.13 [October 21, 2025]
 
-- **Bug Fixes:**
-  - Resolved vulnerability in the Title Block.
-  - The Transform Effect is now treated as a separate extension.
-  - Fixed issues with the Particles extension.
+#### Bug Fixes
+- **Title Block:** Resolved vulnerability.
+- **Transform Effect:** Now treated as a separate extension.
+- **Particles Extension:** Fixed various issues.
 
 ### 2.3.12 [October 13, 2025]
-**Maintenance Release:**
-Navigation Block click issue fixed
-Fixed vulnerabilities related to Server-Side Request Forgery (SSRF) and Cross-Site Scripting (XSS).
-Enhanced overall request handling to prevent unauthorized external requests.
-General code cleanup and minor performance improvements.
+
+#### Bug Fixes
+- **Navigation Block:** Fixed click issue.
+- **Security:** Fixed vulnerabilities related to Server-Side Request Forgery (SSRF) and Cross-Site Scripting (XSS).
+- **Request Handling:** Enhanced overall request handling to prevent unauthorized external requests.
+- **General:** Code cleanup and minor performance improvements.
 
 ### 2.3.11 [September 28, 2025]
 
-**Maintenance Release:**
-This version addresses a previously unresolved security vulnerability in the Image Gallery block, ensuring enhanced data protection and user safety.
+#### Security
+- **Image Gallery Block:** Addressed previously unresolved security vulnerability for enhanced data protection and user safety.
 
 ### 2.3.10 [September 24, 2025]
 
-**Security Patch:**
-A security vulnerability was identified and resolved in the Image Gallery block, further enhancing data protection and user safety.
+#### Security
+- **Image Gallery Block:** Security vulnerability identified and resolved for enhanced data protection and user safety.
 
 ### 2.3.9 [September 14, 2025]
 
-**Stability Release:**
-This version includes minor bug fixes and improvements to maintain optimal performance and reliability.
+#### Improvements
+- **General:** Minor bug fixes and improvements to maintain optimal performance and reliability.
 
 ### 2.3.8 [September 07, 2025]
 
-**Security:**
-* Fixed security vulnerabilities in Google Map and Progress Pie blocks to enhance data protection and user safety.
+#### Security
+- **Google Map Block:** Fixed security vulnerabilities to enhance data protection and user safety.
+- **Progress Pie Block:** Fixed security vulnerabilities to enhance data protection and user safety.
 
 ### 2.3.7 [September 04, 2025]
 
-**Bug Fixes:**
-* Resolved frontend rendering issues in the Charts block for improved display consistency.
+#### Bug Fixes
+- **Charts Block:** Resolved frontend rendering issues for improved display consistency.
 
-**Enhancements:**
-* Optimized block scripts for enhanced performance and reliability.
+#### Improvements
+- **Performance:** Optimized block scripts for enhanced performance and reliability.
 
 ### 2.3.6 [August 28, 2025]
 
-**Security:**
-* Fixed an authenticated (Contributor+) Stored Cross-Site Scripting (XSS) vulnerability.
-* Improved input validation and data sanitization across multiple blocks.
+#### Security
+- **XSS Vulnerability:** Fixed authenticated (Contributor+) Stored Cross-Site Scripting vulnerability.
+- **Input Validation:** Improved input validation and data sanitization across multiple blocks.
 
-**Improvements:**
-* Minor performance enhancements and code refactoring.
+#### Improvements
+- **Performance:** Minor performance enhancements and code refactoring.
 
-**Fixes:**
-* Fixed frontend layout issues with social links.
+#### Bug Fixes
+- **Social Links:** Fixed frontend layout issues.
 
 ### 2.3.5 [August 04, 2025]
 
-**Performance and Enhancements:**
-
-* Optimized script loading for better page speed
-* WordPress latest version compatibility issue fixed.
+#### Improvements
+- **Performance:** Optimized script loading for better page speed.
+- **Compatibility:** Fixed WordPress latest version compatibility issue.
 
 ### 2.3.4 [July 03, 2025]
 
-**Performance:**
-
-* Updated outdated controls for improved performance and reliability
-* Optimized script loading for better page speed
+#### Improvements
+- **Performance:** Updated outdated controls for improved performance and reliability.
+- **Performance:** Optimized script loading for better page speed.
 
 ### 2.3.3 [June 15, 2025]
 
-**Security & Performance:**
+#### Security
+- **Security Measures:** Enhanced security measures and vulnerability patches implemented.
 
-* Enhanced security measures and vulnerability patches implemented
-* Optimized script loading and execution for improved performance
+#### Improvements
+- **Performance:** Optimized script loading and execution for improved performance.
 
 ### 2.3.2 [June 02, 2025]
 
-**Fixes:**
-
-* Added animation to the play button in the Lightbox block
-* Fixed alignment issue in the List block
-* Resolved event type issue in the Navigation submenu
-* Fixed background overlay color issues
-* Fixed transformation control issues in the Flip Box block
+#### Bug Fixes
+- **Lightbox Block:** Added animation to the play button.
+- **List Block:** Fixed alignment issue.
+- **Navigation Block:** Resolved event type issue in submenu.
+- **Background:** Fixed overlay color issues.
+- **Flip Box Block:** Fixed transformation control issues.
 
 ### 2.3.1 [June 01, 2025]
 
-**Fixes:**
-
-* Fixed duplicate item issue in the List block
-* Resolved navigation link issues
+#### Bug Fixes
+- **List Block:** Fixed duplicate item issue.
+- **Navigation:** Resolved navigation link issues.
 
 ### 2.3.0 [May 14, 2025]
 
-**Fixes:**
+#### Bug Fixes
+- **Video Block:** Resolved styling issues.
+- **Display Conditions:** Fixed logic functionality.
+- **Dimension Control:** Addressed `NaN` value issue.
+- **Compatibility:** Ensured compatibility with the latest WordPress version.
+- **Controls:** Updated outdated controls for improved performance and reliability.
 
-* Resolved styling issues in the Video block
-* Fixed display condition logic functionality
-* Addressed `NaN` value issue in the Dimension control
-* Ensured compatibility with the latest WordPress version
-* Updated outdated controls for improved performance and reliability
+### 2.2.7 [April 21, 2025]
 
-### 2.2.7 April 21, 2025
+#### New Features
+- **Video Block:** Added border, border radius, and shadow options.
+- **Video Block:** Added popup size option.
 
-**New:**
-- Border, border radius, and shadow options added to the Video Block.
-- Popup size option added to the Video Block.
-
-**Fixed:**
-- Tabs Block width now adjusts better on different screen sizes.
-- Background image replacement issue fixed.
+#### Bug Fixes
+- **Tabs Block:** Width now adjusts better on different screen sizes.
+- **Background:** Fixed image replacement issue.
 
 ### 2.2.6 [April 15, 2025]
 
-- **New Features:**
-- Video Block: Introduced a new block for an enhanced video viewing experience.
+#### New Features
+- **Video Block:** Introduced a new block for an enhanced video viewing experience.
 
-- **Fixes:**
-- Tab Block border radius now works correctly in responsive mode.
-- Tab Block additional border display issue resolved.
+#### Bug Fixes
+- **Tabs Block:** Border radius now works correctly in responsive mode.
+- **Tabs Block:** Additional border display issue resolved.
 
-- **Improvements:**
-- Refined Background Controls UI for better usability.
-- Enhanced Social Share Block with more customization options.
-- Ensured compatibility with WordPress 6.8 for smooth performance.
+#### Improvements
+- **Background Controls:** Refined UI for better usability.
+- **Social Share Block:** Enhanced with more customization options.
+- **Compatibility:** Ensured compatibility with WordPress 6.8 for smooth performance.
 
 ### 2.2.5 [March 24, 2025]
 
-- **New Features:**
-- Private link feature for accessing the maintenance mode site.
+#### New Features
+- **Maintenance Mode:** Added private link feature for accessing the maintenance mode site.
 
-- **Fixes:**
-- Panel Body: Panel body toggle issue when opened.
-- Block Styles: Device-specific CSS not generating correctly in the editor.
-- Unfold Block: Collapse functionality and text display issues fixed.
-- Classic Theme: Layout breaking issue resolved.
-- Mega Menu Block: Full-width feature now responsive.
-- Advanced Heading Block: Subheading icon style controls reappear as expected.
-- List Block: Description control inside repeater fixed.
-- Slider Block: Navigation icon border display corrected.
-- Advanced Paragraph Block: Drop cap alignment issue fixed.
-- Navigation Item: Border display issue resolved.
-- Template Library: Empty appearance issue.
-- Table of Content: merge marker controls with list controls.
-- Post Meta: hover color and comment icon issue.
+#### Bug Fixes
+- **Panel Body:** Fixed toggle issue when opened.
+- **Block Styles:** Fixed device-specific CSS not generating correctly in the editor.
+- **Unfold Block:** Fixed collapse functionality and text display issues.
+- **Classic Theme:** Resolved layout breaking issue.
+- **Mega Menu Block:** Full-width feature now responsive.
+- **Advanced Heading Block:** Subheading icon style controls reappear as expected.
+- **List Block:** Fixed description control inside repeater.
+- **Slider Block:** Corrected navigation icon border display.
+- **Advanced Paragraph Block:** Fixed drop cap alignment issue.
+- **Navigation Item:** Resolved border display issue.
+- **Template Library:** Fixed empty appearance issue.
+- **Table of Content:** Merged marker controls with list controls.
+- **Post Meta:** Fixed hover color and comment icon issue.
 
-- **Improvements:**
-- All translatable strings updated to Title Case.
-- Standardized extension naming conventions.
-- Improved editing experience for the Post Content Block.
-- Template library performance optimization.
+#### Improvements
+- **Translation:** All translatable strings updated to Title Case.
+- **Extensions:** Standardized extension naming conventions.
+- **Post Content Block:** Improved editing experience.
+- **Template Library:** Performance optimization.
 
 
 ### 2.2.4 [March 11, 2025]
 
-- **New Features:**
-- Introduced a container variation replace option in the toolbar.
-- Added content alignment control for sliders.
-- Implemented a skip button for the container variation picker.
-- Implement transform to, from and ungroup option in container.
+#### New Features
+- **Container:** Added variation replace option in the toolbar.
+- **Sliders:** Added content alignment control.
+- **Container:** Implemented skip button for variation picker.
+- **Container:** Added transform to, from and ungroup option.
 
-- **Fixes:**
-- Resolved the slider alignment issue.
-- Fixed the default container content width not being full-width.
-- Addressed the issue where zero could not be set in the range control and dimensions control.
-- Fixed issues with the gap control.
-- Resolved the container custom width not applying correctly on the frontend.
-- Fixed the missing hover gradient control in the background settings.
+#### Bug Fixes
+- **Slider:** Resolved alignment issue.
+- **Container:** Fixed default content width not being full-width.
+- **Range Control:** Addressed issue where zero could not be set.
+- **Dimension Control:** Addressed issue where zero could not be set.
+- **Gap Control:** Fixed various issues.
+- **Container:** Resolved custom width not applying correctly on frontend.
+- **Background:** Fixed missing hover gradient control in settings.
 
-- **Improvements:**
-- Enhanced the display conditions extensions for better flexibility.
-- Improved the editing experience for a more seamless workflow.
-- Refined the CSS class control UI for better usability.
-- Upgraded AI assistant extensions for improved functionality.
-- Enhanced overlay features and control UI for a better visual experience.
-- Improved the CSS filter UI for more intuitive adjustments.
+#### Improvements
+- **Display Conditions:** Enhanced extensions for better flexibility.
+- **Editing Experience:** Improved for more seamless workflow.
+- **CSS Class Control:** Refined UI for better usability.
+- **AI Assistant:** Upgraded extensions for improved functionality.
+- **Overlay Features:** Enhanced control UI for better visual experience.
+- **CSS Filter:** Improved UI for more intuitive adjustments.
 
 
 ### 2.2.3 [February 25, 2025]
 
-**Fixes:**
-- Container Block editor blank spacing issue fixed
-- Paragraph block margin issue fixed
+#### Bug Fixes
+- **Container Block:** Fixed editor blank spacing issue.
+- **Paragraph Block:** Fixed margin issue.
 
 ### 2.2.2 [February 20, 2025]
 
-**New Features:**
-- Introduced a container variation replace option in the toolbar.
-- Added content alignment control for sliders.
-- Implemented a skip button for the container variation picker.
-- Implement transform to, from and ungroup option in container.
+#### New Features
+- **Container:** Added variation replace option in the toolbar.
+- **Sliders:** Added content alignment control.
+- **Container:** Implemented skip button for variation picker.
+- **Container:** Added transform to, from and ungroup option.
 
+#### Bug Fixes
+- **Slider:** Resolved alignment issue.
+- **Container:** Fixed default content width not being full-width.
+- **Range Control:** Addressed issue where zero could not be set.
+- **Dimension Control:** Addressed issue where zero could not be set.
+- **Gap Control:** Fixed various issues.
+- **Container:** Resolved custom width not applying correctly on frontend.
+- **Background:** Fixed missing hover gradient control in settings.
+- **Post Meta:** Fixed icon visibility issue on frontend.
 
-**Fixes:**
-- Resolved the slider alignment issue.
-- Fixed the default container content width not being full-width.
-- Addressed the issue where zero could not be set in the range control and dimensions control.
-- Fixed issues with the gap control.
-- Resolved the container custom width not applying correctly on the frontend.
-- Fixed the missing hover gradient control in the background settings.
-- Fixed post meta icon visibility issue in frontend.
-
-
-**Improvements:**
-- Enhanced the display conditions extensions for better flexibility.
-- Improved the editing experience for a more seamless workflow.
-- Refined the CSS class control UI for better usability.
-- Upgraded AI assistant extensions for improved functionality.
-- Enhanced overlay features and control UI for a better visual experience.
-- Improved the CSS filter UI for more intuitive adjustments.
-- Improved loop builder item design
+#### Improvements
+- **Display Conditions:** Enhanced extensions for better flexibility.
+- **Editing Experience:** Improved for more seamless workflow.
+- **CSS Class Control:** Refined UI for better usability.
+- **AI Assistant:** Upgraded extensions for improved functionality.
+- **Overlay Features:** Enhanced control UI for better visual experience.
+- **CSS Filter:** Improved UI for more intuitive adjustments.
+- **Loop Builder:** Improved item design.
 
 ### 2.2.1 [February 06, 2025]
 
-**Fixes:**
-- Fixed Single Block Style Broken Issue fixed.
-- Fixed Brand Grid block Deprecated issue fixed.
+#### Bug Fixes
+- **Single Block Style:** Fixed broken issue.
+- **Brand Grid Block:** Fixed deprecated issue.
 
 ### 2.2.0 [February 06, 2025]
 
-**New Features:**
-- SVG support added to the Icon Control.
-- AI Text Generation introduced for Paragraph, Advanced Paragraph, and Advanced Heading blocks.
-- HTML tag selection added for the Container block.
-- Quote and offset options added to the Review block.
-- Inline display option added to the Counter block.
-- Hover color option for descriptions added to the Fancy List block.
-- Enhanced the **Form Block** with new fields: Select, Number, Radio, and Checkbox.
+#### New Features
+- **Icon Control:** Added SVG support.
+- **AI Text Generation:** Introduced for Paragraph, Advanced Paragraph, and Advanced Heading blocks.
+- **Container Block:** Added HTML tag selection.
+- **Review Block:** Added quote and offset options.
+- **Counter Block:** Added inline display option.
+- **Fancy List Block:** Added hover color option for descriptions.
+- **Form Block:** Enhanced with new fields: Select, Number, Radio, and Checkbox.
 
-**Enhancements:**
-- Optimized assets loading for better performance.
-- Added "Maintenance" and "Coming Soon" options in WordPress Reading settings.
-- Improved the Blank Page Template Library with eye-catching updates.
-- Enhanced Editor Block Selector with an on/off toggle.
-- Manual Save button added for dashboard settings.
-- Improved search and features in the Icons Library.
+#### Improvements
+- **Performance:** Optimized assets loading.
+- **WordPress Settings:** Added "Maintenance" and "Coming Soon" options in Reading settings.
+- **Template Library:** Improved Blank Page Template Library with eye-catching updates.
+- **Editor Block Selector:** Enhanced with on/off toggle.
+- **Dashboard:** Added Manual Save button for settings.
+- **Icons Library:** Improved search and features.
 
-**Fixes:**
-- Fixed copy-paste issues in the Paragraph block.
-- Resolved hover color issue for icons in lightbox buttons.
-- Fixed infinite loading issue in the Template Library.
-- Corrected item order issues in List block controls.
+#### Bug Fixes
+- **Paragraph Block:** Fixed copy-paste issues.
+- **Lightbox Buttons:** Resolved hover color issue for icons.
+- **Template Library:** Fixed infinite loading issue.
+- **List Block:** Corrected item order issues in controls.
 
 ### 2.1.5 [December 24, 2024]
 
-- **New Features:**
-  - **Text Path Block:** Added settings for adjusting path thickness and width.
-  - **Paragraph Block:** Improved functionality with added justify alignment options (Thanks to chihi108)
-  - **Tabs Block:** Introduced header wrapper tab width customization.
-  - **Accordion Block:** Initial Open allow or disallow feature added (Thanks to chihi108)
+#### New Features
+- **Text Path Block:** Added settings for adjusting path thickness and width.
+- **Paragraph Block:** Improved functionality with added justify alignment options (Thanks to chihi108).
+- **Tabs Block:** Introduced header wrapper tab width customization.
+- **Accordion Block:** Added Initial Open allow or disallow feature (Thanks to chihi108).
 
-- **Fixes:**
-  - **Newsletter Block:** Fixed placeholder text issues in presets 2, 3, and 4.
-  - **Image Gallery Block:** Resolved issue with saving the backdrop filter control settings.
-  - **Text Path Block:** Fixed show/hide conditions for image options in the style tab for circle path type and resolved image border radius issues.
-  - **Navigation Block:** Fixed menu gap control save issue in the style tab.
-  - **Accordion Block:** Initial Open item issue fixed.
+#### Bug Fixes
+- **Newsletter Block:** Fixed placeholder text issues in presets 2, 3, and 4.
+- **Image Gallery Block:** Resolved issue with saving backdrop filter control settings.
+- **Text Path Block:** Fixed show/hide conditions for image options in style tab for circle path type and resolved image border radius issues.
+- **Navigation Block:** Fixed menu gap control save issue in style tab.
+- **Accordion Block:** Fixed Initial Open item issue.
 
 
 ### 2.1.4 [December 07, 2024]
 
-- **New Features:**
-  - **Navigation Block:** Improved indicator control, allowing child elements to shift under parent control.
-  Optimized arrow size for better usability and design consistency.
-  - **Profile Card Block:** Added background options for the photo overlay in preset 2.
-  - **Automatic Block Recovery:** Introduced the "Automatic Block Recovery" feature.
-  - **Form Block:** Added spacing options for icons.
-  - **Newsletter Block:** Added width type and alignment options for the submit button.
-  Removed the custom width range control for the submit button in preset 1.
+#### New Features
+- **Navigation Block:** Improved indicator control, allowing child elements to shift under parent control. Optimized arrow size for better usability and design consistency.
+- **Profile Card Block:** Added background options for photo overlay in preset 2.
+- **Automatic Block Recovery:** Introduced the "Automatic Block Recovery" feature.
+- **Form Block:** Added spacing options for icons.
+- **Newsletter Block:** Added width type and alignment options for submit button. Removed custom width range control for submit button in preset 1.
 
-- **Fixes:**
-  - **Container Block:** Enhanced design compatibility for default navigation and Gutenkit navigation in the editor.
-  - **Team Grid Block:** Fixed z-index issues affecting content in preset style 1.
-  - **Review Carousel Block:** Resolved the issue with arrow color control functionality.
+#### Bug Fixes
+- **Container Block:** Enhanced design compatibility for default navigation and Gutenkit navigation in the editor.
+- **Team Grid Block:** Fixed z-index issues affecting content in preset style 1.
+- **Review Carousel Block:** Resolved arrow color control functionality issue.
 
 ### 2.1.3 [December 01, 2024]
 
-- **New Features:**
-  - **Advanced Paragraph Block:** Added hover border color option.
-  - **Lightbox Block:** Introduced play button style options.
-  - **Accordion Block:** Added icon hover and active tab border color options.
+#### New Features
+- **Advanced Paragraph Block:** Added hover border color option.
+- **Lightbox Block:** Introduced play button style options.
+- **Accordion Block:** Added icon hover and active tab border color options.
 
-- **Fixes:**
-  - **Lightbox Block:** Resolved column layout issue.
-  - **Tabs Block:** Fixed icon size issue on tablet and mobile.
-  - **Form Block:** Corrected frontend preview icon for the submit button.
-  - **Advanced Paragraph Block:** Fixed default spacing issue.
-  - **WordPress v6.7.1 compatibility issue fixed.
-
-### 2.1.3 [December 01, 2024]
-
-- **New Features:**
-  - **Advanced Paragraph Block:** Added hover border color option.
-  - **Lightbox Block:** Introduced play button style options.
-  - **Accordion Block:** Added icon hover and active tab border color options.
-
-- **Fixes:**
-  - **Lightbox Block:** Resolved column layout issue.
-  - **Tabs Block:** Fixed icon size issue on tablet and mobile.
-  - **Form Block:** Corrected frontend preview icon for the submit button.
-  - **Advanced Paragraph Block:** Fixed default spacing issue.
-  - **WordPress v6.7.1 compatibility issue fixed.
+#### Bug Fixes
+- **Lightbox Block:** Resolved column layout issue.
+- **Tabs Block:** Fixed icon size issue on tablet and mobile.
+- **Form Block:** Corrected frontend preview icon for submit button.
+- **Advanced Paragraph Block:** Fixed default spacing issue.
+- **Compatibility:** Fixed WordPress v6.7.1 compatibility issue.
 
 
 ### 2.1.2 [November 20, 2024]
 
-### Bug Fixes
-- Paragraph Block: columns issue fixed
-- Image Gallery Block: Caption hide issue fixed.
+#### Bug Fixes
+- **Paragraph Block:** Fixed columns issue.
+- **Image Gallery Block:** Fixed caption hide issue.
 
 ### 2.1.1 [November 19, 2024]
 
-### Bug Fixes & Improvements
-- Paragraph Block: Optimized code and improved block arrangement
-- Typography: Fixed typography font family control design.
-- Initialized gradient text control.
-- Added an advanced button for expanded functionality.
-- Table of Contents Block**: Introduced a sticky feature for better usability.
-- Advanced Icon box: Responsive options added to the offset control
+#### Bug Fixes
+- **Paragraph Block:** Optimized code and improved block arrangement.
+- **Typography:** Fixed font family control design.
+- **Gradient Text Control:** Initialized.
+- **Advanced Button:** Added for expanded functionality.
+- **Table of Contents Block:** Introduced sticky feature for better usability.
+- **Advanced Icon Box:** Added responsive options to offset control.
 
 ### 2.1.0 [November 13, 2024]
 
 #### New Features
-- Table of Content Block: Introduced a new, highly customizable Table of Content block, allowing users to easily structure long content with automatic heading detection and flexible styling options.
-- Advanced Paragraph Block: Introduced an Advanced paragraph block with enhanced customization options. This block also supports responsive styling for mobile, tablet, and desktop views.
+- **Table of Content Block:** Introduced a new, highly customizable block allowing users to easily structure long content with automatic heading detection and flexible styling options.
+- **Advanced Paragraph Block:** Introduced with enhanced customization options and responsive styling for mobile, tablet, and desktop views.
 
 #### Bug Fixes
-- Navigation Control: Resolved navigation issues to enhance control responsiveness and user experience.
-- Post Meta Block: Fixed display issues.
-- Transform Effects: Resolved scale and hover flip issues.
+- **Navigation Control:** Resolved navigation issues to enhance control responsiveness and user experience.
+- **Post Meta Block:** Fixed display issues.
+- **Transform Effects:** Resolved scale and hover flip issues.
 
 ### 2.0.0 [November 07, 2024]
 
 #### New Features
-- Navigation Block: Introduced a fully customizable navigation menu block for easy site navigation.
-- Post Meta Block: Added a block to display post metadata (e.g., author, date, and categories).
-- Featured Image Block: Added a block to display featured image to the single page
-- Spline Viewer Block: Added a block to display interactive 3D Spline scenes.
-- Post Navigation Block: Added a block to enable easy navigation between posts.
-- Post Comments Form: Introduced a customizable comments form block for post interaction.
-- Post Content: Introduced a fully customizable content block for single post.
-- Brand Grid Block Preset (Basic): Added a preset for creating brand grids.
+- **Navigation Block:** Introduced a fully customizable navigation menu block for easy site navigation.
+- **Post Meta Block:** Added a block to display post metadata (e.g., author, date, and categories).
+- **Featured Image Block:** Added a block to display featured image to the single page.
+- **Spline Viewer Block:** Added a block to display interactive 3D Spline scenes.
+- **Post Navigation Block:** Added a block to enable easy navigation between posts.
+- **Post Comments Form:** Introduced a customizable comments form block for post interaction.
+- **Post Content:** Introduced a fully customizable content block for single post.
+- **Brand Grid Block:** Added preset (Basic) for creating brand grids.
 
-#### Enhancements
-- Block Controls UI: Optimized the user interface for block controls, enhancing the overall user experience.
-- Video Controls: Improved the video block controls for smoother interactions and functionality.
-- Slider Block: Refined the Slider Block for improved performance and usability.
-- Template Library: Enhanced the organization and accessibility of templates within the library.
-- Range Control: Upgraded the range control for more precise and responsive adjustments.
-- Background Controls: Background controls have been moved to a popover for a cleaner layout.
-- Shape Divider Controls: Updated Shape Divider feature controls for improved usability and a more user-friendly design.
-- Create New Page: Added a button to the site visibility settings to quickly create a page for maintenance mode.
+#### Improvements
+- **Block Controls UI:** Optimized the user interface for block controls, enhancing the overall user experience.
+- **Video Controls:** Improved the video block controls for smoother interactions and functionality.
+- **Slider Block:** Refined for improved performance and usability.
+- **Template Library:** Enhanced the organization and accessibility of templates within the library.
+- **Range Control:** Upgraded for more precise and responsive adjustments.
+- **Background Controls:** Moved to a popover for a cleaner layout.
+- **Shape Divider Controls:** Updated for improved usability and more user-friendly design.
+- **Maintenance Mode:** Added a button to site visibility settings to quickly create a page.
 
 #### Bug Fixes
-- TextPath Image Control: Fixed the issue with image selection in the TextPath block.
-- Spectra Block Compatibility: Fixed compatibility issues with Spectra blocks.
+- **TextPath Image Control:** Fixed issue with image selection in the TextPath block.
+- **Spectra Block Compatibility:** Fixed compatibility issues with Spectra blocks.
 
 ### 1.5.1 [October 08, 2024]
 
-### Fixed
-- Slider navigation issue fixed.u4
-- TextPath image issue fixed.
+#### Bug Fixes
+- **Slider:** Fixed navigation issue.
+- **TextPath:** Fixed image issue.
 
-### Improved
-- Optimized block controls UI.
+#### Improvements
+- **UI:** Optimized block controls UI.
 
 ### 1.5.0 [October 08, 2024]
 
-### Added
-- Background video feature added to Container and Slider child block.
+#### New Features
+- **Container Block:** Added background video feature.
+- **Slider Block:** Added background video feature to child block.
 
-### Improved
-- Advanced Button preset 3 improved
+#### Improvements
+- **Advanced Button:** Improved preset 3.
 
 ### 1.4.5 [October 05, 2024]
 
-### Added
-- Post Title block introduced.
-- Image feature (Circle, Triangle, Rectangle, Polygon) added to the Text Path block.
-- Direction control added for circular paths in the Text Path block.
-- Color control added for text in the Text Path block.
+#### New Features
+- **Post Title Block:** Introduced new block.
+- **Text Path Block:** Added image feature (Circle, Triangle, Rectangle, Polygon).
+- **Text Path Block:** Added direction control for circular paths.
+- **Text Path Block:** Added color control for text.
 
-### Fixed
-- Typography Control reset issue resolved.
-- Maintenance mode issue fixed.
-- Appender button issue fixed.
-- Focus issue in Advanced Search & Newsletter blocks fixed.
-- Photo height, width and margin issue in Review Carousel Block fixed.
-- Photo padding control issue in Author block fixed.
-- Icon Border Radius issue in Notice block (layout style 4) fixed.
+#### Bug Fixes
+- **Typography Control:** Fixed reset issue.
+- **Maintenance Mode:** Fixed issue.
+- **Appender Button:** Fixed issue.
+- **Advanced Search Block:** Fixed focus issue.
+- **Newsletter Block:** Fixed focus issue.
+- **Review Carousel Block:** Fixed photo height, width and margin issue.
+- **Author Block:** Fixed photo padding control issue.
+- **Notice Block:** Fixed icon border radius issue in layout style 4.
 
-### Improved
-- Query refactoring and optimization for better performance.
-- Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud.
-- Improved container design.
+#### Improvements
+- **Performance:** Query refactoring and optimization for better performance.
+- **Controls:** Rearranged controls for Post Category, Post List, Profile Card, Progress Pie, and Tag Cloud.
+- **Container:** Improved design.
 
 ### 1.4.4 [September 25, 2024]
 
-### Fixed
-- QR code block layout broken issue.
-- Post Grid block hover animation issue.
-- Post Timeline block the excerpt not showing to the frontend issue.
+#### Bug Fixes
+- **QR Code Block:** Fixed layout broken issue.
+- **Post Grid Block:** Fixed hover animation issue.
+- **Post Timeline Block:** Fixed excerpt not showing on frontend issue.
 
-### Improved
-- Optimized the Post Grid and Post Timeline blocks for improved efficiency and user experience
+#### Improvements
+- **Post Grid Block:** Optimized for improved efficiency and user experience.
+- **Post Timeline Block:** Optimized for improved efficiency and user experience.
 
 ### 1.4.3 [September 24, 2024]
 
-### Added
-- List Block horizontal layout features.
-- List Block new presets (2, 3, 4) added.
+#### New Features
+- **List Block:** Added horizontal layout features.
+- **List Block:** Added new presets (2, 3, 4).
 
-### Fixed
-- Authors Block Avatar issue.
-- Review Block image issue.
-- Post & Review Carousel vertical offset issue.
+#### Bug Fixes
+- **Authors Block:** Fixed avatar issue.
+- **Review Block:** Fixed image issue.
+- **Post Carousel Block:** Fixed vertical offset issue.
+- **Review Carousel Block:** Fixed vertical offset issue.
 
-### Improved
-- Optimized block controls UI.
+#### Improvements
+- **UI:** Optimized block controls UI.
 
 ### 1.4.2 [September 18, 2024]
 
-### Fixed
-- List block Deprecated issue
+#### Bug Fixes
+- **List Block:** Fixed deprecated issue.
 
-### Improved
-- Improved control layout for Chart, Authors, Notice, and Review Grid blocks.
+#### Improvements
+- **Controls:** Improved control layout for Chart, Authors, Notice, and Review Grid blocks.
 
 ### 1.4.1 [September 17, 2024]
 
-### Fixed
-- Particles zIndex issue.
-- Lightbox background color issue.
-- Newsletter block API issue.
-- Post Category block color issue.
-- List block linkable issue
+#### Bug Fixes
+- **Particles:** Fixed zIndex issue.
+- **Lightbox Block:** Fixed background color issue.
+- **Newsletter Block:** Fixed API issue.
+- **Post Category Block:** Fixed color issue.
+- **List Block:** Fixed linkable issue.
 
 ### 1.4.0 [September 12, 2024]
 
-### Added
-- Author Block.
-- Breadcrumbs Block.
-- Lightbox Block.
-- Post Category Block.
-- Tag Cloud Block.
-- Post Comments Block.
-- Social Count Block.
-- Recent Comments Block.
-- Advanced Button hover background control.
+#### New Features
+- **Author Block:** Added new block.
+- **Breadcrumbs Block:** Added new block.
+- **Lightbox Block:** Added new block.
+- **Post Category Block:** Added new block.
+- **Tag Cloud Block:** Added new block.
+- **Post Comments Block:** Added new block.
+- **Social Count Block:** Added new block.
+- **Recent Comments Block:** Added new block.
+- **Advanced Button:** Added hover background control.
 
-### Fixed
-- Review Grid Column issue.
-- Star Rating responsive issue.
-- Google Maps block editor issue.
-- Astra theme style support issue with link underline.
-- Multiple chart rendering issue on a single page.
+#### Bug Fixes
+- **Review Grid:** Fixed column issue.
+- **Star Rating:** Fixed responsive issue.
+- **Google Maps Block:** Fixed editor issue.
+- **Astra Theme:** Fixed style support issue with link underline.
+- **Charts:** Fixed multiple rendering issue on single page.
 
-
-### Improved
-- Updated Dashboard.
-- Improved block scripts.
-- Optimized assets loading.
-- Enhanced Post Query system.
-- Optimized block controls UI.
-- Improved Pricing Block style.
-- Improved QR code block scripts.
-- Enhanced Button Block Preset style.
-- Removed line link from preset particles.
-- Added particles preview options to Editor.
+#### Improvements
+- **Dashboard:** Updated.
+- **Scripts:** Improved block scripts.
+- **Performance:** Optimized assets loading.
+- **Post Query System:** Enhanced.
+- **UI:** Optimized block controls UI.
+- **Pricing Block:** Improved style.
+- **QR Code Block:** Improved scripts.
+- **Button Block:** Enhanced preset style.
+- **Particles:** Removed line link from preset.
+- **Editor:** Added particles preview options.
 
 
 ### 1.3.3 [August 18, 2024]
 
-### Fixed
+#### Bug Fixes
+- **Pricing Table:** Fixed custom width issue.
+- **Transform Elements:** Fixed width issue.
+- **Transform Extensions:** Fixed transition duration issue.
 
-- Pricing Table custom width issue fixed
-- Transform Elements width issue fixed
-- Transition duration issue fixed in Transform extensions
-
-### Improved
-
-- Dashboard, Blocks scripts are improved
+#### Improvements
+- **Dashboard:** Improved.
+- **Block Scripts:** Improved.
 
 
 ### 1.3.2 [August 14, 2024]
 
-### Added
+#### New Features
+- **Width Feature:** Added to extra tab for every block.
 
-- Width feature has been added to the extra tab for every block
-
-### Fixed
-
-- Some minor issues are fixed
+#### Bug Fixes
+- **General:** Fixed some minor issues.
 
 ### 1.3.1 [August 12, 2024]
 
-### Fixed
-
-- Frontend multicolor issue fixed in Tag Cloud block (pro)
+#### Bug Fixes
+- **Tag Cloud Block:** Fixed frontend multicolor issue. (pro)
 
 ### 1.3.0 [August 12, 2024]
 
-### Added
+#### New Features
+- **Particles:** Added feature.
+- **Post Category Block:** Added new block.
+- **Post Tag Cloud Block:** Added new block.
+- **Maintenance Mode:** Added feature.
 
-- Particles feature added
-- Post Category block added
-- Post Tag Cloud block added
-- Maintenance mode feature added
-
-### Fixed
-
-- Appender button issue fixed to Tabs block
-- Outline and border issue fixed to tabs block
+#### Bug Fixes
+- **Tabs Block:** Fixed appender button issue.
+- **Tabs Block:** Fixed outline and border issue.
 
 ### 1.2.2 [July 30, 2024]
 
-### Fixed
+#### Bug Fixes
+- **Popup Block:** Fixed issue.
+- **Astra Theme:** Fixed support issue.
+- **Transform:** Fixed conflict with Entrance animation issue.
+- **Marquee Block:** Fixed glitching issue. (pro)
 
-- Popup block issue fixed
-- Astra theme support issue fixed
-- Transform confilict with Entrance animation issue fixed
-- Glitching issue fixed in marquee block (pro)
-
-### Improved
-
-- Form, Notice, Review, QR Code blocks improved
+#### Improvements
+- **Form Block:** Improved.
+- **Notice Block:** Improved.
+- **Review Block:** Improved.
+- **QR Code Block:** Improved.
 
 ### 1.2.1 [July 28, 2024]
 
-### Added
+#### New Features
+- **QR Code Block:** Added suffix and prefix styling controls.
 
-- Suffix and Prefix styling controls added to QR Code block
-
-### Fixed
-
-- Some minor issues are fixed
+#### Bug Fixes
+- **General:** Fixed some minor issues.
 
 ### 1.2.0 [July 25, 2024]
 
-### Added
+#### New Features
+- **QR Code Block:** Added new block.
+- **Container Block:** Added Shape Divider.
 
-- QR Code block added
-- Shape Divider Added to Container Block
+#### Bug Fixes
+- **Transform:** Fixed issue.
+- **Icon Block:** Fixed hover color issue.
+- **Slider Block:** Fixed CLS issue.
+- **Post Carousel Block:** Fixed CLS issue.
+- **Advanced Heading Block:** Fixed subtitle heading tag issue.
 
-### Fixed
-
-- Transform issue fixed
-- Hover color issue fixed in Icon block
-- CLS issue fixed in Slider block and Post Carousel block
-- Subtitle Heading Tag issue fixed in Advanced Heading block
-
-
-### Improved
-
-- Blocks scripts default values are improved
+#### Improvements
+- **Scripts:** Improved blocks scripts default values.
 
 
 ### 1.1.0 [July 10, 2024]
 
-### Added
+#### New Features
+- **Icon Block:** Added new block.
+- **Notice Block:** Added new block.
+- **Text Path Block:** Added new block.
+- **Popup Builder:** Added new feature.
+- **zIndex:** Added negative value support.
+- **Theme Fonts:** Added support.
+- **Position:** Added sticky feature.
+- **Flipbox Block:** Added Box Shadow control.
 
-- Icon block added
-- Notice block added
-- Text path block added
-- Popup builder added
-- zIndex nagative value added
-- Theme fonts support added
-- Position sticky feature added
-- Box Shadow control added in Flipbox block
+#### Bug Fixes
+- **Advanced Icon Box:** Fixed entrance animation conflict with global link issue.
+- **Google Map Block:** Fixed zoom in/out and draggable issue.
+- **Advanced Search Block:** Fixed floating label issue.
+- **Newsletter Block:** Fixed floating label issue.
+- **Template Library:** Added patterns save as favorite features.
+- **Advanced Image Block:** Fixed image uploading issue.
+- **Team Grid Block:** Fixed separator color issue.
+- **Form Block:** Fixed label issue.
 
-### Fixed
+#### Improvements
+- **Transform Features:** Added rotate reset control.
+- **CSS Generation:** Optimized dynamic CSS generation.
+- **Template Library:** Improved UI.
 
-- Entrance animation confilict with global link issue fixed in Advanced Icon Box
-- The map zoom in/out and draggble issue fixed in Google Map block
-- Floating label issue fixed in advanced search & newslatter block
-- Patterns save as favorite features added in Template Library
-- Image Uploading issue fixed in Advanced Image block
-- Separator color issue fixed in team grid block
-- Label issue fixed in Form block
+### 1.0.7 [June 13, 2024]
 
-###Improved
+#### New Features
+- **Progress Pie Block:** Added new block.
+- **Template Library:** Added new feature.
+- **Newsletter Block:** Added bottom spacing control.
 
-- Transform Rotate reset control added in Transform features
-- Dynamic CSS Generation optimized
-- Template Library UI improved
+#### Bug Fixes
+- **Social Share Block:** Fixed extra panel styling options not working issue.
+- **Social Links Block:** Fixed extra panel styling options not working issue.
+- **Container Block:** Fixed border issue.
+- **Advanced Image Block:** Fixed alt text missing issue.
 
-## 1.0.7 [June 13, 2024]
+#### Improvements
+- **Advanced Search Block:** Improved default style.
 
-### Added
+### 1.0.6 [June 08, 2024]
 
-- Progress pie block added
-- Template library feature added
-- Buttom spacing control added in Newsletter block
+#### New Features
+- **Position Feature:** Added to extra tab for every block.
+- **Social Share Block:** Added alignment options.
+- **Social Links Block:** Added alignment options.
 
-### Fixed
+#### Bug Fixes
+- **Charts Block:** Fixed re-rendering issue.
+- **Counter Block:** Fixed preset 5 title issue.
+- **Tabs Block:** Fixed auto scrolling issue.
+- **Post Grid Block:** Fixed preset 3 hover color issue.
+- **Post Carousel Block:** Fixed preset 3 hover color issue.
+- **Pricing Table Block:** Fixed default style overwriting issue.
+- **Advanced Button Block:** Fixed default style overwriting issue.
+- **Social Share Block:** Fixed global style not working issue.
+- **Social Links Block:** Fixed global style not working issue.
+- **Advanced Search Block:** Fixed button text multiline issue.
+- **Newsletter Block:** Fixed button text multiline issue.
+- **Advanced Heading Block:** Fixed separator not showing properly when sub heading position selected to Bottom issue.
+- **Social Share Block:** Fixed icon size options not showing in preset 1 when type selected to onlyIcon issue.
+- **Social Links Block:** Fixed icon size options not showing in preset 1 when type selected to onlyIcon issue.
 
-- Extra panel styling options not working issue fixed in the Social Share and Social Links block
-- Container border issue fixed
-- Alt text missing issue fixed in advanced image block
+#### Improvements
+- **WP-Optimize Plugin:** Fixed CSS compression override issue.
+- **Counter Block:** Increased typography control font-size from 72 to 136.
+- **Post Grid Block:** Added author prefix text control.
+- **Post Carousel Block:** Added author prefix text control.
+- **Post List Block:** Added author prefix text control.
 
-### Improved
+### 1.0.5 [May 29, 2024]
 
-- Default style improved in Advanced Search block
+#### Bug Fixes
+- **Container Block:** Fixed flex issue in Editor.
+- **Advanced Icon Box:** Fixed spacing issue for preset 3.
+- **Charts Block:** Fixed source type input data loading issue.
+- **Advanced Heading Block:** Fixed vertical align issue.
+- **Newsletter Block:** Fixed focus color issue.
+- **Newsletter Block:** Fixed preset 4 responsive issue.
 
-## 1.0.6 [June 08, 2024]
+#### Improvements
+- **Editing Experience:** Improved block editing for easier selection, deletion, and insertion.
+- **Assets:** Improved loading and cleanup.
+- **Charts Block:** Improved.
+- **Dashboard:** Improved changelog.
 
-### Added
+### 1.0.4 [May 18, 2024]
 
-- Position feature has been added to the extra tab for every block
-- Alignment options has been added to the Social Share and Social Links block
+#### New Features
+- **Brand Grid Block:** Added hover background control.
 
-### Fixed
+#### Bug Fixes
+- **Charts Block:** Fixed box sizing item issue.
+- **Advanced Image Block:** Fixed box shadow hover issue.
+- **Advanced Image Block:** Fixed border hover color issue.
+- **Advanced Search Block:** Fixed alignment issue.
+- **Brand Grid Block:** Fixed overflow issue.
+- **Business Hours Block:** Fixed vertical alignment issue.
+- **Counter Block:** Fixed content vertical alignment issue.
 
-- Re-rendering issue fixed in charts block
-- Preset 5 title issue fixed in counter block
-- Tab auto scrolling issue fixed in Tabs block
-- Preset 3 hover color issue fixed in post grid block
-- Preset 3 hover color issue fixed in post carousel block
-- Default style overwriting issue fixed in pricing table block
-- Default style overwriting issue fixed in advanced button block
-- Global style not working issue fixed in Social Share and Social Links block
-- Button text multiline issue fixed in Advanced Search block & Newsletter block
-- Separator not showing properly when sub heading position selected to Bottom issue fixed in Advanced heading block
-- Icon size options not showing in preset 1 when type selected to onlyIcon issue fixed in Social share and Social Links block
+#### Changes
+- **Advanced Image Block:** Removed max width control from image panel.
+- **Advanced Image Block:** Removed margin control from container panel.
+- **Brand Grid Block:** Removed margin control from container panel.
 
-### Improved
-
-- CSS compression override issue fixed for WP-Optimize plugin
-- Typography control font-size increased 72 to 136 in counter block
-- Author prefix text control added to post grid, post carousel and post list block
-
-## 1.0.5 [May 29, 2024]
-
-### Fixed
-
-- Flex issue fixed in Editor for Container block
-- spacing issue fixed for preset 3 in Advanced Icon box
-- Source type input data loading issue fixed in Charts block
-- Vertical align issue fixed in Advanced heading block
-- Focus color issue fixed in Newsletter block
-- Preset 4 responsive issue fixed in Newsletter block
-
-### Improved
-
-- Block editing experience improved, you will be able to select, delete, and insert block easily.
-- Assets loading improved and cleanup
-- Charts block improved
-- Dashboard changelog improved
-
-## 1.0.4 [May 18, 2024]
-
-### Added
-
-- Hover background control added to Brand Grid block
-
-### Fixed
-
-- Box Sizing item issue fixed to Charts block
-- Box Shadow hover issue fixed to Advanced Image block
-- Border hover color issue fixed to Advanced Image block
-- Alignment issue fixed to Advanced Search block
-- Overflow issue fixed to Brand Grid block
-- Vertical Alignment issue fixed to Business hours block
-- Content Vertical Alignment issue fixed to Counter block
-
-### Tweak
-
-- Max Width control has been removed from image panel within Advanced Image block
-- Margin control has been removed from container panel within Advanced Image block
-- Margin control has been removed from container panel within Brand Grid block
-
-### Improved
-
-- Active item controls shifted from Active Accordion panel to self panel tab in Accordion block
-- Renamed panel name Accordion Head to Accordion Title in Accordion & Accordion child block
-- Renamed panel name Accordion Body to Accordion Content in Accordion & Accordion child block
-- Title tag control shifted from style tab to basic tab in Advanced Icon Box
-- Default design improved in Counter block
-- Default design improved in Charts block
+#### Improvements
+- **Accordion Block:** Active item controls shifted from Active Accordion panel to self panel tab.
+- **Accordion Block:** Renamed panel name Accordion Head to Accordion Title.
+- **Accordion Block:** Renamed panel name Accordion Body to Accordion Content.
+- **Advanced Icon Box:** Title tag control shifted from style tab to basic tab.
+- **Counter Block:** Improved default design.
+- **Charts Block:** Improved default design.
 
 
-## 1.0.3 [May 08, 2024]
+### 1.0.3 [May 08, 2024]
 
-### Added
+#### New Features
+- **Newsletter Block:** Added new block.
 
-- Newsletter block added
+### 1.0.2 [May 06, 2024]
 
-## 1.0.2 [May 06, 2024]
+#### New Features
+- **Review Grid:** Added preset 4 layout.
+- **Background Control:** Added custom gradients colors feature.
 
-### Added
+#### Improvements
+- **Controls UI:** Improved.
+- **Code:** Removed deprecated codes.
+- **Team Grid Block:** Improved style 2 layout design.
 
-- Preset 4 layout added to Review Grid
-- Custom gradients colors feature added to the background control
+### 1.0.1 [April 27, 2024]
 
-### Improved
+#### New Features
+- **Style Copy & Paste:** Added new feature.
+- **Advanced Image Block:** Added image width, height, max width options.
+- **Advanced Search Block:** Added button typography, shadow, spacing control.
 
-- Controls UI improved
-- Deprecated codes are removed
-- Style 2 layout design improved to Team Grid block
+#### Bug Fixes
+- **Countdown Block:** Fixed row and column issue.
+- **Advanced Search Block:** Fixed focus color issue.
+- **Slider Block:** Fixed arrow position issue.
+- **Carousel Block:** Fixed arrow position issue.
 
-## 1.0.1 [April 27, 2024]
+#### Improvements
+- **Controls UI:** Improved.
+- **Code:** Removed deprecated codes.
+- **Theme Colors:** Improved colors and gradients palettes.
 
-### Added
-
-- Style copy & paste feature added
-- Image width, height, max width options added to Advanced image block
-- Button typography, shadow, spacing control added to Advanced Search block
-
-### Fixed
-
-- Row and column issue fixed to Countdown block
-- Focus color issue fixed to Advanced Search block
-- Arrow position issue fixed to Slider and Carousel Block
-
-### Improved
-
-- Controls UI improved
-- Deprecated codes are removed
-- Theme colors and gradients palettes are improved
-
-### 1.0.0
+### 1.0.0 [April 15, 2024]
 
 Initial Release

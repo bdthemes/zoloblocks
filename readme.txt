@@ -5,7 +5,7 @@ Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
 Requires at least: 6.1
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.6.0
+Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -611,177 +611,62 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
+### 2.7.0 [March 03, 2026]
+
+#### New Features
+- **Tag Cloud Block:** Introduced animated skin for enhanced visual appeal.
+- **List Block:** Added badge color options and gap control for improved customization.
+- **Counter Block:** Added hover controls for interactive styling.
+- **Pricing Table Block:** Added list color, background color, and vertical alignment controls.
+- **Vertical Tabs Block:** Added new border style option.
+- **Separator:** Added additional position options for greater layout flexibility.
+- **Post List Block:** Added read more options for better content display.
+
+#### Bug Fixes
+- **Advanced Image Block:** Fixed image radius issue in Preset Style 3.
+- **Navigation Block:** Resolved submenu not opening issue.
+- **Lightbox Block:** Fixed animation color issue.
+- **Advanced Icon Box Block:** Fixed image size issue in Preset Style 1 and mobile margin issue.
+- **Review Carousel Block:** Resolved pagination issue.
+- **Video Block:** Fixed video link functionality issue.
+- **Post Carousel Block:** Fixed column number issue.
+- **Review Carousel Block:** Fixed column number issue.
+- **Post Timeline Block:** Fixed pagination issue.
+- **Media Upload Control:** Resolved control not working issue.
+- **All Blocks:** Fixed box sizing issue.
+- **General:** Fixed responsive issues and plugin checker compatibility.
+
+#### Improvements
+- Optimized overall plugin performance for faster loading and smoother interactions.
+- Enhanced Review Carousel, Progress Pie, and Post List blocks with improved UI and functionality.
+- Improved Video, Social Share, and Team blocks performance (resolved block recovery issues).
+- Replaced image size control with height and width controls in Advanced Icon Block.
+- Refined control UI across multiple blocks for better user experience.
+
+
 ### 2.6.0 [February 05, 2026]
 
-### Added
-- Introduced Class Manager for easy customization
-- Extended the flexbox with overflow option
+#### New Features
+- **Class Manager:** Introduced for easy customization.
+- **Flexbox Block:** Extended with overflow option.
 
-### Fixed
-- Resolved table of content block issues
-- Added post category (style 4) preset
-- Fixed spacing issue in advanced heading block
+#### Bug Fixes
+- **Table of Content Block:** Resolved various issues.
+- **Post Category Block:** Added style 4 preset.
+- **Advanced Heading Block:** Fixed spacing issue.
 
 ### 2.5.2 [January 13, 2026]
 
-- **Improvements:**
-  - Fixed: Resolved minor user interface inconsistencies for improved user experience
-
+#### Improvements
+- **User Interface:** Resolved minor inconsistencies for improved user experience.
 
 ### 2.5.1 [January 6, 2026]
 
-- **New Features:**
-  - Added Custom Masking option for the Image block. (pro)
+#### New Features
+- **Image Block:** Added Custom Masking option. (pro)
 
-- **Fixes:**
-  - Fixed the dual button color issue.
-
-### 2.5.0 [December 31, 2025]
-
-- **New Features:**
-  - Added Flexbox block
-  - Added Circle Info block (pro)
-  - Added Switcher block (pro)
-
-### 2.4.0 [December 4, 2025]
-
-**Bug Fixes:**
-WordPress latest version compatibility issues are fixed
-Template library importing issues are fixed
-
-### Version 2.3.18 - November 20, 2025
-
-* **Improved:** System and Notice updates for improved stability and reliability.
-
-### Version 2.3.17 - November 12, 2025
-- **Bug Fixes:**
-  - System update and Notice update
-
-### Version 2.3.16 - November 11, 2025
-
-- **Bug Fixes:**
-  - System update and Notice update
-
-### Version 2.3.15 - November 10, 2025
-
-- **Bug Fixes:**
-  - Resolved Template Library pages and templates imported issue.
-
-### Version 2.3.14 - November 6, 2025
-
-- **Bug Fixes:**
-  - Resolved Template Library broken issue. (Template Library API changed. Please update the plugin to the latest version.)
-
-### Version 2.3.13 - October 21, 2025
-
-- **Bug Fixes:**
-  - Resolved vulnerability in the Title Block.
-  - The Transform Effect is now treated as a separate extension.
-  - Fixed issues with the Particles extension.
-
-### 2.3.12 [October 13, 2025]
-
-**Maintenance Release:**
-Navigation Block click issue fixed
-Fixed vulnerabilities related to Server-Side Request Forgery (SSRF) and Cross-Site Scripting (XSS).
-Enhanced overall request handling to prevent unauthorized external requests.
-General code cleanup and minor performance improvements.
-
-### 2.3.11 [September 28, 2025]
-
-**Maintenance Release:**
-This version addresses a previously unresolved security vulnerability in the Image Gallery block, ensuring enhanced data protection and user safety.
-
-### 2.3.10 [September 24, 2025]
-
-**Security Patch:**
-A security vulnerability was identified and resolved in the Image Gallery block, further enhancing data protection and user safety.
-
-### 2.3.9 [September 14, 2025]
-
-**Stability Release:**
-This version includes minor bug fixes and improvements to maintain optimal performance and reliability.
-
-### 2.3.8 [September 07, 2025]
-
-**Security:**
-* Fixed security vulnerabilities in Google Map and Progress Pie blocks to enhance data protection and user safety.
-
-### 2.3.7 [September 04, 2025]
-
-**Bug Fixes:**
-* Resolved frontend rendering issues in the Charts block for improved display consistency.
-
-**Enhancements:**
-* Optimized block scripts for enhanced performance and reliability.
-
-### 2.3.6 [August 28, 2025]
-
-**Security:**
-* Fixed an authenticated (Contributor+) Stored Cross-Site Scripting (XSS) vulnerability.
-* Improved input validation and data sanitization across multiple blocks.
-
-**Improvements:**
-* Minor performance enhancements and code refactoring.
-
-**Fixes:**
-* Fixed frontend layout issues with social links.
-
-### 2.3.5 [August 04, 2025]
-
-**Performance and Enhancements:**
-
-* Optimized script loading for better page speed
-* WordPress latest version compatibility issue fixed.
-
-
-### 2.3.4 [July 03, 2025]
-
-**Performance:**
-
-* Updated outdated controls for improved performance and reliability
-* Optimized script loading for better page speed
-
-### 2.3.3 [June 15, 2025]
-
-**Security & Performance:**
-
-* Enhanced security measures and vulnerability patches implemented
-* Optimized script loading and execution for improved performance
-
-### 2.3.2 [June 02, 2025]
-
-**Fixes:**
-
-* Added animation to the play button in the Lightbox block
-* Fixed alignment issue in the List block
-* Resolved event type issue in the Navigation submenu
-* Fixed background overlay color issues
-* Fixed transformation control issues in the Flip Box block
-
-### 2.3.1 [June 01, 2025]
-
-**Fixes:**
-
-* Fixed duplicate item issue in the List block
-* Resolved navigation link issues
-
-### 2.3.0 [May 14, 2025]
-
-**Fixes:**
-
-* Resolved styling issues in the Video block
-* Fixed display condition logic functionality
-* Addressed `NaN` value issue in the Dimension control
-* Ensured compatibility with the latest WordPress version
-* Updated outdated controls for improved performance and reliability
-
-**Improvements:**
-
-* **Lightbox Block:** Added content size control for better customization
-* **Charts Block:** Added typography control to heading for enhanced styling
-* **Navigation Block:** Implemented toggle on-click feature for improved interaction
-* Addressed theme color palette issues for consistent appearance across all blocks
+#### Bug Fixes
+- **Dual Button:** Fixed color issue.
 
 Details [changelog here](https://feedback.zoloblocks.com/announcements)
 
