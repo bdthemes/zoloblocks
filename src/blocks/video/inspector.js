@@ -289,7 +289,10 @@ export default function Edit(props) {
 
                                         {attributes?.popupType === 'image' && (
                                             <>
-                                                <ZoloBaseControl label={__('Choose Poster', 'zoloblocks')} className="zolo-flex-col-control">
+                                                <ZoloBaseControl
+                                                    label={__('Choose Poster', 'zoloblocks')}
+                                                    className="zolo-flex-col-control"
+                                                >
                                                     {popoupImage ? (
                                                         <ImageAvatar
                                                             imageUrl={popoupImage && popoupImage.url}
@@ -624,6 +627,20 @@ export default function Edit(props) {
                                         max={1000}
                                     />
 
+                                    <ZoloSelectControl
+                                        label={__('Aspect Ratio', 'zoloblocks')}
+                                        value={attributes?.videoAspectRatio}
+                                        options={[
+                                            { label: __('16:9', 'zoloblocks'), value: '16/9' },
+                                            { label: __('4:3', 'zoloblocks'), value: '4/3' },
+                                            { label: __('1:1', 'zoloblocks'), value: '1/1' },
+                                            { label: __('9:16', 'zoloblocks'), value: '9/16' },
+                                            { label: __('21:9', 'zoloblocks'), value: '21/9' },
+                                            { label: __('3:2', 'zoloblocks'), value: '3/2' },
+                                        ]}
+                                        onChange={(value) => setAttributes({ videoAspectRatio: value })}
+                                    />
+
                                     <ZoloCardDivider />
                                     <BorderControl
                                         label={__('Border', 'zoloblocks')}
@@ -652,6 +669,20 @@ export default function Edit(props) {
                                             requiredProps={requiredProps}
                                             min={0}
                                             max={1000}
+                                        />
+
+                                        <ZoloSelectControl
+                                            label={__('Aspect Ratio', 'zoloblocks')}
+                                            value={attributes?.popupVideoAspectRatio}
+                                            options={[
+                                                { label: __('16:9', 'zoloblocks'), value: '16/9' },
+                                                { label: __('4:3', 'zoloblocks'), value: '4/3' },
+                                                { label: __('1:1', 'zoloblocks'), value: '1/1' },
+                                                { label: __('9:16', 'zoloblocks'), value: '9/16' },
+                                                { label: __('21:9', 'zoloblocks'), value: '21/9' },
+                                                { label: __('3:2', 'zoloblocks'), value: '3/2' },
+                                            ]}
+                                            onChange={(value) => setAttributes({ popupVideoAspectRatio: value })}
                                         />
                                     </ZoloPanelBody>
                                     <ZoloPanelBody title={__('Popup Button', 'zoloblocks')} panelProps={props} firstOpen={false}>

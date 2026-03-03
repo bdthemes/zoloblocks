@@ -27,7 +27,11 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
         startTime,
         endTime,
         videoOverlay,
+        videoAspectRatio,
     } = attributes;
+
+    // Convert stored '16/9' format to CSS '16 / 9' format
+    const aspectRatioStyle = videoAspectRatio ? videoAspectRatio.replace('/', ' / ') : '16 / 9';
 
     switch (videoSource) {
         case 'youtube': {
@@ -80,12 +84,12 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
 
             if (isEdit) {
                 // In editor: use WordPress SandBox component to avoid nested iframe referrer issues (Error 153)
-                const sandboxHtml = `<iframe style="width:100%; aspect-ratio:16/9; border:0;" src="${src}" title="YouTube video player" allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+                const sandboxHtml = `<iframe style="width:100%; aspect-ratio:${videoAspectRatio || '16/9'}; border:0;" src="${src}" title="YouTube video player" allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
                 iframeMarkup = (
                     <div
                         key={`youtube-sandbox-${youtubeVideoId}`}
                         className="youtube-iframe video-iframe"
-                        style={{ width: '100%', aspectRatio: '16 / 9' }}
+                        style={{ width: '100%', aspectRatio: aspectRatioStyle }}
                     >
                         <SandBox html={sandboxHtml} />
                     </div>
@@ -95,7 +99,7 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
                 iframeMarkup = (
                     <iframe
                         key={`youtube-${youtubeVideoId}`}
-                        style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 99999999, border: 0 }}
+                        style={{ width: '100%', aspectRatio: aspectRatioStyle, zIndex: 99999999, border: 0 }}
                         className="youtube-iframe video-iframe"
                         src={src}
                         title={__('YouTube video player', 'zoloblocks')}
@@ -133,7 +137,7 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
 
             iframeMarkup = (
                 <iframe
-                    style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 99999999, border: 0 }}
+                    style={{ width: '100%', aspectRatio: aspectRatioStyle, zIndex: 99999999, border: 0 }}
                     className="vimeo-iframe video-iframe"
                     src={src}
                     title={__('Vimeo video player', 'zoloblocks')}

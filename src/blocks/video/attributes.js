@@ -260,6 +260,16 @@ const attributes = {
         type: 'number',
     },
 
+    videoAspectRatio: {
+        type: 'string',
+        default: '16/9',
+    },
+
+    popupVideoAspectRatio: {
+        type: 'string',
+        default: '16/9',
+    },
+
     videoOverlay: {
         type: 'boolean',
         default: false,
