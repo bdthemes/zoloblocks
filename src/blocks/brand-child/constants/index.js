@@ -43,3 +43,19 @@ export const LINK_TEXT_STROKE = 'linkTextStroke';
 // image
 export const IMAGE_HEIGHT = 'imageHeight';
 export const IMAGE_WIDTH = 'imageWidth';
+
+export const SPAN_OPTIONS = [
+    { label: __('1', 'zoloblocks'), value: '1' },
+    { label: __('2', 'zoloblocks'), value: '2' },
+    { label: __('3', 'zoloblocks'), value: '3' },
+    { label: __('4', 'zoloblocks'), value: '4' },
+    { label: __('5', 'zoloblocks'), value: '5' },
+    { label: __('6', 'zoloblocks'), value: '6' },
+    { label: __('7', 'zoloblocks'), value: '7' },
+    { label: __('8', 'zoloblocks'), value: '8' },
+    { label: __('9', 'zoloblocks'), value: '9' },
+    { label: __('10', 'zoloblocks'), value: '10' },
+    { label: __('11', 'zoloblocks'), value: '11' },
+    { label: __('12', 'zoloblocks'), value: '12' },
+    { label: __('Default', 'zoloblocks'), value: '' },
+];
