@@ -95,7 +95,7 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
                 iframeMarkup = (
                     <iframe
                         key={`youtube-${youtubeVideoId}`}
-                        style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 99999999, border: 0 }}
+                        style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 9, border: 0 }}
                         className="youtube-iframe video-iframe"
                         src={src}
                         title={__('YouTube video player', 'zoloblocks')}
@@ -133,7 +133,7 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
 
             iframeMarkup = (
                 <iframe
-                    style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 99999999, border: 0 }}
+                    style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 9, border: 0 }}
                     className="vimeo-iframe video-iframe"
                     src={src}
                     title={__('Vimeo video player', 'zoloblocks')}
