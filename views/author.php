@@ -4,7 +4,7 @@ use Zolo\Helpers\ZoloHelpers;
 
 $zolo_topclass = 'zolo-author-wrap';
 if ( ! empty( $settings['preset'] ) ) {
-	$zolo_topclass .= 'zolo-' . $settings['preset'];
+	$zolo_topclass .= ' zolo-' . $settings['preset'];
 }
 $zolo_wrapper_class = ZoloHelpers::get_wrapper_class( $settings, $zolo_topclass );
 // get parent classes.
@@ -62,8 +62,10 @@ $zolo_wrapperId      = $settings['zoloId'] ?? '';
 										$zolo_alt_title = esc_html__( 'Click here to ', 'zoloblocks' ) . ucwords( $zolo_s_link );
 									}
 									$zolo_icon = ZoloHelpers::get_social_icon_svg( $zolo_s_link );
+									if ( ! empty( $zolo_icon ) ) :
 									?>
 										<a href="<?php echo esc_url( $zolo_final_url ); ?>" title="<?php echo esc_attr( $zolo_alt_title ); ?>"> <?php echo wp_kses( $zolo_icon, ZoloHelpers::wp_kses_allowed_svg() ); ?></a>
+									<?php endif; ?>
 									<?php
 								endif;
 							}

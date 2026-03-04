@@ -2,7 +2,15 @@ import { createRoot } from 'react-dom/client';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import apiFetch from '@wordpress/api-fetch';
 import ZoloMarker from './marker';
-import { escapeHTML } from '../../../src/helpers/helper';
+
+// Helper function to safely parse JSON
+const safeParseJSON = (str) => {
+    try {
+        return JSON.parse(str);
+    } catch (e) {
+        return null;
+    }
+};
 
 const GoogleMapFrontend = (props) => {
     const {
@@ -23,12 +31,13 @@ const GoogleMapFrontend = (props) => {
     } = props;
 
     const position = { lat: latitude || 24.8233495, lng: longitude || 89.3841374 };
+    const parsedStyles = mapStyleType === 'custom' && mapStyleCodes ? safeParseJSON(mapStyleCodes) : null;
 
     return (
         <APIProvider apiKey={apiKey} language={language || 'en'} libraries={['places']}>
             <div className="zolo-gmap-wrapper">
                 <Map
-                    {...(mapStyleType === 'custom' && mapStyleCodes && { styles: JSON.parse(mapStyleCodes) })}
+                    {...(parsedStyles && { styles: parsedStyles })}
                     defaultZoom={zoom || 16}
                     defaultCenter={position}
                     language={language || 'en'}
@@ -50,7 +59,7 @@ const GoogleMapFrontend = (props) => {
                     <ZoloMarker
                         position={position}
                         info={
-                            escapeHTML(infoWindow) ||
+                            infoWindow ||
                             '<a href="https://bdthemes.com"><b>BdThemes</b></a> is the sole owner of market-leading addons for #1 Elementor such as Element Pack Pro, Prime Slider, Ultimate Post Kit, Ultimate Store Kit, Pixel Gallery, and more useful plugins.'
                         }
                     />
