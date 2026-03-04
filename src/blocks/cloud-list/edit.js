@@ -54,6 +54,13 @@ export default function Edit(props) {
         shadowColor,
         shadowBlur,
         activeCursor,
+        weightEnabled,
+        weightMode,
+        weightSize,
+        weightSizeMin,
+        weightSizeMax,
+        weightGradientFrom,
+        weightGradientTo,
     } = attributes;
 
     // Responsive value helpers for canvas dimensions
@@ -98,6 +105,7 @@ export default function Edit(props) {
                 bgOutlineColor: block.attributes.bgOutlineColor,
                 bgOutlineThickness: block.attributes.bgOutlineThickness,
                 tooltip: block.attributes.tooltip,
+                weight: block.attributes.weight,
             })),
         [innerBlocks]
     );
@@ -129,14 +137,20 @@ export default function Edit(props) {
             textColour: hasPerTagBgOutline ? (textColor || '#333333') : (textColor || null),
             outlineColour: outlineColor || '#ffff99',
             reverse: reverse !== false,
-            initial: triggerOn === 'hover' ? null : [0.2, 0.1],
+            initial: triggerOn === 'hover' ? null
+                : rotationLock === 'x' ? [0.2, 0]
+                : rotationLock === 'y' ? [0, 0.1]
+                : rotationLock === 'xy' ? null
+                : [0.2, 0.1],
             depth: (depth / 100) || 0.8,
             maxSpeed: (speed / 1000) || 0.05,
             activeCursor: activeCursor || 'pointer',
             bgColour: hasPerTagBg ? 'tag' : (bgColor || null),
             bgRadius: bgRadius || 0,
             bgOutline: hasPerTagBgOutline ? 'tag' : null,
-            bgOutlineThickness: hasPerTagBgOutline ? (maxBgOutlineThickness || 2) : 0,
+            bgOutlineThickness: hasPerTagBgOutline
+                ? (maxBgOutlineThickness || 2)
+                : (weightEnabled && weightMode === 'bgoutline' ? (outlineThickness || 2) : 0),
             padding: tagPadding || 0,
             dragControl: triggerOn === 'hover' && dragControl,
             outlineDash: outlineDash || 0,
@@ -153,10 +167,22 @@ export default function Edit(props) {
             lock: rotationLock || null,
             shuffleTags: shuffleTags || false,
             noMouse: noMouse || false,
-            weight: true,
-            weightMode: 'size',
-            weightFrom: 'data-weight',
-            weightSize: 1,
+            ...(weightEnabled ? {
+                weight: true,
+                weightMode: weightMode || 'size',
+                weightFrom: 'data-weight',
+                weightSize: weightSize || 1,
+                ...(weightSizeMin > 0 && weightSizeMax > weightSizeMin ? {
+                    weightSizeMin,
+                    weightSizeMax,
+                } : {}),
+                ...((weightMode === 'colour' || weightMode === 'both' || weightMode === 'bgcolour' || weightMode === 'bgoutline' || weightMode === 'outline') ? {
+                    weightGradient: {
+                        0: weightGradientFrom || '#ff0000',
+                        1: weightGradientTo || '#0000ff',
+                    },
+                } : {}),
+            } : {}),
             tooltip: tagItems.some((item) => item.tooltip) ? 'native' : null,
         };
     }, [
@@ -165,6 +191,8 @@ export default function Edit(props) {
         outlineDashSpace, outlineDashSpeed, outlineIncrease, outlineBorderRadius,
         outlineThickness, shadowColor, shadowBlur, wheelZoom, currentTextHeight,
         cloudShape, rotationLock, shuffleTags, noMouse,
+        weightEnabled, weightMode, weightSize, weightSizeMin, weightSizeMax,
+        weightGradientFrom, weightGradientTo,
     ]);
 
     // Detect when TagCanvas script is ready in the editor iframe
@@ -354,7 +382,7 @@ export default function Edit(props) {
                                     href={`#cloud-tag-${i}`}
                                     title={item.tooltip || undefined}
                                     style={Object.keys(itemStyle).length ? itemStyle : undefined}
-                                    {...(item.fontSize ? { 'data-weight': item.fontSize } : {})}
+                                    data-weight={item.weight || item.fontSize || (currentTextHeight + i * 2)}
                                     {...(item.bgOutlineColor ? { 'data-bg-outline': item.bgOutlineColor } : {})}
                                     {...(item.bgOutlineThickness ? { 'data-bg-outline-thickness': item.bgOutlineThickness } : {})}
                                 >

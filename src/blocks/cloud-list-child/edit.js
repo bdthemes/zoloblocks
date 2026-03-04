@@ -6,7 +6,7 @@ import Inspector from './inspector';
 
 export default function Edit(props) {
     const { attributes, setAttributes, isSelected } = props;
-    const { label, textColor, fontSize, bgColor, bgOutlineColor, bgOutlineThickness, tooltip } = attributes;
+    const { label, textColor, fontSize, bgColor, bgOutlineColor, bgOutlineThickness, tooltip, weight } = attributes;
 
     const blockProps = useBlockProps({
         className: classnames('zolo-cloud-list-item'),

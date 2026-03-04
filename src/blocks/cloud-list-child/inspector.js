@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 const {
     ZoloTextControl,
     ZoloRangeUnit,
+    ZoloRangeControl,
     ZoloPanelBody,
     ZoloCardDivider,
     ColorControl,
@@ -16,7 +17,7 @@ import objAttributes from './attributes';
 
 function Inspector(props) {
     const { attributes, setAttributes } = props;
-    const { resMode, label, link, textColor, fontSize, bgColor, bgOutlineColor, bgOutlineThickness, tooltip } = attributes;
+    const { resMode, label, link, textColor, fontSize, bgColor, bgOutlineColor, bgOutlineThickness, tooltip, weight } = attributes;
 
     const requiredProps = {
         resMode,
@@ -52,6 +53,15 @@ function Inspector(props) {
                                 onChange={(tooltip) => setAttributes({ tooltip })}
                                 placeholder={__('Hover tooltip text', 'zoloblocks')}
                             />
+                            <ZoloRangeControl
+                                label={__('Weight', 'zoloblocks')}
+                                value={weight}
+                                onChange={(weight) => setAttributes({ weight })}
+                                min={0}
+                                max={100}
+                                step={1}
+                                help={__('0 = use global size. Higher = more prominent.', 'zoloblocks')}
+                            />
                         </ZoloPanelBody>
                     </>
                 }
@@ -67,7 +77,14 @@ function Inspector(props) {
                                 label={__('Font Size', 'zoloblocks')}
                                 value={fontSize ? `${fontSize}px` : ''}
                                 onChange={(value) => setAttributes({ fontSize: parseInt(value) || 0 })}
-                                units={{ px: { min: 0, max: 80, step: 1 } }}
+                                units={{
+                                    px: { min: 0, max: 80, step: 1 },
+                                    '%': { min: 50, max: 400, step: 1 },
+                                    em: { min: 0.5, max: 5, step: 0.1 },
+                                    rem: { min: 0.5, max: 5, step: 0.1 },
+                                    vw: { min: 0, max: 10, step: 0.1 },
+                                    vh: { min: 0, max: 10, step: 0.1 },
+                                }}
                                 help={__('0 = use cloud global size', 'zoloblocks')}
                             />
                         </ZoloPanelBody>
@@ -87,7 +104,14 @@ function Inspector(props) {
                                 label={__('Outline Thickness', 'zoloblocks')}
                                 value={bgOutlineThickness ? `${bgOutlineThickness}px` : ''}
                                 onChange={(value) => setAttributes({ bgOutlineThickness: parseInt(value) || 0 })}
-                                units={{ px: { min: 0, max: 10, step: 1 } }}
+                                units={{
+                                    px: { min: 0, max: 10, step: 1 },
+                                    '%': { min: 0, max: 100, step: 1 },
+                                    em: { min: 0, max: 5, step: 0.1 },
+                                    rem: { min: 0, max: 5, step: 0.1 },
+                                    vw: { min: 0, max: 10, step: 0.1 },
+                                    vh: { min: 0, max: 10, step: 0.1 },
+                                }}
                                 help={__('0 = use cloud global thickness', 'zoloblocks')}
                             />
                         </ZoloPanelBody>

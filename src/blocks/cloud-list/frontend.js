@@ -29,13 +29,31 @@ const initCloudListBlock = (block) => {
 
     const options = parseSettings(canvas.dataset.tagCanvasSettings);
 
-    // Enable weight system if any tag has data-weight attribute
-    const hasWeights = wrap.querySelector('a[data-weight]');
-    if (hasWeights) {
-        options.weight = true;
-        options.weightMode = options.weightMode || 'size';
-        options.weightFrom = options.weightFrom || 'data-weight';
-        options.weightSize = options.weightSize || 1;
+    // When weight mode is explicitly configured, ensure all tags have valid varied data-weight values
+    if (options.weight) {
+        const tags = wrap.querySelectorAll('a');
+        let needsFix = false;
+
+        // Check if any tag is missing data-weight or all share the same value
+        const weights = Array.from(tags).map((a) => {
+            const v = a.getAttribute('data-weight');
+            if (v === null || v === '' || v === '0') needsFix = true;
+            return parseInt(v, 10) || 0;
+        });
+        if (!needsFix) {
+            needsFix = weights.every((w) => w === weights[0]);
+        }
+
+        if (needsFix) {
+            // Assign varied weights while preserving any explicitly set values
+            tags.forEach((a, i) => {
+                const v = a.getAttribute('data-weight');
+                const current = parseInt(v, 10) || 0;
+                if (!v || current === 0 || weights.every((w) => w === weights[0])) {
+                    a.setAttribute('data-weight', 10 + i * 3);
+                }
+            });
+        }
     }
 
     // Auto-enable per-tag background color if any tag has background-color inline style

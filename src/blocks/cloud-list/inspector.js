@@ -1,6 +1,6 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { CLOUD_SHAPES, ROTATION_LOCK_CHOOSE, TRIGGER_CHOOSE, CURSOR_TYPES } from './constants';
+import { CLOUD_SHAPES, ROTATION_LOCK_CHOOSE, TRIGGER_CHOOSE, CURSOR_TYPES, WEIGHT_MODES } from './constants';
 import objAttributes from './attributes';
 
 const {
@@ -46,6 +46,13 @@ export default function Inspector(props) {
         shadowColor,
         shadowBlur,
         activeCursor,
+        weightEnabled,
+        weightMode,
+        weightSize,
+        weightSizeMin,
+        weightSizeMax,
+        weightGradientFrom,
+        weightGradientTo,
     } = attributes;
 
     const requiredProps = {
@@ -72,7 +79,7 @@ export default function Inspector(props) {
                                     onChange={(value) => {
                                         setAttributes(createResponsiveValue('canvasWidth', value));
                                     }}
-                                    units={{ px: { min: 200, max: 2000, step: 10 } }}
+                                    units={{px: { min: 200, max: 2000, step: 10 }}}
                                 />
                             </ZoloResponsive>
                             <ZoloResponsive left="85px">
@@ -160,6 +167,70 @@ export default function Inspector(props) {
                                 onChange={(activeCursor) => setAttributes({ activeCursor })}
                             />
                         </ZoloPanelBody>
+
+                        {/* Weight Mode */}
+                        <ZoloPanelBody title={__('Weight Mode', 'zoloblocks')} panelProps={props}>
+                            <ZoloToggleControl
+                                label={__('Enable Weight Mode', 'zoloblocks')}
+                                checked={weightEnabled}
+                                onChange={(weightEnabled) => setAttributes({ weightEnabled })}
+                            />
+                            {weightEnabled && (
+                                <>
+                                    <ZoloSelectControl
+                                        label={__('Weight Mode', 'zoloblocks')}
+                                        value={weightMode}
+                                        options={WEIGHT_MODES}
+                                        onChange={(weightMode) => setAttributes({ weightMode })}
+                                    />
+                                    {(weightMode === 'size' || weightMode === 'both') && (
+                                        <>
+                                            <ZoloRangeControl
+                                                label={__('Size Multiplier', 'zoloblocks')}
+                                                value={weightSize}
+                                                onChange={(weightSize) => setAttributes({ weightSize })}
+                                                min={0.1}
+                                                max={5}
+                                                step={0.1}
+                                            />
+                                            <ZoloRangeControl
+                                                label={__('Min Font Size', 'zoloblocks')}
+                                                value={weightSizeMin}
+                                                onChange={(weightSizeMin) => setAttributes({ weightSizeMin })}
+                                                min={0}
+                                                max={100}
+                                                step={1}
+                                                help={__('0 = auto', 'zoloblocks')}
+                                            />
+                                            <ZoloRangeControl
+                                                label={__('Max Font Size', 'zoloblocks')}
+                                                value={weightSizeMax}
+                                                onChange={(weightSizeMax) => setAttributes({ weightSizeMax })}
+                                                min={0}
+                                                max={100}
+                                                step={1}
+                                                help={__('0 = auto', 'zoloblocks')}
+                                            />
+                                        </>
+                                    )}
+                                    {(weightMode === 'colour' || weightMode === 'both' || weightMode === 'bgcolour' || weightMode === 'bgoutline' || weightMode === 'outline') && (
+                                        <>
+                                            <ZoloCardDivider />
+                                            <ColorControl
+                                                label={__('Gradient Start (Heaviest)', 'zoloblocks')}
+                                                color={weightGradientFrom}
+                                                onChange={(weightGradientFrom) => setAttributes({ weightGradientFrom })}
+                                            />
+                                            <ColorControl
+                                                label={__('Gradient End (Lightest)', 'zoloblocks')}
+                                                color={weightGradientTo}
+                                                onChange={(weightGradientTo) => setAttributes({ weightGradientTo })}
+                                            />
+                                        </>
+                                    )}
+                                </>
+                            )}
+                        </ZoloPanelBody>
                     </>
                 }
                 styleTab={
@@ -194,13 +265,27 @@ export default function Inspector(props) {
                                             label={__('Background Radius', 'zoloblocks')}
                                             value={bgRadius ? `${bgRadius}px` : ''}
                                             onChange={(value) => setAttributes({ bgRadius: parseInt(value) || 0 })}
-                                            units={{ px: { min: 0, max: 30, step: 1 } }}
+                                            units={{
+                                                px: { min: 0, max: 30, step: 1 },
+                                                '%': { min: 0, max: 100, step: 1 },
+                                                em: { min: 0, max: 5, step: 0.1 },
+                                                rem: { min: 0, max: 5, step: 0.1 },
+                                                vw: { min: 0, max: 10, step: 0.1 },
+                                                vh: { min: 0, max: 10, step: 0.1 },
+                                            }}
                                         />
                                         <ZoloRangeUnit
                                             label={__('Tag Padding', 'zoloblocks')}
                                             value={tagPadding ? `${tagPadding}px` : ''}
                                             onChange={(value) => setAttributes({ tagPadding: parseInt(value) || 0 })}
-                                            units={{ px: { min: 0, max: 50, step: 1 } }}
+                                            units={{
+                                                px: { min: 0, max: 50, step: 1 },
+                                                '%': { min: 0, max: 100, step: 1 },
+                                                em: { min: 0, max: 5, step: 0.1 },
+                                                rem: { min: 0, max: 5, step: 0.1 },
+                                                vw: { min: 0, max: 10, step: 0.1 },
+                                                vh: { min: 0, max: 10, step: 0.1 },
+                                            }}
                                         />
                                     </>
                                 }
@@ -215,13 +300,27 @@ export default function Inspector(props) {
                                             label={__('Outline Thickness', 'zoloblocks')}
                                             value={outlineThickness ? `${outlineThickness}px` : ''}
                                             onChange={(value) => setAttributes({ outlineThickness: parseInt(value) || 0 })}
-                                            units={{ px: { min: 0, max: 20, step: 1 } }}
+                                            units={{
+                                                px: { min: 0, max: 20, step: 1 },
+                                                '%': { min: 0, max: 100, step: 1 },
+                                                em: { min: 0, max: 5, step: 0.1 },
+                                                rem: { min: 0, max: 5, step: 0.1 },
+                                                vw: { min: 0, max: 10, step: 0.1 },
+                                                vh: { min: 0, max: 10, step: 0.1 },
+                                            }}
                                         />
                                         <ZoloRangeUnit
                                             label={__('Outline Border Radius', 'zoloblocks')}
                                             value={outlineBorderRadius ? `${outlineBorderRadius}px` : ''}
                                             onChange={(value) => setAttributes({ outlineBorderRadius: parseInt(value) || 0 })}
-                                            units={{ px: { min: 0, max: 20, step: 1 } }}
+                                            units={{
+                                                px: { min: 0, max: 20, step: 1 },
+                                                '%': { min: 0, max: 100, step: 1 },
+                                                em: { min: 0, max: 5, step: 0.1 },
+                                                rem: { min: 0, max: 5, step: 0.1 },
+                                                vw: { min: 0, max: 10, step: 0.1 },
+                                                vh: { min: 0, max: 10, step: 0.1 },
+                                            }}
                                         />
                                         <ZoloRangeControl
                                             label={__('Size Increase on Hover', 'zoloblocks')}
@@ -235,13 +334,27 @@ export default function Inspector(props) {
                                             label={__('Dash Size', 'zoloblocks')}
                                             value={outlineDash ? `${outlineDash}px` : ''}
                                             onChange={(value) => setAttributes({ outlineDash: parseInt(value) || 0 })}
-                                            units={{ px: { min: 0, max: 20, step: 1 } }}
+                                            units={{
+                                                px: { min: 0, max: 20, step: 1 },
+                                                '%': { min: 0, max: 100, step: 1 },
+                                                em: { min: 0, max: 5, step: 0.1 },
+                                                rem: { min: 0, max: 5, step: 0.1 },
+                                                vw: { min: 0, max: 10, step: 0.1 },
+                                                vh: { min: 0, max: 10, step: 0.1 },
+                                            }}
                                         />
                                         <ZoloRangeUnit
                                             label={__('Dash Space', 'zoloblocks')}
                                             value={outlineDashSpace ? `${outlineDashSpace}px` : ''}
                                             onChange={(value) => setAttributes({ outlineDashSpace: parseInt(value) || 0 })}
-                                            units={{ px: { min: 0, max: 20, step: 1 } }}
+                                            units={{
+                                                px: { min: 0, max: 20, step: 1 },
+                                                '%': { min: 0, max: 100, step: 1 },
+                                                em: { min: 0, max: 5, step: 0.1 },
+                                                rem: { min: 0, max: 5, step: 0.1 },
+                                                vw: { min: 0, max: 10, step: 0.1 },
+                                                vh: { min: 0, max: 10, step: 0.1 },
+                                            }}
                                         />
                                         <ZoloRangeControl
                                             label={__('Dash Speed', 'zoloblocks')}
@@ -260,7 +373,14 @@ export default function Inspector(props) {
                                             label={__('Shadow Blur', 'zoloblocks')}
                                             value={shadowBlur ? `${shadowBlur}px` : ''}
                                             onChange={(value) => setAttributes({ shadowBlur: parseInt(value) || 0 })}
-                                            units={{ px: { min: 0, max: 40, step: 1 } }}
+                                            units={{
+                                                px: { min: 0, max: 40, step: 1 },
+                                                '%': { min: 0, max: 100, step: 1 },
+                                                em: { min: 0, max: 5, step: 0.1 },
+                                                rem: { min: 0, max: 5, step: 0.1 },
+                                                vw: { min: 0, max: 10, step: 0.1 },
+                                                vh: { min: 0, max: 10, step: 0.1 },
+                                            }}
                                         />
                                     </>
                                 }

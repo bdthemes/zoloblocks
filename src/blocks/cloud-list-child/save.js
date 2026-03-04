@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 const Save = (props) => {
     const { attributes } = props;
-    const { label, link, textColor, fontSize, bgColor, bgOutlineColor, bgOutlineThickness, tooltip } = attributes;
+    const { label, link, textColor, fontSize, bgColor, bgOutlineColor, bgOutlineThickness, tooltip, weight } = attributes;
 
     const url = link?.url || '#';
     const openInNewTab = link?.openInNewTab || false;
@@ -27,7 +27,7 @@ const Save = (props) => {
             rel={rel}
             title={tooltip || undefined}
             style={Object.keys(itemStyle).length ? itemStyle : undefined}
-            {...(fontSize ? { 'data-weight': fontSize } : {})}
+            {...((fontSize || weight) ? { 'data-weight': fontSize || weight } : {})}
             {...(bgOutlineColor ? { 'data-bg-outline': bgOutlineColor } : {})}
             {...(bgOutlineThickness ? { 'data-bg-outline-thickness': bgOutlineThickness } : {})}
         >

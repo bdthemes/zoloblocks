@@ -31,3 +31,12 @@ export const CURSOR_TYPES = [
     { label: __('Progress', 'zoloblocks'), value: 'progress' },
     { label: __('Default', 'zoloblocks'), value: 'default' },
 ];
+
+export const WEIGHT_MODES = [
+    { label: __('Size', 'zoloblocks'), value: 'size' },
+    { label: __('Colour', 'zoloblocks'), value: 'colour' },
+    { label: __('Both', 'zoloblocks'), value: 'both' },
+    { label: __('BG Colour', 'zoloblocks'), value: 'bgcolour' },
+    { label: __('BG Outline', 'zoloblocks'), value: 'bgoutline' },
+    { label: __('Outline', 'zoloblocks'), value: 'outline' },
+];

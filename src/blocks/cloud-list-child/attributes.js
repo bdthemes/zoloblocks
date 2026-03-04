@@ -60,6 +60,10 @@ const attributes = {
         type: 'string',
         default: '',
     },
+    weight: {
+        type: 'number',
+        default: 0,
+    },
 };
 
 export default attributes;

@@ -127,6 +127,36 @@ const attributes = {
         default: 0,
     },
 
+    // Weight mode
+    weightEnabled: {
+        type: 'boolean',
+        default: false,
+    },
+    weightMode: {
+        type: 'string',
+        default: 'size',
+    },
+    weightSize: {
+        type: 'number',
+        default: 1,
+    },
+    weightSizeMin: {
+        type: 'number',
+        default: 0,
+    },
+    weightSizeMax: {
+        type: 'number',
+        default: 0,
+    },
+    weightGradientFrom: {
+        type: 'string',
+        default: '#ff0000',
+    },
+    weightGradientTo: {
+        type: 'string',
+        default: '#0000ff',
+    },
+
     // Interaction
     activeCursor: {
         type: 'string',

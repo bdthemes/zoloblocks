@@ -36,6 +36,13 @@ const Save = (props) => {
         shadowColor,
         shadowBlur,
         activeCursor,
+        weightEnabled,
+        weightMode,
+        weightSize,
+        weightSizeMin,
+        weightSizeMax,
+        weightGradientFrom,
+        weightGradientTo,
     } = attributes;
 
     // Parse Desktop value from responsive canvas dimensions
@@ -53,12 +60,17 @@ const Save = (props) => {
         textColour: textColor || null,
         outlineColour: outlineColor || '#ffff99',
         reverse: reverse !== false,
-        initial: triggerOn === 'hover' ? null : [0.2, 0.1],
+        initial: triggerOn === 'hover' ? null
+            : rotationLock === 'x' ? [0.2, 0]
+            : rotationLock === 'y' ? [0, 0.1]
+            : rotationLock === 'xy' ? null
+            : [0.2, 0.1],
         depth: (depth / 100) || 0.8,
         maxSpeed: (speed / 1000) || 0.05,
         activeCursor: activeCursor || 'pointer',
         bgColour: bgColor || null,
         bgRadius: bgRadius || 0,
+        bgOutlineThickness: (weightEnabled && weightMode === 'bgoutline') ? (outlineThickness || 2) : 0,
         padding: tagPadding || 0,
         dragControl: triggerOn === 'hover' && dragControl ? true : false,
         outlineDash: outlineDash || 0,
@@ -75,10 +87,22 @@ const Save = (props) => {
         lock: rotationLock || null,
         shuffleTags: shuffleTags || false,
         noMouse: noMouse || false,
-        weight: true,
-        weightMode: 'size',
-        weightFrom: 'data-weight',
-        weightSize: 1,
+        ...(weightEnabled ? {
+            weight: true,
+            weightMode: weightMode || 'size',
+            weightFrom: 'data-weight',
+            weightSize: weightSize || 1,
+            ...(weightSizeMin > 0 && weightSizeMax > weightSizeMin ? {
+                weightSizeMin,
+                weightSizeMax,
+            } : {}),
+            ...((weightMode === 'colour' || weightMode === 'both' || weightMode === 'bgcolour' || weightMode === 'bgoutline' || weightMode === 'outline') ? {
+                weightGradient: {
+                    0: weightGradientFrom || '#ff0000',
+                    1: weightGradientTo || '#0000ff',
+                },
+            } : {}),
+        } : {}),
     };
 
     // filter hooks for render
