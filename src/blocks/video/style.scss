@@ -4,6 +4,7 @@
     }
 
     .zolo-video-container {
+        position: relative;
         overflow: hidden;
         box-sizing: border-box;
         iframe {
@@ -278,6 +279,73 @@
         align-items: center;
         justify-content: center;
         font-size: 16px;
+    }
+
+    .zolo-inline-thumbnail-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transition: opacity 0.3s ease;
+
+        &.zolo-thumbnail-hiding {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .zolo-inline-thumbnail-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .zolo-inline-play-icon {
+            $pulse-duration: 1100ms;
+            --popup-play-button-icon-size: clamp(24px, 2.5vw, 32px);
+            position: relative;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(16px, 2.5vw, 25px);
+            border-radius: 50%;
+            background: var(--zoloblocks-brand-color, #396eea);
+            color: #fff;
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 100%;
+                height: 100%;
+                border-radius: inherit;
+                background: inherit;
+                transform: translateX(-50%) translateY(-50%);
+                animation: pulse-border $pulse-duration ease-out infinite;
+            }
+
+            svg {
+                width: var(--popup-play-button-icon-size);
+                height: var(--popup-play-button-icon-size);
+                position: relative;
+                z-index: 1;
+            }
+        }
+
+        &:hover .zolo-inline-play-icon {
+            transform: scale(1.1);
+        }
     }
 }
 

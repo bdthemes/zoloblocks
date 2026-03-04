@@ -260,6 +260,18 @@ const attributes = {
         type: 'number',
     },
 
+    showInlineThumbnail: {
+        type: 'boolean',
+        default: false,
+    },
+    inlineThumbnail: {
+        type: 'object',
+    },
+    inlineThumbnailSizes: {
+        type: 'string',
+        default: 'full',
+    },
+
     videoAspectRatio: {
         type: 'string',
         default: '16/9',

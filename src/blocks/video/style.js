@@ -346,6 +346,27 @@ export default function Style({ props }) {
             ${popupBtnHBoxShadow}
         }
 
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-play-icon {
+            ${popupIconColor ? `color: ${popupIconColor};` : ''}
+            ${popupBtnBgColorDesk}
+            ${popupBtnPaddingDesk}
+            ${popupBtnMarginDesk}
+            ${popupBtnBorderDesk}
+            ${popupBtnBorderRadiusDesk}
+            ${popupBtnBoxShadow}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-play-icon svg{
+            ${popupBtnIconSizeDesk}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-thumbnail-overlay:hover .zolo-inline-play-icon {
+            ${popupIconHColor ? `color: ${popupIconHColor};` : ''}
+            ${popupBtnBgHColorDesk}
+            ${popupBtnBorderHColor ? `border-color: ${popupBtnBorderHColor};` : ''}
+            ${popupBtnHBoxShadow}
+        }
+
         .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-label {
             ${popupLabelColor ? `color: ${popupLabelColor};` : ''}
             ${popupLabelTypoDesk}
@@ -419,6 +440,22 @@ export default function Style({ props }) {
             ${popupBtnBgHColorTab}
         }
 
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-play-icon {
+            ${popupBtnBgColorTab || ''}
+            ${popupBtnPaddingTab || ''}
+            ${popupBtnMarginTab || ''}
+            ${popupBtnBorderTab || ''}
+            ${popupBtnBorderRadiusTab || ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-play-icon svg{
+            ${popupBtnIconSizeTab}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-thumbnail-overlay:hover .zolo-inline-play-icon {
+            ${popupBtnBgHColorTab}
+        }
+
         .${uniqueId}.wp-block-zolo-video .popup-button-wrap .popup-button-label {
             ${popupLabelTypoTab}
         }
@@ -478,6 +515,22 @@ export default function Style({ props }) {
         }
 
         .${uniqueId}.wp-block-zolo-video .popup-button-wrap:hover .popup-button-icon {
+            ${popupBtnBgHColorMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-play-icon {
+            ${popupBtnBgColorMob || ''}
+            ${popupBtnPaddingMob || ''}
+            ${popupBtnMarginMob || ''}
+            ${popupBtnBorderMob || ''}
+            ${popupBtnBorderRadiusMob || ''}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-play-icon svg {
+            ${popupBtnIconSizeMob}
+        }
+
+        .${uniqueId}.wp-block-zolo-video .zolo-inline-thumbnail-overlay:hover .zolo-inline-play-icon {
             ${popupBtnBgHColorMob}
         }
 

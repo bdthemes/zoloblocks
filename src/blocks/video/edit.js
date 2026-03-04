@@ -13,6 +13,7 @@ export default function Edit(props) {
     const { classArrayToStr } = window.zoloModule;
     const { attributes, setAttributes, isSelected } = props;
     const [openPopup, setOpenPopup] = useState(false);
+    const [thumbnailHidden, setThumbnailHidden] = useState(false);
     const blocksProps = useBlockProps({
         className: classnames(
             attributes?.uniqueId,
@@ -95,11 +96,9 @@ export default function Edit(props) {
         return null;
     };
 
-    const shouldOpenInNewTab = attributes?.videoLayoutType === 'popup' && (
-        attributes?.youtubeUrl?.openInNewTab || 
-        attributes?.vimeoUrl?.openInNewTab || 
-        attributes?.externalCustomVideoUrl?.openInNewTab
-    );
+    const shouldOpenInNewTab =
+        attributes?.videoLayoutType === 'popup' &&
+        (attributes?.youtubeUrl?.openInNewTab || attributes?.vimeoUrl?.openInNewTab || attributes?.externalCustomVideoUrl?.openInNewTab);
 
     if (attributes?.videoLayoutType === 'popup') {
         markup = (
@@ -118,7 +117,9 @@ export default function Edit(props) {
                                     setOpenPopup(!openPopup);
                                 }
                             }}
-                            href={shouldOpenInNewTab ? sanitizeUrl(getVideoUrl()) : sanitizeUrl(`#video-player-popup-${attributes?.uniqueId}`)}
+                            href={
+                                shouldOpenInNewTab ? sanitizeUrl(getVideoUrl()) : sanitizeUrl(`#video-player-popup-${attributes?.uniqueId}`)
+                            }
                             className="popup-trigger-button"
                             data-fslightbox={`video-player-popup-${attributes?.uniqueId}`}
                         >
@@ -163,7 +164,15 @@ export default function Edit(props) {
     }
 
     if (attributes?.videoLayoutType === 'inline') {
-        markup = <EmbedPlayer attributes={attributes} anchor={customVideoRef} isEdit={true} />;
+        markup = (
+            <EmbedPlayer
+                attributes={attributes}
+                anchor={customVideoRef}
+                isEdit={true}
+                thumbnailHidden={thumbnailHidden}
+                onThumbnailClick={() => setThumbnailHidden(true)}
+            />
+        );
     }
 
     return (
