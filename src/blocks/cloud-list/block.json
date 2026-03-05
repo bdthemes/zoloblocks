@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Cloud List",
+    "name": "zolo/cloud-list",
+    "category": "zoloblocks",
+    "keywords": ["cloud", "tag", "3d", "sphere", "canvas", "animation", "list", "tagcanvas"],
+    "description": "Create an interactive 3D tag cloud sphere with custom list items using TagCanvas.",
+    "apiVersion": 3,
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 560
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "viewScript": "file:./frontend.js",
+    "script": ["zolo-tag-canvas-script"],
+    "style": "file:./style-index.css"
+}

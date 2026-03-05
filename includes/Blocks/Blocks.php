@@ -503,6 +503,21 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/tag-cloud',
         'video' => 'https://www.youtube.com/watch?v=w1RKAO30GaI',
     ],
+    'cloud-list' => [
+        'name' => 'cloud-list',
+        'title' => __('Cloud List', 'zoloblocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'demo' => 'https://demo.zoloblocks.com/cloud-list',
+        'video' => 'https://www.youtube.com/watch?v=w1RKAO30GaI',
+    ],
+    'cloud-list-child' => [
+        'name' => 'cloud-list-child',
+        'title' => __('Cloud List Item', 'zoloblocks'),
+        'categories' => ['others'],
+        'status' => true,
+        'is_child' => true,
+    ],
     'post-list' => [
         'name' => 'post-list',
         'class' => '\Zolo\Blocks\PostList',

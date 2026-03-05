@@ -1,0 +1,48 @@
+/* Cloud List Block Styles */
+.zolo-cloud-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .zolo-cloud-list-canvas {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .zolo-cloud-list-hidden-wrap {
+        display: none;
+        position: absolute;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    /* Add Tag Item button – visible in the editor below the canvas */
+    .zolo-appender-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 12px;
+        padding: 6px 14px;
+        background: #fff;
+        border: 1px dashed #c3c4c7;
+        border-radius: 4px;
+        font-size: 12px;
+        font-family: inherit;
+        color: #555;
+        cursor: pointer;
+        transition: border-color 0.2s, color 0.2s;
+
+        &:hover {
+            border-color: #6366f1;
+            color: #6366f1;
+        }
+    }
+
+    /* Editor inner blocks wrap – hidden, selection via canvas */
+    .zolo-cloud-list-editor-wrap {
+        display: none;
+    }
+}

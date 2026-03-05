@@ -538,6 +538,13 @@ const BlockIcons = {
             />
         </svg>
     ),
+    'cloud-list': (
+        <svg className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
+            <path
+                d="M12 1.25A10.75 10.75 0 0 1 12 22.75A10.75 10.75 0 0 1 12 1.25ZM12 2.75A9.25 9.25 0 0 0 12 21.25A9.25 9.25 0 0 0 12 2.75ZM12 1.35A5.15 10.65 0 0 1 12 22.65A5.15 10.65 0 0 1 12 1.35ZM12 2.65A3.85 9.35 0 0 0 12 21.35A3.85 9.35 0 0 0 12 2.65ZM2 11.35H22V12.65H2ZM3.5 6.5H20.5V7.5H3.5ZM3.5 16.5H20.5V17.5H3.5ZM7.2 9A1.2 1.2 0 0 1 4.8 9A1.2 1.2 0 0 1 7.2 9ZM13.2 5A1.2 1.2 0 0 1 10.8 5A1.2 1.2 0 0 1 13.2 5ZM19.2 10A1.2 1.2 0 0 1 16.8 10A1.2 1.2 0 0 1 19.2 10ZM10.2 15A1.2 1.2 0 0 1 7.8 15A1.2 1.2 0 0 1 10.2 15ZM17.2 14A1.2 1.2 0 0 1 14.8 14A1.2 1.2 0 0 1 17.2 14Z"
+            />
+        </svg>
+    ),
     'post-grid': (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="zolo-e-icon" xmlns="http://www.w3.org/2000/svg">
             <path

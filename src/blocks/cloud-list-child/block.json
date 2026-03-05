@@ -1,0 +1,16 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Cloud List Item",
+    "name": "zolo/cloud-list-child",
+    "category": "zoloblocks",
+    "keywords": ["cloud", "tag", "list", "item", "3d", "sphere", "canvas"],
+    "description": "Add individual items to the Cloud List sphere.",
+    "apiVersion": 3,
+    "textdomain": "zoloblocks",
+    "parent": ["zolo/cloud-list"],
+    "supports": {
+        "anchor": false,
+        "customClassName": false
+    },
+    "editorScript": "file:./index.js"
+}
