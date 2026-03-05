@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: ZoloBlocks 2.6.0\n"
+"Project-Id-Version: ZoloBlocks 2.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zoloblocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T03:50:51+00:00\n"
+"POT-Creation-Date: 2026-03-04T08:14:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: zoloblocks\n"
@@ -279,7 +279,7 @@ msgid "The API returned an invalid response."
 msgstr ""
 
 #: includes/Blocks/Blocks.php:8
-#: src/blocks/brand-child/inspector.js:236
+#: src/blocks/brand-child/inspector.js:240
 #: src/blocks/brand-grid/inspector.js:219
 #: src/blocks/counter/inspector.js:402
 #: src/blocks/navigation-submenu/inspector.js:62
@@ -1122,8 +1122,8 @@ msgstr ""
 #: src/blocks/advanced-search/inspector.js:164
 #: src/blocks/advanced-search/inspector.js:178
 #: src/blocks/advanced-search/inspector.js:192
-#: src/blocks/brand-child/inspector.js:179
-#: src/blocks/brand-child/inspector.js:205
+#: src/blocks/brand-child/inspector.js:183
+#: src/blocks/brand-child/inspector.js:209
 #: src/blocks/breadcrumbs/constants/index.js:63
 #: src/blocks/breadcrumbs/inspector.js:164
 #: src/blocks/charts/inspector.js:487
@@ -1320,7 +1320,7 @@ msgid "Click here to "
 msgstr ""
 
 #. translators: %s: number of posts
-#: views/author.php:79
+#: views/author.php:81
 #, php-format
 msgid "Post: %s"
 msgid_plural "Posts: %s"
@@ -1425,8 +1425,8 @@ msgstr ""
 #: src/blocks/advanced-button/inspector.js:142
 #: src/blocks/advanced-search/inspector.js:176
 #: src/blocks/advanced-search/inspector.js:205
-#: src/blocks/brand-child/inspector.js:203
-#: src/blocks/brand-child/inspector.js:435
+#: src/blocks/brand-child/inspector.js:207
+#: src/blocks/brand-child/inspector.js:459
 #: src/blocks/brand-grid/constants/index.js:24
 #: src/blocks/checkbox-field/edit.js:87
 #: src/blocks/checkbox-field/inspector.js:87
@@ -2004,8 +2004,8 @@ msgstr ""
 #: src/blocks/accordion/inspector.js:230
 #: src/blocks/advanced-icon-box/inspector.js:456
 #: src/blocks/advanced-icon-box/inspector.js:906
-#: src/blocks/brand-child/inspector.js:176
-#: src/blocks/brand-child/inspector.js:374
+#: src/blocks/brand-child/inspector.js:180
+#: src/blocks/brand-child/inspector.js:398
 #: src/blocks/brand-grid/constants/index.js:28
 #: src/blocks/brand-grid/inspector.js:121
 #: src/blocks/brand-grid/inspector.js:350
@@ -2125,9 +2125,9 @@ msgstr ""
 #: src/blocks/author/inspector.js:287
 #: src/blocks/author/inspector.js:434
 #: src/blocks/author/inspector.js:484
-#: src/blocks/brand-child/inspector.js:242
-#: src/blocks/brand-child/inspector.js:295
-#: src/blocks/brand-child/inspector.js:316
+#: src/blocks/brand-child/inspector.js:246
+#: src/blocks/brand-child/inspector.js:319
+#: src/blocks/brand-child/inspector.js:340
 #: src/blocks/brand-grid/inspector.js:225
 #: src/blocks/brand-grid/inspector.js:271
 #: src/blocks/brand-grid/inspector.js:292
@@ -2356,10 +2356,10 @@ msgstr ""
 #: src/blocks/advanced-paragraph/inspector.js:254
 #: src/blocks/author/inspector.js:292
 #: src/blocks/author/inspector.js:439
-#: src/blocks/brand-child/inspector.js:250
-#: src/blocks/brand-child/inspector.js:324
-#: src/blocks/brand-child/inspector.js:398
-#: src/blocks/brand-child/inspector.js:461
+#: src/blocks/brand-child/inspector.js:254
+#: src/blocks/brand-child/inspector.js:348
+#: src/blocks/brand-child/inspector.js:422
+#: src/blocks/brand-child/inspector.js:485
 #: src/blocks/brand-grid/inspector.js:300
 #: src/blocks/brand-grid/inspector.js:374
 #: src/blocks/brand-grid/inspector.js:436
@@ -2570,8 +2570,8 @@ msgstr ""
 #: src/blocks/author/inspector.js:298
 #: src/blocks/author/inspector.js:445
 #: src/blocks/author/inspector.js:490
-#: src/blocks/brand-child/inspector.js:257
-#: src/blocks/brand-child/inspector.js:331
+#: src/blocks/brand-child/inspector.js:261
+#: src/blocks/brand-child/inspector.js:355
 #: src/blocks/brand-grid/inspector.js:234
 #: src/blocks/brand-grid/inspector.js:307
 #: src/blocks/breadcrumbs/inspector.js:251
@@ -2811,8 +2811,8 @@ msgstr ""
 #: src/blocks/author/inspector.js:451
 #: src/blocks/author/inspector.js:500
 #: src/blocks/author/inspector.js:536
-#: src/blocks/brand-child/inspector.js:267
-#: src/blocks/brand-child/inspector.js:337
+#: src/blocks/brand-child/inspector.js:271
+#: src/blocks/brand-child/inspector.js:361
 #: src/blocks/brand-grid/inspector.js:244
 #: src/blocks/brand-grid/inspector.js:313
 #: src/blocks/breadcrumbs/inspector.js:261
@@ -3080,12 +3080,12 @@ msgstr ""
 #: src/blocks/author/inspector.js:418
 #: src/blocks/author/inspector.js:465
 #: src/blocks/author/inspector.js:526
-#: src/blocks/brand-child/inspector.js:377
-#: src/blocks/brand-child/inspector.js:407
-#: src/blocks/brand-child/inspector.js:420
-#: src/blocks/brand-child/inspector.js:438
-#: src/blocks/brand-child/inspector.js:470
-#: src/blocks/brand-child/inspector.js:483
+#: src/blocks/brand-child/inspector.js:401
+#: src/blocks/brand-child/inspector.js:431
+#: src/blocks/brand-child/inspector.js:444
+#: src/blocks/brand-child/inspector.js:462
+#: src/blocks/brand-child/inspector.js:494
+#: src/blocks/brand-child/inspector.js:507
 #: src/blocks/brand-grid/inspector.js:353
 #: src/blocks/brand-grid/inspector.js:383
 #: src/blocks/brand-grid/inspector.js:396
@@ -3518,8 +3518,8 @@ msgstr ""
 #: src/blocks/author/inspector.js:371
 #: src/blocks/author/inspector.js:399
 #: src/blocks/author/inspector.js:427
-#: src/blocks/brand-child/inspector.js:387
-#: src/blocks/brand-child/inspector.js:448
+#: src/blocks/brand-child/inspector.js:411
+#: src/blocks/brand-child/inspector.js:472
 #: src/blocks/brand-grid/inspector.js:363
 #: src/blocks/brand-grid/inspector.js:424
 #: src/blocks/breadcrumbs/inspector.js:237
@@ -3741,7 +3741,7 @@ msgstr ""
 #: src/blocks/advanced-search/inspector.js:406
 #: src/blocks/advanced-search/inspector.js:469
 #: src/blocks/author/inspector.js:474
-#: src/blocks/brand-child/inspector.js:307
+#: src/blocks/brand-child/inspector.js:331
 #: src/blocks/brand-grid/inspector.js:283
 #: src/blocks/breadcrumbs/inspector.js:367
 #: src/blocks/breadcrumbs/inspector.js:483
@@ -3848,8 +3848,8 @@ msgstr ""
 #: src/blocks/advanced-image/inspector.js:517
 #: src/blocks/advanced-search/inspector.js:146
 #: src/blocks/author/inspector.js:226
-#: src/blocks/brand-child/inspector.js:172
-#: src/blocks/brand-child/inspector.js:292
+#: src/blocks/brand-child/inspector.js:176
+#: src/blocks/brand-child/inspector.js:316
 #: src/blocks/brand-grid/inspector.js:268
 #: src/blocks/checkbox-field/inspector.js:122
 #: src/blocks/counter/inspector.js:258
@@ -3960,6 +3960,7 @@ msgid "Initial open item"
 msgstr ""
 
 #: src/blocks/accordion/inspector.js:137
+#: src/blocks/brand-child/constants/index.js:48
 #: src/blocks/fancy-list-child/inspector.js:232
 #: src/blocks/tabs/inspector.js:152
 msgid "1"
@@ -3975,7 +3976,7 @@ msgstr ""
 #: src/blocks/advanced-heading/inspector.js:375
 #: src/blocks/advanced-icon-box/inspector.js:459
 #: src/blocks/advanced-image/inspector.js:277
-#: src/blocks/brand-child/inspector.js:190
+#: src/blocks/brand-child/inspector.js:194
 #: src/blocks/counter/inspector.js:295
 #: src/blocks/cta/inspector.js:192
 #: src/blocks/fancy-list-child/inspector.js:323
@@ -4010,7 +4011,7 @@ msgstr ""
 #: src/blocks/advanced-image/constants/index.js:10
 #: src/blocks/advanced-search/inspector.js:209
 #: src/blocks/advanced-search/inspector.js:308
-#: src/blocks/brand-child/inspector.js:356
+#: src/blocks/brand-child/inspector.js:380
 #: src/blocks/brand-grid/inspector.js:332
 #: src/blocks/counter/inspector.js:648
 #: src/blocks/google-map/inspector.js:314
@@ -4086,7 +4087,7 @@ msgstr ""
 #: src/blocks/accordion/inspector.js:234
 #: src/blocks/accordion/inspector.js:343
 #: src/blocks/advanced-image/constants/index.js:69
-#: src/blocks/brand-child/inspector.js:360
+#: src/blocks/brand-child/inspector.js:384
 #: src/blocks/brand-grid/inspector.js:336
 #: src/blocks/flipbox/constants/index.js:57
 #: src/blocks/google-map/inspector.js:318
@@ -4401,8 +4402,8 @@ msgstr ""
 
 #: src/blocks/advanced-button/inspector.js:158
 #: src/blocks/advanced-icon-box/inspector.js:521
-#: src/blocks/brand-child/inspector.js:159
-#: src/blocks/brand-child/inspector.js:220
+#: src/blocks/brand-child/inspector.js:163
+#: src/blocks/brand-child/inspector.js:224
 #: src/blocks/container/inspector.js:190
 #: src/blocks/cta/inspector.js:226
 #: src/blocks/cta/inspector.js:284
@@ -4883,8 +4884,8 @@ msgstr ""
 #: src/blocks/advanced-heading/inspector.js:254
 #: src/blocks/advanced-image/inspector.js:234
 #: src/blocks/advanced-paragraph/inspector.js:164
-#: src/blocks/brand-child/inspector.js:157
-#: src/blocks/brand-child/inspector.js:218
+#: src/blocks/brand-child/inspector.js:161
+#: src/blocks/brand-child/inspector.js:222
 #: src/blocks/dual-button/inspector.js:161
 #: src/blocks/dual-button/inspector.js:196
 #: src/blocks/icon/inspector.js:99
@@ -5056,7 +5057,7 @@ msgstr ""
 #: src/blocks/advanced-image/inspector.js:404
 #: src/blocks/advanced-image/inspector.js:603
 #: src/blocks/author/inspector.js:278
-#: src/blocks/brand-child/inspector.js:275
+#: src/blocks/brand-child/inspector.js:279
 #: src/blocks/brand-grid/inspector.js:251
 #: src/blocks/charts/inspector.js:350
 #: src/blocks/fancy-list-child/inspector.js:495
@@ -5459,7 +5460,7 @@ msgstr ""
 
 #: src/blocks/advanced-icon-box/inspector.js:432
 #: src/blocks/advanced-image/inspector.js:212
-#: src/blocks/brand-child/inspector.js:140
+#: src/blocks/brand-child/inspector.js:144
 #: src/blocks/counter/inspector.js:378
 #: src/blocks/fancy-list-child/inspector.js:215
 #: src/blocks/flipbox/inspector.js:359
@@ -5479,7 +5480,7 @@ msgstr ""
 #: src/blocks/advanced-icon-box/inspector.js:439
 #: src/blocks/advanced-image/inspector.js:219
 #: src/blocks/author/inspector.js:140
-#: src/blocks/brand-child/inspector.js:147
+#: src/blocks/brand-child/inspector.js:151
 #: src/blocks/counter/inspector.js:385
 #: src/blocks/fancy-list-child/inspector.js:222
 #: src/blocks/flipbox/inspector.js:366
@@ -5681,7 +5682,7 @@ msgstr ""
 
 #: src/blocks/advanced-image/inspector.js:142
 #: src/blocks/author/inspector.js:194
-#: src/blocks/brand-child/inspector.js:103
+#: src/blocks/brand-child/inspector.js:107
 #: src/blocks/countdown/inspector.js:225
 #: src/blocks/list/inspector.js:217
 #: src/blocks/review-grid/inspector.js:280
@@ -5698,7 +5699,7 @@ msgid "Content Position"
 msgstr ""
 
 #: src/blocks/advanced-image/inspector.js:169
-#: src/blocks/brand-child/inspector.js:305
+#: src/blocks/brand-child/inspector.js:329
 #: src/blocks/brand-grid/inspector.js:281
 #: src/blocks/counter/inspector.js:336
 #: src/blocks/profile-card/inspector.js:182
@@ -6005,6 +6006,142 @@ msgstr ""
 msgid "Sort Order"
 msgstr ""
 
+#: src/blocks/brand-child/constants/index.js:49
+msgid "2"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:50
+msgid "3"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:51
+msgid "4"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:52
+msgid "5"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:53
+msgid "6"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:54
+msgid "7"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:55
+msgid "8"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:56
+msgid "9"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:57
+msgid "10"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:58
+msgid "11"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:59
+msgid "12"
+msgstr ""
+
+#: src/blocks/brand-child/constants/index.js:60
+#: src/blocks/flexbox/utils.js:102
+#: src/blocks/google-map/inspector.js:210
+#: src/blocks/post-carousel/constants/index.js:19
+#: src/blocks/post-grid/constants/index.js:17
+#: src/blocks/post-navigation/constants/index.js:24
+#: src/blocks/post-timeline/constants/index.js:20
+#: src/blocks/tag-cloud/inspector.js:80
+#: src/blocks/team-child/constants/index.js:11
+#: src/controls/background-control/bg-control.js:230
+#: src/controls/background-control/bg-control.js:408
+#: src/controls/background-control/bg-control.js:450
+#: src/controls/background-control/bg-control.js:492
+#: src/controls/background-control/bg-control.js:595
+#: src/controls/background-control/bg-control.js:782
+#: src/controls/background-control/bg-control.js:825
+#: src/controls/background-control/bg-control.js:868
+#: src/controls/background-control/bg-control.js:972
+#: src/controls/background-control/bg-control.js:1159
+#: src/controls/background-control/bg-control.js:1202
+#: src/controls/background-control/bg-control.js:1244
+#: src/controls/background-control/bg-control.js:1493
+#: src/controls/background-control/bg-control.js:1654
+#: src/controls/background-control/bg-control.js:1694
+#: src/controls/background-control/bg-control.js:1733
+#: src/controls/background-control/bg-control.js:1839
+#: src/controls/background-control/bg-control.js:2008
+#: src/controls/background-control/bg-control.js:2048
+#: src/controls/background-control/bg-control.js:2087
+#: src/controls/background-control/bg-control.js:2193
+#: src/controls/background-control/bg-control.js:2362
+#: src/controls/background-control/bg-control.js:2402
+#: src/controls/background-control/bg-control.js:2441
+#: src/controls/background-control/overlay-control.js:247
+#: src/controls/background-control/overlay-control.js:417
+#: src/controls/background-control/overlay-control.js:457
+#: src/controls/background-control/overlay-control.js:496
+#: src/controls/background-control/overlay-control.js:602
+#: src/controls/background-control/overlay-control.js:773
+#: src/controls/background-control/overlay-control.js:814
+#: src/controls/background-control/overlay-control.js:853
+#: src/controls/background-control/overlay-control.js:960
+#: src/controls/background-control/overlay-control.js:1129
+#: src/controls/background-control/overlay-control.js:1169
+#: src/controls/background-control/overlay-control.js:1208
+#: src/controls/background-control/overlay-control.js:1425
+#: src/controls/background-control/overlay-control.js:1594
+#: src/controls/background-control/overlay-control.js:1634
+#: src/controls/background-control/overlay-control.js:1673
+#: src/controls/background-control/overlay-control.js:1779
+#: src/controls/background-control/overlay-control.js:1955
+#: src/controls/background-control/overlay-control.js:1995
+#: src/controls/background-control/overlay-control.js:2034
+#: src/controls/background-control/overlay-control.js:2144
+#: src/controls/background-control/overlay-control.js:2318
+#: src/controls/background-control/overlay-control.js:2357
+#: src/controls/background-control/overlay-control.js:2395
+#: src/controls/normal-bg-control/index.js:197
+#: src/controls/normal-bg-control/index.js:345
+#: src/controls/normal-bg-control/index.js:384
+#: src/controls/normal-bg-control/index.js:422
+#: src/controls/normal-bg-control/index.js:517
+#: src/controls/normal-bg-control/index.js:669
+#: src/controls/normal-bg-control/index.js:708
+#: src/controls/normal-bg-control/index.js:747
+#: src/controls/normal-bg-control/index.js:845
+#: src/controls/normal-bg-control/index.js:997
+#: src/controls/normal-bg-control/index.js:1036
+#: src/controls/normal-bg-control/index.js:1075
+#: src/controls/text-gradient-control/index.js:154
+#: src/controls/text-gradient-control/index.js:292
+#: src/controls/text-gradient-control/index.js:327
+#: src/controls/text-gradient-control/index.js:362
+#: src/controls/text-gradient-control/index.js:443
+#: src/controls/text-gradient-control/index.js:581
+#: src/controls/text-gradient-control/index.js:616
+#: src/controls/text-gradient-control/index.js:650
+#: src/controls/text-gradient-control/index.js:731
+#: src/controls/text-gradient-control/index.js:871
+#: src/controls/text-gradient-control/index.js:906
+#: src/controls/text-gradient-control/index.js:941
+#: src/controls/typography-control/constant.js:10
+#: src/extensions/class-manager/style-controls.js:349
+#: src/extensions/class-manager/style-controls.js:374
+#: src/extensions/class-manager/utils.js:4
+#: src/global/constants.js:1004
+#: src/global/constants.js:1051
+#: src/global/constants.js:1058
+#: src/global/constants.js:1065
+msgid "Default"
+msgstr ""
+
 #: src/blocks/brand-child/edit.js:158
 #: src/blocks/brand-child/edit.js:213
 #: src/blocks/navigation/edit.js:319
@@ -6012,20 +6149,28 @@ msgstr ""
 msgid "Brand Photo"
 msgstr ""
 
-#: src/blocks/brand-child/inspector.js:104
+#: src/blocks/brand-child/inspector.js:108
 msgid "Brand Logo"
 msgstr ""
 
-#: src/blocks/brand-child/inspector.js:186
+#: src/blocks/brand-child/inspector.js:190
 #: src/blocks/cta/inspector.js:189
 #: src/blocks/fancy-list-child/inspector.js:128
 msgid "Title.."
 msgstr ""
 
-#: src/blocks/brand-child/inspector.js:212
+#: src/blocks/brand-child/inspector.js:216
 #: src/blocks/cta/inspector.js:222
 #: src/blocks/cta/inspector.js:280
 msgid "Label.."
+msgstr ""
+
+#: src/blocks/brand-child/inspector.js:287
+msgid "Column Start"
+msgstr ""
+
+#: src/blocks/brand-child/inspector.js:297
+msgid "Column End"
 msgstr ""
 
 #: src/blocks/brand-grid/constants/index.js:13
@@ -7162,97 +7307,6 @@ msgstr ""
 msgid "Stretch"
 msgstr ""
 
-#: src/blocks/flexbox/utils.js:102
-#: src/blocks/google-map/inspector.js:210
-#: src/blocks/post-carousel/constants/index.js:19
-#: src/blocks/post-grid/constants/index.js:17
-#: src/blocks/post-navigation/constants/index.js:24
-#: src/blocks/post-timeline/constants/index.js:20
-#: src/blocks/tag-cloud/inspector.js:80
-#: src/blocks/team-child/constants/index.js:11
-#: src/controls/background-control/bg-control.js:230
-#: src/controls/background-control/bg-control.js:408
-#: src/controls/background-control/bg-control.js:450
-#: src/controls/background-control/bg-control.js:492
-#: src/controls/background-control/bg-control.js:595
-#: src/controls/background-control/bg-control.js:782
-#: src/controls/background-control/bg-control.js:825
-#: src/controls/background-control/bg-control.js:868
-#: src/controls/background-control/bg-control.js:972
-#: src/controls/background-control/bg-control.js:1159
-#: src/controls/background-control/bg-control.js:1202
-#: src/controls/background-control/bg-control.js:1244
-#: src/controls/background-control/bg-control.js:1493
-#: src/controls/background-control/bg-control.js:1654
-#: src/controls/background-control/bg-control.js:1694
-#: src/controls/background-control/bg-control.js:1733
-#: src/controls/background-control/bg-control.js:1839
-#: src/controls/background-control/bg-control.js:2008
-#: src/controls/background-control/bg-control.js:2048
-#: src/controls/background-control/bg-control.js:2087
-#: src/controls/background-control/bg-control.js:2193
-#: src/controls/background-control/bg-control.js:2362
-#: src/controls/background-control/bg-control.js:2402
-#: src/controls/background-control/bg-control.js:2441
-#: src/controls/background-control/overlay-control.js:247
-#: src/controls/background-control/overlay-control.js:417
-#: src/controls/background-control/overlay-control.js:457
-#: src/controls/background-control/overlay-control.js:496
-#: src/controls/background-control/overlay-control.js:602
-#: src/controls/background-control/overlay-control.js:773
-#: src/controls/background-control/overlay-control.js:814
-#: src/controls/background-control/overlay-control.js:853
-#: src/controls/background-control/overlay-control.js:960
-#: src/controls/background-control/overlay-control.js:1129
-#: src/controls/background-control/overlay-control.js:1169
-#: src/controls/background-control/overlay-control.js:1208
-#: src/controls/background-control/overlay-control.js:1425
-#: src/controls/background-control/overlay-control.js:1594
-#: src/controls/background-control/overlay-control.js:1634
-#: src/controls/background-control/overlay-control.js:1673
-#: src/controls/background-control/overlay-control.js:1779
-#: src/controls/background-control/overlay-control.js:1955
-#: src/controls/background-control/overlay-control.js:1995
-#: src/controls/background-control/overlay-control.js:2034
-#: src/controls/background-control/overlay-control.js:2144
-#: src/controls/background-control/overlay-control.js:2318
-#: src/controls/background-control/overlay-control.js:2357
-#: src/controls/background-control/overlay-control.js:2395
-#: src/controls/normal-bg-control/index.js:197
-#: src/controls/normal-bg-control/index.js:345
-#: src/controls/normal-bg-control/index.js:384
-#: src/controls/normal-bg-control/index.js:422
-#: src/controls/normal-bg-control/index.js:517
-#: src/controls/normal-bg-control/index.js:669
-#: src/controls/normal-bg-control/index.js:708
-#: src/controls/normal-bg-control/index.js:747
-#: src/controls/normal-bg-control/index.js:845
-#: src/controls/normal-bg-control/index.js:997
-#: src/controls/normal-bg-control/index.js:1036
-#: src/controls/normal-bg-control/index.js:1075
-#: src/controls/text-gradient-control/index.js:154
-#: src/controls/text-gradient-control/index.js:292
-#: src/controls/text-gradient-control/index.js:327
-#: src/controls/text-gradient-control/index.js:362
-#: src/controls/text-gradient-control/index.js:443
-#: src/controls/text-gradient-control/index.js:581
-#: src/controls/text-gradient-control/index.js:616
-#: src/controls/text-gradient-control/index.js:650
-#: src/controls/text-gradient-control/index.js:731
-#: src/controls/text-gradient-control/index.js:871
-#: src/controls/text-gradient-control/index.js:906
-#: src/controls/text-gradient-control/index.js:941
-#: src/controls/typography-control/constant.js:10
-#: src/extensions/class-manager/style-controls.js:349
-#: src/extensions/class-manager/style-controls.js:374
-#: src/extensions/class-manager/utils.js:4
-#: src/global/constants.js:1004
-#: src/global/constants.js:1051
-#: src/global/constants.js:1058
-#: src/global/constants.js:1065
-msgid "Default"
-msgstr ""
-
 #: src/blocks/flexbox/utils.js:106
 #: src/extensions/class-manager/utils.js:30
 #: src/global/constants.js:1053
@@ -8076,11 +8130,11 @@ msgstr ""
 msgid "Marker Info"
 msgstr ""
 
-#: src/blocks/google-map/render-maps.js:81
+#: src/blocks/google-map/render-maps.js:89
 msgid "No Google API Key Found. Please add google api key in the"
 msgstr ""
 
-#: src/blocks/google-map/render-maps.js:83
+#: src/blocks/google-map/render-maps.js:91
 #: src/blocks/newsletter/inspector.js:210
 msgid "ZoloBlocks settings"
 msgstr ""

@@ -14,15 +14,9 @@ import { generateResSelectStyle } from '../../helpers/res-select-helper';
 import { applyFilters } from '@wordpress/hooks';
 
 export const GlobalStyleHanlder = (props) => {
-    // Type checking and default props
-    if (!props || typeof props !== 'object') {
-        console.error('GlobalStyleHanlder: Invalid props.');
-        return null;
-    }
-
     const { useDeviceType } = window.zoloModule;
 
-    const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {}, blockName = '' } = props;
+    const { attributes = {}, setAttributes, desktopAllStyle = {}, tabAllStyle = {}, mobileAllStyle = {}, blockName = '' } = props || {};
 
     const {
         uniqueId,
@@ -40,7 +34,7 @@ export const GlobalStyleHanlder = (props) => {
         transformFlipHorizontalHover,
         transformFlipVerticalHover,
         transformFlipVertical,
-    } = attributes;
+    } = attributes || {};
 
     const resMode = useDeviceType();
 
@@ -474,25 +468,25 @@ export const GlobalStyleHanlder = (props) => {
 
         const positionDesktop = `
             ${position && position?.value !== '' ? `position: ${position.value};` : ''}
-            ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}
-            ${position?.horizontalOrientation.direction === 'right' ? `${positionRightDesktop}` : ''}
-            ${position?.verticalOrientation.direction === 'top' ? `${positionTopDesktop}` : ''}
-            ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
-            ${position.value == 'fixed' || position.value === 'absolute' ? `width: ${blockName == 'zolo/container' ? '100% !important;' : 'auto;'}` : ''}
+            ${position?.horizontalOrientation?.direction === 'left' ? `${positionLeftDesktop}` : ''}
+            ${position?.horizontalOrientation?.direction === 'right' ? `${positionRightDesktop}` : ''}
+            ${position?.verticalOrientation?.direction === 'top' ? `${positionTopDesktop}` : ''}
+            ${position?.verticalOrientation?.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
+            ${position?.value == 'fixed' || position?.value === 'absolute' ? `width: ${blockName == 'zolo/container' ? '100% !important;' : 'auto;'}` : ''}
          `;
         const positionTab = `
             ${position && position?.value !== '' ? `position: ${position.value};` : ''}
-            ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftTab}` : ''}
-            ${position?.horizontalOrientation.direction === 'right' ? `${positionRightTab}` : ''}
-            ${position?.verticalOrientation.direction === 'top' ? `${positionTopTab}` : ''}
-            ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomTab}` : ''}
+            ${position?.horizontalOrientation?.direction === 'left' ? `${positionLeftTab}` : ''}
+            ${position?.horizontalOrientation?.direction === 'right' ? `${positionRightTab}` : ''}
+            ${position?.verticalOrientation?.direction === 'top' ? `${positionTopTab}` : ''}
+            ${position?.verticalOrientation?.direction === 'bottom' ? `${positionBottomTab}` : ''}
         `;
         const positionMob = `
             ${position && position?.value !== '' ? `position: ${position.value};` : ''}
-            ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftMob}` : ''}
-            ${position?.horizontalOrientation.direction === 'right' ? `${positionRightMob}` : ''}
-            ${position?.verticalOrientation.direction === 'top' ? `${positionTopMob}` : ''}
-            ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomMob}` : ''}
+            ${position?.horizontalOrientation?.direction === 'left' ? `${positionLeftMob}` : ''}
+            ${position?.horizontalOrientation?.direction === 'right' ? `${positionRightMob}` : ''}
+            ${position?.verticalOrientation?.direction === 'top' ? `${positionTopMob}` : ''}
+            ${position?.verticalOrientation?.direction === 'bottom' ? `${positionBottomMob}` : ''}
         `;
         // transform styles
         const transformStylesDesktop = `
@@ -1217,25 +1211,25 @@ export const GlobalStyleHanlder = (props) => {
 
     const positionDesktop = `
         ${position && position?.value !== '' ? `position: ${position.value};` : ''}
-        ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftDesktop}` : ''}
-        ${position?.horizontalOrientation.direction === 'right' ? `${positionRightDesktop}` : ''}
-        ${position?.verticalOrientation.direction === 'top' ? `${positionTopDesktop}` : ''}
-        ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
-        ${position.value == 'fixed' || position.value === 'absolute' ? `width: ${blockName == 'zolo/container' ? '100% !important;' : 'auto;'}` : ''}
+        ${position?.horizontalOrientation?.direction === 'left' ? `${positionLeftDesktop}` : ''}
+        ${position?.horizontalOrientation?.direction === 'right' ? `${positionRightDesktop}` : ''}
+        ${position?.verticalOrientation?.direction === 'top' ? `${positionTopDesktop}` : ''}
+        ${position?.verticalOrientation?.direction === 'bottom' ? `${positionBottomDesktop}` : ''}
+        ${position?.value == 'fixed' || position?.value === 'absolute' ? `width: ${blockName == 'zolo/container' ? '100% !important;' : 'auto;'}` : ''}
      `;
     const positionTab = `
         ${position && position?.value !== '' ? `position: ${position.value};` : ''}
-        ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftTab}` : ''}
-        ${position?.horizontalOrientation.direction === 'right' ? `${positionRightTab}` : ''}
-        ${position?.verticalOrientation.direction === 'top' ? `${positionTopTab}` : ''}
-        ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomTab}` : ''}
+        ${position?.horizontalOrientation?.direction === 'left' ? `${positionLeftTab}` : ''}
+        ${position?.horizontalOrientation?.direction === 'right' ? `${positionRightTab}` : ''}
+        ${position?.verticalOrientation?.direction === 'top' ? `${positionTopTab}` : ''}
+        ${position?.verticalOrientation?.direction === 'bottom' ? `${positionBottomTab}` : ''}
     `;
     const positionMob = `
         ${position && position?.value !== '' ? `position: ${position.value};` : ''}
-        ${position?.horizontalOrientation.direction === 'left' ? `${positionLeftMob}` : ''}
-        ${position?.horizontalOrientation.direction === 'right' ? `${positionRightMob}` : ''}
-        ${position?.verticalOrientation.direction === 'top' ? `${positionTopMob}` : ''}
-        ${position?.verticalOrientation.direction === 'bottom' ? `${positionBottomMob}` : ''}
+        ${position?.horizontalOrientation?.direction === 'left' ? `${positionLeftMob}` : ''}
+        ${position?.horizontalOrientation?.direction === 'right' ? `${positionRightMob}` : ''}
+        ${position?.verticalOrientation?.direction === 'top' ? `${positionTopMob}` : ''}
+        ${position?.verticalOrientation?.direction === 'bottom' ? `${positionBottomMob}` : ''}
     `;
     // transform styles
     const transformStylesDesktop = `
