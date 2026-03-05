@@ -69,9 +69,6 @@ const Edit = (props) => {
         onChange: (newSubTitleText) => setAttributes({ subTitleText: newSubTitleText }),
     };
 
-    console.log(separatorPosition);
-    
-
     return (
         <>
             {isSelected && <Inspector attributes={attributes} setAttributes={setAttributes} />}

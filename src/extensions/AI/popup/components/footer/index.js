@@ -46,13 +46,7 @@ export const Footer = (props) => {
 
                                     if (navigator.clipboard && navigator.clipboard.writeText) {
                                         navigator.clipboard
-                                            .writeText(textToCopy)
-                                            .then(() => {
-                                                console.log('Text copied to clipboard successfully!');
-                                            })
-                                            .catch((err) => {
-                                                console.error('Failed to copy text: ', err);
-                                            });
+                                            .writeText(textToCopy);
                                     } else {
                                         // Fallback for older browsers or if clipboard API is restricted
                                         const textArea = document.createElement('textarea');
@@ -63,17 +57,6 @@ export const Footer = (props) => {
                                         document.body.appendChild(textArea);
                                         textArea.focus();
                                         textArea.select();
-
-                                        try {
-                                            const successful = document.execCommand('copy');
-                                            if (successful) {
-                                                console.log('Fallback: Text copied to clipboard!');
-                                            } else {
-                                                console.error('Fallback: Unable to copy text.');
-                                            }
-                                        } catch (err) {
-                                            console.error('Fallback: Error copying text: ', err);
-                                        }
 
                                         document.body.removeChild(textArea);
                                     }

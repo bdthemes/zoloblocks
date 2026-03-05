@@ -104,8 +104,6 @@ function ZoloBlocksTemplateLibraryButton() {
         const MAX_RETRIES = 3;
         const RETRY_DELAY = 1000; // 1 second
 
-        console.log(`Importing template from: ${jsonFileUrl}`);
-
         try {
             setLoading(true);
 
@@ -190,7 +188,6 @@ function ZoloBlocksTemplateLibraryButton() {
                 await insertBlocks(blocks, 0);
             }
 
-            console.log('Template imported successfully');
 
         } catch (error) {
             console.error(`Template import error (attempt ${retryCount + 1}):`, error.message);
@@ -201,8 +198,6 @@ function ZoloBlocksTemplateLibraryButton() {
                  error.message.includes('fetch') ||
                  error.message.includes('network') ||
                  error.message.includes('Failed to fetch'))) {
-
-                console.log(`Retrying template import in ${RETRY_DELAY}ms... (${retryCount + 1}/${MAX_RETRIES})`);
 
                 setTimeout(() => {
                     handleImportTemplate(jsonFileUrl, retryCount + 1);
