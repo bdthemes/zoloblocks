@@ -24,8 +24,7 @@ export default function RenderView({ attributes }) {
                     {showTitle && <h2 className="zolo-pos-nav-title">Demo Post One</h2>}
                 </div>
             </a>
-
-            <a href="#" className="zolo-item zolo-post-next">
+            <a href="javascript:void(0)" className="zolo-item zolo-post-next">
                 {showImage && (
                     <div className="zolo-image-wrap">
                         <img src={zoloPlaceholders.placeholder} alt={__('Image Placeholder', 'zoloblocks')} />
