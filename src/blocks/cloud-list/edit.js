@@ -144,6 +144,7 @@ export default function Edit(props) {
                 : [0.2, 0.1],
             depth: (depth / 100) || 0.8,
             maxSpeed: (speed / 1000) || 0.05,
+            minSpeed: triggerOn === 'always' ? (speed / 1000) || 0.05 : 0,
             activeCursor: activeCursor || 'pointer',
             bgColour: hasPerTagBg ? 'tag' : (bgColor || null),
             bgRadius: bgRadius || 0,
