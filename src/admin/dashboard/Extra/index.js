@@ -1,6 +1,5 @@
 import CurrentVersion from './current-verison';
 import ChangeLogs from './components/changelog';
-// console.log(zoloBlocks)
 const ExtraInfo = () => {
     return (
         <div className="zolo-extra-info">

@@ -4,6 +4,7 @@ import attributes from './attributes';
 import Edit from './edit';
 import Save from './save';
 import Context from './context';
+import deprecated from './deprecated';
 
 import './style.scss';
 
@@ -24,4 +25,5 @@ registerBlockType(metadata, {
     attributes,
     edit: Edit,
     save: Save,
+    deprecated
 });
