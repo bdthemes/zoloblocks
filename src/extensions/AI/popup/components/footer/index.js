@@ -63,18 +63,6 @@ export const Footer = (props) => {
                                         document.body.appendChild(textArea);
                                         textArea.focus();
                                         textArea.select();
-
-                                        try {
-                                            const successful = document.execCommand('copy');
-                                            if (successful) {
-                                                console.log('Fallback: Text copied to clipboard!');
-                                            } else {
-                                                console.error('Fallback: Unable to copy text.');
-                                            }
-                                        } catch (err) {
-                                            console.error('Fallback: Error copying text: ', err);
-                                        }
-
                                         document.body.removeChild(textArea);
                                     }
 

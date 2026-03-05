@@ -68,7 +68,6 @@ export const recoverBlocks = (allBlocks, invalidBlock) => {
 
             if (isRecovered) {
                 invalidBlock();
-                // consoleMessage(currentBlock);
                 return {
                     blocks: recoveredBlocks,
                     isReusable: true,
@@ -91,7 +90,6 @@ export const recoverBlocks = (allBlocks, invalidBlock) => {
             const newBlock = recoverBlock(currentBlock);
             newBlock.replacedClientId = currentBlock.clientId;
             newBlock.recovered = true;
-            // consoleMessage(currentBlock);
             return newBlock;
         }
 
@@ -104,19 +102,6 @@ export const recoverBlock = ({ name, attributes, innerBlocks }) => {
     return createBlock(name, attributes, innerBlocks);
 };
 
-// console message
-const consoleMessage = (block) => {
-    const message =
-        '%c' +
-        __('Notice: ', 'zoloblocks') +
-        block.name +
-        __(' was auto recovery.', 'zoloblocks') +
-        '\n' +
-        __('Please check this page in preview and update this page.', 'zoloblocks');
-
-    //eslint-disable-next-line no-console
-    console.log(message, 'width: 100%; padding: 6px 12px; background-color: #fef8ee; color: #1e1e1e;');
-};
 
 export const autoRecovery = () => {
     const checkInvalid = () => {
