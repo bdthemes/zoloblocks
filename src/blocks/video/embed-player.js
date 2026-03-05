@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { SandBox } from '@wordpress/components';
 import CustomPlayer from './custom-player';
 
-const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
+const EmbedPlayer = ({ attributes = {}, anchor, isEdit, thumbnailHidden = false, onThumbnailClick }) => {
     let iframeMarkup = null;
     let externalVideoUrl = null;
     let openInNewTab = false;
@@ -27,7 +27,21 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
         startTime,
         endTime,
         videoOverlay,
+        videoAspectRatio,
+        showInlineThumbnail,
+        inlineThumbnail,
+        inlineThumbnailSizes,
+        videoLayoutType,
     } = attributes;
+
+    // Convert stored '16/9' format to CSS '16 / 9' format
+    const aspectRatioStyle = videoAspectRatio ? videoAspectRatio.replace('/', ' / ') : '16 / 9';
+
+    // Thumbnail URL resolution
+    const thumbnailUrl =
+        inlineThumbnail?.sizes && inlineThumbnail?.sizes?.[inlineThumbnailSizes]
+            ? inlineThumbnail.sizes[inlineThumbnailSizes]?.url
+            : inlineThumbnail?.url;
 
     switch (videoSource) {
         case 'youtube': {
@@ -80,12 +94,12 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
 
             if (isEdit) {
                 // In editor: use WordPress SandBox component to avoid nested iframe referrer issues (Error 153)
-                const sandboxHtml = `<iframe style="width:100%; aspect-ratio:16/9; border:0;" src="${src}" title="YouTube video player" allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+                const sandboxHtml = `<iframe style="width:100%; aspect-ratio:${videoAspectRatio || '16/9'}; border:0;" src="${src}" title="YouTube video player" allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
                 iframeMarkup = (
                     <div
                         key={`youtube-sandbox-${youtubeVideoId}`}
                         className="youtube-iframe video-iframe"
-                        style={{ width: '100%', aspectRatio: '16 / 9' }}
+                        style={{ width: '100%', aspectRatio: aspectRatioStyle }}
                     >
                         <SandBox html={sandboxHtml} />
                     </div>
@@ -95,7 +109,7 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
                 iframeMarkup = (
                     <iframe
                         key={`youtube-${youtubeVideoId}`}
-                        style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 9, border: 0 }}
+                        style={{ width: '100%', aspectRatio: aspectRatioStyle, border: 0 }}
                         className="youtube-iframe video-iframe"
                         src={src}
                         title={__('YouTube video player', 'zoloblocks')}
@@ -133,7 +147,7 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
 
             iframeMarkup = (
                 <iframe
-                    style={{ width: '100%', aspectRatio: '16 / 9', zIndex: 9, border: 0 }}
+                    style={{ width: '100%', aspectRatio: aspectRatioStyle, border: 0 }}
                     className="vimeo-iframe video-iframe"
                     src={src}
                     title={__('Vimeo video player', 'zoloblocks')}
@@ -167,9 +181,30 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit }) => {
     }
 
     return (
-        <div className="zolo-video-container">
+        <div
+            className="zolo-video-container"
+            data-thumbnail={videoLayoutType === 'inline' && showInlineThumbnail && thumbnailUrl ? thumbnailUrl : undefined}
+        >
             {videoOverlay && <div className="zolo-video-overlay"></div>}
             <div className="default-video-message">{iframeMarkup || <p>{__('No video available.', 'zoloblocks')}</p>}</div>
+            {videoLayoutType === 'inline' && showInlineThumbnail && thumbnailUrl && !thumbnailHidden && (
+                <div className="zolo-inline-thumbnail-overlay" onClick={onThumbnailClick}>
+                    <img
+                        src={thumbnailUrl}
+                        alt={inlineThumbnail?.alt || __('Video thumbnail', 'zoloblocks')}
+                        className="zolo-inline-thumbnail-img"
+                    />
+                    <span className="zolo-inline-play-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                fillRule="evenodd"
+                                d="M8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8l8-6a1 1 0 0 0 0-1.6l-8-6Z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
+                    </span>
+                </div>
+            )}
         </div>
     );
 };

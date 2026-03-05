@@ -1,7 +1,9 @@
 import { __ } from '@wordpress/i18n';
 
 const CustomPlayer = ({ src, attributes, anchor, isEdit = false }) => {
-    const { autoPlay, loop, mute, playerControl, showDownloadButton, preload, posterImage, imageRes } = attributes;
+    const { autoPlay, loop, mute, playerControl, showDownloadButton, preload, posterImage, imageRes, videoAspectRatio } = attributes;
+
+    const aspectRatioStyle = videoAspectRatio ? videoAspectRatio.replace('/', ' / ') : '16 / 9';
 
     const videoProps = {
         autoPlay,
@@ -14,6 +16,7 @@ const CustomPlayer = ({ src, attributes, anchor, isEdit = false }) => {
         preload: preload || 'auto',
         controlsList: !showDownloadButton ? 'nodownload' : 'default',
         poster: posterImage?.sizes && posterImage?.sizes?.[imageRes] ? posterImage?.sizes?.[imageRes]?.url : posterImage?.url,
+        style: { width: '100%', aspectRatio: aspectRatioStyle },
     };
 
     if (isEdit) {
@@ -27,7 +30,7 @@ const CustomPlayer = ({ src, attributes, anchor, isEdit = false }) => {
 
     return (
         <div className="zolo-custom-player-wrapper">
-            <video {...videoProps}>{__('Sorry, your browser doesn’t support embedded videos.', 'zoloblocks')}</video>
+            <video {...videoProps}>{__("Sorry, your browser doesn't support embedded videos.", 'zoloblocks')}</video>
             {playerControls}
         </div>
     );
