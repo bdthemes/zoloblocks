@@ -10,12 +10,30 @@ import { closeSmall } from '@wordpress/icons';
 import NavigationAppenderButton from './components/appender-button';
 import { select } from '@wordpress/data';
 
-const { ZoloPlaceholder, ZoloButton, ZoloToolbarGroup, ZoloToolbarButton } = window.zoloModule;
+const { ZoloPlaceholder, ZoloButton, ZoloToolbarGroup, ZoloToolbarButton, useDeviceType } = window.zoloModule;
 
 // import style
 import Style from './style';
 
 const { classArrayToStr, DisplayZoloIcon } = window.zoloModule;
+
+const isResponsiveMenuDevice = (breakpoint, deviceType) => {
+    const normalizedDevice = (deviceType || 'Desktop').toLowerCase();
+
+    if (breakpoint === 'desktop') {
+        return true;
+    }
+
+    if (breakpoint === 'tablet') {
+        return normalizedDevice !== 'desktop';
+    }
+
+    if (breakpoint === 'mobile') {
+        return normalizedDevice === 'mobile';
+    }
+
+    return false;
+};
 
 const Edit = (props) => {
     const { attributes, setAttributes, isSelected, clientId } = props;
@@ -24,19 +42,19 @@ const Edit = (props) => {
     const [selectedVariation, setSelectedVariation] = useState();
     const [toggleHamburger, setToggleHamburger] = useState(false);
     const [activeMenu, setActiveMenu] = useState(false);
+    const device = useDeviceType();
     const {
         uniqueId,
         preview,
         parentClasses,
-        styles,
         isVariationSelected,
-        resMode,
         menuBreakpoint,
         brandPhoto,
         brandTitle,
         imageRes,
         humbergerIcon,
     } = attributes;
+    const shouldUseResponsiveMenu = isResponsiveMenuDevice(menuBreakpoint, device);
 
     const CustomAppender = () => <NavigationAppenderButton rootClientId={clientId} />;
     const { getBlockOrder, getBlockNamesByClientId, getBlockRootClientId } = select('core/block-editor');
@@ -72,6 +90,14 @@ const Edit = (props) => {
             setNavigationTemplates([]);
         };
     }, [selectedVariation, hasChildBlocks]);
+
+    useEffect(() => {
+        // Reset open states when preview device is outside of selected menu breakpoint behavior.
+        if (!shouldUseResponsiveMenu && (toggleHamburger || activeMenu)) {
+            setToggleHamburger(false);
+            setActiveMenu(false);
+        }
+    }, [shouldUseResponsiveMenu, toggleHamburger, activeMenu]);
 
     //block wrapper class
     const blockProps = useBlockProps({
