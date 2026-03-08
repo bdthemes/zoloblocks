@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, useInnerBlocksProps, BlockControls } from '@wordpress/block-editor';
 import { useEffect, useRef, useState, useLayoutEffect, useMemo } from '@wordpress/element';
+import { useMergeRefs } from '@wordpress/compose';
 import { useSelect, useDispatch } from '@wordpress/data';
 import classnames from 'classnames';
 import Inspector from './inspector';
@@ -132,6 +133,7 @@ export default function Edit(props) {
         const hasPerTagBg = tagItems.some((item) => item.bgColor);
         const hasPerTagBgOutline = tagItems.some((item) => item.bgOutlineColor);
         const maxBgOutlineThickness = tagItems.reduce((max, item) => Math.max(max, item.bgOutlineThickness || 0), 0);
+        const hasFontSizes = !weightEnabled && tagItems.some((item) => item.fontSize > 0);
 
         return {
             textColour: hasPerTagBgOutline ? (textColor || '#333333') : (textColor || null),
@@ -146,7 +148,7 @@ export default function Edit(props) {
             maxSpeed: (speed / 1000) || 0.05,
             minSpeed: triggerOn === 'always' ? (speed / 1000) || 0.05 : 0,
             activeCursor: activeCursor || 'pointer',
-            bgColour: hasPerTagBg ? 'tag' : (bgColor || null),
+            bgColour: (hasPerTagBg && !(weightEnabled && weightMode === 'bgcolour')) ? 'tag' : (bgColor || null),
             bgRadius: bgRadius || 0,
             bgOutline: hasPerTagBgOutline ? 'tag' : null,
             bgOutlineThickness: hasPerTagBgOutline
@@ -183,6 +185,11 @@ export default function Edit(props) {
                         1: weightGradientTo || '#0000ff',
                     },
                 } : {}),
+            } : hasFontSizes ? {
+                weight: true,
+                weightMode: 'size',
+                weightFrom: 'data-weight',
+                weightSize: 1,
             } : {}),
             tooltip: tagItems.some((item) => item.tooltip) ? 'native' : null,
         };
@@ -320,7 +327,7 @@ export default function Edit(props) {
                     />
                 </ZoloToolbarGroup>
             </BlockControls>
-            <div {...blockProps} ref={cloudRef}>
+            <div {...blockProps} ref={useMergeRefs([blockProps.ref, cloudRef])}>
                 <SidebarOpener clientId={clientId} />
 
                 {/* Click overlay – allows block selection when nothing is selected */}
@@ -376,14 +383,15 @@ export default function Edit(props) {
                             } else if (item.textColor) {
                                 itemStyle.color = item.textColor;
                             }
-                            if (item.bgColor) itemStyle.backgroundColor = item.bgColor;
+                            if (item.bgColor && !(weightEnabled && weightMode === 'bgcolour')) itemStyle.backgroundColor = item.bgColor;
+                            if (!weightEnabled && item.fontSize) itemStyle.fontSize = `${item.fontSize}px`;
                             return (
                                 <a
                                     key={i}
                                     href={`#cloud-tag-${i}`}
                                     title={item.tooltip || undefined}
                                     style={Object.keys(itemStyle).length ? itemStyle : undefined}
-                                    data-weight={item.weight || item.fontSize || (currentTextHeight + i * 2)}
+                                    data-weight={weightEnabled ? (item.weight || (i + 1)) : (item.fontSize || currentTextHeight)}
                                     {...(item.bgOutlineColor ? { 'data-bg-outline': item.bgOutlineColor } : {})}
                                     {...(item.bgOutlineThickness ? { 'data-bg-outline-thickness': item.bgOutlineThickness } : {})}
                                 >

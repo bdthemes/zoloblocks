@@ -13,6 +13,10 @@
         },
         "viewportWidth": 560
     },
+    "providesContext": {
+        "zolo/cloud-list/weightEnabled": "weightEnabled",
+        "zolo/cloud-list/weightMode": "weightMode"
+    },
     "supports": {
         "anchor": false,
         "customClassName": false,

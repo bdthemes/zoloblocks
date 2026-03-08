@@ -16,7 +16,7 @@ const {
 import objAttributes from './attributes';
 
 function Inspector(props) {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, weightEnabled, weightMode } = props;
     const { resMode, label, link, textColor, fontSize, bgColor, bgOutlineColor, bgOutlineThickness, tooltip, weight } = attributes;
 
     const requiredProps = {
@@ -53,15 +53,17 @@ function Inspector(props) {
                                 onChange={(tooltip) => setAttributes({ tooltip })}
                                 placeholder={__('Hover tooltip text', 'zoloblocks')}
                             />
-                            <ZoloRangeControl
-                                label={__('Weight', 'zoloblocks')}
-                                value={weight}
-                                onChange={(weight) => setAttributes({ weight })}
-                                min={0}
-                                max={100}
-                                step={1}
-                                help={__('0 = use global size. Higher = more prominent.', 'zoloblocks')}
-                            />
+                            {weightEnabled && (weightMode === 'size' || weightMode === 'both') && (
+                                <ZoloRangeControl
+                                    label={__('Weight', 'zoloblocks')}
+                                    value={weight}
+                                    onChange={(weight) => setAttributes({ weight })}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                    help={__('0 = use global size. Higher = more prominent.', 'zoloblocks')}
+                                />
+                            )}
                         </ZoloPanelBody>
                     </>
                 }
@@ -73,28 +75,39 @@ function Inspector(props) {
                                 color={textColor}
                                 onChange={(textColor) => setAttributes({ textColor })}
                             />
-                            <ZoloRangeUnit
-                                label={__('Font Size', 'zoloblocks')}
-                                value={fontSize ? `${fontSize}px` : ''}
-                                onChange={(value) => setAttributes({ fontSize: parseInt(value) || 0 })}
-                                units={{
-                                    px: { min: 0, max: 80, step: 1 },
-                                    '%': { min: 50, max: 400, step: 1 },
-                                    em: { min: 0.5, max: 5, step: 0.1 },
-                                    rem: { min: 0.5, max: 5, step: 0.1 },
-                                    vw: { min: 0, max: 10, step: 0.1 },
-                                    vh: { min: 0, max: 10, step: 0.1 },
-                                }}
-                                help={__('0 = use cloud global size', 'zoloblocks')}
-                            />
+                            {!weightEnabled && (
+                                <ZoloRangeUnit
+                                    label={__('Font Size', 'zoloblocks')}
+                                    value={fontSize ? `${fontSize}px` : ''}
+                                    onChange={(value) => setAttributes({ fontSize: parseInt(value) || 0 })}
+                                    units={{
+                                        px: { min: 0, max: 80, step: 1 },
+                                        '%': { min: 50, max: 400, step: 1 },
+                                        em: { min: 0.5, max: 5, step: 0.1 },
+                                        rem: { min: 0.5, max: 5, step: 0.1 },
+                                        vw: { min: 0, max: 10, step: 0.1 },
+                                        vh: { min: 0, max: 10, step: 0.1 },
+                                    }}
+                                    help={__('0 = use cloud global size', 'zoloblocks')}
+                                />
+                            )}
                         </ZoloPanelBody>
                         <ZoloPanelBody title={__('Background', 'zoloblocks')} stylePanel={true} panelProps={props}>
-                            <ColorControl
-                                label={__('Background Color', 'zoloblocks')}
-                                color={bgColor}
-                                onChange={(bgColor) => setAttributes({ bgColor })}
-                            />
-                            <ZoloCardDivider />
+                            {!(weightEnabled && weightMode === 'bgcolour') && (
+                                <>
+                                    <ColorControl
+                                        label={__('Background Color', 'zoloblocks')}
+                                        color={bgColor}
+                                        onChange={(bgColor) => setAttributes({ bgColor })}
+                                    />
+                                    <ZoloCardDivider />
+                                </>
+                            )}
+                            {weightEnabled && weightMode === 'bgcolour' && (
+                                <p style={{ margin: '0 0 8px', fontSize: '12px', color: '#757575' }}>
+                                    {__('Background color is controlled by the Weight Mode gradient.', 'zoloblocks')}
+                                </p>
+                            )}
                             <ColorControl
                                 label={__('Outline Color', 'zoloblocks')}
                                 color={bgOutlineColor}

@@ -1,12 +1,19 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
+import { useRef } from '@wordpress/element';
+import { useMergeRefs } from '@wordpress/compose';
 import classnames from 'classnames';
 import Inspector from './inspector';
 
 
 export default function Edit(props) {
-    const { attributes, setAttributes, isSelected } = props;
+    const { attributes, setAttributes, isSelected, context } = props;
     const { label, textColor, fontSize, bgColor, bgOutlineColor, bgOutlineThickness, tooltip, weight } = attributes;
+
+    const weightEnabled = context?.['zolo/cloud-list/weightEnabled'] ?? false;
+    const weightMode = context?.['zolo/cloud-list/weightMode'] ?? 'size';
+
+    const itemRef = useRef(null);
 
     const blockProps = useBlockProps({
         className: classnames('zolo-cloud-list-item'),
@@ -30,8 +37,8 @@ export default function Edit(props) {
 
     return (
         <>
-            {isSelected && <Inspector {...props} />}
-            <a {...blockProps} href="#" onClick={(e) => e.preventDefault()} title={tooltip || undefined}>
+            {isSelected && <Inspector {...props} weightEnabled={weightEnabled} weightMode={weightMode} />}
+            <a {...blockProps} ref={useMergeRefs([blockProps.ref, itemRef])} href="#" onClick={(e) => e.preventDefault()} title={tooltip || undefined}>
                 <svg
                     width="12"
                     height="12"

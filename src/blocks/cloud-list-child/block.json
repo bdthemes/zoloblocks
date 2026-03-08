@@ -8,6 +8,7 @@
     "apiVersion": 3,
     "textdomain": "zoloblocks",
     "parent": ["zolo/cloud-list"],
+    "usesContext": ["zolo/cloud-list/weightEnabled", "zolo/cloud-list/weightMode"],
     "supports": {
         "anchor": false,
         "customClassName": false
