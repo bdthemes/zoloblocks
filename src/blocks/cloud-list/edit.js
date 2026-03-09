@@ -118,7 +118,12 @@ export default function Edit(props) {
     });
 
     const innerBlocksProps = useInnerBlocksProps(
-        { className: 'zolo-cloud-list-editor-wrap' },
+        {
+            className: 'zolo-cloud-list-hidden-wrap',
+            id: `${uniqueId}-wrap`,
+            style: { display: 'none' },
+            'aria-hidden': 'true',
+        },
         {
             allowedBlocks: ['zolo/cloud-list-child'],
             template: DEFAULT_ITEMS,
@@ -227,8 +232,7 @@ export default function Edit(props) {
 
     // Initialize / re-initialize TagCanvas whenever settings or items change
     useLayoutEffect(() => {
-        if (!tagItems.length) return;
-        if (!cloudRef.current) return;
+        if (!tagItems.length || !cloudRef.current) return;
 
         const { ownerDocument } = cloudRef.current;
         const editorWindow = ownerDocument.defaultView || window;
@@ -236,14 +240,49 @@ export default function Edit(props) {
 
         const { TagCanvas } = editorWindow;
 
+        // Build a lightweight source div for TagCanvas (simple <a> tags with data attributes)
+        const sourceDiv = ownerDocument.createElement('div');
+        sourceDiv.id = `${uniqueId}-tc-source`;
+        sourceDiv.style.display = 'none';
+
+        const hasPerTagBgOutline = tagItems.some((t) => t.bgOutlineColor);
+
+        tagItems.forEach((item, i) => {
+            const a = ownerDocument.createElement('a');
+            a.href = `#cloud-tag-${i}`;
+            a.textContent = item.label;
+            if (item.tooltip) a.title = item.tooltip;
+
+            if (item.bgOutlineColor) {
+                a.style.color = item.bgOutlineColor;
+            } else if (hasPerTagBgOutline) {
+                a.style.color = 'transparent';
+            } else if (item.textColor) {
+                a.style.color = item.textColor;
+            }
+            if (item.bgColor && !(weightEnabled && weightMode === 'bgcolour')) {
+                a.style.backgroundColor = item.bgColor;
+            }
+            if (!weightEnabled && item.fontSize) {
+                a.style.fontSize = `${item.fontSize}px`;
+            }
+
+            a.setAttribute('data-weight', weightEnabled ? (item.weight || (i + 1)) : (item.fontSize || currentTextHeight));
+            if (item.bgOutlineColor) a.setAttribute('data-bg-outline', item.bgOutlineColor);
+            if (item.bgOutlineThickness) a.setAttribute('data-bg-outline-thickness', item.bgOutlineThickness);
+
+            sourceDiv.appendChild(a);
+        });
+
+        cloudRef.current.appendChild(sourceDiv);
+
         let frame = requestAnimationFrame(() => {
             const canvas = canvasRef.current;
-            const wrap = cloudRef.current?.querySelector('.zolo-cloud-list-hidden-wrap');
-            if (!canvas || !wrap) return;
+            if (!canvas) return;
 
             try {
                 TagCanvas.Delete(canvas.id);
-                TagCanvas.Start(canvas.id, wrap.id, settings);
+                TagCanvas.Start(canvas.id, sourceDiv.id, settings);
             } catch (error) {
                 console.error(error);
             }
@@ -259,7 +298,6 @@ export default function Edit(props) {
                 if (blocks[index]) {
                     selectBlock(blocks[index].clientId);
                 }
-                // Clear the hash so subsequent clicks on the same tag work
                 try {
                     editorWindow.history.replaceState(
                         null, '',
@@ -273,6 +311,7 @@ export default function Edit(props) {
         return () => {
             cancelAnimationFrame(frame);
             editorWindow.removeEventListener('hashchange', handleHashChange);
+            if (sourceDiv.parentNode) sourceDiv.parentNode.removeChild(sourceDiv);
             if (canvasRef.current?.id) {
                 try { editorWindow.TagCanvas?.Delete(canvasRef.current.id); } catch (e) { }
             }
@@ -365,45 +404,8 @@ export default function Edit(props) {
                     {__('Your browser does not support the canvas element.', 'zoloblocks')}
                 </canvas>
 
-                {/* Hidden tag list – TagCanvas reads <a> elements from here */}
-                <div
-                    className="zolo-cloud-list-hidden-wrap"
-                    id={`${uniqueId}-wrap`}
-                    style={{ display: 'none' }}
-                    aria-hidden="true"
-                >
-                    {(() => {
-                        const hasPerTagBgOutline = tagItems.some((t) => t.bgOutlineColor);
-                        return tagItems.map((item, i) => {
-                            const itemStyle = {};
-                            if (item.bgOutlineColor) {
-                                itemStyle.color = item.bgOutlineColor;
-                            } else if (hasPerTagBgOutline) {
-                                itemStyle.color = 'transparent';
-                            } else if (item.textColor) {
-                                itemStyle.color = item.textColor;
-                            }
-                            if (item.bgColor && !(weightEnabled && weightMode === 'bgcolour')) itemStyle.backgroundColor = item.bgColor;
-                            if (!weightEnabled && item.fontSize) itemStyle.fontSize = `${item.fontSize}px`;
-                            return (
-                                <a
-                                    key={i}
-                                    href={`#cloud-tag-${i}`}
-                                    title={item.tooltip || undefined}
-                                    style={Object.keys(itemStyle).length ? itemStyle : undefined}
-                                    data-weight={weightEnabled ? (item.weight || (i + 1)) : (item.fontSize || currentTextHeight)}
-                                    {...(item.bgOutlineColor ? { 'data-bg-outline': item.bgOutlineColor } : {})}
-                                    {...(item.bgOutlineThickness ? { 'data-bg-outline-thickness': item.bgOutlineThickness } : {})}
-                                >
-                                    {item.label}
-                                </a>
-                            );
-                        });
-                    })()}
-                </div>
-
-                {/* InnerBlocks – hidden, managed via canvas tag clicks or List View */}
-                <div {...innerBlocksProps} style={{ display: 'none' }} />
+                {/* InnerBlocks – hidden, TagCanvas source is built programmatically in useLayoutEffect */}
+                <div {...innerBlocksProps} />
 
                 {/* Add Item button */}
                 <button
