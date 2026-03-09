@@ -200,7 +200,6 @@ export default function Inspector(props) {
                                                 min={0}
                                                 max={100}
                                                 step={1}
-                                                help={__('0 = auto', 'zoloblocks')}
                                             />
                                             <ZoloRangeControl
                                                 label={__('Max Font Size', 'zoloblocks')}
@@ -209,7 +208,6 @@ export default function Inspector(props) {
                                                 min={0}
                                                 max={100}
                                                 step={1}
-                                                help={__('0 = auto', 'zoloblocks')}
                                             />
                                         </>
                                     )}
@@ -245,16 +243,18 @@ export default function Inspector(props) {
                                             color={textColor}
                                             onChange={(textColor) => setAttributes({ textColor })}
                                         />
-                                        <ZoloResponsive left="85px">
-                                            <ZoloRangeUnit
-                                                label={__('Font Size', 'zoloblocks')}
-                                                value={getResponsiveValue('textHeight')}
-                                                onChange={(value) => {
-                                                    setAttributes(createResponsiveValue('textHeight', value));
-                                                }}
-                                                units={{ px: { min: 8, max: 80, step: 1 } }}
-                                            />
-                                        </ZoloResponsive>
+                                        {!weightEnabled && (
+                                            <ZoloResponsive left="85px">
+                                                <ZoloRangeUnit
+                                                    label={__('Font Size', 'zoloblocks')}
+                                                    value={getResponsiveValue('textHeight')}
+                                                    onChange={(value) => {
+                                                        setAttributes(createResponsiveValue('textHeight', value));
+                                                    }}
+                                                    units={{ px: { min: 8, max: 80, step: 1 } }}
+                                                />
+                                            </ZoloResponsive>
+                                        )}
                                         <ZoloCardDivider />
                                         <ColorControl
                                             label={__('Background Color', 'zoloblocks')}

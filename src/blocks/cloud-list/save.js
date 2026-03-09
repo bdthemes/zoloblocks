@@ -93,6 +93,7 @@ const Save = (props) => {
             weightMode: weightMode || 'size',
             weightFrom: 'data-weight',
             weightSize: weightSize || 1,
+            textFont: 'Impact,"Arial Black",sans-serif',
             ...(weightSizeMin > 0 && weightSizeMax > weightSizeMin ? {
                 weightSizeMin,
                 weightSizeMax,

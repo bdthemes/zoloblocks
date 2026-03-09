@@ -138,7 +138,7 @@ const attributes = {
     },
     weightSize: {
         type: 'number',
-        default: 1,
+        default: 0,
     },
     weightSizeMin: {
         type: 'number',

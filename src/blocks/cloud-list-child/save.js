@@ -18,6 +18,7 @@ const Save = (props) => {
     const itemStyle = {};
     if (textColor) itemStyle.color = textColor;
     if (bgColor) itemStyle.backgroundColor = bgColor;
+    if (fontSize) itemStyle.fontSize = `${fontSize}px`;
 
     return (
         <a
@@ -27,7 +28,7 @@ const Save = (props) => {
             rel={rel}
             title={tooltip || undefined}
             style={Object.keys(itemStyle).length ? itemStyle : undefined}
-            {...((fontSize || weight) ? { 'data-weight': fontSize || weight } : {})}
+            {...(weight ? { 'data-weight': weight } : {})}
             {...(bgOutlineColor ? { 'data-bg-outline': bgOutlineColor } : {})}
             {...(bgOutlineThickness ? { 'data-bg-outline-thickness': bgOutlineThickness } : {})}
         >

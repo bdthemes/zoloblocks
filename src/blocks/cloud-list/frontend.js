@@ -34,31 +34,34 @@ const initCloudListBlock = (block) => {
         const tags = wrap.querySelectorAll('a');
         let needsFix = false;
 
-        // Check if any tag is missing data-weight or all share the same value
+        // Check if any tag is missing or has a zero data-weight
         const weights = Array.from(tags).map((a) => {
             const v = a.getAttribute('data-weight');
-            if (v === null || v === '' || v === '0') needsFix = true;
+            if (!v || v === '' || v === '0') needsFix = true;
             return parseInt(v, 10) || 0;
         });
-        if (!needsFix) {
-            needsFix = weights.every((w) => w === weights[0]);
-        }
 
         if (needsFix) {
-            // Assign varied weights while preserving any explicitly set values
+            // Only assign to tags that are missing or zero; preserve explicitly set values
             tags.forEach((a, i) => {
                 const v = a.getAttribute('data-weight');
                 const current = parseInt(v, 10) || 0;
-                if (!v || current === 0 || weights.every((w) => w === weights[0])) {
-                    a.setAttribute('data-weight', 10 + i * 3);
+                if (!v || current === 0) {
+                    a.setAttribute('data-weight', i + 5);
                 }
             });
         }
     }
 
+    if (options.weightMode === 'bgcolour') {
+        wrap.querySelectorAll('a').forEach((a) => {
+            a.style.removeProperty('background-color');
+        });
+    }
+
     // Auto-enable per-tag background color if any tag has background-color inline style
     const hasPerTagBg = wrap.querySelector('a[style*="background-color"]');
-    if (hasPerTagBg && options.bgColour !== 'tag') {
+    if (hasPerTagBg && options.bgColour !== 'tag' && options.weightMode !== 'bgcolour') {
         options.bgColour = 'tag';
     }
 
@@ -86,6 +89,23 @@ const initCloudListBlock = (block) => {
     const hasTooltips = wrap.querySelector('a[title]');
     if (hasTooltips && !options.tooltip) {
         options.tooltip = 'native';
+    }
+
+    // Auto-enable weight/size mode when per-tag font-size is set but weight mode is off
+    if (!options.weight) {
+        const baseSize = options.textHeight || 15;
+        const allTags = wrap.querySelectorAll('a');
+        const fontSizeTags = Array.from(allTags).filter((a) => a.style.fontSize);
+        if (fontSizeTags.length) {
+            options.weight = true;
+            options.weightMode = 'size';
+            options.weightFrom = 'data-weight';
+            options.weightSize = 1;
+            allTags.forEach((a) => {
+                const fs = parseInt(a.style.fontSize, 10);
+                a.setAttribute('data-weight', fs > 0 ? fs : baseSize);
+            });
+        }
     }
 
     try {
