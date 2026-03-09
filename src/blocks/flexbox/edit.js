@@ -9,7 +9,7 @@ import Style from "./style";
 import useElementResize from "./use-element-resizer";
 
 const Edit = (props) => {
-    const { clientId, attributes, setAttributes } = props;
+    const { clientId, attributes, setAttributes, isSelected } = props;
     const { classArrayToStr, useResponsiveValue } = window.zoloModule;
     const { hasChildBlocks, hasParent, isParent } = useSelect(
         (select) => {
@@ -85,13 +85,15 @@ const Edit = (props) => {
     } else {
         content = (
             <>
-                <Inspector 
-                    {...props} 
-                    isParent={isParent} 
-                    hasParent={hasParent} 
-                    getResponsiveValue={getResponsiveValue} 
-                    createResponsiveValue={createResponsiveValue} 
-                />
+                {
+                    isSelected && <Inspector
+                        {...props}
+                        isParent={isParent}
+                        hasParent={hasParent}
+                        getResponsiveValue={getResponsiveValue}
+                        createResponsiveValue={createResponsiveValue}
+                    />
+                }
                 <Style {...props} />
                 <TAG {...innerBlocksProps} />
             </>
