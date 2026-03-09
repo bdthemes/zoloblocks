@@ -53,7 +53,13 @@ function Inspector(props) {
                                 onChange={(tooltip) => setAttributes({ tooltip })}
                                 placeholder={__('Hover tooltip text', 'zoloblocks')}
                             />
-                            {weightEnabled && (weightMode === 'size' || weightMode === 'both') && (
+                        </ZoloPanelBody>
+                    </>
+                }
+                styleTab={
+                    <>
+                        {weightEnabled && (
+                            <ZoloPanelBody title={__('Weight', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
                                 <ZoloRangeControl
                                     label={__('Weight', 'zoloblocks')}
                                     value={weight}
@@ -63,13 +69,9 @@ function Inspector(props) {
                                     step={1}
                                     help={__('0 = use global size. Higher = more prominent.', 'zoloblocks')}
                                 />
-                            )}
-                        </ZoloPanelBody>
-                    </>
-                }
-                styleTab={
-                    <>
-                        <ZoloPanelBody title={__('Text', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
+                            </ZoloPanelBody>
+                        )}
+                        <ZoloPanelBody title={__('Text', 'zoloblocks')} firstOpen={!weightEnabled} stylePanel={true} panelProps={props}>
                             <ColorControl
                                 label={__('Text Color', 'zoloblocks')}
                                 color={textColor}
