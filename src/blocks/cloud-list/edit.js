@@ -180,6 +180,7 @@ export default function Edit(props) {
                 weightMode: weightMode || 'size',
                 weightFrom: 'data-weight',
                 weightSize: weightSize || 1,
+                textFont: 'Impact,"Arial Black",sans-serif',
                 ...(weightSizeMin > 0 && weightSizeMax > weightSizeMin ? {
                     weightSizeMin,
                     weightSizeMax,
@@ -267,7 +268,7 @@ export default function Edit(props) {
                 a.style.fontSize = `${item.fontSize}px`;
             }
 
-            a.setAttribute('data-weight', weightEnabled ? (item.weight || (i + 1)) : (item.fontSize || currentTextHeight));
+            a.setAttribute('data-weight', weightEnabled ? (item.weight || (i + 5)) : (item.fontSize || currentTextHeight));
             if (item.bgOutlineColor) a.setAttribute('data-bg-outline', item.bgOutlineColor);
             if (item.bgOutlineThickness) a.setAttribute('data-bg-outline-thickness', item.bgOutlineThickness);
 

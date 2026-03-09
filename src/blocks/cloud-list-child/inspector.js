@@ -67,7 +67,6 @@ function Inspector(props) {
                                     min={0}
                                     max={100}
                                     step={1}
-                                    help={__('0 = use global size. Higher = more prominent.', 'zoloblocks')}
                                 />
                             </ZoloPanelBody>
                         )}

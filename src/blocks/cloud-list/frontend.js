@@ -47,7 +47,7 @@ const initCloudListBlock = (block) => {
                 const v = a.getAttribute('data-weight');
                 const current = parseInt(v, 10) || 0;
                 if (!v || current === 0) {
-                    a.setAttribute('data-weight', i + 1);
+                    a.setAttribute('data-weight', i + 5);
                 }
             });
         }
