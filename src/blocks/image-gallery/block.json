@@ -3,7 +3,7 @@
     "title": "Image Gallery",
     "name": "zolo/image-gallery",
     "category": "zoloblocks",
-    "keywords": ["gallery", "image", "photo", "media", "responsive", "grid", "masonry", "lightbox"],
+    "keywords": ["gallery", "image", "photo", "media", "responsive", "grid", "masonary", "lightbox"],
     "description": "Design responsive image galleries with consistent site design.",
     "apiVersion": 3,
     "textdomain": "zoloblocks",

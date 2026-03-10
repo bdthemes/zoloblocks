@@ -12,6 +12,8 @@ const ApiSettings = () => {
     const [secretKey, setSecretKey] = useState('');
     const [mailchimpKey, setMailchimpKey] = useState('');
     const [audienceID, setAudienceID] = useState('');
+    const [facebookPageId, setFacebookPageId] = useState('');
+    const [facebookAccessToken, setFacebookAccessToken] = useState('');
     const [webhooks, setWebhooks] = useState([
         {
             label: '',
@@ -46,6 +48,8 @@ const ApiSettings = () => {
                 zolo_recaptcha_secret_key,
                 zolo_mailchimp_api_key,
                 zolo_mailchimp_audience_id,
+                zolo_facebook_page_id,
+                zolo_facebook_access_token,
                 zolo_webhooks,
             }) => {
                 setGoogleAPIKey(zolo_google_api_key);
@@ -54,6 +58,8 @@ const ApiSettings = () => {
                 setSecretKey(zolo_recaptcha_secret_key);
                 setMailchimpKey(zolo_mailchimp_api_key);
                 setAudienceID(zolo_mailchimp_audience_id);
+                setFacebookPageId(zolo_facebook_page_id);
+                setFacebookAccessToken(zolo_facebook_access_token);
                 setWebhooks(zolo_webhooks);
             }
         );
@@ -143,6 +149,32 @@ const ApiSettings = () => {
             },
         }).then(({ zolo_mailchimp_audience_id }) => {
             setAudienceID(zolo_mailchimp_audience_id);
+        });
+    };
+
+    // update facebook page id
+    const onChangeFacebookPageId = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_facebook_page_id: value,
+            },
+        }).then(({ zolo_facebook_page_id }) => {
+            setFacebookPageId(zolo_facebook_page_id);
+        });
+    };
+
+    // update facebook access token
+    const onChangeFacebookAccessToken = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_facebook_access_token: value,
+            },
+        }).then(({ zolo_facebook_access_token }) => {
+            setFacebookAccessToken(zolo_facebook_access_token);
         });
     };
 
@@ -253,6 +285,32 @@ const ApiSettings = () => {
                         label={__('Audience ID', 'zoloblocks')}
                         onChange={(value) => setAudienceID(value)}
                         value={audienceID}
+                    />
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Facebook', 'zoloblocks')}
+                    description={__(
+                        'Connect your Facebook page to display feeds in the Facebook Feed block. Get your Page ID and Access Token from Facebook Graph API Explorer.',
+                        'zoloblocks'
+                    )}
+                    docLink="https://developers.facebook.com/docs/graph-api/explorer"
+                    icon="facebook"
+                    onSave={() => {
+                        onChangeFacebookPageId(facebookPageId);
+                        onChangeFacebookAccessToken(facebookAccessToken);
+                    }}
+                >
+                    <ZoloTextControl
+                        label={__('Facebook Page ID', 'zoloblocks')}
+                        onChange={(value) => setFacebookPageId(value)}
+                        value={facebookPageId}
+                        placeholder={__('Enter your Facebook Page ID', 'zoloblocks')}
+                    />
+                    <ZoloTextControl
+                        label={__('Access Token', 'zoloblocks')}
+                        onChange={(value) => setFacebookAccessToken(value)}
+                        value={facebookAccessToken}
+                        placeholder={__('Enter your Facebook Access Token', 'zoloblocks')}
                     />
                 </SettingPanel>
                 <SettingPanel

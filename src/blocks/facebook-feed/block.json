@@ -1,0 +1,162 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Facebook Feed",
+    "name": "zolo/facebook-feed",
+    "category": "zoloblocks",
+    "keywords": ["facebook", "feed", "social", "timeline", "posts", "social media"],
+    "description": "Display Facebook posts in Timeline, Grid, Masonry or Carousel layouts.",
+    "apiVersion": 3,
+    "textdomain": "zoloblocks",
+    "attributes": {
+        "uniqueId": {
+            "type": "string",
+            "default": ""
+        },
+        "layoutType": {
+            "type": "string",
+            "default": "timeline"
+        },
+        "zolo_fbColumnsRange": {
+            "type": "number",
+            "default": 3
+        },
+        "zolo_TABfbColumnsRange": {
+            "type": "number",
+            "default": 2
+        },
+        "zolo_MOBfbColumnsRange": {
+            "type": "number",
+            "default": 1
+        },
+        "zolo_fbGapGap": {
+            "type": "number",
+            "default": 20
+        },
+        "zolo_fbGapRowGap": {
+            "type": "number"
+        },
+        "zolo_fbGapColGap": {
+            "type": "number"
+        },
+        "zolo_TABfbGapGap": {
+            "type": "number"
+        },
+        "zolo_TABfbGapRowGap": {
+            "type": "number"
+        },
+        "zolo_TABfbGapColGap": {
+            "type": "number"
+        },
+        "zolo_MOBfbGapGap": {
+            "type": "number"
+        },
+        "zolo_MOBfbGapRowGap": {
+            "type": "number"
+        },
+        "zolo_MOBfbGapColGap": {
+            "type": "number"
+        },
+        "zolo_fbGapIsLinked": {
+            "type": "boolean",
+            "default": true
+        },
+        "zolo_fbGapUnit": {
+            "type": "string",
+            "default": "px"
+        },
+        "zolo_TABfbGapUnit": {
+            "type": "string",
+            "default": "px"
+        },
+        "zolo_MOBfbGapUnit": {
+            "type": "string",
+            "default": "px"
+        },
+        "postsPerPage": {
+            "type": "number",
+            "default": 6
+        },
+        "showAvatar": {
+            "type": "boolean",
+            "default": true
+        },
+        "showAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "showDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showContent": {
+            "type": "boolean",
+            "default": true
+        },
+        "contentLength": {
+            "type": "number",
+            "default": 150
+        },
+        "showReadMore": {
+            "type": "boolean",
+            "default": true
+        },
+        "readMoreText": {
+            "type": "string",
+            "default": "Read more"
+        },
+        "showReactions": {
+            "type": "boolean",
+            "default": true
+        },
+        "showComments": {
+            "type": "boolean",
+            "default": false
+        },
+        "showShares": {
+            "type": "boolean",
+            "default": false
+        },
+        "carouselAutoplay": {
+            "type": "boolean",
+            "default": true
+        },
+        "carouselSpeed": {
+            "type": "number",
+            "default": 3000
+        },
+        "carouselLoop": {
+            "type": "boolean",
+            "default": true
+        },
+        "facebookPageId": {
+            "type": "string",
+            "default": ""
+        },
+        "facebookAccessToken": {
+            "type": "string",
+            "default": ""
+        },
+        "cacheExpiration": {
+            "type": "number",
+            "default": 3600
+        },
+        "resMode": {
+            "type": "string",
+            "default": "desktop"
+        }
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 800
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./frontend.js"
+}

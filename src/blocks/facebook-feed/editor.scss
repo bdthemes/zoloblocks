@@ -1,0 +1,76 @@
+// Editor-specific styles
+.zolo-facebook-feed {
+    .zolo-fb-layout-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f0f0f1;
+        border-radius: 4px;
+
+        button {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 14px;
+            transition: all 0.2s;
+
+            &:hover {
+                background: #f0f0f1;
+                border-color: #2271b1;
+            }
+
+            &.active {
+                background: #2271b1;
+                color: #fff;
+                border-color: #2271b1;
+            }
+
+            .dashicons {
+                font-size: 16px;
+            }
+        }
+    }
+
+    // Editor masonry layout
+    .zolo-fb-posts-container.layout-masonry {
+        column-count: var(--masonry-columns, 3);
+        column-gap: var(--masonry-gap, 20px);
+        
+        .zolo-fb-post {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            display: block;
+            width: 100%;
+            margin: 0;
+            margin-bottom: var(--masonry-gap, 20px);
+        }
+    }
+
+    // Editor carousel layout
+    .zolo-fb-posts-container.layout-carousel {
+        .swiper {
+            overflow: visible; // Allow navigation buttons to show
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        .swiper-slide {
+            .zolo-fb-post {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
