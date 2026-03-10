@@ -41,10 +41,15 @@
         gap: var(--zolo--countdown-gap);
         grid-template-columns: repeat(2, 1fr);
         &.flex {
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow: visible;
+
             .zolo-countdown-item {
-                width: var(--zolo-item-flex-width);
+                flex: 0 1 var(--zolo-item-flex-width);
+                min-width: min(var(--zolo-item-flex-width), 100%);
+                max-width: var(--zolo-item-flex-width);
                 height: var(--zolo-item-flex-height);
-                min-width: var(--zolo-item-flex-width);
             }
             &.zolo-countdown-style-2,
             &.zolo-countdown-style-3 {
