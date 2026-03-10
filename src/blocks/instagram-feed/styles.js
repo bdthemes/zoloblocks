@@ -1,0 +1,116 @@
+import { useMemo } from '@wordpress/element';
+
+const { GlobalStyleHanlder, generateCSS } = window.zoloModule;
+
+const Style = (props) => {
+    const { attributes, setAttributes } = props;
+    const { uniqueId } = attributes;
+    const columnCountDesk = attributes.igColumns?.Desktop || 3;
+    const columnCountTab = attributes.igColumns?.Tablet || 2;
+    const columnCountMob = attributes.igColumns?.Mobile || 1;
+
+    const desktopCSS = useMemo(() => {
+        const style = `
+            .${uniqueId} .zolo-ig-grid {
+                display: grid;
+                ${columnCountDesk ? `grid-template-columns: repeat(${columnCountDesk}, 1fr);` : ''}
+            }
+
+            .zolo-lightbox-caption {
+                ${attributes.lightboxCaptionSize ? `font-size: ${attributes.lightboxCaptionSize}px;` : ''}
+            }
+        ` +
+        `.${uniqueId} .zolo-ig-grid{
+            ${
+                generateCSS({
+                    attributes,
+                    key: 'igGap',
+                    getValue: (value) => {
+                        if (!value?.linked) return `column-gap: ${value?.first}; row-gap: ${value?.second};`;
+                        return `gap: ${value?.first};`;
+                    },
+                    device: 'Desktop'
+                })
+            }
+        }
+
+        .${uniqueId} .zolo-ig-carousel .swiper {
+            ${
+                generateCSS({
+                    attributes,
+                    key: 'igGap',
+                    getValue: (value) => {
+                        if (!value?.linked) return `column-gap: ${value?.first}; row-gap: ${value?.second};`;
+                        return `gap: ${value?.first};`;
+                    },
+                    device: 'Desktop'
+                })
+            }
+        }
+        `;
+        return style;
+    }, [JSON.stringify(attributes)]);
+
+    const tabCSS = useMemo(() => {
+        const style = `
+            .${uniqueId} .zolo-ig-grid {
+                ${columnCountTab ? `grid-template-columns: repeat(${columnCountTab}, 1fr);` : ''}
+            }
+
+        ` +
+        `.${uniqueId} .zolo-ig-grid{
+            ${
+                generateCSS({
+                    attributes,
+                    key: 'igGap',
+                    getValue: (value) => {
+                        if (!value?.linked) return `column-gap: ${value?.first}; row-gap: ${value?.second};`;
+                        return `gap: ${value?.first};`;
+                    },
+                    device: 'Tablet'
+                })
+            }
+        }
+
+        `;
+        return style;
+    }, [JSON.stringify(attributes)]);
+
+    const mobCSS = useMemo(() => {
+        const style = `
+            .${uniqueId} .zolo-ig-grid {
+                ${columnCountMob ? `grid-template-columns: repeat(${columnCountMob}, 1fr);` : ''}
+            }
+
+        ` +
+        `.${uniqueId} .zolo-ig-grid{
+            ${
+                generateCSS({
+                    attributes,
+                    key: 'igGap',
+                    getValue: (value) => {
+                        if (!value?.linked) return `column-gap: ${value?.first}; row-gap: ${value?.second};`;
+                        return `gap: ${value?.first};`;
+                    },
+                    device: 'Mobile'
+                })
+            }
+        }
+
+        `;
+        return style;
+    }, [JSON.stringify(attributes)]);
+
+    return (
+        <GlobalStyleHanlder
+            attributes={attributes}
+            setAttributes={setAttributes}
+            desktopAllStyle={desktopCSS}
+            tabAllStyle={tabCSS}
+            mobileAllStyle={mobCSS}
+            blockName={props?.name}
+        />
+    );
+};
+
+export default Style;

@@ -1,0 +1,25 @@
+{
+    "apiVersion": 3,
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "title": "Facebook Reviews",
+    "name": "zolo/facebook-reviews",
+    "category": "zoloblocks",
+    "keywords": ["facebook", "reviews", "testimonials", "ratings", "social", "recommendations"],
+    "description": "Display Facebook page reviews in beautiful card layouts.",
+    "textdomain": "zoloblocks",
+    "example": {
+        "attributes": {
+            "preview": true
+        },
+        "viewportWidth": 800
+    },
+    "supports": {
+        "anchor": false,
+        "customClassName": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./frontend.js"
+}

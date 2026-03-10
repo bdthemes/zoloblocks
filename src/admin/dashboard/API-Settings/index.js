@@ -2,7 +2,7 @@ import SettingPanel from './setting-panel';
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { ZoloTextControl, ZoloButton } from '../../../controls/core-controls';
+import { ZoloTextControl, ZoloButton, ZoloRangeControl } from '../../../controls/core-controls';
 
 const ApiSettings = () => {
     const [isAIExtensionActive, setisAIExtensionActive] = useState(true);
@@ -12,6 +12,11 @@ const ApiSettings = () => {
     const [secretKey, setSecretKey] = useState('');
     const [mailchimpKey, setMailchimpKey] = useState('');
     const [audienceID, setAudienceID] = useState('');
+    const [facebookPageId, setFacebookPageId] = useState('');
+    const [facebookAccessToken, setFacebookAccessToken] = useState('');
+    const [instagramAccessToken, setInstagramAccessToken] = useState('');
+    const [instagramUserId, setInstagramUserId] = useState('');
+    const [instagramCacheExpiration, setInstagramCacheExpiration] = useState(12);
     const [webhooks, setWebhooks] = useState([
         {
             label: '',
@@ -46,6 +51,11 @@ const ApiSettings = () => {
                 zolo_recaptcha_secret_key,
                 zolo_mailchimp_api_key,
                 zolo_mailchimp_audience_id,
+                zolo_facebook_page_id,
+                zolo_facebook_access_token,
+                zolo_instagram_access_token,
+                zolo_instagram_user_id,
+                zolo_instagram_cache_expiration,
                 zolo_webhooks,
             }) => {
                 setGoogleAPIKey(zolo_google_api_key);
@@ -54,6 +64,11 @@ const ApiSettings = () => {
                 setSecretKey(zolo_recaptcha_secret_key);
                 setMailchimpKey(zolo_mailchimp_api_key);
                 setAudienceID(zolo_mailchimp_audience_id);
+                setFacebookPageId(zolo_facebook_page_id);
+                setFacebookAccessToken(zolo_facebook_access_token);
+                setInstagramAccessToken(zolo_instagram_access_token);
+                setInstagramUserId(zolo_instagram_user_id);
+                setInstagramCacheExpiration(zolo_instagram_cache_expiration);
                 setWebhooks(zolo_webhooks);
             }
         );
@@ -146,6 +161,70 @@ const ApiSettings = () => {
         });
     };
 
+    // update facebook page id
+    const onChangeFacebookPageId = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_facebook_page_id: value,
+            },
+        }).then(({ zolo_facebook_page_id }) => {
+            setFacebookPageId(zolo_facebook_page_id);
+        });
+    };
+
+    // update facebook access token
+    const onChangeFacebookAccessToken = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_facebook_access_token: value,
+            },
+        }).then(({ zolo_facebook_access_token }) => {
+            setFacebookAccessToken(zolo_facebook_access_token);
+        });
+    };
+    // update instagram access token
+    const onChangeInstagramAccessToken = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_instagram_access_token: value,
+            },
+        }).then(({ zolo_instagram_access_token }) => {
+            setInstagramAccessToken(zolo_instagram_access_token);
+        });
+    };
+    // update instagram user id
+    const onChangeInstagramUserId = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_instagram_user_id: value,
+            },
+        }).then(({ zolo_instagram_user_id }) => {
+            setInstagramUserId(zolo_instagram_user_id);
+        });
+    };
+
+    // update instagram cache expiration
+    const onChangeInstagramCacheExpiration = (value) => {
+        fetchSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: {
+                zolo_instagram_cache_expiration: value,
+            },
+        }).then(({ zolo_instagram_cache_expiration }) => {
+            setInstagramCacheExpiration(zolo_instagram_cache_expiration);
+        });
+    };
+
+    // 
     // Webhook
 
     const updateWebhookField = (index, field, value) => {
@@ -253,6 +332,67 @@ const ApiSettings = () => {
                         label={__('Audience ID', 'zoloblocks')}
                         onChange={(value) => setAudienceID(value)}
                         value={audienceID}
+                    />
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Facebook', 'zoloblocks')}
+                    description={__(
+                        'Connect your Facebook page to display feeds in the Facebook Feed block. Get your Page ID and Access Token from Facebook Graph API Explorer.',
+                        'zoloblocks'
+                    )}
+                    docLink="https://developers.facebook.com/docs/graph-api/explorer"
+                    icon="facebook"
+                    onSave={() => {
+                        onChangeFacebookPageId(facebookPageId);
+                        onChangeFacebookAccessToken(facebookAccessToken);
+                    }}
+                >
+                    <ZoloTextControl
+                        label={__('Facebook Page ID', 'zoloblocks')}
+                        onChange={(value) => setFacebookPageId(value)}
+                        value={facebookPageId}
+                        placeholder={__('Enter your Facebook Page ID', 'zoloblocks')}
+                    />
+                    <ZoloTextControl
+                        label={__('Access Token', 'zoloblocks')}
+                        onChange={(value) => setFacebookAccessToken(value)}
+                        value={facebookAccessToken}
+                        placeholder={__('Enter your Facebook Access Token', 'zoloblocks')}
+                    />
+                </SettingPanel>
+                <SettingPanel
+                    title={__('Instagram', 'zoloblocks')}
+                    description={__(
+                        'Connect your Instagram account to display feeds in the Instagram Feed block. Get your Access Token from Instagram Basic Display API.',
+                        'zoloblocks'
+                    )}
+                    docLink="https://developers.facebook.com/docs/instagram-basic-display-api"
+                    icon="instagram"
+                    onSave={() => {
+                        onChangeInstagramAccessToken(instagramAccessToken);
+                        onChangeInstagramUserId(instagramUserId);
+                        onChangeInstagramCacheExpiration(instagramCacheExpiration);
+                    }}
+                >
+                    <ZoloTextControl
+                        label={__('User ID', 'zoloblocks')}
+                        onChange={(value) => setInstagramUserId(value)}
+                        value={instagramUserId}
+                        placeholder={__('Enter your Instagram User ID', 'zoloblocks')}
+                    />
+                    <ZoloTextControl
+                        label={__('Access Token', 'zoloblocks')}
+                        onChange={(value) => setInstagramAccessToken(value)}
+                        value={instagramAccessToken}
+                        placeholder={__('Enter your Instagram Access Token', 'zoloblocks')}
+                    />
+                    <ZoloRangeControl
+                        label={__('Cache Duration (hours)', 'zoloblocks')}
+                        value={instagramCacheExpiration}
+                        onChange={(value) => setInstagramCacheExpiration(value)}
+                        min={1}
+                        max={168}
+                        step={1}
                     />
                 </SettingPanel>
                 <SettingPanel
