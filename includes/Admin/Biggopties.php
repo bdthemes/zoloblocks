@@ -14,7 +14,7 @@ class Biggopties {
 
 
 	public function __construct() {
-		add_action('wp_ajax_bdt_admin_api_biggopti_dismiss', [$this, 'bdt_admin_api_biggopti_dismiss']);
+		add_action('wp_ajax_zolo_admin_api_biggopti_dismiss', [$this, 'zolo_admin_api_biggopti_dismiss']);
 
 		add_action('admin_enqueue_scripts', [$this, 'load_assets']);
 	}
@@ -22,7 +22,7 @@ class Biggopties {
 	/**
 	 * Dismiss Admin API Biggopti.
 	 */
-	public function bdt_admin_api_biggopti_dismiss() {
+	public function zolo_admin_api_biggopti_dismiss() {
 		$nonce = (isset($_POST['_wpnonce'])) ? sanitize_text_field($_POST['_wpnonce']) : '';
 		$display_id = (isset($_POST['display_id'])) ? sanitize_text_field($_POST['display_id']) : '';
 		$id   = (isset($_POST['id'])) ? esc_attr($_POST['id']) : '';
@@ -68,7 +68,7 @@ class Biggopties {
 
 	function load_assets() {
 		wp_enqueue_style(
-			'zolo-admin-api-biggopti',
+			'bdt-admin-api-biggopti',
 			ZOLO_ADMIN_URL . 'includes/Admin/assets/css/biggopti.css',
 			[],
 			ZOLO_VERSION
