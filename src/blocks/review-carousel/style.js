@@ -132,20 +132,21 @@ const Style = ({ props }) => {
     });
 
     // rating icon align
-    let ratingIconDeskAlignStyle;
-    switch (reviewContentDeskAlignStyle) {
-        case 'text-align:left;':
-            ratingIconDeskAlignStyle = 'justify-content: flex-start;';
-            break;
-        case 'text-align:center;':
-            ratingIconDeskAlignStyle = 'justify-content: center;';
-            break;
-        case 'text-align:right;':
-            ratingIconDeskAlignStyle = 'justify-content: flex-end;';
-            break;
-        default:
-            ratingIconDeskAlignStyle = 'justify-content: flex-start;';
-    }
+    const getRatingAlign = (align) => {
+        switch (align) {
+            case 'text-align:left;':
+                return 'justify-content: flex-start;';
+            case 'text-align:center;':
+                return 'justify-content: center;';
+            case 'text-align:right;':
+                return 'justify-content: flex-end;';
+            default:
+                return 'justify-content: flex-start;';
+        }
+    };
+    const ratingIconDeskAlignStyle = getRatingAlign(reviewContentDeskAlignStyle);
+    const ratingIconTabAlignStyle = getRatingAlign(reviewContentTabAlignStyle);
+    const ratingIconMobAlignStyle = getRatingAlign(reviewContentMobAlignStyle);
 
     // Container
     const {
@@ -847,12 +848,12 @@ const Style = ({ props }) => {
 		}
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-item {
-			${reviewContentDeskAlignStyle}
-			${containerDeskBorderStyle}
-			${containerDeskBorderRadius}
+			${reviewContentTabAlignStyle}
+			${containerTabBorderStyle}
+			${containerTabBorderRadius}
 			${containerBoxShadow}
-			${containerDeskBGStyle}
-            ${containerDeskPadding}
+			${containerTabBGStyle}
+            ${containerTabPadding}
 		}
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper {
@@ -860,7 +861,7 @@ const Style = ({ props }) => {
 		}
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating {
-            ${ratingIconDeskAlignStyle}
+            ${ratingIconTabAlignStyle}
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap{
@@ -969,12 +970,12 @@ const Style = ({ props }) => {
 		}
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-item {
-			${reviewContentDeskAlignStyle}
-			${containerDeskBorderStyle}
-			${containerDeskBorderRadius}
+			${reviewContentMobAlignStyle}
+			${containerMobBorderStyle}
+			${containerMobBorderRadius}
 			${containerBoxShadow}
-			${containerDeskBGStyle}
-            ${containerDeskPadding}
+			${containerMobBGStyle}
+            ${containerMobPadding}
 		}
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .swiper {
@@ -982,7 +983,7 @@ const Style = ({ props }) => {
 		}
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-star-rating {
-            ${ratingIconDeskAlignStyle}
+            ${ratingIconMobAlignStyle}
         }
 
         .${uniqueId}.zolo-block.wp-block-zolo-review-carousel .zolo-image-wrap {
