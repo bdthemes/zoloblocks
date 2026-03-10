@@ -641,20 +641,19 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
-
-### 2.7.0 [March 03, 2026]
+### 2.7.0 [March 10, 2026]
 
 #### New Features
 - **Tag Cloud Block:** Introduced animated skin for enhanced visual appeal.
 - **List Block:** Added badge color options and gap control for improved customization.
 - **Counter Block:** Added hover controls for interactive styling.
 - **Pricing Table Block:** Added list color, background color, and vertical alignment controls.
-- **Vertical Tabs Block:** Added new border style option.
-- **Separator:** Added additional position options for greater layout flexibility.
+- **Tabs Block:** Added new border style option to the Vertical layout.
+- **Advanced Heading:** Added additional separator options for greater layout flexibility.
 - **Post List Block:** Added read more options for better content display.
 
 #### Bug Fixes
-- **Advanced Image Block:** Fixed image radius issue in Preset Style 3.
+- **Advanced Icon Box Block:** Fixed image radius issue in Preset Style 3.
 - **Navigation Block:** Resolved submenu not opening issue.
 - **Lightbox Block:** Fixed animation color issue.
 - **Advanced Icon Box Block:** Fixed image size issue in Preset Style 1 and mobile margin issue.
@@ -666,6 +665,8 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 - **Media Upload Control:** Resolved control not working issue.
 - **All Blocks:** Fixed box sizing issue.
 - **General:** Fixed responsive issues and plugin checker compatibility.
+- **Multi Block Selection:** Fixed error occurring when selecting multiple blocks simultaneously.
+- **Review Carousel Block:** Fixed padding inconsistency affecting layout display.
 
 #### Improvements
 - Optimized overall plugin performance for faster loading and smoother interactions.
@@ -673,7 +674,6 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 - Improved Video, Social Share, and Team blocks performance (resolved block recovery issues).
 - Replaced image size control with height and width controls in Advanced Icon Block.
 - Refined control UI across multiple blocks for better user experience.
-
 
 ### 2.6.0 [February 05, 2026]
 
