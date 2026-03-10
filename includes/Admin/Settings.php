@@ -452,6 +452,49 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => NULL,
                 ]
             );
+
+            // Facebook Page ID
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_facebook_page_id',
+                [
+                    'type'              => 'string',
+                    'default'           => '',
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'string'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
+            // Facebook Access Token
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_facebook_access_token',
+                [
+                    'type'              => 'string',
+                    'default'           => '',
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'string'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
+             // Facebook Cache Duration
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_facebook_cache_duration',
+                [
+                    'type'              => 'integer',
+                    'default'           => 12,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'integer'],
+                    ],
+                    'sanitize_callback' => NULL,
+                ]
+            );
+
             register_setting(
                 'zolo_blocks_settings_group',
                 'zolo_enable_template_library',

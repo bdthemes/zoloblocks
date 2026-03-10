@@ -1,0 +1,19 @@
+// Editor-specific styles
+.zolo-facebook-reviews {
+    // Ensure cards display properly in editor
+    .zolo-fb-review-card {
+        cursor: default;
+
+        a {
+            pointer-events: none;
+        }
+    }
+
+    // Editor carousel adjustments
+    &.layout-carousel {
+        .swiper-button-prev,
+        .swiper-button-next {
+            pointer-events: auto;
+        }
+    }
+}
