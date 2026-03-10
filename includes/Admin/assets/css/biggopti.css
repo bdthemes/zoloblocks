@@ -1,4 +1,4 @@
-.zoloblocks-biggopti {
+[id^="bdt-admin-biggopti-api-biggopti"] {
     padding: 0 !important;
     border: 0 !important;
     box-shadow: none !important;
@@ -8,7 +8,7 @@
     background-color: #fff;
 }
 
-.zoloblocks-biggopti .bdt-admin-api-biggopti-dismiss {
+[id^="bdt-admin-biggopti-api-biggopti"] .bdt-admin-api-biggopti-dismiss {
     position: absolute;
     top: 2px;
     right: 8px;
@@ -17,7 +17,7 @@
     border: none;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global {
     border-left: 4px solid #4e6af5 !important;
     display: flex;
     align-items: flex-start;
@@ -27,31 +27,31 @@
     z-index: 99;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-logo img {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-logo img {
     width: 45px;
     height: auto;
     vertical-align: middle;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-content h3 {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-content h3 {
     margin: 0 0 10px;
     font-size: 20px;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-content p {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-content p {
     margin: 0;
     color: #5f6169;
     max-width: 750px;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-button-wrap {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global .zoloblocks-license-biggopti-button-wrap {
     margin-top: 14px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-button {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global .zoloblocks-button {
     padding: 12px 16px;
     border-radius: 3px;
     line-height: 1;
@@ -60,31 +60,31 @@
     text-decoration: none;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-button-allow {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global .zoloblocks-button-allow {
     color: #fff;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global .zoloblocks-button-skip {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global .zoloblocks-button-skip {
     border: 0;
     color: #08c2ff;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-allow {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-allow {
     --primaryColor: #4e6af5;
     --secondaryColor: #08c2ff;
     background: linear-gradient(313deg, var(--primaryColor), var(--secondaryColor) 100%);
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-allow:hover {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-allow:hover {
     --primaryColor: #08c2ff;
     --secondaryColor: #4e6af5;
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-skip {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-skip {
     background-color: rgba(86, 220, 88, 0.15);
 }
 
-.zoloblocks-biggopti .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-skip:hover {
+[id^="bdt-admin-biggopti-api-biggopti"] .zoloblocks-license-biggopti-global.spin_wheel .zoloblocks-button-skip:hover {
     background-color: rgba(86, 220, 88, 0.2);
 }
 
