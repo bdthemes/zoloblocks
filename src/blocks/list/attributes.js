@@ -51,6 +51,9 @@ import {
     BADGE_BORDER,
     BADGE_PADDING,
     BADGE_BORDER_RADIUS,
+    HEADING_MARGIN,
+    HEADING_PADDING,
+    HEADING_ALIGNMENT,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -137,11 +140,36 @@ const attributes = {
     ...generateDimensionAttributes(BADGE_PADDING),
     ...generateDimensionAttributes(BADGE_BORDER_RADIUS),
 
+    // Heading
+    ...generateDimensionAttributes(HEADING_MARGIN),
+    ...generateDimensionAttributes(HEADING_PADDING),
+    ...generateResAlignmentAttributies(HEADING_ALIGNMENT),
+
     preset: {
         type: 'string',
         default: 'zolo-list-style-1',
     },
     contentLayout: {
+        type: 'string',
+        default: '',
+    },
+    headingToggle: {
+        type: 'boolean',
+        default: false,
+    },
+    headingText: {
+        type: 'string',
+        default: 'List Heading...',
+    },
+    headingTag: {
+        type: 'string',
+        default: 'h3',
+    },
+    headingColor: {
+        type: 'string',
+        default: '',
+    },
+    headingColorHover: {
         type: 'string',
         default: '',
     },

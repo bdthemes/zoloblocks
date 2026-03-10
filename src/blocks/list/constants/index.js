@@ -109,3 +109,8 @@ export const BADGE_GAP = 'badgeGap';
 export const BADGE_BORDER = 'badgeBorder';
 export const BADGE_PADDING = 'badgePadding';
 export const BADGE_BORDER_RADIUS = 'badgeBorderRadius';
+
+// Heading
+export const HEADING_MARGIN = 'headingMargin';
+export const HEADING_PADDING = 'headingPadding';
+export const HEADING_ALIGNMENT = 'headingAlignment';

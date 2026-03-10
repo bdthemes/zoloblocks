@@ -59,9 +59,14 @@ import {
     BADGE_BORDER,
     BADGE_PADDING,
     BADGE_BORDER_RADIUS,
+
+    //heading
+    HEADING_MARGIN,
+    HEADING_PADDING,
+    HEADING_ALIGNMENT,
 } from './constants';
 
-import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY, HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
@@ -85,6 +90,8 @@ const Style = ({ props }) => {
         highlightText,
         highlightTextColor,
         badgeColor,
+        headingColor,
+        headingColorHover,
     } = attributes;
 
     //desc
@@ -101,6 +108,43 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: DSC_MARGIN,
         styleFor: 'margin',
+        attributes,
+    });
+
+    // Heading
+    const {
+        typoStylesDesktop: DesktopHeadingTypo,
+        typoStylesTab: TabHeadingTypo,
+        typoStylesMobile: MobHeadingTypo,
+    } = generateTypographyStyles({ prefixConstant: HEADING_TYPOGRAPHY, attributes });
+
+    const {
+        dimensionStylesDesktop: DesktopHeadingMargin,
+        dimensionStylesTab: TabHeadingMargin,
+        dimensionStylesMobile: MobHeadingMargin,
+    } = generateDimensionStyle({
+        controlName: HEADING_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: DesktopHeadingPadding,
+        dimensionStylesTab: TabHeadingPadding,
+        dimensionStylesMobile: MobHeadingPadding,
+    } = generateDimensionStyle({
+        controlName: HEADING_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        desktopAlignStyle: DesktopHeadingAlign,
+        tabAlignStyle: TabHeadingAlign,
+        mobAlignStyle: MobHeadingAlign,
+    } = generateResAlignmentStyle({
+        controlName: HEADING_ALIGNMENT,
+        property: 'text-align',
         attributes,
     });
 
@@ -435,6 +479,17 @@ const Style = ({ props }) => {
         color:${dscHcolor}
     }
    
+    .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
+        ${DesktopHeadingTypo}
+        ${DesktopHeadingMargin}
+        ${DesktopHeadingPadding}
+        ${DesktopHeadingAlign}
+        ${headingColor ? `color: ${headingColor};` : ''}
+    }
+    .wp-block-zolo-list.${uniqueId} .zolo-list-heading:hover {
+        ${headingColorHover ? `color: ${headingColorHover};` : ''}
+    }
+
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
         ${desktopIconSize} 
         fill:${listIconColor}
@@ -567,6 +622,13 @@ const Style = ({ props }) => {
 
     }
  
+    .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
+        ${TabHeadingTypo}
+        ${TabHeadingMargin}
+        ${TabHeadingPadding}
+        ${TabHeadingAlign}
+    }
+
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
         ${tabIconSize} 
      }
@@ -652,6 +714,13 @@ const Style = ({ props }) => {
     .wp-block-zolo-list.${uniqueId} .zolo-list-desc {
         ${MobDscTypo}
         ${MobDsceMargin}
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
+        ${MobHeadingTypo}
+        ${MobHeadingMargin}
+        ${MobHeadingPadding}
+        ${MobHeadingAlign}
     }
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
