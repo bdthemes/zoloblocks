@@ -8,6 +8,8 @@ const {
     generateGapAttributes,
     generateResAlignmentAttributies,
     generateNormalBGAttributes,
+    generateTextShadowAttributies,
+    generateTextStrokeAttributies,
 } = window.zoloModule;
 
 import {
@@ -54,6 +56,12 @@ import {
     HEADING_MARGIN,
     HEADING_PADDING,
     HEADING_ALIGNMENT,
+    HEADING_TEXT_SHADOW,
+    HEADING_TEXT_STROKE,
+    HEADING_BG,
+    HEADING_BORDER,
+    HEADING_BOX_SHADOW,
+    HEADING_BORDER_RADIUS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -144,6 +152,12 @@ const attributes = {
     ...generateDimensionAttributes(HEADING_MARGIN),
     ...generateDimensionAttributes(HEADING_PADDING),
     ...generateResAlignmentAttributies(HEADING_ALIGNMENT),
+    ...generateTextShadowAttributies(HEADING_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_TEXT_STROKE),
+    ...generateNormalBGAttributes(HEADING_BG),
+    ...generateBorderAttributies(HEADING_BORDER),
+    ...generateBoxShadowAttributies(HEADING_BOX_SHADOW),
+    ...generateDimensionAttributes(HEADING_BORDER_RADIUS),
 
     preset: {
         type: 'string',
@@ -166,10 +180,6 @@ const attributes = {
         default: 'h3',
     },
     headingColor: {
-        type: 'string',
-        default: '',
-    },
-    headingColorHover: {
         type: 'string',
         default: '',
     },

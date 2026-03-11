@@ -17,6 +17,8 @@ const {
     GlobalStyleHanlder,
     generateNormalBGControlStyles,
     generateResAlignmentStyle,
+    generateTextShadowStyles,
+    generateTextStrokeStyles,
 } = window.zoloModule;
 
 import {
@@ -64,6 +66,12 @@ import {
     HEADING_MARGIN,
     HEADING_PADDING,
     HEADING_ALIGNMENT,
+    HEADING_TEXT_SHADOW,
+    HEADING_TEXT_STROKE,
+    HEADING_BG,
+    HEADING_BORDER,
+    HEADING_BOX_SHADOW,
+    HEADING_BORDER_RADIUS,
 } from './constants';
 
 import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY, HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -91,7 +99,6 @@ const Style = ({ props }) => {
         highlightTextColor,
         badgeColor,
         headingColor,
-        headingColorHover,
     } = attributes;
 
     //desc
@@ -145,6 +152,46 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: HEADING_ALIGNMENT,
         property: 'text-align',
+        attributes,
+    });
+
+    const {
+        textShadowStyle: DesktopHeadingTextShadow,
+    } = generateTextShadowStyles({
+        controlName: HEADING_TEXT_SHADOW,
+        attributes,
+    });
+
+    const {
+        desktopTextStrokeStyle: DesktopHeadingTextStroke,
+        tabTextStrokeStyle: TabHeadingTextStroke,
+        mobTextStrokeStyle: MobHeadingTextStroke,
+    } = generateTextStrokeStyles({
+        controlName: HEADING_TEXT_STROKE,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: DeskHeadingBg,
+        backgroundStylesTab: TabHeadingBg,
+        backgroundStylesMobile: MobHeadingBg,
+    } = generateNormalBGControlStyles({ controlName: HEADING_BG, attributes });
+
+    const {
+        desktopBorderStyle: desktopHeadingBorder,
+        tabBorderStyle: tabHeadingBorder,
+        mobBorderStyle: mobHeadingBorder,
+    } = generateBorderStyle({ controlName: HEADING_BORDER, attributes });
+
+    const { boxShadowStyle: boxshadowHeading } = generateBoxShadowStyles({ controlName: HEADING_BOX_SHADOW, attributes });
+
+    const {
+        dimensionStylesDesktop: DesktopHeadingRadius,
+        dimensionStylesTab: TabHeadingRadius,
+        dimensionStylesMobile: MobHeadingRadius,
+    } = generateDimensionStyle({
+        controlName: HEADING_BORDER_RADIUS,
+        styleFor: 'border-radius',
         attributes,
     });
 
@@ -481,13 +528,16 @@ const Style = ({ props }) => {
    
     .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
         ${DesktopHeadingTypo}
+        ${DesktopHeadingTextShadow}
+        ${DesktopHeadingTextStroke}
+        ${DeskHeadingBg}
         ${DesktopHeadingMargin}
         ${DesktopHeadingPadding}
+        ${desktopHeadingBorder}
+        ${DesktopHeadingRadius}
+        ${boxshadowHeading}
         ${DesktopHeadingAlign}
         ${headingColor ? `color: ${headingColor};` : ''}
-    }
-    .wp-block-zolo-list.${uniqueId} .zolo-list-heading:hover {
-        ${headingColorHover ? `color: ${headingColorHover};` : ''}
     }
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
@@ -624,8 +674,12 @@ const Style = ({ props }) => {
  
     .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
         ${TabHeadingTypo}
+        ${TabHeadingTextStroke}
+        ${TabHeadingBg}
         ${TabHeadingMargin}
         ${TabHeadingPadding}
+        ${tabHeadingBorder}
+        ${TabHeadingRadius}
         ${TabHeadingAlign}
     }
 
@@ -718,8 +772,12 @@ const Style = ({ props }) => {
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
         ${MobHeadingTypo}
+        ${MobHeadingTextStroke}
+        ${MobHeadingBg}
         ${MobHeadingMargin}
         ${MobHeadingPadding}
+        ${mobHeadingBorder}
+        ${MobHeadingRadius}
         ${MobHeadingAlign}
     }
 

@@ -27,6 +27,8 @@ const {
     IconicBtnGroup,
     ZoloIconPicker,
     generateResCounterStyle,
+    TextShadowControl,
+    TextStrokeControl,
     ZoloTextControl,
 } = window.zoloModule;
 
@@ -82,6 +84,12 @@ import {
     HEADING_MARGIN,
     HEADING_PADDING,
     HEADING_ALIGNMENT,
+    HEADING_TEXT_SHADOW,
+    HEADING_TEXT_STROKE,
+    HEADING_BG,
+    HEADING_BORDER,
+    HEADING_BOX_SHADOW,
+    HEADING_BORDER_RADIUS,
 } from './constants';
 
 import { DEFAULT_ALIGNS, FLEX_ALIGN_OPTIONS } from '../../../src/global/constants';
@@ -118,7 +126,6 @@ function Inspector(props) {
         headingToggle,
         headingTag,
         headingColor,
-        headingColorHover,
     } = attributes;
 
     const requiredProps = {
@@ -433,10 +440,6 @@ function Inspector(props) {
                             )}
                         </ZoloPanelBody>
 
-                        <ZoloPanelBody title={__('Add List', 'zoloblocks')} panelProps={props}>
-                            <Sortable listProfiles={listProfiles} setAttributes={setAttributes} attributes={attributes} />
-                        </ZoloPanelBody>
-
                         {headingToggle && (
                             <ZoloPanelBody title={__('Heading', 'zoloblocks')} panelProps={props}>
                                 <ZoloSelectControl
@@ -463,6 +466,10 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
+                        <ZoloPanelBody title={__('Add List', 'zoloblocks')} panelProps={props}>
+                            <Sortable listProfiles={listProfiles} setAttributes={setAttributes} attributes={attributes} />
+                        </ZoloPanelBody>
+
 
                         {preset == 'zolo-list-style-4' && (
                             <ZoloPanelBody title={__('Hover Icon', 'zoloblocks')} panelProps={props}>
@@ -483,42 +490,58 @@ function Inspector(props) {
                     <>
                         {headingToggle && (
                             <ZoloPanelBody title={__('Heading', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                                <TabPanelControl
-                                    normalComponents={
-                                        <>
-                                            <ColorControl
-                                                label={__('Color', 'zoloblocks')}
-                                                color={headingColor}
-                                                onChange={(value) => setAttributes({ headingColor: value })}
-                                            />
-                                            <TypographyDropdown
-                                                label={__('Typography', 'zoloblocks')}
-                                                typoPrefixConstant={HEADING_TYPOGRAPHY}
-                                                requiredProps={requiredProps}
-                                                max={36}
-                                            />
-                                            <ZoloCardDivider />
-                                            <ResDimensionsControl
-                                                label={__('Padding', 'zoloblocks')}
-                                                controlName={HEADING_PADDING}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={false}
-                                            />
-                                            <ResDimensionsControl
-                                                label={__('Margin', 'zoloblocks')}
-                                                controlName={HEADING_MARGIN}
-                                                requiredProps={requiredProps}
-                                                forBorderRadius={false}
-                                            />
-                                        </>
-                                    }
-                                    hoverComponents={
-                                        <ColorControl
-                                            label={__('Color', 'zoloblocks')}
-                                            color={headingColorHover}
-                                            onChange={(value) => setAttributes({ headingColorHover: value })}
-                                        />
-                                    }
+                                <ColorControl
+                                    label={__('Color', 'zoloblocks')}
+                                    color={headingColor}
+                                    onChange={(value) => setAttributes({ headingColor: value })}
+                                />
+                                <TypographyDropdown
+                                    label={__('Typography', 'zoloblocks')}
+                                    typoPrefixConstant={HEADING_TYPOGRAPHY}
+                                    requiredProps={requiredProps}
+                                    max={36}
+                                />
+                                <TextShadowControl
+                                    controlName={HEADING_TEXT_SHADOW}
+                                    requiredProps={requiredProps}
+                                    enableTransition={false}
+                                />
+                                <TextStrokeControl
+                                    controlName={HEADING_TEXT_STROKE}
+                                    requiredProps={requiredProps}
+                                    enableTransition={false}
+                                />
+                                <ZoloCardDivider />
+                                <NormalBGControl requiredProps={requiredProps} controlName={HEADING_BG} noOverlay={true} />
+                                <ResDimensionsControl
+                                    label={__('Padding', 'zoloblocks')}
+                                    controlName={HEADING_PADDING}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={HEADING_MARGIN}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={false}
+                                />
+                                <ZoloCardDivider />
+                                <BorderControl
+                                    label={__('Border', 'zoloblocks')}
+                                    controlName={HEADING_BORDER}
+                                    requiredProps={requiredProps}
+                                />
+                                <BoxShadowControl
+                                    label={__('Box Shadow', 'zoloblocks')}
+                                    controlName={HEADING_BOX_SHADOW}
+                                    requiredProps={requiredProps}
+                                />
+                                <ResDimensionsControl
+                                    label={__('Border Radius', 'zoloblocks')}
+                                    controlName={HEADING_BORDER_RADIUS}
+                                    requiredProps={requiredProps}
+                                    forBorderRadius={true}
+                                    max={100}
                                 />
                             </ZoloPanelBody>
                         )}
