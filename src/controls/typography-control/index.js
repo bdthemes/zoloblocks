@@ -16,7 +16,7 @@ import { prefix } from '../../global/constants';
 import { fontStyleOptions, fontWeightOptions, LHLS_UNITS, sizeUnitTypes, textDecorationOptions, textTransformOptions } from './constant';
 
 //googlefonts
-import { googleFonts } from './fontPicker/googleFonts';
+import { fetchGoogleFonts, getGoogleFontVariants } from './fontPicker/googleFonts';
 
 const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultFontSize, max = 136 }) => {
     const { attributes, setAttributes, objAttributes } = requiredProps;
@@ -55,14 +55,28 @@ const TypographyDropdown = ({ label, typoPrefixConstant, requiredProps, defaultF
     const [zbFontWeight, setZbFontWeight] = useState(fontWeightOptions);
 
     useEffect(() => {
-        const fontFamilyKey = (fontFamily || '').replace(/\s+/g, '-');
-        let googleFontWeight = googleFonts[fontFamilyKey] ? googleFonts[fontFamilyKey].variants : [];
-        let fontWeightVal = googleFontWeight.map((item) => ({
-            label: item,
-            value: item,
-        }));
-        const fontWeightwithDefault = [{ label: 'Default', value: '' }, ...fontWeightVal];
-        setZbFontWeight(fontWeightwithDefault);
+        if (!fontFamily) {
+            setZbFontWeight(fontWeightOptions);
+            return;
+        }
+
+        const updateWeights = () => {
+            const variants = getGoogleFontVariants(fontFamily);
+            if (variants.length > 0) {
+                const fontWeightVal = variants.map((item) => ({
+                    label: item,
+                    value: item,
+                }));
+                setZbFontWeight([{ label: 'Default', value: '' }, ...fontWeightVal]);
+            } else {
+                setZbFontWeight(fontWeightOptions);
+            }
+        };
+
+        // Ensure fonts are loaded before looking up variants
+        fetchGoogleFonts().then(() => {
+            updateWeights();
+        });
     }, [fontFamily]);
 
     const hasValueClass =
