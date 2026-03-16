@@ -641,6 +641,15 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.7.1 [March 17, 2026]
+
+#### Improvements
+- **Typography:** Enhanced typography controls and consistency across all blocks. Full Google Fonts library is now available in the typography control.
+
+#### Tweaks
+- **List Block:** Removed default Facebook icon from the repeater control.
+
 ### 2.7.0 [March 10, 2026]
 
 #### New Features
