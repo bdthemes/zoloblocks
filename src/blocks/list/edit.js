@@ -35,6 +35,9 @@ export default function Edit(props) {
         linkHoverIcon,
         globalIcon,
         showBadge,
+        headingToggle,
+        headingText,
+        headingTag,
     } = attributes;
 
     const deepCloneProfiles = cloneDeep(listProfiles);
@@ -89,6 +92,14 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
+                {headingToggle && (
+                    <RichText
+                        tagName={headingTag}
+                        className="zolo-list-heading"
+                        value={headingText}
+                        onChange={(value) => setAttributes({ headingText: value })}
+                    />
+                )}
                 <SidebarOpener clientId={clientId} />
                 {deepCloneProfiles &&
                     deepCloneProfiles.map((profile, index) => {
@@ -140,7 +151,9 @@ export default function Edit(props) {
                                                                         setAttributes({ listProfiles: newItems });
                                                                     }}
                                                                 />
-                                                                {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                                {showBadge && profile.badge && (
+                                                                    <span className="zolo-list-badge">{profile.badge}</span>
+                                                                )}
                                                             </div>
                                                         )}
                                                         {DscToggle && contentLayout !== 'horizontal' && (
@@ -194,7 +207,9 @@ export default function Edit(props) {
                                                                             setAttributes({ listProfiles: newItems });
                                                                         }}
                                                                     />
-                                                                    {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                                    {showBadge && profile.badge && (
+                                                                        <span className="zolo-list-badge">{profile.badge}</span>
+                                                                    )}
                                                                 </div>
                                                             )}
                                                         </div>
@@ -215,7 +230,9 @@ export default function Edit(props) {
                                                                         setAttributes({ listProfiles: newItems });
                                                                     }}
                                                                 />
-                                                                {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                                {showBadge && profile.badge && (
+                                                                    <span className="zolo-list-badge">{profile.badge}</span>
+                                                                )}
                                                             </div>
                                                         )}
                                                         {DscToggle && (
