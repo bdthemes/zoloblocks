@@ -2,6 +2,8 @@
 
 #### Improvements
 - **Typography:** Enhanced typography controls and consistency across all blocks. Full Google Fonts library is now available in the typography control.
+- **Heading Block:** Added margin options for improved spacing control.
+- **List Block:** Introduced heading option for better content organization.
 
 #### Tweaks
 - **List Block:** Removed default Facebook icon from the repeater control.
