@@ -17,6 +17,7 @@ import {
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
+    SEPARATOR_MARGIN,
     SUBTITLE_MARGIN,
     SUBTITLE_PADDING,
     SUBTITE_BORDER,
@@ -266,6 +267,7 @@ const attributes = {
     ...generateResRangeAttributies(SEPARATOR_WIDTH),
     ...generateResRangeAttributies(SEPARATOR_HEIGHT),
     ...generateResRangeAttributies(SEPARATOR_SPACING),
+    ...generateDimensionAttributes(SEPARATOR_MARGIN),
 
     ...generateDimensionAttributes(TITLE_MARGIN),
     ...generateDimensionAttributes(TITLE_PADDING),
