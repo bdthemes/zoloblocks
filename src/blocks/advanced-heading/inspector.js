@@ -41,6 +41,7 @@ import {
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
+    SEPARATOR_MARGIN,
     STYLES,
     ST_POSITION,
     SUBTITLE_MARGIN,
@@ -759,6 +760,12 @@ const Inspector = (props) => {
                                     min={0}
                                     max={50}
                                     step={1}
+                                />
+                                <ZoloCardDivider />
+                                <ResDimensionsControl
+                                    label={__('Margin', 'zoloblocks')}
+                                    controlName={SEPARATOR_MARGIN}
+                                    requiredProps={requiredProps}
                                 />
                             </ZoloPanelBody>
                         )}
