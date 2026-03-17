@@ -191,10 +191,10 @@
         }
     }
     .zolo-font-weight-input {
-        width: 50%;
+        width: calc(45% - 7.5px);
     }
     .zolo-font-family-input {
-        width: 80%;
+        width: calc(55% - 7.5px);
     }
 }
 
