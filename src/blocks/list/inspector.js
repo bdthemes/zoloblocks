@@ -470,7 +470,6 @@ function Inspector(props) {
                             <Sortable listProfiles={listProfiles} setAttributes={setAttributes} attributes={attributes} />
                         </ZoloPanelBody>
 
-
                         {preset == 'zolo-list-style-4' && (
                             <ZoloPanelBody title={__('Hover Icon', 'zoloblocks')} panelProps={props}>
                                 <ZoloIconPicker
