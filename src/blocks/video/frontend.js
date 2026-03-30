@@ -25,6 +25,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 popupTrigger.addEventListener('click', function (e) {
                     e.preventDefault();
+
+                    // Load iframe src if deferred
+                    const iframe = popupContent.querySelector('iframe.video-iframe');
+                    if (iframe) {
+                        let currentSrc = iframe.getAttribute('src') || iframe.getAttribute('data-src') || '';
+                        if (currentSrc && iframe.hasAttribute('data-src')) {
+                            let newSrc = currentSrc;
+                            if (newSrc.indexOf('autoplay=') !== -1) {
+                                newSrc = newSrc.replace(/autoplay=\d/, 'autoplay=1');
+                            } else {
+                                newSrc = newSrc + (newSrc.indexOf('?') !== -1 ? '&' : '?') + 'autoplay=1';
+                            }
+                            if (newSrc.indexOf('mute=') === -1 && newSrc.indexOf('muted=') === -1) {
+                                if (newSrc.indexOf('youtube') !== -1 || newSrc.indexOf('youtu.be') !== -1) {
+                                    newSrc += '&mute=1';
+                                }
+                            }
+                            iframe.setAttribute('src', newSrc);
+                            iframe.removeAttribute('data-src');
+                        }
+                    }
+
                     lightbox.open();
                 });
             }
@@ -57,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Play YouTube / Vimeo iframe — reload src with autoplay=1
                 if (iframe) {
-                    var currentSrc = iframe.getAttribute('src') || '';
+                    var currentSrc = iframe.getAttribute('src') || iframe.getAttribute('data-src') || '';
                     if (currentSrc) {
                         var newSrc;
                         if (currentSrc.indexOf('autoplay=') !== -1) {
@@ -72,6 +94,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         }
                         iframe.setAttribute('src', newSrc);
+                        if (iframe.hasAttribute('data-src')) {
+                            iframe.removeAttribute('data-src');
+                        }
                     }
                 }
             });

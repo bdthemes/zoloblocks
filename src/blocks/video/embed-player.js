@@ -105,13 +105,18 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit, thumbnailHidden = false,
                     </div>
                 );
             } else {
+                const deferIframe =
+                    !autoPlay &&
+                    ((videoLayoutType === 'inline' && showInlineThumbnail && thumbnailUrl && !thumbnailHidden) ||
+                        videoLayoutType === 'popup');
+
                 // On frontend: render the actual iframe directly
                 iframeMarkup = (
                     <iframe
                         key={`youtube-${youtubeVideoId}`}
                         style={{ width: '100%', aspectRatio: aspectRatioStyle, border: 0 }}
                         className="youtube-iframe video-iframe"
-                        src={src}
+                        {...(deferIframe ? { 'data-src': src } : { src: src })}
                         title={__('YouTube video player', 'zoloblocks')}
                         allow="accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin"
@@ -145,11 +150,16 @@ const EmbedPlayer = ({ attributes = {}, anchor, isEdit, thumbnailHidden = false,
             externalVideoUrl = rawUrl;
             openInNewTab = vimeoUrl?.openInNewTab || false;
 
+            const deferIframe =
+                !isEdit &&
+                !autoPlay &&
+                ((videoLayoutType === 'inline' && showInlineThumbnail && thumbnailUrl && !thumbnailHidden) || videoLayoutType === 'popup');
+
             iframeMarkup = (
                 <iframe
                     style={{ width: '100%', aspectRatio: aspectRatioStyle, border: 0 }}
                     className="vimeo-iframe video-iframe"
-                    src={src}
+                    {...(deferIframe ? { 'data-src': src } : { src: src })}
                     title={__('Vimeo video player', 'zoloblocks')}
                     allow="autoplay; fullscreen; picture-in-picture"
                     referrerPolicy="strict-origin-when-cross-origin"
