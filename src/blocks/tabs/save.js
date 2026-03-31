@@ -42,7 +42,6 @@ const Save = (props) => {
                         <div
                             key={index}
                             className={`tab__item zolo-tab_head-item ${tab.id === 1 ? 'active' : ''}`}
-                            tabIndex={tab.id}
                             role="tab"
                             aria-controls={`tab-content-${tab.id}`}
                             aria-selected={tab.id === 1 ? 'true' : 'false'}
@@ -86,7 +85,6 @@ const Save = (props) => {
                     verticalPreset === 'vpreset-2' ? verticalPreset : ''
                 )}
                 role="tablist"
-                tabIndex={0}
                 {...(tabActiveItemNo && {
                     'data-activeIndex': tabActiveItemNo - 1,
                 })}
