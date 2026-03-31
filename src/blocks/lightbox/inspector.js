@@ -374,7 +374,6 @@ export default function Edit(props) {
                                                     )}
                                                 />
                                             )}
-
                                         </ZoloBaseControl>
 
                                         <ImageSizes
