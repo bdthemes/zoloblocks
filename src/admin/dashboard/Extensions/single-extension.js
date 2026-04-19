@@ -5,6 +5,8 @@ import classNames from 'classnames';
 
 const { ExtensionIcons } = window?.zoloIcons;
 
+const isLicenseActive = zoloBlocks?.is_license_active === '1';
+
 const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released = true, upcoming }) => {
     const [proPanel, setProPanel] = useState(false);
 
@@ -53,9 +55,10 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
             )}
             <div
                 className={classNames('zolo-single-block', {
-                    active: value && !upcoming && isPro ? zoloBlocks?.has_pro === '1' : value && !upcoming && !isPro,
+                    active: value && !upcoming && isPro ? zoloBlocks?.has_pro === '1' && isLicenseActive : value && !upcoming && !isPro,
                     upcoming: !released,
                     ispro: isPro,
+                    'pro-locked': isPro && zoloBlocks?.has_pro === '1' && !isLicenseActive,
                 })}
             >
                 <div className="block-icon">{ExtensionIcons[icon]}</div>
@@ -141,7 +144,16 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
                                 {isPro ? (
                                     <>
                                         {zoloBlocks?.has_pro === '1' ? (
-                                            <ZoloToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
+                                            isLicenseActive ? (
+                                                <ZoloToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
+                                            ) : (
+                                                <ZoloToggleControl
+                                                    checked={value}
+                                                    onChange={() => {}}
+                                                    disabled
+                                                    __nextHasNoMarginBottom={true}
+                                                />
+                                            )
                                         ) : (
                                             <ZoloToggleControl
                                                 checked={false}

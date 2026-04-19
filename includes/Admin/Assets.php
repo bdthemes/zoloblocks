@@ -102,6 +102,7 @@ if (! class_exists('Assets')) {
                     'pro_version'    => defined('ZOLO_PRO_VERSION') ? ZOLO_PRO_VERSION : '',
                     'has_pro'        => defined('ZOLO_PRO_VERSION'),
                     'logo'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/logo.svg',
+                    'is_license_active' => function_exists('zoloblocks_pro_is_license_active') ? zoloblocks_pro_is_license_active() : false,
                     'community'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/community.svg',
                     'support'        => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/support.svg',
                     'idea'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/idea.svg',

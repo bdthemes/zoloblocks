@@ -5,6 +5,8 @@ import classnames from 'classnames';
 
 const { BlockIcons } = window?.zoloIcons;
 
+const isLicenseActive = zoloBlocks?.is_license_active === '1';
+
 const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video = '', isPro = false }) => {
     const [proPanel, setProPanel] = useState(false);
 
@@ -56,6 +58,7 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                     active: value,
                     ispro: isPro,
                     upcoming: upcoming,
+                    'pro-locked': isPro && zoloBlocks?.has_pro === '1' && !isLicenseActive,
                 })}
             >
                 <div className="block-icon">{BlockIcons[icon]}</div>
@@ -144,7 +147,11 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                                 {isPro ? (
                                     <>
                                         {zoloBlocks?.has_pro === '1' ? (
-                                            <ZoloToggleControl checked={value} onChange={onClick} />
+                                            isLicenseActive ? (
+                                                <ZoloToggleControl checked={value} onChange={onClick} />
+                                            ) : (
+                                                <ZoloToggleControl checked={value} onChange={() => {}} disabled />
+                                            )
                                         ) : (
                                             <ZoloToggleControl checked={false} onChange={() => setProPanel(true)} />
                                         )}

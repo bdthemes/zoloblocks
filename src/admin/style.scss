@@ -719,6 +719,32 @@ input.zoloblocks-search {
     }
 }
 
+.zolo-single-block.ispro.pro-locked,
+.zolo-settings-option-item.ispro.pro-locked {
+    opacity: 0.6;
+    box-shadow:
+        0 0 0 1px #e7eaf5 inset,
+        0 4px 14px rgba(0, 0, 0, 0.08);
+    background-color: rgba(245, 246, 252, 0.75) !important;
+    .block-icon {
+        background-color: #f5f8ff;
+        svg {
+            path {
+                fill: var(--zolo-dashboard-brand-color);
+            }
+        }
+    }
+    .block-switcher {
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    .block-title {
+        cursor: default;
+        pointer-events: none;
+    }
+}
+
 .zolo-single-block,
 .zolo-settings-option-item {
     &.ispro {
