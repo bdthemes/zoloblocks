@@ -60,8 +60,8 @@ if (! class_exists('ZoloEnqueues')) {
                 true
             );
 
-            // Check if Zoloblocks Pro is activated
-            $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? 'active' : 'inactive';
+            // Check if Zoloblocks Pro is activated AND license is valid
+            $zolo_pro_status = (class_exists('Zolo_Blocks_Pro') && function_exists('zoloblocks_pro_is_license_active') && zoloblocks_pro_is_license_active()) ? 'active' : 'inactive';
 
             // wp localize script
             wp_localize_script('zolo-block-localize', 'zoloSettings', [
@@ -317,8 +317,8 @@ if (! class_exists('ZoloEnqueues')) {
                 $editor_type = 'edit-widgets';
             }
 
-            // get pro status
-            $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? 'active' : 'inactive';
+            // get pro status (only active if license is valid)
+            $zolo_pro_status = (class_exists('Zolo_Blocks_Pro') && function_exists('zoloblocks_pro_is_license_active') && zoloblocks_pro_is_license_active()) ? 'active' : 'inactive';
 
 
             //this file use for js

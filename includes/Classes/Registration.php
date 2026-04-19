@@ -33,9 +33,13 @@ class Registration {
                 $version = ZOLO_VERSION;
 
                 if (isset($block['is_pro']) && $block['is_pro'] === true) {
-                    // Check if Zoloblocks Pro is activated
+                    // Check if ZoloBlocks Pro plugin class exists
                     if (!class_exists('Zolo_Blocks_Pro')) {
-                        continue; // Skip pro blocks if pro version is not activated
+                        continue; // Skip pro blocks if pro version is not installed
+                    }
+                    // Check if pro license is active
+                    if (function_exists('zoloblocks_pro_is_license_active') && !zoloblocks_pro_is_license_active()) {
+                        continue; // Skip pro blocks if license is not activated
                     }
                     $block_path = trailingslashit(ZOLO_PRO_DIR_PATH);
                     $version = ZOLO_PRO_VERSION;
