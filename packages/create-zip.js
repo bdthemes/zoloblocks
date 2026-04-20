@@ -47,11 +47,35 @@ if ( hasPackageProp( 'files' ) ) {
 	);
 }
 
-files.filter((file) => file !== 'package.json' && file !== 'README.md').forEach((file) => {
-    stdout.write(`  Adding \`${file}\`.\n`);
-    const zipDirectory = join(name, dirname(file));
-    zip.addLocalFile(file, zipDirectory !== '.' ? zipDirectory : name);
-});
+const EXCLUDE_BASENAMES = new Set([
+    'package.json',
+    'README.md',
+    '.DS_Store',
+    '.editorconfig',
+    '.gitignore',
+    '.distignore',
+    '.gitattributes',
+    'Thumbs.db',
+]);
+
+files
+    .filter((file) => {
+        // Drop any hidden file / path segment (e.g. .DS_Store, .github/..., .git/...).
+        const segments = file.split(/[\\/]/);
+        if (segments.some((seg) => seg.startsWith('.'))) {
+            return false;
+        }
+        // Drop archive artifacts that should never be bundled.
+        if (/\.(zip|tar\.gz|sql)$/i.test(file)) {
+            return false;
+        }
+        return !EXCLUDE_BASENAMES.has(segments[segments.length - 1]);
+    })
+    .forEach((file) => {
+        stdout.write(`  Adding \`${file}\`.\n`);
+        const zipDirectory = join(name, dirname(file));
+        zip.addLocalFile(file, zipDirectory !== '.' ? zipDirectory : name);
+    });
 
 zip.writeZip( `${ name }.zip` );
 stdout.write( `\nDone. \`${ name }.zip\` is ready! 🎉\n` );

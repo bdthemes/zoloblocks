@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $zolo_commentNumber       = '';
 $zolo_post_comment_number = $zolo_result->comment_number ?? '';

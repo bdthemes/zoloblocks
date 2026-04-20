@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 return apply_filters('zolo_extensions', [
     'cursors'          => [
         'name'   => 'cursors',
