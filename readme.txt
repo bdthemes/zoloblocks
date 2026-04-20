@@ -1,60 +1,45 @@
-=== ZoloBlocks - Gutenberg Block Editor Plugin with Advanced Blocks, Dynamic Content, Templates & Patterns ===
+=== ZoloBlocks ===
 Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, shamim496
 Donate link: http://zoloblocks.com/
-Tags: blocks, editor, gutenberg, gutenberg blocks, dynamic content
+Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.1
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.7.1
+Stable tag: 2.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Empowering Gutenberg block editor to help you create WordPress websites with 55+ free Advanced blocks, 300+ patterns, 100+ ready pages and more.
+ZoloBlocks adds a library of advanced blocks, patterns, and page templates to the WordPress block editor.
 
 == Description ==
 
-- Best plugin to enhance your **WordPress Gutenberg Block Editor** experience with **ZoloBlocks** (Zolo Blocks)
-- **65+ free blocks:** Mega menu, Advanced Heading, Accordion, and more from the Zolo Blocks collection
-- Helps you build professional website | **No coding required** with Zolo Block Builder
-- **5 out of 5 ratings** on WordPress Repository for ZoloBlocks (Zolo-Blocks)
-- Premium support with **4.8 customer satisfaction** on [**Trustpilot**](https://www.trustpilot.com/review/bdthemes.com)
+ZoloBlocks is a collection of additional blocks, patterns, and page templates for the WordPress block editor. It helps you design pages using the native editor without needing a third-party page builder.
 
-[**Free Demo**](https://zoloblocks.com/demo/) | [**ZoloBlocks Pro**](https://zoloblocks.com/pricing) | [**Documentation**](https://bdthemes.com/knowledge-base-zoloblocks/)
+[**Live Demo**](https://zoloblocks.com/demo/) | [**Pro Version**](https://zoloblocks.com/pricing) | [**Documentation**](https://bdthemes.com/knowledge-base-zoloblocks/)
 
-== ZoloBlocks - A WordPress Gutenberg Block Editor Plugin for Creating Websites within 15 Minutes! ==
+== What ZoloBlocks Provides ==
 
-ZoloBlocks (also known as Zolo Blocks, Zolo-Blocks) is a WordPress Gutenberg block editor plugin that empowers you in your web creation process. The Zolo Block Builder delivers you free blocks, pre-made pages, and patterns. With this Zolo WordPress blocks plugin, you've got everything below for faster website design:
+- A library of advanced blocks that extend the default WordPress block editor.
+- Pre-designed patterns and page templates that you can insert into your pages.
+- Full Site Editing compatibility with block themes.
+- Dynamic content options for displaying site, post, or user data.
+- Query loop options for listing posts, products, or custom post types.
+- Animation and visual effect options for supported blocks.
+- Optional AI text generation to help draft headings and paragraphs (uses a third-party service, see "External services" below).
+- Pattern import and export to reuse designs across sites.
 
-✅ 65+ Unique, creative and advanced Zolo Gutenberg blocks
-✅ Full Site Editing with Zolo Block Builder
-✅ Dynamic Content through ZoloBlocks
-✅ Easy-to-use Zolo Blocks interface
-✅ Animations and effects in Zolo-Blocks
-✅ Media and content customization with Zolo block builder
-✅ Visual and styling options in ZoloBlocks
-✅ A library of 100+ pre-built pages and 300+ patterns from Zolo Blocks
+== Key Features ==
 
-Unlock a better page-building experience in Gutenberg editor with ZoloBlocks (Zolo Blocks). You don't need other page builders.
+- **Layout Building:** Create page layouts using pre-built sections and templates.
+- **Responsive Containers:** Adjust layouts for mobile, tablet, and desktop screens.
+- **Mega Menu:** Build multi-level navigation menus.
+- **Dynamic Content:** Display site, post, or user data inside blocks.
+- **Query Loop:** List posts or custom post types with flexible layouts.
+- **Animation and Effects:** Add entrance and scroll-based animations on supported blocks.
+- **AI Text Generation:** Optionally generate draft text inside the editor (third-party service, see "External services").
+- **Pattern Import / Export:** Save and reuse designs across pages or sites.
 
-== Key Features - Create a Complete Website Experience with ZoloBlocks ==
-
-- **One-Click Layout Building 🖱️:** Quickly create structured page layouts with pre-built sections and templates using Zolo Blocks.
-
-- **Responsive Container for Mobile, Tablet, Desktop📱💻:** Design flexible layouts that adapt seamlessly to different screen sizes with the Zolo block builder.
-
-- **Mega Menu Builder:** Create interactive, multi-level navigation menus to enhance website usability with ZoloBlocks.
-
-- **Dynamic Content 🔄:** Automatically update and display content based on user interactions or external data using Zolo-Blocks.
-
-- **Query Loop Builder 🔁:** Customize query loops to display specific content dynamically & categorically with Zolo WordPress blocks.
-
-- **Animation and Effects 🎭:** Enhance user engagement with smooth visual effects and animations from the ZoloBlocks collection.
-
-- **AI Text Generation 🤖:** Automatically generate engaging content to speed up writing processes with Zolo Blocks AI.
-
-- **Pattern Import and Export 📁:** Save and reuse design patterns across multiple pages or websites with the Zolo block builder.
-
-Explore how ZoloBlocks (Zolo Blocks) works in Gutenberg Blocks Editor to let you create a website effortlessly.
+Introductory videos:
 
 https://youtu.be/CxzwPClaZm4
 
@@ -552,6 +537,54 @@ Explore the best free addons for Elementor and Gutenberg to boost your site with
 
 * **[Swift Checkout for WooCommerce](https://wordpress.org/plugins/swift-checkout/)** - Simplify the WooCommerce checkout process to improve user experience and boost conversion rates.
 
+== External services ==
+
+This plugin connects to several third-party services. Each service is only contacted when the related feature is used or configured. No personal data is sent unless the corresponding feature is enabled or the user interacts with it.
+
+**1. Google reCAPTCHA**
+Used by the Form block when the site administrator enables reCAPTCHA protection and provides site / secret keys in ZoloBlocks settings.
+- What is sent: the reCAPTCHA token generated in the visitor's browser, the visitor's IP address, and the configured secret key, sent to `https://www.google.com/recaptcha/api/siteverify` on form submission. The Google reCAPTCHA JavaScript (`https://www.google.com/recaptcha/api.js`) is loaded on pages containing a form when reCAPTCHA is enabled.
+- When: only when reCAPTCHA is enabled and a form is submitted.
+- Provider: Google LLC. Terms: https://policies.google.com/terms  Privacy: https://policies.google.com/privacy
+
+**2. Google Maps**
+Used by the Google Map block when added to a page.
+- What is sent: the configured Google Maps API key and a request to load the Google Maps JavaScript API from `https://maps.googleapis.com/maps/api/js`. The browser of any visitor viewing a page containing a Google Map block will load map tiles from Google.
+- When: only when a Google Map block is present on a page.
+- Provider: Google LLC. Terms: https://cloud.google.com/maps-platform/terms  Privacy: https://policies.google.com/privacy
+
+**3. Google Fonts list (WordPress.org mirror)**
+Used by the typography controls to display the list of available Google Fonts inside the block editor.
+- What is sent: a simple HTTP GET request (no personal data) to `https://s.w.org/images/fonts/wp-7.0/collections/google-fonts-with-preview.json` to retrieve the list of Google Fonts.
+- When: only inside the WordPress admin / block editor when the typography control is opened.
+- Provider: WordPress.org. Terms and privacy: https://wordpress.org/about/privacy/
+
+**4. Zolo AI (AI text generation by Sigmative)**
+Used by the optional AI text generation feature inside the block editor.
+- What is sent: the prompt text entered by the site administrator in the editor, and the API key configured in ZoloBlocks settings, sent to `https://ai.sigmative.com/api/prompt/v1/generation/chat/completions`.
+- When: only when an administrator clicks the AI generation action in the editor.
+- Provider: Sigmative. Terms: https://sigmative.com/terms  Privacy: https://sigmative.com/privacy-policy
+
+**5. Biggopti (optional onboarding / recommendations)**
+Used by the ZoloBlocks admin dashboard to fetch optional product recommendation data.
+- What is sent: a request (no personal data) to `https://api.sigmative.io/prod/store/api/biggopti/api-data-records`.
+- When: only when an administrator opens the ZoloBlocks admin dashboard page.
+- Provider: Sigmative. Terms: https://sigmative.com/terms  Privacy: https://sigmative.com/privacy-policy
+
+== Source code ==
+
+ZoloBlocks uses a build process (npm + webpack) to produce minified JavaScript and CSS inside the `build/` and `assets/` folders.
+
+The non-compiled (human-readable) source code for every script and style is included in the plugin itself, inside the `src/` directory of this plugin. You can build the production files locally by running:
+
+`npm install`
+`npm run build`
+
+The public source code repository and build instructions are also available at:
+https://github.com/bdthemes/zoloblocks
+
+Third-party libraries used in build output are bundled through npm and their source and licenses can be inspected in the `package.json` file shipped with the plugin.
+
 == Installation ==
 
 = Plugin Installation Method: =
@@ -641,6 +674,16 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.7.2 [April 20, 2026]
+
+#### Compliance / Improvements
+- **Plugin Name:** Renamed display title to "ZoloBlocks" to follow WordPress.org plugin naming guidelines.
+- **Readme:** Rewrote description to remove promotional and keyword-stuffed language.
+- **Readme:** Added "External services" section documenting every third-party service used by the plugin, along with terms and privacy policy links.
+- **Readme:** Added "Source code" section with build instructions and a link to the public source repository.
+- **Settings:** Added proper `sanitize_callback` to every `register_setting()` call in the admin Settings.
+- **Admin Menu:** Lowered the top-level ZoloBlocks admin menu position so it no longer competes with WordPress core items.
 
 ### 2.7.1 [March 17, 2026]
 

@@ -3,11 +3,11 @@
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://zoloblocks.com/
- * Version: 2.7.1
+ * Version: 2.7.2
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zoloblocks
- * Description: A collection of custom Gutenberg blocks to design your webpages with ease.
+ * Description: A collection of custom blocks for the WordPress block editor to help you design pages with ease.
  * Domain Path: /languages
  * Requires at least: 6.1
  * Requires PHP: 7.4
@@ -66,7 +66,7 @@ final class ZoloBlocks {
         define('ZOLO_DIR', __DIR__);
         define('ZOLO_NAMESPACE', 'zoloblocks');
         define('ZOLO_SLUG', 'zoloblocks');
-        define('ZOLO_VERSION', '2.7.1'); 
+        define('ZOLO_VERSION', '2.7.2');
         define('ZOLO_DIR_PATH', plugin_dir_path(__FILE__));
         define('ZOLO_ADMIN_URL', plugin_dir_url(__FILE__));
         define('ZOLO_WP_VERSION', (float) get_bloginfo('version'));
