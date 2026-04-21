@@ -6,6 +6,8 @@
 
 namespace Zolo\API;
 
+defined('ABSPATH') || exit;
+
 use Zolo\Traits\SingletonTrait;
 use WP_REST_Controller;
 use WP_REST_Request;

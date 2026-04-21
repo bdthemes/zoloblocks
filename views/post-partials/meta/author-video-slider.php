@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 $zolo_author           = '';
 $zolo_author_posts_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
 $zolo_author_name      = $zolo_result->author ?? '';

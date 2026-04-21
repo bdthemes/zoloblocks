@@ -2,6 +2,8 @@
 
 namespace Zolo\Admin;
 
+defined('ABSPATH') || exit;
+
 use Zolo\Traits\SingletonTrait;
 
 /**
@@ -23,10 +25,7 @@ class Biggopties {
 	 * Dismiss Admin API Biggopti.
 	 */
 	public function zolo_admin_api_biggopti_dismiss() {
-		$nonce = (isset($_POST['_wpnonce'])) ? sanitize_text_field($_POST['_wpnonce']) : '';
-		$display_id = (isset($_POST['display_id'])) ? sanitize_text_field($_POST['display_id']) : '';
-		$id   = (isset($_POST['id'])) ? esc_attr($_POST['id']) : '';
-		$meta = (isset($_POST['meta'])) ? esc_attr($_POST['meta']) : '';
+		$nonce = isset($_POST['_wpnonce']) ? sanitize_text_field(wp_unslash($_POST['_wpnonce'])) : '';
 
 		if (! wp_verify_nonce($nonce, 'zoloblocks')) {
 			wp_send_json_error();
@@ -35,6 +34,10 @@ class Biggopties {
 		if (! current_user_can('manage_options')) {
 			wp_send_json_error();
 		}
+
+		$display_id = isset($_POST['display_id']) ? sanitize_text_field(wp_unslash($_POST['display_id'])) : '';
+		$id         = isset($_POST['id']) ? sanitize_text_field(wp_unslash($_POST['id'])) : '';
+		$meta       = isset($_POST['meta']) ? sanitize_key(wp_unslash($_POST['meta'])) : '';
 
 		// Prefer display_id; fallback: extract from id (bdt-admin-api-biggopti-{display_id})
 		if (empty($display_id) && !empty($id)) {
@@ -93,7 +96,8 @@ class Biggopties {
 		}
 
 		$current_sector = '';
-		if (isset($_GET['page']) && $_GET['page'] === 'zoloblocks') {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only admin screen check, no data processed.
+		if (isset($_GET['page']) && 'zoloblocks' === sanitize_key(wp_unslash($_GET['page']))) {
 			$current_sector = 'plugin_dashboard';
 		}
 

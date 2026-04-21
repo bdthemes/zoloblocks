@@ -5,11 +5,11 @@ namespace Zolo\Blocks;
 use Zolo\Traits\SingletonTrait;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit;
 }
 
-if ( ! class_exists( 'ChartsBlock' ) ) {
+if (! class_exists('ChartsBlock')) {
 
 	/**
 	 * Class ChartsBlock
@@ -28,7 +28,7 @@ if ( ! class_exists( 'ChartsBlock' ) ) {
 		 * @return void
 		 */
 		public function __construct() {
-			add_filter( 'render_block_zolo/charts', [ $this, 'render_charts_block' ], 10, 2 );
+			add_filter('render_block_zolo/charts', [$this, 'render_charts_block'], 10, 2);
 		}
 
 		/**
@@ -38,7 +38,7 @@ if ( ! class_exists( 'ChartsBlock' ) ) {
 		 *
 		 * @return string
 		 */
-		public function render_charts_block( $block_content, $block ) {
+		public function render_charts_block($block_content, $block) {
 			$attrs = $block['attrs'] ?? [];
 
 			$unique_id      = $attrs['uniqueId'] ?? '';
@@ -46,29 +46,29 @@ if ( ! class_exists( 'ChartsBlock' ) ) {
 			$zolo_id        = $attrs['zoloId'] ?? '';
 
 			// Extra classes
-			$class_str = ! empty( $parent_classes ) ? implode( ' ', array_filter( $parent_classes ) ) : '';
+			$class_str = ! empty($parent_classes) ? implode(' ', array_filter($parent_classes)) : '';
 			$classes   = "zolo-block-charts {$unique_id} {$class_str}";
 
 			// Default Data
 			$default_bar_series = [
 				[
 					'name' => 'label 1',
-					'data' => [ 30, 40, 35, 50, 200, 210, 100, 49, 60, 70, 91, 125 ],
+					'data' => [30, 40, 35, 50, 200, 210, 100, 49, 60, 70, 91, 125],
 				],
 				[
 					'name' => 'label 2',
-					'data' => [ 35, 45, 50, 60, 220, 235, 120, 55, 65, 75, 96, 130 ],
+					'data' => [35, 45, 50, 60, 220, 235, 120, 55, 65, 75, 96, 130],
 				],
 				[
 					'name' => 'label 3',
-					'data' => [ 45, 55, 60, 70, 240, 255, 130, 65, 75, 85, 106, 140 ],
+					'data' => [45, 55, 60, 70, 240, 255, 130, 65, 75, 85, 106, 140],
 				],
 			];
 
-			$default_bar_labels = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+			$default_bar_labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-			$default_pie_series = [ 44, 55, 13, 43, 22 ];
-			$default_pie_labels = [ 'Team A', 'Team B', 'Team C', 'Team D', 'Team E' ];
+			$default_pie_series = [44, 55, 13, 43, 22];
+			$default_pie_labels = ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'];
 
 			// Title Object defaults
 			$title_defaults = [
@@ -154,21 +154,21 @@ if ( ! class_exists( 'ChartsBlock' ) ) {
 
 				// Scalar display attributes
 				'showTitle'       => $attrs['showTitle'] ?? false,
-				'titleObject'     => array_replace_recursive( $title_defaults, $attrs['titleObject'] ?? [] ),
+				'titleObject'     => array_replace_recursive($title_defaults, $attrs['titleObject'] ?? []),
 
 				'showSubTitle'    => $attrs['showSubTitle'] ?? false,
-				'subTitleObject'  => array_replace_recursive( $subtitle_defaults, $attrs['subTitleObject'] ?? [] ),
+				'subTitleObject'  => array_replace_recursive($subtitle_defaults, $attrs['subTitleObject'] ?? []),
 
 				'showLegend'      => $attrs['showLegend'] ?? true,
-				'legendObject'    => array_replace_recursive( $legend_defaults, $attrs['legendObject'] ?? [] ),
+				'legendObject'    => array_replace_recursive($legend_defaults, $attrs['legendObject'] ?? []),
 
 				'showTooltip'     => $attrs['showTooltip'] ?? true,
-				'tooltipObject'   => array_replace_recursive( $tooltip_defaults, $attrs['tooltipObject'] ?? [] ),
+				'tooltipObject'   => array_replace_recursive($tooltip_defaults, $attrs['tooltipObject'] ?? []),
 
 				'showGrid'        => $attrs['showGrid'] ?? true,
 				'showGridY'       => $attrs['showGridY'] ?? false,
 				'showGridX'       => $attrs['showGridX'] ?? true,
-				'gridObject'      => array_replace_recursive( $grid_defaults, $attrs['gridObject'] ?? [] ),
+				'gridObject'      => array_replace_recursive($grid_defaults, $attrs['gridObject'] ?? []),
 
 				'showDropshadow'  => $attrs['showDropshadow'] ?? false,
 				'pieChartColor'   => $attrs['pieChartColor'] ?? [],
@@ -189,13 +189,11 @@ if ( ! class_exists( 'ChartsBlock' ) ) {
 				'uniqueId'        => $unique_id,
 			];
 
-			$id_attr = ! empty( $zolo_id ) ? ' id="' . esc_attr( $zolo_id ) . '"' : '';
-
 			ob_start();
-			?>
-			<div class="<?php echo esc_attr( $classes ); ?>"<?php echo $id_attr; ?> data-options='<?php echo esc_attr( wp_json_encode( $chart_options ) ); ?>'>
+?>
+			<div class="<?php echo esc_attr($classes); ?>" <?php echo ! empty($zolo_id) ? ' id="' . esc_attr($zolo_id) . '"' : ''; ?> data-options='<?php echo esc_attr(wp_json_encode($chart_options)); ?>'>
 			</div>
-			<?php
+<?php
 			return ob_get_clean();
 		}
 	}

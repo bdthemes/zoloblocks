@@ -2,6 +2,8 @@
 
 namespace Zolo\Classes;
 
+defined('ABSPATH') || exit;
+
 use Zolo\Traits\SingletonTrait;
 
 class Maintenance {

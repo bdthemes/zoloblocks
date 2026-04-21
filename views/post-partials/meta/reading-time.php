@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $zolo_time = '';
 $zolo_readingTime = $zolo_result->reading_time ?? '';

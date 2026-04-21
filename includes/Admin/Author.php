@@ -2,6 +2,8 @@
 
 namespace Zolo\Admin;
 
+defined('ABSPATH') || exit;
+
 use Zolo\Traits\SingletonTrait;
 
 /**

@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 use Zolo\Helpers\ZoloHelpers;
 
 $zolo_topclass = 'zolo-post-comments-wrap';
