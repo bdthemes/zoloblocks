@@ -141,20 +141,6 @@ Used by the ZoloBlocks admin dashboard to fetch optional product recommendation 
 - When: only when an administrator opens the ZoloBlocks admin dashboard page.
 - Provider: Sigmative. Terms: https://sigmative.com/terms  Privacy: https://sigmative.com/privacy-policy
 
-== Source code ==
-
-ZoloBlocks uses a build process (npm + webpack) to produce minified JavaScript and CSS inside the `build/` and `assets/` folders.
-
-The non-compiled (human-readable) source code for every script and style is included in the plugin itself, inside the `src/` directory of this plugin. You can build the production files locally by running:
-
-`npm install`
-`npm run build`
-
-The public source code repository and build instructions are also available at:
-https://github.com/bdthemes/zoloblocks
-
-Third-party libraries used in build output are bundled through npm and their source and licenses can be inspected in the `package.json` file shipped with the plugin.
-
 == Installation ==
 
 = Plugin Installation Method: =
