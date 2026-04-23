@@ -179,32 +179,8 @@ if (! class_exists('Dashboard')) {
                 __('Form Entries', 'zoloblocks'),
                 __('Form Entries', 'zoloblocks'),
                 'manage_options',
-                'zolo_form_entries_submenu',
-                function () {
-                    wp_safe_redirect(admin_url('edit.php?post_type=zolo_form_entries'));
-                    exit;
-                }
+                'edit.php?post_type=zolo_form_entries'
             );
-
-            // if (!class_exists('Zolo_Blocks_Pro')) {
-            //     add_submenu_page(
-            //         'zoloblocks',
-            //         __('Upgrade', 'zoloblocks'),
-            //         __('Upgrade', 'zoloblocks'),
-            //         'manage_options',
-            //         'zolo-pro',
-            //         function () {
-            //             echo '<script>document.location.href = "https://zoloblocks.com/pricing/";</script>';
-            //         }
-            //     );
-            //     // add_submenu_page(
-            //     //     'zoloblocks',
-            //     //     __('Get Pro Version', 'zoloblocks'),
-            //     //     '<span style="color: #ef476f; font-weight: 600;">' . __('Black Friday Limited Offer Up To 87%', 'zoloblocks') . '</span>',
-            //     //     'manage_options',
-            //     //     'https://bdthemes.com/deals/?utm_source=WordPress_org&utm_medium=bfcm_cta&utm_campaign=zoloblocks'
-            //     // );
-            // }
         }
 
         /**
