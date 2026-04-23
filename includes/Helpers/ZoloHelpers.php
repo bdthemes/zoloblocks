@@ -629,6 +629,35 @@ class ZoloHelpers {
     }
 
     /**
+     * Sanitize dynamic block CSS before inline output (style tag / wp_add_inline_style).
+     *
+     * @param string $css Raw CSS from block attributes.
+     * @return string
+     */
+    public static function zolo_sanitize_inline_css($css) {
+        if (! is_string($css) || '' === $css) {
+            return '';
+        }
+
+        $css = wp_check_invalid_utf8($css);
+        // Strip HTML/script payloads; CSS should not contain tags.
+        $css = wp_strip_all_tags($css);
+
+        $blocked = [
+            'expression\s*\(',
+            'javascript\s*:',
+            'vbscript\s*:',
+            '@import',
+            'behavior\s*:',
+        ];
+        foreach ($blocked as $pattern) {
+            $css = preg_replace('/' . $pattern . '/i', '', $css);
+        }
+
+        return $css;
+    }
+
+    /**
      * Get nonce id
      *
      * @return string|null

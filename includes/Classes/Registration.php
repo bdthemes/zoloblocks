@@ -68,10 +68,10 @@ class Registration {
      */
     public function render_callback($attributes, $content, $block, $render) {
         if ($render !== false) {
-            return $render->render($attributes, $content, $block);
+            return wp_kses_post($render->render($attributes, $content, $block));
         }
 
-        return $content;
+        return is_string($content) ? wp_kses_post($content) : '';
     }
 
     /**

@@ -5,7 +5,7 @@ Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.1
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.7.2
+Stable tag: 2.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,16 +124,16 @@ Used by the Google Map block when added to a page.
 - Provider: Google LLC. Terms: https://cloud.google.com/maps-platform/terms  Privacy: https://policies.google.com/privacy
 
 **3. Google Fonts list (WordPress.org mirror)**
-Used by the typography controls to display the list of available Google Fonts inside the block editor.
+Optional. Used by the typography controls only when a site administrator enables **Settings → Editor Options → Load Google Fonts catalog (WordPress.org mirror)** in the ZoloBlocks dashboard.
 - What is sent: a simple HTTP GET request (no personal data) to `https://s.w.org/images/fonts/wp-7.0/collections/google-fonts-with-preview.json` to retrieve the list of Google Fonts.
-- When: only inside the WordPress admin / block editor when the typography control is opened.
+- When: only after the option is enabled, and only when the block editor needs to refresh the font list.
 - Provider: WordPress.org. Terms and privacy: https://wordpress.org/about/privacy/
 
 **4. Zolo AI (AI text generation by Sigmative)**
 Used by the optional AI text generation feature inside the block editor.
 - What is sent: the prompt text entered by the site administrator in the editor, and the API key configured in ZoloBlocks settings, sent to `https://ai.sigmative.com/api/prompt/v1/generation/chat/completions`.
 - When: only when an administrator clicks the AI generation action in the editor.
-- Provider: Sigmative. Terms and Privacy: https://sigmative.com/privacy-policy
+- Provider: Sigmative. Privacy: https://sigmative.com/privacy-policy
 
 == Installation ==
 
@@ -224,6 +224,15 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.7.3
+
+#### Compliance
+- **WordPress.org review:** Form “Save response” and “Save & send” actions work in this plugin without a separate Pro plugin; form entries are available under Form Entries in the admin menu.
+- **Privacy:** Google Fonts catalog fetch from WordPress.org is off by default and can be enabled under ZoloBlocks → Settings → Editor Options.
+- **Privacy:** Removed promotional admin script code that called a remote recommendations API.
+- **Security:** Escaped block render output and dynamic CSS where flagged; reCAPTCHA site key is escaped in the form block output filter.
+- **Readme:** Documented opt-in for the Google Fonts list; clarified Sigmative privacy link.
 
 ### 2.7.2 [April 20, 2026]
 

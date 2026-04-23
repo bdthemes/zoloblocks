@@ -56,7 +56,10 @@ class StyleGenerator {
     public function output_dynamic_styles() {
         $dynamic_styles = apply_filters('zolo_dynamic_styles', $this->dynamic_styles);
         if (!empty($dynamic_styles)) {
-            echo '<style id="zolo-block-inline-styles">' . $dynamic_styles . '</style>'; // phpcs:ignore
+            $safe_css = ZoloHelpers::zolo_sanitize_inline_css($dynamic_styles);
+            if ('' !== $safe_css) {
+                echo '<style id="zolo-block-inline-styles">' . $safe_css . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            }
         }
     }
 

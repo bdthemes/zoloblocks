@@ -269,6 +269,20 @@ if (! class_exists('Settings')) {
                     'sanitize_callback' => 'sanitize_text_field',
                 ]
             );
+
+            // Opt-in: load Google Fonts catalog from WordPress.org mirror (no request when disabled).
+            register_setting(
+                'zolo_blocks_settings_group',
+                'zolo_allow_remote_google_fonts_catalog',
+                [
+                    'type'              => 'boolean',
+                    'default'           => false,
+                    'show_in_rest'      => [
+                        'schema' => ['type' => 'boolean'],
+                    ],
+                    'sanitize_callback' => [$this, 'sanitize_bool'],
+                ]
+            );
             // register zolo zoloai api key setting
             register_setting(
                 'zolo_blocks_settings_group',

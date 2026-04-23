@@ -40,7 +40,11 @@ if (! class_exists('Recaptcha')) {
                     if (! $recaptcha_site_key) {
                         $recaptcha_site_key = '';
                     }
-                    $block_content = str_replace('<button', '<button data-sitekey="' . $recaptcha_site_key . '"', $block_content);
+                    $block_content = str_replace(
+                        '<button',
+                        '<button data-sitekey="' . esc_attr($recaptcha_site_key) . '"',
+                        $block_content
+                    );
                 }
             }
 

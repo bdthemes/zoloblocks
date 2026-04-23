@@ -69,6 +69,10 @@ class GoogleFonts {
      * @return WP_REST_Response|WP_Error
      */
     public function get_google_fonts() {
+        if (! get_option('zolo_allow_remote_google_fonts_catalog', false)) {
+            return new WP_REST_Response(['font_families' => []], 200);
+        }
+
         // Try to get cached data first
         $cached = get_transient(self::CACHE_KEY);
 

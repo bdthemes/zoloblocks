@@ -63,26 +63,22 @@ if (!class_exists('Form')) {
 
                 if ($post_id) {
                     $data = $this->validate_mail_data($post_id, $form_data);
-                    if ($data['form_settings']['notificationType'] === 'send_mail') {
+                    $notification_type = $data['form_settings']['notificationType'] ?? 'send_mail';
+
+                    if ($notification_type === 'send_mail') {
                         if ($this->send_mail($data)) {
-                            if (!class_exists('Zolo_Blocks_Pro')) {
-                                $this->save_form_entries($data);
-                            }
+                            $this->save_form_entries($data);
                             $this->success_response($data['submission_settings']['successMessage']);
                         } else {
                             $this->error_response($data['submission_settings']['failMessage']);
                         }
-                    }
-                    // TODO: Need to move the code below to Zolo_Blocks_Pro
-                    if ($data['form_settings']['notificationType'] === 'save_response' && class_exists('Zolo_Blocks_Pro')) {
+                    } elseif ($notification_type === 'save_response') {
                         if ($this->save_form_entries($data)) {
                             $this->success_response($data['submission_settings']['successMessage']);
                         } else {
                             $this->error_response($data['submission_settings']['failMessage']);
                         }
-                    }
-                    // TODO: Need to move the code below to Zolo_Blocks_Pro
-                    if ($data['form_settings']['notificationType'] === 'save_send' && class_exists('Zolo_Blocks_Pro')) {
+                    } elseif ($notification_type === 'save_send') {
                         if ($this->send_mail($data) && $this->save_form_entries($data)) {
                             $this->success_response($data['submission_settings']['successMessage']);
                         } else {
@@ -217,11 +213,6 @@ if (!class_exists('Form')) {
                 'emailBCC' => '',
                 'emailSubject' => 'New Form Submission',
             ]);
-
-            // TODO: Need to move the code below to Zolo_Blocks_Pro and change the notificationType with a filter
-            if (!class_exists('Zolo_Blocks_Pro')) {
-                $form_settings['notificationType'] = 'send_mail';
-            }
 
             $submission_settings = wp_parse_args($submission_settings, [
                 'successType' => 'message',
