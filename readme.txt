@@ -133,13 +133,7 @@ Used by the typography controls to display the list of available Google Fonts in
 Used by the optional AI text generation feature inside the block editor.
 - What is sent: the prompt text entered by the site administrator in the editor, and the API key configured in ZoloBlocks settings, sent to `https://ai.sigmative.com/api/prompt/v1/generation/chat/completions`.
 - When: only when an administrator clicks the AI generation action in the editor.
-- Provider: Sigmative. Terms: https://sigmative.com/terms  Privacy: https://sigmative.com/privacy-policy
-
-**5. Biggopti (optional onboarding / recommendations)**
-Used by the ZoloBlocks admin dashboard to fetch optional product recommendation data.
-- What is sent: a request (no personal data) to `https://api.sigmative.io/prod/store/api/biggopti/api-data-records`.
-- When: only when an administrator opens the ZoloBlocks admin dashboard page.
-- Provider: Sigmative. Terms: https://sigmative.com/terms  Privacy: https://sigmative.com/privacy-policy
+- Provider: Sigmative. Terms and Privacy: https://sigmative.com/privacy-policy
 
 == Installation ==
 

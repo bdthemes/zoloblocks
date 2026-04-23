@@ -30,17 +30,17 @@ class ZoloHelpers {
      * ZoloHelpers constructor.
      */
     private function __construct() {
-        add_filter('admin_body_class', [$this, 'zoloblocks_editor_body_class']);
-        add_filter('body_class', [$this, 'zoloblocks_frontend_body_class']);
+        add_filter('admin_body_class', [$this, 'zolo_editor_body_class']);
+        add_filter('body_class', [$this, 'zolo_frontend_body_class']);
     }
-    public function zoloblocks_editor_body_class($classes) {
+    public function zolo_editor_body_class($classes) {
         // Check if we are on editing screen in WordPress admin
         if (is_admin() && isset($_GET['action']) && $_GET['action'] === 'edit') { // phpcs:ignore
             $classes .= ' zolo-editor';
         }
         return $classes;
     }
-    public function zoloblocks_frontend_body_class(array $classes) {
+    public function zolo_frontend_body_class(array $classes) {
         $theme = wp_get_theme();
         $theme_type = wp_is_block_theme() ? 'block-theme' : 'classic-theme';
         $theme_name = $theme->get('TextDomain');
@@ -659,18 +659,18 @@ class ZoloHelpers {
      */
     public static function sanitize_html_tag($tag, $default = 'h2') {
         $allowed_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'];
-        
+
         // Remove whitespace and convert to lowercase
         $tag = strtolower(trim($tag));
-        
+
         // Use tag_escape to remove any HTML/attributes
         $tag = tag_escape($tag);
-        
+
         // Whitelist validation - only allow specific tags
         if (!in_array($tag, $allowed_tags, true)) {
             return $default; // Default fallback
         }
-        
+
         return $tag;
     }
 
@@ -729,7 +729,7 @@ class ZoloHelpers {
      *
      * @return mixed
      */
-    public static function zoloblocks_get_option($option, $section, $default = '') {
+    public static function zolo_get_option($option, $section, $default = '') {
 
         $options = get_option($section);
         if (isset($options) && is_array($options)) {

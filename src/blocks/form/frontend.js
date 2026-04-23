@@ -123,7 +123,7 @@ function setupFormHandlers(form) {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: new URLSearchParams({
-                    action: 'send_form_data',
+                    action: 'zolo_send_form_data',
                     formData: dataString,
                 }),
             })
