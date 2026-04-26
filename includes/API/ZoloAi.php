@@ -78,8 +78,6 @@ class ZoloAi extends WP_REST_Controller {
                 ],
                 'body'    => wp_json_encode($payload),
                 'timeout' => 30,
-                'sslverify' => false, // Disable SSL verification
-
             ]
         );
 

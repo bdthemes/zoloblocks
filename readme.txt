@@ -50,27 +50,6 @@ Website designers, freelancers, agencies, bloggers, content creators, small busi
 
 The team behind ZoloBlocks ships regular updates. For help, [contact support](https://bdthemes.com/support/). Visit [BdThemes](https://bdthemes.com/) for more plugins and documentation.
 
-== Other Plugins by BdThemes ==
-
-* [Element Pack Lite](https://wordpress.org/plugins/bdthemes-element-pack-lite/) — Elementor widgets and templates.
-* [Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/) — Slider builder for Elementor.
-* [Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/) — Post layouts and carousels for Elementor.
-
-== Source code ==
-
-The compiled JavaScript and CSS files in the `build/` and `assets/` directories are generated from the source code in the `src/` directory.
-
-Public source repository: https://github.com/bdthemes/zoloblocks
-
-Build instructions:
-
-1. Clone the repository.
-2. Run `npm install` to install dependencies.
-3. Run `npm run build` to generate the production assets in `build/`.
-4. Run `composer install` to install PHP dependencies (used for development tooling).
-
-The `composer.json` file is also bundled with the plugin for transparency.
-
 == External services ==
 
 This plugin connects to several third-party services. Each service is only contacted when the related feature is used or configured. No personal data is sent unless the corresponding feature is enabled or the user interacts with it.
@@ -98,6 +77,18 @@ Used by the optional AI text generation feature inside the block editor.
 - What is sent: the prompt text entered by the site administrator in the editor, and the API key configured in ZoloBlocks settings, sent to `https://ai.sigmative.com/api/prompt/v1/generation/chat/completions`.
 - When: only when an administrator clicks the AI generation action in the editor.
 - Provider: Sigmative. Privacy: https://sigmative.com/privacy-policy
+
+**5. Mailchimp (optional Form integration)**
+Used only when a site administrator configures a Form block to send subscriber data to Mailchimp.
+- What is sent: the visitor's email address, optional first name, the configured Mailchimp API key and list ID, sent to `https://<dc>.api.mailchimp.com/3.0/lists/{list_id}/members` (where `<dc>` is the data center prefix derived from the API key).
+- When: only when a visitor submits a form whose Mailchimp integration has been configured by the administrator.
+- Provider: Intuit Mailchimp. Terms: https://mailchimp.com/legal/terms/  Privacy: https://www.intuit.com/privacy/statement/
+
+**6. Custom Webhooks (optional Form integration)**
+Used only when a site administrator pastes a custom webhook URL into the Form block settings.
+- What is sent: the visitor's email address and optional first name, sent as a JSON POST request to the URL configured by the administrator.
+- When: only when a visitor submits a form whose webhook URL has been configured by the administrator.
+- Provider: the third-party service chosen by the administrator. The administrator is responsible for ensuring the destination has an appropriate privacy policy.
 
 == Installation ==
 
@@ -195,6 +186,8 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 - **Trialware:** Pro features (blocks and extensions) are no longer rendered as locked entries inside the active Blocks/Extensions lists. They now appear only on a dedicated "Upgrade" tab as plain marketing text, with no toggles.
 - **Pro registry split:** `includes/Extensions/extensions.php` and `includes/Blocks/Blocks.php` contain only fully functional free entries. Pro marketing metadata moved to `includes/Extensions/pro-extensions.php` and `includes/Blocks/ProBlocks.php`.
 - **Phone home:** Removed unused `biggopti.js` / `biggopti.css` admin assets.
+- **Security:** Removed `'sslverify' => false` from outbound HTTP requests in the Mailchimp integration and Zolo AI client; SSL verification is now enabled by default for all external calls.
+- **Disclosure:** Added Mailchimp and Custom Webhook entries to the readme `== External services ==` section.
 - **Source code:** Added a `== Source code ==` section to readme with the public repository URL and build instructions; `composer.json` is now included in the SVN distribution.
 - **Readme:** Trimmed promotional cross-promo sections.
 

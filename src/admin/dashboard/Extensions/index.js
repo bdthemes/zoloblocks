@@ -200,9 +200,6 @@ const Extensions = () => {
                                             onClick={() => {
                                                 handleExtensionClick(extension.name);
                                             }}
-                                            {...(extension?.is_pro && {
-                                                isPro: true,
-                                            })}
                                         />
                                     );
                                 })}

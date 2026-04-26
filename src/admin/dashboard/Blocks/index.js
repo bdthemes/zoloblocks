@@ -262,9 +262,6 @@ const Blocks = () => {
                                             onClick={() => {
                                                 handleBlockClick(block.name);
                                             }}
-                                            {...(block?.is_pro && {
-                                                isPro: true,
-                                            })}
                                         />
                                     );
                                 })}
