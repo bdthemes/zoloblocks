@@ -118,14 +118,6 @@ if (! class_exists('ZoloEnqueues')) {
 
             // Register 3rd party scripts and styles
             wp_register_script(
-                'particles-js',
-                trailingslashit(ZOLO_ADMIN_URL) . 'build/libs/particles.js',
-                [],
-                ZOLO_VERSION,
-                true
-            );
-
-            wp_register_script(
                 'zolo-form-validation',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/form/pristine.min.js',
                 [],

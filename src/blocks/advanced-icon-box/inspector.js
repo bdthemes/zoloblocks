@@ -41,9 +41,6 @@ const {
 
 import objAttributes from './attributes';
 import {
-    ANIMATION_POSITIONS_ONE,
-    ANIMATION_POSITIONS_TWO,
-    ANIMATION_TYPES,
     BUTTON_BG_COLOR,
     BUTTON_BG_HOVER_COLOR,
     BUTTON_BORDER,
@@ -55,11 +52,6 @@ import {
     BUTTON_PADDING,
     CONTENT_ALIGNMENT,
     DESCRIPTION_MARGIN,
-    //Animation
-    ICON_ANIMATION_BG,
-    ICON_ANIMATION_RADIUS,
-    ICON_ANIMATION_SIZE,
-    ICON_ANIMATION_THICKNESS,
     ICON_BORDER,
     ICON_BORDER_RADIUS,
     ICON_BOX_SHADOW,
@@ -149,11 +141,6 @@ function Inspector(props) {
         ribbonColor,
         iconBoxDirection,
 
-        // animation
-        animationType,
-        animationPositionOne,
-        animationPositionTwo,
-
         //preset three
         iconBoxPresetThreeDirection,
     } = attributes;
@@ -195,7 +182,6 @@ function Inspector(props) {
                                     value={iconBoxPresetThreeDirection}
                                     onChange={(value) => setAttributes({ iconBoxPresetThreeDirection: value })}
                                     options={ICON_BOX_PRESET_THREE_DIRECTION}
-                                    isPro={true}
                                 />
                             )}
                             {
@@ -305,60 +291,7 @@ function Inspector(props) {
                                 alignOptions={DEFAULT_ALIGNS}
                             />
                         </ZoloPanelBody>
-                        {preset !== 'style-3' && (
-                            <>
-                                {applyFilters(
-                                    'zolo.advancedIconBox.animation',
-                                    <ZoloPanelBody title={__('Animation', 'zoloblocks')} panelProps={props} isPro={true} isDisabled={true}>
-                                        <ZoloSelectControl
-                                            label={__('Type', 'zoloblocks')}
-                                            value={animationType}
-                                            options={ANIMATION_TYPES}
-                                            onChange={(value) => {
-                                                setAttributes({
-                                                    animationType: value,
-                                                });
-
-                                                if (value === 'style-1') {
-                                                    setAttributes({
-                                                        animationPositionOne: 'top-right',
-                                                    });
-                                                } else if (value === 'style-2') {
-                                                    setAttributes({
-                                                        animationPositionTwo: 'left',
-                                                    });
-                                                }
-                                            }}
-                                        />
-                                        {animationType === 'style-1' && (
-                                            <ZoloSelectControl
-                                                label={__('Position', 'zoloblocks')}
-                                                value={animationPositionOne}
-                                                options={ANIMATION_POSITIONS_ONE}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        animationPositionOne: value,
-                                                    })
-                                                }
-                                            />
-                                        )}
-
-                                        {animationType === 'style-2' && (
-                                            <ZoloSelectControl
-                                                label={__('Position', 'zoloblocks')}
-                                                value={animationPositionTwo}
-                                                options={ANIMATION_POSITIONS_TWO}
-                                                onChange={(value) =>
-                                                    setAttributes({
-                                                        animationPositionTwo: value,
-                                                    })
-                                                }
-                                            />
-                                        )}
-                                    </ZoloPanelBody>
-                                )}
-                            </>
-                        )}
+                        {preset !== 'style-3' && applyFilters('zolo.advancedIconBox.animation', null, { props, requiredProps })}
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             {showMainIcon && (
                                 <>
@@ -1117,49 +1050,7 @@ function Inspector(props) {
                                 />
                             </ZoloPanelBody>
                         )}
-                        {preset !== 'style-3' && (
-                            <>
-                                {applyFilters(
-                                    'zolo.advancedIconBox.animationStyle',
-                                    <ZoloPanelBody
-                                        title={__('Animation', 'zoloblocks')}
-                                        panelProps={props}
-                                        stylePanel={true}
-                                        isPro={true}
-                                        isDisabled={true}
-                                    >
-                                        {animationType === 'style-1' && (
-                                            <ResRangeControl
-                                                label={__('Size', 'zoloblocks')}
-                                                controlName={ICON_ANIMATION_SIZE}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={500}
-                                                step={1}
-                                            />
-                                        )}
-
-                                        <NormalBGControl requiredProps={requiredProps} controlName={ICON_ANIMATION_BG} noMainBGImg={true} />
-                                        <ResDimensionsControl
-                                            label={__('Border Radius', 'zoloblocks')}
-                                            controlName={ICON_ANIMATION_RADIUS}
-                                            requiredProps={requiredProps}
-                                            forBorderRadius={true}
-                                        />
-                                        {animationType === 'style-2' && (
-                                            <ResRangeControl
-                                                label={__('Thickness', 'zoloblocks')}
-                                                controlName={ICON_ANIMATION_THICKNESS}
-                                                requiredProps={requiredProps}
-                                                min={0}
-                                                max={100}
-                                                step={1}
-                                            />
-                                        )}
-                                    </ZoloPanelBody>
-                                )}
-                            </>
-                        )}
+                        {preset !== 'style-3' && applyFilters('zolo.advancedIconBox.animationStyle', null, { props, requiredProps })}
                     </>
                 }
                 advancedTab={

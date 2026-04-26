@@ -54,8 +54,6 @@ import {
     TEXT_GRADIENT_COLOR,
 } from './constants';
 
-const { zolo_pro_status } = window.zoloParams;
-
 function Inspector(props) {
     const { attributes, setAttributes } = props;
 
@@ -123,31 +121,17 @@ function Inspector(props) {
                 styleTab={
                     <>
                         <ZoloPanelBody title={__('Text', 'zoloblocks')} firstOpen={true} stylePanel={true} panelProps={props}>
-                            {zolo_pro_status === 'active' ? (
-                                <>
-                                    <TextGradientControl
-                                        noMainBGImg={true}
-                                        controlName={TEXT_GRADIENT_COLOR}
-                                        requiredProps={requiredProps}
-                                        defaultColor={textColor}
-                                        onChangeDefault={(val) => {
-                                            setAttributes({
-                                                textColor: val,
-                                            });
-                                        }}
-                                    />
-                                </>
-                            ) : (
-                                <ColorControl
-                                    label={__('Color', 'zoloblocks')}
-                                    color={textColor}
-                                    onChange={(val) =>
-                                        setAttributes({
-                                            textColor: val,
-                                        })
-                                    }
-                                />
-                            )}
+                            <TextGradientControl
+                                noMainBGImg={true}
+                                controlName={TEXT_GRADIENT_COLOR}
+                                requiredProps={requiredProps}
+                                defaultColor={textColor}
+                                onChangeDefault={(val) => {
+                                    setAttributes({
+                                        textColor: val,
+                                    });
+                                }}
+                            />
                             <TypographyDropdown
                                 label={__('Typography', 'zoloblocks')}
                                 typoPrefixConstant={TEXT_TYPO}

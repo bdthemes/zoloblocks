@@ -1,6 +1,6 @@
 import { ZoloToggleGroupControl, ZoloButton } from '../core-controls';
 
-const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false, isPro = false }) => {
+const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false }) => {
     return (
         <div className="zolo-iconic-btn-group">
             {label && (
@@ -12,23 +12,17 @@ const IconicBtnGroup = ({ label = '', value, onChange, options, toggle = false, 
                 {options &&
                     options.map((option, index) => {
                         const isActive = value == option.value;
-                        const isProOption = option.isPro;
-                        const isProDeactivated = isPro && isProOption && window.zoloSettings?.zolo_pro_status !== 'active';
 
                         return (
                             <ZoloButton
                                 onClick={() => {
-                                    if (!isProDeactivated) {
-                                        if (toggle) {
-                                            onChange(isActive ? null : option.value);
-                                        } else {
-                                            onChange(option.value);
-                                        }
+                                    if (toggle) {
+                                        onChange(isActive ? null : option.value);
+                                    } else {
+                                        onChange(option.value);
                                     }
                                 }}
-                                disabled={isProDeactivated}
-                                title={isProDeactivated ? 'Available in Pro' : ''}
-                                className={`iconic-btn ${isActive ? 'active' : ''} ${isProDeactivated ? 'zolo-control-item-disabled' : ''}`}
+                                className={`iconic-btn ${isActive ? 'active' : ''}`}
                                 key={index}
                                 label={option.label}
                             >

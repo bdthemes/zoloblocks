@@ -46,6 +46,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Particles Animation', 'zoloblocks'),
         'status' => false,
         'demo'   => 'https://demo.zoloblocks.com/particles/',
+        'is_pro' => true,
         'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
     'tilt'          => [
@@ -93,6 +94,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Export Pattern', 'zoloblocks'),
         'status' => false,
         'demo'   => 'https://demo.zoloblocks.com/export-pattern',
+        'is_pro' => true,
         'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
     'import-pattern'          => [
@@ -100,6 +102,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Import Pattern', 'zoloblocks'),
         'status' => false,
         'demo'   => 'https://demo.zoloblocks.com/import-pattern',
+        'is_pro' => true,
         'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
     'shape-divider'          => [
@@ -107,6 +110,7 @@ return apply_filters('zolo_extensions', [
         'title'  => __('Shape Divider', 'zoloblocks'),
         'status' => false,
         'demo'   => 'https://demo.zoloblocks.com/shape-divider',
+        'is_pro' => true,
         'video'  => 'https://www.youtube.com/watch?v=OD3sI03RMDc&t',
     ],
     'ai-assistant'          => [

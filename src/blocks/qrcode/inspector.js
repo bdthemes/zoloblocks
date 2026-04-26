@@ -312,7 +312,6 @@ export default function Inspector(props) {
                                     title={__('Wrapper', 'zoloblocks')}
                                     panelProps={requiredProps}
                                     firstOpen={showBadge ? true : false}
-                                    isPro={true}
                                 >
                                     <BorderControl
                                         label={__('Border Type', 'zoloblocks')}
@@ -437,7 +436,7 @@ export default function Inspector(props) {
                             {hookLogoStyle && hookLogoStyle.length > 0 && hookLogoStyle}
 
                             {showBadge && (
-                                <ZoloPanelBody title={__('Badge', 'zoloblocks')} panelProps={requiredProps} isPro={true}>
+                                <ZoloPanelBody title={__('Badge', 'zoloblocks')} panelProps={requiredProps}>
                                     <ColorControl
                                         label={__('Color', 'zoloblocks')}
                                         color={badgeTextColor}
