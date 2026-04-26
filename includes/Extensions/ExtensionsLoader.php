@@ -19,8 +19,12 @@ class ExtensionsLoader {
     }
 
     public function load_classes() {
+        Particles::getInstance();
         BackgroundVideo::getInstance();
         AI::getInstance();
+        ExportPattern::getInstance();
+        ImportPattern::getInstance();
+        ShapeDivider::getInstance();
         Transform::getInstance();
         ClassManager::getInstance();
     }
