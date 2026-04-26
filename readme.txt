@@ -180,7 +180,7 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
-### 2.7.4
+### 2.7.4 [April 26, 2026]
 
 #### Compliance
 - **Trialware:** Pro features (blocks and extensions) are no longer rendered as locked entries inside the active Blocks/Extensions lists. They now appear only on a dedicated "Upgrade" tab as plain marketing text, with no toggles.
@@ -188,10 +188,9 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 - **Phone home:** Removed unused `biggopti.js` / `biggopti.css` admin assets.
 - **Security:** Removed `'sslverify' => false` from outbound HTTP requests in the Mailchimp integration and Zolo AI client; SSL verification is now enabled by default for all external calls.
 - **Disclosure:** Added Mailchimp and Custom Webhook entries to the readme `== External services ==` section.
-- **Source code:** Added a `== Source code ==` section to readme with the public repository URL and build instructions; `composer.json` is now included in the SVN distribution.
 - **Readme:** Trimmed promotional cross-promo sections.
 
-### 2.7.3
+### 2.7.3 [April 23, 2026]
 
 #### Compliance
 - **WordPress.org review:** Form “Save response” and “Save & send” actions work in this plugin without a separate Pro plugin; form entries are available under Form Entries in the admin menu.
