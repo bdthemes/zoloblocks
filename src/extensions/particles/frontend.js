@@ -1,24 +1,13 @@
 import '../../libs/particles.js';
-import { optionOne, optionTwo, optionThree, optionFour, optionFive, optionSix } from './options';
+import { optionTwo, optionThree } from './options';
 
-// Track initialized particles to prevent duplicates
 const initializedParticles = new Set();
 
-// Preset configuration mapping
 const presetConfigs = {
-    hover_bubble: optionOne,
     dust_wind: optionTwo,
     flying_bubble: optionThree,
-    snow_fall: optionFour,
-    flying_shape: optionFive,
-    polygonal_move: optionSix
 };
 
-/**
- * Deep clone an object to prevent reference sharing
- * @param {Object} obj - Object to clone
- * @returns {Object} - Deep cloned object
- */
 function deepClone(obj) {
     if (obj === null || typeof obj !== 'object') return obj;
     if (obj instanceof Date) return new Date(obj.getTime());
@@ -34,11 +23,6 @@ function deepClone(obj) {
     }
 }
 
-/**
- * Safely parse JSON with error handling
- * @param {string} jsonString - JSON string to parse
- * @returns {Object|null} - Parsed object or null if invalid
- */
 function safeJsonParse(jsonString) {
     if (!jsonString) return null;
 
@@ -50,11 +34,6 @@ function safeJsonParse(jsonString) {
     }
 }
 
-/**
- * Extract and validate colors from color data
- * @param {Array} colors - Color array from particle data
- * @returns {Array|null} - Valid colors or null
- */
 function extractColors(colors) {
     if (!colors || !Array.isArray(colors) || colors.length === 0) {
         return null;
@@ -67,11 +46,6 @@ function extractColors(colors) {
     return validColors.length > 0 ? validColors : null;
 }
 
-/**
- * Extract and validate shapes from particle options
- * @param {Array} shapes - Shapes array from particle options
- * @returns {Array} - Valid shapes or default
- */
 function extractShapes(shapes) {
     if (!shapes || !Array.isArray(shapes) || shapes.length === 0 || shapes[0] === '') {
         return ['circle'];
@@ -79,39 +53,37 @@ function extractShapes(shapes) {
     return shapes;
 }
 
-/**
- * Build particle configuration for a specific preset
- * @param {string} preset - Preset name
- * @param {Object} particleData - Particle configuration data
- * @returns {Object} - Complete particle configuration
- */
+function getPremiumPresetConfig(preset) {
+    if (typeof window === 'undefined' || !window.zoloBlocksParticlesPro?.presetConfigs) {
+        return null;
+    }
+    return window.zoloBlocksParticlesPro.presetConfigs[preset] || null;
+}
+
 function buildParticleConfig(preset, particleData) {
     const { colors, particleOptions = {}, speed } = particleData;
     const { shapes, direction, shapeSize, customOptions } = particleOptions;
 
-    // Handle custom options
     if (preset === 'custom_options' && customOptions) {
-        const customConfig = safeJsonParse(customOptions);
-        if (customConfig) {
-            return { ...customConfig, retina_detect: true };
+        if (typeof window !== 'undefined' && window.zoloBlocksParticlesPro?.mergeCustomConfig) {
+            const merged = window.zoloBlocksParticlesPro.mergeCustomConfig(customOptions);
+            if (merged) {
+                return { ...merged, retina_detect: true };
+            }
         }
-    }
-
-    // Get base configuration for preset and deep clone it to prevent reference sharing
-    const baseConfig = presetConfigs[preset];
-    if (!baseConfig) {
-        console.warn(`ZoloBlocks Particles: Unknown preset "${preset}"`);
         return null;
     }
 
-    // Deep clone the base configuration to ensure isolation between particles
+    const baseConfig = presetConfigs[preset] || getPremiumPresetConfig(preset);
+    if (!baseConfig) {
+        return null;
+    }
+
     const config = deepClone(baseConfig);
 
-    // Extract processed values
     const processedColors = extractColors(colors);
     const processedShapes = extractShapes(shapes);
 
-    // Override with custom values
     if (processedColors) {
         config.particles.color.value = processedColors;
     }
@@ -132,27 +104,15 @@ function buildParticleConfig(preset, particleData) {
         config.particles.move.speed = speed;
     }
 
-    // Ensure retina_detect is set
     config.retina_detect = true;
 
-    // Handle special cases for flying_shape
     if (preset === 'flying_shape') {
         config.particles.line_linked = { enable: false };
-    }
-
-    // Handle special cases for polygonal_move
-    if (preset === 'polygonal_move' && baseConfig.particles.opacity) {
-        // The opacity is already included in the deep clone, no need to merge again
-        // This was causing the reference sharing issue
     }
 
     return config;
 }
 
-/**
- * Initialize particles for a single element
- * @param {HTMLElement} element - DOM element containing particle data
- */
 function initializeParticles(element) {
     const particlesOptions = element.dataset.particles;
     const particlesData = safeJsonParse(particlesOptions);
@@ -164,31 +124,26 @@ function initializeParticles(element) {
     const { particlesId, preset } = particlesData;
     const particleElementId = `zolo-particles-${particlesId}`;
 
-    // Prevent duplicate initialization
     if (initializedParticles.has(particleElementId)) {
         return;
     }
 
-    // Check if target element exists
     const targetElement = document.getElementById(particleElementId);
     if (!targetElement) {
         console.warn(`ZoloBlocks Particles: Target element "${particleElementId}" not found`);
         return;
     }
 
-    // Build configuration
     const config = buildParticleConfig(preset, particlesData);
     if (!config) {
         return;
     }
 
     try {
-        // Destroy existing particles if any (cleanup)
         if (window.pJSDom && window.pJSDom.find(item => item.pJS.canvas.el.id === particleElementId)) {
             window.pJSDom = window.pJSDom.filter(item => item.pJS.canvas.el.id !== particleElementId);
         }
 
-        // Initialize particles with isolated configuration (global set by src/libs/particles.js)
         window.particlesJS(particleElementId, config);
         initializedParticles.add(particleElementId);
     } catch (error) {
@@ -196,9 +151,6 @@ function initializeParticles(element) {
     }
 }
 
-/**
- * Initialize all particles on the page
- */
 function initializeAllParticles() {
     const zoloParticles = document.querySelectorAll('.zolo-block[data-particles]');
 
@@ -206,19 +158,15 @@ function initializeAllParticles() {
         return;
     }
 
-
     zoloParticles.forEach((element, index) => {
-        // Add small delay between initializations to prevent conflicts
         setTimeout(() => {
             initializeParticles(element);
         }, index * 50);
     });
 }
 
-// Initialize particles when DOM is ready
 document.addEventListener('DOMContentLoaded', initializeAllParticles);
 
-// Re-initialize on dynamic content changes (optional)
 if (typeof MutationObserver !== 'undefined') {
     const observer = new MutationObserver((mutations) => {
         let hasNewParticles = false;
