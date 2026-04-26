@@ -5,7 +5,7 @@ Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.1
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.7.3
+Stable tag: 2.7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,62 +50,26 @@ Website designers, freelancers, agencies, bloggers, content creators, small busi
 
 The team behind ZoloBlocks ships regular updates. For help, [contact support](https://bdthemes.com/support/). Visit [BdThemes](https://bdthemes.com/) for more plugins and documentation.
 
-== Still not happy? Pick Your Features ==
+== Other Plugins by BdThemes ==
 
-ZoloBlocks is not about what we promise only, but everything you deserve. So, feel free to [**suggest features**](https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas) for this awesome plugin and taste it being developed in the next update. And we always remember to mention your name on the change log. Kachow!
+* [Element Pack Lite](https://wordpress.org/plugins/bdthemes-element-pack-lite/) — Elementor widgets and templates.
+* [Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/) — Slider builder for Elementor.
+* [Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/) — Post layouts and carousels for Elementor.
 
-== Amazing Support ⛑ ==
+== Source code ==
 
-The team behind ZoloBlocks working diligently to bring you refreshing features every week. If you feel any hitch, [Contact support](https://bdthemes.com/support/) 💌 right away. We are happy to go the extra mile to make this plugin the best.
+The compiled JavaScript and CSS files in the `build/` and `assets/` directories are generated from the source code in the `src/` directory.
 
-== Check out our other Addons 🧩 ==
+Public source repository: https://github.com/bdthemes/zoloblocks
 
-📦 **[Element Pack Lite](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - *Element Pack Lite Build a responsive website from scratch with an all-rounder package for Elementor.*
+Build instructions:
 
-📦 **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - *The revolutionary slider builder addons with next-gen superb interface.*
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+3. Run `npm run build` to generate the production assets in `build/`.
+4. Run `composer install` to install PHP dependencies (used for development tooling).
 
-📦 **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - *Best blogging addond for building quality blogging websites with fine-tuned features and widgets.*
-
-📦 **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - *The only eCommerce addond for answering all your online store design problems in one package.*
-
-📦 **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - *Pixel Gallery is the first elementor-based WordPress gallery addons that provides the easiest image gallery-making experience.*
-
-📦 **[Live Copy Paste](https://wordpress.org/plugins/live-copy-paste/)** - *Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience.*
-
-
-Visit [BdThemes](https://bdthemes.com/) to learn about our services, page builder-based products, informative blogs, and documentation.
-
-== Checkout our other Plugins 👑 ==
-
-Explore the best free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
-
-* **[Element Pack](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - Build responsive websites from scratch with an all-rounder package of 300+ widgets and 2700+ ready-to-use assets for Elementor.
-
-* **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - The revolutionary slider builder addon for Elementor with a next-gen superb interface and 50+ unique slider designs.
-
-* **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - Best blogging addon for building a quality blogging website with fine-tuned post layouts, carousels, sliders and lists.
-
-* **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - The only eCommerce addon for answering all your online store design problems in one package for WooCommerce and EDD.
-
-* **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - The first Elementor-based WordPress gallery addon offering 60+ flexible and customizable gallery builder widgets.
-
-* **[Augmented Reality Viewer](https://wordpress.org/plugins/ar-viewer/)** - Bring your products to life with immersive 3D and AR experiences directly inside your WordPress website.
-
-* **[Dark Reader](https://wordpress.org/plugins/dark-reader/)** - Instantly transform your website into a sleek, eye-friendly dark mode experience with smooth and elegant styling.
-
-* **[Instant Image Generator](https://wordpress.org/plugins/ai-image/)** - Generate AI-powered images or import visuals instantly from popular platforms like Unsplash, Openverse, Pixabay, Pexels and Giphy — all from one place.
-
-* **[Live Copy Paste](https://wordpress.org/plugins/live-copy-paste/)** - Seamlessly copy and paste sections, widgets and entire pages across domains with zero hassle.
-
-* **[One Accessibility](https://wordpress.org/plugins/website-accessibility/)** - Make your website inclusive and accessible to everyone with essential accessibility enhancements and compliance-ready tools.
-
-* **[QR Code Generator & Scanner](https://wordpress.org/plugins/zolo-qr-code/)** - Create and manage dynamic QR codes directly from your WordPress dashboard for smarter engagement and tracking.
-
-* **[Smart Admin Assistant](https://wordpress.org/plugins/smart-admin-assistant/)** - Enhance your WordPress dashboard with productivity-focused tools and smart site management features.
-
-* **[Spin Wheel](https://wordpress.org/plugins/spin-wheel/)** - Engage visitors with an interactive spinning wheel that offers discounts, coupons and promotional rewards.
-
-* **[Swift Checkout for WooCommerce](https://wordpress.org/plugins/swift-checkout/)** - Simplify the WooCommerce checkout process to improve user experience and boost conversion rates.
+The `composer.json` file is also bundled with the plugin for transparency.
 
 == External services ==
 
@@ -224,6 +188,15 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.7.4
+
+#### Compliance
+- **Trialware:** Pro features (blocks and extensions) are no longer rendered as locked entries inside the active Blocks/Extensions lists. They now appear only on a dedicated "Upgrade" tab as plain marketing text, with no toggles.
+- **Pro registry split:** `includes/Extensions/extensions.php` and `includes/Blocks/Blocks.php` contain only fully functional free entries. Pro marketing metadata moved to `includes/Extensions/pro-extensions.php` and `includes/Blocks/ProBlocks.php`.
+- **Phone home:** Removed unused `biggopti.js` / `biggopti.css` admin assets.
+- **Source code:** Added a `== Source code ==` section to readme with the public repository URL and build instructions; `composer.json` is now included in the SVN distribution.
+- **Readme:** Trimmed promotional cross-promo sections.
 
 ### 2.7.3
 

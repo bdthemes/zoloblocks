@@ -960,6 +960,31 @@ class ZoloHelpers {
     }
 
     /**
+     * Get marketing metadata for Pro extensions (display-only).
+     *
+     * Used by the dashboard's "Upgrade" tab. These features are not
+     * registered, toggled or otherwise activated in the free plugin.
+     */
+    public static function get_zolo_pro_extensions() {
+        $file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Extensions/pro-extensions.php';
+        if (file_exists($file)) {
+            return require $file;
+        }
+        return [];
+    }
+
+    /**
+     * Get marketing metadata for Pro blocks (display-only).
+     */
+    public static function get_zolo_pro_blocks() {
+        $file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/ProBlocks.php';
+        if (file_exists($file)) {
+            return require $file;
+        }
+        return [];
+    }
+
+    /**
      * Get Zolo Extensions
      */
     public static function get_zolo_extensions() {

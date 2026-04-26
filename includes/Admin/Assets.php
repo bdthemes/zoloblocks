@@ -95,6 +95,10 @@ if (! class_exists('Assets')) {
                         'debug_mode'         => ZoloHelpers::is_debug_mode(),
                     ],
                     'zolo_counter'   => ZoloHelpers::zolo_blocks_extensions_count(),
+                    'pro_features'   => [
+                        'extensions' => ZoloHelpers::get_zolo_pro_extensions(),
+                        'blocks'     => ZoloHelpers::get_zolo_pro_blocks(),
+                    ],
                     'zolo_nonce'     => wp_create_nonce('zolo-nonce'),
                     'zolo_rest_url'  => esc_url_raw(rest_url('zolo/v1/settings')),
                     'site_url'       =>  esc_url_raw(site_url()),

@@ -2,20 +2,14 @@
 defined('ABSPATH') || exit;
 
 /**
- * ZoloBlocks Extensions Registry.
+ * ZoloBlocks Extensions Registry (Free only).
  *
- * Free extensions have full implementation code in this plugin and are functional.
- * Pro extensions are listed here as display-only metadata for admin dashboard teasers
- * (upgrade cards / "Available in Pro" labels). Their implementation code lives
- * exclusively in the zoloblocks-pro plugin.
- *
- * @see https://developer.wordpress.org/plugins/wordpress-org/detailed-plugin-guidelines/#11-plugins-should-not-hijack-the-admin-dashboard
+ * Every entry returned here is fully functional in this plugin.
+ * Marketing metadata for Pro-only extensions lives in pro-extensions.php
+ * and is rendered on a dedicated "Upgrade" tab in the admin dashboard,
+ * separate from this list, with no toggles and no in-list "locked" state.
  */
 return apply_filters('zolo_extensions', [
-
-    // =========================================================================
-    // FREE EXTENSIONS — fully functional, implementation code in this plugin
-    // =========================================================================
     'particles'          => [
         'name'   => 'particles',
         'title'  => __('Particles Animation', 'zoloblocks'),
@@ -63,148 +57,6 @@ return apply_filters('zolo_extensions', [
         'title' => __('Class Manager', 'zoloblocks'),
         'status' => true,
         'demo' => 'https://demo.zoloblocks.com/class-manager',
-        'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
-    ],
-
-    // =========================================================================
-    // PRO EXTENSIONS — display-only metadata for admin dashboard upgrade teasers.
-    // No implementation code for these exists in this plugin.
-    // Implementation is provided by the zoloblocks-pro add-on plugin.
-    // =========================================================================
-    'cursors'          => [
-        'name'   => 'cursors',
-        'title'  => __('Cursors Animation', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://zoloblocks.com',
-        'video'  => 'https://www.youtube.com/watch?v=pTDoHVq4kHk',
-    ],
-    'floating'          => [
-        'name'   => 'floating',
-        'title'  => __('Floating Animation', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/floating-animation',
-        'video'  => 'https://www.youtube.com/watch?v=c2qO5acU2yw&t',
-    ],
-    'entrance'          => [
-        'name'   => 'entrance',
-        'title'  => __('Entrance Animation', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/entrance-animation',
-        'video'  => 'https://www.youtube.com/watch?v=3zPdiQ9SSHE&t',
-    ],
-    'sticky'          => [
-        'name'   => 'sticky',
-        'title'  => __('Sticky Position', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/sticky-position',
-        'video'  => 'https://www.youtube.com/watch?v=2VlVmMDQ-lM&t',
-    ],
-    'parallax'          => [
-        'name'   => 'parallax',
-        'title'  => __('Parallax Effect', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/scroll-parallax-animation',
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
-    ],
-    'tilt'          => [
-        'name'   => 'tilt',
-        'title'  => __('Mouse Tilt', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/tilt-effects',
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
-    ],
-    'smooth-scroller'          => [
-        'name'   => 'smooth-scroller',
-        'title'  => __('Smooth Scroller', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/smooth-scroller',
-        'video'  => 'https://www.youtube.com/watch?v=6SlgnGtThNU',
-    ],
-    'css-filters'          => [
-        'name'   => 'css-filters',
-        'title'  => __('CSS Filters', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/css-filters',
-        'video'  => 'https://www.youtube.com/watch?v=FlwqbmhGyjs',
-    ],
-    'backdrop-filters'          => [
-        'name'   => 'backdrop-filters',
-        'title'  => __('Backdrop Filters', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/backdrop-filters',
-        'video'  => 'https://www.youtube.com/watch?v=8_oI0P3bj6w&t',
-    ],
-    'background-parallax'          => [
-        'name'   => 'background-parallax',
-        'title'  => __('Background Parallax', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/background-parallax',
-        'video'  => 'https://www.youtube.com/watch?v=8_oI0P3bj6w&t',
-    ],
-    'dynamic-content'          => [
-        'name'     => 'dynamic-content',
-        'title'    => __('Dynamic Content', 'zoloblocks'),
-        'status'   => false,
-        'is_pro'   => true,
-        'demo'     => 'https://demo.zoloblocks.com/dynamic-content',
-        'video'    => 'https://www.youtube.com/watch?v=oCFZ121wWlA',
-    ],
-    'interactions'          => [
-        'name'   => 'interactions',
-        'title'  => __('Interactions', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/interactions',
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
-    ],
-    'text-animation'          => [
-        'name'   => 'text-animation',
-        'title'  => __('Text Animation', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/interactions',
-        'video'  => 'https://www.youtube.com/watch?v=gX_mALFBdIE&t',
-    ],
-    'display-condition'          => [
-        'name'   => 'display-condition',
-        'title'  => __('Display Condition', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo'   => 'https://demo.zoloblocks.com/display-condition',
-        'video'  => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
-    ],
-    'tooltip' => [
-        'name' => 'tooltip',
-        'title' => __('Zolo Tooltip', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/tooltip',
-        'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
-    ],
-    'highlight' => [
-        'name' => 'highlight',
-        'title' => __('Zolo Highlight', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/highlight',
-        'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
-    ],
-    'image-parallax' => [
-        'name' => 'image-parallax',
-        'title' => __('Image Parallax', 'zoloblocks'),
-        'status' => false,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/image-parallax',
         'video' => 'https://www.youtube.com/watch?v=mMT88v_xQig&t',
     ],
 ]);
