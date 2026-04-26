@@ -50,6 +50,19 @@ Website designers, freelancers, agencies, bloggers, content creators, small busi
 
 The team behind ZoloBlocks ships regular updates. For help, [contact support](https://bdthemes.com/support/). Visit [BdThemes](https://bdthemes.com/) for more plugins and documentation.
 
+== Source code ==
+
+The compiled JavaScript and CSS files in the `build/` and `assets/` directories are generated from the source code in the `src/` directory.
+
+Public source repository: https://github.com/bdthemes/zoloblocks
+
+Build instructions:
+
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+3. Run `npm run build` to generate the production assets in `build/`.
+4. Run `composer install` to install PHP dependencies (used for development tooling only).
+
 == External services ==
 
 This plugin connects to several third-party services. Each service is only contacted when the related feature is used or configured. No personal data is sent unless the corresponding feature is enabled or the user interacts with it.
