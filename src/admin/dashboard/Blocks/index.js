@@ -141,10 +141,6 @@ const Blocks = () => {
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
-                        <div className="zolo-settings-type-badge zolo-dash-flex-center">
-                            <button className="zolo-settings-type-btn active">{__('Free', 'zoloblocks')}</button>
-                            <button className="zolo-settings-type-btn">{__('Pro', 'zoloblocks')}</button>
-                        </div>
                         <div className="search-field">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -266,9 +262,6 @@ const Blocks = () => {
                                             onClick={() => {
                                                 handleBlockClick(block.name);
                                             }}
-                                            {...(block?.is_pro && {
-                                                isPro: true,
-                                            })}
                                         />
                                     );
                                 })}

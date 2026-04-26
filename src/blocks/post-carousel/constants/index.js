@@ -7,7 +7,7 @@ export const PRESETS = [
     { label: __('Style 1', 'zoloblocks'), value: 'style-1' },
     { label: __('Style 2', 'zoloblocks'), value: 'style-2' },
     { label: __('Style 3', 'zoloblocks'), value: 'style-3' },
-    { label: __('Style 4 Pro', 'zoloblocks'), value: 'style-4', disabled: true },
+    { label: __('Style 4 Pro', 'zoloblocks'), value: 'style-4' },
 ];
 
 export const CAROUSEL_EFFECTS = [
@@ -17,11 +17,11 @@ export const CAROUSEL_EFFECTS = [
 
 export const POST_TITLE_ANIMATION = [
     { label: __('Default', 'zoloblocks'), value: '' },
-    { label: __('Background (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-1', disabled: true },
-    { label: __('Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-2', disabled: true },
-    { label: __('Middle Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-3', disabled: true },
-    { label: __('Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-4', disabled: true },
-    { label: __('Middle Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-5', disabled: true },
+    { label: __('Background (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-1' },
+    { label: __('Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-2' },
+    { label: __('Middle Underline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-3' },
+    { label: __('Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-4' },
+    { label: __('Middle Overline (Pro)', 'zoloblocks'), value: 'zolo-post-title-type-5' },
 ];
 
 export const COLUMNS = 'sliderColumns';

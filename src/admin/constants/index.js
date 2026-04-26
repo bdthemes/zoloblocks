@@ -26,4 +26,13 @@ export const TABS = [
         label: __('Settings', 'zoloblocks'),
         value: 'settings',
     },
+    ...(window?.zoloBlocks?.has_pro === '1'
+        ? []
+        : [
+              {
+                  icon: "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M12 2 4 7v6c0 5 3.4 9.5 8 11 4.6-1.5 8-6 8-11V7l-8-5z' stroke='#FFA826' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'/></svg>",
+                  label: __('Upgrade', 'zoloblocks'),
+                  value: 'upgrade',
+              },
+          ]),
 ];

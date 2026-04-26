@@ -64,7 +64,6 @@ import {
     PT_BG,
     PTH_BG,
     PFTH_BG,
-    ICON_ANIMATIONS,
 } from './constants';
 
 import { BUTTON_TYPOGRAPHY } from './constants/typoPrefixConstant';
@@ -199,26 +198,7 @@ function Inspector(props) {
                                 </>
                             )}
                         </ZoloPanelBody>
-                        {iconType === 'iconText' && preset !== 'button-1' && preset !== 'button-3' && (
-                            <>
-                                {applyFilters(
-                                    'zolo.advancedButton.animationPanel',
-                                    <ZoloPanelBody
-                                        title={__('Icon Animation', 'zoloblocks')}
-                                        panelProps={props}
-                                        isPro={true}
-                                        isDisabled={true}
-                                    >
-                                        <ZoloSelectControl
-                                            label={__('Icon Animation', 'zoloblocks')}
-                                            value={iconAnimation}
-                                            options={ICON_ANIMATIONS}
-                                            onChange={(value) => setAttributes({ iconAnimation: value })}
-                                        />
-                                    </ZoloPanelBody>
-                                )}
-                            </>
-                        )}
+                        {iconType === 'iconText' && preset !== 'button-1' && preset !== 'button-3' && applyFilters('zolo.advancedButton.animationPanel', null, { props })}
                     </>
                 }
                 styleTab={

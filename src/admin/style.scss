@@ -41,6 +41,8 @@
     }
 }
 
+@import './upgrade';
+
 .zolo-header {
     .zolo-search-bar {
         display: none;
@@ -51,9 +53,6 @@
 }
 
 .toplevel_page_zoloblocks {
-    .biggopti{
-        display: none;
-    }
     background-color: #f5f5f5;
     #wpfooter {
         display: none;

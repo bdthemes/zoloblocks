@@ -5,7 +5,7 @@ Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.1
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.7.3
+Stable tag: 2.7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,63 +50,6 @@ Website designers, freelancers, agencies, bloggers, content creators, small busi
 
 The team behind ZoloBlocks ships regular updates. For help, [contact support](https://bdthemes.com/support/). Visit [BdThemes](https://bdthemes.com/) for more plugins and documentation.
 
-== Still not happy? Pick Your Features ==
-
-ZoloBlocks is not about what we promise only, but everything you deserve. So, feel free to [**suggest features**](https://feedback.zoloblocks.com/b/dvdyy2v9/feature-ideas) for this awesome plugin and taste it being developed in the next update. And we always remember to mention your name on the change log. Kachow!
-
-== Amazing Support ⛑ ==
-
-The team behind ZoloBlocks working diligently to bring you refreshing features every week. If you feel any hitch, [Contact support](https://bdthemes.com/support/) 💌 right away. We are happy to go the extra mile to make this plugin the best.
-
-== Check out our other Addons 🧩 ==
-
-📦 **[Element Pack Lite](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - *Element Pack Lite Build a responsive website from scratch with an all-rounder package for Elementor.*
-
-📦 **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - *The revolutionary slider builder addons with next-gen superb interface.*
-
-📦 **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - *Best blogging addond for building quality blogging websites with fine-tuned features and widgets.*
-
-📦 **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - *The only eCommerce addond for answering all your online store design problems in one package.*
-
-📦 **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - *Pixel Gallery is the first elementor-based WordPress gallery addons that provides the easiest image gallery-making experience.*
-
-📦 **[Live Copy Paste](https://wordpress.org/plugins/live-copy-paste/)** - *Superfast cross-domain copy-paste mechanism for WordPress websites with true UI copy experience.*
-
-
-Visit [BdThemes](https://bdthemes.com/) to learn about our services, page builder-based products, informative blogs, and documentation.
-
-== Checkout our other Plugins 👑 ==
-
-Explore the best free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
-
-* **[Element Pack](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - Build responsive websites from scratch with an all-rounder package of 300+ widgets and 2700+ ready-to-use assets for Elementor.
-
-* **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - The revolutionary slider builder addon for Elementor with a next-gen superb interface and 50+ unique slider designs.
-
-* **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - Best blogging addon for building a quality blogging website with fine-tuned post layouts, carousels, sliders and lists.
-
-* **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - The only eCommerce addon for answering all your online store design problems in one package for WooCommerce and EDD.
-
-* **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - The first Elementor-based WordPress gallery addon offering 60+ flexible and customizable gallery builder widgets.
-
-* **[Augmented Reality Viewer](https://wordpress.org/plugins/ar-viewer/)** - Bring your products to life with immersive 3D and AR experiences directly inside your WordPress website.
-
-* **[Dark Reader](https://wordpress.org/plugins/dark-reader/)** - Instantly transform your website into a sleek, eye-friendly dark mode experience with smooth and elegant styling.
-
-* **[Instant Image Generator](https://wordpress.org/plugins/ai-image/)** - Generate AI-powered images or import visuals instantly from popular platforms like Unsplash, Openverse, Pixabay, Pexels and Giphy — all from one place.
-
-* **[Live Copy Paste](https://wordpress.org/plugins/live-copy-paste/)** - Seamlessly copy and paste sections, widgets and entire pages across domains with zero hassle.
-
-* **[One Accessibility](https://wordpress.org/plugins/website-accessibility/)** - Make your website inclusive and accessible to everyone with essential accessibility enhancements and compliance-ready tools.
-
-* **[QR Code Generator & Scanner](https://wordpress.org/plugins/zolo-qr-code/)** - Create and manage dynamic QR codes directly from your WordPress dashboard for smarter engagement and tracking.
-
-* **[Smart Admin Assistant](https://wordpress.org/plugins/smart-admin-assistant/)** - Enhance your WordPress dashboard with productivity-focused tools and smart site management features.
-
-* **[Spin Wheel](https://wordpress.org/plugins/spin-wheel/)** - Engage visitors with an interactive spinning wheel that offers discounts, coupons and promotional rewards.
-
-* **[Swift Checkout for WooCommerce](https://wordpress.org/plugins/swift-checkout/)** - Simplify the WooCommerce checkout process to improve user experience and boost conversion rates.
-
 == External services ==
 
 This plugin connects to several third-party services. Each service is only contacted when the related feature is used or configured. No personal data is sent unless the corresponding feature is enabled or the user interacts with it.
@@ -134,6 +77,18 @@ Used by the optional AI text generation feature inside the block editor.
 - What is sent: the prompt text entered by the site administrator in the editor, and the API key configured in ZoloBlocks settings, sent to `https://ai.sigmative.com/api/prompt/v1/generation/chat/completions`.
 - When: only when an administrator clicks the AI generation action in the editor.
 - Provider: Sigmative. Privacy: https://sigmative.com/privacy-policy
+
+**5. Mailchimp (optional Form integration)**
+Used only when a site administrator configures a Form block to send subscriber data to Mailchimp.
+- What is sent: the visitor's email address, optional first name, the configured Mailchimp API key and list ID, sent to `https://<dc>.api.mailchimp.com/3.0/lists/{list_id}/members` (where `<dc>` is the data center prefix derived from the API key).
+- When: only when a visitor submits a form whose Mailchimp integration has been configured by the administrator.
+- Provider: Intuit Mailchimp. Terms: https://mailchimp.com/legal/terms/  Privacy: https://www.intuit.com/privacy/statement/
+
+**6. Custom Webhooks (optional Form integration)**
+Used only when a site administrator pastes a custom webhook URL into the Form block settings.
+- What is sent: the visitor's email address and optional first name, sent as a JSON POST request to the URL configured by the administrator.
+- When: only when a visitor submits a form whose webhook URL has been configured by the administrator.
+- Provider: the third-party service chosen by the administrator. The administrator is responsible for ensuring the destination has an appropriate privacy policy.
 
 == Installation ==
 
@@ -225,7 +180,17 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
-### 2.7.3
+### 2.7.4 [April 26, 2026]
+
+#### Compliance
+- **Trialware:** Pro features (blocks and extensions) are no longer rendered as locked entries inside the active Blocks/Extensions lists. They now appear only on a dedicated "Upgrade" tab as plain marketing text, with no toggles.
+- **Pro registry split:** `includes/Extensions/extensions.php` and `includes/Blocks/Blocks.php` contain only fully functional free entries. Pro marketing metadata moved to `includes/Extensions/pro-extensions.php` and `includes/Blocks/ProBlocks.php`.
+- **Phone home:** Removed unused `biggopti.js` / `biggopti.css` admin assets.
+- **Security:** Removed `'sslverify' => false` from outbound HTTP requests in the Mailchimp integration and Zolo AI client; SSL verification is now enabled by default for all external calls.
+- **Disclosure:** Added Mailchimp and Custom Webhook entries to the readme `== External services ==` section.
+- **Readme:** Trimmed promotional cross-promo sections.
+
+### 2.7.3 [April 23, 2026]
 
 #### Compliance
 - **WordPress.org review:** Form “Save response” and “Save & send” actions work in this plugin without a separate Pro plugin; form entries are available under Form Entries in the admin menu.

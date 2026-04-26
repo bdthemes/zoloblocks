@@ -126,7 +126,6 @@ if (! class_exists('Mailchimp')) {
                     'Authorization' => 'Basic ' . base64_encode("user:{$api_key}"),
                 ],
                 'body'      => wp_json_encode($body),
-                'sslverify' => false,
             ]);
 
             if (is_wp_error($response)) {
@@ -163,7 +162,7 @@ if (! class_exists('Mailchimp')) {
             $webhook_url =  $this->get_url_by_label($data['selectedWebhook']);
             if (!empty($webhook_url)) {
                 $response = wp_remote_post($webhook_url, [
-                    'body' => json_encode([
+                    'body' => wp_json_encode([
                         'email' => $data['email'],
                         'fname' => $data['fname'],
                     ]),

@@ -10,6 +10,7 @@ import Extensions from './Extensions';
 import ExtraInfo from './Extra';
 import Logo from './Logo';
 import Settings from './Settings';
+import Upgrade from './Upgrade';
 import Welcome from './Welcome';
 
 const Dashboard = () => {
@@ -48,6 +49,8 @@ const Dashboard = () => {
                 return <ApiSettings />;
             case 'settings':
                 return <Settings />;
+            case 'upgrade':
+                return <Upgrade />;
             default:
                 return <Welcome />;
         }
@@ -81,7 +84,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className="zolo-dash-sidebar-bottom-info">
-                        {zoloBlocks?.has_pro === '' && (
+                        {false && zoloBlocks?.has_pro === '' && (
                             <div className="zolo-dash-side-primum">
                                 <span className="zolo-dash-sidebar-bottom-info-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">

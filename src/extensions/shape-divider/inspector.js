@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import objAttributes from './attributes';
 
 const { ColorControl, ResRangeControl, TabPanelControl, ZoloPanelBody, ThumbsControl, PopoverControl, ZoloToggleControl, ZoloCardDivider } =
@@ -43,6 +44,8 @@ const Inspector = ({ panelProps }) => {
         shapeDivider.bottom.type !== 'triangle' &&
         shapeDivider.bottom.type !== 'opacityFan';
 
+    const shapeDividerOptions = applyFilters('zolo.shapeDivider.options', SHAPE_DIVIDER);
+
     return (
         <ZoloPanelBody title={__('Shape Divider', 'zoloblocks')} panelProps={panelProps} isNew={true}>
             <PopoverControl
@@ -66,7 +69,7 @@ const Inspector = ({ panelProps }) => {
                             <div className="zolo-shape-thumbs-top">
                                 <ThumbsControl
                                     value={shapeDivider.top.type}
-                                    options={SHAPE_DIVIDER}
+                                    options={shapeDividerOptions}
                                     onChange={(selectedOption) =>
                                         setAttributes({
                                             shapeDivider: {
@@ -88,7 +91,7 @@ const Inspector = ({ panelProps }) => {
                             <div className="zolo-shape-thumbs-bottom">
                                 <ThumbsControl
                                     value={shapeDivider.bottom.type}
-                                    options={SHAPE_DIVIDER}
+                                    options={shapeDividerOptions}
                                     onChange={(selectedOption) =>
                                         setAttributes({
                                             shapeDivider: {
