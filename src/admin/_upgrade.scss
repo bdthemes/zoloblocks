@@ -1,320 +1,79 @@
 // =====================================================================
-// Upgrade tab — dedicated marketing page for ZoloBlocks Pro features.
-// Pure presentation: no toggles, no fake activation states.
+// Upgrade tab — only overrides. Core styles: welcome.scss, style.scss (Blocks).
 // =====================================================================
 .zolo-upgrade-tab {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 0 0 60px;
+    max-width: 100%;
+    padding: 0 0 8px;
+}
 
-    .zolo-upgrade-hero {
-        background: linear-gradient(135deg, #2667ff 0%, #4f46e5 60%, #7c3aed 100%);
-        border-radius: 16px;
-        color: #fff;
-        overflow: hidden;
-        position: relative;
+// Pro Blocks / Pro Extensions: no white card — sit on page gray like Blocks tab grid
+.zolo-upgrade-tab .zolo-welcome-s-k-item.zolo-upgrade-block-section {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    padding: 0;
+}
 
-        &::before,
-        &::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            pointer-events: none;
-        }
-        &::before {
-            width: 320px;
-            height: 320px;
-            top: -120px;
-            right: -80px;
-        }
-        &::after {
-            width: 200px;
-            height: 200px;
-            bottom: -80px;
-            left: -40px;
-        }
-    }
+.zolo-upgrade-footer-btns {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 15px;
+    margin: 0;
+}
 
-    .zolo-upgrade-hero-inner {
-        max-width: 760px;
-        padding: 50px 40px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .zolo-upgrade-hero-badge {
+// Pro list rows: same icon box + glyph size for Blocks and Extensions (match Blocks tab)
+.zolo-single-block.zolo-upgrade-pro-row {
+    cursor: default;
+    .block-icon {
         align-items: center;
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 999px;
-        color: #ffd95c;
+        background-color: #f5f8ff;
+        box-sizing: border-box;
         display: inline-flex;
-        font-size: 13px;
-        font-weight: 600;
-        gap: 6px;
-        padding: 6px 14px;
-
-        svg {
-            color: #ffd95c;
-        }
+        justify-content: center;
+        line-height: 0;
+        padding: clamp(12px, 1.2vw, 16px);
     }
-
-    .zolo-upgrade-hero-title {
-        color: #fff;
-        font-size: clamp(24px, 2.6vw, 34px);
-        font-weight: 700;
-        line-height: 1.25;
-        margin: 18px 0 12px;
+    .block-icon svg {
+        display: block;
+        flex-shrink: 0;
+        height: 24px;
+        min-height: 24px;
+        min-width: 24px;
+        width: 24px;
     }
-
-    .zolo-upgrade-hero-desc {
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 15px;
-        line-height: 1.6;
-        margin: 0 0 28px;
-        max-width: 620px;
+    .block-icon svg g,
+    .block-icon svg rect {
+        height: 24px;
+        width: 24px;
     }
-
-    .zolo-upgrade-hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 36px;
+    .block-title.zolo-upgrade-block-title {
+        cursor: default;
+        user-select: text;
     }
+}
 
-    .zolo-upgrade-hero-stats {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 32px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
+.zolo-welcome-s-k-text.zolo-upgrade-section-hint {
+    margin-bottom: 1.25rem;
+    margin-top: 0.35rem;
+}
 
-        li {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        strong {
-            color: #fff;
-            font-size: 26px;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        span {
-            color: rgba(255, 255, 255, 0.78);
-            font-size: 13px;
-        }
-    }
-
-    .zolo-upgrade-cta {
-        align-items: center;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        display: inline-flex;
-        font-size: 14px;
-        font-weight: 600;
-        gap: 6px;
-        padding: 11px 20px;
-        text-decoration: none;
-        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-
-        &:hover,
-        &:focus {
-            transform: translateY(-1px);
-            text-decoration: none;
-        }
-
-        &--primary {
-            background: #fff;
-            color: #1f2937;
-
-            &:hover,
-            &:focus {
-                background: #f1f5ff;
-                color: #1f2937;
-            }
-        }
-
-        &--ghost {
-            background: transparent;
-            border-color: rgba(255, 255, 255, 0.45);
-            color: #fff;
-
-            &:hover,
-            &:focus {
-                background: rgba(255, 255, 255, 0.12);
-                color: #fff;
-            }
-        }
-    }
-
-    .zolo-upgrade-section {
-        background: #fff;
-        border: 1px solid #ececf2;
-        border-radius: 14px;
-        padding: 28px;
-    }
-
-    .zolo-upgrade-section-header {
-        align-items: center;
-        border-bottom: 1px solid #f1f1f5;
-        display: flex;
-        gap: 16px;
-        margin-bottom: 24px;
-        padding-bottom: 18px;
-
-        h3 {
-            color: #1f2937;
-            font-size: 18px;
-            font-weight: 700;
-            margin: 0 0 2px;
-        }
-
-        p {
-            color: #6b7280;
-            font-size: 13px;
-            margin: 0;
-        }
-
-        .zolo-upgrade-section-icon {
-            align-items: center;
-            background: #eef2ff;
-            border-radius: 10px;
-            color: #4f46e5;
-            display: inline-flex;
-            flex-shrink: 0;
-            height: 40px;
-            justify-content: center;
-            width: 40px;
-        }
-
-        .zolo-upgrade-section-count {
-            background: #f3f4f6;
-            border-radius: 999px;
-            color: #4b5563;
-            font-size: 12px;
-            font-weight: 600;
-            margin-left: auto;
-            padding: 4px 12px;
-        }
-    }
-
-    .zolo-upgrade-grid {
-        display: grid;
-        gap: 14px;
-        grid-template-columns: 1fr;
-
-        @media (min-width: 640px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        @media (min-width: 1024px) {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        @media (min-width: 1440px) {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
-
-    .zolo-upgrade-card {
-        align-items: center;
-        background: #fafbff;
-        border: 1px solid #ececf2;
-        border-radius: 10px;
-        display: flex;
-        gap: 12px;
-        justify-content: space-between;
-        padding: 16px;
-        transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-
-        &:hover {
-            border-color: #c7d2fe;
-            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.08);
-            transform: translateY(-1px);
-        }
-    }
-
-    .zolo-upgrade-card-body {
-        align-items: center;
-        display: flex;
-        gap: 12px;
+// Footer: align with Welcome “support” cards
+.zolo-welcome-s-k-item.support.zolo-upgrade-footer-cta {
+    .zolo-welcome-s-k-inner-item.zolo-upgrade-footer-inner {
         min-width: 0;
     }
-
-    .zolo-upgrade-card-icon {
-        align-items: center;
-        background: #ecfdf5;
-        border-radius: 8px;
-        color: #10b981;
-        display: inline-flex;
-        flex-shrink: 0;
-        height: 32px;
-        justify-content: center;
-        width: 32px;
+    .zolo-welcome-s-k-btns {
+        margin-top: 0;
     }
+}
 
-    .zolo-upgrade-card-title {
-        color: #1f2937;
-        font-size: 14px;
-        font-weight: 600;
-        margin: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .zolo-upgrade-card-link {
-        align-items: center;
-        color: #4f46e5;
-        display: inline-flex;
-        flex-shrink: 0;
-        font-size: 12px;
-        font-weight: 600;
-        gap: 4px;
-        text-decoration: none;
-        white-space: nowrap;
-
-        &:hover,
-        &:focus {
-            color: #3730a3;
-            text-decoration: none;
-        }
-
-        svg {
-            transition: transform 0.2s ease;
-        }
-
-        &:hover svg {
-            transform: translateX(2px);
-        }
-    }
-
-    .zolo-upgrade-footer-cta {
-        align-items: center;
-        background: #0f172a;
-        border-radius: 14px;
-        color: #fff;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 24px;
-        justify-content: space-between;
-        padding: 32px 36px;
-
-        h3 {
-            color: #fff;
-            font-size: 20px;
-            font-weight: 700;
-            margin: 0 0 6px;
-        }
-
-        p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            margin: 0;
-        }
-    }
+.zolo-welcome-s-k-content .zolo-upgrade-footer-h {
+    font-size: clamp(1.15rem, 1.4vw, 1.4rem);
 }
