@@ -1263,3 +1263,8 @@ input.zoloblocks-search {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+// Upgrade — Pro list rows: solid white (imported _upgrade runs before .zolo-single-block)
+.zolo-upgrade-tab .zolo-single-block.zolo-upgrade-pro-row {
+    background: #fff;
+}
