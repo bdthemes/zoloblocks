@@ -100,7 +100,8 @@ if (! class_exists('Assets')) {
                     'site_url'       =>  esc_url_raw(site_url()),
                     'plugin_version' => ZOLO_VERSION,
                     'pro_version'    => defined('ZOLO_PRO_VERSION') ? ZOLO_PRO_VERSION : '',
-                    'has_pro'        => defined('ZOLO_PRO_VERSION'),
+                    // String '1' / '' so admin dashboard JS (single-block, extensions) matches expectations.
+                    'has_pro'        => defined('ZOLO_PRO_VERSION') ? '1' : '',
                     'logo'           => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/logo.svg',
                     'community'      => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/community.svg',
                     'support'        => trailingslashit(ZOLO_ADMIN_URL) . 'includes/Admin/images/support.svg',
