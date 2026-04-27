@@ -1,4 +1,4 @@
-import { useState, useEffect } from '@wordpress/element';
+import { useEffect, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
@@ -55,6 +55,17 @@ const Dashboard = () => {
                 return <Welcome />;
         }
     };
+
+    const pageTitle = useMemo(() => {
+        const match = TABS.find((tab) => tab.value === activeTab);
+        if (match) {
+            return match.label;
+        }
+        if (activeTab === 'upgrade') {
+            return __('Get Pro', 'zoloblocks');
+        }
+        return TABS[0]?.label ?? '';
+    }, [activeTab]);
 
     return (
         <div className="zolo-dashboard-wrapper">
@@ -136,7 +147,7 @@ const Dashboard = () => {
                 <div className="zolo-header">
                     <div className="header-flex">
                         <div className="zolo-header-left">
-                            <h2 className="zolo-page-header-title">{__('Dashboard', 'zoloblocks')}</h2>
+                            <h2 className="zolo-page-header-title">{pageTitle}</h2>
                         </div>
                         <div className="zolo-header-right">
                             <div className="zolo-tabs-dropdown">
