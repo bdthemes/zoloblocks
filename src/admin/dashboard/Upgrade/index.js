@@ -1,134 +1,371 @@
-import { __ } from '@wordpress/i18n';
+import apiFetch from '@wordpress/api-fetch';
+import { useEffect, useMemo, useState } from '@wordpress/element';
+import { __, sprintf } from '@wordpress/i18n';
 
 /**
- * Upgrade tab — Pro feature lists and CTA. Rows match Blocks (zolo-single-block) pattern.
- * Pro Blocks use `BlockIcons`; Pro Extensions use `ExtensionIcons` (keys match pro-extensions.php `name`).
+ * Upgrade tab — Free vs Pro comparison table and CTA.
  */
-const { BlockIcons, ExtensionIcons } = window?.zoloIcons || {};
 
-const FallbackBlockIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-        <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-        <rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-        <rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+/** Stable empty list so hooks that depend on Pro arrays do not invalidate every render. */
+const EMPTY_PRO_LIST = [];
+
+const sortByTitle = (a, b) => String(a.title || '').localeCompare(String(b.title || ''), undefined, { sensitivity: 'base' });
+
+const removeChildBlocks = (blocks) => (Array.isArray(blocks) ? blocks.filter((block) => !block.is_child) : []);
+
+/** One list: free + Pro-only items, sorted A–Z (not two separate queues). */
+const mergeCompareRows = (freeItems, proItems, freeKeyPrefix, proKeyPrefix) => {
+    const rows = [];
+    (freeItems || []).forEach((item) => {
+        rows.push({
+            key: `${freeKeyPrefix}-${item.name}`,
+            label: item.title || item.name,
+            inFree: true,
+            inPro: true,
+        });
+    });
+    (proItems || []).forEach((item) => {
+        rows.push({
+            key: `${proKeyPrefix}-${item.name}`,
+            label: item.title || item.name,
+            inFree: false,
+            inPro: true,
+        });
+    });
+    rows.sort((a, b) => String(a.label || '').localeCompare(String(b.label || ''), undefined, { sensitivity: 'base' }));
+    return rows;
+};
+
+/** Included — solid green with white check (pricing-table style). */
+const IconYes = () => (
+    <svg className="zolo-upgrade-compare-svg zolo-upgrade-compare-svg--yes" xmlns="http://www.w3.org/2000/svg" width={22} height={22} viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="11" fill="#22c55e" />
+        <path d="M6.5 11.25l2.75 2.75L15.65 7.9" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
 
-const ProFeatureRow = ({ item, useExtensionIcon = false }) => {
-    let icon = null;
-    if (item?.name) {
-        if (useExtensionIcon && ExtensionIcons && ExtensionIcons[item.name]) {
-            icon = ExtensionIcons[item.name];
-        } else if (!useExtensionIcon && BlockIcons && BlockIcons[item.name]) {
-            icon = BlockIcons[item.name];
-        }
+/** Not included — red circle + white X (pairs with green IconYes). */
+const IconNo = () => (
+    <svg className="zolo-upgrade-compare-svg zolo-upgrade-compare-svg--no" xmlns="http://www.w3.org/2000/svg" width={22} height={22} viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="11" fill="#ef4444" />
+        <path d="M7.25 7.25l7.5 7.5M14.75 7.25l-7.5 7.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+);
+
+const ComparisonSectionRow = ({ title, meta }) => (
+    <tr className="zolo-upgrade-comparison-tr-section">
+        <th colSpan={3} scope="colgroup" className="zolo-upgrade-comparison-section-th">
+            <span className="zolo-upgrade-comparison-section-title">{title}</span>
+            {meta ? <span className="zolo-upgrade-comparison-section-meta">{meta}</span> : null}
+        </th>
+    </tr>
+);
+
+const ComparisonItemRow = ({ label, free, pro, freeLabel, proLabel }) => (
+    <tr>
+        <th scope="row" className="zolo-upgrade-comparison-feature zolo-upgrade-comparison-item-name">
+            {label}
+        </th>
+        <td className={`zolo-upgrade-comparison-cell ${free ? 'is-yes' : 'is-no'}`}>
+            <span className="zolo-upgrade-compare-cell-inner">
+                {free ? <IconYes /> : <IconNo />}
+                {freeLabel ? <span className="zolo-upgrade-comparison-note">{freeLabel}</span> : null}
+                <span className="screen-reader-text">{free ? __('Yes', 'zoloblocks') : __('No', 'zoloblocks')}</span>
+            </span>
+        </td>
+        <td className={`zolo-upgrade-comparison-cell ${pro ? 'is-yes' : 'is-no'}`}>
+            <span className="zolo-upgrade-compare-cell-inner">
+                {pro ? <IconYes /> : <IconNo />}
+                {proLabel ? <span className="zolo-upgrade-comparison-note">{proLabel}</span> : null}
+                <span className="screen-reader-text">{pro ? __('Yes', 'zoloblocks') : __('No', 'zoloblocks')}</span>
+            </span>
+        </td>
+    </tr>
+);
+
+const ComparisonSpanRow = ({ colSpan, className, children }) => (
+    <tr className={className || ''}>
+        <td colSpan={colSpan} className="zolo-upgrade-comparison-placeholder-cell">
+            {children}
+        </td>
+    </tr>
+);
+
+/**
+ * Free vs Pro: one table row per block/extension (long table is OK). Counts on first row of each group.
+ */
+const UpgradeComparisonTable = ({
+    proBlockCount,
+    proExtensionCount,
+    freeBlockCount,
+    freeExtensionCount,
+    freeBlocks,
+    freeExtensions,
+    proBlocks,
+    proExtensions,
+    listsStatus,
+}) => {
+    const freeBlocksNote =
+        freeBlockCount > 0
+            ? sprintf(
+                  /* translators: %d: number of parent (non-child) blocks in the free plugin. */
+                  __('%d blocks', 'zoloblocks'),
+                  freeBlockCount
+              )
+            : null;
+    const freeExtNote =
+        freeExtensionCount > 0
+            ? sprintf(
+                  /* translators: %d: number of extensions registered in the free plugin. */
+                  __('%d extensions', 'zoloblocks'),
+                  freeExtensionCount
+              )
+            : null;
+    const proCoreNote =
+        freeBlockCount > 0 && proBlockCount > 0
+            ? sprintf(
+                  /* translators: 1: number of free blocks, 2: number of Pro-only blocks. */
+                  __('All %1$d free + %2$d Pro blocks', 'zoloblocks'),
+                  freeBlockCount,
+                  proBlockCount
+              )
+            : freeBlockCount > 0
+              ? sprintf(
+                    /* translators: %d: number of free blocks. */
+                    __('All %d free blocks', 'zoloblocks'),
+                    freeBlockCount
+                )
+              : proBlockCount > 0
+                ? sprintf(
+                      /* translators: %d: number of Pro-only blocks. */
+                      __('All %d Pro blocks', 'zoloblocks'),
+                      proBlockCount
+                  )
+                : null;
+    const proFreeExtNote =
+        freeExtensionCount > 0 && proExtensionCount > 0
+            ? sprintf(
+                  /* translators: 1: free extensions count, 2: Pro-only extensions count. */
+                  __('All %1$d free + %2$d Pro extensions', 'zoloblocks'),
+                  freeExtensionCount,
+                  proExtensionCount
+              )
+            : freeExtensionCount > 0
+              ? sprintf(
+                    /* translators: %d: number of free extensions. */
+                    __('All %d free extensions', 'zoloblocks'),
+                    freeExtensionCount
+                )
+              : proExtensionCount > 0
+                ? sprintf(
+                      /* translators: %d: number of Pro-only extensions. */
+                      __('All %d Pro extensions', 'zoloblocks'),
+                      proExtensionCount
+                  )
+                : null;
+    const simpleRows = [
+        {
+            key: 'patterns',
+            label: __('Patterns, templates & full site editing support', 'zoloblocks'),
+            free: true,
+            pro: true,
+        },
+        {
+            key: 'updates',
+            label: __('Regular plugin updates', 'zoloblocks'),
+            free: true,
+            pro: true,
+        },
+        {
+            key: 'support',
+            label: __('Priority support from the team', 'zoloblocks'),
+            free: false,
+            pro: true,
+        },
+    ];
+
+    const mergedBlocks = listsStatus === 'ready' ? mergeCompareRows(freeBlocks, proBlocks, 'b-f', 'b-p') : [];
+    const mergedExtensions = listsStatus === 'ready' ? mergeCompareRows(freeExtensions, proExtensions, 'e-f', 'e-p') : [];
+
+    const tbodyNodes = [];
+
+    tbodyNodes.push(
+        <ComparisonSectionRow
+            key="sec-blocks"
+            title={__('Blocks', 'zoloblocks')}
+            meta={__('Free and Pro-only blocks in one list, sorted A–Z.', 'zoloblocks')}
+        />
+    );
+    if (listsStatus === 'loading') {
+        tbodyNodes.push(
+            <ComparisonSpanRow key="blocks-loading" colSpan={3}>
+                {__('Loading block names…', 'zoloblocks')}
+            </ComparisonSpanRow>
+        );
+    } else if (listsStatus === 'error') {
+        tbodyNodes.push(
+            <ComparisonSpanRow key="blocks-err" colSpan={3}>
+                {__('Could not load free blocks. Refresh the page or open the Blocks tab.', 'zoloblocks')}
+            </ComparisonSpanRow>
+        );
+    } else if (mergedBlocks.length === 0) {
+        tbodyNodes.push(
+            <ComparisonSpanRow key="blocks-empty" colSpan={3}>
+                {__('No blocks to list.', 'zoloblocks')}
+            </ComparisonSpanRow>
+        );
+    } else {
+        mergedBlocks.forEach((row, index) => {
+            tbodyNodes.push(
+                <ComparisonItemRow
+                    key={row.key}
+                    label={row.label}
+                    free={row.inFree}
+                    pro={row.inPro}
+                    freeLabel={index === 0 ? freeBlocksNote : null}
+                    proLabel={index === 0 ? proCoreNote : null}
+                />
+            );
+        });
     }
 
+    tbodyNodes.push(
+        <ComparisonSectionRow
+            key="sec-extensions"
+            title={__('Extensions', 'zoloblocks')}
+            meta={__('Free and Pro-only extensions in one list, sorted A–Z.', 'zoloblocks')}
+        />
+    );
+    if (listsStatus === 'loading') {
+        tbodyNodes.push(
+            <ComparisonSpanRow key="ext-loading" colSpan={3}>
+                {__('Loading extension names…', 'zoloblocks')}
+            </ComparisonSpanRow>
+        );
+    } else if (listsStatus === 'error') {
+        tbodyNodes.push(
+            <ComparisonSpanRow key="ext-err" colSpan={3}>
+                {__('Could not load free extensions. Refresh the page or open the Extensions tab.', 'zoloblocks')}
+            </ComparisonSpanRow>
+        );
+    } else if (mergedExtensions.length === 0) {
+        tbodyNodes.push(
+            <ComparisonSpanRow key="ext-empty" colSpan={3}>
+                {__('No extensions to list.', 'zoloblocks')}
+            </ComparisonSpanRow>
+        );
+    } else {
+        mergedExtensions.forEach((row, index) => {
+            tbodyNodes.push(
+                <ComparisonItemRow
+                    key={row.key}
+                    label={row.label}
+                    free={row.inFree}
+                    pro={row.inPro}
+                    freeLabel={index === 0 ? freeExtNote : null}
+                    proLabel={index === 0 ? proFreeExtNote : null}
+                />
+            );
+        });
+    }
+
+    tbodyNodes.push(<ComparisonSectionRow key="sec-other" title={__('Other', 'zoloblocks')} />);
+    simpleRows.forEach((row) => {
+        tbodyNodes.push(
+            <ComparisonItemRow
+                key={row.key}
+                label={row.label}
+                free={row.free}
+                pro={row.pro}
+                freeLabel={null}
+                proLabel={null}
+            />
+        );
+    });
+
     return (
-    <div className="zolo-single-block ispro zolo-upgrade-pro-row" role="listitem">
-        <div className="block-icon">
-            {icon || <FallbackBlockIcon />}
-        </div>
-        <div className="block-info">
-            <span className="block-title zolo-upgrade-block-title">
-                {item.title}
-            </span>
-            <div className="block-external-link">
-                {item.demo && (
-                    <a href={item.demo} target="_blank" rel="noopener noreferrer">
-                        <span className="block-ex-icon">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            >
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M9 15l6 -6" />
-                                <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
-                                <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
-                            </svg>
-                        </span>
-                        <span>{__('Live Demo', 'zoloblocks')}</span>
-                    </a>
-                )}
+        <div className="zolo-upgrade-comparison-section">
+            <div className="zolo-upgrade-comparison-card">
+                <div className="zolo-upgrade-comparison-scroll" role="region" aria-label={__('Feature comparison', 'zoloblocks')}>
+                    <table className="zolo-upgrade-comparison-table">
+                        <thead>
+                            <tr>
+                                <th scope="col" className="zolo-upgrade-comparison-th zolo-upgrade-comparison-th--feature">
+                                    <span className="zolo-upgrade-comparison-features-label">{__('Features', 'zoloblocks')}</span>
+                                </th>
+                                <th scope="col" className="zolo-upgrade-comparison-th zolo-upgrade-comparison-th--free">
+                                    {__('Free', 'zoloblocks')}
+                                </th>
+                                <th scope="col" className="zolo-upgrade-comparison-th zolo-upgrade-comparison-th--pro">
+                                    <span className="zolo-upgrade-comparison-th-pro-badge">{__('Pro', 'zoloblocks')}</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>{tbodyNodes}</tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div className="block-badge-toggle-wrap" aria-hidden="true">
-            <div className="block-pro">
-                <span className="block-pro-badge-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width={11} height={11} viewBox="0 0 11 11" fill="none">
-                        <path
-                            d="M1.25909 4.6529C1.06506 4.11588 0.968049 3.84738 1.00942 3.67532C1.05466 3.48713 1.1885 3.34042 1.35956 3.29148C1.51596 3.24673 1.75926 3.35486 2.24586 3.57113C2.67626 3.76243 2.89146 3.85807 3.09366 3.85275C3.31628 3.84689 3.53044 3.75762 3.7008 3.59965C3.85552 3.45618 3.9593 3.22756 4.16686 2.77032L4.62429 1.76262C5.00639 0.920875 5.19744 0.5 5.49999 0.5C5.80254 0.5 5.99359 0.920875 6.37569 1.76262L6.83314 2.77032C7.04069 3.22756 7.14449 3.45618 7.29919 3.59965C7.46954 3.75762 7.68369 3.84689 7.90634 3.85275C8.10854 3.85807 8.32374 3.76243 8.75414 3.57113C9.24074 3.35486 9.48404 3.24673 9.64044 3.29148C9.81149 3.34042 9.94534 3.48713 9.99059 3.67532C10.0319 3.84738 9.93494 4.11588 9.74089 4.65285L8.90689 6.96109C8.55009 7.94849 8.37174 8.44219 7.99839 8.72109C7.62509 8.99999 7.14269 8.99999 6.17789 8.99999H4.82209C3.85729 8.99999 3.37488 8.99999 3.00157 8.72109C2.62827 8.44219 2.44988 7.94849 2.09311 6.96109L1.25909 4.6529Z"
-                            stroke="#FFA826"
-                        />
-                        <path
-                            d="M5.5 6.5H5.505"
-                            stroke="#FFA826"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path d="M3 10.5H7.99999" stroke="#FFA826" strokeLinecap="round" />
-                    </svg>
-                </span>
-                <span>{__('Pro', 'zoloblocks')}</span>
-            </div>
-        </div>
-    </div>
     );
 };
 
 const Upgrade = () => {
-    const proExtensions = window?.zoloBlocks?.pro_features?.extensions || [];
-    const proBlocks = window?.zoloBlocks?.pro_features?.blocks || [];
+    const rawProExt = window?.zoloBlocks?.pro_features?.extensions;
+    const rawProBlocks = window?.zoloBlocks?.pro_features?.blocks;
+    const proExtensions = Array.isArray(rawProExt) ? rawProExt : EMPTY_PRO_LIST;
+    const proBlocks = Array.isArray(rawProBlocks) ? rawProBlocks : EMPTY_PRO_LIST;
+    const counter = window?.zoloBlocks?.zolo_counter || {};
+    const freeBlockCount = parseInt(counter.total_blocks, 10) || 0;
+    const freeExtensionCount = parseInt(counter.total_extensions, 10) || 0;
+
+    const [compareLists, setCompareLists] = useState({ freeBlocks: [], freeExtensions: [] });
+    const [listsStatus, setListsStatus] = useState('loading');
+
+    useEffect(() => {
+        let cancelled = false;
+        const load = async () => {
+            setListsStatus('loading');
+            try {
+                const [blocksRes, extRes] = await Promise.all([
+                    apiFetch({ path: '/zolo/v1/blocks', method: 'GET' }),
+                    apiFetch({ path: '/zolo/v1/extensions', method: 'GET' }),
+                ]);
+                if (cancelled) {
+                    return;
+                }
+                const fb = removeChildBlocks(blocksRes).sort(sortByTitle);
+                const fe = Array.isArray(extRes) ? [...extRes].sort(sortByTitle) : [];
+                setCompareLists({ freeBlocks: fb, freeExtensions: fe });
+                setListsStatus('ready');
+            } catch (e) {
+                if (!cancelled) {
+                    setCompareLists({ freeBlocks: [], freeExtensions: [] });
+                    setListsStatus('error');
+                }
+            }
+        };
+        load();
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
+    const proBlocksSorted = useMemo(() => [...proBlocks].sort(sortByTitle), [proBlocks]);
+    const proExtensionsSorted = useMemo(() => [...proExtensions].sort(sortByTitle), [proExtensions]);
 
     return (
         <div className="zolo-welcome-page-wrap zolo-upgrade-tab">
-            {proBlocks.length > 0 && (
-                <div className="zolo-welcome-s-k-item zolo-upgrade-block-section" aria-labelledby="zolo-upgrade-pro-blocks-heading">
-                    <h2 className="zolo-welcome-s-k-title" id="zolo-upgrade-pro-blocks-heading">
-                        {__('Pro Blocks', 'zoloblocks')}
-                    </h2>
-                    <p className="zolo-welcome-s-k-text zolo-upgrade-section-hint">
-                        {__('Additional blocks available with ZoloBlocks Pro.', 'zoloblocks')}
-                    </p>
-                    <div className="zoloblocks-grid">
-                        <div className="zoloblocks-inner-grid" role="list">
-                            {proBlocks.map((item) => (
-                                <ProFeatureRow key={item.name} item={item} />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {proExtensions.length > 0 && (
-                <div
-                    className="zolo-welcome-s-k-item zolo-upgrade-block-section zolo-upgrade-extension-section"
-                    aria-labelledby="zolo-upgrade-pro-ext-heading"
-                >
-                    <h2 className="zolo-welcome-s-k-title" id="zolo-upgrade-pro-ext-heading">
-                        {__('Pro Extensions', 'zoloblocks')}
-                    </h2>
-                    <p className="zolo-welcome-s-k-text zolo-upgrade-section-hint">
-                        {__('Editor extensions for animations, effects, and dynamic content.', 'zoloblocks')}
-                    </p>
-                    <div className="zoloblocks-grid">
-                        <div className="zoloblocks-inner-grid" role="list">
-                            {proExtensions.map((item) => (
-                                <ProFeatureRow key={item.name} item={item} useExtensionIcon />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            )}
+            <UpgradeComparisonTable
+                proBlockCount={proBlocks.length}
+                proExtensionCount={proExtensions.length}
+                freeBlockCount={freeBlockCount}
+                freeExtensionCount={freeExtensionCount}
+                freeBlocks={compareLists.freeBlocks}
+                freeExtensions={compareLists.freeExtensions}
+                proBlocks={proBlocksSorted}
+                proExtensions={proExtensionsSorted}
+                listsStatus={listsStatus}
+            />
 
             <div className="zolo-welcome-s-k-item support zolo-upgrade-footer-cta" aria-label={__('Call to action', 'zoloblocks')}>
                 <div className="zolo-welcome-s-k-inner-item zolo-upgrade-footer-inner">

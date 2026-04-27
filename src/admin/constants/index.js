@@ -30,8 +30,8 @@ export const TABS = [
         ? []
         : [
               {
-                  icon: "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none'><path d='M12 2 4 7v6c0 5 3.4 9.5 8 11 4.6-1.5 8-6 8-11V7l-8-5z' stroke='#FFA826' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'/></svg>",
-                  label: __('Upgrade', 'zoloblocks'),
+                  icon: "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.75' strokeLinecap='round' strokeLinejoin='round' aria-hidden='true'><path d='M12 2l1.4 4.6L18 8l-4.6 1.4L12 14l-1.4-4.6L6 8l4.6-1.4L12 2z'/><path d='M5 13l.9 2.9L9 17l-3.1 1.1L5 21l-.9-2.9L1 17l3.1-1.1L5 13z'/><path d='M19 13l.9 2.9L23 17l-3.1 1.1L19 21l-.9-2.9L15 17l3.1-1.1L19 13z'/></svg>",
+                  label: __('Get Pro', 'zoloblocks'),
                   value: 'upgrade',
               },
           ]),
