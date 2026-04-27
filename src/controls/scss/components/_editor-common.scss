@@ -555,6 +555,17 @@ textarea[readonly] {
         display: flex;
         flex-direction: column;
         gap: 15px;
+        align-items: center;
+    }
+
+    .zolo-flex-row-control {
+        .components-base-control__field {
+            width: 100%;
+            .components-input-base {
+                flex-direction: row !important;
+                align-items: center !important;
+            }
+        }    
     }
 }
 
@@ -1055,5 +1066,11 @@ textarea[readonly] {
     }
     &::before {
         content: unset !important;
+    }
+}
+
+.zolo-pop-select-control {
+    .components-input-control__container {
+        width: 100% !important;
     }
 }
