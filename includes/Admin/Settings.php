@@ -866,51 +866,54 @@ if (! class_exists('Settings')) {
          */
         public function save_default_blocks() {
             $existing_blocks = get_option('zolo_blocks_settings', []);
+            if (! is_array($existing_blocks)) {
+                $existing_blocks = [];
+            }
+
             $new_blocks = ZoloHelpers::get_zolo_blocks();
+            if (! is_array($new_blocks)) {
+                $new_blocks = [];
+            }
 
-            // Temporary array to store the merged blocks
             $merged_blocks = [];
+            $definition_names = [];
 
-            // Merge existing and new blocks
             foreach ($new_blocks as $new_block) {
-                $found = false;
+                if (! is_array($new_block) || empty($new_block['name'])) {
+                    continue;
+                }
+                $definition_names[$new_block['name']] = true;
 
+                $found = false;
                 foreach ($existing_blocks as $existing_block) {
+                    if (! is_array($existing_block) || ! isset($existing_block['name'])) {
+                        continue;
+                    }
                     if ($existing_block['name'] === $new_block['name']) {
-                        // Merge the existing block with new data, but retain the status
-                        $merged_blocks[] = array_merge($new_block, ['status' => $existing_block['status']]);
+                        $status = array_key_exists('status', $existing_block) ? $existing_block['status'] : $new_block['status'];
+                        $merged_blocks[] = array_merge($new_block, ['status' => $status]);
                         $found = true;
                         break;
                     }
                 }
 
-                // If the block does not exist in the current options, add it
-                if (!$found) {
+                if (! $found) {
                     $merged_blocks[] = $new_block;
                 }
             }
 
-            // Remove blocks that are no longer in the new list
+            // Keep blocks that are only registered while Pro is active (or otherwise absent
+            // from the current registry) so deactivating Pro does not wipe saved toggles.
             foreach ($existing_blocks as $existing_block) {
-                $block_exists = false;
-
-                foreach ($new_blocks as $new_block) {
-                    if ($new_block['name'] === $existing_block['name']) {
-                        $block_exists = true;
-                        break;
-                    }
+                if (! is_array($existing_block) || empty($existing_block['name'])) {
+                    continue;
                 }
-
-                if (!$block_exists) {
-                    // If the block exists in existing_blocks but not in new_blocks, remove it from merged_blocks
-                    $key = array_search($existing_block['name'], array_column($merged_blocks, 'name'));
-                    if ($key !== false) {
-                        unset($merged_blocks[$key]);
-                    }
+                if (isset($definition_names[$existing_block['name']])) {
+                    continue;
                 }
+                $merged_blocks[] = $existing_block;
             }
 
-            // Re-index the array to ensure there are no gaps in keys
             $merged_blocks = array_values($merged_blocks);
 
             update_option('zolo_blocks_settings', $merged_blocks);
@@ -924,51 +927,54 @@ if (! class_exists('Settings')) {
          */
         public function save_default_extensions() {
             $existing_extensions = get_option('zolo_extensions_settings', []);
+            if (! is_array($existing_extensions)) {
+                $existing_extensions = [];
+            }
+
             $new_extensions = ZoloHelpers::get_zolo_extensions();
+            if (! is_array($new_extensions)) {
+                $new_extensions = [];
+            }
 
-            // Temporary array to store the merged blocks
             $merged_extensions = [];
+            $definition_names = [];
 
-            // Merge existing and new blocks
             foreach ($new_extensions as $new_extension) {
-                $found = false;
+                if (! is_array($new_extension) || empty($new_extension['name'])) {
+                    continue;
+                }
+                $definition_names[$new_extension['name']] = true;
 
+                $found = false;
                 foreach ($existing_extensions as $existing_extension) {
+                    if (! is_array($existing_extension) || ! isset($existing_extension['name'])) {
+                        continue;
+                    }
                     if ($existing_extension['name'] === $new_extension['name']) {
-                        // Merge the existing block with new data, but retain the status
-                        $merged_extensions[] = array_merge($new_extension, ['status' => $existing_extension['status']]);
+                        $status = array_key_exists('status', $existing_extension) ? $existing_extension['status'] : $new_extension['status'];
+                        $merged_extensions[] = array_merge($new_extension, ['status' => $status]);
                         $found = true;
                         break;
                     }
                 }
 
-                // If the extension does not exist in the current options, add it
-                if (!$found) {
+                if (! $found) {
                     $merged_extensions[] = $new_extension;
                 }
             }
 
-            // Remove blocks that are no longer in the new list
+            // Preserve extensions only registered by Pro (or other add-ons) so deactivating
+            // Pro does not delete rows or reset merged free-extension data.
             foreach ($existing_extensions as $existing_extension) {
-                $extension_exists = false;
-
-                foreach ($new_extensions as $new_extension) {
-                    if ($new_extension['name'] === $existing_extension['name']) {
-                        $extension_exists = true;
-                        break;
-                    }
+                if (! is_array($existing_extension) || empty($existing_extension['name'])) {
+                    continue;
                 }
-
-                if (!$extension_exists) {
-                    // If the block exists in existing_blocks but not in new_blocks, remove it from merged_blocks
-                    $key = array_search($existing_extension['name'], array_column($merged_extensions, 'name'));
-                    if ($key !== false) {
-                        unset($merged_extensions[$key]);
-                    }
+                if (isset($definition_names[$existing_extension['name']])) {
+                    continue;
                 }
+                $merged_extensions[] = $existing_extension;
             }
 
-            // Re-index the array to ensure there are no gaps in keys
             $merged_extensions = array_values($merged_extensions);
 
             update_option('zolo_extensions_settings', $merged_extensions);

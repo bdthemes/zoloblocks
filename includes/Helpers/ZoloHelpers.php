@@ -1003,12 +1003,14 @@ class ZoloHelpers {
 
         if (is_array($extension_options)) {
             foreach ($extension_options as $value) {
-                if (isset($value['name']) && isset($value['status'])) {
-                    $name = sanitize_text_field($value['name']);
-                    $status = sanitize_text_field($value['status']);
-
-                    $extensions[$name] = $status;
+                if (! is_array($value) || ! isset($value['name']) || ! array_key_exists('status', $value)) {
+                    continue;
                 }
+                $name = sanitize_text_field($value['name']);
+                if ($name === '') {
+                    continue;
+                }
+                $extensions[$name] = filter_var($value['status'], FILTER_VALIDATE_BOOLEAN);
             }
         }
 
@@ -1021,7 +1023,7 @@ class ZoloHelpers {
      */
     public static function is_extension_enabled($extension) {
         $extensions = self::zolo_extensions();
-        return isset($extensions[$extension]) ? $extensions[$extension] : false;
+        return isset($extensions[$extension]) && $extensions[$extension];
     }
 
 
