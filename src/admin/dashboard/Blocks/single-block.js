@@ -148,7 +148,7 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                                     <path d="M3 10.5H7.99999" stroke="#FFA826" strokeLinecap="round" />
                                 </svg>
                             </span>
-                            <span>{isPremiumLocked ? __('Premium', 'zoloblocks') : __('Pro', 'zoloblocks')}</span>
+                            <span>{isPremiumLocked ? __('Pro', 'zoloblocks') : __('Pro', 'zoloblocks')}</span>
                         </div>
                     )}
                     <div className="block-switcher">
