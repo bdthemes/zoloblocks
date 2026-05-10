@@ -32,8 +32,12 @@ const Extensions = () => {
 
     // activate / deactivate all extensions
     const toggleAllExtensions = (status) => {
+        const cannotActivatePremium = status && zoloBlocks?.has_pro !== '1';
         setExtensions((prevExtensions) =>
             prevExtensions.map((extension) => {
+                if (cannotActivatePremium && extension.is_pro) {
+                    return extension;
+                }
                 if (extension.status !== status) {
                     setExtensionsTobeUpdated((prev) => ({
                         ...prev,
@@ -52,6 +56,9 @@ const Extensions = () => {
             prevExtensions.map((extension) => {
                 if (extension.name === extensionName) {
                     const newStatus = !extension.status;
+                    if (extension.is_pro && zoloBlocks?.has_pro !== '1' && newStatus) {
+                        return extension;
+                    }
                     setExtensionsTobeUpdated((prev) => ({
                         ...prev,
                         [extension.name]: newStatus,
@@ -197,6 +204,7 @@ const Extensions = () => {
                                             demo={extension?.demo || ''}
                                             video={extension?.video || ''}
                                             released={extension?.released}
+                                            isPro={!!extension?.is_pro}
                                             onClick={() => {
                                                 handleExtensionClick(extension.name);
                                             }}

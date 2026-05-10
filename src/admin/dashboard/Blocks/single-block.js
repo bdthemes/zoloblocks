@@ -7,6 +7,16 @@ const { BlockIcons } = window?.zoloIcons;
 
 const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video = '', isPro = false }) => {
     const [proPanel, setProPanel] = useState(false);
+    const hasProLicense = zoloBlocks?.has_pro === '1';
+    const isPremiumLocked = isPro && !hasProLicense;
+
+    const handleTitleClick = () => {
+        if (isPremiumLocked) {
+            setProPanel(true);
+            return;
+        }
+        onClick();
+    };
 
     return (
         <>
@@ -53,14 +63,15 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
             )}
             <div
                 className={classnames('zolo-single-block', {
-                    active: value,
+                    active: upcoming ? false : isPro ? value && hasProLicense : value,
                     ispro: isPro,
                     upcoming: upcoming,
+                    'zolo-premium-locked': isPremiumLocked,
                 })}
             >
                 <div className="block-icon">{BlockIcons[icon]}</div>
                 <div className="block-info">
-                    <span className="block-title" onClick={onClick}>
+                    <span className="block-title" onClick={handleTitleClick}>
                         {title}
                     </span>
                     <div className="block-external-link">
@@ -116,7 +127,11 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
 
                 <div className="block-badge-toggle-wrap">
                     {isPro && (
-                        <div className="block-pro">
+                        <div
+                            className={classnames('block-pro', {
+                                'block-pro--requires-plugin': isPremiumLocked,
+                            })}
+                        >
                             <span className="block-pro-badge-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width={11} height={11} viewBox="0 0 11 11" fill="none">
                                     <path
@@ -133,7 +148,7 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                                     <path d="M3 10.5H7.99999" stroke="#FFA826" strokeLinecap="round" />
                                 </svg>
                             </span>
-                            <span>{__('Pro', 'zoloblocks')}</span>
+                            <span>{isPremiumLocked ? __('Premium', 'zoloblocks') : __('Pro', 'zoloblocks')}</span>
                         </div>
                     )}
                     <div className="block-switcher">
@@ -143,7 +158,7 @@ const SingleBlock = ({ icon, title, value, onClick, upcoming, demo = '', video =
                             <>
                                 {isPro ? (
                                     <>
-                                        {zoloBlocks?.has_pro === '1' ? (
+                                        {hasProLicense ? (
                                             <ZoloToggleControl checked={value} onChange={onClick} />
                                         ) : (
                                             <ZoloToggleControl checked={false} onChange={() => setProPanel(true)} />
