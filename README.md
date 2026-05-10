@@ -54,7 +54,7 @@ A full, up-to-date block list with live previews is available at [zoloblocks.com
 | --- | --- |
 | WordPress | 6.1 |
 | PHP | 7.4 |
-| Tested up to (WP) | 6.9 |
+| Tested up to (WP) | 7.0 |
 
 ---
 
