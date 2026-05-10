@@ -726,6 +726,9 @@ if (! class_exists('Settings')) {
                     // Find and update the matching block
                     foreach ($blocks as &$block) {
                         if ($block['name'] === $block_name) {
+                            if (! $this->may_apply_pro_feature_status($block, $block_status)) {
+                                break;
+                            }
                             $block['status'] = $block_status;
                             break;
                         }
@@ -737,6 +740,9 @@ if (! class_exists('Settings')) {
 
                 foreach ($blocks as &$block) {
                     if (in_array($block['name'], $block_names)) {
+                        if (! $this->may_apply_pro_feature_status($block, $status)) {
+                            continue;
+                        }
                         $block['status'] = $status;
                     }
                 }
@@ -834,6 +840,9 @@ if (! class_exists('Settings')) {
                     // Find and update the matching block
                     foreach ($extensions as &$extension) {
                         if ($extension['name'] === $extension_name) {
+                            if (! $this->may_apply_pro_feature_status($extension, $extension_status)) {
+                                break;
+                            }
                             $extension['status'] = $extension_status;
                             break;
                         }
@@ -845,6 +854,9 @@ if (! class_exists('Settings')) {
 
                 foreach ($extensions as &$extension) {
                     if (in_array($extension['name'], $extension_names)) {
+                        if (! $this->may_apply_pro_feature_status($extension, $status)) {
+                            continue;
+                        }
                         $extension['status'] = $status;
                     }
                 }
@@ -856,6 +868,24 @@ if (! class_exists('Settings')) {
             update_option('zolo_extensions_settings', $extensions);
 
             return rest_ensure_response($extensions);
+        }
+
+        /**
+         * Whether a block/extension status update may be applied.
+         * Pro-only features cannot be turned on while ZoloBlocks Pro is inactive.
+         *
+         * @param array $item    Row from zolo_blocks_settings or zolo_extensions_settings.
+         * @param mixed $new_status Requested status (boolean-compatible).
+         */
+        private function may_apply_pro_feature_status(array $item, $new_status) {
+            if (empty($item['is_pro'])) {
+                return true;
+            }
+            if (defined('ZOLO_PRO_VERSION')) {
+                return true;
+            }
+
+            return ! filter_var($new_status, FILTER_VALIDATE_BOOLEAN);
         }
 
         /**

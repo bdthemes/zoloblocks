@@ -48,7 +48,7 @@ const Blocks = () => {
                     )) ||
                 block.categories.some((category) => category === blockCategory);
 
-            if (shouldActivate && !block.status) {
+            if (shouldActivate && !block.status && !(block.is_pro && zoloBlocks?.has_pro !== '1')) {
                 newUpdates[block.name] = true;
                 return { ...block, status: true };
             }
@@ -85,9 +85,16 @@ const Blocks = () => {
     // Handle block click
     const handleBlockClick = (blockName) => {
         setBlocksTobeUpdated((prev) => {
-            const currentStatus = prev[blockName] !== undefined ? prev[blockName] : blocks.find((block) => block.name === blockName).status;
+            const block = blocks.find((b) => b.name === blockName);
+            if (!block) {
+                return prev;
+            }
+            const currentStatus = prev[blockName] !== undefined ? prev[blockName] : block.status;
             const updatedStatus = !currentStatus;
-            setBlocks((prevBlocks) => prevBlocks.map((block) => (block.name === blockName ? { ...block, status: updatedStatus } : block)));
+            if (block.is_pro && zoloBlocks?.has_pro !== '1' && updatedStatus) {
+                return prev;
+            }
+            setBlocks((prevBlocks) => prevBlocks.map((b) => (b.name === blockName ? { ...b, status: updatedStatus } : b)));
             return {
                 ...prev,
                 [blockName]: updatedStatus,
@@ -259,6 +266,7 @@ const Blocks = () => {
                                             demo={block?.demo || ''}
                                             video={block?.video || ''}
                                             upcoming={block?.upcoming}
+                                            isPro={!!block?.is_pro}
                                             onClick={() => {
                                                 handleBlockClick(block.name);
                                             }}
