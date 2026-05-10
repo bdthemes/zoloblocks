@@ -406,15 +406,6 @@
         gap: 5px;
         border-radius: 6px;
         margin-top: clamp(-6px, -1vw, -15px);
-
-        &.block-pro--requires-plugin {
-            box-shadow: 0 0 0 1px rgba(255, 168, 38, 0.65);
-            letter-spacing: 0.02em;
-        }
-    }
-
-    &.zolo-premium-locked {
-        background: rgba(255, 250, 240, 0.55);
     }
 
     .block-pro-badge-icon {
