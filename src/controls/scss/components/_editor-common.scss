@@ -567,6 +567,10 @@ textarea[readonly] {
             }
         }    
     }
+
+    .components-input-base {
+        width: 100%;
+    }
 }
 
 .zolo-background-control-popover {
@@ -1021,6 +1025,9 @@ textarea[readonly] {
             & > div {
                 padding: 0 8px;
             }
+            input {
+                min-height: 30px;
+            }
         }
     }
 }
@@ -1050,9 +1057,21 @@ textarea[readonly] {
     border: 0 !important;
     background-color: #f2f2f2 !important;
     box-shadow: none !important;
+    outline: none !important;
+    height: 35px !important;
+    &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
     .components-toggle-group-control-option-base {
         border-radius: 6px !important;
         border: 1px solid #f2f2f2 !important;
+        outline: none !important;
+        box-shadow: none !important;
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
     }
     .active {
         background: #fff !important;
