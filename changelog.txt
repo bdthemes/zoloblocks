@@ -1,3 +1,8 @@
+### 2.7.6 [May 23, 2026]
+
+#### Bug Fixes
+- **Editor Controls:** Fixed broken control styles (header tabs, iconic button group, reset button, icon picker) in the block editor sidebar.
+
 ### 2.7.5 [May 10, 2026]
 
 #### Improvements

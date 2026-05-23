@@ -1,11 +1,11 @@
 === ZoloBlocks – Advanced Gutenberg Blocks, Website Builder & Page Design Toolkit ===
-Contributors: bdthemes, selimmw, mizan42047, abutalib, muhammadasik, shamim496
+Contributors: bdthemes, selimmw, abutalib, muhammadasik, shamim496
 Donate link: http://zoloblocks.com/
 Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.1
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.7.5
+Stable tag: 2.7.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,11 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.7.6 [May 23, 2026]
+
+#### Bug Fixes
+- **Editor Controls:** Fixed broken control styles (header tabs, iconic button group, reset button, icon picker) in the block editor sidebar.
 
 ### 2.7.5 [May 10, 2026]
 
