@@ -37,6 +37,7 @@ export default function Save(props) {
                 className="zolo-play-btn zolo-lightbox-btn-1"
                 data-fslightbox={uniqueId}
                 data-caption={sanitizeAttr(contentCaption)}
+                aria-label={__('Play Video', 'zoloblocks')}
             >
                 {lightboxType !== 'poster' && (
                     <span className="zolo-btn-text">

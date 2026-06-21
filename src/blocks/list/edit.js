@@ -35,6 +35,9 @@ export default function Edit(props) {
         linkHoverIcon,
         globalIcon,
         showBadge,
+        headingToggle,
+        headingText,
+        headingTag,
     } = attributes;
 
     const deepCloneProfiles = cloneDeep(listProfiles);
@@ -63,7 +66,7 @@ export default function Edit(props) {
                 ...listProfiles,
                 {
                     id: listProfiles.length + 1,
-                    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>',
+                    icon: '',
                     link: {
                         url: sanitizeUrl('#'),
                         openInNewTab: false,
@@ -89,6 +92,14 @@ export default function Edit(props) {
             </BlockControls>
             <div {...blockProps}>
                 {renderHookBefore && renderHookBefore}
+                {headingToggle && (
+                    <RichText
+                        tagName={headingTag}
+                        className="zolo-list-heading"
+                        value={headingText}
+                        onChange={(value) => setAttributes({ headingText: value })}
+                    />
+                )}
                 <SidebarOpener clientId={clientId} />
                 {deepCloneProfiles &&
                     deepCloneProfiles.map((profile, index) => {
@@ -140,7 +151,9 @@ export default function Edit(props) {
                                                                         setAttributes({ listProfiles: newItems });
                                                                     }}
                                                                 />
-                                                                {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                                {showBadge && profile.badge && (
+                                                                    <span className="zolo-list-badge">{profile.badge}</span>
+                                                                )}
                                                             </div>
                                                         )}
                                                         {DscToggle && contentLayout !== 'horizontal' && (
@@ -194,7 +207,9 @@ export default function Edit(props) {
                                                                             setAttributes({ listProfiles: newItems });
                                                                         }}
                                                                     />
-                                                                    {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                                    {showBadge && profile.badge && (
+                                                                        <span className="zolo-list-badge">{profile.badge}</span>
+                                                                    )}
                                                                 </div>
                                                             )}
                                                         </div>
@@ -215,7 +230,9 @@ export default function Edit(props) {
                                                                         setAttributes({ listProfiles: newItems });
                                                                     }}
                                                                 />
-                                                                {showBadge && profile.badge && <span className="zolo-list-badge">{profile.badge}</span>}
+                                                                {showBadge && profile.badge && (
+                                                                    <span className="zolo-list-badge">{profile.badge}</span>
+                                                                )}
                                                             </div>
                                                         )}
                                                         {DscToggle && (

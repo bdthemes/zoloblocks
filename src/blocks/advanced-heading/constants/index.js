@@ -102,6 +102,7 @@ export const SEPARATOR_WIDTH = 'separatorWidth';
 export const SEPARATOR_SPACING = 'separatorSpacing';
 export const SEPARATOR_HEIGHT = 'separatorHeight';
 export const SEPARATOR_ALIGN = 'separatorAlign';
+export const SEPARATOR_MARGIN = 'separatorMargin';
 
 export const TPT_MARGIN = 'TPTMargin';
 export const TPT_BORDER = 'TPTBorder';

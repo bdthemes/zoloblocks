@@ -8,6 +8,8 @@ const {
     generateGapAttributes,
     generateResAlignmentAttributies,
     generateNormalBGAttributes,
+    generateTextShadowAttributies,
+    generateTextStrokeAttributies,
 } = window.zoloModule;
 
 import {
@@ -51,6 +53,15 @@ import {
     BADGE_BORDER,
     BADGE_PADDING,
     BADGE_BORDER_RADIUS,
+    HEADING_MARGIN,
+    HEADING_PADDING,
+    HEADING_ALIGNMENT,
+    HEADING_TEXT_SHADOW,
+    HEADING_TEXT_STROKE,
+    HEADING_BG,
+    HEADING_BORDER,
+    HEADING_BOX_SHADOW,
+    HEADING_BORDER_RADIUS,
 } from './constants';
 
 import * as typographyObjs from './constants/typoPrefixConstant';
@@ -137,11 +148,38 @@ const attributes = {
     ...generateDimensionAttributes(BADGE_PADDING),
     ...generateDimensionAttributes(BADGE_BORDER_RADIUS),
 
+    // Heading
+    ...generateDimensionAttributes(HEADING_MARGIN),
+    ...generateDimensionAttributes(HEADING_PADDING),
+    ...generateResAlignmentAttributies(HEADING_ALIGNMENT),
+    ...generateTextShadowAttributies(HEADING_TEXT_SHADOW),
+    ...generateTextStrokeAttributies(HEADING_TEXT_STROKE),
+    ...generateNormalBGAttributes(HEADING_BG),
+    ...generateBorderAttributies(HEADING_BORDER),
+    ...generateBoxShadowAttributies(HEADING_BOX_SHADOW),
+    ...generateDimensionAttributes(HEADING_BORDER_RADIUS),
+
     preset: {
         type: 'string',
         default: 'zolo-list-style-1',
     },
     contentLayout: {
+        type: 'string',
+        default: '',
+    },
+    headingToggle: {
+        type: 'boolean',
+        default: false,
+    },
+    headingText: {
+        type: 'string',
+        default: 'List Heading...',
+    },
+    headingTag: {
+        type: 'string',
+        default: 'h3',
+    },
+    headingColor: {
         type: 'string',
         default: '',
     },

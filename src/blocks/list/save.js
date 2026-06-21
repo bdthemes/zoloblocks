@@ -4,7 +4,7 @@
 const { DisplayZoloIcon, classArrayToStr, sanitizeText, sanitizeUrl } = window.zoloModule;
 
 import classnames from 'classnames';
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -24,6 +24,9 @@ const Save = (props) => {
         globalIcon,
         isLinkable = false,
         showBadge,
+        headingToggle,
+        headingText,
+        headingTag,
     } = attributes;
 
     const renderHookBefore = applyFilters('zolo.blocks.render.hook.before', [], props);
@@ -44,6 +47,13 @@ const Save = (props) => {
             {...(zoloId && { id: zoloId })}
         >
             {renderHookBefore && renderHookBefore}
+            {headingToggle && !RichText.isEmpty(headingText) && (
+                <RichText.Content
+                    tagName={headingTag}
+                    className="zolo-list-heading"
+                    value={headingText}
+                />
+            )}
             {listProfiles &&
                 listProfiles.map((profile, index) => {
                     const commonProps = {

@@ -9,6 +9,9 @@
         border: 0;
         border-radius: 6px;
         background-color: #f2f2f2;
+        box-shadow: none !important;
+        height: 35px !important;
+        outline: none !important;
         &:focus-within {
             box-shadow: none;
             border: none;
@@ -16,6 +19,7 @@
         .components-button {
             border-radius: 6px !important;
             border: 1px solid #f2f2f2;
+            box-shadow: none;
         }
     }
 

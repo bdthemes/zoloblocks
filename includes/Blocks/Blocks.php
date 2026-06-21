@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 require_once ZOLO_DIR_PATH . 'includes/Blocks/PostGrid.php';
 require_once ZOLO_DIR_PATH . 'includes/Blocks/PostList.php';
 
@@ -50,15 +51,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/advanced-button',
         'video' => 'https://www.youtube.com/watch?v=H10lSIUc-zo',
     ],
-    'modal' => [
-        'name' => 'modal',
-        'title' => __('Modal', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/modal',
-        'video' => 'https://www.youtube.com/watch?v=H10lSIUc-zo',
-    ],
+
     'advanced-heading' => [
         'name' => 'advanced-heading',
         'title' => __('Advanced Heading', 'zoloblocks'),
@@ -106,23 +99,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/brand-grid',
         'video' => 'https://www.youtube.com/watch?v=A9gg4QA1nLo',
     ],
-    'brand-carousel' => [
-        'name' => 'brand-carousel',
-        'title' => __('Brand Carousel', 'zoloblocks'),
-        'categories' => ['list'],
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/brand-carousel',
-        'video' => 'https://www.youtube.com/watch?v=ht3dVsz6yCY',
-    ],
-    'brand-carousel-child' => [
-        'name' => 'brand-carousel-child',
-        'title' => __('Brand Carousel Child', 'zoloblocks'),
-        'categories' => ['post'],
-        'status' => true,
-        'is_pro' => true,
-        'is_child' => true,
-    ],
+
     'business-hour' => [
         'name' => 'business-hour',
         'title' => __('Business Hour', 'zoloblocks'),
@@ -163,15 +140,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/cta',
         'video' => 'https://www.youtube.com/watch?v=R0mIoHUckgk',
     ],
-    'circle-info' => [
-        'name' => 'circle-info',
-        'title' => __('Circle Info', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/circle-info',
-        'video' => 'https://www.youtube.com/watch?v=EbKbp0iELeo',
-    ],
+
     'fancy-list' => [
         'name' => 'fancy-list',
         'title' => __('Fancy List', 'zoloblocks'),
@@ -586,33 +555,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/post-title',
         'video'      => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
-    'unfold' => [
-        'name' => 'unfold',
-        'title' => __('Unfold', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/unfold',
-        'video' => 'https://www.youtube.com/watch?v=PlJpChsfFvM&t',
-    ],
-    'data-table' => [
-        'name' => 'data-table',
-        'title' => __('Data Table', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/data-table',
-        'video' => 'https://www.youtube.com/watch?v=0oCc6LnACwc',
-    ],
-    'image-hotspot' => [
-        'name' => 'image-hotspot',
-        'title' => __('Image Hotspot', 'zoloblocks'),
-        'categories' => ['gallery'],
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/image-hotspot',
-        'video' => 'https://www.youtube.com/watch?v=qR9Ua6wuxrA',
-    ],
+
     'navigation' => [
         'name' => 'navigation',
         'title' => __('Mega Menu', 'zoloblocks'),
@@ -657,23 +600,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/post-meta',
         'video' => 'https://youtu.be/HPEVm1xGT3I?list=PLFnvpmjcONzLJMQiRFpLAxHsz-RSmZstT',
     ],
-    'marquee' => [
-        'name' => 'marquee',
-        'title' => __('Marquee', 'zoloblocks'),
-        'categories' => ['gallery'],
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/marquee',
-        'video' => 'https://youtu.be/u_ObTjHo5HU',
-    ],
-    'marquee-child' => [
-        'name' => 'marquee-child',
-        'title' => __('Marquee Child', 'zoloblocks'),
-        'categories' => ['post'],
-        'status' => true,
-        'is_pro' => true,
-        'is_child' => true,
-    ],
+
     'table-of-content' => [
         'name' => 'table-of-content',
         'title' => __('Table of Content', 'zoloblocks'),
@@ -682,48 +609,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/table-of-content',
         'video' => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-    'post-tab' => [
-        'name' => 'post-tab',
-        'title' => __('Post Tab', 'zoloblocks'),
-        'categories' => ['postCategory'],
-        'class'      => '\ZoloPro\Blocks\PostTab',
-        'status'     => true,
-        'is_pro'     => true,
-        'demo'       => 'https://demo.zoloblocks.com/post-tab',
-        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
-    ],
-    'loop-builder'           => [
-        'name'             => 'loop-builder',
-        'title'            => __('Loop Builder', 'zoloblocks'),
-        'categories'       => ['others'],
-        'status'           => true,
-        'is_pro'           => true,
-        'class'            => '\ZoloPro\Blocks\PostQuery',
-        'demo'             => 'https://demo.zoloblocks.com/loop-builder',
-        'video'            => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
-    ],
-    'loop'               => [
-        'name'       => 'loop',
-        'title'      => __('Loop', 'zoloblocks'),
-        'categories' => ['others'],
-        'status'     => true,
-        'is_pro'     => true,
-        'is_child'   => true,
-        'class'      => '\ZoloPro\Blocks\Loop',
-        'demo'       => 'https://demo.zoloblocks.com/loop',
-        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
-    ],
-    'loop-pagination' => [
-        'name'       => 'loop-pagination',
-        'title'      => __('Loop Pagination', 'zoloblocks'),
-        'categories' => ['others'],
-        'status'     => true,
-        'is_pro'     => true,
-        'is_child'   => true,
-        'class'      => '\ZoloPro\Blocks\QueryPagination',
-        'demo'       => 'https://demo.zoloblocks.com/loop-pagination',
-        'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
-    ],
+
     'post-content'        => [
         'name'       => 'post-content',
         'class'      => '\Zolo\Blocks\PostContent',
@@ -733,25 +619,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo'       => 'https://demo.zoloblocks.com/post-content',
         'video'      => 'https://youtu.be/8kBMIL-4PZI?list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
-    'post-video-slider' => [
-        'name' => 'post-video-slider',
-        'title' => __('Post Video Slider', 'zoloblocks'),
-        'categories' => ['postCategory'],
-        'class' => '\ZoloPro\Blocks\PostVideoSlider',
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/post-video-slider',
-        'video' => 'https://www.youtube.com/watch?v=7BFUp6CmNM0',
-    ],
-    'lottie-image' => [
-        'name' => 'lottie-image',
-        'title' => __('Lottie Image', 'zoloblocks'),
-        'categories' => ['others'],
-        'status' => true,
-        'is_pro' => true,
-        'demo' => 'https://demo.zoloblocks.com/lottie-image',
-        'video' => 'https://www.youtube.com/watch?v=gGBLq63e_LA&t',
-    ],
+
     'form' => [
         'name' => 'form',
         'title' => __('Form Builder', 'zoloblocks'),
@@ -781,20 +649,7 @@ return apply_filters('zolo_blocks_list_data', [
         'status' => true,
         // 'is_child' => true,
     ],
-    'phonenumber-field' => [
-        'name' => 'phonenumber-field',
-        'title' => __('Phone Number', 'zoloblocks'),
-        'categories' => ['form'],
-        'status' => true,
-        'is_pro' => true,
-    ],
-    'country-field' => [
-        'name' => 'country-field',
-        'title' => __('Country Field', 'zoloblocks'),
-        'categories' => ['form'],
-        'status' => true,
-        'is_pro' => true,
-    ],
+
     'select-field' => [
         'name' => 'select-field',
         'title' => __('Select Field', 'zoloblocks'),
@@ -846,6 +701,7 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/dual-button',
         'video' => 'https://www.youtube.com/watch?v=8kBMIL-4PZI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+<<<<<<< HEAD
     'switcher' => [
         'name' => 'switcher',
         'title' => __('Switcher', 'zoloblocks'),
@@ -872,4 +728,6 @@ return apply_filters('zolo_blocks_list_data', [
         'demo' => 'https://demo.zoloblocks.com/switcher',
         'video' => 'https://www.youtube.com/watch?v=8kBMIL-4PZI&list=PLP0S85GEw7DPpFyon1kxBZ8H1Ei7GK1yX',
     ],
+=======
+>>>>>>> 25463d62bd972b67d97fcc8cc89642e58bf9f81a
 ]);

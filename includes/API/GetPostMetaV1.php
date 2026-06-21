@@ -2,6 +2,8 @@
 
 namespace Zolo\API;
 
+defined('ABSPATH') || exit;
+
 use Zolo\Traits\SingletonTrait;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -13,7 +15,7 @@ class GetPostMetaV1 {
      * Constructor: Initialize the class and register hooks.
      */
     public function __construct() {
-        add_action( "rest_api_init", [ $this, "register_routes" ] );
+        add_action("rest_api_init", [$this, "register_routes"]);
     }
 
     /**
@@ -25,8 +27,8 @@ class GetPostMetaV1 {
             "/meta-list",
             [
                 'methods'             => WP_REST_Server::READABLE,
-                'callback'            => [ $this, 'handle_request' ],
-                'permission_callback' => [ $this, 'permission_callback' ],
+                'callback'            => [$this, 'handle_request'],
+                'permission_callback' => [$this, 'permission_callback'],
             ]
         );
     }
@@ -37,10 +39,10 @@ class GetPostMetaV1 {
      * @param WP_REST_Request $request The REST API request.
      * @return WP_REST_Response The response object.
      */
-    public function handle_request( WP_REST_Request $request ) {
+    public function handle_request(WP_REST_Request $request) {
         $meta_keys = $this->get_meta_keys();
 
-        if ( empty( $meta_keys ) ) {
+        if (empty($meta_keys)) {
             return new WP_REST_Response(
                 [
                     'error'   => true,
@@ -53,7 +55,7 @@ class GetPostMetaV1 {
 
         // Format meta keys as key-value pairs.
         $response_data = array_map(
-            function( $meta_key ) {
+            function ($meta_key) {
                 return [
                     'label' => $meta_key,
                     'value' => $meta_key,
@@ -62,16 +64,16 @@ class GetPostMetaV1 {
             $meta_keys
         );
 
-        return new WP_REST_Response( $response_data, 200 );
+        return new WP_REST_Response($response_data, 200);
     }
 
     public function permission_callback() {
-        return apply_filters( 'zolo_meta_keys_permission', current_user_can( 'edit_posts' ) );
+        return apply_filters('zolo_meta_keys_permission', current_user_can('edit_posts'));
     }
 
     private function get_meta_keys() {
-        $cached_keys = get_transient( 'zolo_meta_keys' );
-        if ( $cached_keys !== false ) {
+        $cached_keys = get_transient('zolo_meta_keys');
+        if ($cached_keys !== false) {
             return $cached_keys;
         }
 
@@ -82,15 +84,14 @@ class GetPostMetaV1 {
             "SELECT DISTINCT meta_key FROM {$prefix}postmeta WHERE meta_key NOT LIKE %s",
             '\_%'
         );
-        
-        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-        $meta_keys = $wpdb->get_col( $query );
 
-        if ( $meta_keys ) {
-            set_transient( 'zolo_meta_keys', $meta_keys, HOUR_IN_SECONDS );
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $meta_keys = $wpdb->get_col($query);
+
+        if ($meta_keys) {
+            set_transient('zolo_meta_keys', $meta_keys, HOUR_IN_SECONDS);
         }
 
         return $meta_keys ?: [];
     }
-    
 }

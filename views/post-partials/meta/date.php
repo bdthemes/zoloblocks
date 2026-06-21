@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $zolo_date = '';
 $zolo_postDate = $zolo_result->date ?? '';

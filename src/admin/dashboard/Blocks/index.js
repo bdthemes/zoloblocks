@@ -1,9 +1,11 @@
 import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 import categories from './categories';
 import SingleBlock from './single-block';
 import Notice from '../notice';
+import useZoloSettingsFooterAtBottom from '../hooks/useZoloSettingsFooterAtBottom';
 
 const removeChildBlocks = (blocks) => {
     return blocks.filter((block) => !block.is_child);
@@ -48,7 +50,7 @@ const Blocks = () => {
                     )) ||
                 block.categories.some((category) => category === blockCategory);
 
-            if (shouldActivate && !block.status) {
+            if (shouldActivate && !block.status && !(block.is_pro && zoloBlocks?.has_pro !== '1')) {
                 newUpdates[block.name] = true;
                 return { ...block, status: true };
             }
@@ -85,9 +87,16 @@ const Blocks = () => {
     // Handle block click
     const handleBlockClick = (blockName) => {
         setBlocksTobeUpdated((prev) => {
-            const currentStatus = prev[blockName] !== undefined ? prev[blockName] : blocks.find((block) => block.name === blockName).status;
+            const block = blocks.find((b) => b.name === blockName);
+            if (!block) {
+                return prev;
+            }
+            const currentStatus = prev[blockName] !== undefined ? prev[blockName] : block.status;
             const updatedStatus = !currentStatus;
-            setBlocks((prevBlocks) => prevBlocks.map((block) => (block.name === blockName ? { ...block, status: updatedStatus } : block)));
+            if (block.is_pro && zoloBlocks?.has_pro !== '1' && updatedStatus) {
+                return prev;
+            }
+            setBlocks((prevBlocks) => prevBlocks.map((b) => (b.name === blockName ? { ...b, status: updatedStatus } : b)));
             return {
                 ...prev,
                 [blockName]: updatedStatus,
@@ -141,10 +150,6 @@ const Blocks = () => {
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
-                        <div className="zolo-settings-type-badge zolo-dash-flex-center">
-                            <button className="zolo-settings-type-btn active">{__('Free', 'zoloblocks')}</button>
-                            <button className="zolo-settings-type-btn">{__('Pro', 'zoloblocks')}</button>
-                        </div>
                         <div className="search-field">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -263,12 +268,10 @@ const Blocks = () => {
                                             demo={block?.demo || ''}
                                             video={block?.video || ''}
                                             upcoming={block?.upcoming}
+                                            isPro={!!block?.is_pro}
                                             onClick={() => {
                                                 handleBlockClick(block.name);
                                             }}
-                                            {...(block?.is_pro && {
-                                                isPro: true,
-                                            })}
                                         />
                                     );
                                 })}

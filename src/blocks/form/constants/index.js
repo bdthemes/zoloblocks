@@ -42,8 +42,8 @@ export const FIELD_BRADIUS = 'fieldBorderRadius';
 // Notification types
 export const NOTIFICATION_TYPES = [
     { label: __('Send Mail', 'zoloblocks'), value: 'send_mail' },
-    { label: __('Save Response (Pro)', 'zoloblocks'), value: 'save_response', disabled: true },
-    { label: __('Save Response & Send Mail (Pro)', 'zoloblocks'), value: 'save_send', disabled: true },
+    { label: __('Save Response', 'zoloblocks'), value: 'save_response' },
+    { label: __('Save Response & Send Mail', 'zoloblocks'), value: 'save_send' },
 ];
 
 // Success types

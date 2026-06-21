@@ -1,3 +1,52 @@
+### 2.7.6 [May 23, 2026]
+
+#### Bug Fixes
+- **Editor Controls:** Fixed broken control styles (header tabs, iconic button group, reset button, icon picker) in the block editor sidebar.
+
+### 2.7.5 [May 10, 2026]
+
+#### Improvements
+- **Performance:** Enhanced overall plugin performance and stability for smoother interactions.
+
+### 2.7.4 [April 26, 2026]
+
+#### Compliance
+- **Trialware:** Pro features (blocks and extensions) are no longer rendered as locked entries inside the active Blocks/Extensions lists. They now appear only on a dedicated "Upgrade" tab as plain marketing text, with no toggles.
+- **Pro registry split:** `includes/Extensions/extensions.php` and `includes/Blocks/Blocks.php` contain only fully functional free entries. Pro marketing metadata moved to `includes/Extensions/pro-extensions.php` and `includes/Blocks/ProBlocks.php`.
+- **Phone home:** Removed unused `biggopti.js` / `biggopti.css` admin assets.
+- **Security:** Removed `'sslverify' => false` from outbound HTTP requests in the Mailchimp integration and Zolo AI client; SSL verification is now enabled by default for all external calls.
+- **Disclosure:** Added Mailchimp and Custom Webhook entries to the readme `== External services ==` section.
+- **Readme:** Trimmed promotional cross-promo sections.
+
+### 2.7.3 [April 23, 2026]
+
+#### Compliance
+- **WordPress.org review:** Form “Save response” and “Save & send” actions work in this plugin without a separate Pro plugin; form entries are available under Form Entries in the admin menu.
+- **Privacy:** Google Fonts catalog fetch from WordPress.org is off by default and can be enabled under ZoloBlocks → Settings → Editor Options.
+- **Privacy:** Removed promotional admin script code that called a remote recommendations API.
+- **Security:** Escaped block render output and dynamic CSS where flagged; reCAPTCHA site key is escaped in the form block output filter.
+- **Readme:** Documented opt-in for the Google Fonts list; clarified Sigmative privacy link.
+
+### 2.7.2 [April 20, 2026]
+
+#### Compliance / Improvements
+- **Plugin Name:** Renamed display title to "ZoloBlocks" to follow WordPress.org plugin naming guidelines.
+- **Readme:** Rewrote description to remove promotional and keyword-stuffed language.
+- **Readme:** Added "External services" section documenting every third-party service used by the plugin, along with terms and privacy policy links.
+- **Readme:** Added "Source code" section with build instructions and a link to the public source repository.
+- **Settings:** Added proper `sanitize_callback` to every `register_setting()` call in the admin Settings.
+- **Admin Menu:** Lowered the top-level ZoloBlocks admin menu position so it no longer competes with WordPress core items.
+
+### 2.7.1 [March 17, 2026]
+
+#### Improvements
+- **Typography:** Enhanced typography controls and consistency across all blocks. Full Google Fonts library is now available in the typography control.
+- **Heading Block:** Added margin options for improved spacing control.
+- **List Block:** Introduced heading option for better content organization.
+
+#### Tweaks
+- **List Block:** Removed default Facebook icon from the repeater control.
+
 ### 2.7.0 [March 10, 2026]
 
 #### New Features

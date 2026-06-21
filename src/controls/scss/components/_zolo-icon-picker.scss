@@ -297,6 +297,10 @@ button.zolo-picker__remove#iconRemove {
             button.zolo-picker__remove#iconRemove {
                 opacity: 1;
                 visibility: visible;
+                svg {
+                    width: 14px;
+                    height: 14px;
+                }
             }
         }
     }

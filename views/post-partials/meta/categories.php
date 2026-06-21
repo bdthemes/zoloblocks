@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 $zolo_categories = '';
 if (! empty($settings['showCategory'])) {

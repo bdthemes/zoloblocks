@@ -19,10 +19,10 @@ use Zolo\Classes\ZoloEnqueues;
 use Zolo\Classes\FontLoader;
 use Zolo\Classes\PostMeta;
 use Zolo\Admin\Dashboard;
-use Zolo\Admin\Biggopties;
 use Zolo\Admin\Assets;
 use Zolo\Admin\Settings;
 use Zolo\API\GetPostMetaV1;
+use Zolo\API\GoogleFonts;
 use Zolo\Popup\PopupBuilder;
 use Zolo\Form\Form;
 use Zolo\Form\Recaptcha;
@@ -76,6 +76,7 @@ class ZoloBlocks_Loader {
     public function plugins_loaded() {
         GetPostsV1::getInstance();
         GetPostMetaV1::getInstance();
+        GoogleFonts::getInstance();
         ZoloAi::getInstance();
         ZoloHelpers::getInstance();
         StyleGenerator::getInstance();
@@ -120,7 +121,6 @@ class ZoloBlocks_Loader {
             // Admin Dashboard
             Dashboard::getInstance();
             Assets::getInstance();
-            Biggopties::getInstance();
         }
     }
 

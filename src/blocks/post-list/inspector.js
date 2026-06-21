@@ -22,7 +22,6 @@ const {
     ResAlignmentControl,
     ZoloPanelBody,
     IconicBtnGroup,
-    ResCounterControl,
     ZoloIconPicker,
     ZoloResponsive,
     useResponsiveValue,
@@ -76,7 +75,6 @@ import {
     FCONTAINER_SHADOW,
     META_SPACE,
     CONTENT_DIRECTIONS,
-    GRID_COLUMNS,
 } from './constants';
 
 import {
@@ -300,33 +298,7 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
 
-                        {!showfeatureimg && (
-                            <>
-                                {applyFilters(
-                                    'zolo.postList.gridLayout',
-                                    <ZoloPanelBody
-                                        title={__('Column', 'zoloblocks')}
-                                        panelProps={props}
-                                        firstOpen={false}
-                                        isPro={true}
-                                        isDisabled={true}
-                                    >
-                                        <ResCounterControl
-                                            label={__('Column', 'zoloblocks')}
-                                            controlName={GRID_COLUMNS}
-                                            requiredProps={requiredProps}
-                                            min={1}
-                                            max={6}
-                                            defaults={{
-                                                deskRange: 1,
-                                                tabRange: 1,
-                                                mobRange: 1,
-                                            }}
-                                        />
-                                    </ZoloPanelBody>
-                                )}
-                            </>
-                        )}
+                        {!showfeatureimg && applyFilters('zolo.postList.gridLayout', null, { props, requiredProps })}
 
                         <ZoloPanelBody title={__('Content', 'zoloblocks')} panelProps={props}>
                             <div className="zolo-custom-heading" style={{ border: 0, paddingTop: 0 }}>

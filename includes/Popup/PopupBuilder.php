@@ -352,11 +352,12 @@ if (! class_exists('PopupBuilder')) {
          * @return void
          */
         public function enqueue_popup_styles($styles) {
-            if (!empty($styles)) {
+            $safe = ZoloHelpers::zolo_sanitize_inline_css($styles);
+            if ('' !== $safe) {
                 $handle = 'zolo-block-inline-popup-style-' . wp_rand(100, 10000);
                 wp_register_style($handle, false, [], ZOLO_VERSION, 'all');
                 wp_enqueue_style($handle, false, [], ZOLO_VERSION, 'all');
-                wp_add_inline_style($handle, $styles);
+                wp_add_inline_style($handle, $safe);
             }
         }
     }

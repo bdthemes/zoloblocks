@@ -17,28 +17,25 @@ if (!class_exists('Form')) {
      *
      * @package Zolo
      */
-    class Form
-    {
+    class Form {
 
         use SingletonTrait;
 
         /**
          * Constructor for the Form class.
          */
-        public function __construct()
-        {
+        public function __construct() {
             FormDataPostType::getInstance();
             Hooks::getInstance();
             FormEntries::getInstance();
-            add_action('wp_ajax_send_form_data', [$this, 'send_form_data']);
-            add_action('wp_ajax_nopriv_send_form_data', [$this, 'send_form_data']);
+            add_action('wp_ajax_zolo_send_form_data', [$this, 'zolo_send_form_data']);
+            add_action('wp_ajax_nopriv_zolo_send_form_data', [$this, 'zolo_send_form_data']);
         }
 
         /**
          * Send form data and process form submission.
          */
-        public function send_form_data()
-        {
+        public function zolo_send_form_data() {
             // Ensure form data is provided
             if (empty($_POST['formData'])) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
                 $this->error_response(__('Form data is empty', 'zoloblocks')); // 400
@@ -49,7 +46,7 @@ if (!class_exists('Form')) {
 
             // Verify nonce
             if (!$this->verify_nonce($form_data['nonce'])) {
-                $this->error_response( __('Nonce verification failed', 'zoloblocks')); // 403
+                $this->error_response(__('Nonce verification failed', 'zoloblocks')); // 403
             }
 
             // Validate reCAPTCHA
@@ -66,29 +63,25 @@ if (!class_exists('Form')) {
 
                 if ($post_id) {
                     $data = $this->validate_mail_data($post_id, $form_data);
-                    if ($data['form_settings']['notificationType'] === 'send_mail') {
-                        if($this->send_mail($data)) {
-                            if (!class_exists('Zolo_Blocks_Pro')) {
-                                $this->save_form_entries($data);
-                            }
+                    $notification_type = $data['form_settings']['notificationType'] ?? 'send_mail';
+
+                    if ($notification_type === 'send_mail') {
+                        if ($this->send_mail($data)) {
+                            $this->save_form_entries($data);
                             $this->success_response($data['submission_settings']['successMessage']);
-                        }else{
+                        } else {
                             $this->error_response($data['submission_settings']['failMessage']);
                         }
-                    }
-                    // TODO: Need to move the code below to Zolo_Blocks_Pro
-                    if ($data['form_settings']['notificationType'] === 'save_response' && class_exists('Zolo_Blocks_Pro')) {
-                        if($this->save_form_entries($data)) {
+                    } elseif ($notification_type === 'save_response') {
+                        if ($this->save_form_entries($data)) {
                             $this->success_response($data['submission_settings']['successMessage']);
-                        }else{
+                        } else {
                             $this->error_response($data['submission_settings']['failMessage']);
                         }
-                    }
-                    // TODO: Need to move the code below to Zolo_Blocks_Pro
-                    if ($data['form_settings']['notificationType'] === 'save_send' && class_exists('Zolo_Blocks_Pro')) {
-                        if($this->send_mail($data) && $this->save_form_entries($data)) {
+                    } elseif ($notification_type === 'save_send') {
+                        if ($this->send_mail($data) && $this->save_form_entries($data)) {
                             $this->success_response($data['submission_settings']['successMessage']);
-                        }else{
+                        } else {
                             $this->error_response($data['submission_settings']['failMessage']);
                         }
                     }
@@ -96,14 +89,13 @@ if (!class_exists('Form')) {
             }
         }
 
-         /**
+        /**
          * Handle error response.
          *
          * @param array  $response The error response message.
          * @param int    $status_code The HTTP status code.
          */
-        private function error_response($response)
-        {
+        private function error_response($response) {
             wp_send_json_error($response);
             wp_die();
         }
@@ -114,8 +106,7 @@ if (!class_exists('Form')) {
          * @param string $nonce The nonce to verify.
          * @return bool True if nonce is valid, false otherwise.
          */
-        private function verify_nonce($nonce)
-        {
+        private function verify_nonce($nonce) {
             return wp_verify_nonce($nonce, 'zolo-nonce');
         }
 
@@ -125,8 +116,7 @@ if (!class_exists('Form')) {
          * @param array $data Form submission data.
          * @return bool True if reCAPTCHA is valid, false otherwise.
          */
-        private function is_recaptcha_valid(array $data): bool
-        {
+        private function is_recaptcha_valid(array $data): bool {
             // Ensure reCAPTCHA response exists in the data
             if (isset($data['g-recaptcha-response'])) {
                 // Retrieve the secret key from options
@@ -166,8 +156,7 @@ if (!class_exists('Form')) {
          * @param array $form_data The form data to sanitize.
          * @return array The sanitized form data.
          */
-        private function sanitize_form_data($form_data)
-        {
+        private function sanitize_form_data($form_data) {
             $sanitized_data = [];
             foreach ($form_data as $key => $data) {
                 if (is_array($data)) {
@@ -189,8 +178,7 @@ if (!class_exists('Form')) {
          * @param string $form_id The form ID.
          * @return int|null The post ID if found, otherwise null.
          */
-        private function get_form_post_id($form_id)
-        {
+        private function get_form_post_id($form_id) {
             $posts = get_posts([
                 'name'        => $form_id,
                 'post_type'   => 'zolo_form_data',
@@ -210,8 +198,7 @@ if (!class_exists('Form')) {
          *
          * @return array Validated and merged form settings, submission settings, validation rules, and form data.
          */
-        private function validate_mail_data(int $post_id, array $form_data): array
-        {
+        private function validate_mail_data(int $post_id, array $form_data): array {
             // Fetch saved meta data for form settings, submission settings, and validation rules
             $form_settings = get_post_meta($post_id, 'form_settings', true);
             $submission_settings = get_post_meta($post_id, 'submission_settings', true);
@@ -226,11 +213,6 @@ if (!class_exists('Form')) {
                 'emailBCC' => '',
                 'emailSubject' => 'New Form Submission',
             ]);
-
-            // TODO: Need to move the code below to Zolo_Blocks_Pro and change the notificationType with a filter
-            if (!class_exists('Zolo_Blocks_Pro')) {
-                $form_settings['notificationType'] = 'send_mail';
-            }
 
             $submission_settings = wp_parse_args($submission_settings, [
                 'successType' => 'message',
@@ -259,8 +241,7 @@ if (!class_exists('Form')) {
          *
          * @param array $data The form data, including settings and submitted values.
          */
-        public function send_mail($data)
-        {
+        public function send_mail($data) {
             $form_settings = $data['form_settings'];
             $form_data = $data['form_data'];
 
@@ -296,12 +277,11 @@ if (!class_exists('Form')) {
             return false;
         }
 
-        private function success_response($message, $status_code = 200)
-        {
+        private function success_response($message, $status_code = 200) {
             wp_send_json_success($message, $status_code);
         }
 
-        private function save_form_entries($data){
+        private function save_form_entries($data) {
             $form_settings = $data['form_settings'];
             $entries_post_type = 'zolo_form_entries';
             $form_title = $form_settings['formTitle'];
@@ -330,8 +310,7 @@ if (!class_exists('Form')) {
          * @param array $form_data The submitted form data.
          * @return string The email message.
          */
-        private function build_email_message($form_settings, $form_data)
-        {
+        private function build_email_message($form_settings, $form_data) {
             // Remove 'formId' and 'nonce' from the form data
             unset($form_data['formId']);
             unset($form_data['nonce']);
@@ -339,7 +318,7 @@ if (!class_exists('Form')) {
             // Initialize the message content with the subject
             $message = "<body>";
 
-            if(!empty($form_settings['formTitle'])) {
+            if (!empty($form_settings['formTitle'])) {
                 $message .= "<h2 style='text-align: center;'>" . esc_html($form_settings['formTitle']) . "</h2>";
                 $message .= "<br>";
             }
@@ -360,7 +339,7 @@ if (!class_exists('Form')) {
                 $message .= "</tr>";
             }
 
-            if(!empty($form_settings['emailSubject'])) {
+            if (!empty($form_settings['emailSubject'])) {
                 $message .= "<tr bgcolor='#EAF2FA'>";
                 $message .= "<td>";
                 $message .= "<strong>" . __("Subject", "zoloblocks") . "</strong>";

@@ -11,6 +11,7 @@
         "vendor",
         "vendor-editor-bundle",
         "views",
+        "composer.json",
         "*.php"
     ],
     "scripts": {

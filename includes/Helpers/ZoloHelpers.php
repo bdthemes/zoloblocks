@@ -30,17 +30,17 @@ class ZoloHelpers {
      * ZoloHelpers constructor.
      */
     private function __construct() {
-        add_filter('admin_body_class', [$this, 'zoloblocks_editor_body_class']);
-        add_filter('body_class', [$this, 'zoloblocks_frontend_body_class']);
+        add_filter('admin_body_class', [$this, 'zolo_editor_body_class']);
+        add_filter('body_class', [$this, 'zolo_frontend_body_class']);
     }
-    public function zoloblocks_editor_body_class($classes) {
+    public function zolo_editor_body_class($classes) {
         // Check if we are on editing screen in WordPress admin
         if (is_admin() && isset($_GET['action']) && $_GET['action'] === 'edit') { // phpcs:ignore
             $classes .= ' zolo-editor';
         }
         return $classes;
     }
-    public function zoloblocks_frontend_body_class(array $classes) {
+    public function zolo_frontend_body_class(array $classes) {
         $theme = wp_get_theme();
         $theme_type = wp_is_block_theme() ? 'block-theme' : 'classic-theme';
         $theme_name = $theme->get('TextDomain');
@@ -629,6 +629,35 @@ class ZoloHelpers {
     }
 
     /**
+     * Sanitize dynamic block CSS before inline output (style tag / wp_add_inline_style).
+     *
+     * @param string $css Raw CSS from block attributes.
+     * @return string
+     */
+    public static function zolo_sanitize_inline_css($css) {
+        if (! is_string($css) || '' === $css) {
+            return '';
+        }
+
+        $css = wp_check_invalid_utf8($css);
+        // Strip HTML/script payloads; CSS should not contain tags.
+        $css = wp_strip_all_tags($css);
+
+        $blocked = [
+            'expression\s*\(',
+            'javascript\s*:',
+            'vbscript\s*:',
+            '@import',
+            'behavior\s*:',
+        ];
+        foreach ($blocked as $pattern) {
+            $css = preg_replace('/' . $pattern . '/i', '', $css);
+        }
+
+        return $css;
+    }
+
+    /**
      * Get nonce id
      *
      * @return string|null
@@ -659,18 +688,18 @@ class ZoloHelpers {
      */
     public static function sanitize_html_tag($tag, $default = 'h2') {
         $allowed_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'];
-        
+
         // Remove whitespace and convert to lowercase
         $tag = strtolower(trim($tag));
-        
+
         // Use tag_escape to remove any HTML/attributes
         $tag = tag_escape($tag);
-        
+
         // Whitelist validation - only allow specific tags
         if (!in_array($tag, $allowed_tags, true)) {
             return $default; // Default fallback
         }
-        
+
         return $tag;
     }
 
@@ -729,7 +758,7 @@ class ZoloHelpers {
      *
      * @return mixed
      */
-    public static function zoloblocks_get_option($option, $section, $default = '') {
+    public static function zolo_get_option($option, $section, $default = '') {
 
         $options = get_option($section);
         if (isset($options) && is_array($options)) {
@@ -931,6 +960,31 @@ class ZoloHelpers {
     }
 
     /**
+     * Get marketing metadata for Pro extensions (display-only).
+     *
+     * Used by the dashboard's "Upgrade" tab. These features are not
+     * registered, toggled or otherwise activated in the free plugin.
+     */
+    public static function get_zolo_pro_extensions() {
+        $file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Extensions/pro-extensions.php';
+        if (file_exists($file)) {
+            return require $file;
+        }
+        return [];
+    }
+
+    /**
+     * Get marketing metadata for Pro blocks (display-only).
+     */
+    public static function get_zolo_pro_blocks() {
+        $file = trailingslashit(ZOLO_DIR_PATH) . 'includes/Blocks/ProBlocks.php';
+        if (file_exists($file)) {
+            return require $file;
+        }
+        return [];
+    }
+
+    /**
      * Get Zolo Extensions
      */
     public static function get_zolo_extensions() {
@@ -949,12 +1003,14 @@ class ZoloHelpers {
 
         if (is_array($extension_options)) {
             foreach ($extension_options as $value) {
-                if (isset($value['name']) && isset($value['status'])) {
-                    $name = sanitize_text_field($value['name']);
-                    $status = sanitize_text_field($value['status']);
-
-                    $extensions[$name] = $status;
+                if (! is_array($value) || ! isset($value['name']) || ! array_key_exists('status', $value)) {
+                    continue;
                 }
+                $name = sanitize_text_field($value['name']);
+                if ($name === '') {
+                    continue;
+                }
+                $extensions[$name] = filter_var($value['status'], FILTER_VALIDATE_BOOLEAN);
             }
         }
 
@@ -967,7 +1023,7 @@ class ZoloHelpers {
      */
     public static function is_extension_enabled($extension) {
         $extensions = self::zolo_extensions();
-        return isset($extensions[$extension]) ? $extensions[$extension] : false;
+        return isset($extensions[$extension]) && $extensions[$extension];
     }
 
 

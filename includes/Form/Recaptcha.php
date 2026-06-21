@@ -38,9 +38,13 @@ if (! class_exists('Recaptcha')) {
                 if ($enable_recaptcha) {
                     $recaptcha_site_key = get_option('zolo_recaptcha_site_key');
                     if (! $recaptcha_site_key) {
-                        $recaptcha_site_key = '6LcJ9KQaAAAAAABZz9Zz9Zz9Zz9Zz9Zz9Zz9Zz9';
+                        $recaptcha_site_key = '';
                     }
-                    $block_content = str_replace('<button', '<button data-sitekey="' . $recaptcha_site_key . '"', $block_content);
+                    $block_content = str_replace(
+                        '<button',
+                        '<button data-sitekey="' . esc_attr($recaptcha_site_key) . '"',
+                        $block_content
+                    );
                 }
             }
 
@@ -57,7 +61,7 @@ if (! class_exists('Recaptcha')) {
                 if ($enable_recaptcha) {
                     $recaptcha_site_key = get_option('zolo_recaptcha_site_key');
                     if (! $recaptcha_site_key) {
-                        $recaptcha_site_key = '6LcJ9KQaAAAAAABZz9Zz9Zz9Zz9Zz9Zz9Zz9Zz9';
+                        $recaptcha_site_key = '';
                     }
                     if ($recaptcha_site_key) {
                         wp_enqueue_script('zolo-recaptcha', 'https://www.google.com/recaptcha/api.js', [], ZOLO_VERSION, false);
@@ -114,7 +118,7 @@ if (! class_exists('Recaptcha')) {
                                         })
                                     } else console.error("Error:", d.statusText)
                                 }
-                            }, d.send("action=send_form_data&formData=" + encodeURIComponent(i))
+                            }, d.send("action=zolo_send_form_data&formData=" + encodeURIComponent(i))
                         }
                     })
                 }

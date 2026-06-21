@@ -6,6 +6,8 @@
 
 namespace Zolo\API;
 
+defined('ABSPATH') || exit;
+
 use Zolo\Traits\SingletonTrait;
 use WP_REST_Controller;
 use WP_REST_Request;
@@ -76,8 +78,6 @@ class ZoloAi extends WP_REST_Controller {
                 ],
                 'body'    => wp_json_encode($payload),
                 'timeout' => 30,
-                'sslverify' => false, // Disable SSL verification
-
             ]
         );
 

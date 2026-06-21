@@ -15,10 +15,14 @@ const {
     popoverHasAttrVal,
     ZoloButton,
     ZoloSelectControl,
-    ZoloTextareaControl,
     ZoloCardDivider,
     ZoloBaseControl,
 } = window.zoloModule;
+
+const basePresetDirections = {
+    dust_wind: 'right',
+    flying_bubble: 'top-right',
+};
 
 const Inspector = ({ panelProps }) => {
     const { attributes, setAttributes } = panelProps;
@@ -30,90 +34,17 @@ const Inspector = ({ panelProps }) => {
     const [isPreview, setIsPreview] = useState(false);
 
     const onChangeHandler = (select) => {
-        switch (select) {
-            case 'hover_bubble':
-                setAttributes({
-                    zoloParticles: {
-                        ...zoloParticles,
-                        preset: select,
-                        particleOptions: {
-                            ...particleOptions,
-                            direction: 'none',
-                        },
-                    },
-                });
-
-                break;
-            case 'dust_wind':
-                setAttributes({
-                    zoloParticles: {
-                        ...zoloParticles,
-                        preset: select,
-                        particleOptions: {
-                            ...particleOptions,
-                            direction: 'right',
-                        },
-                    },
-                });
-
-                break;
-            case 'flying_bubble':
-                setAttributes({
-                    zoloParticles: {
-                        ...zoloParticles,
-                        preset: select,
-                        particleOptions: {
-                            ...particleOptions,
-                            direction: 'top-right',
-                        },
-                    },
-                });
-
-                break;
-            case 'snow_fall':
-                setAttributes({
-                    zoloParticles: {
-                        ...zoloParticles,
-                        preset: select,
-                        particleOptions: {
-                            ...particleOptions,
-                            direction: 'bottom',
-                        },
-                    },
-                });
-                break;
-            case 'flying_shape':
-                setAttributes({
-                    zoloParticles: {
-                        ...zoloParticles,
-                        preset: select,
-                        particleOptions: {
-                            ...particleOptions,
-                            direction: 'top',
-                        },
-                    },
-                });
-            case 'polygonal_move':
-                setAttributes({
-                    zoloParticles: {
-                        ...zoloParticles,
-                        preset: select,
-                        particleOptions: {
-                            ...particleOptions,
-                            direction: 'top-left',
-                        },
-                    },
-                });
-                break;
-            default:
-                setAttributes({
-                    zoloParticles: {
-                        ...zoloParticles,
-                        preset: select,
-                    },
-                });
-                break;
-        }
+        const defaultDirections = applyFilters('zolo.particles.presetDefaultDirections', basePresetDirections);
+        setAttributes({
+            zoloParticles: {
+                ...zoloParticles,
+                preset: select,
+                particleOptions: {
+                    ...particleOptions,
+                    direction: defaultDirections[select] ?? 'none',
+                },
+            },
+        });
     };
 
     const destroyParticleJS = (editorWindow) => {
@@ -152,16 +83,12 @@ const Inspector = ({ panelProps }) => {
         };
     }, [isPreview, zoloParticles, panelProps]);
 
-    // zolo.presets.particles;
     const presets = [
         { label: __('Dust Wind', 'zoloblocks'), value: 'dust_wind' },
         { label: __('Flying Bubble', 'zoloblocks'), value: 'flying_bubble' },
-        { label: __('Snow Fall (pro)', 'zoloblocks'), value: 'snow_fall', disabled: true },
-        { label: __('Flying Shape (pro)', 'zoloblocks'), value: 'flying_shape', disabled: true },
-        { label: __('Hover Bubble (pro)', 'zoloblocks'), value: 'hover_bubble', disabled: true },
-        { label: __('Polygonal Move (pro)', 'zoloblocks'), value: 'polygonal_move', disabled: true },
-        { label: __('Custom Options (pro)', 'zoloblocks'), value: 'custom_options', disabled: true },
     ];
+
+    const inspectorExtension = applyFilters('zolo.particles.inspectorExtension', null, { panelProps, sortableProps });
 
     return (
         <>
@@ -178,7 +105,6 @@ const Inspector = ({ panelProps }) => {
                         />
                     </svg>
                 }
-                // isPro={true}
                 isActive={active}
                 hasValue={popoverHasAttrVal(active, true, false) || popoverHasAttrVal(preset, true, 'dust_wind')}
                 onReset={() => {
@@ -215,7 +141,7 @@ const Inspector = ({ panelProps }) => {
                         label={__('Presets', 'zoloblocks')}
                         value={preset}
                         options={applyFilters('zolo.presets.particles', presets)}
-                        onChange={(preset) => onChangeHandler(preset)}
+                        onChange={(p) => onChangeHandler(p)}
                     />
                 </div>
                 {preset !== 'custom_options' && (
@@ -356,30 +282,7 @@ const Inspector = ({ panelProps }) => {
                         <PopoverControl label={__('Color', 'zoloblocks')} children={<MultiColor propsMultiColor={sortableProps} />} />
                     </>
                 )}
-                {preset === 'custom_options' && (
-                    <ZoloTextareaControl
-                        label={__('Custom Options', 'zoloblocks')}
-                        onChange={(v) =>
-                            setAttributes({
-                                zoloParticles: {
-                                    ...zoloParticles,
-                                    particleOptions: {
-                                        ...particleOptions,
-                                        customOptions: v,
-                                    },
-                                },
-                            })
-                        }
-                        value={particleOptions.customOptions.length > 0 ? particleOptions.customOptions : ''}
-                        help={
-                            <div className="zolo_particle_help">
-                                <a href="https://vincentgarreau.com/particles.js/" target="_blank" rel="noreferrer noopener">
-                                    {__('Generate particle', 'zoloblocks')}
-                                </a>
-                            </div>
-                        }
-                    />
-                )}
+                {inspectorExtension}
 
                 <ZoloButton
                     className="zolo-action-button"
@@ -388,7 +291,7 @@ const Inspector = ({ panelProps }) => {
                         setIsPreview((prev) => !prev);
                     }}
                 >
-                    {isPreview ? __('Stop Preview', 'zoloblocks-pro') : __('Preview', 'zoloblocks-pro')}
+                    {isPreview ? __('Stop Preview', 'zoloblocks') : __('Preview', 'zoloblocks')}
                 </ZoloButton>
             </PopoverControl>
         </>

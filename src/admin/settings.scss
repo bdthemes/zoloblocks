@@ -64,6 +64,10 @@ h3.zolo-setting-title {
     }
 }
 .toplevel_page_zoloblocks {
+    #wpbody-content {
+        padding: 0 !important;
+    }
+
     .components-modal__frame {
         border-radius: 10px;
         max-width: 600px;

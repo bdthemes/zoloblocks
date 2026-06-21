@@ -17,6 +17,8 @@ const {
     GlobalStyleHanlder,
     generateNormalBGControlStyles,
     generateResAlignmentStyle,
+    generateTextShadowStyles,
+    generateTextStrokeStyles,
 } = window.zoloModule;
 
 import {
@@ -59,9 +61,20 @@ import {
     BADGE_BORDER,
     BADGE_PADDING,
     BADGE_BORDER_RADIUS,
+
+    //heading
+    HEADING_MARGIN,
+    HEADING_PADDING,
+    HEADING_ALIGNMENT,
+    HEADING_TEXT_SHADOW,
+    HEADING_TEXT_STROKE,
+    HEADING_BG,
+    HEADING_BORDER,
+    HEADING_BOX_SHADOW,
+    HEADING_BORDER_RADIUS,
 } from './constants';
 
-import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY } from './constants/typoPrefixConstant';
+import { DSC_TYPOGRAPHY, TEXT_LIST_TYPOGRAPHY, BADGE_TYPOGRAPHY, HEADING_TYPOGRAPHY } from './constants/typoPrefixConstant';
 import { applyFilters } from '@wordpress/hooks';
 
 const Style = ({ props }) => {
@@ -85,6 +98,7 @@ const Style = ({ props }) => {
         highlightText,
         highlightTextColor,
         badgeColor,
+        headingColor,
     } = attributes;
 
     //desc
@@ -101,6 +115,83 @@ const Style = ({ props }) => {
     } = generateDimensionStyle({
         controlName: DSC_MARGIN,
         styleFor: 'margin',
+        attributes,
+    });
+
+    // Heading
+    const {
+        typoStylesDesktop: DesktopHeadingTypo,
+        typoStylesTab: TabHeadingTypo,
+        typoStylesMobile: MobHeadingTypo,
+    } = generateTypographyStyles({ prefixConstant: HEADING_TYPOGRAPHY, attributes });
+
+    const {
+        dimensionStylesDesktop: DesktopHeadingMargin,
+        dimensionStylesTab: TabHeadingMargin,
+        dimensionStylesMobile: MobHeadingMargin,
+    } = generateDimensionStyle({
+        controlName: HEADING_MARGIN,
+        styleFor: 'margin',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: DesktopHeadingPadding,
+        dimensionStylesTab: TabHeadingPadding,
+        dimensionStylesMobile: MobHeadingPadding,
+    } = generateDimensionStyle({
+        controlName: HEADING_PADDING,
+        styleFor: 'padding',
+        attributes,
+    });
+
+    const {
+        desktopAlignStyle: DesktopHeadingAlign,
+        tabAlignStyle: TabHeadingAlign,
+        mobAlignStyle: MobHeadingAlign,
+    } = generateResAlignmentStyle({
+        controlName: HEADING_ALIGNMENT,
+        property: 'text-align',
+        attributes,
+    });
+
+    const {
+        textShadowStyle: DesktopHeadingTextShadow,
+    } = generateTextShadowStyles({
+        controlName: HEADING_TEXT_SHADOW,
+        attributes,
+    });
+
+    const {
+        desktopTextStrokeStyle: DesktopHeadingTextStroke,
+        tabTextStrokeStyle: TabHeadingTextStroke,
+        mobTextStrokeStyle: MobHeadingTextStroke,
+    } = generateTextStrokeStyles({
+        controlName: HEADING_TEXT_STROKE,
+        attributes,
+    });
+
+    const {
+        backgroundStylesDesktop: DeskHeadingBg,
+        backgroundStylesTab: TabHeadingBg,
+        backgroundStylesMobile: MobHeadingBg,
+    } = generateNormalBGControlStyles({ controlName: HEADING_BG, attributes });
+
+    const {
+        desktopBorderStyle: desktopHeadingBorder,
+        tabBorderStyle: tabHeadingBorder,
+        mobBorderStyle: mobHeadingBorder,
+    } = generateBorderStyle({ controlName: HEADING_BORDER, attributes });
+
+    const { boxShadowStyle: boxshadowHeading } = generateBoxShadowStyles({ controlName: HEADING_BOX_SHADOW, attributes });
+
+    const {
+        dimensionStylesDesktop: DesktopHeadingRadius,
+        dimensionStylesTab: TabHeadingRadius,
+        dimensionStylesMobile: MobHeadingRadius,
+    } = generateDimensionStyle({
+        controlName: HEADING_BORDER_RADIUS,
+        styleFor: 'border-radius',
         attributes,
     });
 
@@ -233,6 +324,16 @@ const Style = ({ props }) => {
     } = generateResAlignmentStyle({
         controlName: ITEM_ALIGNMENT,
         property: layout == 'flex' ? 'justify-content' : 'text-align',
+        attributes,
+    });
+
+    const {
+        desktopAlignStyle: desktopListItemFlexAlign,
+        tabAlignStyle: tabListItemFlexAlign,
+        mobAlignStyle: mobListItemFlexAlign,
+    } = generateResAlignmentStyle({
+        controlName: ITEM_ALIGNMENT,
+        property: 'justify-content',
         attributes,
     });
 
@@ -390,7 +491,9 @@ const Style = ({ props }) => {
       }
 	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
         ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && desktopListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && desktopListItemFlexAlign};
         ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && desktopListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && desktopListItemFlexAlign};
         ${DesktopListRadius}
         ${desktopListBorder}
         ${DesktopListP}
@@ -421,6 +524,14 @@ const Style = ({ props }) => {
      .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover.zolo-list-title {
         color:${txtHListColor}
      }
+    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-title-wrapper {
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && desktopListItemFlexAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && desktopListItemFlexAlign};
+    }
+    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-content {
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && desktopListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && desktopListAlign};
+    }
     .wp-block-zolo-list.${uniqueId} .zolo-list-title{
         ${DesktopTextListTypo}
         color:${textListColor}
@@ -435,6 +546,20 @@ const Style = ({ props }) => {
         color:${dscHcolor}
     }
    
+    .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
+        ${DesktopHeadingTypo}
+        ${DesktopHeadingTextShadow}
+        ${DesktopHeadingTextStroke}
+        ${DeskHeadingBg}
+        ${DesktopHeadingMargin}
+        ${DesktopHeadingPadding}
+        ${desktopHeadingBorder}
+        ${DesktopHeadingRadius}
+        ${boxshadowHeading}
+        ${DesktopHeadingAlign}
+        ${headingColor ? `color: ${headingColor};` : ''}
+    }
+
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
         ${desktopIconSize} 
         fill:${listIconColor}
@@ -537,7 +662,9 @@ const Style = ({ props }) => {
       }
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item {
         ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && tabListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && tabListItemFlexAlign};
         ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && tabListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && tabListItemFlexAlign};
         ${TabListRadius}
         ${tabListBorder}
         ${TabListp}
@@ -557,6 +684,14 @@ const Style = ({ props }) => {
     .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover {
         ${TabHListBg}
     }
+    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-title-wrapper {
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && tabListItemFlexAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && tabListItemFlexAlign};
+    }
+    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-content {
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && tabListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && tabListAlign};
+    }
     .wp-block-zolo-list.${uniqueId} .zolo-list-title{
         ${TabTextListTypo}
      }
@@ -567,6 +702,17 @@ const Style = ({ props }) => {
 
     }
  
+    .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
+        ${TabHeadingTypo}
+        ${TabHeadingTextStroke}
+        ${TabHeadingBg}
+        ${TabHeadingMargin}
+        ${TabHeadingPadding}
+        ${tabHeadingBorder}
+        ${TabHeadingRadius}
+        ${TabHeadingAlign}
+    }
+
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {
         ${tabIconSize} 
      }
@@ -626,7 +772,9 @@ const Style = ({ props }) => {
     }
 	.wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item { 
         ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && mobListAlign};
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && mobListItemFlexAlign};
         ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && mobListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && mobListItemFlexAlign};
         ${MobListRadius}
         ${mobListBorder}
         ${MobListp}
@@ -645,6 +793,14 @@ const Style = ({ props }) => {
      .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-item:hover {
         ${MobHListBg}
     }
+    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-title-wrapper {
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && mobListItemFlexAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && mobListItemFlexAlign};
+    }
+    .wp-block-zolo-list.${uniqueId}.${preset} .zolo-list-content {
+        ${(preset == 'zolo-list-style-1' || preset == 'zolo-list-style-2') && layout == 'grid' && mobListAlign};
+        ${!iconToggle && (preset == 'zolo-list-style-3' || preset == 'zolo-list-style-4') && layout == 'grid' && mobListAlign};
+    }
     .wp-block-zolo-list.${uniqueId} .zolo-list-title{
         ${MobTextListTypo}
     }
@@ -652,6 +808,17 @@ const Style = ({ props }) => {
     .wp-block-zolo-list.${uniqueId} .zolo-list-desc {
         ${MobDscTypo}
         ${MobDsceMargin}
+    }
+
+    .wp-block-zolo-list.${uniqueId} .zolo-list-heading {
+        ${MobHeadingTypo}
+        ${MobHeadingTextStroke}
+        ${MobHeadingBg}
+        ${MobHeadingMargin}
+        ${MobHeadingPadding}
+        ${mobHeadingBorder}
+        ${MobHeadingRadius}
+        ${MobHeadingAlign}
     }
 
     .wp-block-zolo-list.${uniqueId} .zolo-list-icon svg {

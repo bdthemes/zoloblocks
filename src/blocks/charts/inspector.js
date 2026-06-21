@@ -298,7 +298,7 @@ function Inspector(props) {
                                 </div>
                             )}
 
-                            {zoloParams?.zolo_pro_status === 'active' && sourceType === 'google-spreadsheet' && (
+                            {sourceType === 'google-spreadsheet' && (
                                 <>
                                     <ZoloCardDivider />
                                     <p className="zolo-custom-help-note">

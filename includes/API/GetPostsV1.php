@@ -2,6 +2,8 @@
 
 namespace Zolo\API;
 
+defined('ABSPATH') || exit;
+
 use Zolo\Traits\SingletonTrait;
 use Zolo\Helpers\ZoloHelpers;
 use \WP_Query;
@@ -17,7 +19,7 @@ class GetPostsV1 {
 	 * Construct method
 	 */
 	public function __construct() {
-		add_action( 'rest_api_init', [ $this, 'register_Posts_route' ] );
+		add_action('rest_api_init', [$this, 'register_Posts_route']);
 	}
 
 	/**
@@ -31,7 +33,7 @@ class GetPostsV1 {
 			'posts',
 			[
 				'methods'             => 'POST',
-				'callback'            => [ $this, 'get_all_posts' ],
+				'callback'            => [$this, 'get_all_posts'],
 				'permission_callback' => function () {
 					return true;
 				},
@@ -45,24 +47,24 @@ class GetPostsV1 {
 	 * @param array $data .
 	 * @return void
 	 */
-	public function get_all_posts( $data ) {
-		if ( ! wp_verify_nonce( $data['zolo_nonce'], 'zolo-nonce' ) ) {
-			wp_send_json_error( esc_html__( 'Session Expired!!', 'zoloblocks' ) );
+	public function get_all_posts($data) {
+		if (! wp_verify_nonce($data['zolo_nonce'], 'zolo-nonce')) {
+			wp_send_json_error(esc_html__('Session Expired!!', 'zoloblocks'));
 		}
 
 		$postQuery = $data['postQuery'];
 		// Check if postTermId is not empty and update postQuery if it exists.
-		if ( ! empty( $data['postTermId'] ) && isset( $data['postQuery'] ) ) {
+		if (! empty($data['postTermId']) && isset($data['postQuery'])) {
 			$postQuery['postTermId']   = $data['postTermId'];
 			$postQuery['postTaxonomy'] = $data['postTaxonomy'] ?? 'category';
 		}
 
-		$results = self::zolo_posts_query( $postQuery );
+		$results = self::zolo_posts_query($postQuery);
 
-		if ( ! empty( $results['posts'] ) ) {
-			wp_send_json_success( $results );
+		if (! empty($results['posts'])) {
+			wp_send_json_success($results);
 		} else {
-			wp_send_json_error( 'no post found' );
+			wp_send_json_error('no post found');
 		}
 	}
 
@@ -72,60 +74,60 @@ class GetPostsV1 {
 	 * @param array $data .
 	 * @return mixed|null
 	 */
-	public static function zolo_get_post_args( $data ) {
-		$showPagination    = ! empty( $data['showPagination'] ) && $data['showPagination'] == 'true' ? true : false;
+	public static function zolo_get_post_args($data) {
+		$showPagination    = ! empty($data['showPagination']) && $data['showPagination'] == 'true' ? true : false;
 		$postType          = $data['postType'] ?? 'post';
 		$args              = [
 			'post_status'    => 'publish',
 			'orderby'        => $data['postOrderby'] ?? 'date',
 			'order'          => $data['postOrder'] ?? 'desc',
-			'posts_per_page' => (int) isset( $data['postPerPage'] ) ? $data['postPerPage'] : 6,
+			'posts_per_page' => (int) isset($data['postPerPage']) ? $data['postPerPage'] : 6,
 		];
 		$args['post_type'] = $postType;
 
 		// for related posts.
-		if ( 'related_posts' === $postType ) {
+		if ('related_posts' === $postType) {
 			$queriedPostId     = get_queried_object_id();
-			$args['post_type'] = ! empty( $queriedPostId ) ? get_post_type( $queriedPostId ) : ( $data['currentPostType'] ?? '' );
+			$args['post_type'] = ! empty($queriedPostId) ? get_post_type($queriedPostId) : ($data['currentPostType'] ?? '');
 		}
 
 		// Set Exclude Post.
 		$current_post = [];
-		$exclude_by   = wp_list_pluck( $data['postExcludeBy'] ?? [], 'value' );
+		$exclude_by   = wp_list_pluck($data['postExcludeBy'] ?? [], 'value');
 
-		if ( in_array( 'current_post', $exclude_by, true ) ) {
-			$currentPostId = ! empty( get_the_ID() ) ? get_the_ID() : ( $data['currentPostId'] ?? '' );
-			$current_post  = [ $currentPostId ];
+		if (in_array('current_post', $exclude_by, true)) {
+			$currentPostId = ! empty(get_the_ID()) ? get_the_ID() : ($data['currentPostId'] ?? '');
+			$current_post  = [$currentPostId];
 		}
 
-		if ( in_array( 'manual_selection', $exclude_by, true ) ) {
+		if (in_array('manual_selection', $exclude_by, true)) {
 			$exclude_ids          = $data['postExclude'] ?? [];
 			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
-			$args['post__not_in'] = array_merge( $current_post, wp_list_pluck( $exclude_ids, 'value' ) );
+			$args['post__not_in'] = array_merge($current_post, wp_list_pluck($exclude_ids, 'value'));
 		} else {
 			// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 			$args['post__not_in'] = $current_post;
 		}
 
 		// Set Authors.
-		$args = self::get_author_args( $args, $data );
+		$args = self::get_author_args($args, $data);
 
-		$args = self::get_terms_args( $args, $data );
+		$args = self::get_terms_args($args, $data);
 
 		// only for post tab.
-		if ( isset( $data['postTermId'] ) && 'all' !== $data['postTermId'] ) {
+		if (isset($data['postTermId']) && 'all' !== $data['postTermId']) {
 			$args['tax_query'][] = [
 				'taxonomy' => $data['postTaxonomy'],
 				'field'    => 'term_id',
-				'terms'    => [ $data['postTermId'] ],
+				'terms'    => [$data['postTermId']],
 			];
 		}
 
 		// Handle pagination.
-		if ( $showPagination ) {
+		if ($showPagination) {
 			$_paged = is_front_page() ? 'page' : 'paged';
-			if ( get_query_var( $_paged ) ) {
-				$paged = absint( get_query_var( $_paged ) );
+			if (get_query_var($_paged)) {
+				$paged = absint(get_query_var($_paged));
 			} else {
 				$paged = $data['pageNumber'] ?? 1;
 			}
@@ -133,16 +135,16 @@ class GetPostsV1 {
 			$args['paged'] = $paged;
 
 			// Adjust offset if necessary.
-			if ( ! empty( $data['postOffset'] ) && $data['postOffset'] > 0 ) {
-				$args['offset'] = $data['postOffset'] + ( ( $paged - 1 ) * $args['posts_per_page'] );
+			if (! empty($data['postOffset']) && $data['postOffset'] > 0) {
+				$args['offset'] = $data['postOffset'] + (($paged - 1) * $args['posts_per_page']);
 			}
 		} else {
 			// Just apply offset if pagination is not used.
-			if ( ! empty( $data['postOffset'] ) && $data['postOffset'] > 0 ) {
+			if (! empty($data['postOffset']) && $data['postOffset'] > 0) {
 				$args['offset'] = $data['postOffset'];
 			}
 		}
-		return apply_filters( 'zolo_post_args', $args );
+		return apply_filters('zolo_post_args', $args);
 	}
 
 	/**
@@ -151,12 +153,12 @@ class GetPostsV1 {
 	 * @param array $data .
 	 * @return array
 	 */
-	public static function zolo_posts_query( $data ) {
+	public static function zolo_posts_query($data) {
 
 		$results = [];
-		$args    = self::zolo_get_post_args( $data );
+		$args    = self::zolo_get_post_args($data);
 
-		if ( ! empty( $data['postType'] ) && 'current_post' === $data['postType'] ) {
+		if (! empty($data['postType']) && 'current_post' === $data['postType']) {
 			$loop = new \WP_Query(
 				[
 					'post_type' => $data['currentPostType'] ?? '',
@@ -164,31 +166,31 @@ class GetPostsV1 {
 				]
 			);
 		} else {
-			$loop = new \WP_Query( $args );
+			$loop = new \WP_Query($args);
 		}
 
-		$paged         = ZoloHelpers::get_paged( $loop );
-		$postThumbnail = ! empty( $data['postThumbnail'] ) ? $data['postThumbnail'] : '';
-		if ( $loop->have_posts() ) {
-			while ( $loop->have_posts() ) {
+		$paged         = ZoloHelpers::get_paged($loop);
+		$postThumbnail = ! empty($data['postThumbnail']) ? $data['postThumbnail'] : '';
+		if ($loop->have_posts()) {
+			while ($loop->have_posts()) {
 				$loop->the_post();
 				$post_id = get_the_ID();
 
-				$content                = get_post_field( 'post_content', get_the_ID() );
+				$content                = get_post_field('post_content', get_the_ID());
 				$post                   = [];
 				$post['ID']             = $post_id;
 				$post['title']          = get_the_title();
-				$post['thumbnail']      = get_the_post_thumbnail( $post_id, $postThumbnail );
+				$post['thumbnail']      = get_the_post_thumbnail($post_id, $postThumbnail);
 				$post['permalink']      = get_permalink();
-				$post['excerpt']        = wp_strip_all_tags( get_the_excerpt() );
-				$post['content']        = wp_strip_all_tags( get_the_content() );
+				$post['excerpt']        = wp_strip_all_tags(get_the_excerpt());
+				$post['content']        = wp_strip_all_tags(get_the_content());
 				$post['date']           = get_the_date();
-				$post['reading_time']   = self::content_reading_time( $content );
-				$post['categories']     = self::zolo_get_terms( $post_id, ZoloHelpers::get_taxonomy_name( $data['postType'] ?? 'post', 'category' ) );
-				$post['tags']           = self::zolo_get_terms( $post_id, ZoloHelpers::get_taxonomy_name( $data['postType'] ?? 'post', 'tag' ) );
+				$post['reading_time']   = self::content_reading_time($content);
+				$post['categories']     = self::zolo_get_terms($post_id, ZoloHelpers::get_taxonomy_name($data['postType'] ?? 'post', 'category'));
+				$post['tags']           = self::zolo_get_terms($post_id, ZoloHelpers::get_taxonomy_name($data['postType'] ?? 'post', 'tag'));
 				$post['author']         = get_the_author();
 				$post['author_link']    = get_the_author_link();
-				$post['avatar']         = get_avatar( get_the_author_meta( 'ID' ), 50 );
+				$post['avatar']         = get_avatar(get_the_author_meta('ID'), 50);
 				$post['comment_number'] = get_comments_number();
 				$results[]              = $post;
 			}
@@ -209,12 +211,12 @@ class GetPostsV1 {
 	 * @param string $taxnomy_name .
 	 * @return array
 	 */
-	public static function zolo_get_terms( $post_id, $taxnomy_name ) {
+	public static function zolo_get_terms($post_id, $taxnomy_name) {
 		$terms    = [];
-		$taxTerms = wp_get_object_terms( $post_id, $taxnomy_name );
-		if ( ! empty( $taxTerms ) ) {
-			foreach ( $taxTerms as $taxTerm ) {
-				$terms[] = sprintf( '<a  href="%s">%s</a>', get_term_link( $taxTerm ), $taxTerm->name );
+		$taxTerms = wp_get_object_terms($post_id, $taxnomy_name);
+		if (! empty($taxTerms)) {
+			foreach ($taxTerms as $taxTerm) {
+				$terms[] = sprintf('<a  href="%s">%s</a>', get_term_link($taxTerm), $taxTerm->name);
 			}
 		}
 		return $terms;
@@ -226,15 +228,15 @@ class GetPostsV1 {
 	 * @param string $content .
 	 * @return float|int
 	 */
-	public static function content_reading_time( $content ) {
+	public static function content_reading_time($content) {
 		// Set the average reading speed in words per minute.
 		$reading_speed = 200;
 		// Calculate the word count of the content.
-		$word_count = str_word_count( wp_strip_all_tags( $content ) );
+		$word_count = str_word_count(wp_strip_all_tags($content));
 		// Calculate the reading time in minutes.
-		$reading_time = round( $word_count / $reading_speed );
+		$reading_time = round($word_count / $reading_speed);
 		// Set a minimum reading time of 1 minute.
-		if ( $reading_time < 1 ) {
+		if ($reading_time < 1) {
 			$reading_time = 1;
 		}
 
@@ -248,26 +250,26 @@ class GetPostsV1 {
 	 * @param array $data .
 	 * @return mixed
 	 */
-	private static function get_author_args( $args, $data ) {
-		$include_by    = wp_list_pluck( $data['postIncludeBy'] ?? [], 'value' );
-		$exclude_by    = wp_list_pluck( $data['postExcludeBy'] ?? [], 'value' );
+	private static function get_author_args($args, $data) {
+		$include_by    = wp_list_pluck($data['postIncludeBy'] ?? [], 'value');
+		$exclude_by    = wp_list_pluck($data['postExcludeBy'] ?? [], 'value');
 		$include_users = [];
 		$exclude_users = [];
 
-		if ( in_array( 'authors', $include_by, true ) ) {
-			$include_users = wp_list_pluck( $data['postIncludeAuthors'] ?? [], 'value' );
+		if (in_array('authors', $include_by, true)) {
+			$include_users = wp_list_pluck($data['postIncludeAuthors'] ?? [], 'value');
 		}
 
-		if ( in_array( 'authors', $exclude_by, true ) ) {
-			$exclude_users = wp_list_pluck( $data['postExcludeAuthors'] ?? [], 'value' );
-			$include_users = array_diff( $include_users, $exclude_users );
+		if (in_array('authors', $exclude_by, true)) {
+			$exclude_users = wp_list_pluck($data['postExcludeAuthors'] ?? [], 'value');
+			$include_users = array_diff($include_users, $exclude_users);
 		}
 
-		if ( ! empty( $include_users ) ) {
+		if (! empty($include_users)) {
 			$args['author__in'] = $include_users;
 		}
 
-		if ( ! empty( $exclude_users ) ) {
+		if (! empty($exclude_users)) {
 			$args['author__not_in'] = $exclude_users;
 		}
 
@@ -281,36 +283,36 @@ class GetPostsV1 {
 	 * @param array $data .
 	 * @return mixed
 	 */
-	private static function get_terms_args( $args, $data ) {
+	private static function get_terms_args($args, $data) {
 
 		$included_terms = [];
 		$excluded_terms = [];
 
-		if ( ! empty( $data['postIncludeTaxonomies'] ) ) {
-			foreach ( $data['postIncludeTaxonomies'] as $taxonomy ) {
-				if ( ! empty( $taxonomy['options'] ) ) {
-					$included_terms[ $taxonomy['name'] ] = wp_list_pluck( $taxonomy['options'], 'value' );
+		if (! empty($data['postIncludeTaxonomies'])) {
+			foreach ($data['postIncludeTaxonomies'] as $taxonomy) {
+				if (! empty($taxonomy['options'])) {
+					$included_terms[$taxonomy['name']] = wp_list_pluck($taxonomy['options'], 'value');
 				}
 			}
 		}
 
-		if ( ! empty( $data['postExcludeTaxonomies'] ) ) {
-			foreach ( $data['postExcludeTaxonomies'] as $taxonomy ) {
-				if ( ! empty( $taxonomy['options'] ) ) {
-					$excluded_terms[ $taxonomy['name'] ] = wp_list_pluck( $taxonomy['options'], 'value' );
+		if (! empty($data['postExcludeTaxonomies'])) {
+			foreach ($data['postExcludeTaxonomies'] as $taxonomy) {
+				if (! empty($taxonomy['options'])) {
+					$excluded_terms[$taxonomy['name']] = wp_list_pluck($taxonomy['options'], 'value');
 				}
 			}
 		}
 		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		$args['tax_query'] = [];
 
-		foreach ( $included_terms as $taxonomy_name => $terms ) {
-			if ( isset( $excluded_terms[ $taxonomy_name ] ) ) {
+		foreach ($included_terms as $taxonomy_name => $terms) {
+			if (isset($excluded_terms[$taxonomy_name])) {
 				// Apply array_diff to remove excluded terms from the included terms.
-				$terms = array_diff( $terms, $excluded_terms[ $taxonomy_name ] );
+				$terms = array_diff($terms, $excluded_terms[$taxonomy_name]);
 			}
 
-			if ( ! empty( $terms ) ) {
+			if (! empty($terms)) {
 				$args['tax_query'][] = [
 					'taxonomy' => $taxonomy_name,
 					'field'    => 'term_id',
@@ -320,8 +322,8 @@ class GetPostsV1 {
 			}
 		}
 
-		foreach ( $excluded_terms as $taxonomy_name => $terms ) {
-			if ( ! empty( $terms ) ) {
+		foreach ($excluded_terms as $taxonomy_name => $terms) {
+			if (! empty($terms)) {
 				$args['tax_query'][] = [
 					'taxonomy' => $taxonomy_name,
 					'field'    => 'term_id',
@@ -332,7 +334,7 @@ class GetPostsV1 {
 		}
 
 		// If both include and exclude are set, you might want to specify the relation.
-		if ( count( $args['tax_query'] ) > 1 ) {
+		if (count($args['tax_query']) > 1) {
 			$args['tax_query']['relation'] = 'AND';
 		}
 

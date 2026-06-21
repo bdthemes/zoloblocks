@@ -555,6 +555,21 @@ textarea[readonly] {
         display: flex;
         flex-direction: column;
         gap: 15px;
+        align-items: center;
+    }
+
+    .zolo-flex-row-control {
+        .components-base-control__field {
+            width: 100%;
+            .components-input-base {
+                flex-direction: row !important;
+                align-items: center !important;
+            }
+        }    
+    }
+
+    .components-input-base {
+        width: 100%;
     }
 }
 
@@ -1010,6 +1025,9 @@ textarea[readonly] {
             & > div {
                 padding: 0 8px;
             }
+            input {
+                min-height: 30px;
+            }
         }
     }
 }
@@ -1039,9 +1057,21 @@ textarea[readonly] {
     border: 0 !important;
     background-color: #f2f2f2 !important;
     box-shadow: none !important;
+    outline: none !important;
+    height: 35px !important;
+    &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
     .components-toggle-group-control-option-base {
         border-radius: 6px !important;
         border: 1px solid #f2f2f2 !important;
+        outline: none !important;
+        box-shadow: none !important;
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
     }
     .active {
         background: #fff !important;
@@ -1055,5 +1085,11 @@ textarea[readonly] {
     }
     &::before {
         content: unset !important;
+    }
+}
+
+.zolo-pop-select-control {
+    .components-input-control__container {
+        width: 100% !important;
     }
 }

@@ -27,6 +27,7 @@ import {
     SEPARATOR_HEIGHT,
     SEPARATOR_SPACING,
     SEPARATOR_WIDTH,
+    SEPARATOR_MARGIN,
     SUBTITLE_MARGIN,
     SUBTITLE_PADDING,
     SUBTITE_BORDER,
@@ -205,6 +206,16 @@ export default function Style({ props }) {
     } = generateResRangeStyle({
         controlName: SEPARATOR_SPACING,
         property: '--separator-spacing',
+        attributes,
+    });
+
+    const {
+        dimensionStylesDesktop: separatorMarginDesktop,
+        dimensionStylesTab: separatorMarginTab,
+        dimensionStylesMobile: separatorMarginMobile,
+    } = generateDimensionStyle({
+        controlName: SEPARATOR_MARGIN,
+        styleFor: 'margin',
         attributes,
     });
 
@@ -701,6 +712,7 @@ export default function Style({ props }) {
     }
     .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper {
       ${separatorWidthDesktop}
+      ${separatorMarginDesktop}
     }
     
     .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper .zolo-ah-separator {
@@ -716,6 +728,7 @@ export default function Style({ props }) {
     }
     .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper {
           ${separatorWidthTab}
+          ${separatorMarginTab}
     }
   
     .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper .zolo-ah-separator {
@@ -730,6 +743,7 @@ export default function Style({ props }) {
     }
      .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper {
         ${separatorWidthMob}
+        ${separatorMarginMobile}
     }
     
     .zolo-block-wrapper.${uniqueId} .zolo-separator-wrapper .zolo-ah-separator {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from '@wordpress/element';
+import { useEffect, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
@@ -10,6 +10,7 @@ import Extensions from './Extensions';
 import ExtraInfo from './Extra';
 import Logo from './Logo';
 import Settings from './Settings';
+import Upgrade from './Upgrade';
 import Welcome from './Welcome';
 
 const Dashboard = () => {
@@ -48,10 +49,23 @@ const Dashboard = () => {
                 return <ApiSettings />;
             case 'settings':
                 return <Settings />;
+            case 'upgrade':
+                return <Upgrade />;
             default:
                 return <Welcome />;
         }
     };
+
+    const pageTitle = useMemo(() => {
+        const match = TABS.find((tab) => tab.value === activeTab);
+        if (match) {
+            return match.label;
+        }
+        if (activeTab === 'upgrade') {
+            return __('Get Pro', 'zoloblocks');
+        }
+        return TABS[0]?.label ?? '';
+    }, [activeTab]);
 
     return (
         <div className="zolo-dashboard-wrapper">
@@ -81,7 +95,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className="zolo-dash-sidebar-bottom-info">
-                        {zoloBlocks?.has_pro === '' && (
+                        {false && zoloBlocks?.has_pro === '' && (
                             <div className="zolo-dash-side-primum">
                                 <span className="zolo-dash-sidebar-bottom-info-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -133,7 +147,7 @@ const Dashboard = () => {
                 <div className="zolo-header">
                     <div className="header-flex">
                         <div className="zolo-header-left">
-                            <h2 className="zolo-page-header-title">{__('Dashboard', 'zoloblocks')}</h2>
+                            <h2 className="zolo-page-header-title">{pageTitle}</h2>
                         </div>
                         <div className="zolo-header-right">
                             <div className="zolo-tabs-dropdown">

@@ -1,0 +1,233 @@
+// =====================================================================
+// Upgrade tab — only overrides. Core styles: welcome.scss, style.scss (Blocks).
+// =====================================================================
+.zolo-upgrade-tab {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 100%;
+    padding: 0 0 8px;
+
+    .screen-reader-text {
+        border: 0;
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(50%);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        word-wrap: normal !important;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Free vs Pro comparison table (pricing-style: FEATURES | Free | Pro pill)
+// ---------------------------------------------------------------------
+.zolo-upgrade-comparison-section {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: visible;
+    padding: 0;
+    width: 100%;
+
+    .zolo-welcome-s-k-title {
+        margin-top: 0;
+    }
+}
+
+.zolo-upgrade-comparison-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.zolo-upgrade-comparison-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.zolo-upgrade-comparison-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.5;
+    min-width: 640px;
+    width: 100%;
+}
+
+.zolo-upgrade-comparison-th {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 600;
+    padding: 16px 18px;
+    vertical-align: middle;
+}
+
+.zolo-upgrade-comparison-th--feature {
+    color: #6b7280;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+    width: 56%;
+}
+
+.zolo-upgrade-comparison-features-label {
+    display: inline-block;
+}
+
+.zolo-upgrade-comparison-th--free {
+    color: #111827;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    width: 22%;
+}
+
+.zolo-upgrade-comparison-th--pro {
+    background: #fff;
+    text-align: center;
+    width: 22%;
+}
+
+.zolo-upgrade-comparison-th-pro-badge {
+    background: #0f172a;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    min-width: 4.5rem;
+    padding: 10px 22px;
+    text-align: center;
+}
+
+.zolo-upgrade-comparison-feature {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 15px 18px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.zolo-upgrade-comparison-cell {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 14px 16px;
+    text-align: center;
+    vertical-align: top;
+}
+
+// Group headings — full-width row (one logical table, many rows; long scroll is OK)
+.zolo-upgrade-comparison-tr-section .zolo-upgrade-comparison-section-th {
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+    color: #111827;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 11px 18px;
+    text-align: left;
+}
+
+.zolo-upgrade-comparison-section-title {
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.zolo-upgrade-comparison-section-meta {
+    color: #6b7280;
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.4;
+    margin-top: 6px;
+    text-transform: none;
+}
+
+.zolo-upgrade-comparison-item-name {
+    font-weight: 500;
+    padding-left: 22px;
+}
+
+.zolo-upgrade-comparison-placeholder-cell {
+    background: #fafafa;
+    border-bottom: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.45;
+    padding: 14px 18px;
+    text-align: center;
+}
+
+.zolo-upgrade-comparison-table tbody tr:last-child .zolo-upgrade-comparison-feature,
+.zolo-upgrade-comparison-table tbody tr:last-child .zolo-upgrade-comparison-cell {
+    border-bottom: 0;
+}
+
+.zolo-upgrade-compare-cell-inner {
+    align-items: center;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+}
+
+.zolo-upgrade-comparison-note {
+    color: #6b7280;
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.35;
+    max-width: 200px;
+}
+
+.zolo-upgrade-compare-svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+.zolo-upgrade-footer-btns {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 15px;
+    margin: 0;
+}
+
+.zolo-welcome-s-k-text.zolo-upgrade-section-hint {
+    margin-bottom: 1.25rem;
+    margin-top: 0.35rem;
+}
+
+// Footer: align with Welcome “support” cards
+.zolo-welcome-s-k-item.support.zolo-upgrade-footer-cta {
+    .zolo-welcome-s-k-inner-item.zolo-upgrade-footer-inner {
+        min-width: 0;
+    }
+    .zolo-welcome-s-k-btns {
+        margin-top: 0;
+    }
+}
+
+.zolo-welcome-s-k-content .zolo-upgrade-footer-h {
+    font-size: clamp(1.15rem, 1.4vw, 1.4rem);
+}

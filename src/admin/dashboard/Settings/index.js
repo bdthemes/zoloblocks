@@ -22,6 +22,7 @@ const Settings = () => {
     const [modalNewPage, setModalNewPage] = useState(false);
     const [editorVideoLink, setEditorVideoLink] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [allowRemoteGoogleFonts, setAllowRemoteGoogleFonts] = useState(false);
     const privateLink = `${zoloBlocks?.site_url}/?private_link=${comingSoonPrivateLinkPassword}`;
     const [copyButtonText, setCopyButtonText] = useState('Copy');
     const handleFetchError = (error) => {
@@ -82,6 +83,7 @@ const Settings = () => {
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
             setSidebarOpen(response.zolo_sidebar_opener);
+            setAllowRemoteGoogleFonts(response.zolo_allow_remote_google_fonts_catalog);
             setComingSoonPrivateLink(response.zolo_site_visibility_private_link);
             setSiteVisibilitySecretKey(response.zolo_site_visibility_secret_key);
         } catch (error) {
@@ -109,6 +111,7 @@ const Settings = () => {
             setEditorVideoLink(response.zolo_enable_video_link);
             setAutoRecovery(response.zolo_auto_recovery);
             setSidebarOpen(response.zolo_sidebar_opener);
+            setAllowRemoteGoogleFonts(response.zolo_allow_remote_google_fonts_catalog);
             setComingSoonPrivateLink(response.zolo_site_visibility_private_link);
             // setNotice(true);
         } catch (error) {
@@ -205,6 +208,14 @@ const Settings = () => {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { zolo_sidebar_opener: value },
+        });
+    };
+
+    const updateAllowRemoteGoogleFonts = (value) => {
+        updateSettings({
+            path: '/wp/v2/settings',
+            method: 'POST',
+            data: { zolo_allow_remote_google_fonts_catalog: value },
         });
     };
 
@@ -310,6 +321,21 @@ const Settings = () => {
                                         />
                                     </SettingBox>
                                     <SettingBox
+                                        title={__('Load Google Fonts catalog (WordPress.org mirror)', 'zoloblocks')}
+                                        description={__(
+                                            'When enabled, the block editor can download the public Google Fonts list from WordPress.org to populate typography choices. This is off by default and must be turned on by a site administrator.',
+                                            'zoloblocks'
+                                        )}
+                                    >
+                                        <ZoloToggleControl
+                                            checked={!!allowRemoteGoogleFonts}
+                                            onChange={() => {
+                                                updateAllowRemoteGoogleFonts(!allowRemoteGoogleFonts);
+                                                setNotice(true);
+                                            }}
+                                        />
+                                    </SettingBox>
+                                    <SettingBox
                                         title={__('Disable Core starter patterns', 'zoloblocks')}
                                         description={__(
                                             'Disable the core starter patterns in the block inserter when creating a new page.',
@@ -356,11 +382,9 @@ const Settings = () => {
                                     <SettingBox
                                         title={__('Enable Video Link', 'zoloblocks')}
                                         description={__('Enable video link to your gutenberg editor video link option.', 'zoloblocks')}
-                                        isPro={true}
                                     >
                                         <ZoloToggleControl
                                             checked={!!editorVideoLink}
-                                            disabled={!zoloBlocks?.has_pro}
                                             onChange={() => {
                                                 updateEditorVideoLink(!editorVideoLink);
                                                 setNotice(true);

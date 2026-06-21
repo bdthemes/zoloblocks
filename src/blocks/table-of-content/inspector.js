@@ -212,32 +212,7 @@ function Inspector(props) {
                             />
                         </ZoloPanelBody>
 
-                        {applyFilters(
-                            'zolo.tableOfContent.stickyContent',
-                            <ZoloPanelBody
-                                title={__('Sticky Content', 'zoloblocks')}
-                                isPro={true}
-                                stylePanel={true}
-                                panelProps={props}
-                                isDisabled={true}
-                            >
-                                <ZoloToggleControl
-                                    label={__('Sticky Content', 'zoloblocks')}
-                                    checked={showSticky}
-                                    onChange={(showSticky) => setAttributes({ showSticky })}
-                                    help={__('Sitcky content visible only frontend', 'zoloblcoks')}
-                                />
-
-                                {showSticky && (
-                                    <ZoloSelectControl
-                                        label={__('Sticky Position', 'zoloblocks')}
-                                        value={stickyPosition}
-                                        options={STICKY_POSITION}
-                                        onChange={(stickyPosition) => setAttributes({ stickyPosition })}
-                                    />
-                                )}
-                            </ZoloPanelBody>
-                        )}
+                        {applyFilters('zolo.tableOfContent.stickyContent', null, { props, requiredProps })}
                     </>
                 }
                 styleTab={

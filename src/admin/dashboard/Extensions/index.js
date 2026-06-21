@@ -32,8 +32,12 @@ const Extensions = () => {
 
     // activate / deactivate all extensions
     const toggleAllExtensions = (status) => {
+        const cannotActivatePremium = status && zoloBlocks?.has_pro !== '1';
         setExtensions((prevExtensions) =>
             prevExtensions.map((extension) => {
+                if (cannotActivatePremium && extension.is_pro) {
+                    return extension;
+                }
                 if (extension.status !== status) {
                     setExtensionsTobeUpdated((prev) => ({
                         ...prev,
@@ -52,6 +56,9 @@ const Extensions = () => {
             prevExtensions.map((extension) => {
                 if (extension.name === extensionName) {
                     const newStatus = !extension.status;
+                    if (extension.is_pro && zoloBlocks?.has_pro !== '1' && newStatus) {
+                        return extension;
+                    }
                     setExtensionsTobeUpdated((prev) => ({
                         ...prev,
                         [extension.name]: newStatus,
@@ -109,11 +116,6 @@ const Extensions = () => {
             <div className="zoloblocks-list-tab">
                 <div className="zolo-settings-actions">
                     <div className="zolo-settings-head-content zolo-dash-flex-center">
-                        <div className="zolo-settings-type-badge zolo-dash-flex-center">
-                            <button className="zolo-settings-type-btn active">{__('Free', 'zoloblocks')}</button>
-                            <button className="zolo-settings-type-btn">{__('Pro', 'zoloblocks')}</button>
-                        </div>
-
                         <div className="search-field">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -202,12 +204,10 @@ const Extensions = () => {
                                             demo={extension?.demo || ''}
                                             video={extension?.video || ''}
                                             released={extension?.released}
+                                            isPro={!!extension?.is_pro}
                                             onClick={() => {
                                                 handleExtensionClick(extension.name);
                                             }}
-                                            {...(extension?.is_pro && {
-                                                isPro: true,
-                                            })}
                                         />
                                     );
                                 })}

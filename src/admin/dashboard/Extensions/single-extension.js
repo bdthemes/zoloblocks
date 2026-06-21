@@ -7,6 +7,16 @@ const { ExtensionIcons } = window?.zoloIcons;
 
 const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', isPro = false, released = true, upcoming }) => {
     const [proPanel, setProPanel] = useState(false);
+    const hasProLicense = zoloBlocks?.has_pro === '1';
+    const isPremiumLocked = isPro && !hasProLicense;
+
+    const handleTitleClick = () => {
+        if (isPremiumLocked) {
+            setProPanel(true);
+            return;
+        }
+        onClick();
+    };
 
     return (
         <>
@@ -53,14 +63,15 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
             )}
             <div
                 className={classNames('zolo-single-block', {
-                    active: value && !upcoming && isPro ? zoloBlocks?.has_pro === '1' : value && !upcoming && !isPro,
+                    active: value && !upcoming && isPro ? hasProLicense : value && !upcoming && !isPro,
                     upcoming: !released,
                     ispro: isPro,
+                    'zolo-premium-locked': isPremiumLocked,
                 })}
             >
                 <div className="block-icon">{ExtensionIcons[icon]}</div>
                 <div className="block-info">
-                    <span className="block-title" onClick={onClick}>
+                    <span className="block-title" onClick={handleTitleClick}>
                         {title}
                     </span>
                     <div className="block-external-link">
@@ -114,7 +125,11 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
                 </div>
                 <div className="block-badge-toggle-wrap">
                     {isPro && (
-                        <div className="block-pro">
+                        <div
+                            className={classNames('block-pro', {
+                                'block-pro--requires-plugin': isPremiumLocked,
+                            })}
+                        >
                             <span className="block-pro-badge-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width={11} height={11} viewBox="0 0 11 11" fill="none">
                                     <path
@@ -131,7 +146,7 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
                                     <path d="M3 10.5H7.99999" stroke="#FFA826" strokeLinecap="round" />
                                 </svg>
                             </span>
-                            <span>{__('Pro', 'zoloblocks')}</span>
+                            <span>{isPremiumLocked ? __('Pro', 'zoloblocks') : __('Pro', 'zoloblocks')}</span>
                         </div>
                     )}
 
@@ -140,7 +155,7 @@ const SingleExtension = ({ icon, title, value, onClick, demo = '', video = '', i
                             <>
                                 {isPro ? (
                                     <>
-                                        {zoloBlocks?.has_pro === '1' ? (
+                                        {hasProLicense ? (
                                             <ZoloToggleControl checked={value} onChange={onClick} __nextHasNoMarginBottom={true} />
                                         ) : (
                                             <ZoloToggleControl

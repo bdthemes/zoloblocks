@@ -2,6 +2,8 @@
 
 namespace Zolo\Admin;
 
+defined('ABSPATH') || exit;
+
 use Zolo\Traits\SingletonTrait;
 
 /**
@@ -220,8 +222,10 @@ class PostCategoryImage {
      * @return bool
      */
     private function is_category_taxonomy_screen($hook_suffix = '') {
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only admin screen check, no data processed.
         $taxonomy = isset($_GET['taxonomy']) ? sanitize_key(wp_unslash($_GET['taxonomy'])) : '';
         $page_taxonomy = isset($_GET['tax']) ? sanitize_key(wp_unslash($_GET['tax'])) : '';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
         if ('category' !== $taxonomy && 'category' !== $page_taxonomy) {
             return false;

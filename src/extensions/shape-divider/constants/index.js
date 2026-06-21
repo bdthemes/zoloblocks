@@ -31,7 +31,6 @@ const SHAPE_OPTIONS = [
     { label: 'Triangle', value: 'triangle', icon: 'triangle' },
     { label: 'Triangle Asymmetrical', value: 'triangleAsy', icon: 'triangleAsy' },
     { label: 'Waves', value: 'waves', icon: 'waves' },
-    { label: 'Custom', value: 'custom', icon: 'custom', pro: true },
 ];
 
 // Helper function to map shape options with icon sources
