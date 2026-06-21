@@ -195,7 +195,10 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 ### 2.7.7 [June 21, 2026]
 
-#### Improvements
+#### Bug Fixes
+- **Dashboard UI:** Fixed an issue where the bottom blocks were hidden behind the fixed 'Save Changes' footer.
+
+### Improvements
 - **Performance:** Enhanced overall plugin performance and stability for smoother interactions.
 
 ### 2.7.6 [May 23, 2026]
