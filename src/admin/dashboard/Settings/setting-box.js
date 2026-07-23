@@ -3,7 +3,12 @@ const SettingBox = ({ title = 'Option title', description = '', children, releas
     return (
         <div className={`zolo-settings-option-item ${released ? '' : 'upcoming'} ${isPro ? 'ispro' : ''}`}>
             <div className="zolo-settins-content">
-                {title && <h2 className="zolo-settings-title">{title}</h2>}
+                {(title || !released) && (
+                    <div className="zolo-settings-title-row">
+                        {title && <h2 className="zolo-settings-title">{title}</h2>}
+                        {!released && <span className="zolo-badge-upcoming">{__('Coming Soon', 'zoloblocks')}</span>}
+                    </div>
+                )}
                 {description && <p className="zolo-settings-text">{description}</p>}
             </div>
             {isPro && (
@@ -25,7 +30,6 @@ const SettingBox = ({ title = 'Option title', description = '', children, releas
                 </div>
             )}
             {!isPro && children}
-            {!released && <span className="zolo-badge-upcoming">{__('Coming Soon', 'zoloblocks')}</span>}
         </div>
     );
 };
