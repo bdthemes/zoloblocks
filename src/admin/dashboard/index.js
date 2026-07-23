@@ -19,6 +19,7 @@ const Dashboard = () => {
         return hash || 'welcome';
     };
     const [activeTab, setActiveTab] = useState(getInitialStateFromURLQuery);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     // Update URL hash when activeTab changes
     useEffect(() => {
@@ -39,6 +40,33 @@ const Dashboard = () => {
             window.removeEventListener('hashchange', handleHashChange);
         };
     }, []);
+
+    // Close offcanvas on Escape; lock body scroll while open
+    useEffect(() => {
+        if (!mobileMenuOpen) {
+            return undefined;
+        }
+
+        const onKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                setMobileMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('keydown', onKeyDown);
+        document.body.classList.add('zolo-offcanvas-open');
+
+        return () => {
+            document.removeEventListener('keydown', onKeyDown);
+            document.body.classList.remove('zolo-offcanvas-open');
+        };
+    }, [mobileMenuOpen]);
+
+    const handleTabSelect = (value) => {
+        setActiveTab(value);
+        setMobileMenuOpen(false);
+    };
+
     const renderContent = () => {
         switch (activeTab) {
             case 'blocks':
@@ -67,31 +95,27 @@ const Dashboard = () => {
         return TABS[0]?.label ?? '';
     }, [activeTab]);
 
+    const renderNavTabs = () =>
+        TABS.length > 0 &&
+        TABS.map((tab, index) => (
+            <button
+                key={index}
+                type="button"
+                className={activeTab === tab.value ? 'zolo-tab zolo-tab-active' : 'zolo-tab'}
+                onClick={() => handleTabSelect(tab.value)}
+            >
+                {tab.icon && <span className="zolo-side-tab-icon" dangerouslySetInnerHTML={{ __html: tab.icon }}></span>}
+                {tab.label}
+            </button>
+        ));
+
     return (
-        <div className="zolo-dashboard-wrapper">
+        <div className={`zolo-dashboard-wrapper${mobileMenuOpen ? ' is-offcanvas-open' : ''}`}>
             <div className="zolo-dashboard-sidebar">
                 <Logo />
                 <div className="zolo-dash-sidebar-info">
                     <div className="zolo-dash-sidebar-top-info">
-                        <div className="zolo-tabs zolo-desktop-menu">
-                            {TABS.length > 0 &&
-                                TABS.map((tab, index) => {
-                                    return (
-                                        <button
-                                            key={index}
-                                            className={activeTab === tab.value ? 'zolo-tab zolo-tab-active' : 'zolo-tab'}
-                                            onClick={() => {
-                                                setActiveTab(tab.value);
-                                            }}
-                                        >
-                                            {tab.icon && (
-                                                <span className="zolo-side-tab-icon" dangerouslySetInnerHTML={{ __html: tab.icon }}></span>
-                                            )}
-                                            {tab.label}
-                                        </button>
-                                    );
-                                })}
-                        </div>
+                        <div className="zolo-tabs zolo-desktop-menu">{renderNavTabs()}</div>
                     </div>
 
                     <div className="zolo-dash-sidebar-bottom-info">
@@ -143,6 +167,33 @@ const Dashboard = () => {
                 </div>
             </div>
 
+            <div
+                className={`zolo-offcanvas-overlay${mobileMenuOpen ? ' is-visible' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+                aria-hidden={!mobileMenuOpen}
+            />
+
+            <aside
+                className={`zolo-offcanvas${mobileMenuOpen ? ' is-open' : ''}`}
+                aria-hidden={!mobileMenuOpen}
+                aria-label={__('Menu', 'zoloblocks')}
+            >
+                <div className="zolo-offcanvas-header">
+                    <h3 className="zolo-offcanvas-title">{__('Menu', 'zoloblocks')}</h3>
+                    <button
+                        type="button"
+                        className="zolo-offcanvas-close"
+                        onClick={() => setMobileMenuOpen(false)}
+                        aria-label={__('Close menu', 'zoloblocks')}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+                        </svg>
+                    </button>
+                </div>
+                <nav className="zolo-offcanvas-nav zolo-tabs">{renderNavTabs()}</nav>
+            </aside>
+
             <div className="zolo-header-main-wrap">
                 <div className="zolo-header">
                     <div className="header-flex">
@@ -150,37 +201,23 @@ const Dashboard = () => {
                             <h2 className="zolo-page-header-title">{pageTitle}</h2>
                         </div>
                         <div className="zolo-header-right">
-                            <div className="zolo-tabs-dropdown">
-                                <button className="zolo-tabs-dropbtn">
-                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                                        <path
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="1.5"
-                                            d="M1 1h15M1 7h15M1 13h15"
-                                        />
-                                    </svg>
-                                </button>
-                                <div className="zolo-tabs-dropdown-content">
-                                    <div className="zolo-tabs">
-                                        {TABS.length > 0 &&
-                                            TABS.map((tab, index) => {
-                                                return (
-                                                    <button
-                                                        key={index}
-                                                        className={activeTab === tab.value ? 'zolo-tab zolo-tab-active' : 'zolo-tab'}
-                                                        onClick={() => {
-                                                            setActiveTab(tab.value);
-                                                        }}
-                                                    >
-                                                        {tab.label}
-                                                    </button>
-                                                );
-                                            })}
-                                    </div>
-                                </div>
-                            </div>
+                            <button
+                                type="button"
+                                className="zolo-offcanvas-toggle"
+                                onClick={() => setMobileMenuOpen(true)}
+                                aria-expanded={mobileMenuOpen}
+                                aria-label={__('Open menu', 'zoloblocks')}
+                            >
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                                    <path
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="1.5"
+                                        d="M1 1h15M1 7h15M1 13h15"
+                                    />
+                                </svg>
+                            </button>
                             <ExtraInfo />
                         </div>
                     </div>

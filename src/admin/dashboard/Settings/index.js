@@ -418,140 +418,175 @@ const Settings = () => {
                         )}
                         {activeTab === 'site-visibility' && (
                             <div className="zolo-tab-content-item zolo-tab-content-active">
-                                <div className="zolo-settings-option-wrap">
-                                    <div className="zolo-settings-option-item">
-                                        <div className="zolo-settins-content">
-                                            <h2 className="zolo-settings-title">{__('Coming Soon Mode', 'zoloblocks')}</h2>
-                                            <p className="zolo-settings-text">
-                                                {__(
-                                                    "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.",
-                                                    'zoloblocks'
-                                                )}
-                                            </p>
-                                            {!maintenanceMode && comingSoonMode && (
-                                                <>
-                                                    <ZoloSelectControl
-                                                        label={__('Select Templates', 'zoloblocks')}
-                                                        help={__(
-                                                            '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
-                                                            'zoloblocks'
-                                                        )}
-                                                        value={maintenanceModeTemplate}
-                                                        options={templates}
-                                                        onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
-                                                        __nextHasNoMarginBottom
-                                                    />
-                                                    <ZoloToggleControl
-                                                        label={__('Share your site with a private link', 'zoloblocks')}
-                                                        help={__(
-                                                            'Allow your site to be visible to only those with the private link. This is useful when you want to share your site with a select group of people or clients before it goes live.',
-                                                            'zoloblocks'
-                                                        )}
-                                                        checked={!!comingSoonPrivateLink}
-                                                        onChange={() => {
-                                                            updateComingSoonPrivateLink(!comingSoonPrivateLink);
-                                                            // setNotice(true);
-                                                        }}
-                                                    />
-                                                    {comingSoonPrivateLink && (
-                                                        <>
-                                                            <div>
-                                                                <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
-                                                                <ZoloButton
-                                                                    className="zolo-create-new-page-btn"
-                                                                    variant="primary"
-                                                                    onClick={handleCopyClick}
-                                                                >
-                                                                    {copyButtonText || 'Copy'}
-                                                                </ZoloButton>
-                                                            </div>
-                                                        </>
+                                <div className="zolo-settings-option-wrap zolo-site-visibility-wrap">
+                                    <div
+                                        className={`zolo-settings-option-item zolo-site-visibility-card${
+                                            !maintenanceMode && comingSoonMode ? ' is-expanded' : ''
+                                        }`}
+                                    >
+                                        <div className="zolo-sv-card-header">
+                                            <div className="zolo-settins-content">
+                                                <div className="zolo-sv-title-row">
+                                                    <h2 className="zolo-settings-title">{__('Coming Soon Mode', 'zoloblocks')}</h2>
+                                                    <span className="zolo-sv-status-badge zolo-sv-status-badge--ok">
+                                                        {__('HTTP 200', 'zoloblocks')}
+                                                    </span>
+                                                </div>
+                                                <p className="zolo-settings-text">
+                                                    {__(
+                                                        "If your website is still under construction and not ready for public viewing, the 'Coming Soon' page will return an HTTP 200 status code.",
+                                                        'zoloblocks'
                                                     )}
-
-                                                    <ZoloButton
-                                                        className="zolo-create-new-page-btn"
-                                                        variant="primary"
-                                                        onClick={createNewPage}
-                                                    >
-                                                        {__('Create New Page', 'zoloblocks')}
-                                                    </ZoloButton>
-                                                </>
-                                            )}
+                                                </p>
+                                            </div>
+                                            <ZoloToggleControl
+                                                checked={!!comingSoonMode}
+                                                onChange={() => {
+                                                    updateComingSoonMode(!comingSoonMode);
+                                                    setNotice(true);
+                                                }}
+                                            />
                                         </div>
-                                        <ZoloToggleControl
-                                            checked={!!comingSoonMode}
-                                            onChange={() => {
-                                                updateComingSoonMode(!comingSoonMode);
-                                                setNotice(true);
-                                            }}
-                                        />
+
+                                        {!maintenanceMode && comingSoonMode && (
+                                            <div className="zolo-sv-expanded">
+                                                <div className="zolo-sv-panel">
+                                                    <div className="zolo-sv-template-row">
+                                                        <div className="zolo-sv-template-select">
+                                                            <ZoloSelectControl
+                                                                label={__('Template page', 'zoloblocks')}
+                                                                value={maintenanceModeTemplate}
+                                                                options={templates}
+                                                                onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                                __nextHasNoMarginBottom
+                                                            />
+                                                        </div>
+                                                        <ZoloButton
+                                                            className="zolo-sv-create-page-btn"
+                                                            variant="secondary"
+                                                            onClick={createNewPage}
+                                                        >
+                                                            {__('Create page', 'zoloblocks')}
+                                                        </ZoloButton>
+                                                    </div>
+                                                </div>
+
+                                                <div className="zolo-sv-panel">
+                                                    <div className="zolo-sv-private-toggle">
+                                                        <ZoloToggleControl
+                                                            label={__('Private preview link', 'zoloblocks')}
+                                                            checked={!!comingSoonPrivateLink}
+                                                            onChange={() => {
+                                                                updateComingSoonPrivateLink(!comingSoonPrivateLink);
+                                                            }}
+                                                        />
+                                                        <p className="zolo-sv-private-help">
+                                                            {__(
+                                                                'People with this link can view the live site while Coming Soon is on.',
+                                                                'zoloblocks'
+                                                            )}
+                                                        </p>
+                                                    </div>
+                                                    {comingSoonPrivateLink && (
+                                                        <div className="zolo-private-link-wrap">
+                                                            <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                            <ZoloButton
+                                                                className="zolo-sv-copy-btn"
+                                                                variant="primary"
+                                                                onClick={handleCopyClick}
+                                                            >
+                                                                {copyButtonText || __('Copy', 'zoloblocks')}
+                                                            </ZoloButton>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
 
-                                    <div className="zolo-settings-option-item zolo-main-tenance-mode">
-                                        <div className="zolo-settins-content">
-                                            <h2 className="zolo-settings-title">{__('Maintenance Mode', 'zoloblocks')}</h2>
-                                            <p className="zolo-settings-text">
-                                                {__(
-                                                    'Maintenance Mode in ZoloBlocks uses an HTTP 503 status code, signaling search engines to revisit the site shortly. Limit its use to a few days to avoid prolonged downtime.',
-                                                    'zoloblocks'
-                                                )}
-                                            </p>
-                                            {maintenanceMode && !comingSoonMode && (
-                                                <>
-                                                    <ZoloSelectControl
-                                                        label={__('Select Templates', 'zoloblocks')}
-                                                        help={__(
-                                                            '`To enable maintenance mode you have to set a template for the maintenance mode page.Select one or go ahead and create one now`',
-                                                            'zoloblocks'
-                                                        )}
-                                                        value={maintenanceModeTemplate}
-                                                        options={templates}
-                                                        onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
-                                                        __nextHasNoMarginBottom
-                                                    />
-                                                    <ZoloToggleControl
-                                                        label={__('Share your site with a private link', 'zoloblocks')}
-                                                        help={__(
-                                                            'Allow your site to be visible to only those with the private link. This is useful when you want to share your site with a select group of people or clients before it goes live.',
-                                                            'zoloblocks'
-                                                        )}
-                                                        checked={!!comingSoonPrivateLink}
-                                                        onChange={() => {
-                                                            updateComingSoonPrivateLink(!comingSoonPrivateLink);
-                                                            // setNotice(true);
-                                                        }}
-                                                    />
-                                                    {comingSoonPrivateLink && (
-                                                        <>
-                                                            <div className="zolo-private-link-wrap">
-                                                                <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
-                                                                <ZoloButton
-                                                                    className="zolo-create-new-page-btn"
-                                                                    variant="primary"
-                                                                    onClick={handleCopyClick}
-                                                                >
-                                                                    {copyButtonText || 'Copy'}
-                                                                </ZoloButton>
-                                                            </div>
-                                                        </>
+                                    <div
+                                        className={`zolo-settings-option-item zolo-site-visibility-card zolo-main-tenance-mode${
+                                            maintenanceMode && !comingSoonMode ? ' is-expanded' : ''
+                                        }`}
+                                    >
+                                        <div className="zolo-sv-card-header">
+                                            <div className="zolo-settins-content">
+                                                <div className="zolo-sv-title-row">
+                                                    <h2 className="zolo-settings-title">{__('Maintenance Mode', 'zoloblocks')}</h2>
+                                                    <span className="zolo-sv-status-badge zolo-sv-status-badge--warn">
+                                                        {__('HTTP 503', 'zoloblocks')}
+                                                    </span>
+                                                </div>
+                                                <p className="zolo-settings-text">
+                                                    {__(
+                                                        'Maintenance Mode uses an HTTP 503 status code, signaling search engines to revisit shortly. Limit its use to a few days to avoid prolonged downtime.',
+                                                        'zoloblocks'
                                                     )}
-                                                    <ZoloButton
-                                                        className="zolo-create-new-page-btn"
-                                                        variant="primary"
-                                                        onClick={createNewPage}
-                                                    >
-                                                        {__('Create New Page', 'zoloblocks')}
-                                                    </ZoloButton>
-                                                </>
-                                            )}
+                                                </p>
+                                            </div>
+                                            <ZoloToggleControl
+                                                checked={!!maintenanceMode}
+                                                onChange={() => {
+                                                    updateMaintenanceMode(!maintenanceMode);
+                                                    setNotice(true);
+                                                }}
+                                            />
                                         </div>
-                                        <ZoloToggleControl
-                                            checked={!!maintenanceMode}
-                                            onChange={() => {
-                                                updateMaintenanceMode(!maintenanceMode);
-                                                setNotice(true);
-                                            }}
-                                        />
+
+                                        {maintenanceMode && !comingSoonMode && (
+                                            <div className="zolo-sv-expanded">
+                                                <div className="zolo-sv-panel">
+                                                    <div className="zolo-sv-template-row">
+                                                        <div className="zolo-sv-template-select">
+                                                            <ZoloSelectControl
+                                                                label={__('Template page', 'zoloblocks')}
+                                                                value={maintenanceModeTemplate}
+                                                                options={templates}
+                                                                onChange={(newTemplate) => updateMaintenanceModeTemplate(newTemplate)}
+                                                                __nextHasNoMarginBottom
+                                                            />
+                                                        </div>
+                                                        <ZoloButton
+                                                            className="zolo-sv-create-page-btn"
+                                                            variant="secondary"
+                                                            onClick={createNewPage}
+                                                        >
+                                                            {__('Create page', 'zoloblocks')}
+                                                        </ZoloButton>
+                                                    </div>
+                                                </div>
+
+                                                <div className="zolo-sv-panel">
+                                                    <div className="zolo-sv-private-toggle">
+                                                        <ZoloToggleControl
+                                                            label={__('Private preview link', 'zoloblocks')}
+                                                            checked={!!comingSoonPrivateLink}
+                                                            onChange={() => {
+                                                                updateComingSoonPrivateLink(!comingSoonPrivateLink);
+                                                            }}
+                                                        />
+                                                        <p className="zolo-sv-private-help">
+                                                            {__(
+                                                                'People with this link can view the live site while Maintenance Mode is on.',
+                                                                'zoloblocks'
+                                                            )}
+                                                        </p>
+                                                    </div>
+                                                    {comingSoonPrivateLink && (
+                                                        <div className="zolo-private-link-wrap">
+                                                            <ZoloTextControl value={privateLink} disabled={true} onChange={() => {}} />
+                                                            <ZoloButton
+                                                                className="zolo-sv-copy-btn"
+                                                                variant="primary"
+                                                                onClick={handleCopyClick}
+                                                            >
+                                                                {copyButtonText || __('Copy', 'zoloblocks')}
+                                                            </ZoloButton>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

@@ -466,12 +466,30 @@
     }
 }
 
-.zolo-settings-option-item.upcoming {
-    position: relative;
+.zolo-settings-option-item {
+    .zolo-settings-title-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 12px;
+
+        .zolo-settings-title {
+            margin-bottom: 0;
+        }
+    }
+
     .zolo-badge-upcoming {
-        margin-top: 22px;
-        font-size: 12px;
-        padding: 16px 20px;
+        position: static;
+        margin: 0;
+        padding: 6px 10px;
+        font-size: 10px;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    &.upcoming {
+        position: relative;
     }
 }
 
@@ -785,32 +803,31 @@ input.zoloblocks-search {
         }
     }
 }
-// header css
+// header css — mobile offcanvas (replaces dropdown)
 
-.zolo-tabs-dropbtn {
+.zolo-offcanvas-toggle {
     padding: 12px;
     border-radius: 6px;
     background-color: #ffffff;
     cursor: pointer;
     transition: 0.3s ease;
     border: 1px solid #ddd;
+    line-height: 0;
+    color: #3a3a44;
+
     &:hover {
-        background-color: #ccd0ed;
+        background-color: #eef3ff;
+        border-color: #d6e2ff;
+        color: var(--zolo-dashboard-brand-color);
+    }
+
+    svg {
+        width: 14px;
+        height: 14px;
+        display: block;
     }
 }
 
-.zolo-tabs-dropbtn svg {
-    width: 14px;
-    height: 14px;
-    display: block;
-}
-
-.zolo-tabs-dropdown {
-    position: relative;
-    display: inline-block;
-    padding: 0;
-    z-index: 99;
-}
 .zolo-header-right {
     display: flex;
     align-items: center;
@@ -818,47 +835,148 @@ input.zoloblocks-search {
     flex-direction: row-reverse;
 }
 
-.zolo-tabs-dropdown-content {
+.zolo-offcanvas-overlay {
+    position: fixed;
+    top: var(--wp-admin--admin-bar--height, 32px);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(15, 23, 42, 0.45);
+    z-index: 100000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+
+    &.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+.zolo-offcanvas {
+    position: fixed;
+    top: var(--wp-admin--admin-bar--height, 32px);
+    right: 0;
+    left: auto;
+    bottom: 0;
+    width: min(320px, 82vw);
+    background: #fff;
+    z-index: 100001;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -8px 0 32px rgba(15, 23, 42, 0.12);
+    transform: translateX(105%);
+    transition: transform 0.28s ease;
+    visibility: hidden;
+
+    &.is-open {
+        transform: translateX(0);
+        visibility: visible;
+    }
+}
+
+.zolo-offcanvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 20px;
+    border-bottom: 1px solid #f0f0f2;
+    flex-shrink: 0;
+}
+
+.zolo-offcanvas-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+
+.zolo-offcanvas-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: #f5f5f7;
+    color: #3a3a44;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background: #ececf0;
+        color: #1a1a1a;
+    }
+
+    svg {
+        display: block;
+    }
+}
+
+.zolo-offcanvas-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 14px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .zolo-tab {
+        border: none;
+        background: none;
+        padding: 12px 14px;
+        font-size: 15px;
+        cursor: pointer;
+        line-height: 1.2;
+        font-weight: 500;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #3a3a44;
+        text-align: left;
+        width: 100%;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        .zolo-side-tab-icon {
+            flex-shrink: 0;
+
+            svg {
+                display: block;
+                width: 20px;
+                height: 20px;
+
+                path {
+                    stroke: currentColor;
+                }
+            }
+        }
+
+        &:hover {
+            background: #f5f7fb;
+            color: #1a1a1a;
+        }
+
+        &.zolo-tab-active {
+            color: var(--zolo-dashboard-brand-color);
+            background-color: #e4ecff;
+        }
+    }
+}
+
+body.zolo-offcanvas-open {
+    overflow: hidden;
+}
+
+// Legacy dropdown (kept inert / unused)
+.zolo-tabs-dropdown {
     display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 111;
-    right: 10px;
-}
-
-.zolo-tabs-dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.zolo-tabs-dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.zolo-tabs-dropdown:hover .zolo-tabs-dropdown-content {
-    display: block;
-}
-
-.zolo-tabs-dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
-
-.zolo-tabs-dropdown .zolo-tab {
-    height: auto;
-    width: 100%;
-    padding: 10px 20px;
-    font-size: 14px;
-    border-width: 1px;
-    border-color: #e6e6e6;
-    text-align: left;
-}
-.zolo-tabs-dropdown .zolo-tab.zolo-tab-active {
-    border-width: 2px;
-    border-color: var(--zolo-dashboard-brand-color);
 }
 
 .zolo-single-setting {
@@ -899,9 +1017,10 @@ input.zoloblocks-search {
     .zolo-settings-actions {
         gap: 50px;
     }
-    .zolo-tabs-dropdown {
-        display: none;
-        padding: 0;
+    .zolo-offcanvas-toggle,
+    .zolo-offcanvas,
+    .zolo-offcanvas-overlay {
+        display: none !important;
     }
 }
 
