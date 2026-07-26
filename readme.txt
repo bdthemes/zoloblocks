@@ -193,7 +193,7 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
-### 2.7.8 [July 23, 2026]
+### 2.7.8 [July 26, 2026]
 
 #### Improvements
 - **Dashboard UI:** Optimized the dashboard interface for mobile devices with an improved responsive layout that adapts across screen sizes.
