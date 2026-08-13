@@ -63,47 +63,68 @@ const Style = (props) => {
         .${uniqueId} .zolo-shape-top.${uniqueId} {
             ${shapeDivider.top.bringToFront ? 'z-index: 2;' : ''}
         }
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} {
+            ${shapeDivider.bottom.bringToFront ? 'z-index: 2;' : ''}
+        }
         .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${shapeDivider.top.color};
             ${topHeightDesk}
             ${topWidthDesk}
             ${shapeDivider.top.flip ? 'transform: translateX(-50%) rotateY(180deg);' : ''}
             ${shapeDivider.top.bringToFront ? 'z-index: 2;' : ''}
         }
 
-        .${uniqueId} .zolo-shape-bottom.${uniqueId} {
-            ${shapeDivider.bottom.bringToFront ? 'z-index: 2;' : ''}
-        }
         .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${shapeDivider.bottom.color};
             ${bottomHeightDesk}
             ${bottomWidthDesk}
             ${shapeDivider.bottom.flip ? 'transform: translateX(-50%) rotateY(180deg);' : ''}
             z-index: 2;
         }
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg,
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg path {
+            fill :${shapeDivider.top.color};
+        }
+
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg,
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg path {
+            fill: ${shapeDivider.bottom.color};
+        }
     `;
     const shapeDividerTablet = `
         .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${shapeDivider.top.color};
             ${topHeightTab}
             ${topWidthTab}
         }
         .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${shapeDivider.bottom.color};
             ${bottomHeightTab}
             ${bottomWidthTab}
         }
+
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg,
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg path {
+            fill :${shapeDivider.top.color};
+        }
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg,
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg path {
+            fill: ${shapeDivider.bottom.color};
+        }
+
     `;
     const shapeDividerMobile = `
         .${uniqueId} .zolo-shape-top.${uniqueId} svg {
-            fill :${shapeDivider.top.color};
             ${topHeightMob}
             ${topWidthMob}
         }
         .${uniqueId} .zolo-shape-bottom.${uniqueId} svg {
-            fill: ${shapeDivider.bottom.color};
             ${bottomHeightMob}
             ${bottomWidthMob}
+        }
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg,
+        .${uniqueId} .zolo-shape-top.${uniqueId} svg path {
+            fill :${shapeDivider.top.color};
+        }
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg,
+        .${uniqueId} .zolo-shape-bottom.${uniqueId} svg path {
+            fill: ${shapeDivider.bottom.color};
         }
     `;
     return {
