@@ -1,5 +1,10 @@
 <?php
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 return apply_filters('zolo_extensions_list_data', [
     'floating_animation' => [
         'name'             => 'floating_animation',

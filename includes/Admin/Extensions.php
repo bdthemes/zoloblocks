@@ -1,6 +1,9 @@
 <?php
 
-
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * ZoloBlocks Settings Endpoint

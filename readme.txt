@@ -1,11 +1,11 @@
 === ZoloBlocks – Advanced Gutenberg Blocks, Website Builder & Page Design Toolkit ===
-Contributors: bdthemes, selimmw, abutalib, muhammadasik, shamim496
+Contributors: bdthemes, selimmw, abutalib, muhammadasik, shamim496, mohammaadfarid
 Donate link: http://zoloblocks.com/
 Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.1
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.7.9
+Stable tag: 2.7.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,13 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.7.10 [September 1, 2026]
+
+#### Improvements
+- **Google Fonts:** Font list now loads through the WordPress Font Library.
+- **Security:** Added direct file access protection to internal PHP files.
+- **Compatibility:** Tested up to WordPress 7.1.
 
 ### 2.7.9 [August 12, 2026]
 
