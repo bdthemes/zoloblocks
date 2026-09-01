@@ -1,3 +1,10 @@
+### 2.7.10 [September 1, 2026]
+
+#### Improvements
+- **Google Fonts:** Font list now loads through the WordPress Font Library.
+- **Security:** Added direct file access protection to internal PHP files.
+- **Compatibility:** Tested up to WordPress 7.1.
+
 ### 2.7.9 [August 12, 2026]
 
 #### Improvements

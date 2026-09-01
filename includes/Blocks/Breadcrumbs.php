@@ -3,6 +3,11 @@ namespace Zolo\Blocks;
 
 use Zolo\Traits\SingletonTrait;
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ! class_exists( Breadcrumbs::class ) ) :
 	/**
 	 * The Breadcrumbs class following WC_Breadcrumbs.

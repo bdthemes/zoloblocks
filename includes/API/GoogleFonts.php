@@ -3,6 +3,7 @@
 namespace Zolo\API;
 
 use Zolo\Traits\SingletonTrait;
+use WP_Font_Library;
 use WP_REST_Response;
 use WP_Error;
 
@@ -14,8 +15,10 @@ if (! defined('ABSPATH')) {
 /**
  * Google Fonts API
  *
- * Proxies the WordPress Google Fonts collection endpoint
- * and caches the result using transients.
+ * Exposes the Google Fonts collection that WordPress core registers with the
+ * Font Library, and caches the result using transients. The remote request and
+ * its sanitization are handled by core, so no third-party asset host is
+ * contacted by this plugin directly.
  *
  * @package Zolo
  * @since 2.4.0
@@ -25,9 +28,9 @@ class GoogleFonts {
     use SingletonTrait;
 
     /**
-     * Remote URL for the Google Fonts collection.
+     * Slug of the font collection registered by WordPress core.
      */
-    const FONTS_URL = 'https://s.w.org/images/fonts/wp-7.0/collections/google-fonts-with-preview.json';
+    const COLLECTION_SLUG = 'google-fonts';
 
     /**
      * Transient key for caching.
@@ -80,36 +83,35 @@ class GoogleFonts {
             return new WP_REST_Response($cached, 200);
         }
 
-        // Fetch from remote
-        $response = wp_remote_get(self::FONTS_URL, [
-            'timeout'   => 30,
-            'sslverify' => true,
-        ]);
+        // The Font Library ships with WordPress 6.5 and later.
+        if (! class_exists('WP_Font_Library')) {
+            return new WP_REST_Response(['font_families' => []], 200);
+        }
 
-        if (is_wp_error($response)) {
+        $collection = WP_Font_Library::get_instance()->get_font_collection(self::COLLECTION_SLUG);
+
+        if (null === $collection) {
+            return new WP_Error(
+                'collection_missing',
+                __('The Google Fonts collection is not registered on this site.', 'zoloblocks'),
+                ['status' => 404]
+            );
+        }
+
+        $data = $collection->get_data();
+
+        if (is_wp_error($data)) {
             return new WP_Error(
                 'fetch_failed',
-                __('Failed to fetch Google Fonts collection.', 'zoloblocks'),
+                __('Failed to fetch the Google Fonts collection.', 'zoloblocks'),
                 ['status' => 500]
             );
         }
 
-        $status_code = wp_remote_retrieve_response_code($response);
-        if ($status_code !== 200) {
-            return new WP_Error(
-                'fetch_failed',
-                __('Google Fonts endpoint returned an error.', 'zoloblocks'),
-                ['status' => $status_code]
-            );
-        }
-
-        $body = wp_remote_retrieve_body($response);
-        $data = json_decode($body, true);
-
-        if (json_last_error() !== JSON_ERROR_NONE || empty($data)) {
+        if (empty($data['font_families'])) {
             return new WP_Error(
                 'invalid_response',
-                __('Invalid response from Google Fonts endpoint.', 'zoloblocks'),
+                __('The Google Fonts collection returned no font families.', 'zoloblocks'),
                 ['status' => 500]
             );
         }
