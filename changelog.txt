@@ -1,3 +1,8 @@
+### 2.7.11 [September 3, 2026]
+
+#### Bug Fixes
+- **Typography Control:** Fixed the Font Family and Weight fields being squeezed by their labels in the block editor sidebar.
+
 ### 2.7.10 [September 1, 2026]
 
 #### Improvements

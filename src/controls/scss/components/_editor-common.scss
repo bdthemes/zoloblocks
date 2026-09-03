@@ -566,6 +566,14 @@ textarea[readonly] {
                 align-items: center !important;
             }
         }    
+
+        // Column controls sitting inside a row (the typography Font Family / Weight
+        // pair) keep their label above the input. Needs to out-specify the rule above,
+        // which would otherwise flatten them back into a side-by-side row.
+        .zolo-flex-col-control .components-base-control__field .components-input-base {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+        }
     }
 
     .components-input-base {
@@ -764,6 +772,20 @@ textarea[readonly] {
             align-items: flex-start;
             width: 100%;
             gap: calc(8px);
+        }
+
+        // WP 7.1 moved the SelectControl label out of `.components-base-control__field`
+        // and into InputBase, so the `display: block` above no longer stacks it. The
+        // parent `.zolo-panel-control .components-input-base` rule then forces a row and
+        // the label sits beside the input, squeezing it. Undo that for column controls.
+        .components-input-base {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: calc(8px);
+
+            .components-flex-item {
+                width: auto;
+            }
         }
 
         .zolo-select__control {

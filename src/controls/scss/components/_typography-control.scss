@@ -35,9 +35,18 @@
             min-height: auto !important;
             margin: 0;
             padding: 0;
+            flex-wrap: nowrap;
+            overflow: hidden;
         }
-        &__single-value {
+        // The font family column is narrow; keep the label on one line and
+        // ellipsize rather than wrapping the control to two rows.
+        &__single-value,
+        &__placeholder {
             line-height: 1;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             &:focus {
                 border: none;
                 outline: none;
