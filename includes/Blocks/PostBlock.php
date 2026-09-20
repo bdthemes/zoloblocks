@@ -1,6 +1,7 @@
 <?php
 
 namespace Zolo\Blocks;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Post block main class

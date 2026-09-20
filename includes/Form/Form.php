@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!class_exists('Form')) {
+if (!class_exists(__NAMESPACE__ . '\\Form')) {
 
     /**
      * Class Form
@@ -117,37 +117,39 @@ if (!class_exists('Form')) {
          * @return bool True if reCAPTCHA is valid, false otherwise.
          */
         private function is_recaptcha_valid(array $data): bool {
-            // Ensure reCAPTCHA response exists in the data
-            if (isset($data['g-recaptcha-response'])) {
-                // Retrieve the secret key from options
-                $recaptcha_secret_key = get_option('zolo_recaptcha_secret_key');
-                if (empty($recaptcha_secret_key)) {
-                    return false;
-                }
-
-                // Prepare the reCAPTCHA API request
-                $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-                $response = wp_remote_post($recaptcha_url, [
-                    'body' => [
-                        'secret'   => $recaptcha_secret_key,
-                        'response' => $data['g-recaptcha-response'],
-                    ],
-                ]);
-
-                // Check for errors in the API request
-                if (is_wp_error($response)) {
-                    return false;
-                }
-
-                // Parse and validate the API response
-                $result = json_decode(wp_remote_retrieve_body($response));
-                if (!is_object($result) || empty($result->success)) {
-                    return false;
-                }
+            // Whether reCAPTCHA is enforced is decided by the server option, never
+            // by the client payload. If the feature is off, there is nothing to check.
+            if (!get_option('zolo_enable_recaptcha')) {
+                return true;
             }
 
-            // Return the success status
-            return true;
+            $recaptcha_secret_key = get_option('zolo_recaptcha_secret_key');
+            if (empty($recaptcha_secret_key)) {
+                // Enabled but not configured: fail closed rather than let everything through.
+                return false;
+            }
+
+            // A missing/empty token must fail closed (omitting the key was the bypass).
+            $token = isset($data['g-recaptcha-response']) ? trim((string) $data['g-recaptcha-response']) : '';
+            if ('' === $token) {
+                return false;
+            }
+
+            // Verify the token with Google.
+            $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+            $response = wp_remote_post($recaptcha_url, [
+                'body' => [
+                    'secret'   => $recaptcha_secret_key,
+                    'response' => $token,
+                ],
+            ]);
+
+            if (is_wp_error($response)) {
+                return false;
+            }
+
+            $result = json_decode(wp_remote_retrieve_body($response));
+            return is_object($result) && !empty($result->success);
         }
 
         /**

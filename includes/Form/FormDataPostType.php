@@ -54,6 +54,11 @@ class FormDataPostType
 
     public function zolo_save_form_data($post_id, $post)
     {
+        // Skip autosaves and revisions — parse_blocks() on every save is wasteful.
+        if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) {
+            return;
+        }
+
         $post_content = $post->post_content;
 
         if (empty($post_content)) {

@@ -3,6 +3,7 @@
 namespace Zolo\Blocks;
 
 use Zolo\Helpers\ZoloHelpers;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * PostMeta block
@@ -46,7 +47,7 @@ class PostMeta {
 					$customSeparator = !empty($settings['separatorStyle']) && 'separator-custom' == $settings['separatorStyle']
 						? ($settings['customSeparator'] ?? '')
 						: '';
-					$output .= '<span class="zolo-separator">' . $customSeparator . '</span>';
+					$output .= '<span class="zolo-separator">' . esc_html($customSeparator) . '</span>';
 				}
 			}
 		}

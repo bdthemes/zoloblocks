@@ -8,7 +8,7 @@ const Notice = ({ notice, message = '' }) => {
         // remove show class after 5 seconds
         if (notice) {
             setTimeout(() => {
-                noticeRef.current.classList?.remove('show');
+                noticeRef.current?.classList?.remove('show');
             }, 1000);
         }
     }, [notice]);

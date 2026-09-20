@@ -5,6 +5,7 @@ namespace Zolo\Blocks;
 use Zolo\Blocks\PostBlock;
 use Zolo\API\GetPostsV1;
 use Zolo\Helpers\ZoloHelpers;
+defined( 'ABSPATH' ) || exit;
 
 class PostCarousel extends PostBlock {
 

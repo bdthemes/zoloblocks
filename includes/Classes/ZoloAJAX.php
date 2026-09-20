@@ -187,16 +187,16 @@ class ZoloAJAX {
 
         global $post_id;
         $query_args = [
-            'status'    => $data['statusComment'],
-            'order'     => $data['order'],
-            'orderby'   => $data['orderBy'],
+            'status'    => $data['statusComment'] ?? 'approve',
+            'order'     => $data['order'] ?? 'DESC',
+            'orderby'   => $data['orderBy'] ?? 'comment_date_gmt',
             'post_id'   => $post_id,
-            'number'    => $data['itemLimit'],
-            'offset'    => $data['offset'],
-            'post_type' => $data['sourceType'],
+            'number'    => $data['itemLimit'] ?? '',
+            'offset'    => $data['offset'] ?? '',
+            'post_type' => $data['sourceType'] ?? '',
         ];
 
-        if ( $data['onlyParent'] ) {
+        if ( ! empty( $data['onlyParent'] ) ) {
             $query_args['parent'] = 0;
         }
 
@@ -488,7 +488,7 @@ class ZoloAJAX {
                 $offset = ( $paged - 1 ) * $limit;
             }
 
-            $limit = $wpdb->prepare( ' limit %d, %d', esc_sql( $offset ), esc_sql( $limit ) );
+            $limit = $wpdb->prepare( ' limit %d, %d', $offset, $limit );
         }
 
         if ( 'any' === $post_type ) {
@@ -504,11 +504,11 @@ class ZoloAJAX {
             }
 
         } elseif ( !empty( $post_type ) ) {
-            $where .= $wpdb->prepare( " AND {$wpdb->posts}.post_type = %s", esc_sql( $post_type ) );
+            $where .= $wpdb->prepare( " AND {$wpdb->posts}.post_type = %s", $post_type );
         }
 
         if ( !empty( $search ) ) {
-            $where .= $wpdb->prepare( " AND {$wpdb->posts}.post_title LIKE %s", '%' . esc_sql( $search ) . '%' );
+            $where .= $wpdb->prepare( " AND {$wpdb->posts}.post_title LIKE %s", '%' . $wpdb->esc_like( $search ) . '%' );
         }
 
         $query   = "select post_title,ID  from $wpdb->posts where post_status = 'publish' {$where} {$limit}";

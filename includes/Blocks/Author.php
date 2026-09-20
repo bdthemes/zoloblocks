@@ -4,6 +4,7 @@ namespace Zolo\Blocks;
 
 use Zolo\Classes\ZoloAJAX;
 use Zolo\Helpers\ZoloHelpers;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Post Category block
@@ -44,7 +45,7 @@ class Author extends PostBlock {
 	public function render( $attributes ) {
 
 		$attributes  = wp_parse_args( $attributes, $this->get_default_attributes() );
-		$users       = ZoloAJAX::author_query( $attributes['authorQuery'] );
+		$users       = ZoloAJAX::author_query( $attributes['authorQuery'] ?? [] );
 		$user_json   = wp_json_encode( $users );
 		$user_object = json_decode( $user_json );
 

@@ -137,10 +137,14 @@
         });
     });
 
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+    // Guard against document.body being null (e.g. when this frontend script is
+    // evaluated in the editor before the body exists) — otherwise observe() throws.
+    if (document.body) {
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
 
     // Expose functions for external use
     window.ZoloPopup = {

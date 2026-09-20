@@ -1,6 +1,7 @@
 <?php
 
 namespace Zolo\Traits;
+defined( 'ABSPATH' ) || exit;
 
 trait SingletonTrait {
     /**

@@ -531,14 +531,6 @@ class ZoloHelpers {
             ],
             'title' => [],
             'desc' => [],
-            'iframe' => [
-                'src'      => true,
-                'class'   => true,
-                'allow' => true,
-            ],
-            'style' => [
-                'type' => true,
-            ],
         ];
 
         return array_merge($defaults, $svg_args);

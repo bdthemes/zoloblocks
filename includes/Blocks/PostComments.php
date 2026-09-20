@@ -4,6 +4,7 @@ namespace Zolo\Blocks;
 
 use Zolo\Classes\ZoloAJAX;
 use Zolo\Helpers\ZoloHelpers;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Post Category block

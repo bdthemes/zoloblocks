@@ -64,7 +64,7 @@ class TagCloud extends PostBlock {
 	public function render($attributes) {
 
 		$attributes = wp_parse_args($attributes, $this->get_default_attributes());
-		$categories = ZoloAJAX::zolo_post_category_query($attributes['catQuery']);
+		$categories = ZoloAJAX::zolo_post_category_query($attributes['catQuery'] ?? []);
 		$cat_json   = wp_json_encode($categories);
 		$cat_object = json_decode($cat_json);
 

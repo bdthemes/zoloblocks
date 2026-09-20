@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (! class_exists('Mailchimp')) {
+if (! class_exists(__NAMESPACE__ . '\\Mailchimp')) {
 
     /**
      * Class Mailchimp

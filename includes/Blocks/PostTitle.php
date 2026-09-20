@@ -3,6 +3,7 @@
 namespace Zolo\Blocks;
 
 use Zolo\Helpers\ZoloHelpers;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * PostTitle block
@@ -44,6 +45,7 @@ class PostTitle {
 		$wrapper_class      = trim(ZoloHelpers::get_wrapper_class($settings, '') . ' ' . implode(' ', $settings['parentClasses'] ?? []));
 		$wrapper_attributes = get_block_wrapper_attributes(['class' => esc_attr($wrapper_class)]);
 		$title              = ! empty($settings['titleWords']) ? ZoloHelpers::wordcount($title, $settings['titleWords']) : $title;
+		$title              = esc_html($title);
 
 		// Sanitize tag name
 		$tag_name     = ZoloHelpers::sanitize_html_tag($settings['titleTag'] ?? 'h2');
@@ -55,7 +57,7 @@ class PostTitle {
 				esc_url(get_the_permalink($block->context['postId'])),
 				esc_attr($settings['linkTarget']),
 				$rel,
-				esc_html($title)
+				$title
 			);
 		}
 

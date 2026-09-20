@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (! class_exists('Assets')) {
+if (! class_exists(__NAMESPACE__ . '\\Assets')) {
 
     /**
      * Assets Class
