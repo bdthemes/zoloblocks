@@ -9,7 +9,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-if (! class_exists('Dashboard')) {
+if (! class_exists(__NAMESPACE__ . '\\Dashboard')) {
 
     /**
      * Dashboard Class
@@ -94,7 +94,7 @@ if (! class_exists('Dashboard')) {
          * @since 1.0.0
          */
         public function disable_admin_notice() {
-            if (!isset($_GET['page']) || !wp_verify_nonce(wp_create_nonce('zolo_admin_nonce'), 'zolo_admin_nonce')) {
+            if (!isset($_GET['page']) || !current_user_can('manage_options')) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 return;
             }
 

@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (! class_exists('PopupBuilder')) {
+if (! class_exists(__NAMESPACE__ . '\\PopupBuilder')) {
 
     /**
      * Class PopupBuilder

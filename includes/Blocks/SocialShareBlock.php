@@ -9,7 +9,7 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
-if (! class_exists('SocialShareBlock')) {
+if (! class_exists(__NAMESPACE__ . '\\SocialShareBlock')) {
 
 	/**
 	 * Class SocialShareBlock

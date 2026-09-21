@@ -3,6 +3,7 @@
 namespace Zolo\Blocks;
 
 use Zolo\Helpers\ZoloHelpers;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Breadcrumb block

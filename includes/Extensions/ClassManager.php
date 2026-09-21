@@ -118,8 +118,13 @@ class ClassManager
 				$tag_processor = new WP_HTML_Tag_Processor($block_content);
 				$tag_processor->next_tag();
 				$class_ids = [];
+				if (! is_array($block['attrs']['classManager'])) {
+					return $block_content;
+				}
 				foreach ($block['attrs']['classManager'] as $class) {
-					$class_ids[] = $class['id'];
+					if (is_array($class) && isset($class['id'])) {
+						$class_ids[] = $class['id'];
+					}
 				}
 
 				$posts = get_posts([

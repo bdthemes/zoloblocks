@@ -9,7 +9,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-if (! class_exists('Recaptcha')) {
+if (! class_exists(__NAMESPACE__ . '\\Recaptcha')) {
 
     /**
      * Class Recaptcha

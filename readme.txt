@@ -5,7 +5,7 @@ Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.1
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.7.11
+Stable tag: 2.7.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,23 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.7.12 [September 21, 2026]
+
+#### Security
+- Hardened form validation, block output escaping, and internal safeguards.
+
+#### Bug Fixes
+- **Dashboard:** Fixed a JavaScript error thrown by the "settings saved" notice.
+- **Editor:** Fixed a console error from the popup script when no popup is present.
+- **Post Category:** Fixed the block rendering empty on pages by falling back to all categories when the current post has none.
+- **PHP 8:** Fixed "undefined array key" warnings while rendering the Author, Post Category, Tag Cloud and Post Comments blocks.
+- **Search:** Fixed double-escaping in the block search query and added proper LIKE escaping.
+- **Compatibility:** Fixed the navigation block output and a version-string comparison issue.
+
+#### Improvements
+- Namespaced class guards to prevent fatals when another plugin uses the same class name.
+- Added direct file access protection to internal files and removed an unused duplicate settings file.
 
 ### 2.7.11 [September 3, 2026]
 

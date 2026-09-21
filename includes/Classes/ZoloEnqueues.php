@@ -11,7 +11,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-if (! class_exists('ZoloEnqueues')) {
+if (! class_exists(__NAMESPACE__ . '\\ZoloEnqueues')) {
 
     /**
      * The ZoloEnqueues class handles enqueuing scripts and styles for the Zolo theme.
@@ -420,7 +420,7 @@ if (! class_exists('ZoloEnqueues')) {
                 $tags->set_attribute('href', home_url());
                 $tags->get_updated_html();
 
-                return $tags;
+                return $tags->get_updated_html();
             }
 
             if ($block['blockName'] == 'zolo/navigation-item') {
@@ -431,7 +431,7 @@ if (! class_exists('ZoloEnqueues')) {
                 }
                 $tags->get_updated_html();
 
-                return $tags;
+                return $tags->get_updated_html();
             }
 
             return $block_content;

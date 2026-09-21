@@ -4,6 +4,7 @@ namespace Zolo\Blocks;
 
 use Zolo\API\GetPostsV1;
 use Zolo\Helpers\ZoloHelpers;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * PostTimeline block

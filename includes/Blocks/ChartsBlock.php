@@ -9,7 +9,7 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
-if (! class_exists('ChartsBlock')) {
+if (! class_exists(__NAMESPACE__ . '\\ChartsBlock')) {
 
 	/**
 	 * Class ChartsBlock

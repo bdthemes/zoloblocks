@@ -4,6 +4,7 @@ namespace Zolo\Blocks;
 
 use Zolo\Classes\ZoloAJAX;
 use Zolo\Helpers\ZoloHelpers;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Post Category block
@@ -51,7 +52,7 @@ class PostCategory extends PostBlock {
 	public function render($attributes, $content, $block) {
 		$post_ID            = $block->context['postId'] ?? '';
 		$attributes = wp_parse_args($attributes, $this->get_default_attributes());
-		$categories = ZoloAJAX::zolo_post_category_query($attributes['catQuery'], $post_ID);
+		$categories = ZoloAJAX::zolo_post_category_query($attributes['catQuery'] ?? [], $post_ID);
 		$cat_json   = wp_json_encode($categories);
 		$cat_object = json_decode($cat_json);
 		$multiple_bg_create = [];
