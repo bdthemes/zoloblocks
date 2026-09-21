@@ -355,17 +355,25 @@ class ZoloAJAX {
             : 'category';
 
         /* ------------------------------------
-     * If post ID exists → get post terms
+     * If post ID exists → get that post's terms
      * ------------------------------------ */
+        $categories = [];
         if (! empty($post_ID)) {
             $categories = wp_get_post_terms($post_ID, $taxonomy, [
                 // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
                 'exclude' => $catExclude,
             ]);
-        } else {
-            /* ------------------------------------
-         * Otherwise → get all categories
-         * ------------------------------------ */
+            if (is_wp_error($categories)) {
+                $categories = [];
+            }
+        }
+
+        /* ------------------------------------
+     * No post context (editor), or the current post/page has no terms
+     * (e.g. a Page, which never has categories) → fall back to all
+     * categories so the front-end matches the editor preview.
+     * ------------------------------------ */
+        if (empty($categories)) {
             $args = [
                 'taxonomy'   => $taxonomy,
                 'orderby'    => ! empty($data['catOrderby']) ? sanitize_text_field($data['catOrderby']) : 'name',

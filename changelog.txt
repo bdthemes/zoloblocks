@@ -6,6 +6,7 @@
 #### Bug Fixes
 - **Dashboard:** Fixed a JavaScript error thrown by the "settings saved" notice.
 - **Editor:** Fixed a console error from the popup script when no popup is present.
+- **Post Category:** Fixed the block rendering empty on pages by falling back to all categories when the current post has none.
 - **PHP 8:** Fixed "undefined array key" warnings while rendering the Author, Post Category, Tag Cloud and Post Comments blocks.
 - **Search:** Fixed double-escaping in the block search query and added proper LIKE escaping.
 - **Compatibility:** Fixed the navigation block output and a version-string comparison issue.
