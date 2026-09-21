@@ -193,7 +193,7 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
-### 2.7.12 [September 20, 2026]
+### 2.7.12 [September 21, 2026]
 
 #### Security
 - Hardened form validation, block output escaping, and internal safeguards.
