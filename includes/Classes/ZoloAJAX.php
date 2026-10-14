@@ -67,11 +67,11 @@ class ZoloAJAX {
             ]
         );
 
-        if ( !empty( $terms ) ) {
-            wp_send_json_success( $terms );
-        } else {
-            wp_send_json_error( 'no category terms found' );
-        }
+        // Always return a sequentially-indexed array in `data` so it JSON-encodes as an
+        // array (not an object) and clients can safely .map() it. The no-terms path used
+        // to return a string, and non-sequential term keys encoded as an object — both
+        // threw a TypeError in the editor's filter fetch.
+        wp_send_json_success( is_array( $terms ) ? array_values( $terms ) : [] );
 
     }
 

@@ -77,11 +77,16 @@ class GetPostsV1 {
 	public static function zolo_get_post_args($data) {
 		$showPagination    = ! empty($data['showPagination']) && $data['showPagination'] == 'true' ? true : false;
 		$postType          = $data['postType'] ?? 'post';
+		// Sanitize and bound posts_per_page: this builder is reachable unauthenticated
+		// (zolo/v1/posts REST and the pro post-tab nopriv AJAX), so an unbounded value
+		// like -1 or 99999 would allow a cheap resource-exhaustion request.
+		$per_page          = isset($data['postPerPage']) ? (int) $data['postPerPage'] : 6;
+		$per_page          = ( $per_page < 1 || $per_page > 100 ) ? 6 : $per_page;
 		$args              = [
 			'post_status'    => 'publish',
 			'orderby'        => $data['postOrderby'] ?? 'date',
 			'order'          => $data['postOrder'] ?? 'desc',
-			'posts_per_page' => (int) isset($data['postPerPage']) ? $data['postPerPage'] : 6,
+			'posts_per_page' => $per_page,
 		];
 		$args['post_type'] = $postType;
 

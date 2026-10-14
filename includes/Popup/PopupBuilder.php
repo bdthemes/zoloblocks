@@ -120,11 +120,36 @@ if (! class_exists(__NAMESPACE__ . '\\PopupBuilder')) {
         }
 
         /**
+         * Whether at least one published popup exists.
+         *
+         * Uses the cached post counts instead of an unbounded WP_Query so the
+         * popup hooks can bail cheaply on sites with no popups.
+         *
+         * @return bool
+         */
+        private function has_published_popups() {
+            $counts = wp_count_posts('zolo-popup');
+            return ! empty($counts->publish);
+        }
+
+        /**
          * Cookie for popup
          *
          * @return void
          */
         public function check_and_set_popup_cookie() {
+            // This only manages front-end display cookies; skip admin, AJAX and REST
+            // so it doesn't run an unbounded query on every such request.
+            if (is_admin() || wp_doing_ajax() || (defined('REST_REQUEST') && REST_REQUEST)) {
+                return;
+            }
+
+            // Bail cheaply when there are no published popups (the common case) to avoid
+            // the unbounded WP_Query running on every front-end page load.
+            if (! $this->has_published_popups()) {
+                return;
+            }
+
             $args = [
                 'post_type'      => 'zolo-popup',
                 'post_status'    => 'publish',
@@ -268,6 +293,11 @@ if (! class_exists(__NAMESPACE__ . '\\PopupBuilder')) {
          * @return void
          */
         public function load_popup_builder() {
+            // Skip the unbounded query entirely when no popups are published.
+            if (! $this->has_published_popups()) {
+                return;
+            }
+
             $args = [
                 'post_type'      => 'zolo-popup',
                 'post_status'    => 'publish',

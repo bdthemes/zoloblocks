@@ -1,3 +1,19 @@
+### 2.7.13 [October 14, 2026]
+
+#### Security
+- Fixed a potential stored XSS from Image Gallery captions shown in the lightbox.
+- Stopped exposing the Google Maps API key on front-end pages that have no Map block.
+- Capped posts-per-page in the posts REST endpoint so it can no longer be asked for unbounded results.
+
+#### Performance
+- Popup Builder no longer runs two unbounded post queries on every page; they run only when a popup exists.
+
+#### Bug Fixes
+- **Post Grid:** Fixed a console error from the category-filter request when no matching terms exist.
+
+#### Compatibility
+- Raised the minimum WordPress version to 6.2 (required by the HTML Tag Processor used for block output) and aligned the version guard.
+
 ### 2.7.12 [September 21, 2026]
 
 #### Security
