@@ -193,7 +193,7 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
-### 2.7.13 [October 14, 2026]
+### 2.7.13 [October 15, 2026]
 
 #### Security
 - Fixed a potential stored XSS from Image Gallery captions shown in the lightbox.
