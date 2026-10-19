@@ -19,6 +19,11 @@ if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// BdThemes deals biggopti, shared by all BdThemes plugins (shown once).
+if ( is_admin() ) {
+	require_once __DIR__ . '/includes/bdthemes-deals-biggopti.php';
+}
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Zolo\Admin\Notice;
