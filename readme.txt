@@ -5,7 +5,7 @@ Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.7.13
+Stable tag: 2.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,7 +193,7 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
-### 2.7.13 [October 15, 2026]
+### 2.8.0 [October 19, 2026]
 
 #### Security
 - Fixed a potential stored XSS from Image Gallery captions shown in the lightbox.
