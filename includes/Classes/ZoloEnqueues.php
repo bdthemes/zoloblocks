@@ -63,6 +63,11 @@ if (! class_exists(__NAMESPACE__ . '\\ZoloEnqueues')) {
             // Check if Zoloblocks Pro is activated
             $zolo_pro_status = class_exists('Zolo_Blocks_Pro') ? 'active' : 'inactive';
 
+            // Only expose the Google Maps API key where it is actually needed — in the
+            // editor, or on a front-end page that contains a Google Map block — instead
+            // of leaking it into every front-end page's source.
+            $needs_google_key = is_admin() || (function_exists('has_block') && has_block('zolo/google-map'));
+
             // wp localize script
             wp_localize_script('zolo-block-localize', 'zoloSettings', [
                 'ajaxurl'                 => admin_url('admin-ajax.php'),
@@ -70,7 +75,7 @@ if (! class_exists(__NAMESPACE__ . '\\ZoloEnqueues')) {
                 'home_url'                => home_url(),
                 'zolo_nonce'              => wp_create_nonce('zolo-nonce'),
                 'theme_fonts'             => ZoloHelpers::zolo_get_theme_fonts(),
-                'googleAPIKey'            => get_option('zolo_google_api_key'),
+                'googleAPIKey'            => $needs_google_key ? get_option('zolo_google_api_key') : '',
                 'svg_upload'              => get_option('zolo_support_svg'),
                 'maskShapes'              => [
                     'abstract'         => trailingslashit(ZOLO_ADMIN_URL) . 'assets/mask-shapes/abstract.svg',

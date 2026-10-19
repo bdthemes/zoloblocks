@@ -2,10 +2,10 @@
 Contributors: bdthemes, selimmw, abutalib, muhammadasik, shamim496, mohammaadfarid
 Donate link: http://zoloblocks.com/
 Tags: blocks, block editor, dynamic content, patterns, templates
-Requires at least: 6.1
+Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.7.12
+Stable tag: 2.7.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,22 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.7.13 [October 15, 2026]
+
+#### Security
+- Fixed a potential stored XSS from Image Gallery captions shown in the lightbox.
+- Stopped exposing the Google Maps API key on front-end pages that have no Map block.
+- Capped posts-per-page in the posts REST endpoint so it can no longer be asked for unbounded results.
+
+#### Performance
+- Popup Builder no longer runs two unbounded post queries on every page; they run only when a popup exists.
+
+#### Bug Fixes
+- **Post Grid:** Fixed a console error from the category-filter request when no matching terms exist.
+
+#### Compatibility
+- Raised the minimum WordPress version to 6.2 (required by the HTML Tag Processor used for block output) and aligned the version guard.
 
 ### 2.7.12 [September 21, 2026]
 

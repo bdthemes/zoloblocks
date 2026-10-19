@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 use Zolo\Helpers\ZoloHelpers;
 
-$zolo_topclass = 'zolo-post-featured-list-wrap';
+$zolo_topclass = 'zolo-block zolo-post-featured-list-wrap';
 if ( ! empty( $settings['preset'] ) ) {
 	$zolo_topclass .= ' zolo-post-' . $settings['preset'];
 }
