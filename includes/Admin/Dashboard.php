@@ -21,6 +21,16 @@ if (! class_exists(__NAMESPACE__ . '\\Dashboard')) {
         use SingletonTrait;
 
         /**
+         * Slug of the free version's "Up To 86% Off" menu entry.
+         */
+        const DEALS_MENU_SLUG = 'zoloblocks_deals';
+
+        /**
+         * Deals page the "Up To 86% Off" menu entry opens.
+         */
+        const DEALS_URL = 'https://bdthemes.com/deals/?utm_source=ZoloBlocks&utm_medium=plugin_menu&utm_campaign=ZoloBlocks';
+
+        /**
          * Class Dashboard
          *
          * This class represents the Dashboard functionality in the Zoloblocks plugin.
@@ -28,9 +38,79 @@ if (! class_exists(__NAMESPACE__ . '\\Dashboard')) {
          */
         public function __construct() {
             add_action('admin_menu', [$this, 'zolo_admin_menu']);
+            // After the other ZoloBlocks entries, so the deals entry stays last.
+            add_action('admin_menu', [$this, 'register_deals_menu'], 99);
             add_action('admin_init', [$this, 'disable_admin_notice']);
             add_action('admin_init', [$this, 'handle_tab_redirect']);
+            add_action('admin_init', [$this, 'redirect_to_deals']);
             add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
+        }
+
+        /**
+         * Free version only: the BdThemes deals page (admin_init redirects there).
+         *
+         * @return void
+         */
+        public function register_deals_menu() {
+            if (defined('ZOLO_PRO_VERSION')) {
+                return;
+            }
+
+            add_submenu_page(
+                'zoloblocks',
+                __('ZoloBlocks', 'zoloblocks'),
+                __('Up To 86% Off', 'zoloblocks'),
+                'manage_options',
+                self::DEALS_MENU_SLUG,
+                [$this, 'zolo_blocks_page']
+            );
+
+            add_action('admin_head', [$this, 'deals_menu_assets']);
+        }
+
+        /**
+         * Send the "Up To 86% Off" menu entry to the BdThemes deals page.
+         *
+         * @return void
+         */
+        public function redirect_to_deals() {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only check of the current admin page slug, no form data processed.
+            if (! isset($_GET['page']) || self::DEALS_MENU_SLUG !== $_GET['page'] || ! current_user_can('manage_options')) {
+                return;
+            }
+
+            // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- Intentional redirect to the external BdThemes deals page; wp_safe_redirect() would block this off-site host.
+            wp_redirect(self::DEALS_URL);
+            exit;
+        }
+
+        /**
+         * Highlight the deals entry and open it in a new tab.
+         *
+         * @return void
+         */
+        public function deals_menu_assets() {
+?>
+            <style>
+                #adminmenu #toplevel_page_zoloblocks a[href$="page=zoloblocks_deals"] {
+                    color: #ffc107;
+                    font-weight: 600;
+                }
+                #adminmenu #toplevel_page_zoloblocks a[href$="page=zoloblocks_deals"]:hover,
+                #adminmenu #toplevel_page_zoloblocks a[href$="page=zoloblocks_deals"]:focus {
+                    color: #ffffff;
+                }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var link = document.querySelector('#toplevel_page_zoloblocks a[href$="page=zoloblocks_deals"]');
+                    if (link) {
+                        link.setAttribute('target', '_blank');
+                        link.setAttribute('rel', 'noopener noreferrer');
+                    }
+                });
+            </script>
+<?php
         }
 
         /**

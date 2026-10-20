@@ -197,6 +197,7 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 #### Added
 - BdThemes deals notice on the Dashboard, Plugins screen and plugin dashboard; “Don’t Show Again” hides it in every BdThemes plugin
+- Up To 86% Off menu in the free version, linking to the BdThemes deals page
 
 ### 2.8.0 [October 19, 2026]
 
