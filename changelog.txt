@@ -1,3 +1,8 @@
+### 2.8.1 [October 20, 2026]
+
+#### Added
+- BdThemes deals notice on the Dashboard, Plugins screen and plugin dashboard; “Don’t Show Again” hides it in every BdThemes plugin
+
 ### 2.8.0 [October 19, 2026]
 
 #### Security
