@@ -3,7 +3,7 @@
 /**
  * Plugin Name: ZoloBlocks
  * Plugin URI: https://zoloblocks.com/
- * Version: 2.8.0
+ * Version: 2.8.1
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: zoloblocks
@@ -17,6 +17,11 @@
 
 if ( !defined( 'ABSPATH' ) ) {
     exit;
+}
+
+// BdThemes deals biggopti, shared by all BdThemes plugins (shown once).
+if ( is_admin() ) {
+	require_once __DIR__ . '/includes/bdthemes-deals-biggopti.php';
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -71,7 +76,7 @@ final class ZoloBlocks {
         define( 'ZOLO_DIR', __DIR__ );
         define( 'ZOLO_NAMESPACE', 'zoloblocks' );
         define( 'ZOLO_SLUG', 'zoloblocks' );
-        define( 'ZOLO_VERSION', '2.8.0' );
+        define( 'ZOLO_VERSION', '2.8.1' );
         define( 'ZOLO_DIR_PATH', plugin_dir_path( __FILE__ ) );
         define( 'ZOLO_ADMIN_URL', plugin_dir_url( __FILE__ ) );
         define( 'ZOLO_WP_VERSION', get_bloginfo( 'version' ) );

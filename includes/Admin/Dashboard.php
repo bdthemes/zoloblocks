@@ -103,6 +103,11 @@ if (! class_exists(__NAMESPACE__ . '\\Dashboard')) {
                 remove_all_actions('admin_notices');
                 remove_all_actions('all_admin_notices');
                 remove_all_actions('network_admin_notices');
+
+                // Keep the shared BdThemes deals biggopti on the dashboard.
+                if (class_exists('BdThemes_Deals_Biggopti')) {
+                    add_action('admin_notices', ['BdThemes_Deals_Biggopti', 'render']);
+                }
             }
         }
         /**
