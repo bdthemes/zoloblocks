@@ -5,7 +5,7 @@ Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.8.1
+Stable tag: 2.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,14 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.8.2 [October 25, 2026]
+
+#### Performance
+- Block styles now load in the page head on classic themes, removing the layout shift (CLS) caused by styles printed in the footer.
+
+#### Added
+- `zolo_print_styles_in_head` filter to keep the old footer-only style output on classic themes.
 
 ### 2.8.1 [October 20, 2026]
 

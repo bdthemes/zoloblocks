@@ -1,3 +1,11 @@
+### 2.8.2 [October 25, 2026]
+
+#### Performance
+- Block styles now load in the page head on classic themes, removing the layout shift (CLS) caused by styles printed in the footer.
+
+#### Added
+- `zolo_print_styles_in_head` filter to keep the old footer-only style output on classic themes.
+
 ### 2.8.1 [October 20, 2026]
 
 #### Added
