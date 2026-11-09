@@ -5,7 +5,7 @@ Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.8.3
+Stable tag: 2.8.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,14 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.8.4 [November 9, 2026]
+
+#### Security
+- Fixed broken access control in the posts REST endpoint: it now returns only publicly viewable post types, so private records stored by other plugins (form submissions, coupons) can no longer be read.
+
+#### Improved
+- Post queries now accept only known sort fields and public taxonomies registered for the queried post type.
 
 ### 2.8.3 [October 28, 2026]
 
