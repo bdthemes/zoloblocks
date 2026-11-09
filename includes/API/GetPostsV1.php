@@ -84,16 +84,17 @@ class GetPostsV1 {
 		$per_page          = ( $per_page < 1 || $per_page > 100 ) ? 6 : $per_page;
 		$args              = [
 			'post_status'    => 'publish',
-			'orderby'        => $data['postOrderby'] ?? 'date',
-			'order'          => $data['postOrder'] ?? 'desc',
+			'orderby'        => self::sanitize_orderby($data['postOrderby'] ?? 'date'),
+			'order'          => self::sanitize_order($data['postOrder'] ?? 'desc'),
 			'posts_per_page' => $per_page,
 		];
-		$args['post_type'] = $postType;
+		// 'current_post' is resolved in zolo_posts_query(); every other value must be a viewable post type.
+		$args['post_type'] = 'current_post' === $postType ? $postType : self::sanitize_post_type($postType);
 
 		// for related posts.
 		if ('related_posts' === $postType) {
 			$queriedPostId     = get_queried_object_id();
-			$args['post_type'] = ! empty($queriedPostId) ? get_post_type($queriedPostId) : ($data['currentPostType'] ?? '');
+			$args['post_type'] = self::sanitize_post_type(! empty($queriedPostId) ? get_post_type($queriedPostId) : ($data['currentPostType'] ?? ''));
 		}
 
 		// Set Exclude Post.
@@ -120,11 +121,11 @@ class GetPostsV1 {
 		$args = self::get_terms_args($args, $data);
 
 		// only for post tab.
-		if (isset($data['postTermId']) && 'all' !== $data['postTermId']) {
+		if (isset($data['postTermId']) && 'all' !== $data['postTermId'] && self::is_allowed_taxonomy($data['postTaxonomy'] ?? '', $args['post_type'])) {
 			$args['tax_query'][] = [
 				'taxonomy' => $data['postTaxonomy'],
 				'field'    => 'term_id',
-				'terms'    => [$data['postTermId']],
+				'terms'    => [absint($data['postTermId'])],
 			];
 		}
 
@@ -166,8 +167,9 @@ class GetPostsV1 {
 		if (! empty($data['postType']) && 'current_post' === $data['postType']) {
 			$loop = new \WP_Query(
 				[
-					'post_type' => $data['currentPostType'] ?? '',
-					'p'         => $data['currentPostId'] ?? '',
+					'post_type'   => self::sanitize_post_type($data['currentPostType'] ?? ''),
+					'p'           => absint($data['currentPostId'] ?? 0),
+					'post_status' => 'publish',
 				]
 			);
 		} else {
@@ -312,6 +314,10 @@ class GetPostsV1 {
 		$args['tax_query'] = [];
 
 		foreach ($included_terms as $taxonomy_name => $terms) {
+			if (! self::is_allowed_taxonomy($taxonomy_name, $args['post_type'])) {
+				continue;
+			}
+
 			if (isset($excluded_terms[$taxonomy_name])) {
 				// Apply array_diff to remove excluded terms from the included terms.
 				$terms = array_diff($terms, $excluded_terms[$taxonomy_name]);
@@ -328,7 +334,7 @@ class GetPostsV1 {
 		}
 
 		foreach ($excluded_terms as $taxonomy_name => $terms) {
-			if (! empty($terms)) {
+			if (! empty($terms) && self::is_allowed_taxonomy($taxonomy_name, $args['post_type'])) {
 				$args['tax_query'][] = [
 					'taxonomy' => $taxonomy_name,
 					'field'    => 'term_id',
@@ -344,5 +350,67 @@ class GetPostsV1 {
 		}
 
 		return $args;
+	}
+
+	/**
+	 * Restrict a requested post type to one that is publicly viewable.
+	 *
+	 * The query builder is reachable unauthenticated (zolo/v1/posts REST and the pro
+	 * post-tab nopriv AJAX) and the zolo-nonce is printed for every visitor, so the
+	 * nonce is not authorization. Non-public types such as flamingo_inbound or
+	 * shop_coupon must never be queryable.
+	 *
+	 * @param mixed $post_type .
+	 * @return string
+	 */
+	public static function sanitize_post_type($post_type) {
+		if (! is_string($post_type) || '' === $post_type) {
+			return 'post';
+		}
+
+		$post_type_object = get_post_type_object($post_type);
+
+		if (! $post_type_object || ! is_post_type_viewable($post_type_object)) {
+			return 'post';
+		}
+
+		return $post_type;
+	}
+
+	/**
+	 * Allowlist the orderby values offered by the query control.
+	 *
+	 * @param mixed $orderby .
+	 * @return string
+	 */
+	private static function sanitize_orderby($orderby) {
+		$allowed = apply_filters('zolo_post_allowed_orderby', ['date', 'author', 'title', 'modified', 'parent', 'ID', 'menu_order', 'comment_count', 'rand']);
+
+		return is_string($orderby) && in_array($orderby, $allowed, true) ? $orderby : 'date';
+	}
+
+	/**
+	 * Allow only ASC / DESC.
+	 *
+	 * @param mixed $order .
+	 * @return string
+	 */
+	private static function sanitize_order($order) {
+		return is_string($order) && 'asc' === strtolower($order) ? 'asc' : 'desc';
+	}
+
+	/**
+	 * Check a taxonomy is public and registered for the queried post type.
+	 *
+	 * @param mixed  $taxonomy .
+	 * @param string $post_type .
+	 * @return bool
+	 */
+	private static function is_allowed_taxonomy($taxonomy, $post_type) {
+		if (! is_string($taxonomy) || ! taxonomy_exists($taxonomy) || ! is_taxonomy_viewable($taxonomy)) {
+			return false;
+		}
+
+		return is_object_in_taxonomy($post_type, $taxonomy);
 	}
 }
