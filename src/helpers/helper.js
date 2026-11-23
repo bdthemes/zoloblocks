@@ -485,33 +485,150 @@ export function hardenLinkTarget({ target, rel }) {
   return { target: t, rel: r.join(' ') };
 }
 
+// Tags sanitizeHtml() keeps, each with the attributes it may carry.
+const SANITIZE_HTML_ALLOWED_TAGS = {
+  a: ['href', 'title', 'target', 'rel'],
+  b: [],
+  strong: [],
+  i: [],
+  em: [],
+  u: [],
+  s: [],
+  small: [],
+  sub: [],
+  sup: [],
+  mark: [],
+  br: [],
+  p: [],
+  span: [],
+};
+
+// Removed together with everything inside them; any other unknown tag is unwrapped.
+const SANITIZE_HTML_DROP_WITH_CONTENT = [
+  'script',
+  'style',
+  'iframe',
+  'object',
+  'embed',
+  'template',
+  'noscript',
+  'svg',
+  'math',
+  'textarea',
+  'select',
+  'xmp',
+  'noembed',
+  'noframes',
+  'frameset',
+  'frame',
+];
+
+const SANITIZE_HTML_SAFE_SCHEMES = ['http', 'https', 'mailto', 'tel'];
+
+function isSafeHtmlUrl(value) {
+  // Browsers ignore control characters and whitespace inside a scheme
+  // ("java\tscript:"), so strip them before reading it.
+  const normalized = String(value).replace(/[\u0000- \u007f-\u009f]/g, '');
+
+  if ('' === normalized) {
+    return false;
+  }
+
+  const scheme = /^([a-z][a-z0-9+.-]*):/i.exec(normalized);
+
+  // No scheme: a relative path, a query or a fragment.
+  return !scheme || SANITIZE_HTML_SAFE_SCHEMES.includes(scheme[1].toLowerCase());
+}
+
+// Cleans `parent` in place. Returns true when anything was removed or changed.
+function cleanHtmlChildren(parent) {
+  let changed = false;
+
+  Array.from(parent.childNodes).forEach((node) => {
+    if (node.nodeType === window.Node.TEXT_NODE) {
+      return;
+    }
+
+    // Comments, processing instructions and the like.
+    if (node.nodeType !== window.Node.ELEMENT_NODE) {
+      node.remove();
+      changed = true;
+      return;
+    }
+
+    const tag = node.tagName.toLowerCase();
+
+    if (SANITIZE_HTML_DROP_WITH_CONTENT.includes(tag)) {
+      node.remove();
+      changed = true;
+      return;
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(SANITIZE_HTML_ALLOWED_TAGS, tag)) {
+      // Keep the text of an unknown element, drop the element itself.
+      cleanHtmlChildren(node);
+      node.replaceWith(...Array.from(node.childNodes));
+      changed = true;
+      return;
+    }
+
+    const allowed = SANITIZE_HTML_ALLOWED_TAGS[tag];
+
+    Array.from(node.attributes).forEach((attribute) => {
+      const name = attribute.name.toLowerCase();
+
+      if (!allowed.includes(name) || (('href' === name || 'src' === name) && !isSafeHtmlUrl(attribute.value))) {
+        node.removeAttribute(attribute.name);
+        changed = true;
+      }
+    });
+
+    if ('a' === tag && '_blank' === node.getAttribute('target') && 'noopener noreferrer' !== node.getAttribute('rel')) {
+      node.setAttribute('rel', 'noopener noreferrer');
+      changed = true;
+    }
+
+    if (cleanHtmlChildren(node)) {
+      changed = true;
+    }
+  });
+
+  return changed;
+}
+
 /**
- * Basic HTML sanitizer
- * Removes potentially dangerous tags and attributes
+ * Allow-list HTML sanitizer for short rich text such as image captions.
+ *
+ * The markup is parsed in an inert <template> (nothing in it loads or runs), only simple
+ * formatting tags and safe link attributes are kept, and the cleaned markup is returned.
+ * Input that needed no cleaning is returned exactly as given, so saved block markup built
+ * from clean text (entities, quotes and all) stays byte-identical.
+ *
  * @param {string} raw - Raw HTML input
- * @returns {string} - Sanitized HTML
+ * @return {string} - Sanitized HTML
  */
 export function sanitizeHtml(raw) {
-  if (!raw) return '';
+  if (!raw) {
+    return '';
+  }
 
-  // Convert to string
-  let html = String(raw);
+  const html = String(raw);
 
-  // Remove script/style tags completely
-  html = html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
-  html = html.replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '');
+  // No DOM to parse with: fail closed and treat the input as text.
+  if (typeof document === 'undefined') {
+    return escapeHTML(html);
+  }
 
-  // Remove on* attributes (onclick, onerror, etc.)
-  html = html.replace(/\s?on\w+="[^"]*"/gi, '');
-  html = html.replace(/\s?on\w+='[^']*'/gi, '');
+  const template = document.createElement('template');
+  template.innerHTML = html;
 
-  // Remove javascript: in href/src
-  html = html.replace(/\s(href|src)=["']javascript:[^"']*["']/gi, '');
+  const changed = cleanHtmlChildren(template.content);
 
-  // Optionally, allow only certain tags (like <b>, <i>, <u>, <p>, <br>, <strong>, <em>)
-  html = html.replace(/<(\/?)(?!b|i|u|p|br|strong|em)[^>]*>/gi, '');
+  // Hand the input back only when every tag in it became an element that passed the
+  // allow-list. Tags the parser drops without a trace (a stray <body onload=…>) fail this.
+  const startTags = (html.match(/<[a-z]/gi) || []).length;
 
-  return html;
+  return !changed && startTags === template.content.querySelectorAll('*').length ? html : template.innerHTML;
 }
 
 /**
