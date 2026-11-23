@@ -149,9 +149,17 @@ class FormDataPostType
         }
 
         $owner_post_id = (int) get_post_meta($form_post_id, 'owner_post_id', true);
+        $owner_exists  = $owner_post_id && get_post($owner_post_id);
 
-        if ($owner_post_id && $owner_post_id !== (int) $post_id && !current_user_can('edit_post', $owner_post_id)) {
+        // edit_post on a deleted post is never granted, so only a surviving owner can
+        // veto the save. A record created before owners were recorded, or whose owner
+        // has been deleted, is linked to the post that is saving it now.
+        if ($owner_exists && $owner_post_id !== (int) $post_id && !current_user_can('edit_post', $owner_post_id)) {
             return false;
+        }
+
+        if (!$owner_exists) {
+            update_post_meta($form_post_id, 'owner_post_id', (int) $post_id);
         }
 
         return true;
@@ -200,6 +208,12 @@ class FormDataPostType
             );
 
             $form_settings[$key] = implode(',', $addresses);
+        }
+
+        // With no valid recipient left, fall back to the site admin address that
+        // Form::validate_mail_data() uses when the key is missing, instead of sending to ''.
+        if (isset($form_settings['emailTo']) && '' === $form_settings['emailTo']) {
+            unset($form_settings['emailTo']);
         }
 
         return $form_settings;
