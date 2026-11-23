@@ -250,8 +250,11 @@ if (!class_exists(__NAMESPACE__ . '\\Form')) {
             $subject = $form_settings['emailSubject'];
             $message = $this->build_email_message($form_settings, $form_data);
 
-            $emailCC = $form_settings['emailCC'];
-            $emailBCC = $form_settings['emailBCC'];
+            // These go straight into the mail headers, so keep only valid addresses.
+            // Records saved before addresses were checked on save may still hold
+            // anything here.
+            $emailCC = $this->valid_recipients($form_settings['emailCC'] ?? '');
+            $emailBCC = $this->valid_recipients($form_settings['emailBCC'] ?? '');
 
             $headers = array(
                 'Content-Type: text/html; charset=UTF-8',
@@ -277,6 +280,30 @@ if (!class_exists(__NAMESPACE__ . '\\Form')) {
             }
 
             return false;
+        }
+
+        /**
+         * Reduce a comma-separated recipient list to valid e-mail addresses.
+         *
+         * @param mixed $value Raw value from the form settings.
+         * @return string Comma-separated valid addresses, or '' when none are valid.
+         */
+        private function valid_recipients($value) {
+            if (!is_string($value) || '' === trim($value)) {
+                return '';
+            }
+
+            $addresses = array_filter(
+                array_map(
+                    static function ($address) {
+                        return sanitize_email(trim($address));
+                    },
+                    explode(',', $value)
+                ),
+                'is_email'
+            );
+
+            return implode(',', $addresses);
         }
 
         private function success_response($message, $status_code = 200) {

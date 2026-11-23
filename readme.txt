@@ -5,7 +5,7 @@ Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.8.4
+Stable tag: 2.8.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,15 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 7. Check out our others popular plugin
 
 == Changelog ==
+
+### 2.8.5 [November 23, 2026]
+
+#### Security
+- Google Map: marker info-window text is now sanitized in the editor and on the site, so HTML added by a contributor can no longer run scripts.
+- Form: a saved post can change a form's settings (recipients, subject, messages) only when its author can edit that form, and new form records are created only by users who can publish, so a contributor's draft can no longer redirect another form's submissions.
+
+#### Improved
+- Form: recipient, CC and BCC addresses are checked to be valid e-mail addresses before mail is sent.
 
 ### 2.8.4 [November 9, 2026]
 

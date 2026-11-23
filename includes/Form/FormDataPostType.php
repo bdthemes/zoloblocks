@@ -72,6 +72,11 @@ class FormDataPostType
 
         foreach ($form_attributes as $form_attribute) {
             $form_id = $form_attribute['formId'];
+
+            if ('' === (string) $form_id) {
+                continue;
+            }
+
             $post_args = [
                 'name' => $form_id,
                 'post_type' => $this->post_type,
@@ -81,25 +86,123 @@ class FormDataPostType
 
             $posts = get_posts($post_args);
             if (empty($posts[0]->ID)) {
-                $post_id = wp_insert_post([
+                // A record is only created for someone who could publish it. Otherwise
+                // any user able to save a draft could register a formId in advance and
+                // have a form added later adopt their settings.
+                if (!$this->can_create_form_record()) {
+                    continue;
+                }
+
+                $form_post_id = wp_insert_post([
                     'post_type' => $this->post_type,
                     'name' => $form_id,
                     'post_status' => 'publish',
                     'post_title' => $form_id
                 ]);
-                if (!is_wp_error($post_id)) {
-                    update_post_meta($post_id, 'form_settings', $form_attribute['formSettings']);
-                    update_post_meta($post_id, 'submission_settings', $form_attribute['submissionSettings']);
-                    update_post_meta($post_id, 'validation_rules', $form_attribute['validationRules']);
-                    update_post_meta($post_id, 're_captcha', $form_attribute['reCaptcha']);
+                if (!is_wp_error($form_post_id)) {
+                    // Remember which post this record was created from, so a later save
+                    // of a different post cannot take it over by reusing the formId.
+                    update_post_meta($form_post_id, 'owner_post_id', (int) $post_id);
+                    $this->update_form_record_meta($form_post_id, $form_attribute);
                 }
             } else {
-                update_post_meta($posts[0]->ID, 'form_settings', $form_attribute['formSettings']);
-                update_post_meta($posts[0]->ID, 'submission_settings', $form_attribute['submissionSettings']);
-                update_post_meta($posts[0]->ID, 'validation_rules', $form_attribute['validationRules']);
-                update_post_meta($posts[0]->ID, 're_captcha', $form_attribute['reCaptcha']);
+                $form_post_id = (int) $posts[0]->ID;
+
+                if (!$this->can_edit_form_record($form_post_id, $post_id)) {
+                    continue;
+                }
+
+                $this->update_form_record_meta($form_post_id, $form_attribute);
             }
         }
+    }
+
+    /**
+     * Whether the current save may create a new form record.
+     *
+     * @return bool
+     */
+    private function can_create_form_record()
+    {
+        $post_type_object = get_post_type_object($this->post_type);
+        $publish_cap      = isset($post_type_object->cap->publish_posts) ? $post_type_object->cap->publish_posts : 'publish_posts';
+
+        return current_user_can($publish_cap);
+    }
+
+    /**
+     * Whether the current save may write to an existing form record.
+     *
+     * The record is looked up by slug alone, so the formId saved in a block is enough to
+     * name any form on the site, and these records decide where a form's submissions are
+     * sent. Require that the current user can edit the record itself, and that the
+     * record either belongs to the post being saved or to a post the user can edit too.
+     *
+     * @param int $form_post_id Form record being written to.
+     * @param int $post_id      Post whose save triggered this.
+     * @return bool
+     */
+    private function can_edit_form_record($form_post_id, $post_id)
+    {
+        if (!current_user_can('edit_post', $form_post_id)) {
+            return false;
+        }
+
+        $owner_post_id = (int) get_post_meta($form_post_id, 'owner_post_id', true);
+
+        if ($owner_post_id && $owner_post_id !== (int) $post_id && !current_user_can('edit_post', $owner_post_id)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Store a block's form configuration on its record.
+     *
+     * @param int   $form_post_id   Form record.
+     * @param array $form_attribute Attributes read from the block.
+     */
+    private function update_form_record_meta($form_post_id, $form_attribute)
+    {
+        update_post_meta($form_post_id, 'form_settings', $this->sanitize_form_settings($form_attribute['formSettings']));
+        update_post_meta($form_post_id, 'submission_settings', $form_attribute['submissionSettings']);
+        update_post_meta($form_post_id, 'validation_rules', $form_attribute['validationRules']);
+        update_post_meta($form_post_id, 're_captcha', $form_attribute['reCaptcha']);
+    }
+
+    /**
+     * Keep the recipient fields to real addresses: they are written straight into the
+     * mail headers when a submission is sent.
+     *
+     * @param mixed $form_settings Settings read from the block.
+     * @return mixed
+     */
+    private function sanitize_form_settings($form_settings)
+    {
+        if (!is_array($form_settings)) {
+            return $form_settings;
+        }
+
+        foreach (['emailTo', 'emailCC', 'emailBCC'] as $key) {
+            if (!isset($form_settings[$key]) || !is_string($form_settings[$key])) {
+                continue;
+            }
+
+            $addresses = array_filter(
+                array_map(
+                    static function ($address) {
+                        return sanitize_email(trim($address));
+                    },
+                    explode(',', $form_settings[$key])
+                ),
+                'is_email'
+            );
+
+            $form_settings[$key] = implode(',', $addresses);
+        }
+
+        return $form_settings;
     }
 
     // Move get_form_attributes outside the save method

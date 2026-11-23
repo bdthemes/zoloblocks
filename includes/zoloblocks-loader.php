@@ -30,6 +30,7 @@ use Zolo\Mailchimp\Mailchimp;
 use Zolo\Blocks\NoticeBlock;
 use Zolo\Blocks\SocialShareBlock;
 use Zolo\Blocks\ChartsBlock;
+use Zolo\Blocks\GoogleMapBlock;
 use Zolo\Extensions\ExtensionsLoader;
 
 // Exit if accessed directly.
@@ -104,6 +105,7 @@ class ZoloBlocks_Loader {
         NoticeBlock::getInstance();
         SocialShareBlock::getInstance();
         ChartsBlock::getInstance();
+        GoogleMapBlock::getInstance();
 
         // popup
         PopupBuilder::getInstance();
