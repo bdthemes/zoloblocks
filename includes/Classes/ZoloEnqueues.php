@@ -146,10 +146,12 @@ if (! class_exists(__NAMESPACE__ . '\\ZoloEnqueues')) {
                 true
             );
 
+            // FsLightbox copies every data-caption on the page when it loads and later renders
+            // it as HTML. zolo-block-localize cleans those attributes, so it must run first.
             wp_register_script(
                 'fslightbox',
                 trailingslashit(ZOLO_ADMIN_URL) . 'assets/js/lightbox/fslightbox.js',
-                [],
+                ['zolo-block-localize'],
                 ZOLO_VERSION,
                 true
             );
