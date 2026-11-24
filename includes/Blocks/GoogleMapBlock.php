@@ -40,26 +40,50 @@ if ( ! class_exists( 'Zolo\Blocks\GoogleMapBlock' ) ) {
 			}
 
 			$processor = new \WP_HTML_Tag_Processor( $block_content );
+			$changed   = false;
 
-			if ( ! $processor->next_tag( [ 'class_name' => 'wp-block-zolo-google-map' ] ) ) {
-				return $block_content;
+			// Every map element on the page is mounted by the front-end script, so clean
+			// each one, not only the first.
+			while ( $processor->next_tag( [ 'class_name' => 'wp-block-zolo-google-map' ] ) ) {
+				$raw = $processor->get_attribute( 'data-options' );
+
+				if ( ! is_string( $raw ) || '' === $raw ) {
+					continue;
+				}
+
+				$options = json_decode( $raw, true );
+
+				if ( ! is_array( $options ) ) {
+					// The front-end script cannot parse it either, so nothing is rendered.
+					continue;
+				}
+
+				$clean = $this->clean_options( $options );
+
+				// Leave blocks that needed no cleaning byte for byte as saved: re-encoding
+				// would also rewrite unrelated values (float precision, slashes).
+				if ( $clean === $options ) {
+					continue;
+				}
+
+				// The JSON_HEX_* flags leave no & < > " or ' in the value, so the attribute
+				// escaping of every supported WordPress version keeps it exactly. Older
+				// set_attribute() versions skip existing entities, which would otherwise turn
+				// &lt; from the cleaned HTML back into markup, or &quot; into a stray quote.
+				$processor->set_attribute( 'data-options', wp_json_encode( $clean, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) );
+				$changed = true;
 			}
 
-			$raw = $processor->get_attribute( 'data-options' );
+			return $changed ? $processor->get_updated_html() : $block_content;
+		}
 
-			if ( ! is_string( $raw ) || '' === $raw ) {
-				return $block_content;
-			}
-
-			$options = json_decode( $raw, true );
-
-			if ( ! is_array( $options ) ) {
-				// The front-end script cannot parse it either, so nothing is rendered.
-				return $block_content;
-			}
-
-			$original = $options;
-
+		/**
+		 * Run the HTML-bearing options through wp_kses_post().
+		 *
+		 * @param array $options Decoded data-options.
+		 * @return array
+		 */
+		private function clean_options( array $options ) {
 			if ( array_key_exists( 'infoWindow', $options ) ) {
 				$options['infoWindow'] = is_string( $options['infoWindow'] ) ? wp_kses_post( $options['infoWindow'] ) : '';
 			}
@@ -86,15 +110,7 @@ if ( ! class_exists( 'Zolo\Blocks\GoogleMapBlock' ) ) {
 				}
 			}
 
-			// Leave blocks that needed no cleaning byte for byte as saved: re-encoding
-			// would also rewrite unrelated values (float precision, slashes).
-			if ( $options === $original ) {
-				return $block_content;
-			}
-
-			$processor->set_attribute( 'data-options', wp_json_encode( $options ) );
-
-			return $processor->get_updated_html();
+			return $options;
 		}
 	}
 }

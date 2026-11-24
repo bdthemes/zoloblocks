@@ -1,5 +1,5 @@
 === ZoloBlocks – Advanced Gutenberg Blocks, Website Builder & Page Design Toolkit ===
-Contributors: bdthemes, selimmw, abutalib, muhammadasik, shamim496, mohammaadfarid
+Contributors: bdthemes, selimmw, maudud, abutalib, arafatakashakku, shamim496
 Donate link: http://zoloblocks.com/
 Tags: blocks, block editor, dynamic content, patterns, templates
 Requires at least: 6.2
@@ -193,14 +193,18 @@ Please report security bugs found in the source code of the ZoloBlocks plugin th
 
 == Changelog ==
 
-### 2.8.5 [November 23, 2026]
+### 2.8.5 [November 24, 2026]
 
 #### Security
 - Google Map: marker info-window text is now sanitized in the editor and on the site, so HTML added by a contributor can no longer run scripts.
 - Form: a saved post can change a form's settings (recipients, subject, messages) only when its author can edit that form, and new form records are created only by users who can publish, so a contributor's draft can no longer redirect another form's submissions.
+- Image Gallery: captions are now cleaned before the lightbox reads them, so HTML added by a contributor can no longer run scripts when an image is opened.
 
 #### Improved
 - Form: recipient, CC and BCC addresses are checked to be valid e-mail addresses before mail is sent.
+
+#### Updated
+- System improved
 
 ### 2.8.4 [November 9, 2026]
 

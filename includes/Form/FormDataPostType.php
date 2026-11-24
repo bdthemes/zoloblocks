@@ -124,6 +124,10 @@ class FormDataPostType
      */
     private function can_create_form_record()
     {
+        if ($this->is_unattended_save()) {
+            return true;
+        }
+
         $post_type_object = get_post_type_object($this->post_type);
         $publish_cap      = isset($post_type_object->cap->publish_posts) ? $post_type_object->cap->publish_posts : 'publish_posts';
 
@@ -131,12 +135,31 @@ class FormDataPostType
     }
 
     /**
+     * Whether this save runs with no logged-in user from WP-CLI, cron or an import.
+     *
+     * Those runs are started by whoever controls the site or the server, not by a post
+     * author, and form records have always been created and updated by them. Web
+     * requests cannot save a post without a logged-in user.
+     *
+     * @return bool
+     */
+    private function is_unattended_save()
+    {
+        if (0 !== get_current_user_id()) {
+            return false;
+        }
+
+        return (defined('WP_CLI') && WP_CLI) || wp_doing_cron() || (defined('WP_IMPORTING') && WP_IMPORTING);
+    }
+
+    /**
      * Whether the current save may write to an existing form record.
      *
      * The record is looked up by slug alone, so the formId saved in a block is enough to
      * name any form on the site, and these records decide where a form's submissions are
-     * sent. Require that the current user can edit the record itself, and that the
-     * record either belongs to the post being saved or to a post the user can edit too.
+     * sent. A record linked to the post being saved may be changed by anyone who may edit
+     * that post. Any other record needs edit rights on the record itself and on the post
+     * it belongs to.
      *
      * @param int $form_post_id Form record being written to.
      * @param int $post_id      Post whose save triggered this.
@@ -144,17 +167,29 @@ class FormDataPostType
      */
     private function can_edit_form_record($form_post_id, $post_id)
     {
+        $owner_post_id = (int) get_post_meta($form_post_id, 'owner_post_id', true);
+        $owner_exists  = $owner_post_id && get_post($owner_post_id);
+
+        if ($this->is_unattended_save()) {
+            if (!$owner_exists) {
+                update_post_meta($form_post_id, 'owner_post_id', (int) $post_id);
+            }
+
+            return true;
+        }
+
+        if ($owner_exists && $owner_post_id === (int) $post_id) {
+            return current_user_can('edit_post', $post_id);
+        }
+
         if (!current_user_can('edit_post', $form_post_id)) {
             return false;
         }
 
-        $owner_post_id = (int) get_post_meta($form_post_id, 'owner_post_id', true);
-        $owner_exists  = $owner_post_id && get_post($owner_post_id);
-
         // edit_post on a deleted post is never granted, so only a surviving owner can
         // veto the save. A record created before owners were recorded, or whose owner
         // has been deleted, is linked to the post that is saving it now.
-        if ($owner_exists && $owner_post_id !== (int) $post_id && !current_user_can('edit_post', $owner_post_id)) {
+        if ($owner_exists && !current_user_can('edit_post', $owner_post_id)) {
             return false;
         }
 
